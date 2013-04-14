@@ -52,7 +52,6 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="image_saved_success">Saving image…</string>
     <string name="save_picture_details">Save Picture Details</string>
     <string name="save">Save</string>
     <string name="settings_reset_summary">Reset to Artemis default settings.  You will not lose any saved pictures.</string>
