@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:fadeScrollbars="true"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/artemis_about_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/artemis_about_title" />
+
+    <ScrollView
+        android:id="@+id/ScrollView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dip" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fitsSystemWindows="true" >
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip" >
+
+                <ImageView
+                    android:id="@+id/artemis_about_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:src="@drawable/artemis_about_header" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip" >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dip"
+                    android:text="@string/artemis_about_text"
+                    android:textSize="8pt"
+                    android:textStyle="normal" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/loon_films_logo"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:clickable="true"
+                        android:src="@drawable/loon_films_logo" >
+
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/chemical_wedding_logo"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:src="@drawable/chemical_wedding_logo" >
+
+                    </ImageView>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip" >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingLeft="15dip"
+                    android:text="@string/chemical_wedding_about_text"
+                    android:textSize="8pt"
+                    android:textStyle="normal" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip" >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingLeft="15dip"
+                    android:text="@string/loon_films_about_text"
+                    android:textSize="8pt"
+                    android:textStyle="normal" />
+
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dip" >
+
+        <Button
+            android:id="@+id/about_back"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/about_back_button" />
+    </RelativeLayout>
+
+</LinearLayout>

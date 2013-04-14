@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="preference_key_autofocusonpicture">autoFocusOnPicture</string>
+    <string name="preference_key_gpsenabled">gpsEnabled</string>
+    <string name="preference_key_selectedlensmake">selectedLensMake</string>
+    <string name="preference_key_selectedlensescsvstring">selectedLensesCSVString</string>
+    <string name="preference_key_artemissavefolder">artemisSaveFolder</string>
+    <string name="preference_key_selectedcamerarowid">selectedCameraRowId</string>
+    <string name="preference_key_selectedexposurelevel">selectedExposureLevel</string>
+    <string name="preference_key_selectedwhitebalance">selectedWhiteBalance</string>
+    <string name="preference_key_flashenabled">flashEnabled</string>
+    <string name="preference_key_quickshotenabled">quickshotEnabled</string>
+    <string name="preference_key_lockboxesenabled">lockBoxesEnabled</string>
+    <string name="preference_key_previewselectionindex1">previewSelectionIndex1</string>
+    <string name="preference_key_smoothimageenabled">smoothImageEnabled</string>
+    <string name="preference_key_headingdisplay">headingDisplay</string>
+    <string name="preference_key_showdescription">showDescription</string>
+    <string name="preference_key_showcameradetails">showCameraDetails</string>
+    <string name="preference_key_showlensdetails">showLensDetails</string>
+    <string name="preference_key_showgpsdetails">showGpsDetails</string>
+    <string name="preference_key_showgpslocation">showGpsLocation</string>
+    <string name="preference_key_showviewangles">showViewAngles</string>
+    <string name="preference_key_showdatetime">showDateTime</string>
+    <string name="preference_key_showheading">showHeading</string>
+    <string name="preference_key_showtiltroll">showTiltRoll</string>
+    <string name="preference_key_selectedlanguage">selectedLanguage</string>
+    <string name="preference_key_automaticlensangles">automaticLensAngles</string>
+    <string name="preference_key_cameralenshangle">cameraLensHAngle</string>
+    <string name="preference_key_cameralensvangle">cameraLensVAngle</string>
+    <string name="preference_key_savedImageScale">savedImageScale</string>
+    <string name="preference_key_savedImageQuality">savedImageQuality</string>
+    <string name="preference_key_backkeyOption">backKeyOption</string>
+    <string name="preference_key_keepscreenon">keepScreenOn</string>
+    <string name="preference_key_hapticfeedback">hapticFeedback</string>
+    <string name="preference_key_longpressshutter">longPressShutter</string>
+    <string name="preference_key_volumeDownAction">volumeDownAction</string>
+    <string name="preference_key_volumeUpAction">volumeUpAction</string>
+    <string name="preference_key_selectedzoomlens">selectedZoomLens</string>
+    <string name="preference_key_previewblackwhite">previewBlackWhite</string>
+    <string name="preference_key_saveRawImage">saveRawImage</string>
+    <string name="preference_key_mapVolumeKeys">mapVolumeKeys</string>
+    
+    <!-- values and defaults -->
+    <string name="artemis_save_location_default">DCIM/ARTEMIS</string>
+    <string name="image_size_default">default</string>
+
+    <string-array name="image_size_prefs_values">
+        <item>small</item>
+        <item>default</item>
+        <item>large</item>
+    </string-array>
+
+    <string name="backkey_default">prompt</string>
+
+    <string-array name="backkey_prefs_values">
+        <item>finish</item>
+        <item>prompt</item>
+        <item>nothing</item>
+    </string-array>
+
+    <string name="image_quality_default">90</string>
+
+    <string-array name="image_quality_prefs">
+        <item>0</item>
+        <item>25</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+        <item>85</item>
+        <item>90</item>
+        <item>95</item>
+        <item>100</item>
+    </string-array>
+    <string-array name="longPressShutter_values">
+        <item>autofocusAndCapture</item>
+        <item>autofocusAndCaptureOnRelease</item>
+        <item>autofocus</item>
+        <item>nothing</item>
+    </string-array>
+
+    <string name="longPressShutter_default">autofocusAndCapture</string>
+
+    <string-array name="volumeAction_values">
+        <item>autofocusAndCapture</item>
+        <item>takePicture</item>
+        <item>autofocus</item>
+        <item>nothing</item>
+    </string-array>
+    <string-array name="volumeAction_values_noautofocus">
+        <item>takePicture</item>
+        <item>nothing</item>
+    </string-array>
+
+    <string name="volumeUpAction_default">autofocusAndCapture</string>
+    <string name="volumeUpAction_noautofocus_default">takePicture</string>
+    <string name="volumeDownAction_default">nothing</string>
+
+</resources>

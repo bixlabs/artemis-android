@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="artemis">Artemis</string>
+    <string name="the_folder_name_to_save_the_images_you_create_with_artemis_if_a_folder_with_this_name_doesn_apos_t_already_exist_it_will_be_created_for_you_">The folder name to save the images you create with Artemis.  If a folder with this name doesn&apos;t already exist it will be created for you.</string>
+    <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn&apos;t already exist it will be created for you.</string>
+    <string name="horizontal_lens_angle">Horizontal Lens Angle</string>
+    <string name="vertical_lens_angle">Vertical Lens Angle</string>
+    <string name="menu_artemis_quit">Quit</string>
+    <string name="menu_artemis_quit_description">Click me to quit Artemis.</string>
+    <string name="feedback_report_issue">Issue / Feedback</string>
+    <string name="feedback_report_issue_description">Report and Issue or give us your feedback, we appreciate your comments.</string>
+    <string name="menu_artemis_about">About</string>
+    <string name="menu_artemis_about_description">A little about the app and its developers.</string>
+
+    <string-array name="image_size_prefs">
+        <item>Small</item>
+        <item>Default</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="backkey_prefs">
+        <item>Exit Artemis immediately</item>
+        <item>Prompt before closing</item>
+        <item>Do nothing</item>
+    </string-array>
+
+    <string name="email_support">Email Support</string>
+
+    <string-array name="longPressShutter_entries">
+        <item>Autofocus camera and immediately capture image</item>
+        <item>Autofocus camera and capture image on button release</item>
+        <item>Autofocus camera only</item>
+        <item>Do nothing</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>Autofocus camera and immediately capture image</item>
+        <item>Take a picture</item>
+        <item>Autofocus camera</item>
+        <item>Do nothing</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>Take a picture</item>
+        <item>Do nothing</item>
+    </string-array>
+
+    <string name="camera_device_will_not_autofocus">Camera device will NOT autofocus before taking each picture</string>
+    <string name="camera_device_will_autofocus">Camera device will autofocus before taking each picture</string>
+    <string name="auto_focus_behaviour_when_long_pressing">Auto focus behaviour when long pressing the camera shutter (capture image) button.</string>
+    <string name="long_press_shutter_button_focus_behaviour">Long Press Shutter Button Focus Behaviour</string>
+    <string name="torch_while_in_preview_mode">Camera device will use the torch while in preview mode</string>
+    <string name="not_torch_while_in_preview_mode">Camera device will NOT use the torch while in preview mode</string>
+    <string name="camera_preview_will_show_all_colors">Camera preview will show all colors</string>
+    <string name="camera_preview_will_be_black_and_white">Camera preview will be black and white. Note: this will also affect saved images.</string>
+    <string name="device_camera_behaviour">Device Camera Behaviour</string>
+    <string name="device_camera_sensor">Device Camera Sensor</string>
+    <string name="device_camera_angles">Device Camera Angles</string>
+    <string name="use_the_custom_camera_angles">The application will use the custom values shown below.</string>
+    <string name="use_detected_device_angles">The application will use the values automatically detected from the device (current values shown below).</string>
+    <string name="detect_device_camera_angles_automatically">Detect Device Camera Angles Automatically</string>
+    <string name="heading_summary">Choose what to display in the heading of the main app.</string>
+    <string name="lockboxes_summary">Enable/Disable the Lens boxes from changing position on touch.</string>
+    <string name="lock_lens_boxes">Lock Lens Boxes</string>
+    <string name="backkey_summary">Choose the behaviour of the Android back button while the main app is running.</string>
+    <string name="back_button_behaviour">Back Button Behaviour</string>
+    <string name="haptic_feedback">Haptic Feedback</string>
+    <string name="hapticfeedback_off_summary">Artemis will NOT provide haptic feedback on button presses.</string>
+    <string name="haptic_feedback_on_summary">Artemis will provide haptic feedback on button presses.</string>
+    <string name="keep_screen_on_summary">The screen will be kept on and NEVER timeout while the main app is running.</string>
+    <string name="keep_screen_off_summary">The screen will timeout according to your devices default sleep setting.</string>
+    <string name="keep_screen_on">Keep Screen On</string>
+    <string name="gps_settings">GPS Settings</string>
+    <string name="screen_settings">Screen Settings</string>
+    <string name="user_interface_behaviour">User Interface Behaviour</string>
+    <string name="gps_summary_off">GPS is disabled. The device will not search for it&apos;s location.</string>
+    <string name="gps_summary_on">GPS is enabled and the device will search for it&apos;s location.</string>
+    <string name="key_mappings">Key Mappings</string>
+    <string name="map_volume_on">Don&apos;t override volume key behavior. Volume keys behave as default.</string>
+    <string name="map_volume_off">"Override volume key behavior while the main app is running. "</string>
+    <string name="map_volume_key_title">Override Volume Key Behavior</string>
+    <string name="volume_up_summary">Choose the behaviour when phones volume up key is pressed while the main app is running.</string>
+    <string name="volume_up_key_title">Volume Up Key Behaviour</string>
+    <string name="volume_down_summary">Choose the behaviour when phones volume down key is pressed while the main app is running.</string>
+    <string name="volume_down_key_title">Volume Down Key Behaviour</string>
+    <string name="language_summary">NOTE: You must quit and restart the application for changes to take effect.</string>
+    <string name="picture_save_location">Picture Save Location</string>
+    <string name="select_image_size">Select Image Size</string>
+    <string name="image_size_summary">Select the size of the final image saved to disk.</string>
+    <string name="saved_image_size">Saved Image Size</string>
+    <string name="select_image_quality">Select Image Quality</string>
+    <string name="image_quality_summary">Select the quality (compression) of the image saved to disk.</string>
+    <string name="saved_image_quality">Saved Image Quality</string>
+    <string name="smooth_image_off">Images will NOT be smooth filtered.</string>
+    <string name="smooth_image_on">A filter will be applied to make the images appear smoother when scaling is required.</string>
+    <string name="quick_picture_off">An image preview will be shown after pictures are saved.</string>
+    <string name="quick_picture_on">Quick pictures are enabled. An image preview will NOT be shown after pictures are saved.</string>
+
+</resources>

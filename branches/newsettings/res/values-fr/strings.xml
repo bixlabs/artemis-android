@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--	//STRINGS FRENCH FR-->
+
+	<!--	//General Strings-->
+
+	<string name="app_name">Artemis</string>
+
+
+	<!--	//Artemis menu-->
+
+	<string name="menu_camera_settings">Sélection caméra</string>
+	<string name="menu_artemis_settings">Paramètres</string>
+	<string name="menu_lens_settings">Sélectionnez Lens</string>
+	<string name="menu_artemis_about"> A propos de</string>
+	<string name="menu_artemis_help">Aide</string>
+
+	<!--	//Artemis Settings Page-->
+	<string name="new_features">Nouvelles fonctionnalités à venir bientôt</string>
+	<string name="gps_on_off">GPS Activer / Désactiver</string>
+	<string name="artemis_settings_title">Artemis Paramètres</string>
+	<string name="choose_folder_for_image_saving">Le dossier de destination pour sauver l\'image.</string>
+	<string name="choose_path">Choisissez..</string>
+	<string name="auto_exposure">Exposition automatique</string>
+	<string name="set_exposure_text">Exposition Set</string>
+	<string name="set_exposure">Exposition Set</string>
+	<string-array name="set_exposure_array">
+		<item>-3</item>
+		<item>-2</item>
+		<item>-1</item>
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+	</string-array>
+	<string name="auto_white_balance"> Balance des blancs automatique</string>
+	<string name="set_white_balance_text">Régler la balance des blancs</string>
+	<string name="set_white_balance">Régler la balance des blancs</string>
+	<string-array name="set_white_balance">
+		<item>Daylight</item>
+		<item>Nuageux</item>
+		<item> Fluorescent</item>
+		<item>Incandescent</item>
+	</string-array>
+	<string name="save_artemis_settings">Enregistrer les paramètres Artemis</string>
+
+
+	<!--	//About Page-->
+
+	<string name="artemis_about_title">A propos - Artemis pour Android v</string>
+	<string name="artemis_about_text">Artemis est un viseur numérique administrateurs conçu avec deux cinéastes et directeurs de l\'esprit. Artemis fonctionne presque de la même manière comme un viseur traditionnel administration, bien que beaucoup plus précise et beaucoup plus facilement. Après avoir sélectionné un format de l\'appareil le rapport d\'aspect, et le type d\'objectif, Artemis utilise l\'appareil photo sur votre appareil mobile afin de simuler la lentille vues vous pouvez vous attendre lorsque vous venez de tirer. Vous pouvez comparer toutes les lentilles ou frappé de zoom et la caméra effectue un zoom avant de remplir le viseur avec le point de vue équivalent de l\'objectif que vous avez choisi.</string>
+	<string name="chemical_wedding_about_text">Copyright 2010. Chemical Wedding est un groupe de Britanniques (ainsi, l\'un de nous est en quelque sorte de l\'Australie) qui vivent à Los Angeles parce que c\'est beaucoup plus ensoleillé ici. Nous sommes un mélange bizarre de professionnels du cinéma, les concepteurs et les types banquier avec une grande expérience dans la conception, de codage et de la technologie.</string>
+	<string name="loon_films_about_text">Artemis pour Android a été développée par Loon Films.</string>
+	<string name="about_back_button">Retour</string>
+
+	<!--	//Camera Settings Page-->
+
+	<string name="camera_settings_title">Réglages de l\'appareil</string>
+	<string name="add_custom_camera_list_item">AJOUTER CAMÉRA CUSTOM</string>
+
+
+	<!--	//Lense Settings Page-->
+
+	<string name="lens_settings_title">Paramètres de l\'objectif</string>
+	<string name="save_lenses">Enregistrer Lentilles</string>
+	<string name="no_camera_alert">S\'il vous plaît sélectionner une caméra avant de choisir les lentilles</string>
+
+	<!--	//Save Picture Page-->
+
+	<string name="save_picture_title">Enregistrer l\'image</string>
+	<string name="saving_picture">Sauvegarde Image</string>
+	<string name="save_and_edit"> Enregistrer et modifier des détails</string>
+	<string name="save_picture">Enregistrer l\'image</string>
+	<string name="gps_coordinates">Coordonnées GPS</string>
+	<string name="camera_information">Informations Camera</string>
+	<string name="lens_information">Informations Lens</string>
+	<string name="cancel">Annuler</string>
+	<string name="image_description_hint">Ajouter une description</string>
+
+	<!--	//Add Custom Camera Page-->
+
+	<string name="add_custom_camera_title">Ajouter Custom Camera-Toutes les mesures en millimètres (mm)</string>
+	<string name="custom_camera_name">CRÉER UN NOM DE CAMÉRA PERSONNALISÉE</string>
+	<string name="custom_camera_distance">DISTANCE</string>
+	<string name="custom_camera_width">LARGEUR</string>
+	<string name="custom_camera_height">HAUTEUR</string>
+	<string name="custom_camera_focallength">FOCALE</string>
+	<string name="save_custom_camera">Ajouter photo personnalisé</string>
+	<string name="add_custom_camera_directions">Pour entrer un appareil photo personnalisé dont vous avez besoin de réaliser quelques mesures simples. Placez l\'appareil à une distance fixe à partir d\'un tableau mural ou de se concentrer et à mesurer à partir du point nodal de la lentille à la surface. Ensuite, avec un objectif à focale fixe, mesurer exactement la largeur et la hauteur de ce que vous pouvez voir à travers le viseur. Utiliser des unités cohérentes.</string>
+
+<!--  / / NEW TRANSLATIONS 2-15-11 -->
+
+    <!--  / / NEW TRANSLATIONS 3-19-11 -->
+
+	<string name="lensFocalLengthMM">mm</string>
+
+	<!--	//Artemis menu-->
+
+	<string name="menu_artemis_gallery">Galerie</string>
+	<string name="menu_artemis_quit">Quitter</string>
+
+
+	<!--	//Artemis Settings Page-->
+
+	<string name="set_flash_mode_text">Flash / Mode de la flamme</string>
+	<string name="set_flash_mode_spinner">Réglez le mode flash</string>
+	<string-array name="set_flash_mode_array">
+		<item>On</item>
+		<item>Off</item>
+	</string-array>
+	<string name="quickshot_text">Mode rapide tournage</string>
+	<string name="lock_boxes_text">Lock boîtes Lens</string>
+	<string name="set_preview_size_text">Résolution de prévisualisation</string>
+	<string name="smooth_filter_text">Image lisse filtre</string>
+	<string name="select_preview_size_text">Résolution Sélectionnez Aperçu</string>
+	<string name="artemis_remote_text">Artemis à distance pour les comprimés et Android iPads</string>
+	<string name="select_language_text">Sélectionnez la langue</string>
+	<string name="heading_tilt_roll_text">Intitulé Options</string>
+	<string-array name="heading_tilt_roll_array">
+		<item>Aucun</item>
+		<item>Intitulé°</item>
+		<item>Intitulé°|°Inclinaison|Rouleau°</item>
+	</string-array>
+
+
+	<!--	//About Page-->
+
+
+	<!--	//Camera Settings Page-->
+
+	<string name="custom_camera_new_camera">NOUVELLE CAMERA SUR MESURE</string>
+
+
+	<!--	//Save Picture Page-->
+
+	
+	<string name="hangle_text">H Angle</string>
+	<string name="vangle_text">V Angle</string>
+	<string name="h_and_v_angle_text">H et V Angle</string>
+	<string name="compass_heading_text">Cap compas (N, S, E, W)</string>
+	<string name="tilt_and_roll_text">Inclinaison et Rouleau</string>
+	<string name="gps_location">Détails Site GPS</string>
+	<string name="date_and_time_text">Date et heure</string>
+
+	<!--	//Add Custom Camera Page-->
+
+	<string name="update_custom_camera">Mise à jour Camera Custom</string>
+	<string name="custom_camera_options">Options photo personnalisé</string>
+	<string name="custom_camera_edit_camera">Modifier Camera</string>
+	<string name="custom_camera_delete_camera">Supprimer Camera</string>
+
+
+	<!-- Unlicensed dialog messages -->
+
+	<string name="unlicensed_dialog_title">Demande non autorisée</string>
+	<string name="error_dialog_title">Erreur de licence Application</string>
+	<string name="unlicensed_dialog_body">Cette application nest pas autorisée. S il vous plaît l acheter sur l Android Market.</string>
+	<string name="error_dialog_body">Il y avait une erreur de vérifier la demande de licence. Si ce problème persiste, s il vous plaît contactez le support.</string>
+	<string name="buy_button">Acheter app</string>
+	<string name="quit_button">Exit</string>
+	
+	
+ <!--  / / NEW TRANSLATIONS 4-30-11 -->
+	<string name="reset_device_h_and_v_angles">Reset</string>
+<string name="auto_device_h_and_v_angles">Obtenez Angles de caméra appareil automatiquement</string>
+<string name="manually_set_h_angle_text">Angle Camera Device Set horizontale</string>
+<string name="manually_set_v_angle_text">Angle Camera Set dispositif vertical</string>
+	
+ <!--  / / NEW TRANSLATIONS 07-19-11 -->
+<string name="auto_focus_text">Images Auto Focus</string>
+	<!-- Gallery related messages -->
+	<string name="gallery_no_images_found">Aucune image trouvée</string>
+</resources>

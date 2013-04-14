@@ -1,0 +1,4 @@
+<resources>
+	<style parent="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+		name="ArtemisMain" />
+</resources>

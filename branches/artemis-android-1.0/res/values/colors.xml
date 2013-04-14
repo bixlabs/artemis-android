@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="previewTextColor">#ffff</color>
+	<color name="backgroundArtemisSettings">#29000000</color>
+	<color name="artemisSettingsText">#FFFFFF</color>
+</resources>

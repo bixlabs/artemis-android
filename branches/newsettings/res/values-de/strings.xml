@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+
+    <string name="app_name">Artemis</string>
+    <string name="menu_camera_settings">Kamera wählen</string>
+    <string name="menu_artemis_settings">Einstellungen</string>
+    <string name="menu_lens_settings">Objektive wählen</string>
+    <string name="menu_artemis_about">Über</string>
+    <string name="menu_artemis_help">Hilfe</string>
+    <string name="new_features">NEUE FEATURES IN KÜRZE</string>
+    <string name="gps_on_off">GPS aktivieren /deaktivieren</string>
+    <string name="artemis_settings_title">Artemis Einstellungen</string>
+    <string name="choose_folder_for_image_saving">Zielordner für zu speichernde Bilder (SD: / / Galerie /   ..)</string>
+    <string name="choose_path">Wählen..</string>
+    <string name="auto_exposure">Automatische Belichtung</string>
+    <string name="set_exposure_text">Belichtungskorrektur</string>
+    <string name="set_exposure">Belichtungskorrektur</string>
+
+    <string-array name="set_exposure_array">
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="auto_white_balance">Automatischer Weißabgleich</string>
+    <string name="set_white_balance_text">Manueller Weißabgleich</string>
+    <string name="set_white_balance">Manueller Weißabgleich</string>
+
+    <string-array name="set_white_balance">
+        <item>Tageslicht</item>
+        <item>Bewölkt</item>
+        <item>Leuchtstoffröhren</item>
+        <item>Kunstlicht</item>
+    </string-array>
+
+    <string name="save_artemis_settings">Artemis Einstellungen speichern</string>
+    <string name="artemis_about_title">Über Artemis für Android v1.0</string>
+    <string name="artemis_about_text">Artemis ist ein digitaler Motivsucher der sowohl für Kameraleute als auch Regisseure entwickelt wurde. Artemis arbeitet fast auf die gleiche Weise wie ein traditioneller Motivsucher, obgleich er viel genauer ist und sich bequemer bedienen lässt. Nach der Wahl einer Kamera, des Seitenverhältnisses und des Objektivtyps benutzt Artemis die Kamera ihres mobilen Geräts zur Simulation des gewünschten Objektivs beim Dreh. Sie können entweder alle Optiken gleichzeitig anzeigen lassen oder den Zoommodus aktivieren um den Ausschnitt des gewählten Objektivs bildfüllend darzustellen. Welche Kameras werden unterstützt? Artemis hat jede Kamera in unserer Datenbank ausführlichen Tests unterworfen, um sicherzustellen, dass das Sichtfeld korrekt ist. Bei den digitalen Filmkameras stellten wir fest, dass es nicht immer ausreichend war sich auf die Angaben der Kamerahersteller zu verlassen. Die folgenden Formate werden bis jetzt unterstützt: \ nStandard und Super 16mm \   nSuper 16mm Anamorphic \ nStandard und Super 35mm \ n35mm Anamorphic \   n65mm \ n35mm Digital (D-21, RED, F35, Genesis) \ n2 / 3 "Digital   (F23, Viper) \ n1 / 2 "Digital \ n1 / 3" Digital \ nCanon 5D und 7D. \   n   Wenn Sie feststellen, dass ein Format, welches Sie benötigen fehlt, lassen Sie es uns wissen und wir werden unser Bestes geben es Ihnen mit dem nächsten Update zur Verfügung zu stellen.</string>
+    <string name="chemical_wedding_about_text">Copyright 2010. Chemical Wedding</string>
+    <string name="loon_films_about_text">Artemis für Android wurde von Loon Films entwickelt.</string>
+    <string name="about_back_button">Zurück</string>
+    <string name="camera_settings_title">Kamera Einstellungen</string>
+    <string name="add_custom_camera_list_item">Hinzufügen einer benutzerdefinierten Kamera</string>
+    <string name="lens_settings_title">Objektiv Einstellungen</string>
+    <string name="save_lenses">Objektive speichern</string>
+    <string name="no_camera_alert">Bitte wählen Sie eine Kamera vor der Objektivwahl</string>
+    <string name="save_picture_title">Bild speichern</string>
+    <string name="saving_picture">Bild wird gespeichert…</string>
+    <string name="save_and_edit">Speichern und Bearbeiten von Details</string>
+    <string name="save_picture">Bild speichern</string>
+    <string name="gps_coordinates">GPS-Koordinaten</string>
+    <string name="camera_information">Kamera Informationen</string>
+    <string name="lens_information">Objektiv Informationen</string>
+    <string name="cancel">Abbruch</string>
+    <string name="image_description_hint">Eine Beschreibung hinzufügen</string>
+    <string name="add_custom_camera_title">Eigene Kamera hinzufügen - alle Abmessungen in Millimeter (mm)</string>
+    <string name="custom_camera_name">ERSTELLUNG EINES EIGENEN KAMERANAMENS</string>
+    <string name="custom_camera_distance">Abstand</string>
+    <string name="custom_camera_width">BREITE</string>
+    <string name="custom_camera_height">HÖHE</string>
+    <string name="custom_camera_focallength">BRENNWEITE</string>
+    <string name="save_custom_camera">Hinzufügen der benutzerdefinierten Kamera</string>
+    <string name="add_custom_camera_directions">Um eine benutzerdefinierte Kamera anzulegen müssen Sie ein paar einfache Messungen durchführen. Platzieren Sie die Kamera in festem Abstand zu einer Wand oder Fokus-Chart und messen vom Nodalpunkt des Objektivs bis zur Oberfläche. Als nächstes messen Sie mit einer festen Brennweite exakt die Breite und Höhe von dem was Sie durch den Sucher sehen können. Verwenden Sie konsistente Einheiten.</string>
+    <string name="lensFocalLengthMM">mm</string>
+    <string name="menu_artemis_gallery">Galerie</string>
+    <string name="menu_artemis_quit">Beenden</string>
+    <string name="set_flash_mode_text">Blitz Modus</string>
+    <string name="set_flash_mode_spinner">Blitzmodus einstellen</string>
+
+    <string-array name="set_flash_mode_array">
+        <item>Ein</item>
+        <item>Aus</item>
+    </string-array>
+
+    <string name="quickshot_text">Schnell Schuss Modus</string>
+    <string name="lock_boxes_text">Objektivmarkierungen fixieren</string>
+    <string name="set_preview_size_text">Vorschau Auflösung</string>
+    <string name="smooth_filter_text">Glattes Bild Filter</string>
+    <string name="select_preview_size_text">Vorschau Auflösung</string>
+    <string name="artemis_remote_text">Artemis Fernbedienung für Android Tablets und iPads</string>
+    <string name="select_language_text">Sprache wählen</string>
+    <string name="heading_tilt_roll_text">Position Optionen</string>
+
+    <string-array name="heading_tilt_roll_array">
+        <item>Keine</item>
+        <item>Position</item>
+        <item>Position |Tilt |Roll</item>
+    </string-array>
+
+    <string name="custom_camera_new_camera">Neue benutzerdefinierte Kamera</string>
+    <string name="hangle_text">H Winkel</string>
+    <string name="vangle_text">V Winkel</string>
+    <string name="h_and_v_angle_text">H und V-Winkel</string>
+    <string name="compass_heading_text">Kompass Position (N, S, E, W)</string>
+    <string name="tilt_and_roll_text">Tilt und Roll</string>
+    <string name="gps_location">GPS Standort Details</string>
+    <string name="date_and_time_text">Datum und Uhrzeit</string>
+    <string name="update_custom_camera">benutzerdefinierte Kamera aktualisieren</string>
+    <string name="custom_camera_options">benutzerdefinierte Kamera Optionen</string>
+    <string name="custom_camera_edit_camera">Kamera bearbeiten</string>
+    <string name="custom_camera_delete_camera">Kamera löschen</string>
+    <string name="unlicensed_dialog_title">Anwendung nicht lizenziert</string>
+    <string name="error_dialog_title">Anwendung  Lizenz Fehler</string>
+    <string name="unlicensed_dialog_body">Diese Anwendung ist nicht lizenziert. Bitte kaufen Sie sie im Android Markt.</string>
+    <string name="error_dialog_body">Es gab einen Fehler bei der Überprüfung der Anwendungslizenz. Wenn dieses Problem weiterhin besteht, wenden Sie sich bitte an den Support.</string>
+    <string name="buy_button">App kaufen</string>
+    <string name="quit_button">Beenden</string>
+    <string name="reset_device_h_and_v_angles">Reset</string>
+    <string name="auto_device_h_and_v_angles">Integrierte Kamera automatisch erkennen</string>
+    <string name="manually_set_h_angle_text">Horizontaler Kamerawinkel</string>
+    <string name="manually_set_v_angle_text">Vertikaler Kamerawinkel</string>
+    <string name="auto_focus_text">Auto Focus</string>
+    <string name="gallery_no_images_found">Keine Bilder gefunden</string>
+
+</resources>

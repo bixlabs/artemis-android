@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<com.chemicalwedding.artemis.ArtemisViewFlipper
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:id="@+id/mainViewFlipper">
+
+		<include android:id="@+id/artemisPreview" layout="@layout/artemis_preview" />
+
+		<include android:id="@+id/cameraSettings" layout="@layout/camera_settings" />
+
+		<include android:id="@+id/lensSettings" layout="@layout/lens_settings" />
+
+		<include android:id="@+id/savePicture" layout="@layout/save_picture" />
+
+	</com.chemicalwedding.artemis.ArtemisViewFlipper>
+
+</FrameLayout>
