@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--	//English Strings-->
+
+	<!--	//General Strings-->
+
+	<string name="app_name">アルテミス</string>
+	
+
+
+	<!--	//Artemis menu-->
+
+	<string name="menu_camera_settings">カメラの選択</string>
+	<string name="menu_artemis_settings">の設定</string>
+	<string name="menu_lens_settings">選択レンズ</string>
+	<string name="menu_artemis_about">について</string>
+	<string name="menu_artemis_help">ヘルプ</string>
+
+	<!--	//Artemis Settings Page-->
+	<string name="new_features">近日公開 新機能</string>
+	<string name="gps_on_off">オン/オフ ターンのGPS</string>
+	<string name="artemis_settings_title">設定のアルテミス</string>
+	<string name="choose_folder_for_image_saving">画像の保存のための 先フォルダにコピーします。</string>
+	<string name="choose_path">選択..</string>
+	<string name="auto_exposure">自動露出</string>
+	<string name="set_exposure_text">セット露出</string>
+	<string name="set_exposure">は、露出を設定する</string>
+	<string-array name="set_exposure_array">
+		<item>-3</item>
+		<item>-2</item>
+		<item>-1</item>
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+	</string-array>
+	<string name="auto_white_balance">自動ホワイトバランス</string>
+	<string name="set_white_balance_text">ホワイトバランス - （白熱灯/蛍光灯/など）。</string>
+	<string name="set_white_balance">ホワイトバランスを設定する</string>
+	<string-array name="set_white_balance">
+		<item>夏時間</item>
+		<item>曇り</item>
+		<item>蛍光</item>
+		<item>白熱灯</item>
+	</string-array>
+	<string name="save_artemis_settings">は、アルテミスの設定を保存</string>
+
+
+	<!--	//About Page-->
+
+	<string name="artemis_about_title">アルテミスAndroidの v</string>
+	<string name="artemis_about_text">アルテミスは、撮影監督と監督を念頭に置いて設計されたディジタル取締役ファインダーです。アルテミスはもはるかに正確に、はるかに便利な、伝統的な取締役ファインダーとほぼ同じように動作します。カメラの形式は、アスペクト比とレンズの種類を選択した後、アルテミスは、お使いの携帯デバイスでは、カメラを使用して、レンズは、あなたが撮影に来るときに期待することができますビューシミュレートします。いずれかのすべてのレンズを比較したり、ヒットズームとカメラを使用すると、選択したレンズと同等の表示とファインダーを埋めるためにズームされます。</string>
+	<string name="chemical_wedding_about_text">著作権2010。化学結婚式は（よく、一人は、オーストラリアの一種である）、ここでも晴れているので、ロサンゼルスに住んでいる英国人の集まりです。我々は、符号化技術、デザインの幅広い経験を持つフィルムの専門家、デザイナー、銀行の種類の奇妙なミックスをしています。</string>
+	<string name="loon_films_about_text">Android用 アルテミスはサザーランドとルーンファンによって開発されました。</string>
+	<string name="about_back_button">戻る</string>
+
+	<!--	//Camera Settings Page-->
+
+	<string name="camera_settings_title">カメラの設定</string>
+
+	<!--	//Lense Settings Page-->
+
+	<string name="lens_settings_title">レンズの設定</string>
+	<string name="save_lenses">は、レンズを保存</string>
+	<string name="no_camera_alert">は、レンズを選択する前に、カメラを選択してください。</string>
+
+	<!--	//Save Picture Page-->
+
+	<string name="save_picture_title">画像を保存</string>
+	<string name="saving_picture">画像を保存する</string>
+	<string name="save_and_edit">は、保存して、詳細を編集</string>
+	<string name="save_picture">画像を保存</string>
+	<string name="gps_coordinates">のGPS座標</string>
+	<string name="camera_information">カメラ情報</string>
+	<string name="lens_information">レンズ情報</string>
+	<string name="cancel">キャンセル</string>
+	<string name="image_description_hint">説明を追加</string>
+
+	<!--	//Add Custom Camera Page-->
+
+	<string name="add_custom_camera_title">[カスタムカメラ - milimeters内のすべてのmeasurmentsさ（mm）</string>
+	<string name="custom_camera_name">は、カスタムカメラNAMEを作成する</string>
+	<string name="custom_camera_distance">距離</string>
+	<string name="custom_camera_width">幅</string>
+	<string name="custom_camera_height">高さ</string>
+	<string name="custom_camera_focallength">焦点距離</string>
+	<string name="save_custom_camera">は、カスタムカメラを追加します。</string>
+	<string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
+
+	<!--  / / NEW TRANSLATIONS 2-15-11 -->
+
+	<!--  / / NEW TRANSLATIONS 3-19-11 -->
+
+<!--	//General Strings / Artemis Preview-->
+
+<string name="lensFocalLengthMM">mm</string>
+
+	
+<!--	//Artemis menu-->
+
+<string name="menu_artemis_gallery">ギャラリー</string>
+<string name="menu_artemis_quit">終了</string>
+
+
+<!--	//Artemis Settings Page-->
+
+<string name="set_flash_mode_text">フラッシュ/トーチモード</string>
+<string name="set_flash_mode_spinner">設定フラッシュモード</string>
+<string-array name="set_flash_mode_array">
+		<item>上</item>
+		<item>オフ</item>
+</string-array>
+<string name="quickshot_text">クイックモードでの撮影</string>
+<string name="lock_boxes_text">ロックレンズボックス</string>
+<string name="set_preview_size_text">プレビュー解像度</string>
+<string name="smooth_filter_text">滑らかな画像フィルタ</string>
+<string name="select_preview_size_text">選択プレビューの解像度</string>
+<string name="artemis_remote_text">Androidの錠剤とiパッドのアルテミスリモート</string>
+<string name="select_language_text">言語の選択</string>
+<string name="heading_tilt_roll_text">オプションを見出し</string>
+	<string-array name="heading_tilt_roll_array">
+		<item>なし</item>
+		<item>見出し°</item>
+		<item>見出し°|チルト°|ロール°</item>
+	</string-array>
+
+
+<!--	//About Page-->
+
+
+<!--	//Camera Settings Page-->
+
+<string name="custom_camera_new_camera">新しいカスタムカメラ</string>
+
+
+<!--	//Save Picture Page-->
+
+	<string name="hangle_text">Hの角度</string>
+	<string name="vangle_text">Vの角度</string>
+<string name="h_and_v_angle_text">HおよびVアングル</string>
+	<string name="compass_heading_text">コンパス見出し (がN、Sメールは、W)</string>
+<string name="tilt_and_roll_text">傾斜とロール</string>
+<string name="gps_location">GPSによる位置情報の詳細</string>
+<string name="date_and_time_text">日付と時刻</string>
+
+<!--	//Add Custom Camera Page-->
+
+<string name="update_custom_camera">更新カスタムカメラ</string>
+<string name="custom_camera_options">カスタムカメラオプション</string>
+<string name="custom_camera_edit_camera">カメラを編集する</string>
+<string name="custom_camera_delete_camera">削除カメラ</string>
+
+
+<!-- Unlicensed dialog messages -->
+
+    <string name="unlicensed_dialog_title">アプリケーションがライセンスを取得</string>
+    <string name="error_dialog_title">アプリケーションのライセンスエラー</string>
+    <string name="unlicensed_dialog_body">このアプリケーションは、ライセンスされていません。 Android Marketからそれを購入してください。</string>
+    <string name="error_dialog_body">アプリケーションのライセンスを確認中にエラーが発生しました。この問題が解決しない場合は、サポートに連絡してください。</string>
+    <string name="buy_button">アプリを購入</string>
+    <string name="quit_button">終了\</string>
+
+
+ <!--  / / NEW TRANSLATIONS 4-30-11 -->
+	<string name="reset_device_h_and_v_angles">リセット</string>
+<string name="auto_device_h_and_v_angles">自動的にデバイスのカメラの角度を取得する</string>
+<string name="manually_set_h_angle_text">設定デバイスカメラ水平画角</string>
+<string name="manually_set_v_angle_text">設定デバイスカメラ垂直アングル</string>
+
+ <!--  / / NEW TRANSLATIONS 07-19-11 -->
+<string name="auto_focus_text">オートフォーカスの画像</string>
+<!-- Gallery related messages -->
+	<string name="gallery_no_images_found">ない画像が見つかりませんでした</string>
+</resources>

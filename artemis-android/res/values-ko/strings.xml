@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--	//English Strings-->
+
+	<!--	//General Strings-->
+
+	<string name="app_name">아르테 미스</string>
+
+
+	<!--	//Artemis menu-->
+
+	<string name="menu_camera_settings">선택 카메라</string>
+	<string name="menu_artemis_settings">설정</string>
+	<string name="menu_lens_settings">선택 렌즈</string>
+	<string name="menu_artemis_about">소개</string>
+	<string name="menu_artemis_help">도움말</string>
+
+	<!--	//Artemis Settings Page-->
+	<string name="new_features">출시예정새로운 기능</string>
+	<string name="gps_on_off">켜기 / 끄기 회전 GPS를</string>
+	<string name="artemis_settings_title">설정을 아르테 미스</string>
+	<string name="choose_folder_for_image_saving">이미지 폴더 이름</string>
+	<string name="choose_path">경로를 선택 …</string>
+	<string name="auto_exposure">자동 노출</string>
+	<string name="set_exposure_text">세트 노광</string>
+	<string name="set_exposure">노출 세트</string>
+	<string-array name="set_exposure_array">
+		<item>-3</item>
+		<item>-2</item>
+		<item>-1</item>
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+	</string-array>
+	<string name="auto_white_balance">자동 화이트 밸런스</string>
+	<string name="set_white_balance_text">화이트 밸런스 설정</string>
+	<string name="set_white_balance">화이트 밸런스 설정</string>
+	<string-array name="set_white_balance">
+		<item>일광</item>
+		<item>에 흐린</item>
+		<item>형광등</item>
+		<item>의 밝음</item>
+	</string-array>
+	<string name="save_artemis_settings">이 아르테 미스 설정 저장</string>
+
+
+	<!--	//About Page-->
+
+	<string name="artemis_about_title">아르테 미스 안드로이드 베타 v</string>
+	<string name="artemis_about_text">아르테 미스 모두  이사 염두에두고 설계된 디지털 이사 뷰파인더입니다. 아르테 미스하지만 훨씬 더 정확하고 훨씬 더 편리하게, 전통적인 감독의 뷰파인더과 거의 동일한 방식으로 작동합니다. 카메라 포맷, 화면 비율 및 렌즈의 유형을 선택한 후, 아르테 미스가 모바일 장치의 카메라를 사용하는 렌즈가 당신이 촬영에 오면 기대할 수 전망을 시뮬레이트. 당신도 모든 렌즈를 비교하거나 충돌 줌 및 카메라가 선택한 렌즈의 동등한 볼 수있는 뷰파인더를을 채우기 위해 확대됩니다.</string>
+	<string name="chemical_wedding_about_text">저작권 2010.</string>
+	<string name="loon_films_about_text">안드로이드에 대한 의 아르테 미스는 존 서덜랜드와 얼간이 영화에 의해 개발되었다.</string>
+	<string name="about_back_button">위로</string>
+
+	<!--	//Camera Settings Page-->
+
+	<string name="camera_settings_title">카메라 설정</string>
+
+	<!--	//Lense Settings Page-->
+
+	<string name="lens_settings_title">렌즈 설정</string>
+	<string name="save_lenses">렌즈 저장</string>
+	<string name="no_camera_alert">렌즈를 선택하기 전에 카메라를 선택하십시오</string>
+
+	<!--	//Save Picture Page-->
+
+	<string name="save_picture_title">이 사진을 저장</string>
+	<string name="saving_picture">사진 저장</string>
+	<string name="save_and_edit">저장하고 세부 정보 편집</string>
+	<string name="save_picture">이 사진을 저장</string>
+	<string name="gps_coordinates">의 GPS 좌표</string>
+	<string name="camera_information">카메라 정보</string>
+	<string name="lens_information">렌즈 정보</string>
+	<string name="cancel">취소</string>
+	<string name="image_description_hint">설명 추가</string>
+
+	<!--	//Add Custom Camera Page-->
+
+	<string name="add_custom_camera_title">추가 사용자 정의 카메라 - 모든 측정 (㎜)</string>
+	<string name="custom_camera_name">사용자 정의 카메라 이름을 만듭니다</string>
+	<string name="custom_camera_distance">거리</string>
+	<string name="custom_camera_width">폭</string>
+	<string name="custom_camera_height">높이</string>
+	<string name="custom_camera_focallength">초점 거리</string>
+	<string name="save_custom_camera">사용자 정의 카메라를 추가</string>
+	<string name="add_custom_camera_directions">당신이 몇 가지 간단한 측정을 내리는 데 필요한 사용자 정의 카메라를 입력하십시오. 카메라를 벽이나 초점 차트와 측정 표면에 렌즈의 결절 지점부터 고정된 거리를 배치합니다. 다음, 고정 렌즈, 정확히 너비와 높이 당신은 뷰파인더를 통해 볼 수있는 무엇을 측정합니다. 일관성있는 단위를 사용합니다.</string>
+
+
+
+	<!--  / / NEW TRANSLATIONS 2-15-11 -->
+
+	<!--  / / NEW TRANSLATIONS 3-19-11 -->
+
+<!--	//General Strings / Artemis Preview-->
+
+<string name="lensFocalLengthMM">mm</string>
+
+	
+<!--	//Artemis menu-->
+
+<string name="menu_artemis_gallery">갤러리</string>
+<string name="menu_artemis_quit">종료</string>
+
+
+<!--	//Artemis Settings Page-->
+
+<string name="set_flash_mode_text">플래시 / 토치 모드</string>
+<string name="set_flash_mode_spinner">설정 플래시 모드</string>
+<string-array name="set_flash_mode_array">
+		<item>에</item>
+		<item>끄기</item>
+</string-array>
+<string name="quickshot_text">빠른 모드 샷</string>
+<string name="lock_boxes_text">조준 렌즈 박스</string>
+<string name="set_preview_size_text">미리보기 해상도</string>
+<string name="smooth_filter_text">부드러운 이미지 필터</string>
+<string name="select_preview_size_text">선택 미리보기 해상도</string>
+<string name="artemis_remote_text">안드로이드의 정제 및 내가 패드 대한 원격 아르테 미스</string>
+<string name="select_language_text">언어 선택</string>
+<string name="heading_tilt_roll_text">옵션 제목</string>
+	<string-array name="heading_tilt_roll_array">
+		<item>없음</item>
+		<item>이 제목°</item>
+		<item>제목°|기울기°|롤°</item>
+	</string-array>
+
+<!--	//About Page-->
+
+
+<!--	//Camera Settings Page-->
+
+<string name="custom_camera_new_camera">새 사용자 지정 카메라</string>
+
+
+<!--	//Save Picture Page-->
+
+<string name="vangle_text">수직 각도</string>
+	<string name="hangle_text">수평 각도</string>
+<string name="h_and_v_angle_text">수평 및 수직 각도</string>
+	<string name="compass_heading_text">나침반 제목 (없음, 에스, 전자, 승)</string>
+<string name="tilt_and_roll_text">틸트 및 롤</string>
+<string name="gps_location">GPS 위치 세부 정보</string>
+<string name="date_and_time_text">날짜 및 시간</string>
+
+<!--	//Add Custom Camera Page-->
+
+<string name="update_custom_camera">업데이트 사용자 정의 카메라</string>
+<string name="custom_camera_options">사용자 정의 카메라 옵션</string>
+<string name="custom_camera_edit_camera">카메라 편집</string>
+<string name="custom_camera_delete_camera">삭제 카메라</string>
+
+
+<!-- Unlicensed dialog messages -->
+
+    <string name="unlicensed_dialog_title">응용 프로그램이 아니 라이센스</string>
+    <string name="error_dialog_title">응용 프로그램 라이센스 오류</string>
+    <string name="unlicensed_dialog_body">이 응용 프로그램은 허가되지 않습니다. Android 마켓에서 구입하시기 바랍니다.</string>
+    <string name="error_dialog_body">응용 프로그램 라이센스를 확인하는 도중 오류가 발생했습니다. 이 문제가 지속되면 지원부에 문의하시기 바랍니다.</string>
+    <string name="buy_button">응용 프로그램을 구입</string>
+    <string name="quit_button">출구</string>
+
+
+ <!--  / / NEW TRANSLATIONS 4-30-11 -->
+	<string name="reset_device_h_and_v_angles">재설정</string>
+<string name="auto_device_h_and_v_angles">자동 장치 카메라 앵글 잡아</string>
+<string name="manually_set_h_angle_text">설정 장치 카메라 수평각</string>
+<string name="manually_set_v_angle_text">설정 장치 카메라 수직 각도</string>
+
+ <!--  / / NEW TRANSLATIONS 07-19-11 -->
+<string name="auto_focus_text">자동 초점 이미지</string>
+<!-- Gallery related messages -->
+	<string name="gallery_no_images_found">이미지를 찾을 수 없습니다</string>
+</resources>
