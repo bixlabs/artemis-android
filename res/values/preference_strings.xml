@@ -2,7 +2,6 @@
 <resources>
 
     <string name="artemis">Artemis</string>
-    <string name="the_folder_name_to_save_the_images_you_create_with_artemis_if_a_folder_with_this_name_doesn_apos_t_already_exist_it_will_be_created_for_you_">The folder name to save the images you create with Artemis.  If a folder with this name doesn&apos;t already exist it will be created for you.</string>
     <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn&apos;t already exist it will be created for you.</string>
     <string name="horizontal_lens_angle">Horizontal Lens Angle</string>
     <string name="vertical_lens_angle">Vertical Lens Angle</string>
