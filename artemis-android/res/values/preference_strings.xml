@@ -2,7 +2,7 @@
 <resources>
 
     <string name="artemis">Artemis</string>
-    <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn&apos;t already exist it will be created for you.</string>
+    <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn\'t already exist it will be created for you.</string>
     <string name="horizontal_lens_angle">Horizontal Lens Angle</string>
     <string name="vertical_lens_angle">Vertical Lens Angle</string>
     <string name="menu_artemis_quit">Quit</string>
@@ -70,10 +70,10 @@
     <string name="gps_settings">GPS Settings</string>
     <string name="screen_settings">Screen Settings</string>
     <string name="user_interface_behaviour">User Interface Behaviour</string>
-    <string name="gps_summary_off">GPS is disabled. The device will not search for it&apos;s location.</string>
-    <string name="gps_summary_on">GPS is enabled and the device will search for it&apos;s location.</string>
+    <string name="gps_summary_off">GPS is disabled. The device will not search for it\'s location.</string>
+    <string name="gps_summary_on">GPS is enabled and the device will search for it\'s location.</string>
     <string name="key_mappings">Key Mappings</string>
-    <string name="map_volume_on">Don&apos;t override volume key behavior. Volume keys behave as default.</string>
+    <string name="map_volume_on">Don\'t override volume key behavior. Volume keys behave as default.</string>
     <string name="map_volume_off">"Override volume key behavior while the main app is running. "</string>
     <string name="map_volume_key_title">Override Volume Key Behavior</string>
     <string name="volume_up_summary">Choose the behaviour when phones volume up key is pressed while the main app is running.</string>
