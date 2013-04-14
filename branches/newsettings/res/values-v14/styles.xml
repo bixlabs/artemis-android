@@ -1,4 +1,0 @@
-<resources>
-	<style parent="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-		name="ArtemisMain" />
-</resources>
