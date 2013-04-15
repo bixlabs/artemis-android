@@ -1,0 +1,3 @@
+[submodule "appirater-android"]
+	path = appirater-android
+	url = https://github.com/sbstrm/appirater-android.git
