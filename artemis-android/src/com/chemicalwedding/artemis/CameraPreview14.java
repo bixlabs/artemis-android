@@ -86,7 +86,7 @@ public class CameraPreview14 extends ViewGroup {
 	private ArtemisApplication artemisApplication;
 	// private final float pixelDensity;
 	private final String degreeSymbolFromStringsXML;
-	private List<Size> supportedPictureSizes;
+	//private List<Size> supportedPictureSizes;
 
 	public CameraPreview14(Context context, AttributeSet attr) {
 		super(context, attr);
@@ -98,8 +98,10 @@ public class CameraPreview14 extends ViewGroup {
 		addView(mTextureView);
 
 		Camera camera = openFrontFacingCameraGingerbread();
-		initCameraDetails(camera.getParameters());
-		camera.release();
+		if (camera != null) {
+			initCameraDetails(camera.getParameters());
+			camera.release();
+		}
 
 		degreeSymbolFromStringsXML = context.getString(R.string.degree_symbol);
 	}
@@ -166,20 +168,20 @@ public class CameraPreview14 extends ViewGroup {
 		return optimalSize;
 	}
 
-	private Size getOptimalPictureSize(List<Size> sizes, int w, int h) {
-		if (sizes == null)
-			return null;
-
-		Size optimalSize = null;
-		int selectedWidth = 0;
-		for (Size size : sizes) {
-			if (size.width > selectedWidth) {
-				optimalSize = size;
-				selectedWidth = size.width;
-			}
-		}
-		return optimalSize;
-	}
+//	private Size getOptimalPictureSize(List<Size> sizes, int w, int h) {
+//		if (sizes == null)
+//			return null;
+//
+//		Size optimalSize = null;
+//		int selectedWidth = 0;
+//		for (Size size : sizes) {
+//			if (size.width > selectedWidth) {
+//				optimalSize = size;
+//				selectedWidth = size.width;
+//			}
+//		}
+//		return optimalSize;
+//	}
 
 	public void takePicture() {
 		if (isAutoFocusSupported && autoFocusBeforePictureTake) {
@@ -330,7 +332,7 @@ public class CameraPreview14 extends ViewGroup {
 
 	};
 
-	private Size pictureSize;
+//	private Size pictureSize;
 
 	class MyTextureView extends TextureView {
 
