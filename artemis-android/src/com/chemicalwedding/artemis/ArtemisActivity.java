@@ -178,7 +178,7 @@ public class ArtemisActivity extends Activity implements
 		// Appirator
 		Appirater.appLaunched(this);
 
-		startArtemis();
+//		startArtemis();
 	}
 
 	protected void startArtemis() {
@@ -246,6 +246,8 @@ public class ArtemisActivity extends Activity implements
 		o.inSampleSize = 2;
 		ArtemisActivity.arrowBackgroundImage = BitmapFactory.decodeResource(
 				getResources(), R.drawable.arrows, o);
+		
+		startArtemis();
 	}
 
 	@Override
@@ -1420,9 +1422,6 @@ public class ArtemisActivity extends Activity implements
 				_lensSettingsFlipper.setOutAnimation(null);
 				_lensSettingsFlipper.setDisplayedChild(0);
 
-				((TextView) findViewById(R.id.lensMakeText))
-						.setText(_artemisMath.selectedZoomLens.toString());
-
 				openArtemisCameraPreviewView();
 			}
 		}
@@ -1430,21 +1429,20 @@ public class ArtemisActivity extends Activity implements
 
 	public void setSelectedZoomLens(final ZoomLens zoomLens,
 			boolean savePreference) {
+		_artemisMath.setSelectedLenses(new ArrayList<Lens>());
 		_artemisMath.selectedZoomLens = zoomLens;
-		_artemisMath.getSelectedLenses().clear();
 		_artemisMath.get_currentLensBoxes().clear();
 		_artemisMath.setSelectedLens(null);
-		// _artemisMath.setFullscreen(true);
-		mCameraOverlay.invalidate();
-
+		
+		((TextView) findViewById(R.id.lensMakeText))
+		.setText(_artemisMath.selectedZoomLens.toString());
+		_artemisMath.resetTouchToCenter();
 		_artemisMath.calculateZoomLenses();
 
 		_artemisMath.calculateRectBoxesAndLabelsForLenses();
 		_artemisMath.selectFirstMeaningFullLens();
 		_artemisMath.onFullscreenOffSelectLens();
-		_artemisMath.resetTouchToCenter();
 		_cameraPreview.calculateZoom(true);
-		mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
 		reconfigureNextAndPreviousLensButtons();
 
 		if (savePreference) {
