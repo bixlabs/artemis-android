@@ -871,7 +871,7 @@ public class ArtemisActivity extends Activity implements
 
 		// autofocus camera before picture
 		CameraPreview14.autoFocusBeforePictureTake = artemisPrefs.getBoolean(
-				ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, true);
+				ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false);
 
 		// black and white camera preview
 		CameraPreview14.blackAndWhitePreview = artemisPrefs.getBoolean(
@@ -945,7 +945,25 @@ public class ArtemisActivity extends Activity implements
 				takePictureAfterReleaseLongClickShutter = false;
 			}
 		}
-
+		
+		// shutter release (take picture) button
+		ImageView takePictureButton = (ImageView) findViewById(R.id.shutterButton);
+		takePictureButton.setOnClickListener(takePictureClickListener);
+		if (autoFocusAfterLongClickShutter) {
+			takePictureButton.setOnLongClickListener(new OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					_cameraPreview
+							.autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
+					if (autoFocusAfterLongClickShutter
+							&& !takePictureAfterReleaseLongClickShutter) {
+						return true;
+					}
+					return false;
+				}
+			});
+		}
+		
 		if (artemisPrefs.getBoolean(
 				getString(R.string.preference_key_mapVolumeKeys), true)) {
 
@@ -976,25 +994,6 @@ public class ArtemisActivity extends Activity implements
 			}
 
 		}
-
-		// shutter release (take picture) button
-		ImageView takePictureButton = (ImageView) findViewById(R.id.shutterButton);
-		takePictureButton.setOnClickListener(takePictureClickListener);
-		if (autoFocusAfterLongClickShutter) {
-			takePictureButton.setOnLongClickListener(new OnLongClickListener() {
-				@Override
-				public boolean onLongClick(View v) {
-					_cameraPreview
-							.autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
-					if (autoFocusAfterLongClickShutter
-							&& !takePictureAfterReleaseLongClickShutter) {
-						return true;
-					}
-					return false;
-				}
-			});
-		}
-
 	}
 
 	@Override
@@ -2594,10 +2593,8 @@ public class ArtemisActivity extends Activity implements
 							MODE_PRIVATE);
 			String prefix = Environment.getExternalStorageDirectory()
 					.getAbsolutePath().toString();
-			String folder = artemisPrefs
-					.getString(ArtemisPreferences.SAVE_PICTURE_FOLDER, prefix
-							+ getString(R.string.artemis_save_location_default));
-
+			String folder = prefix + "/"+ artemisPrefs
+					.getString(ArtemisPreferences.SAVE_PICTURE_FOLDER, getString(R.string.artemis_save_location_default));
 			String[] projection = { MediaStore.Images.Media._ID };
 			// Create the cursor pointing to the SDCard
 
