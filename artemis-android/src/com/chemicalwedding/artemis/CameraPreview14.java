@@ -1,5 +1,6 @@
 package com.chemicalwedding.artemis;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,8 +19,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
@@ -28,6 +31,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.graphics.Typeface;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
@@ -86,7 +90,8 @@ public class CameraPreview14 extends ViewGroup {
 	private ArtemisApplication artemisApplication;
 	// private final float pixelDensity;
 	private final String degreeSymbolFromStringsXML;
-	//private List<Size> supportedPictureSizes;
+
+	// private List<Size> supportedPictureSizes;
 
 	public CameraPreview14(Context context, AttributeSet attr) {
 		super(context, attr);
@@ -168,20 +173,20 @@ public class CameraPreview14 extends ViewGroup {
 		return optimalSize;
 	}
 
-//	private Size getOptimalPictureSize(List<Size> sizes, int w, int h) {
-//		if (sizes == null)
-//			return null;
-//
-//		Size optimalSize = null;
-//		int selectedWidth = 0;
-//		for (Size size : sizes) {
-//			if (size.width > selectedWidth) {
-//				optimalSize = size;
-//				selectedWidth = size.width;
-//			}
-//		}
-//		return optimalSize;
-//	}
+	// private Size getOptimalPictureSize(List<Size> sizes, int w, int h) {
+	// if (sizes == null)
+	// return null;
+	//
+	// Size optimalSize = null;
+	// int selectedWidth = 0;
+	// for (Size size : sizes) {
+	// if (size.width > selectedWidth) {
+	// optimalSize = size;
+	// selectedWidth = size.width;
+	// }
+	// }
+	// return optimalSize;
+	// }
 
 	public void takePicture() {
 		if (isAutoFocusSupported && autoFocusBeforePictureTake) {
@@ -223,13 +228,23 @@ public class CameraPreview14 extends ViewGroup {
 	final PreviewCallback takePicturePreviewCallback = new PreviewCallback() {
 		@Override
 		public void onPreviewFrame(byte[] data, Camera camera) {
-			decodeYUV420SP2(tempFrameBitmap, data, previewWidth, previewHeight);
+
+			// Get the YuV image
+			YuvImage yuv_image = new YuvImage(data, ImageFormat.NV21,
+					previewWidth, previewHeight, null);
+			// Convert YuV to Jpeg
+			Rect rect = new Rect(0, 0, previewWidth, previewHeight);
+			ByteArrayOutputStream output_stream = new ByteArrayOutputStream();
+			yuv_image.compressToJpeg(rect, 100, output_stream);
+			// Convert from Jpeg to Bitmap
+			bitmapToSave = BitmapFactory.decodeByteArray(
+					output_stream.toByteArray(), 0, output_stream.size());
 
 			RectF selectedRect = _artemisMath.getSelectedLensBox();
 			RectF greenRect = _artemisMath.getCurrentGreenBox();
 
-			bitmapToSave = Bitmap.createBitmap(tempFrameBitmap, previewWidth,
-					previewHeight, Bitmap.Config.RGB_565);
+			// bitmapToSave = Bitmap.createBitmap(tempFrameBitmap, previewWidth,
+			// previewHeight, Bitmap.Config.RGB_565);
 
 			final int imageHeight = determineImageHeight(previewHeight);
 
@@ -237,7 +252,7 @@ public class CameraPreview14 extends ViewGroup {
 
 				bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 						ArtemisMath.scaledPreviewWidth,
-						ArtemisMath.scaledPreviewHeight, false);
+						ArtemisMath.scaledPreviewHeight, smoothImagesEnabled);
 
 				bitmapToSave = Bitmap.createBitmap(bitmapToSave,
 						(int) (selectedRect.left), (int) (selectedRect.top),
@@ -332,7 +347,7 @@ public class CameraPreview14 extends ViewGroup {
 
 	};
 
-//	private Size pictureSize;
+	// private Size pictureSize;
 
 	class MyTextureView extends TextureView {
 
@@ -450,6 +465,7 @@ public class CameraPreview14 extends ViewGroup {
 			if (whiteBalance.length() > 0) {
 				parameters.setWhiteBalance(whiteBalance);
 			}
+			parameters.setJpegQuality(100);
 			mCamera.setParameters(parameters);
 
 			parameters.setPreviewSize(previewSize.width, previewSize.height);

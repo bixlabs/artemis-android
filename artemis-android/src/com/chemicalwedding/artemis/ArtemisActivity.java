@@ -178,7 +178,7 @@ public class ArtemisActivity extends Activity implements
 		// Appirator
 		Appirater.appLaunched(this);
 
-//		startArtemis();
+		// startArtemis();
 	}
 
 	protected void startArtemis() {
@@ -246,7 +246,7 @@ public class ArtemisActivity extends Activity implements
 		o.inSampleSize = 2;
 		ArtemisActivity.arrowBackgroundImage = BitmapFactory.decodeResource(
 				getResources(), R.drawable.arrows, o);
-		
+
 		startArtemis();
 	}
 
@@ -1433,9 +1433,9 @@ public class ArtemisActivity extends Activity implements
 		_artemisMath.selectedZoomLens = zoomLens;
 		_artemisMath.get_currentLensBoxes().clear();
 		_artemisMath.setSelectedLens(null);
-		
+
 		((TextView) findViewById(R.id.lensMakeText))
-		.setText(_artemisMath.selectedZoomLens.toString());
+				.setText(_artemisMath.selectedZoomLens.toString());
 		_artemisMath.resetTouchToCenter();
 		_artemisMath.calculateZoomLenses();
 
@@ -1998,7 +1998,7 @@ public class ArtemisActivity extends Activity implements
 					toast.cancel();
 					sendBroadcast(new Intent(
 							Intent.ACTION_MEDIA_MOUNTED,
-							Uri.parse("file://"
+							Uri.parse("file:/"
 									+ Environment.getExternalStorageDirectory())));
 				}
 			}.execute(new String[] {});
