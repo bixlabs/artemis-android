@@ -2540,40 +2540,10 @@ public class ArtemisActivity extends Activity implements
 		}
 	};
 
-	private void openHelpFile() {
-		AssetManager assetManager = getAssets();
-
-		InputStream in = null;
-		OutputStream out = null;
-		File file = new File(getFilesDir(), "help.pdf");
-		try {
-			in = assetManager.open("help.pdf");
-			out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
-
-			copyFile(in, out);
-			in.close();
-			in = null;
-			out.flush();
-			out.close();
-			out = null;
-		} catch (Exception e) {
-			Log.e("tag", e.getMessage());
-		}
-
+	private void openHelpFile() {		
 		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setDataAndType(
-				Uri.parse("file://" + getFilesDir() + "/help.pdf"),
-				"application/pdf");
-
+		intent.setData(Uri.parse("https://docs.google.com/document/d/1aS4i-ipOhgPgQRC47QCYq7Tji-dxeIQLJzhdgd_mNL8/pub"));
 		startActivity(intent);
-	}
-
-	private void copyFile(InputStream in, OutputStream out) throws IOException {
-		byte[] buffer = new byte[1024];
-		int read;
-		while ((read = in.read(buffer)) != -1) {
-			out.write(buffer, 0, read);
-		}
 	}
 
 	@Override
