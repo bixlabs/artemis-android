@@ -12,8 +12,7 @@
         android:id="@+id/atemisImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="sample artemis image"
-        android:src="@drawable/artemis_promo_180x120" />
+        android:contentDescription="sample artemis image" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -54,7 +53,6 @@
                     android:text="Camera Info. (16 mm Film)"
                     android:textSize="7sp"
                     android:textStyle="bold" />
-
             </RelativeLayout>
 
             <TextView
@@ -93,7 +91,6 @@
                 android:text="Sunrise 6:49AM Sunset 5:59PM"
                 android:textColor="@color/orangeArtemisText"
                 android:textSize="6sp" />
-
         </LinearLayout>
     </ScrollView>
 

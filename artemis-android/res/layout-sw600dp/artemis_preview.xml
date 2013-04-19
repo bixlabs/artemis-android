@@ -42,17 +42,6 @@
             android:layout_height="25dp"
             android:scaleType="fitXY"
             android:src="@drawable/cameraoverlay_top" />
-
-        <ImageView
-            android:id="@+id/helpOverlay"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignBottom="@id/overlay"
-            android:layout_alignTop="@id/overlay"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/help"
-            android:visibility="invisible" />
     </RelativeLayout>
 
     <LinearLayout
