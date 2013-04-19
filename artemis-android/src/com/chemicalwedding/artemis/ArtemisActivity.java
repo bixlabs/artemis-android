@@ -945,7 +945,7 @@ public class ArtemisActivity extends Activity implements
 				takePictureAfterReleaseLongClickShutter = false;
 			}
 		}
-		
+
 		// shutter release (take picture) button
 		ImageView takePictureButton = (ImageView) findViewById(R.id.shutterButton);
 		takePictureButton.setOnClickListener(takePictureClickListener);
@@ -963,7 +963,7 @@ public class ArtemisActivity extends Activity implements
 				}
 			});
 		}
-		
+
 		if (artemisPrefs.getBoolean(
 				getString(R.string.preference_key_mapVolumeKeys), true)) {
 
@@ -2539,9 +2539,10 @@ public class ArtemisActivity extends Activity implements
 		}
 	};
 
-	private void openHelpFile() {		
+	private void openHelpFile() {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setData(Uri.parse("https://docs.google.com/document/d/1aS4i-ipOhgPgQRC47QCYq7Tji-dxeIQLJzhdgd_mNL8/pub"));
+		intent.setData(Uri
+				.parse("https://docs.google.com/document/d/1aS4i-ipOhgPgQRC47QCYq7Tji-dxeIQLJzhdgd_mNL8/edit?hl=en&pli=1&rm=demo"));
 		startActivity(intent);
 	}
 
@@ -2593,8 +2594,11 @@ public class ArtemisActivity extends Activity implements
 							MODE_PRIVATE);
 			String prefix = Environment.getExternalStorageDirectory()
 					.getAbsolutePath().toString();
-			String folder = prefix + "/"+ artemisPrefs
-					.getString(ArtemisPreferences.SAVE_PICTURE_FOLDER, getString(R.string.artemis_save_location_default));
+			String folder = prefix
+					+ "/"
+					+ artemisPrefs.getString(
+							ArtemisPreferences.SAVE_PICTURE_FOLDER,
+							getString(R.string.artemis_save_location_default));
 			String[] projection = { MediaStore.Images.Media._ID };
 			// Create the cursor pointing to the SDCard
 
