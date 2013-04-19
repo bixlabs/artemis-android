@@ -100,7 +100,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 	<string name="custom_camera_width">ANCHO</string>
 	<string name="custom_camera_height">ALTURA</string>
 	<string name="custom_camera_focallength">DISTANCIA FOCAL</string>
-	<string name="save_custom_camera">Añadir la cámara personalizada</string>
 	<string name="add_custom_camera_directions">Para entrar en una cámara personalizada que necesita para tomar algunas medidas simples. Coloque la cámara una distancia fija de un gráfico de pared o el enfoque y la medida desde el punto nodal de la lente a la superficie. A continuación, con una lente fija, medir exactamente la anchura y la altura de lo que se puede ver a través del visor. Utilice unidades consistentes.</string>
 
 <!--  / / NEW TRANSLATIONS 2-15-11 --> 

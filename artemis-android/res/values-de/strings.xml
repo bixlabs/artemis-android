@@ -63,7 +63,6 @@
     <string name="custom_camera_width">BREITE</string>
     <string name="custom_camera_height">HÖHE</string>
     <string name="custom_camera_focallength">BRENNWEITE</string>
-    <string name="save_custom_camera">Hinzufügen der benutzerdefinierten Kamera</string>
     <string name="add_custom_camera_directions">Um eine benutzerdefinierte Kamera anzulegen müssen Sie ein paar einfache Messungen durchführen. Platzieren Sie die Kamera in festem Abstand zu einer Wand oder Fokus-Chart und messen vom Nodalpunkt des Objektivs bis zur Oberfläche. Als nächstes messen Sie mit einer festen Brennweite exakt die Breite und Höhe von dem was Sie durch den Sucher sehen können. Verwenden Sie konsistente Einheiten.</string>
     <string name="lensFocalLengthMM">mm</string>
     <string name="menu_artemis_gallery">Galerie</string>
