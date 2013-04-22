@@ -1,0 +1,159 @@
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- //New English Strings -->
+
+
+    <!-- New custom camera strings -->
+    <string name="custom_cameras">"كاميرات مخصصة"</string>
+    <string name="add_custom_camera_title">"إضافة كاميرا مخصص"</string>
+    <string name="custom_camera_squeeze_ratio">"ضغط نسبة"</string>
+    <string name="custom_camera_aspect_ratio">"(1.78) نسبة جانب"</string>
+    <string name="custom_camera_save_start_button">"تشغيل "</string>
+    <string name="custom_camera_save_active_sensor">"نشط استشعار الحجم"</string>
+    <string name="add_custom_camera_directions">"هو 1.0 نسبة الضغط للعدسات كروية، 2.0 لمعيار 2:1 العدسات صورة بصرية مشوهة و 1.3 ل1:3:1 العدسات صورة بصرية مشوهة (أي الصقر V لايت 1.3 'ق). بعد إيداع المجالات المذكورة أعلاه انقر فوق ابدأ، وعقد الجهاز عند نقطة العقدي. إذا باستخدام عدسة 50mm، وهذه النقطة العقدية عدسة هو 50mm في مقدمة الطائرة الاستشعار. باستخدام أزرار زائد وناقص، وتتطابق مع الصورة التي تراها على Atemis إلى الصورة على الكاميرا. الداخل أزرار الحمراء هي لتعديل أدق واضغط على حفظ عندما كنت سعيدا. "</string>
+    <string name="add_custom_camera_directions_active_chip">"هو 1.0 نسبة الضغط للعدسات كروية، 2.0 لمعيار 02:01 العدسات صورة بصرية مشوهة و 1.3 ل01:03:01 العدسات صورة بصرية مشوهة (أي الصقر V لايت 1.3 'ق). "</string>
+    <string name="custom_camera_chip_width">"العرض رقاقة (مم)"</string>
+    <string name="custom_camera_chip_height">"ارتفاع رقاقة (مم)"</string>
+    <string name="custom_camera_save_button">"حفظ"</string>
+
+    <!-- Calibrate Custom Camera Strings -->
+    <string name="calibrate_chip_width">"العرض رقاقة:"</string>
+    <string name="calibrate_chip_height">"الطول المعالج:"</string>
+
+    <!-- New preferences strings -->
+    <string name="prefs_general_settings">"إعدادات عامة"</string>
+    <string name="prefs_general_settings_description">"إعدادات لتشغيل عامة من أرتميس واجهة المستخدم"</string>
+    <string name="prefs_camera_settings">"إعدادات الكاميرا"</string>
+    <string name="prefs_camera_settings_description">"إعدادات لتخصيص سلوك كاميرا الجهاز"</string>
+    <string name="prefs_image_settings">"إعدادات الصورة المحفوظة"</string>
+    <string name="prefs_image_settings_description">"تعديلات للسيطرة على خصائص الصور المحفوظة على التخزين باستخدام أرتميس"</string>
+
+    <!-- NEW STRING NEEDS TO BE TRANSLATED -->
+    <string name="image_note_hint">"إضافة ملاحظة"</string>
+    <string name="add_custom_lens">"أضف عدسة مخصص"</string>
+    <string name="add_custom_lens_upper">"أضف عدسة مخصص"</string>
+    <string name="input_focal_length">"أدخل البعد البؤري للعدسة في ملليمتر:"</string>
+    <string name="custom_lens_error">"العرف عدسة خطأ في إدخال البيانات"</string>
+    <string name="custom_lens_error_message">"وكانت المشكلة بإضافة عدسة مخصص جديد. يرجى التحقق من أن قيم الإدخال الصالحة وحاول مرة أخرى."</string>
+
+    <!-- Gallery Strings -->
+    <string name="gallery_title">"أرتميس الصور"</string>
+
+    <!-- New Camera Settings Strings -->
+    <string name="camera_search">"البحث عن الكاميرات ..."</string>
+
+    <!-- //Save Picture Page -->
+
+    <string name="save_picture_details">"حفظ تفاصيل الصورة"</string>
+    <string name="save">"حفظ"</string>
+    <string name="settings_reset_summary">"إعادة تعيين إلى الإعدادات الافتراضية أرتميس. أنك لن تخسر أي الصور المحفوظة."</string>
+    <string name="settings_reset_title">"إعادة تعيين إلى الإعدادات الافتراضية"</string>
+    <string name="reset_to_default_settings">"هل أنت متأكد من أنك تريد إعادة تعيين إلى الإعدادات الافتراضية؟ سوف تفقد جميع الأفضليات."</string>
+    <string name="reset_artemis_settings">"إعادة تعيين إعدادات أرتميس"</string>
+    <string name="custom_zoom_lens">"العرف عدسة زووم"</string>
+    <string name="new_zoom_lens">"جديد عدسة تكبير"</string>
+    <string name="untitled_zoom_lens">"بدون اسم عدسة زووم"</string>
+    <string name="zoom_lens_name">"التكبير اسم عدسة"</string>
+    <string name="add">"إضافة"</string>
+    <string name="custom_zoom_lens_error">"العرف عدسة تكبير خطأ في إدخال البيانات"</string>
+    <string name="custom_zoom_lens_error_message">"وكانت مشكلة إضافة عدسة التكبير مخصص جديد. يرجى التحقق من أن قيم الإدخال الصالحة وحاول مرة أخرى."</string>
+    <string name="max_focal_length">"ماكس البعد البؤري"</string>
+    <string name="min_focal_length">"مين بوري"</string>
+    <string name="image_save_no_media">"خطأ: لا يمكن حفظ الصورة. ولم يتم العثور على وسائط التخزين."</string>
+    <string name="image_save_error">"خطأ: لا يمكن حفظ الصورة. قد تكون وسائط التخزين الكامل."</string>
+    <string name="save_raw_image_text">"لا حدود أو نص"</string>
+
+    <!-- Preference Strings -->
+    <string name="artemis">"آرتيميس"</string>
+    <string name="artemis_save_folder_summary">"اسم مجلد لحفظ الصور التي تخلق مع أرتميس. إذا مجلد بهذا الاسم لم يكن موجودا بالفعل سيتم إنشاء لانها لكم."</string>
+    <string name="horizontal_lens_angle">"أفقي عدسة زاوية"</string>
+    <string name="vertical_lens_angle">"عدسة زاوية عمودي"</string>
+    <string name="menu_artemis_quit">"خروج"</string>
+    <string name="menu_artemis_quit_description">"انقر فوق لي لإنهاء أرتميس."</string>
+    <string name="feedback_report_issue">"قضية / تعليقات"</string>
+    <string name="feedback_report_issue_description">"تقرير وإصدار أو تعطينا رأيك، ونحن نقدر تعليقاتك."</string>
+    <string name="menu_artemis_about">"حول"</string>
+    <string name="menu_artemis_about_description">"قليلا عن التطبيق والمطورين."</string>
+
+    <string-array name="image_size_prefs">
+        <item>"صغير "</item>
+        <item>"افتراضي"</item>
+        <item>"كبير"</item>
+    </string-array>
+    <string-array name="backkey_prefs">
+        <item>"خروج أرتميس فورا"</item>
+        <item>"المطالبة قبل إغلاق"</item>
+        <item>"لا تفعل شيئًا."</item>
+    </string-array>
+
+    <string name="email_support">"دعم البريد الإلكتروني"</string>
+
+    <string-array name="longPressShutter_entries">
+        <item>"كاميرا ذاتية التركيز والتقاط الصورة فورا"</item>
+        <item>"كاميرا ضبط تلقائي للصورة وصورة لقطة على زر تحرير"</item>
+        <item>"كاميرا ضبط تلقائي للصورة فقط"</item>
+        <item>"لا تفعل شيئًا."</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"كاميرا ذاتية التركيز والتقاط الصورة فورا"</item>
+        <item>"التقاط صورة"</item>
+        <item>"ضبط تلقائي للصورة كاميرا"</item>
+        <item>"لا تفعل شيئًا."</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"التقاط صورة"</item>
+        <item>"لا تفعل شيئًا."</item>
+    </string-array>
+
+    <string name="camera_device_will_not_autofocus">"سيقوم جهاز الكاميرا غير ضبط تلقائي للصورة قبل اتخاذ كل صورة"</string>
+    <string name="camera_device_will_autofocus">"جهاز الكاميرا لضبط تلقائي للصورة قبل اتخاذ كل صورة"</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"السيارات السلوك التركيز عند الضغط على زر طويلة مصراع الكاميرا (التقاط الصورة)."</string>
+    <string name="long_press_shutter_button_focus_behaviour">"طويل الصحافة مصراع زر التركيز السلوك"</string>
+    <string name="torch_while_in_preview_mode">"سيقوم جهاز الكاميرا استخدام في حين الشعلة في وضع المعاينة"</string>
+    <string name="not_torch_while_in_preview_mode">"لن تستخدم جهاز الكاميرا في حين أن الشعلة في وضع المعاينة"</string>
+    <string name="camera_preview_will_show_all_colors">"سوف معاينة الكاميرا تظهر كل الألوان"</string>
+    <string name="camera_preview_will_be_black_and_white">"سوف معاينة الكاميرا يكون لونه أسود وأبيض. ملاحظة: هذا سوف يؤثر أيضا على الصور المحفوظة."</string>
+    <string name="device_camera_behaviour">"جهاز كاميرا السلوك"</string>
+    <string name="device_camera_sensor">"جهاز مستشعر الكاميرا"</string>
+    <string name="device_camera_angles">"زوايا الكاميرا الجهاز"</string>
+    <string name="use_the_custom_camera_angles">"وسيؤدي تطبيق استخدام القيم المخصصة هو مبين أدناه."</string>
+    <string name="use_detected_device_angles">"سيستخدم التطبيق القيم الكشف عن تلقائيا من الجهاز (القيم الحالية هو موضح أدناه)."</string>
+    <string name="detect_device_camera_angles_automatically">"كشف زوايا الكاميرا الجهاز تلقائيا"</string>
+    <string name="heading_summary">"اختر ما تريد عرضه في عنوان التطبيق الرئيسي."</string>
+    <string name="lockboxes_summary">"تمكين / تعطيل صناديق عدسة من تغيير الموقف على اللمس."</string>
+    <string name="lock_lens_boxes">"قفل صناديق عدسة"</string>
+    <string name="backkey_summary">"اختيار سلوك زر العودة الروبوت في حين أن التطبيق الرئيسي هو تشغيل."</string>
+    <string name="back_button_behaviour">"زر العودة السلوك"</string>
+    <string name="haptic_feedback">"ردود الفعل اللمسية"</string>
+    <string name="hapticfeedback_off_summary">"سوف أرتميس لا توفر ردود فعل لمسي على يضغط زر."</string>
+    <string name="haptic_feedback_on_summary">"سوف أرتميس توفير التغذية المرتدة لمسي على يضغط زر."</string>
+    <string name="keep_screen_on_summary">"وسيتم الإبقاء على الشاشة على ومهلة NEVER في حين أن التطبيق الرئيسي هو تشغيل."</string>
+    <string name="keep_screen_off_summary">"فإن شاشة المهلة وفقا لأجهزة إعداد النوم الافتراضي الخاص بك."</string>
+    <string name="keep_screen_on">"الحفاظ على الشاشة"</string>
+    <string name="gps_settings">"إعدادات GPS"</string>
+    <string name="screen_settings">"إعدادات الشاشة"</string>
+    <string name="user_interface_behaviour">"واجهة المستخدم السلوك"</string>
+    <string name="gps_summary_off">"تم تعطيل GPS. سيقوم الجهاز ليس بحث عن موقعه."</string>
+    <string name="gps_summary_on">"يتم تمكين GPS والجهاز سوف ابحث عن موقعه."</string>
+    <string name="key_mappings">"تعيينات مفتاح"</string>
+    <string name="map_volume_on">"لا تجاوز السلوك مفتاح الصوت. مفاتيح الصوت تتصرف كما الافتراضي."</string>
+    <string name="map_volume_off">"تجاوز السلوك مفتاح الصوت في حين أن التطبيق الرئيسي هو تشغيل. "</string>
+    <string name="map_volume_key_title">"تجاوز حجم التداول سلوك مفتاح"</string>
+    <string name="volume_up_summary">"اختيار السلوك عند الضغط حجم الهواتف المفتاح حتى أثناء التطبيق الرئيسي هو تشغيل."</string>
+    <string name="volume_up_key_title">"رفع الصوت السلوك مفتاح"</string>
+    <string name="volume_down_summary">"اختيار السلوك عند الضغط حجم الهواتف مفتاح خفض في حين أن التطبيق الرئيسي هو تشغيل."</string>
+    <string name="volume_down_key_title">"خفض الصوت مفتاح السلوك"</string>
+    <string name="language_summary">"ملاحظة: يجب عليك إنهاء وإعادة تشغيل التطبيق لتصبح التغييرات نافذة المفعول."</string>
+    <string name="picture_save_location">"صور حفظ الموقع"</string>
+    <string name="select_image_size">"حدد حجم الصورة"</string>
+    <string name="image_size_summary">"تحديد حجم الصورة النهائية المحفوظة على القرص."</string>
+    <string name="saved_image_size">"حفظ حجم الصورة"</string>
+    <string name="select_image_quality">"اختر جودة الصورة"</string>
+    <string name="image_quality_summary">"حدد نوعية (ضغط) من الصورة المحفوظة على القرص."</string>
+    <string name="saved_image_quality">"حفظ جودة الصورة"</string>
+    <string name="smooth_image_off">"لن يتم تصفيتها الصور على نحو سلس."</string>
+    <string name="smooth_image_on">"وسيتم تطبيق فلتر لجعل الصور تظهر أكثر سلاسة عندما يكون مطلوبا التحجيم."</string>
+    <string name="quick_picture_off">"سيظهر معاينة للصورة بعد يتم حفظ الصور."</string>
+    <string name="quick_picture_on">"يتم تمكين الصور سريعة. ولن تظهر معاينة للصورة بعد يتم حفظ الصور."</string>
+
+</resources>

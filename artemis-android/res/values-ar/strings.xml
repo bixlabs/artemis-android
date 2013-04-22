@@ -1,0 +1,199 @@
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- //English Strings -->
+
+	<!-- //General Strings / Artemis Preview -->
+
+	<string name="app_name">"آرتيميس"</string>
+	<string name="lensFocalLengthMM">"الشهر"</string>
+	<string name="left_roll">"↶"</string>
+	<string name="right_roll">"↷"</string>
+	<string name="roll_level">"↔"</string>
+	<string name="tilt_up">"↑"</string>
+	<string name="tilt_down">"↓"</string>
+	<string name="tilt_level">"↕"</string>
+	<string name="degree_symbol">"°"</string>
+
+
+
+	<!-- //Artemis menu -->
+
+	<string name="menu_camera_settings">"اختر كاميرا"</string>
+	<string name="menu_artemis_settings">"الإعدادات"</string>
+	<string name="menu_lens_settings">"اختيار العدسة"</string>
+	<string name="menu_artemis_gallery">"معرض"</string>
+	<string name="menu_artemis_about">"حول"</string>
+	<string name="menu_artemis_help">"مساعدة"</string>
+	<string name="menu_artemis_quit">"خروج"</string>
+
+	<!-- //Artemis Settings Page -->
+	<string name="new_features">"الميزات الجديدة أدناه قريبا"</string>
+	<string name="gps_on_off">"بدوره GPS تشغيل / إيقاف"</string>
+	<string name="artemis_settings_title">"إعدادات أرتميس"</string>
+	<string name="choose_folder_for_image_saving">"صورة اسم المجلد"</string>
+	<string name="choose_path">"آرتيميس"</string>
+	<string name="auto_exposure">"التعرض التلقائي"</string>
+	<string name="set_exposure_text">"ضبط التعرض"</string>
+	<string name="set_exposure">"ضبط التعرض"</string>
+	<string-array name="set_exposure_array">
+		<item>"{0}{/0}3. "</item>
+		<item>"-"</item>
+		<item>"1. "</item>
+		<item>"0"</item>
+		<item>"1"</item>
+		<item>"2"</item>
+		<item>"3٣"</item>
+		<item>"٤"</item>
+	</string-array>
+	<string name="set_flash_mode_text">"فلاش / الشعلة الوضع"</string>
+	<string name="set_flash_mode_spinner">"تعيين وضع الفلاش"</string>
+	<string-array name="set_flash_mode_array">
+		<item>"في"</item>
+		<item>"إيقاف"</item>
+	</string-array>
+	<string name="quickshot_text">"الوضع QuickShot"</string>
+	<string name="lock_boxes_text">"قفل صناديق عدسة"</string>
+	<string name="auto_white_balance">"توازن اللون الأبيض تلقائي"</string>
+	<string name="set_white_balance_text">"ضبط توازن اللون الأبيض"</string>
+	<string name="set_white_balance">"ضبط توازن اللون الأبيض"</string>
+	<string-array name="set_white_balance">
+		<item>"ضوء النهار"</item>
+		<item>"غائم"</item>
+		<item>"الفلورسنت"</item>
+		<item>"وهاج"</item>
+	</string-array>
+
+	<string name="set_preview_size_text">"قرار المعاينة"</string>
+	<string name="smooth_filter_text">"على نحو سلس تصفية صورة"</string>
+	<string name="select_preview_size_text">"حدد القرار معاينة"</string>
+	<string name="heading_tilt_roll_text">"خيارات البند"</string>
+	<string name="heading_tilt_roll_promt">"حدد خيارات العنوان"</string>
+	<string-array name="heading_tilt_roll_array">
+		<item>"لا شيء"</item>
+		<item>"عنوان"</item>
+		<item>"عنوان ° | ° الخيمة | لفة °"</item>
+	</string-array>
+	<string name="save_artemis_settings">"حفظ الإعدادات أرتميس"</string>
+	<string name="artemis_remote_text">"أرتميس البعيد لالروبوت أقراص ولاب توب
+	"</string>
+	<string name="select_language_text">"اختيار اللغة"</string>
+	<string-array name="select_language_array">
+		<!-- <item>Čeština</item> -->
+		<!-- <item>Dansk</item> -->
+		<item>"الألمانية"</item>
+		<item>"English"</item>
+		<item>"ا"</item>
+		<item>"الفرنسية"</item>
+		<item>"الإيطالية"</item>
+		<!-- <item>Nederlands</item> -->
+		<!-- <item>Norsk bokmål</item> -->
+		<!-- <item>Polski</item> -->
+		<!-- <item>Português</item> -->
+		<!-- <item>Svenska</item> -->
+		<!-- <item>Türkçe</item> -->
+		<!-- <item>ελληνικά</item> -->
+		<item>"Pусский"</item>
+		<item>"الكورية"</item>
+		<item>"中文"</item>
+		<item>"اليابانية"</item>
+	</string-array>
+	<!-- The language codes must correspond with the above language array -->
+	<string-array name="select_language_codes">
+		<!-- <item>cs</item> -->
+		<!-- <item>da</item> -->
+		<item>"DE"</item>
+		<item>"ne"</item>
+		<item>"همممم"</item>
+		<item>"الجمعة"</item>
+		<item>"IT"</item>
+		<!-- <item>nl</item> -->
+		<!-- <item>nb</item> -->
+		<!-- <item>pl</item> -->
+		<!-- <item>pt</item> -->
+		<!-- <item>sv</item> -->
+		<!-- <item>tr</item> -->
+		<!-- <item>el</item> -->
+		<item>"RU"</item>
+		<item>"KO"</item>
+		<item>"ZH"</item>
+		<item>"JA"</item>
+	</string-array>
+
+	<string name="reset_device_h_and_v_angles">"إعادة التعيين"</string>
+	<string name="auto_device_h_and_v_angles">"الحصول على زوايا الكاميرا الجهاز تلقائيا"</string>
+	<string name="manually_set_h_angle_text">"تعيين جهاز الكاميرا زاوية أفقي"</string>
+	<string name="manually_set_v_angle_text">"تعيين جهاز الكاميرا زاوية عمودية"</string>
+	<string name="auto_focus_text">"السيارات تركيز الصور"</string>
+
+
+
+	<!-- //About Page -->
+
+	<string name="artemis_about_title">"حول - أرتميس لبلاك بيري الخامس"</string>
+	<string name="artemis_about_text">"ارتميس هو عدسة الكاميرا الإدارة الرقمية المصممة مع كل من السينمائيين والمخرجين في الاعتبار. أرتميس يعمل تقريبا بالطريقة نفسها كما المديرين عدسة الكاميرا التقليدية، على الرغم من ذلك بكثير أكثر دقة وأكثر من ذلك بكثير مريح. بعد اختيار شكل كاميرا، نسبة الارتفاع ونوع العدسة، يستخدم أرتميس الكاميرا في الجهاز المحمول الخاص بك لمحاكاة المشاهدات عدسة يمكن أن تتوقعه عندما تأتي لاطلاق النار. يمكنك إما مقارنة جميع العدسات أو ضرب التكبير وسوف الكاميرا التكبير لملء عدسة الكاميرا مع رأي يعادل العدسة التي اخترتها. وتغطي ما الكاميرات؟ وقد أرتميس اختبارها ميدانيا وأنب مع كل كاميرا في قاعدة البيانات الخاصة بنا للتأكد من أن مجال الرؤية هو الصحيح. مع كاميرات السينما الرقمية وجدنا أن الاعتماد على معلومات من شركات تصنيع الكاميرات لم يكن دائما حكيما. وتغطي التنسيقات التالية حتى الآن: \ N \ nStandard وسوبر 16MM \ nSuper 16MM صورة بصرية مشوهة \ nStandard وسوبر 35MM \ n35mm صورة بصرية مشوهة \ n65mm \ n35mm الرقمي (D-21، RED، F35، سفر التكوين) \ N2 / 3 الرقمي (F23 ، الافعى) \ N1 / 2 رقمي \ N1 / 3 الرقمي \ nCanon 5D و 7D. \ N \ N إذا وجدت صيغة هذا مهم بالنسبة لك مفقود إعلامنا، ونحن سوف نبذل قصارى جهدنا لإضافته في القادم تحديث."</string>
+	<string name="chemical_wedding_about_text">"حقوق الطبع والنشر عام 2010. زفاف الكيميائية."</string>
+	<string name="loon_films_about_text">"وقد وضعت أرتميس لبلاك بيري من قبل أفلام وون.
+	"</string>
+	<string name="about_back_button">"المؤخرة"</string>
+
+	<!-- //Camera Settings Page -->
+
+	<string name="camera_settings_title">"إعدادات الكاميرا"</string>
+	<string name="add_custom_camera_list_item">"أضف مخصص الكاميرات"</string>
+	<string name="custom_camera_new_camera">"الكاميرا الجديدة المخصصة لل"</string>
+	<string name="custom_camera_options">"خيارات كاميرا مخصصة"</string>
+	<string name="custom_camera_edit_camera">"تعديل الكاميرا"</string>
+	<string name="custom_camera_delete_camera">"حذف كاميرا"</string>
+
+
+	<!-- //Lense Settings Page -->
+
+	<string name="lens_settings_title">"إعدادات العدسة"</string>
+	<string name="save_lenses">"حفظ العدسات"</string>
+	<string name="no_camera_alert">"الرجاء تحديد الكاميرا قبل اختيار العدسات
+	"</string>
+
+	<!-- //Save Picture Page -->
+
+	<string name="save_picture_title">"حفظ الصورة"</string>
+	<string name="image_saved_success">"إنقاذ صورة ..."</string>
+	<string name="saving_picture">"إنقاذ صورة"</string>
+	<string name="save_and_edit">"حفظ وتعديل التفاصيل"</string>
+	<string name="save_picture">"حفظ الصورة"</string>
+	<string name="gps_coordinates">"الإحداثيات"</string>
+	<string name="gps_location">"الاحداثيات تفاصيل"</string>
+	<string name="camera_information">"معلومات الكاميرا"</string>
+	<string name="lens_information">"معلومات عدسة"</string>
+	<string name="cancel">"إلغاء"</string>
+	<string name="image_description_hint">"إضافة وصف"</string>
+	<string name="date_and_time_text">"التاريخ والوقت"</string>
+	<string name="h_and_v_angle_text">"H و V زاوية"</string>
+	<string name="vangle_text">"V زاوية"</string>
+	<string name="hangle_text">"H زاوية"</string>
+	<string name="tilt_and_roll_text">"إمالة ولفة"</string>
+	<string name="compass_heading_text">"بوصلة عنوان (N، S، E، W)"</string>
+
+	<!-- //Add Custom Camera Page -->
+
+	<string name="add_custom_camera_title">"إضافة قياسات في مليمتر (ملم) مخصص جميع كاميرا"</string>
+	<string name="custom_camera_name">"إنشاء اسم الكاميرا CUSTOM"</string>
+	<string name="custom_camera_distance">"المسافة:"</string>
+	<string name="custom_camera_width">"عرض (اتساع)"</string>
+	<string name="custom_camera_height">"ارتفاع"</string>
+	<string name="custom_camera_focallength">"الطول البؤري- البُعد البؤري"</string>
+	<string name="save_custom_camera">"إضافة كاميرا مخصص"</string>
+	<string name="update_custom_camera">"تحديث كاميرا مخصص"</string>
+	<string name="add_custom_camera_directions">"لإدخال كاميرا مخصصة تحتاج إلى إجراء بعض القياسات بسيطة. وضع الكاميرا على مسافة ثابتة من مخطط الجدار أو التركيز وقياس من نقطة العقدي من عدسة إلى السطح. المقبل، مع عدسة ثابتة، وقياس بالضبط العرض والارتفاع من ما ترون من خلال عدسة الكاميرا. استخدام وحدات متسقة.
+	"</string>
+
+	<!-- Unlicensed dialog messages -->
+	<string name="unlicensed_dialog_title">"تطبيق غير مرخص"</string>
+	<string name="error_dialog_title">"خطأ ترخيص التطبيق"</string>
+	<string name="unlicensed_dialog_body">"غير مرخص هذا التطبيق. يرجى شرائه من سوق الروبوت."</string>
+	<string name="error_dialog_body">"كان هناك خطأ التحقق من رخصة التطبيق. إذا استمرت هذه المشكلة، الرجاء الاتصال بالدعم."</string>
+	<string name="buy_button">"شراء التطبيق"</string>
+	<string name="quit_button">"خروج"</string>
+
+	<!-- Gallery related messages -->
+	<string name="gallery_no_images_found">"لا توجد أية صور."</string>
+</resources>

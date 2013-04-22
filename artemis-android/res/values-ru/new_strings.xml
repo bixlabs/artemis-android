@@ -1,0 +1,159 @@
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- //New English Strings -->
+
+
+    <!-- New custom camera strings -->
+    <string name="custom_cameras">"Пользовательские камеры"</string>
+    <string name="add_custom_camera_title">"Добавить Пользовательские камеры"</string>
+    <string name="custom_camera_squeeze_ratio">"Сожмите побед"</string>
+    <string name="custom_camera_aspect_ratio">"Соотношение (1.78)"</string>
+    <string name="custom_camera_save_start_button">"Старт"</string>
+    <string name="custom_camera_save_active_sensor">"Активное Датчик формата"</string>
+    <string name="add_custom_camera_directions">"Squeeze Данный коэффициент 1,0 для сферических линз, 2,0 для стандартных 2:1 Anamorphic линзы и 1,3 1:3:1 Anamorphic для линз (ы т.е. Hawk V-Lite 1.3). После подачи указанных полей нажмите кнопку Пуск и держите устройство в узловой точке. При использовании 50-мм объективом, объектив узловой точки 50 мм в передней части плоскости сенсора. Используя кнопки Плюс и Минус, соответствовать изображению вы видите на ARTEMIS с изображением на камере. Внутри красной кнопки предназначены для тонкой настройки и нажмите Сохранить, когда вы счастливы. "</string>
+    <string name="add_custom_camera_directions_active_chip">"Squeeze Данный коэффициент 1,0 для сферических линз, 2,0 для стандартных 2:1 Anamorphic линзы и 1,3 1:3:1 Anamorphic для линз (ы т.е. Hawk V-Lite 1.3). "</string>
+    <string name="custom_camera_chip_width">"Чип Ширина (мм)"</string>
+    <string name="custom_camera_chip_height">"Чип Высота (мм)"</string>
+    <string name="custom_camera_save_button">"Сохранить"</string>
+
+    <!-- Calibrate Custom Camera Strings -->
+    <string name="calibrate_chip_width">"Чип Ширина:"</string>
+    <string name="calibrate_chip_height">"Чип Высота:"</string>
+
+    <!-- New preferences strings -->
+    <string name="prefs_general_settings">"Общие настройки"</string>
+    <string name="prefs_general_settings_description">"Настройки для операции общего Артемиды и пользовательский интерфейс"</string>
+    <string name="prefs_camera_settings">"Настройки камеры"</string>
+    <string name="prefs_camera_settings_description">"Параметры настройки поведения камеры устройства"</string>
+    <string name="prefs_image_settings">"Сохраненные настройки изображения"</string>
+    <string name="prefs_image_settings_description">"Корректировки для управления свойства изображения, сохраненные в хранилище использованием Artemis"</string>
+
+    <!-- NEW STRING NEEDS TO BE TRANSLATED -->
+    <string name="image_note_hint">"Добавить замечание"</string>
+    <string name="add_custom_lens">"Добавление пользовательских объектива"</string>
+    <string name="add_custom_lens_upper">"Добавление пользовательских объектива"</string>
+    <string name="input_focal_length">"Введите фокусное расстояние объектива в миллиметрах:"</string>
+    <string name="custom_lens_error">"Пользовательские ошибки входную линзу"</string>
+    <string name="custom_lens_error_message">"Удалось добавить новые пользовательские линзы. Пожалуйста, убедитесь, что входные значения являются действительными и повторите попытку."</string>
+
+    <!-- Gallery Strings -->
+    <string name="gallery_title">"Artemis Gallery"</string>
+
+    <!-- New Camera Settings Strings -->
+    <string name="camera_search">"Поиск камер ..."</string>
+
+    <!-- //Save Picture Page -->
+
+    <string name="save_picture_details">"Сохранить рисунок Подробнее"</string>
+    <string name="save">"Сохранить"</string>
+    <string name="settings_reset_summary">"Сброс к настройкам по умолчанию Артемиды. Вы не потеряете ни сохраненные снимки."</string>
+    <string name="settings_reset_title">"Настройки по умолчанию"</string>
+    <string name="reset_to_default_settings">"Вы уверены, что хотите, чтобы восстановить стандартные настройки? Вы потеряете все предпочтения."</string>
+    <string name="reset_artemis_settings">"Сброс Артемиды Настройки"</string>
+    <string name="custom_zoom_lens">"Пользовательские зум-объективом"</string>
+    <string name="new_zoom_lens">"Новый зум-объектив"</string>
+    <string name="untitled_zoom_lens">"Без названия зум-объективом"</string>
+    <string name="zoom_lens_name">"Имя зум-объективом"</string>
+    <string name="add">"Добавить"</string>
+    <string name="custom_zoom_lens_error">"Пользовательские зум-объектива Ошибка ввода"</string>
+    <string name="custom_zoom_lens_error_message">"Удалось добавить новые пользовательские зум-объектив. Пожалуйста, убедитесь, что входные значения являются действительными и повторите попытку."</string>
+    <string name="max_focal_length">"Максимальное фокусное расстояние"</string>
+    <string name="min_focal_length">"Мин Фокусное расстояние"</string>
+    <string name="image_save_no_media">"Ошибка: изображение не может быть сохранен. Нет носитель был найден."</string>
+    <string name="image_save_error">"Ошибка: изображение не может быть сохранен. Носители информации могут быть полными."</string>
+    <string name="save_raw_image_text">"нет рамки или текстового"</string>
+
+    <!-- Preference Strings -->
+    <string name="artemis">"Артемида"</string>
+    <string name="artemis_save_folder_summary">"Имя папки для сохранения изображений, созданные с Артемиды. Если папка с таким именем не существует, он будет создан для вас."</string>
+    <string name="horizontal_lens_angle">"Горизонтальный угол объектива"</string>
+    <string name="vertical_lens_angle">"Вертикальный угол объектива"</string>
+    <string name="menu_artemis_quit">"Выход"</string>
+    <string name="menu_artemis_quit_description">"Нажмите, чтобы я бросил Артемиды."</string>
+    <string name="feedback_report_issue">"Выпуск / Обратная связь"</string>
+    <string name="feedback_report_issue_description">"Сообщить о проблеме или и сообщите нам свое мнение, мы ценим ваши комментарии."</string>
+    <string name="menu_artemis_about">"О проекте"</string>
+    <string name="menu_artemis_about_description">"Немного о приложении и его разработчиков."</string>
+
+    <string-array name="image_size_prefs">
+        <item>"Маленький"</item>
+        <item>"По умолчанию"</item>
+        <item>"Большой"</item>
+    </string-array>
+    <string-array name="backkey_prefs">
+        <item>"Выход Артемиды немедленно"</item>
+        <item>"Подтверждение закрытия"</item>
+        <item>"// Ничего не делаем"</item>
+    </string-array>
+
+    <string name="email_support">"Поддержка по электронной почте"</string>
+
+    <string-array name="longPressShutter_entries">
+        <item>"Камера с автофокусом и сразу же захватить изображение"</item>
+        <item>"Камера с автофокусом и захвата изображения на кнопку фиксатора"</item>
+        <item>"Камера с автофокусом только"</item>
+        <item>"// Ничего не делаем"</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"Камера с автофокусом и сразу же захватить изображение"</item>
+        <item>"Фотографирую."</item>
+        <item>"Камера с автофокусом"</item>
+        <item>"// Ничего не делаем"</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"Фотографирую."</item>
+        <item>"// Ничего не делаем"</item>
+    </string-array>
+
+    <string name="camera_device_will_not_autofocus">"Камера устройства не будет автофокуса перед каждой фотосъемкой"</string>
+    <string name="camera_device_will_autofocus">"Камера устройства будет автофокуса перед каждой фотосъемкой"</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"Автофокус поведение при длительном нажатии затвора камеры (захват изображения) кнопки."</string>
+    <string name="long_press_shutter_button_focus_behaviour">"Длительное нажатие кнопки спуска затвора Фокус поведения"</string>
+    <string name="torch_while_in_preview_mode">"Камера устройство будет использовать факел в то время как в режиме предварительного просмотра"</string>
+    <string name="not_torch_while_in_preview_mode">"Камера устройства не будет использовать факел в то время как в режиме предварительного просмотра"</string>
+    <string name="camera_preview_will_show_all_colors">"Камера предварительного просмотра Вы увидите все цвета"</string>
+    <string name="camera_preview_will_be_black_and_white">"Камера предварительного просмотра будет черно-белым. Примечание: это также будет влиять на сохраненные изображения."</string>
+    <string name="device_camera_behaviour">"Поведение камеры устройства"</string>
+    <string name="device_camera_sensor">"Датчик камеры устройства"</string>
+    <string name="device_camera_angles">"Углы камеры устройства"</string>
+    <string name="use_the_custom_camera_angles">"Приложение будет использовать пользовательские значения показаны ниже."</string>
+    <string name="use_detected_device_angles">"Приложение будет использовать значения определяются автоматически с устройства (текущие значения см. ниже)."</string>
+    <string name="detect_device_camera_angles_automatically">"Обнаружение Углы устройства камера автоматически"</string>
+    <string name="heading_summary">"Выберите то, что отображается в заголовке основного приложения."</string>
+    <string name="lockboxes_summary">"Включение / выключение Объектив коробки от изменения положения на ощупь."</string>
+    <string name="lock_lens_boxes">"Блокировка коробки объектива"</string>
+    <string name="backkey_summary">"Выбор поведение кнопки назад программы в то время как основной приложение работает."</string>
+    <string name="back_button_behaviour">"Вернуться Поведение кнопки"</string>
+    <string name="haptic_feedback">"тактильной обратной связью"</string>
+    <string name="hapticfeedback_off_summary">"Artemis НЕ поддерживают тактильную обратную связь при нажатии кнопок."</string>
+    <string name="haptic_feedback_on_summary">"Artemis обеспечит тактильную обратную связь при нажатии кнопок."</string>
+    <string name="keep_screen_on_summary">"На экране будет храниться на тайм-аут и не в то время как основная приложение работает."</string>
+    <string name="keep_screen_off_summary">"На экране будет тайм-аут в соответствии с вашим устройством настройки по умолчанию сна."</string>
+    <string name="keep_screen_on">"Держите экран на"</string>
+    <string name="gps_settings">"Настройки GPS"</string>
+    <string name="screen_settings">"Настройки экрана"</string>
+    <string name="user_interface_behaviour">"Поведение пользовательского интерфейса"</string>
+    <string name="gps_summary_off">"GPS отключен. Устройство не будет искать его местоположении."</string>
+    <string name="gps_summary_on">"GPS включен и устройство будет искать его местоположении."</string>
+    <string name="key_mappings">"Сопоставления клавиш"</string>
+    <string name="map_volume_on">"Не переопределить клавиши громкости поведения. Клавиши регулировки громкости ведут себя по умолчанию."</string>
+    <string name="map_volume_off">"Переопределить клавиши громкости поведение в то время как основная приложение работает. "</string>
+    <string name="map_volume_key_title">"Override кнопка громкости Поведение"</string>
+    <string name="volume_up_summary">"Выберите поведение, когда телефоны громкость нажать клавишу, когда основная приложение работает."</string>
+    <string name="volume_up_key_title">"Клавиша увеличения громкости поведения"</string>
+    <string name="volume_down_summary">"Выберите поведение, когда телефоны громкость нажать клавишу, когда основная приложение работает."</string>
+    <string name="volume_down_key_title">"Клавиша уменьшения громкости поведения"</string>
+    <string name="language_summary">"Примечание: вы должны выйти и перезапустить приложение, чтобы изменения вступили в силу."</string>
+    <string name="picture_save_location">"Место сохранения фотоснимков"</string>
+    <string name="select_image_size">"Выберите размер изображения"</string>
+    <string name="image_size_summary">"Выберите размер конечного изображения сохраняются на диске."</string>
+    <string name="saved_image_size">"Сохранено Изображение Размер"</string>
+    <string name="select_image_quality">"Выбора качества изображения"</string>
+    <string name="image_quality_summary">"Выберите качество (степень сжатия) изображения сохраняются на диске."</string>
+    <string name="saved_image_quality">"Сохранено Изображение Качество"</string>
+    <string name="smooth_image_off">"Изображение не будет гладким фильтруется."</string>
+    <string name="smooth_image_on">"Фильтр будет применяться, чтобы сделать изображение ровнее, когда требуется масштабирование."</string>
+    <string name="quick_picture_off">"Изображение предварительного просмотра будет показано после фотографии будут сохранены."</string>
+    <string name="quick_picture_on">"Быстрые снимки включена. Предварительный просмотр изображения не будут отображаться после фотографии будут сохранены."</string>
+
+</resources>
