@@ -206,8 +206,8 @@ public class CustomCameraPreview extends ViewGroup {
 					+ scaledPreviewWidth + " scaled height:"
 					+ scaledPreviewHeight);
 
-			child.layout(0, 0, scaledPreviewWidth,
-					scaledPreviewHeight);
+			child.layout(0, 5, scaledPreviewWidth,
+					scaledPreviewHeight+5);
 
 			Log.v(logTag, "Scaled Preview width: "
 					+ scaledPreviewWidth + " height:"

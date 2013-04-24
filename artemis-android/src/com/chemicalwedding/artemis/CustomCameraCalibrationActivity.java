@@ -234,29 +234,6 @@ public class CustomCameraCalibrationActivity extends Activity {
 
 	}
 
-	// protected float calculateInitialChipWidth() {
-	// float[] angles = calculateViewingAngle(focalLength);
-	// float hWidth = angles[2];
-	// float vHeight = angles[3];
-	// float myprop = hWidth / vHeight;
-	// float hwidth = (ArtemisMath.scaledPreviewWidth * angles[0] /
-	// ArtemisMath.horizViewAngle);
-	//
-	// ArtemisRectF currentGreenBox =
-	// ArtemisMath.getInstance().getCurrentGreenBox();
-	// // if (myprop < 1.4f) {
-	// // hwidth *= currentGreenBox.width() / ArtemisMath.scaledPreviewWidth;
-	// // }
-	//
-	// float Hfraction = (chipWidth * squeezeRatio) / (2 * focalLength);
-	// float Vfraction = (chipHeight * 1) / (2 * focalLength);
-	// float HviewingAngle = (float) (2 * (Math
-	// .toDegrees(Math.atan(Hfraction))));
-	//
-	//
-	// return 0;
-	// }
-
 	private static float calculateWidthAndHeightLens(float angle) {
 		float updown = (float) (WALL_DISTANCE * 2 * (Math.tan(Math
 				.toRadians(angle / 2))));
