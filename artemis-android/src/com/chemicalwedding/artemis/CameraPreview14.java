@@ -1082,8 +1082,8 @@ public class CameraPreview14 extends ViewGroup {
 					+ ArtemisMath.scaledPreviewWidth + " scaled height:"
 					+ ArtemisMath.scaledPreviewHeight);
 
-			child.layout(0, 0, ArtemisMath.scaledPreviewWidth,
-					ArtemisMath.scaledPreviewHeight);
+			child.layout(0, 5, ArtemisMath.scaledPreviewWidth,
+					ArtemisMath.scaledPreviewHeight+5);
 
 			Log.v(logTag, "** Finished layout of Camera Preview");
 		}
