@@ -480,13 +480,13 @@ public class ArtemisMath {
 
 	public boolean hasPreviousLens() {
 		if (!isFullscreen && selectedZoomLens == null
-				&& _selectedLensIndex > firstMeaningfulLens) {
+				&& firstMeaningfulLens > 0 && _selectedLensIndex > firstMeaningfulLens) {
 			return true;
 		} else if (isFullscreen && _selectedLensIndex > 0) {
 			return true;
 		} else if (selectedZoomLens != null && _selectedLensIndex > 0) {
 			return true;
-		}
+		} 
 		return false;
 	}
 

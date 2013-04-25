@@ -561,7 +561,6 @@ public class CameraPreview14 extends ViewGroup {
 			_artemisMath.resetTouchToCenter(); // now with green box
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 			_artemisMath.setInitializedFirstTime(true);
-
 			ArtemisActivity._lensFocalLengthText.setText(_artemisMath
 					.get_selectedLensFocalLength());
 

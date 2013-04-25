@@ -261,7 +261,6 @@ public class ArtemisActivity extends Activity implements
 
 		// Hide system UI buttons
 		// getWindow().getDecorView().setSystemUiVisibility(
-		// View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
 		// PowerManager pm = (PowerManager)
 		// getSystemService(Context.POWER_SERVICE);
@@ -300,6 +299,7 @@ public class ArtemisActivity extends Activity implements
 		if (_cameraPreview != null && !isFirstStart) {
 			_cameraPreview.restartPreview();
 		}
+		reconfigureNextAndPreviousLensButtons();
 
 		isFirstStart = false;
 	}
