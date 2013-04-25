@@ -41,6 +41,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
@@ -74,6 +75,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
+import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
@@ -91,9 +93,12 @@ public class ArtemisActivity extends Activity implements
 
 	private static final int GALLERY_IMAGE_LOADER = 1;
 
+	private Handler mUiHandler = new Handler();
 	private CameraPreview14 _cameraPreview;
-	private static ImageView _nextLensButton;
-	private static ImageView _prevLensButton;
+	private LongPressButton _nextLensButton;
+	private LongPressButton _prevLensButton;
+	private ClickBoolean nextClickBoolean;
+	private ClickBoolean prevClickBoolean;
 	protected static ViewFlipper viewFlipper;
 	private ViewFlipper _cameraSettingsFlipper;
 	private ViewFlipper _lensSettingsFlipper;
@@ -586,8 +591,10 @@ public class ArtemisActivity extends Activity implements
 		_cameraDetailsText = (TextView) findViewById(R.id.cameraDetailsText);
 		_lensMakeText = (TextView) findViewById(R.id.lensMakeText);
 		headingTiltText = (TextView) findViewById(R.id.headingTiltText);
-		_nextLensButton = (ImageView) findViewById(R.id.nextButton);
-		_prevLensButton = (ImageView) findViewById(R.id.prevButton);
+		_nextLensButton = (LongPressButton) findViewById(R.id.nextButton);
+		_prevLensButton = (LongPressButton) findViewById(R.id.prevButton);
+		nextClickBoolean = _nextLensButton.getClickBoolean();
+		prevClickBoolean = _prevLensButton.getClickBoolean();
 
 		// keep binding more objects
 		_lensFocalLengthText = (TextView) findViewById(R.id.lensFocalLengthText);
@@ -644,7 +651,23 @@ public class ArtemisActivity extends Activity implements
 
 		// next / prev lens
 		_nextLensButton.setOnClickListener(nextLensClickListener);
+		_nextLensButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				nextClickBoolean.setDown(true);
+				mUiHandler.post(nextLensRunnable);
+				return true;
+			}
+		});
 		_prevLensButton.setOnClickListener(previousLensClickListener);
+		_prevLensButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				prevClickBoolean.setDown(true);
+				mUiHandler.post(previousLensRunnable);
+				return true;
+			}
+		});
 
 		// view under the focal length label in the preview
 		((ImageView) findViewById(R.id.focalLengthLensButton))
@@ -1749,44 +1772,58 @@ public class ArtemisActivity extends Activity implements
 	private final OnClickListener nextLensClickListener = new android.view.View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			if (!_artemisMath.isFullscreen()
-					|| _artemisMath.selectedZoomLens == null) {
-
-				if (_artemisMath.selectNextLens()) {
-					mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
-					if (_artemisMath.isFullscreen()) {
-						_cameraPreview.calculateZoom(true);
-					}
-				}
-				if (!_artemisMath.hasNextLens()) {
-					_nextLensButton.setVisibility(View.INVISIBLE);
-				}
-				if (_artemisMath.hasPreviousLens()) {
-					_prevLensButton.setVisibility(View.VISIBLE);
-				}
-				mCameraAngleDetailView.postInvalidate();
-			} else if (_artemisMath.isFullscreen()
-					&& _artemisMath.selectedZoomLens != null) {
-				_artemisMath.incrementFullscreenZoomLens();
-				_cameraPreview.calculateZoom(true);
-
-				_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
-						.format(_artemisMath.zoomLensFullScreenFL));
-				if (!_artemisMath.hasNextZoomLens()) {
-					_nextLensButton.setVisibility(View.INVISIBLE);
-				}
-				if (_artemisMath.hasPreviousZoomLens()) {
-					_prevLensButton.setVisibility(View.VISIBLE);
-				}
-			}
-
-			if (isHapticFeedbackEnabled) {
-				buzz(v);
-			}
+			nextLens();
 		}
 	};
 
-	protected static void reconfigureNextAndPreviousLensButtons() {
+	private Runnable nextLensRunnable = new Runnable() {
+		public void run() {
+			if (nextClickBoolean.isDown() && _artemisMath.hasNextLens()) {
+				nextLens();
+			}
+			mUiHandler.postDelayed(nextLensRunnable, lensRepeatSpeed);
+		}
+	};
+
+	private void nextLens() {
+		if (!_artemisMath.isFullscreen()
+				|| _artemisMath.selectedZoomLens == null) {
+
+			if (_artemisMath.selectNextLens()) {
+				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
+				if (_artemisMath.isFullscreen()) {
+					_cameraPreview.calculateZoom(true);
+				}
+			}
+			if (!_artemisMath.hasNextLens()) {
+				_nextLensButton.setVisibility(View.INVISIBLE);
+			}
+			if (_artemisMath.hasPreviousLens()) {
+				_prevLensButton.setVisibility(View.VISIBLE);
+			}
+			mCameraAngleDetailView.postInvalidate();
+		} else if (_artemisMath.isFullscreen()
+				&& _artemisMath.selectedZoomLens != null) {
+			_artemisMath.incrementFullscreenZoomLens();
+			_cameraPreview.calculateZoom(true);
+
+			_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
+					.format(_artemisMath.zoomLensFullScreenFL));
+			if (!_artemisMath.hasNextZoomLens()) {
+				_nextLensButton.setVisibility(View.INVISIBLE);
+			}
+			if (_artemisMath.hasPreviousZoomLens()) {
+				_prevLensButton.setVisibility(View.VISIBLE);
+			}
+		}
+
+		if (isHapticFeedbackEnabled) {
+			buzz(_lensFocalLengthText);
+		}
+
+	}
+
+	protected void reconfigureNextAndPreviousLensButtons() {
 		if (_artemisMath.hasNextLens()) {
 			_nextLensButton.setVisibility(View.VISIBLE);
 		} else {
@@ -1802,43 +1839,58 @@ public class ArtemisActivity extends Activity implements
 	private final OnClickListener previousLensClickListener = new android.view.View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			if (!_artemisMath.isFullscreen()
-					|| _artemisMath.selectedZoomLens == null) {
-				if (_artemisMath.selectPreviousLens()) {
-
-					mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
-					if (_artemisMath.isFullscreen()) {
-						_cameraPreview.calculateZoom(true);
-					}
-				}
-				if (!_artemisMath.hasPreviousLens()) {
-					_prevLensButton.setVisibility(View.INVISIBLE);
-				}
-				if (_artemisMath.hasNextLens()) {
-					_nextLensButton.setVisibility(View.VISIBLE);
-				}
-				mCameraAngleDetailView.postInvalidate();
-			} else if (_artemisMath.isFullscreen()
-					&& _artemisMath.selectedZoomLens != null) {
-				_artemisMath.decrementFullscreenZoomLens();
-				_cameraPreview.calculateZoom(true);
-
-				_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
-						.format(_artemisMath.zoomLensFullScreenFL));
-
-				if (!_artemisMath.hasPreviousZoomLens()) {
-					_prevLensButton.setVisibility(View.INVISIBLE);
-				}
-				if (_artemisMath.hasNextZoomLens()) {
-					_nextLensButton.setVisibility(View.VISIBLE);
-				}
-
-			}
-			if (isHapticFeedbackEnabled) {
-				buzz(v);
-			}
+			previousLens();
 		}
 	};
+
+	protected long lensRepeatSpeed = 400;
+
+	private Runnable previousLensRunnable = new Runnable() {
+		public void run() {
+			if (prevClickBoolean.isDown() && _artemisMath.hasPreviousLens()) {
+				previousLens();
+			}
+			mUiHandler.postDelayed(previousLensRunnable, lensRepeatSpeed);
+		}
+	};
+
+	private void previousLens() {
+		if (!_artemisMath.isFullscreen()
+				|| _artemisMath.selectedZoomLens == null) {
+			if (_artemisMath.selectPreviousLens()) {
+
+				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
+				if (_artemisMath.isFullscreen()) {
+					_cameraPreview.calculateZoom(true);
+				}
+			}
+			if (!_artemisMath.hasPreviousLens()) {
+				_prevLensButton.setVisibility(View.INVISIBLE);
+			}
+			if (_artemisMath.hasNextLens()) {
+				_nextLensButton.setVisibility(View.VISIBLE);
+			}
+			mCameraAngleDetailView.postInvalidate();
+		} else if (_artemisMath.isFullscreen()
+				&& _artemisMath.selectedZoomLens != null) {
+			_artemisMath.decrementFullscreenZoomLens();
+			_cameraPreview.calculateZoom(true);
+
+			_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
+					.format(_artemisMath.zoomLensFullScreenFL));
+
+			if (!_artemisMath.hasPreviousZoomLens()) {
+				_prevLensButton.setVisibility(View.INVISIBLE);
+			}
+			if (_artemisMath.hasNextZoomLens()) {
+				_nextLensButton.setVisibility(View.VISIBLE);
+			}
+
+		}
+		if (isHapticFeedbackEnabled) {
+			buzz(_lensFocalLengthText);
+		}
+	}
 
 	final class focalLengthLensButtonViewClickListener implements
 			android.view.View.OnClickListener {

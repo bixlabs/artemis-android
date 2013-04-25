@@ -118,13 +118,12 @@
         android:gravity="center_horizontal" >
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/prevButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -136,7 +135,6 @@
         <!-- empty space -->
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -150,7 +148,6 @@
             android:src="@drawable/camerabutton" />
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -164,7 +161,6 @@
             android:src="@drawable/fullscreenbutton" />
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -177,7 +173,6 @@
             android:src="@drawable/gallerybutton" />
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -242,7 +237,6 @@
         </FrameLayout>
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -256,7 +250,6 @@
             android:src="@drawable/editmeta" />
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -287,7 +280,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
