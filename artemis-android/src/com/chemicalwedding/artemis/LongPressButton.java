@@ -48,8 +48,7 @@ public class LongPressButton extends ImageView {
 	}
 
 	private void cancelLongpressIfRequired(MotionEvent event) {
-		if ((event.getAction() == MotionEvent.ACTION_CANCEL)
-				|| (event.getAction() == MotionEvent.ACTION_UP)) {
+		if (event.getAction() == MotionEvent.ACTION_UP) {
 			cancelLongpress();
 		}
 	}

@@ -2,8 +2,6 @@ package com.chemicalwedding.artemis;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
-import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -42,6 +39,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
@@ -656,6 +654,9 @@ public class ArtemisActivity extends Activity implements
 			public boolean onLongClick(View v) {
 				nextClickBoolean.setDown(true);
 				mUiHandler.post(nextLensRunnable);
+				if (isHapticFeedbackEnabled) {
+					buzz(_lensFocalLengthText);
+				}
 				return true;
 			}
 		});
@@ -665,6 +666,9 @@ public class ArtemisActivity extends Activity implements
 			public boolean onLongClick(View v) {
 				prevClickBoolean.setDown(true);
 				mUiHandler.post(previousLensRunnable);
+				if (isHapticFeedbackEnabled) {
+					buzz(_lensFocalLengthText);
+				}
 				return true;
 			}
 		});
@@ -1773,15 +1777,19 @@ public class ArtemisActivity extends Activity implements
 		@Override
 		public void onClick(View v) {
 			nextLens();
+			if (isHapticFeedbackEnabled) {
+				buzz(v);
+			}
 		}
 	};
 
-	private Runnable nextLensRunnable = new Runnable() {
+	private final Runnable nextLensRunnable = new Runnable() {
 		public void run() {
 			if (nextClickBoolean.isDown() && _artemisMath.hasNextLens()) {
 				nextLens();
+				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+						+ lensRepeatSpeed);
 			}
-			mUiHandler.postDelayed(nextLensRunnable, lensRepeatSpeed);
 		}
 	};
 
@@ -1816,11 +1824,6 @@ public class ArtemisActivity extends Activity implements
 				_prevLensButton.setVisibility(View.VISIBLE);
 			}
 		}
-
-		if (isHapticFeedbackEnabled) {
-			buzz(_lensFocalLengthText);
-		}
-
 	}
 
 	protected void reconfigureNextAndPreviousLensButtons() {
@@ -1840,17 +1843,21 @@ public class ArtemisActivity extends Activity implements
 		@Override
 		public void onClick(View v) {
 			previousLens();
+			if (isHapticFeedbackEnabled) {
+				buzz(v);
+			}
 		}
 	};
 
-	protected long lensRepeatSpeed = 400;
+	protected final long lensRepeatSpeed = 400;
 
-	private Runnable previousLensRunnable = new Runnable() {
+	private final Runnable previousLensRunnable = new Runnable() {
 		public void run() {
 			if (prevClickBoolean.isDown() && _artemisMath.hasPreviousLens()) {
 				previousLens();
+				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+						+ lensRepeatSpeed);
 			}
-			mUiHandler.postDelayed(previousLensRunnable, lensRepeatSpeed);
 		}
 	};
 
@@ -1886,9 +1893,6 @@ public class ArtemisActivity extends Activity implements
 				_nextLensButton.setVisibility(View.VISIBLE);
 			}
 
-		}
-		if (isHapticFeedbackEnabled) {
-			buzz(_lensFocalLengthText);
 		}
 	}
 
