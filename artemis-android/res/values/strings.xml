@@ -91,10 +91,12 @@
 
         <!-- <item>Čeština</item> -->
         <!-- <item>Dansk</item> -->
+        <item>العربية</item>
         <item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
         <item>Français</item>
+        <item>हिंदी</item>
         <item>Italiano</item>
         <!-- <item>Nederlands</item> -->
         <!-- <item>Norsk bokmål</item> -->
@@ -213,7 +215,7 @@
     <string name="custom_camera_distance">DISTANCE</string>
     <string name="custom_camera_width">WIDTH</string>
     <string name="custom_camera_height">HEIGHT</string>
-    <string name="custom_camera_focallength">FOCAL LENGTH (MM)</string>
+    <string name="custom_camera_focallength">FOCAL LENGTH (50mm)</string>
     <string name="update_custom_camera">Update Custom Camera</string>
     <string name="untitle_custom_cam">Untitled Custom Camera</string>
     <string name="custom_camera_error">Custom Camera Input Error</string>

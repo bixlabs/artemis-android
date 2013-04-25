@@ -7,7 +7,7 @@
     <!-- New custom camera strings -->
     <string name="custom_cameras">CUSTOM CAMERAS</string>
     <string name="add_custom_camera_title">Add Custom Camera</string>
-    <string name="custom_camera_squeeze_ratio">SQUEEZE RATIO</string>
+    <string name="custom_camera_squeeze_ratio">SQUEEZE RATIO (1.0)</string>
     <string name="custom_camera_aspect_ratio">ASPECT RATIO (1.78)</string>
     <string name="custom_camera_save_start_button">START</string>
     <string name="custom_camera_save_active_sensor">ACTIVE SENSOR SIZE</string>
