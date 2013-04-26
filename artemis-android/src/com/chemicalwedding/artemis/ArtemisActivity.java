@@ -1368,6 +1368,7 @@ public class ArtemisActivity extends Activity implements
 					addZoomLensDialog.setButton(Dialog.BUTTON_POSITIVE,
 							getString(R.string.add),
 							new DialogInterface.OnClickListener() {
+								@SuppressWarnings("unchecked")
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
