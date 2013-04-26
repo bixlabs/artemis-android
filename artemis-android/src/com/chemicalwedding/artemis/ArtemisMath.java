@@ -463,6 +463,7 @@ public class ArtemisMath {
 	}
 
 	public boolean hasNextLens() {
+		//if (selectedZoomLens != null) return hasNextZoomLens();
 		if (_selectedLensIndex + 1 < _selectedLenses.size()) {
 			return true;
 		}
@@ -479,6 +480,7 @@ public class ArtemisMath {
 	}
 
 	public boolean hasPreviousLens() {
+		//if (selectedZoomLens != null) return hasPreviousZoomLens();
 		if (!isFullscreen && selectedZoomLens == null
 				&& firstMeaningfulLens > 0 && _selectedLensIndex > firstMeaningfulLens) {
 			return true;

@@ -716,16 +716,8 @@ public class ArtemisActivity extends Activity implements
 
 		((ImageView) findViewById(R.id.lens_settings_back))
 				.setOnClickListener(new View.OnClickListener() {
-
 					@Override
 					public void onClick(View v) {
-						if (tempSelectedCamera != null
-								&& tempSelectedCamera.getRowid() != null
-								&& tempSelectedCamera.getRowid() == -1) {
-							// This is a custom camera, go back to preview
-							openArtemisCameraPreviewView();
-							return;
-						}
 						int displayed = _lensSettingsFlipper
 								.getDisplayedChild();
 						if (displayed > 0 && displayed < 2
@@ -1177,24 +1169,23 @@ public class ArtemisActivity extends Activity implements
 
 		_lensSettingsFlipper.setInAnimation(null);
 		_lensSettingsFlipper.setDisplayedChild(0);
+		viewFlipper.setDisplayedChild(2);
+		currentViewId = R.id.lensSettings;
 
+		ArrayList<String> lensMakes = null;
 		if (tempSelectedCamera != null && tempSelectedCamera.getRowid() != null
 				&& tempSelectedCamera.getRowid() == -1) {
 			// This is a custom camera
 			addCustomLensLayout.setVisibility(View.VISIBLE);
-
-			loadLensesForLensMake();
-
-			_lensSettingsFlipper.setDisplayedChild(1);
+			lensMakes = new ArrayList<String>();
+			lensMakes.add(DEFAULT_LENS_MAKE);
+		} else {
+			// Regular db camera
+			String[] lensFormatsForCamera = tempSelectedCamera.getLenses()
+					.split(",");
+			lensMakes = _artemisDBHelper
+					.getLensMakeForLensFormat(lensFormatsForCamera);
 		}
-
-		viewFlipper.setDisplayedChild(2);
-		currentViewId = R.id.lensSettings;
-
-		String[] lensFormatsForCamera = tempSelectedCamera.getLenses().split(
-				",");
-		ArrayList<String> lensMakes = _artemisDBHelper
-				.getLensMakeForLensFormat(lensFormatsForCamera);
 		lensMakes.add(getString(R.string.custom_zoom_lens));
 		Log.i(_logTag, "Lens makers available: " + lensMakes.size());
 
@@ -1447,7 +1438,7 @@ public class ArtemisActivity extends Activity implements
 				_lensSettingsFlipper.setInAnimation(null);
 				_lensSettingsFlipper.setOutAnimation(null);
 				_lensSettingsFlipper.setDisplayedChild(0);
-
+				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
 				openArtemisCameraPreviewView();
 			}
 		}
@@ -1683,8 +1674,8 @@ public class ArtemisActivity extends Activity implements
 
 			if (tempSelectedCamera.getRowid() != -1) {
 				setSelectedCamera(tempSelectedCamera.getRowid(), true, false);
-				setSelectedLensMake(tempSelectedLensMake, true, false);
 			}
+			setSelectedLensMake(tempSelectedLensMake, true, false);
 			setSelectedLenses(selectedLensString, true, true);
 			updateLensesInDB();
 			_artemisMath.setFullscreen(false);
@@ -1785,10 +1776,14 @@ public class ArtemisActivity extends Activity implements
 
 	private final Runnable nextLensRunnable = new Runnable() {
 		public void run() {
-			if (nextClickBoolean.isDown() && _artemisMath.hasNextLens()) {
-				nextLens();
-				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-						+ lensRepeatSpeed);
+			if (nextClickBoolean.isDown()) {
+				if ((!_artemisMath.isFullscreen() && _artemisMath.hasNextZoomLens())
+						|| (isZoomLensSelected() && _artemisMath
+								.hasNextZoomLens())) {
+					nextLens();
+					mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+							+ lensRepeatSpeed);
+				}
 			}
 		}
 	};
@@ -1849,14 +1844,24 @@ public class ArtemisActivity extends Activity implements
 		}
 	};
 
+	private boolean isZoomLensSelected() {
+		return _artemisMath != null && _artemisMath.selectedZoomLens != null ? true
+				: false;
+	}
+
 	protected final long lensRepeatSpeed = 400;
 
 	private final Runnable previousLensRunnable = new Runnable() {
 		public void run() {
-			if (prevClickBoolean.isDown() && _artemisMath.hasPreviousLens()) {
-				previousLens();
-				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-						+ lensRepeatSpeed);
+			if (prevClickBoolean.isDown()) {
+				if ((!_artemisMath.isFullscreen() && _artemisMath.hasPreviousLens())
+						|| (isZoomLensSelected() && _artemisMath
+								.hasPreviousZoomLens())) {
+					previousLens();
+					mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+							+ lensRepeatSpeed);
+
+				}
 			}
 		}
 	};
