@@ -1434,6 +1434,9 @@ public class ArtemisActivity extends Activity implements
 				addZoomLensDialog.show();
 			} else {
 				// Select zoom lens
+				if (tempSelectedCamera.getRowid() != -1) {
+					setSelectedCamera(tempSelectedCamera.getRowid(), true, false);
+				}	
 				setSelectedZoomLens(zoomLenses.get(selected), true);
 				_lensSettingsFlipper.setInAnimation(null);
 				_lensSettingsFlipper.setOutAnimation(null);
