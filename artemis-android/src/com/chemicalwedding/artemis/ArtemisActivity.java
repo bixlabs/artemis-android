@@ -1855,7 +1855,7 @@ public class ArtemisActivity extends Activity implements
 				: false;
 	}
 
-	protected final long lensRepeatSpeed = 400;
+	protected final long lensRepeatSpeed = 200;
 
 	private final Runnable previousLensRunnable = new Runnable() {
 		public void run() {
