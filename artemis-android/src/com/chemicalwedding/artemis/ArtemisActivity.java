@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -1216,6 +1217,7 @@ public class ArtemisActivity extends Activity implements
 		toast.show();
 	}
 
+	@SuppressLint("DefaultLocale")
 	public static String getBucketId(String bucketName) {
 		bucketName = bucketName.toLowerCase();
 		if (bucketName.charAt(bucketName.length() - 1) == '/') {
@@ -1424,7 +1426,7 @@ public class ArtemisActivity extends Activity implements
 												.addZoomLens(lens));
 										zoomLenses.add(zoomLenses.size() - 1,
 												lens);
-										((ArrayAdapter<ZoomLens>) ((ListView) findViewById(R.id.customZoomLensList))
+										((ArrayAdapter<?>) ((ListView) findViewById(R.id.customZoomLensList))
 												.getAdapter())
 												.notifyDataSetChanged();
 									}
@@ -2520,6 +2522,7 @@ public class ArtemisActivity extends Activity implements
 				// // calculate the viewing angles
 				updateCamera.setSensorwidth(cameraWidth);
 				updateCamera.setSensorheight(cameraHeight);
+				updateCamera.setSqueeze(squeeze);
 				_artemisDBHelper.updateCustomCamera(updateCamera);
 
 				// refresh the list in previous page
