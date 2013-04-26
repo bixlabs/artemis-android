@@ -9,7 +9,7 @@
     <integer name="appirator_days_until_prompt">15</integer>
     <integer name="appirator_launches_until_prompt">15</integer>
     <!-- Set this to 0 to remind every launch -->
-    <integer name="appirator_days_before_reminding">3</integer>
+    <integer name="appirator_days_before_reminding">5</integer>
     <!-- Change to true to show every time, for testing -->
     <bool name="appirator_test_mode">false</bool>
     <!-- Change modify button colors -->
