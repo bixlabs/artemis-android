@@ -75,7 +75,7 @@
             android:summary="@string/volume_down_summary"
             android:title="@string/volume_down_key_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Language" >
+    <PreferenceCategory android:title="@string/language" >
         <ListPreference
             android:entries="@array/select_language_array"
             android:entryValues="@array/select_language_codes"

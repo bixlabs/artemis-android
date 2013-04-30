@@ -72,5 +72,6 @@
     <string name="image_save_no_media">ERROR: The image could not be saved.  No storage media was found.</string>
     <string name="image_save_error">ERROR: The image could not be saved. The storage media may be full.</string>
     <string name="save_raw_image_text">No Border or Text</string>
+    <string name="language">Language</string>
 
 </resources>
