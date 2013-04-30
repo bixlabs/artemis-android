@@ -493,13 +493,17 @@ public class ArtemisMath {
 	}
 
 	public boolean hasPreviousZoomLens() {
-		if (selectedZoomLens != null && zoomLensFullScreenFL > selectedZoomLens.getMinFL()) {
+		if ((selectedZoomLens != null && isFullscreen && zoomLensFullScreenFL > selectedZoomLens.getMinFL())) {
+			return true;
+		} else if (!isFullscreen && _selectedLensIndex > 0) {
 			return true;
 		}
 		return false;
 	}
 	public boolean hasNextZoomLens() {
-		if (selectedZoomLens != null && zoomLensFullScreenFL < selectedZoomLens.getMaxFL()) {
+		if (selectedZoomLens != null && isFullscreen && zoomLensFullScreenFL < selectedZoomLens.getMaxFL()) {
+			return true;
+		} else if (!isFullscreen && _selectedLensIndex < 1) {
 			return true;
 		}
 		return false;

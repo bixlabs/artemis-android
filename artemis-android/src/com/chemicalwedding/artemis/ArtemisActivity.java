@@ -1783,7 +1783,7 @@ public class ArtemisActivity extends Activity implements
 	private final Runnable nextLensRunnable = new Runnable() {
 		public void run() {
 			if (nextClickBoolean.isDown()) {
-				if ((!_artemisMath.isFullscreen() && _artemisMath.hasNextZoomLens())
+				if ((!isZoomLensSelected() && _artemisMath.hasNextLens())
 						|| (isZoomLensSelected() && _artemisMath
 								.hasNextZoomLens())) {
 					nextLens();
@@ -1860,7 +1860,7 @@ public class ArtemisActivity extends Activity implements
 	private final Runnable previousLensRunnable = new Runnable() {
 		public void run() {
 			if (prevClickBoolean.isDown()) {
-				if ((!_artemisMath.isFullscreen() && _artemisMath.hasPreviousLens())
+				if ((!isZoomLensSelected() && _artemisMath.hasPreviousLens())
 						|| (isZoomLensSelected() && _artemisMath
 								.hasPreviousZoomLens())) {
 					previousLens();
