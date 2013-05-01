@@ -173,4 +173,165 @@
 <string name="auto_focus_text">オートフォーカスの画像</string>
 <!-- Gallery related messages -->
 	<string name="gallery_no_images_found">ない画像が見つかりませんでした</string>
+	
+<!-- 	New strings 05-13 -->
+
+
+    <!-- New custom camera strings -->
+    <string name="custom_cameras">"カスタムカメラ"</string>
+    <string name="add_custom_camera_title">"カスタムカメラを追加"</string>
+    <string name="custom_camera_squeeze_ratio">"比率を絞る"</string>
+    <string name="custom_camera_aspect_ratio">"アスペクト比（1.78）"</string>
+    <string name="custom_camera_save_start_button">"開始"</string>
+    <string name="custom_camera_save_active_sensor">"アクティブセンサーサイズ"</string>
+    <string name="add_custom_camera_directions">"スクイーズ比は1:3:1秒アナモフィックレンズ（すなわちホークV-liteの1.3 's）のために球面レンズ、標準の午前2:1アナモフィックレンズ用の2.0および1.3のために1.0である。提出した後、上記のフィールドは節点でお使いのデバイスを起動したままクリックします。 50ミリメートルレンズを使用している場合、レンズの節点は、センサー面の前面に50mmです。プラスとマイナスのボタンを使用して、カメラの映像にAtemisで見た画像と一致している。赤いボタンの内側細かい調整のためであり、あなたが満足しているときに[保存]を押します。"</string>
+    <string name="add_custom_camera_directions_active_chip">"スクイーズ比は1:3:1秒アナモフィックレンズ（すなわちホークV-liteの1.3 's）のために球面レンズ、標準の午前2:1アナモフィックレンズ用の2.0および1.3のために1.0である。"</string>
+    <string name="custom_camera_chip_width">"チップ幅（mm）"</string>
+    <string name="custom_camera_chip_height">"チップ高さ（mm）"</string>
+    <string name="custom_camera_save_button">"保存"</string>
+
+    <!-- Calibrate Custom Camera Strings -->
+    <string name="calibrate_chip_width">"チップ幅："</string>
+    <string name="calibrate_chip_height">"チップ高さ："</string>
+
+    <!-- New preferences strings -->
+    <string name="prefs_general_settings">"全般設定"</string>
+    <string name="prefs_general_settings_description">"一般アルテミスの操作、ユーザーインターフェイスの設定"</string>
+    <string name="prefs_camera_settings">"カメラ設定"</string>
+    <string name="prefs_camera_settings_description">"素子カメラの動作をカスタマイズするための設定"</string>
+    <string name="prefs_image_settings">"保存した画像の設定"</string>
+    <string name="prefs_image_settings_description">"アルテミスを使用して、ストレージに保存された画像の制御特性​​の調整"</string>
+
+    <!-- NEW STRING NEEDS TO BE TRANSLATED -->
+    <string name="image_note_hint">"メモを追加"</string>
+    <string name="add_custom_lens">"カスタムレンズを追加"</string>
+    <string name="add_custom_lens_upper">"カスタムレンズを追加"</string>
+    <string name="input_focal_length">"ミリでレンズの焦点距離を入力してください："</string>
+    <string name="custom_lens_error">"カスタムレンズの入力エラー"</string>
+    <string name="custom_lens_error_message">"新しいカスタムレンズを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。"</string>
+
+    <!-- Gallery Strings -->
+    <string name="gallery_title">"アルテミスギャラリー"</string>
+
+    <!-- New Camera Settings Strings -->
+    <string name="camera_search">"カメラの検索..."</string>
+
+    <!-- //Save Picture Page -->
+
+    <string name="save_picture_details">"画像の詳細を保存する"</string>
+    <string name="save">"保存"</string>
+    <string name="settings_reset_summary">"アルテミスのデフォルト設定にリセットします。あなたは、任意の保存された写真を失うことはありません。"</string>
+    <string name="settings_reset_title">"デフォルト設定へのリセット"</string>
+    <string name="reset_to_default_settings">"デフォルトの設定にリセットしてもよろしいですか？あなたは、すべての設定が失われます。"</string>
+    <string name="reset_artemis_settings">"アルテミス設定をリセット"</string>
+    <string name="custom_zoom_lens">"カスタムズームレンズ"</string>
+    <string name="new_zoom_lens">"新しいズームレンズ"</string>
+    <string name="untitled_zoom_lens">"無題ズームレンズ"</string>
+    <string name="zoom_lens_name">"ズームレンズ名"</string>
+    <string name="add">"追加"</string>
+    <string name="custom_zoom_lens_error">"カスタムズームレンズ入力エラー"</string>
+    <string name="custom_zoom_lens_error_message">"新しいカスタムズームレンズを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。"</string>
+    <string name="max_focal_length">"最大焦点距離"</string>
+    <string name="min_focal_length">"最小焦点距離"</string>
+    <string name="image_save_no_media">"エラー：画像を保存できませんでした。ストレージメディアが見つかりませんでした。"</string>
+    <string name="image_save_error">"エラー：画像を保存できませんでした。記憶媒体はいっぱいかもしれません。"</string>
+    <string name="save_raw_image_text">"いいえボーダーないか、またはテキスト"</string>
+
+    <!-- Preference Strings -->
+    <string name="artemis">"アルテミス"</string>
+    <string name="artemis_save_folder_summary">"アルテミスでは、作成イメージを保存するフォルダ名。この名前のフォルダが存在しない場合、それはあなたのために作成されます。"</string>
+    <string name="horizontal_lens_angle">"水平方向のレンズの角度"</string>
+    <string name="vertical_lens_angle">"垂直レンズの角度"</string>
+    <string name="menu_artemis_quit">"終了 "</string>
+    <string name="menu_artemis_quit_description">"私はアルテミスを終了する場合にクリックします。"</string>
+    <string name="feedback_report_issue">"問題/フィードバック"</string>
+    <string name="feedback_report_issue_description">"報告し、発行するか、または私達にあなたのフィードバックを与え、我々はあなたのコメントに感謝します。"</string>
+    <string name="menu_artemis_about">"###########==-- 概要（ABOUT） --==################
+"</string>
+    <string name="menu_artemis_about_description">"アプリとその開発について少し。"</string>
+
+    <string-array name="image_size_prefs">
+        <item>"Small"</item>
+        <item>"初期値"</item>
+        <item>"Large"</item>
+    </string-array>
+    <string-array name="backkey_prefs">
+        <item>"アルテミスを直ちに終了"</item>
+        <item>"閉じる前にプロンプ​​ト"</item>
+        <item>"何もしない"</item>
+    </string-array>
+
+    <string name="email_support">"メールサポート"</string>
+
+    <string-array name="longPressShutter_entries">
+        <item>"オートフォーカスカメラとすぐに画像を取り込む"</item>
+        <item>"ボタンリリースでオートフォーカスカメラとキャプチャ画像"</item>
+        <item>"唯一のオートフォーカスカメラ"</item>
+        <item>"何もしない"</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"オートフォーカスカメラとすぐに画像を取り込む"</item>
+        <item>"写真を撮る"</item>
+        <item>"自動焦点カメラ"</item>
+        <item>"何もしない"</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"写真を撮る"</item>
+        <item>"何もしない"</item>
+    </string-array>
+
+    <string name="camera_device_will_not_autofocus">"カメラデバイスは、各写真を撮る前にオートフォーカスしません"</string>
+    <string name="camera_device_will_autofocus">"カメラデバイスは、各写真を撮る前にオートフォーカス意志"</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"長いカメラのシャッター（画像を取り込む）ボタンを押すと、オートフォーカスの動作。"</string>
+    <string name="long_press_shutter_button_focus_behaviour">"長押しのシャッターボタンフォーカス行動"</string>
+    <string name="torch_while_in_preview_mode">"カメラ装置は、プレビューモードでトーチ一方を使用する"</string>
+    <string name="not_torch_while_in_preview_mode">"カメラデバイスがプレビューモードでトーチしばらく使用することはありません"</string>
+    <string name="camera_preview_will_show_all_colors">"カメラのプレビューは、すべての色が表示されます"</string>
+    <string name="camera_preview_will_be_black_and_white">"カメラのプレビューは、黒と白になります。注意：これはまた、保存した画像に影響を与えます。"</string>
+    <string name="device_camera_behaviour">"デバイスのカメラの行動"</string>
+    <string name="device_camera_sensor">"デバイスのカメラセンサー"</string>
+    <string name="device_camera_angles">"デバイスのカメラアングル"</string>
+    <string name="use_the_custom_camera_angles">"アプリケーションは、次に示すカスタム値を使用します。"</string>
+    <string name="use_detected_device_angles">"アプリケーションが自動的にデバイス（電流値は下記参照）から検出された値を使用します。"</string>
+    <string name="detect_device_camera_angles_automatically">"自動的にデバイスのカメラアングルを検出"</string>
+    <string name="heading_summary">"メインアプリの見出しに表示するかを選択してください。"</string>
+    <string name="lockboxes_summary">"touch上で位置を変えるからレンズボックスを有効/無効にします。"</string>
+    <string name="lock_lens_boxes">"ロックレンズボックス"</string>
+    <string name="backkey_summary">"主なアプリの実行中にアンドロイドの戻るボタンの動作を選択してください。"</string>
+    <string name="back_button_behaviour">"戻るボタンの挙動"</string>
+    <string name="haptic_feedback">"入力時バイブレーション"</string>
+    <string name="hapticfeedback_off_summary">"アルテミスは、ボタンの押下に触覚フィードバックを提供しません。"</string>
+    <string name="haptic_feedback_on_summary">"アルテミスは、ボタンの押下に触覚フィードバックを提供します。"</string>
+    <string name="keep_screen_on_summary">"主なアプリの実行中に画面が上に保持し、タイムアウトNEVERされます。"</string>
+    <string name="keep_screen_off_summary">"画面には、タイムアウト、デバイスのデフォルトのスリープ設定に従ってます。"</string>
+    <string name="keep_screen_on">"の画面を保つ"</string>
+    <string name="gps_settings">"GPS設定"</string>
+    <string name="screen_settings">"画面設定"</string>
+    <string name="user_interface_behaviour">"ユーザーインターフェイスの行動"</string>
+    <string name="gps_summary_off">"GPSが無効になっています。デバイスはそれの場所を検索しません。"</string>
+    <string name="gps_summary_on">"GPSが有効になっており、デバイスがその場所を検索します。"</string>
+    <string name="key_mappings">"キーのマッピング"</string>
+    <string name="map_volume_on">"ボリュームキーの動作を上書きしないでください。ボリュームキーは、デフォルトとして振る舞う。"</string>
+    <string name="map_volume_off">"主なアプリの実行中にボリュームキーの動作をオーバーライドします。"</string>
+    <string name="map_volume_key_title">"ボリュームキーの動作をオーバーライドする"</string>
+    <string name="volume_up_summary">"主なアプリの実行中にキーまで電話ボリュームが押されたときの動作を選択してください。"</string>
+    <string name="volume_up_key_title">"キー行動音量アップ"</string>
+    <string name="volume_down_summary">"主なアプリの実行中にキーを携帯電話の音量が押されたときの動作を選択してください。"</string>
+    <string name="volume_down_key_title">"キー行動音量ダウン"</string>
+    <string name="language_summary">"注：変更を有効にするには、アプリケーションを終了して再起動する必要があります。"</string>
+    <string name="picture_save_location">"画像の保存場所"</string>
+    <string name="select_image_size">"画像サイズを選択してください"</string>
+    <string name="image_size_summary">"ディスクに保存された最終的な画像のサイズを選択します。"</string>
+    <string name="saved_image_size">"保存された画像サイズ"</string>
+    <string name="select_image_quality">"画質を選択してください"</string>
+    <string name="image_quality_summary">"ディスクに保存した画像の画質（圧縮率）を選択します。"</string>
+    <string name="saved_image_quality">"保存された画質"</string>
+    <string name="smooth_image_off">"画像は滑らかでフィルタリングされません。"</string>
+    <string name="smooth_image_on">"フィルタは、スケーリングが必要とされる場合、画像が滑らかに表示されるように適用される。"</string>
+    <string name="quick_picture_off">"映像が保存された後の画像のプレビューが表示される。"</string>
+    <string name="quick_picture_on">"クイック写真は有効になっています。画像が保存された後の画像のプレビューが表示されません。"</string>
+<string name="language">言語</string>
+ 
+
+	
 </resources>

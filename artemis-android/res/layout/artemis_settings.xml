@@ -3,11 +3,19 @@
 	android:orientation="vertical" android:fadeScrollbars="true"
 	android:focusable="true" android:focusableInTouchMode="true"
 	android:layout_width="fill_parent" android:layout_height="match_parent">
-	<TextView android:text="@string/artemis_settings_title"
-		android:id="@+id/artemis_settings_title" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:lines="1"
-		android:gravity="center" android:layout_gravity="left"
-		android:maxLines="1" android:textSize="16dip"  android:textColor="@color/artemisSettingsText" />
+
+	<TextView
+	    android:id="@+id/artemis_settings_title"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="left"
+	    android:gravity="center"
+	    android:lines="1"
+	    android:maxLines="1"
+	    android:text="@string/artemis_settings_title"
+	    android:textColor="@color/artemisSettingsText"
+	    android:textSize="16sp" />
+
 	<ScrollView android:layout_marginBottom="60dip" android:id="@+id/ScrollView01"
 		android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
 		android:layout_width="wrap_content">
