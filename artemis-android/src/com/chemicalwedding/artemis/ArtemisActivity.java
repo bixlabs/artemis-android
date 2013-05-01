@@ -2558,7 +2558,7 @@ public class ArtemisActivity extends Activity implements
 					.setTitle(getString(R.string.add_custom_lens))
 					.setMessage(getString(R.string.input_focal_length))
 					.setView(input)
-					.setPositiveButton("OK",
+					.setPositiveButton(getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int whichButton) {
@@ -2598,7 +2598,7 @@ public class ArtemisActivity extends Activity implements
 
 								}
 							})
-					.setNegativeButton("Cancel",
+					.setNegativeButton(getString(R.string.cancel),
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int whichButton) {
