@@ -14,10 +14,10 @@
 	<string name="menu_artemis_settings">Impostazioni</string>
 	<string name="menu_lens_settings">Lente elezionare</string>
 	<string name="menu_artemis_about">A proposito di</string>
-	<string name="menu_artemis_help">Aiuto</string>
+	
 
 	<!--	//Artemis Settings Page-->
-	<string name="new_features">NOVITA \'IN ARRIVO</string>
+	
 	<string name="gps_on_off">GPS On / Off</string>
 	<string name="artemis_settings_title">Artemis Impostazioni</string>
 	<string name="choose_folder_for_image_saving">Image nome della cartella</string>
@@ -85,7 +85,7 @@
 	<string name="custom_camera_width">LARGHEZZA</string>
 	<string name="custom_camera_height">ALTEZZA</string>
 	<string name="custom_camera_focallength">LUNGHEZZA FOCALE</string>
-	<string name="save_custom_camera">Aggiungi telecamera personalizzata</string>
+	
 	<string name="add_custom_camera_directions">Per inserire una telecamera personalizzata è necessario effettuare alcune semplici misure. Collocare la fotocamera una distanza fissa da un grafico a parete o messa a fuoco e misurare dal punto nodale della lente verso la superficie. Poi, con un obiettivo fisso, misurare esattamente la larghezza e l\'altezza di quello che potete vedere attraverso il mirino. Utilizzare unità coerenti.</string>
 
 <!--  / / NEW TRANSLATIONS 2-15-11 -->
@@ -324,5 +324,16 @@
     <string name="quick_picture_on">"Immagini veloci sono abilitati. L'anteprima immagine non verrà mostrata dopo le immagini vengono salvate."</string>
 <string name="language">lingua</string>
 	
+<string name="image_saved_success">Salvataggio immagine ...</string>
+
+<string name="untitle_custom_cam">Nessun titolo Custom Camera</string>
+
+<string name="custom_camera_error">Personalizzato di errore Ingresso telecamera</string>
+
+<string name="ok">ok</string>
+
+ <string name="heading_tilt_roll_promt">Selezionare Rubrica Opzioni</string>
+ 
+ <string name="custom_camera_error_message">L'era un problema di aggiungere la nuova telecamera personalizzata. Si prega di verificare che i valori di input sono validi e riprovare.</string>
 	
 </resources>

@@ -327,5 +327,17 @@
     <string name="quick_picture_off">"사진을 저장 한 후에 이미지 미리보기가 표시됩니다."</string>
     <string name="quick_picture_on">"빠른 사진을 사용할 수 있습니다. 사진을 저장 한 후에 이미지 미리보기가 표시되지 않습니다."</string>
     <string name="language">언어</string>
+    
+    <string name="image_saved_success">이미지 저장 중...</string>
 
+<string name="untitle_custom_cam">제목 없음 사용자 정의 카메라</string>
+
+<string name="custom_camera_error">사용자 정의 카메라 입력 오류</string>
+
+<string name="ok">확인</string>
+
+ <string name="heading_tilt_roll_promt">제목 옵션을 선택</string>
+
+ <string name="custom_camera_error_message">는 새로운 사용자 정의 카메라를 추가하는 문제였다.입력 값이 유효한지 확인하고 다시 시도하십시오.</string>
+ 
 </resources>

@@ -22,16 +22,16 @@
     <string name="menu_lens_settings">"लेंस का चयन करें"</string>
     <string name="menu_artemis_gallery">"गैलरी"</string>
     <string name="menu_artemis_about">"बारे में "</string>
-    <string name="menu_artemis_help">"मदद "</string>
+    
     <string name="menu_artemis_quit">"छोड़ दें"</string>
 
     <!-- //Artemis Settings Page -->
-    <string name="new_features">"जल्द ही आ रहा नीचे नई सुविधाएँ"</string>
+   
     <string name="gps_on_off">"पर / बंद जीपीएस बारी"</string>
     <string name="artemis_settings_title">"आर्टेमिस सेटिंग्स"</string>
     <string name="choose_folder_for_image_saving">"छवि फ़ोल्डर का नाम"</string>
-    <string name="choose_path">"अर्तेमिस"</string>
-    <string name="auto_exposure">"स्वचालित एक्सपोजर"</string>
+   
+   
     <string name="set_exposure_text">"एक्सपोजर सेट"</string>
     <string name="set_exposure">"एक्सपोजर सेट"</string>
     <string name="set_flash_mode_text">"फ्लैश / मशाल मोड"</string>
@@ -98,14 +98,13 @@
 
     <string name="lens_settings_title">"लेंस सेटिंग्स"</string>
     <string name="save_lenses">"लेंस सहेजें"</string>
-    <string name="no_camera_alert">"लेंस का चयन करने से पहले एक कैमरा का चयन करें
-	"</string>
+   
 
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">"चित्र सहेजें"</string>
-    <string name="image_saved_success">"छवि सहेज रहा है ..."</string>
-    <string name="saving_picture">"चित्र सेविंग"</string>
+  
+  
     <string name="save_and_edit">"विवरण सहेजें और संपादित करें"</string>
     <string name="save_picture">"चित्र सहेजें"</string>
     <string name="gps_coordinates">"जीपीएस निर्देशांक"</string>
@@ -125,11 +124,11 @@
 
     <string name="add_custom_camera_title">"कस्टम कैमरा सभी मिलीमीटर में माप (मिमी) जोड़ें"</string>
     <string name="custom_camera_name">"एक कस्टम कैमरा नाम बनाएँ"</string>
-    <string name="custom_camera_distance">"दूरी"</string>
+   
     <string name="custom_camera_width">"चौड़ाई "</string>
-    <string name="custom_camera_height">"लम्बाई"</string>
+   
     <string name="custom_camera_focallength">"फोकल लंबाई "</string>
-    <string name="update_custom_camera">"कस्टम कैमरा अद्यतन"</string>
+   
     <string name="add_custom_camera_directions">"एक कस्टम कैमरा दर्ज करने के लिए आप कुछ सरल मापन करने की जरूरत है. कैमरे की सतह के लिए लेंस के नोडल बिंदु से एक दीवार या ध्यान चार्ट और उपाय से एक निश्चित दूरी रखें. इसके बाद, एक निर्धारित लेंस के साथ, वास्तव में आप दृश्यदर्शी के माध्यम से देख सकते हैं की चौड़ाई और ऊंचाई मापने. संगत इकाइयों का प्रयोग करें.
 	"</string>
 
@@ -173,7 +172,7 @@
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"एक नोट जोड़ें"</string>
     <string name="add_custom_lens">"कस्टम लेंस जोड़ें"</string>
-    <string name="add_custom_lens_upper">"कस्टम लेंस जोड़ें"</string>
+   
     <string name="input_focal_length">"मिलीमीटर में लेंस फोकल लंबाई दर्ज करें:"</string>
     <string name="custom_lens_error">"कस्टम लेंस इनपुट त्रुटि"</string>
     <string name="custom_lens_error_message">"नए कस्टम लेंस जोड़ने में समस्या थी. इनपुट मूल्यों मान्य हैं कि सत्यापित करने और पुन: प्रयास करें."</string>
@@ -206,11 +205,11 @@
     <string name="save_raw_image_text">"कोई सीमा या पाठ"</string>
 
     <!-- Preference Strings -->
-    <string name="artemis">"अर्तेमिस"</string>
+   
     <string name="artemis_save_folder_summary">"फ़ोल्डर नाम आप आर्टेमिस साथ बनाने छवियों को बचाने के लिए. इस नाम के साथ एक फ़ोल्डर में पहले से ही मौजूद नहीं है, तो यह आप के लिए बनाया जाएगा."</string>
     <string name="horizontal_lens_angle">"क्षैतिज लेंस कोण"</string>
     <string name="vertical_lens_angle">"कार्यक्षेत्र लेंस कोण"</string>
-    <string name="menu_artemis_quit_description">"मुझे आर्टेमिस छोड़ने के लिए क्लिक करें."</string>
+   
     <string name="feedback_report_issue">"मुद्दा / प्रतिक्रिया"</string>
     <string name="feedback_report_issue_description">"सूचना और अंक या हमें अपनी प्रतिक्रिया दे, हम आपकी टिप्पणियों की सराहना करते हैं."</string>
     <string name="menu_artemis_about_description">"अनुप्रयोग और उसके डेवलपर्स के बारे में एक छोटी सी."</string>
@@ -296,5 +295,17 @@
     <string name="quick_picture_off">"तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन दिखाया जाएगा."</string>
     <string name="quick_picture_on">"त्वरित चित्रों सक्षम हैं. तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन नहीं दिखाया जाएगा."</string>
     <string name="language">भाषा</string>
+    
+      <string name="image_saved_success">"छवि सहेज रहा है ..."</string>
+      
+      
+
+<string name="untitle_custom_cam">शीर्षकहीन कस्टम कैमरा</string>
+
+<string name="custom_camera_error">कस्टम कैमरा इनपुट त्रुटि</string>
+
+<string name="ok">ठीक</string>
+
+  <string name="custom_camera_error_message">नए कस्टम कैमरा जोड़ने में समस्या थी. इनपुट मूल्यों मान्य हैं कि सत्यापित करने और पुन: प्रयास करें.</string>
 
 </resources>

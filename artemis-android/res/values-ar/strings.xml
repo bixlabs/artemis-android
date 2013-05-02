@@ -100,7 +100,7 @@
 	<!-- //Save Picture Page -->
 
 	<string name="save_picture_title">"حفظ الصورة"</string>
-	<string name="image_saved_success">"إنقاذ صورة ..."</string>
+	
 	<string name="save_and_edit">"حفظ وتعديل التفاصيل"</string>
 	<string name="save_picture">"حفظ الصورة"</string>
 	<string name="gps_coordinates">"الإحداثيات"</string>
@@ -284,5 +284,14 @@
     <string name="quick_picture_on">"يتم تمكين الصور سريعة. ولن تظهر معاينة للصورة بعد يتم حفظ الصور."</string>
     <string name="language">لغة</string>
     
+    <string name="image_saved_success">"إنقاذ صورة ..."</string>
+    
+<string name="untitle_custom_cam">بدون اسم الكاميرا مخصص</string>
+
+<string name="custom_camera_error">كاميرا مخصصة خطأ في إدخال البيانات</string>
+
+<string name="ok">حسنا</string>
+
+ <string name="custom_camera_error_message">وكانت مشكلة إضافة كاميرا جديدة مخصصة. يرجى التحقق من أن قيم الإدخال الصالحة وحاول مرة أخرى.</string>
 	
 </resources>

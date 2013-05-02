@@ -308,5 +308,17 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="quick_picture_off">"Una vista previa de la imagen se mostrará después de las imágenes se guardan."</string>
     <string name="quick_picture_on">"Imágenes rápidas están habilitados. Una previsualización de la imagen no se mostrará después de las imágenes se guardan."</string>
  <string name="language">idioma</string>
+ 
+ <string name="image_saved_success">Guardar imagen ...</string>
+
+<string name="untitle_custom_cam">Untitled cámara personalizada</string>
+
+<string name="custom_camera_error">Cámara de error de entrada personalizada</string>
+
+<string name="ok">Bueno</string>
+
+ <string name="heading_tilt_roll_promt">Seleccione Opciones Rúbrica</string>
+ 
+ <string name="custom_camera_error_message">El era un problema al añadir la nueva cámara personalizado. Verifique que los valores de entrada son válidos y vuelva a intentarlo.</string>
 	
 </resources>

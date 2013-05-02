@@ -327,5 +327,17 @@ Canon 5D и 7D
     <string name="quick_picture_off">"Изображение предварительного просмотра будет показано после фотографии будут сохранены."</string>
     <string name="quick_picture_on">"Быстрые снимки включена. Предварительный просмотр изображения не будут отображаться после фотографии будут сохранены."</string>
     <string name="language">язык</string>
+    
+    <string name="image_saved_success">Сохранение изображений ...</string>
+
+<string name="untitle_custom_cam">Без названия Пользовательские камеры</string>
+
+<string name="custom_camera_error">Пользовательские Ошибка входа камеры</string>
+
+<string name="ok">хорошо</string>
+
+ <string name="heading_tilt_roll_promt">Выберите Заголовок параметры</string>
+ 
+ <string name="custom_camera_error_message">Удалось добавить новые пользовательские камеры. Пожалуйста, убедитесь, что входные значения являются действительными и повторите попытку.</string>
 
 </resources>

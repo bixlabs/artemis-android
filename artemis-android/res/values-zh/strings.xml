@@ -323,6 +323,18 @@
     <string name="smooth_image_on">"将应用一个过滤器，使图像看起来更平滑缩放时需要。"</string>
     <string name="quick_picture_off">"图片保存后，将显示一个图像预览。"</string>
     <string name="quick_picture_on">"快速的图片被启用。图片保存后，将不会显示图像预览。"</string>
+
 <string name="language">语</string>
+<string name="image_saved_success">保存图像...</string>
+
+<string name="untitle_custom_cam">未命名的自定义相机</string>
+
+<string name="custom_camera_error">自定义相机输入错误</string>
+
+<string name="ok">行</string>
+
+ <string name="heading_tilt_roll_promt">选择标题选项</string>
+ 
+ <string name="custom_camera_error_message">被添加新的自定义相机的问题。请验证输入值是有效的，然后再试一次。</string>
 
 </resources>

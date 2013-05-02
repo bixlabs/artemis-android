@@ -301,4 +301,16 @@
     <string name="quick_picture_on">"Images rapides sont activées. Un aperçu de l'image ne sera pas affiché après les images sont enregistrées."</string>
     <string name="language">langue</string>
 
+    <string name="image_saved_success">Enregistrer l'image ...</string>
+
+<string name="untitle_custom_cam">Untitled caméra personnalisée</string>
+
+<string name="custom_camera_error">Caméra personnalisée Erreur de saisie</string>
+
+<string name="ok">ok</string>
+
+ <string name="heading_tilt_roll_promt">Sélectionnez Options Rubrique</string>
+ 
+ <string name="custom_camera_error_message">Il y avait un problème en ajoutant la nouvelle caméra personnalisé. Veuillez vérifier que les valeurs d'entrée sont valables et essayez de nouveau.</string>
+    
 </resources>

@@ -241,4 +241,19 @@
     <string name="quick_picture_on">"Schnelle Bilder sind aktiviert. Ein Bild-Vorschau wird nicht angezeigt, nachdem Bilder gespeichert werden werden."</string>
 <string name="language">Sprache</string>
 
+<string name="set_exposure_text">Belichtung</string>
+
+<string name="image_saved_success">Speichern Bild ...</string>
+
+<string name="untitle_custom_cam">Untitled Individuelle Kamera</string>
+
+<string name="custom_camera_error">Individuelle Kamera-Eingang Fehler</string>
+
+<string name="ok">ok</string>
+
+ <string name="heading_tilt_roll_promt">Wählen Sie Optionen Unterwegs</string>
+
+ <string name="custom_camera_error_message">Das war ein Problem, indem Sie das neue benutzerdefinierte Kamera. Bitte überprüfen Sie, ob die eingegebenen Werte gültig sind und versuchen Sie es erneut.</string>
+
+
 </resources>

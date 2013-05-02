@@ -322,5 +322,17 @@
     <string name="quick_picture_off">"映像が保存された後の画像のプレビューが表示される。"</string>
     <string name="quick_picture_on">"クイック写真は有効になっています。画像が保存された後の画像のプレビューが表示されません。"</string>
     <string name="language">言語</string>
+    
+    <string name="image_saved_success">画像を保存しています...</string>
+
+<string name="untitle_custom_cam">無題カスタムカメラ</string>
+
+<string name="custom_camera_error">カスタムカメラ入力エラー</string>
+
+<string name="ok">ok</string>
+
+ <string name="heading_tilt_roll_promt">見出しオプションを選択してください</string>
+ 
+ <string name="custom_camera_error_message">新しいカスタムカメラを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。</string>
 
 </resources>
