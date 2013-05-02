@@ -177,12 +177,10 @@
 
     <!-- New custom camera strings -->
     <string name="custom_cameras">"自定义相机"</string>
-    <string name="add_custom_camera_title">"添加自定义相机"</string>
     <string name="custom_camera_squeeze_ratio">"压榨比"</string>
     <string name="custom_camera_aspect_ratio">"纵横比（1.78）"</string>
     <string name="custom_camera_save_start_button">"开始"</string>
     <string name="custom_camera_save_active_sensor">"有源传感器尺寸"</string>
-    <string name="add_custom_camera_directions">"压榨比为1.0球面镜片，2.0为标准2:1变形镜头和1.3 1:3:1变形镜头（即鹰V-lite的1.3）。上述领域立案后，点击开始并保持你的设备结点。如果使用的是50mm的镜头，透镜结点为50mm的传感器平面的前面。使用加号和减号按钮，你看到的图像在相机上的图像Atemis匹配。里面的红色按钮是更精细的调整，当你快乐时，按保存。"</string>
     <string name="add_custom_camera_directions_active_chip">"压榨比为1.0球面镜片，2.0为标准2:1变形镜头和1.3 1:3:1变形镜头（即鹰V-lite的1.3）。"</string>
     <string name="custom_camera_chip_width">"芯片宽度（mm）"</string>
     <string name="custom_camera_chip_height">"芯片高度（mm）"</string>
@@ -240,11 +238,9 @@
     <string name="artemis_save_folder_summary">"的文件夹名来保存你创建的阿耳忒弥斯的图像。如果这个名字的文件夹不存在，它会为您创建。"</string>
     <string name="horizontal_lens_angle">"水平镜头角度"</string>
     <string name="vertical_lens_angle">"垂直镜头角度"</string>
-    <string name="menu_artemis_quit">"退出"</string>
     <string name="menu_artemis_quit_description">"点击这里给我退出阿耳忒弥斯。"</string>
     <string name="feedback_report_issue">"发行/意见"</string>
     <string name="feedback_report_issue_description">"报告并签发或给我们您的反馈，我们非常感谢您的意见。"</string>
-    <string name="menu_artemis_about">"介绍"</string>
     <string name="menu_artemis_about_description">"一个小的应用程序和开发商。"</string>
 
     <string-array name="image_size_prefs">

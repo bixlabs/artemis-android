@@ -1,56 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--	//Russian Strings-->
-
-	<!--	//General Strings-->
-
-	<string name="app_name">Артемида</string>
+    <!-- //Russian Strings -->
 
 
-	<!--	//Artemis menu-->
+    <!-- //General Strings -->
 
-	<string name="menu_camera_settings">Выбрать камеру</string>
-	<string name="menu_artemis_settings">Настройки</string>
-	<string name="menu_lens_settings">Выбрать объектив</string>
-	<string name="menu_artemis_about">О программе</string>
-	<string name="menu_artemis_help">Справка</string>
+    <string name="app_name">Артемида</string>
 
-	<!--	//Artemis Settings Page-->
-	<string name="new_features">Новые возможности в следующих версиях</string>
-	<string name="gps_on_off">GPS Включить/Выключить</string>
-	<string name="artemis_settings_title">Artemis Настройки</string>
-	<string name="choose_folder_for_image_saving">Изображение Имя папки</string>
-	<string name="choose_path">Выберите путь ..</string>
-	<string name="auto_exposure">Автоматическая настройка экспозиции</string>
-	<string name="set_exposure_text">Выдержка</string>
-	<string name="set_exposure">Выдержка</string>
-	<string-array name="set_exposure_array">
-		<item>-3</item>
-		<item>-2</item>
-		<item>-1</item>
-		<item>0</item>
-		<item>1</item>
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-	</string-array>
-	<string name="auto_white_balance">Автоматический баланс белого</string>
-	<string name="set_white_balance_text">Баланс белого</string>
-	<string name="set_white_balance">Баланс белого</string>
-	<string-array name="set_white_balance">
-		<item>Дневной свет</item>
-		<item>Облачно</item>
-		<item>Флуоресцентные</item>
-		<item>Лампы накаливания</item>
-	</string-array>
-	<string name="save_artemis_settings">Сохранить настройки Artemis</string>
+    <!-- //Artemis menu -->
 
+    <string name="menu_camera_settings">Выбрать камеру</string>
+    <string name="menu_artemis_settings">Настройки</string>
+    <string name="menu_lens_settings">Выбрать объектив</string>
+    <string name="menu_artemis_about">О программе</string>
+    <string name="menu_artemis_help">Справка</string>
 
-	<!--	//About Page-->
+    <!-- //Artemis Settings Page -->
+    <string name="new_features">Новые возможности в следующих версиях</string>
+    <string name="gps_on_off">GPS Включить/Выключить</string>
+    <string name="artemis_settings_title">Artemis Настройки</string>
+    <string name="choose_folder_for_image_saving">Изображение Имя папки</string>
+    <string name="choose_path">Выберите путь ..</string>
+    <string name="auto_exposure">Автоматическая настройка экспозиции</string>
+    <string name="set_exposure_text">Выдержка</string>
+    <string name="set_exposure">Выдержка</string>
+    <string name="auto_white_balance">Автоматический баланс белого</string>
+    <string name="set_white_balance_text">Баланс белого</string>
+    <string name="set_white_balance">Баланс белого</string>
 
-	<string name="artemis_about_title">О - Аrtemis для Android v</string>
-	<string name="artemis_about_text">Artemis - это цифровой видоискатель, созданный и для оператора-постановщика и для режиссера. Artemis работает почти также, как и традиционный видоискатель, но намного аккуратнее и удобнее. После выбора формата камеры, соотношения сторон и объектива, Artemis использует камеру вашего мобильного устройства для имитации съемочных объективов, с помощью которых вы будете снимать. Также вы можете сравнить все объективы или нажать зум и камера полностью сымитирует объектив, который вы выбрали. Artemis была протестирована со всеми камерами в нашей базе данных для полного соответствия с реальными объективами. Мы обнаружили, что доверять информации от производителей цифровых кинокамер было не всегда правильно. Вот список форматов, которые представлены в Artemis:
+    <string-array name="set_white_balance">
+        <item>Дневной свет</item>
+        <item>Облачно</item>
+        <item>Флуоресцентные</item>
+        <item>Лампы накаливания</item>
+    </string-array>
+
+    <string name="save_artemis_settings">Сохранить настройки Artemis</string>
+
+    <!-- //About Page -->
+
+    <string name="artemis_about_title">О - Аrtemis для Android v</string>
+    <string name="artemis_about_text">Artemis - это цифровой видоискатель, созданный и для оператора-постановщика и для режиссера. Artemis работает почти также, как и традиционный видоискатель, но намного аккуратнее и удобнее. После выбора формата камеры, соотношения сторон и объектива, Artemis использует камеру вашего мобильного устройства для имитации съемочных объективов, с помощью которых вы будете снимать. Также вы можете сравнить все объективы или нажать зум и камера полностью сымитирует объектив, который вы выбрали. Artemis была протестирована со всеми камерами в нашей базе данных для полного соответствия с реальными объективами. Мы обнаружили, что доверять информации от производителей цифровых кинокамер было не всегда правильно. Вот список форматов, которые представлены в Artemis:
 
 Standard и Super 16mm
 Super 16mm Анаморфный
@@ -64,141 +55,135 @@ Standard и Super 35mm
 Canon 5D и 7D
 
 Если в списке не представлен формат, который важен для вас - дайте нам знать и мы сделаем все возможное, чтобы добавить его в следующем обновлении.</string>
-	<string name="chemical_wedding_about_text">Все права защищены 2010. Chemical Wedding.</string>
-	<string name="loon_films_about_text">Artemis для Андроид был разработан Loon Films.</string>
-	<string name="about_back_button">Назад</string>
+    <string name="chemical_wedding_about_text">Все права защищены 2010. Chemical Wedding.</string>
+    <string name="loon_films_about_text">Artemis для Андроид был разработан Loon Films.</string>
+    <string name="about_back_button">Назад</string>
 
-	<!--	//Camera Settings Page-->
+    <!-- //Camera Settings Page -->
 
-	<string name="camera_settings_title">Настройки камеры</string>
+    <string name="camera_settings_title">Настройки камеры</string>
 
-	<!--	//Lense Settings Page-->
+    <!-- //Lense Settings Page -->
 
-	<string name="lens_settings_title">Настройки объектива</string>
-	<string name="save_lenses">Сохранить линзы</string>
-	<string name="no_camera_alert">Пожалуйста, выберите камеру, прежде чем выбрать линзы</string>
+    <string name="lens_settings_title">Настройки объектива</string>
+    <string name="save_lenses">Сохранить линзы</string>
+    <string name="no_camera_alert">Пожалуйста, выберите камеру, прежде чем выбрать линзы</string>
 
-	<!--	//Save Picture Page-->
+    <!-- //Save Picture Page -->
 
-	<string name="save_picture_title">Сохранить рисунок</string>
-	<string name="saving_picture">Сохранение фотография</string>
-	<string name="save_and_edit">Сохранить и редактировать</string>
-	<string name="save_picture">Сохранить рисунок</string>
-	<string name="gps_coordinates">GPS Координаты</string>
-	<string name="camera_information"> Камера информации</string>
-	<string name="lens_information">Oбъектива информации</string>
-	<string name="cancel">Отмена</string>
-	<string name="image_description_hint">Добавить описание</string>
+    <string name="save_picture_title">Сохранить рисунок</string>
+    <string name="saving_picture">Сохранение фотография</string>
+    <string name="save_and_edit">Сохранить и редактировать</string>
+    <string name="save_picture">Сохранить рисунок</string>
+    <string name="gps_coordinates">GPS Координаты</string>
+    <string name="camera_information"> Камера информации</string>
+    <string name="lens_information">Oбъектива информации</string>
+    <string name="cancel">Отмена</string>
+    <string name="image_description_hint">Добавить описание</string>
 
-	<!--	//Add Custom Camera Page-->
+    <!-- //Add Custom Camera Page -->
 
-	<string name="add_custom_camera_title">обавление пользовательских камер-Все Измерения в миллиметрах (мм)</string>
-	<string name="custom_camera_name">Создание пользовательского название</string>
-	<string name="custom_camera_distance">РАССТОЯНИЕ</string>
-	<string name="custom_camera_width">ШИРИНА</string>
-	<string name="custom_camera_height">ВЫСОТА</string>
-	<string name="custom_camera_focallength">МЕСТНЫЕ ДЛИНА</string>
-	<string name="save_custom_camera">Добавление пользовательских камеры</string>
-	<string name="add_custom_camera_directions">Для ввода пользовательских камер вам нужно сделать несколько простых измерений. Место камеры фиксированном расстоянии от стены или фокус-диаграммы и меры от узловой точки линзы на поверхность. Далее, с фиксированным объективом, точно измерить ширину и высоту, что можно увидеть через видоискатель. Использование последовательного единиц.</string>
+    <string name="add_custom_camera_title">обавление пользовательских камер-Все Измерения в миллиметрах (мм)</string>
+    <string name="custom_camera_name">Создание пользовательского название</string>
+    <string name="custom_camera_distance">РАССТОЯНИЕ</string>
+    <string name="custom_camera_width">ШИРИНА</string>
+    <string name="custom_camera_height">ВЫСОТА</string>
+    <string name="custom_camera_focallength">МЕСТНЫЕ ДЛИНА</string>
+    <string name="save_custom_camera">Добавление пользовательских камеры</string>
+    <string name="add_custom_camera_directions">Для ввода пользовательских камер вам нужно сделать несколько простых измерений. Место камеры фиксированном расстоянии от стены или фокус-диаграммы и меры от узловой точки линзы на поверхность. Далее, с фиксированным объективом, точно измерить ширину и высоту, что можно увидеть через видоискатель. Использование последовательного единиц.</string>
 
-    
-    
-    <!--  / / NEW TRANSLATIONS 2-15-11 -->
-
-    <!--  / / NEW TRANSLATIONS 3-19-11 -->
-
-	<string name="lensFocalLengthMM">мм</string>
-
-	<!--	//Artemis menu-->
-
-	<string name="menu_artemis_gallery">Галерея</string>
-	<string name="menu_artemis_quit">Выход</string>
+    <!-- / / NEW TRANSLATIONS 2-15-11 -->
 
 
-	<!--	//Artemis Settings Page-->
+    <!-- / / NEW TRANSLATIONS 3-19-11 -->
 
-	<string name="set_flash_mode_text">Режим Вспышки/Факела</string>
-	<string name="set_flash_mode_spinner">Режим Вспышки/Факела</string>
-	<string-array name="set_flash_mode_array">
-		<item>на</item>
-		<item>от</item>
-	</string-array>
-	<string name="quickshot_text">Режим быстрой съемки</string>
-	<string name="lock_boxes_text">Блокировка рамок кадра</string>
-	<string name="set_preview_size_text">Разрешение превью</string>
-	<string name="smooth_filter_text">Фильтр сглаживания изображения</string>
-	<string name="select_preview_size_text">Разрешение превью</string>
-	<string name="artemis_remote_text">Artemis Remote для планшетов на базе Android и iPad</string>
-	<string name="select_language_text">Выбрать язык</string> 
-	<string name="heading_tilt_roll_text">Опции направления</string>
-	<string-array name="heading_tilt_roll_array">
-		<item>Никто</item>
-		<item>Заголовок°</item>
-		<item>Заголовок°|Наклон°|Pулон°</item>
-	</string-array>
+    <string name="lensFocalLengthMM">мм</string>
 
+    <!-- //Artemis menu -->
 
-	<!--	//About Page-->
+    <string name="menu_artemis_gallery">Галерея</string>
+    <string name="menu_artemis_quit">Выход</string>
 
+    <!-- //Artemis Settings Page -->
 
-	<!--	//Camera Settings Page-->
+    <string name="set_flash_mode_text">Режим Вспышки/Факела</string>
+    <string name="set_flash_mode_spinner">Режим Вспышки/Факела</string>
 
-	<string name="custom_camera_new_camera">Новый пользовательский камеры</string>
+    <string-array name="set_flash_mode_array">
+        <item>на</item>
+        <item>от</item>
+    </string-array>
 
+    <string name="quickshot_text">Режим быстрой съемки</string>
+    <string name="lock_boxes_text">Блокировка рамок кадра</string>
+    <string name="set_preview_size_text">Разрешение превью</string>
+    <string name="smooth_filter_text">Фильтр сглаживания изображения</string>
+    <string name="select_preview_size_text">Разрешение превью</string>
+    <string name="artemis_remote_text">Artemis Remote для планшетов на базе Android и iPad</string>
+    <string name="select_language_text">Выбрать язык</string>
+    <string name="heading_tilt_roll_text">Опции направления</string>
 
-	<!--	//Save Picture Page-->
+    <string-array name="heading_tilt_roll_array">
+        <item>Никто</item>
+        <item>Заголовок°</item>
+        <item>Заголовок°|Наклон°|Pулон°</item>
+    </string-array>
 
-	
-	<string name="hangle_text">H угол</string>
-	<string name="vangle_text">V угол</string>
-	<string name="h_and_v_angle_text">H и V угол</string>
-	<string name="compass_heading_text">компасу (N, S, E, W)</string>
-	<string name="tilt_and_roll_text">наклон-н-ролл</string>
-	<string name="gps_location">GPS расположение</string>
-	<string name="date_and_time_text">Дата и время</string>
-
-	<!--	//Add Custom Camera Page-->
-
-	<string name="update_custom_camera">обновление пользовательского камера</string>
-	<string name="custom_camera_options">Пользовательские Функции камеры</string>
-	<string name="custom_camera_edit_camera">редактирования камеры</string>
-	<string name="custom_camera_delete_camera">Удалить камера</string>
+    <!-- //About Page -->
 
 
-	<!-- Unlicensed dialog messages -->
+    <!-- //Camera Settings Page -->
 
-	<string name="unlicensed_dialog_title">применения не имеет лицензии</string>
-	<string name="error_dialog_title">Применение лицензии ошибки</string>
-	<string name="unlicensed_dialog_body">Это заявление не имеет лицензии. Пожалуйста,
+    <string name="custom_camera_new_camera">Новый пользовательский камеры</string>
+
+    <!-- //Save Picture Page -->
+
+    <string name="hangle_text">H угол</string>
+    <string name="vangle_text">V угол</string>
+    <string name="h_and_v_angle_text">H и V угол</string>
+    <string name="compass_heading_text">компасу (N, S, E, W)</string>
+    <string name="tilt_and_roll_text">наклон-н-ролл</string>
+    <string name="gps_location">GPS расположение</string>
+    <string name="date_and_time_text">Дата и время</string>
+
+    <!-- //Add Custom Camera Page -->
+
+    <string name="update_custom_camera">обновление пользовательского камера</string>
+    <string name="custom_camera_options">Пользовательские Функции камеры</string>
+    <string name="custom_camera_edit_camera">редактирования камеры</string>
+    <string name="custom_camera_delete_camera">Удалить камера</string>
+
+    <!-- Unlicensed dialog messages -->
+
+    <string name="unlicensed_dialog_title">применения не имеет лицензии</string>
+    <string name="error_dialog_title">Применение лицензии ошибки</string>
+    <string name="unlicensed_dialog_body">Это заявление не имеет лицензии. Пожалуйста,
 		приобретайте Android рынка.</string>
-	<string name="error_dialog_body">Существовал ошибка проверки заявлений на получение
-		лицензии. Если проблема не устраняется, обратитесь в службу поддержки.
-	</string>
-	<string name="buy_button">Купить приложение</string>
-	<string name="quit_button">Выход</string>
+    <string name="error_dialog_body">Существовал ошибка проверки заявлений на получение
+		лицензии. Если проблема не устраняется, обратитесь в службу поддержки.</string>
+    <string name="buy_button">Купить приложение</string>
+    <string name="quit_button">Выход</string>
 
- <!--  / / NEW TRANSLATIONS 4-30-11 -->
-	<string name="reset_device_h_and_v_angles">Сброс</string>
-<string name="auto_device_h_and_v_angles">Получить углы устройства камера автоматически</string>
-<string name="manually_set_h_angle_text">Установите устройство камеры Горизонтальный угол</string>
-<string name="manually_set_v_angle_text">Установите устройство камеры Вертикальный угол</string>
+    <!-- / / NEW TRANSLATIONS 4-30-11 -->
+    <string name="reset_device_h_and_v_angles">Сброс</string>
+    <string name="auto_device_h_and_v_angles">Получить углы устройства камера автоматически</string>
+    <string name="manually_set_h_angle_text">Установите устройство камеры Горизонтальный угол</string>
+    <string name="manually_set_v_angle_text">Установите устройство камеры Вертикальный угол</string>
 
- <!--  / / NEW TRANSLATIONS 07-19-11 -->
-<string name="auto_focus_text">Изображения автофокусировки</string>
-<!-- Gallery related messages -->
-	<string name="gallery_no_images_found">Изображения не найдены</string>
-	
-<!-- 	New strings 05-13 -->
+    <!-- / / NEW TRANSLATIONS 07-19-11 -->
+    <string name="auto_focus_text">Изображения автофокусировки</string>
+    <!-- Gallery related messages -->
+    <string name="gallery_no_images_found">Изображения не найдены</string>
+
+    <!-- New strings 05-13 -->
 
 
     <!-- New custom camera strings -->
     <string name="custom_cameras">"Пользовательские камеры"</string>
-    <string name="add_custom_camera_title">"Добавить Пользовательские камеры"</string>
     <string name="custom_camera_squeeze_ratio">"Сожмите побед"</string>
     <string name="custom_camera_aspect_ratio">"Соотношение (1.78)"</string>
     <string name="custom_camera_save_start_button">"Старт"</string>
     <string name="custom_camera_save_active_sensor">"Активное Датчик формата"</string>
-    <string name="add_custom_camera_directions">"Squeeze Данный коэффициент 1,0 для сферических линз, 2,0 для стандартных 2:1 Anamorphic линзы и 1,3 1:3:1 Anamorphic для линз (ы т.е. Hawk V-Lite 1.3). После подачи указанных полей нажмите кнопку Пуск и держите устройство в узловой точке. При использовании 50-мм объективом, объектив узловой точки 50 мм в передней части плоскости сенсора. Используя кнопки Плюс и Минус, соответствовать изображению вы видите на ARTEMIS с изображением на камере. Внутри красной кнопки предназначены для тонкой настройки и нажмите Сохранить, когда вы счастливы. "</string>
     <string name="add_custom_camera_directions_active_chip">"Squeeze Данный коэффициент 1,0 для сферических линз, 2,0 для стандартных 2:1 Anamorphic линзы и 1,3 1:3:1 Anamorphic для линз (ы т.е. Hawk V-Lite 1.3). "</string>
     <string name="custom_camera_chip_width">"Чип Ширина (мм)"</string>
     <string name="custom_camera_chip_height">"Чип Высота (мм)"</string>
@@ -256,11 +241,9 @@ Canon 5D и 7D
     <string name="artemis_save_folder_summary">"Имя папки для сохранения изображений, созданные с Артемиды. Если папка с таким именем не существует, он будет создан для вас."</string>
     <string name="horizontal_lens_angle">"Горизонтальный угол объектива"</string>
     <string name="vertical_lens_angle">"Вертикальный угол объектива"</string>
-    <string name="menu_artemis_quit">"Выход"</string>
     <string name="menu_artemis_quit_description">"Нажмите, чтобы я бросил Артемиды."</string>
     <string name="feedback_report_issue">"Выпуск / Обратная связь"</string>
     <string name="feedback_report_issue_description">"Сообщить о проблеме или и сообщите нам свое мнение, мы ценим ваши комментарии."</string>
-    <string name="menu_artemis_about">"О проекте"</string>
     <string name="menu_artemis_about_description">"Немного о приложении и его разработчиков."</string>
 
     <string-array name="image_size_prefs">
@@ -343,8 +326,6 @@ Canon 5D и 7D
     <string name="smooth_image_on">"Фильтр будет применяться, чтобы сделать изображение ровнее, когда требуется масштабирование."</string>
     <string name="quick_picture_off">"Изображение предварительного просмотра будет показано после фотографии будут сохранены."</string>
     <string name="quick_picture_on">"Быстрые снимки включена. Предварительный просмотр изображения не будут отображаться после фотографии будут сохранены."</string>
-<string name="language">язык</string>
- 
+    <string name="language">язык</string>
 
-	
 </resources>

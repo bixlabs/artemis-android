@@ -6,15 +6,11 @@
 	<string name="menu_artemis_settings">Ajustes</string>
 	<string name="menu_lens_settings">Lente Seleccione</string>
 	<string name="menu_artemis_about">Acerca de</string>
-	<string name="menu_artemis_help">Ayuda</string>
 
 	<!--	//Artemis Settings Page-->
-	<string name="new_features">NOVEDADES PRONTO</string>
 	<string name="gps_on_off">GPS - Activar / Desactivar</string>
 	<string name="artemis_settings_title">Configuración de Artemis</string>
 	<string name="choose_folder_for_image_saving">Carpeta de destino para guardar la imagen.</string>
-	<string name="choose_path">Elija camino ..</string>
-	<string name="auto_exposure">La exposición automática</string>
 	<string name="set_exposure_text"> La exposición Set</string>
 	<string name="set_exposure">Ajuste de la exposición</string>
 	<string name="auto_white_balance">Balance de blancos automático</string>
@@ -59,12 +55,10 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
 	<string name="lens_settings_title">Configuración de la lente</string>
 	<string name="save_lenses">Guardar las lentes</string>
-	<string name="no_camera_alert">Por favor seleccione una cámara antes de seleccionar las lentes</string>
 
 	<!--	//Save Picture Page-->
 
 	<string name="save_picture_title">Guardar imagen</string>
-	<string name="saving_picture">Ahorro de imagen</string>
 	<string name="save_and_edit">Guardar y editar detalles</string>
 	<string name="save_picture">Guardar imagen</string>
 	<string name="gps_coordinates">Coordenadas GPS</string>
@@ -78,9 +72,7 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
 	<string name="add_custom_camera_title">Añadir personalizado Cámara-Todas las medidas en milímetros  (mm)</string>
 	<string name="custom_camera_name">NOMBRE DE LA CÁMARA DE ENCARGO</string>
-	<string name="custom_camera_distance">A DISTANCIA</string>
 	<string name="custom_camera_width">ANCHO</string>
-	<string name="custom_camera_height">ALTURA</string>
 	<string name="custom_camera_focallength">DISTANCIA FOCAL</string>
 	<string name="add_custom_camera_directions">Para entrar en una cámara personalizada que necesita para tomar algunas medidas simples. Coloque la cámara una distancia fija de un gráfico de pared o el enfoque y la medida desde el punto nodal de la lente a la superficie. A continuación, con una lente fija, medir exactamente la anchura y la altura de lo que se puede ver a través del visor. Utilice unidades consistentes.</string>
 
@@ -144,7 +136,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
 <!--	//Add Custom Camera Page-->
 
-<string name="update_custom_camera">Actualización personalizada Cámara</string>
 <string name="custom_camera_options">Personalizado Opciones de la Cámara</string>
 <string name="custom_camera_edit_camera">Editar Cámara</string>
 <string name="custom_camera_delete_camera">Eliminar Cámara</string>
@@ -197,7 +188,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"Agregar una nota"</string>
     <string name="add_custom_lens">"Añadir lente personalizada"</string>
-    <string name="add_custom_lens_upper">"Añadir lente personalizada"</string>
     <string name="input_focal_length">"Introduzca la longitud focal del objetivo en milímetros:"</string>
     <string name="custom_lens_error">"Lente de error de entrada personalizada"</string>
     <string name="custom_lens_error_message">"El era un problema al añadir el nuevo lente personalizado. Verifique que los valores de entrada son válidos y vuelva a intentarlo."</string>
@@ -230,11 +220,9 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="save_raw_image_text">"Sin borde o texto"</string>
 
     <!-- Preference Strings -->
-    <string name="artemis">"Artemis"</string>
     <string name="artemis_save_folder_summary">"El nombre de la carpeta para guardar las imágenes creadas con Artemis. Si una carpeta con ese nombre no existe, se creará para usted."</string>
     <string name="horizontal_lens_angle">"Angular Horizontal"</string>
     <string name="vertical_lens_angle">"Ángulo de la lente Vertical"</string>
-    <string name="menu_artemis_quit_description">"Haga clic en que renuncie Artemis."</string>
     <string name="feedback_report_issue">"Edición / Feedback"</string>
     <string name="feedback_report_issue_description">"Informar y emitir o denos sus comentarios, agradecemos sus comentarios."</string>
     <string name="menu_artemis_about_description">"Un poco acerca de la aplicación y sus desarrolladores."</string>

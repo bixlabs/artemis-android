@@ -176,12 +176,10 @@
 
  <!-- New custom camera strings -->
     <string name="custom_cameras">"Telecamere personalizzate"</string>
-    <string name="add_custom_camera_title">"Aggiungi Custom Camera"</string>
     <string name="custom_camera_squeeze_ratio">"Spremere Rapporto"</string>
     <string name="custom_camera_aspect_ratio">"Aspect Ratio (1,78)"</string>
     <string name="custom_camera_save_start_button">"Avvio"</string>
     <string name="custom_camera_save_active_sensor">"Sensore attivo Dimensioni"</string>
-    <string name="add_custom_camera_directions">"Rapporto di compressione è pari a 1,0 per le lenti sferiche, 2,0 per standard di 2:1 lenti anamorfiche e 1.3 per 1:3:1 lenti anamorfiche (cioè Hawk V-lite 1.3 's). Dopo la presentazione dei campi di cui sopra fare clic su Start e tenere il dispositivo nel punto nodale. Se si utilizza un obiettivo 50mm, il punto nodale lente è 50mm davanti al piano del sensore. Utilizzando i pulsanti più e meno, corrispondono a quelle dell'immagine che vedete sul Atemis per l'immagine sulla fotocamera. L'interno tasti rossi sono per la regolazione più fine e premere Salva quando si è felici. "</string>
     <string name="add_custom_camera_directions_active_chip">"Rapporto di compressione è pari a 1,0 per le lenti sferiche, 2,0 per standard di 2:1 lenti anamorfiche e 1.3 per 1:3:1 lenti anamorfiche (cioè Hawk V-lite 1.3 's). "</string>
     <string name="custom_camera_chip_width">"Chip Larghezza (mm)"</string>
     <string name="custom_camera_chip_height">"Chip Altezza (mm)"</string>
@@ -239,11 +237,9 @@
     <string name="artemis_save_folder_summary">"Il nome della cartella per salvare le immagini create con Artemis. Se una cartella con questo nome non esiste già, verrà creato per voi."</string>
     <string name="horizontal_lens_angle">"Orizzontale Angle Lens"</string>
     <string name="vertical_lens_angle">"Angle Lens verticale"</string>
-    <string name="menu_artemis_quit">"Esci"</string>
     <string name="menu_artemis_quit_description">"Click me per smettere Artemis."</string>
     <string name="feedback_report_issue">"Emissione / Feedback"</string>
     <string name="feedback_report_issue_description">"Relazione e rilasciare o darci il vostro feedback, apprezziamo i vostri commenti."</string>
-    <string name="menu_artemis_about">"PRESENTAZIONE"</string>
     <string name="menu_artemis_about_description">"Un po 'di app e suoi sviluppatori."</string>
 
     <string-array name="image_size_prefs">
