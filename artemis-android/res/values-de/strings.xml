@@ -110,7 +110,7 @@
     <string name="calibrate_chip_height">"Chip Größe:"</string>
 
     <!-- New preferences strings -->
-    <string name="prefs_general_settings">"General Settings"</string>
+    <string name="prefs_general_settings">"Allgemeine Einstellungen"</string>
     <string name="prefs_general_settings_description">"Einstellungen für den allgemeinen Betrieb der Artemis und der Benutzeroberfläche"</string>
     <string name="prefs_camera_settings">"Kamera Einstellungen"</string>
     <string name="prefs_camera_settings_description">"Einstellungen für die Anpassung des Verhaltens des Geräts Kamera"</string>
@@ -197,7 +197,7 @@
     <string name="not_torch_while_in_preview_mode">"Kamera Gerät nicht verwenden, während die Fackel im Vorschau-Modus"</string>
     <string name="camera_preview_will_show_all_colors">"Kamera-Vorschau zeigt alle Farben"</string>
     <string name="camera_preview_will_be_black_and_white">"Vorschau der Kamera wird schwarz und weiß. Hinweis: Dies wirkt sich auch auf gespeicherte Bilder."</string>
-    <string name="device_camera_behaviour">"Geräte-Kamera Behaviour"</string>
+    <string name="device_camera_behaviour">"Geräte-Kamera"</string>
     <string name="device_camera_sensor">"Geräte-Kamera-Sensor"</string>
     <string name="device_camera_angles">"Geräte-Kamera Angles"</string>
     <string name="use_the_custom_camera_angles">"Die Anwendung verwendet die benutzerdefinierte Werte unten."</string>
@@ -207,8 +207,8 @@
     <string name="lockboxes_summary">"Aktivieren / Deaktivieren Sie die Objektiv-Boxen von wechselnden Position auf Berührung."</string>
     <string name="lock_lens_boxes">"Sperren Objektiv Boxes"</string>
     <string name="backkey_summary">"Wählen Sie das Verhalten des Android zurück Taste, während die Haupt-App läuft."</string>
-    <string name="back_button_behaviour">"Back Button Behaviour"</string>
-    <string name="haptic_feedback">"Haptisches Feedback"</string>
+    <string name="back_button_behaviour">"Zurück Schaltfläche"</string>
+    <string name="haptic_feedback">"Haptisches Denken"</string>
     <string name="hapticfeedback_off_summary">"Artemis wird keine haptische Rückmeldung auf den Knopf drückt."</string>
     <string name="haptic_feedback_on_summary">"Artemis wird haptisches Feedback auf Tastendrücke zu stellen."</string>
     <string name="keep_screen_on_summary">"Der Bildschirm wird auf gehalten werden und nie Timeout während der Haupt-App läuft."</string>
@@ -216,10 +216,10 @@
     <string name="keep_screen_on">" Bildschirm ausblenden"</string>
     <string name="gps_settings">"GPS Einstellungen"</string>
     <string name="screen_settings">"Video-Einstellungen"</string>
-    <string name="user_interface_behaviour">"User Interface Behaviour"</string>
+    <string name="user_interface_behaviour">"Schnittstelle Verhalten"</string>
     <string name="gps_summary_off">"GPS ist deaktiviert. Das Gerät wird nicht wegen der Lage suchen."</string>
     <string name="gps_summary_on">"GPS aktiviert ist und das Gerät wird für seine Position zu suchen."</string>
-    <string name="key_mappings">"Key Mappings"</string>
+    <string name="key_mappings">"Schlüssel Landkarte"</string>
     <string name="map_volume_on">"Nicht überschreiben Lautstärketaste Verhalten. Lautstärketasten verhalten als Standard."</string>
     <string name="map_volume_off">"Überschreiben Lautstärketaste Verhalten während der Haupt-App läuft. "</string>
     <string name="map_volume_key_title">"Überschreiben Volume Key Behavior"</string>
