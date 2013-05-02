@@ -14,8 +14,6 @@
 	<string name="tilt_level">"↕"</string>
 	<string name="degree_symbol">"°"</string>
 
-
-
 	<!-- //Artemis menu -->
 
 	<string name="menu_camera_settings">"कैमरा का चयन करें"</string>
@@ -35,16 +33,6 @@
 	<string name="auto_exposure">"स्वचालित एक्सपोजर"</string>
 	<string name="set_exposure_text">"एक्सपोजर सेट"</string>
 	<string name="set_exposure">"एक्सपोजर सेट"</string>
-	<string-array name="set_exposure_array">
-		<item>"3.  "</item>
-		<item>"-"</item>
-		<item>"  1."</item>
-		<item>"0"</item>
-		<item>"1 "</item>
-		<item>"2"</item>
-		<item>"3"</item>
-		<item>"4"</item>
-	</string-array>
 	<string name="set_flash_mode_text">"फ्लैश / मशाल मोड"</string>
 	<string name="set_flash_mode_spinner">"फ़्लैश मोड सेट"</string>
 	<string-array name="set_flash_mode_array">
@@ -77,47 +65,6 @@
 	<string name="artemis_remote_text">"एंड्रॉयड गोलियाँ और iPads के लिए आर्टेमिस रिमोट
 	"</string>
 	<string name="select_language_text">"भाषा चुनें "</string>
-	<string-array name="select_language_array">
-		<!-- <item>Čeština</item> -->
-		<!-- <item>Dansk</item> -->
-		<item>"ड्यूश"</item>
-		<item>"अंग्रेज़ी "</item>
-		<item>"Español"</item>
-		<item>"फ़्रांसिसी"</item>
-		<item>"इटालवी"</item>
-		<!-- <item>Nederlands</item> -->
-		<!-- <item>Norsk bokmål</item> -->
-		<!-- <item>Polski</item> -->
-		<!-- <item>Português</item> -->
-		<!-- <item>Svenska</item> -->
-		<!-- <item>Türkçe</item> -->
-		<!-- <item>ελληνικά</item> -->
-		<item>"Pусский"</item>
-		<item>"한국어"</item>
-		<item>"中文"</item>
-		<item>"日本语"</item>
-	</string-array>
-	<!-- The language codes must correspond with the above language array -->
-	<string-array name="select_language_codes">
-		<!-- <item>cs</item> -->
-		<!-- <item>da</item> -->
-		<item>"DE"</item>
-		<item>"en"</item>
-		<item>"es"</item>
-		<item>"शुक्रवार"</item>
-		<item>"आईटी "</item>
-		<!-- <item>nl</item> -->
-		<!-- <item>nb</item> -->
-		<!-- <item>pl</item> -->
-		<!-- <item>pt</item> -->
-		<!-- <item>sv</item> -->
-		<!-- <item>tr</item> -->
-		<!-- <item>el</item> -->
-		<item>"आरयू"</item>
-		<item>"ko:"</item>
-		<item>"चयनित"</item>
-		<item>"जा"</item>
-	</string-array>
 
 	<string name="reset_device_h_and_v_angles">"रीसेट करें"</string>
 	<string name="auto_device_h_and_v_angles">"स्वतः डिवाइस कैमरा एंगल्स करें"</string>
@@ -139,7 +86,6 @@
 	<!-- //Camera Settings Page -->
 
 	<string name="camera_settings_title">"कैमरा सेटिंग्स"</string>
-	<string name="add_custom_camera_list_item">"कस्टम कैमरा डालिए"</string>
 	<string name="custom_camera_new_camera">"नए कस्टम कैमरा"</string>
 	<string name="custom_camera_options">"कस्टम कैमरा विकल्प"</string>
 	<string name="custom_camera_edit_camera">"कैमरा संपादित करें"</string>
@@ -202,12 +148,10 @@
 
     <!-- New custom camera strings -->
     <string name="custom_cameras">"कस्टम कैमरा"</string>
-    <string name="add_custom_camera_title">"कस्टम कैमरा जोड़ें"</string>
     <string name="custom_camera_squeeze_ratio">"अनुपात निचोड़"</string>
     <string name="custom_camera_aspect_ratio">"पहलू अनुपात (1.78)"</string>
     <string name="custom_camera_save_start_button">"शुरू करें "</string>
     <string name="custom_camera_save_active_sensor">"सक्रिय सेंसर आकार"</string>
-    <string name="add_custom_camera_directions">"निचोड़ अनुपात गोलाकार लेंस, 1:3:1 एनामॉर्फिक लेंस (यानी हॉक वि लाइट 1.3 है) के लिए मानक 2:1 एनामॉर्फिक लेंस के लिए 2.0 और 1.3 के लिए 1.0 है. दाखिल करने के बाद खेतों के ऊपर नोडल बिंदु पर अपने डिवाइस को प्रारंभ और पकड़ क्लिक करें. एक 50mm लेंस का उपयोग कर रहा है, तो लेंस नोडल बिंदु सेंसर विमान के सामने 50mm है. प्लस और माइनस बटन का उपयोग करना, तुम कैमरे पर छवि को Atemis पर देख छवि से मेल खाते हैं. लाल बटन अंदर बेहतर समायोजन के लिए कर रहे हैं और जब आप खुश हैं सहेजें दबाएं. "</string>
     <string name="add_custom_camera_directions_active_chip">"निचोड़ अनुपात गोलाकार लेंस, 1:3:1 एनामॉर्फिक लेंस (यानी हॉक वि लाइट 1.3 है) के लिए मानक 02:01 एनामॉर्फिक लेंस के लिए 2.0 और 1.3 के लिए 1.0 है. "</string>
     <string name="custom_camera_chip_width">"चिप चौड़ाई (मिमी)"</string>
     <string name="custom_camera_chip_height">"चिप ऊँचाई (मिमी)"</string>
@@ -265,11 +209,9 @@
     <string name="artemis_save_folder_summary">"फ़ोल्डर नाम आप आर्टेमिस साथ बनाने छवियों को बचाने के लिए. इस नाम के साथ एक फ़ोल्डर में पहले से ही मौजूद नहीं है, तो यह आप के लिए बनाया जाएगा."</string>
     <string name="horizontal_lens_angle">"क्षैतिज लेंस कोण"</string>
     <string name="vertical_lens_angle">"कार्यक्षेत्र लेंस कोण"</string>
-    <string name="menu_artemis_quit">"छोड़ दें"</string>
     <string name="menu_artemis_quit_description">"मुझे आर्टेमिस छोड़ने के लिए क्लिक करें."</string>
     <string name="feedback_report_issue">"मुद्दा / प्रतिक्रिया"</string>
     <string name="feedback_report_issue_description">"सूचना और अंक या हमें अपनी प्रतिक्रिया दे, हम आपकी टिप्पणियों की सराहना करते हैं."</string>
-    <string name="menu_artemis_about">"बारे में "</string>
     <string name="menu_artemis_about_description">"अनुप्रयोग और उसके डेवलपर्स के बारे में एक छोटी सी."</string>
 
     <string-array name="image_size_prefs">

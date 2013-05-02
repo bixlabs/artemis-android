@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-<!--	//English Strings-->
-
-	<!--	//General Strings-->
-
-	<string name="app_name">Artemis</string>
-
-
 	<!--	//Artemis menu-->
 
 	<string name="menu_camera_settings">Cámara Seleccione</string>
@@ -25,16 +17,6 @@
 	<string name="auto_exposure">La exposición automática</string>
 	<string name="set_exposure_text"> La exposición Set</string>
 	<string name="set_exposure">Ajuste de la exposición</string>
-	<string-array name="set_exposure_array">
-		<item>-3</item>
-		<item>-2</item>
-		<item>-1</item>
-		<item>0</item>
-		<item>1</item>
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-	</string-array>
 	<string name="auto_white_balance">Balance de blancos automático</string>
 	<string name="set_white_balance_text">Ajuste de balance de blancos</string>
 	<string name="set_white_balance">Ajuste del balance de blancos</string>
@@ -191,12 +173,10 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 <!-- 	New strings 05-13 -->
   <!-- New custom camera strings -->
     <string name="custom_cameras">"Cámaras personalizados"</string>
-    <string name="add_custom_camera_title">"Añadir cámara personalizada"</string>
     <string name="custom_camera_squeeze_ratio">"Apriete Ratio"</string>
     <string name="custom_camera_aspect_ratio">"Relación de aspecto (1,78)"</string>
     <string name="custom_camera_save_start_button">"Inicio"</string>
     <string name="custom_camera_save_active_sensor">"Active Sensor Tamaño"</string>
-    <string name="add_custom_camera_directions">"Ratio Squeeze es 1.0 para lentes esféricas, 2.0 estándar para lentes anamórficas 2:1 y 1.3 para 1:3:1 lentes anamórficas (es decir Hawk V-lite 1.3 's). Después de la presentación de los campos anteriores Haga clic en Inicio y mantenga el dispositivo en el punto nodal. Si se utiliza una lente de 50 mm, el punto nodal del objetivo es de 50 mm en la parte delantera del plano sensor. Uso de los botones de más y menos, coincidir con la imagen que se ve en Atemis a la imagen de la cámara. El interior botones rojos son para el ajuste fino y pulse Guardar cuando estás feliz. "</string>
     <string name="add_custom_camera_directions_active_chip">"Ratio Squeeze es 1.0 para lentes esféricas, 2.0 estándar para lentes anamórficas 2:1 y 1.3 para 1:3:1 lentes anamórficas (es decir Hawk V-lite 1.3 's). "</string>
     <string name="custom_camera_chip_width">"Ancho Chip (mm)"</string>
     <string name="custom_camera_chip_height">"Altura Chip (mm)"</string>
@@ -254,11 +234,9 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="artemis_save_folder_summary">"El nombre de la carpeta para guardar las imágenes creadas con Artemis. Si una carpeta con ese nombre no existe, se creará para usted."</string>
     <string name="horizontal_lens_angle">"Angular Horizontal"</string>
     <string name="vertical_lens_angle">"Ángulo de la lente Vertical"</string>
-    <string name="menu_artemis_quit">"Dejar"</string>
     <string name="menu_artemis_quit_description">"Haga clic en que renuncie Artemis."</string>
     <string name="feedback_report_issue">"Edición / Feedback"</string>
     <string name="feedback_report_issue_description">"Informar y emitir o denos sus comentarios, agradecemos sus comentarios."</string>
-    <string name="menu_artemis_about">"SOBRE"</string>
     <string name="menu_artemis_about_description">"Un poco acerca de la aplicación y sus desarrolladores."</string>
 
     <string-array name="image_size_prefs">

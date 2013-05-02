@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
 
     <!-- //English Strings -->
 
@@ -9,15 +9,11 @@
     <string name="menu_artemis_settings">Settings</string>
     <string name="menu_lens_settings">Select Lens</string>
     <string name="menu_artemis_gallery">Gallery</string>
-    <string name="menu_artemis_help">Help</string>
 
     <!-- //Artemis Settings Page -->
-    <string name="new_features">New features below coming soon</string>
     <string name="gps_on_off">Turn GPS On / Off</string>
     <string name="artemis_settings_title">Artemis Settings</string>
     <string name="choose_folder_for_image_saving">Image Folder Name</string>
-    <string name="choose_path">Artemis</string>
-    <string name="auto_exposure">Automatic Exposure</string>
     <string name="set_exposure_text">Set Exposure</string>
     <string name="set_exposure">Set Exposure</string>
     <string name="set_flash_mode_text">Flash/Torch Mode</string>
@@ -109,13 +105,11 @@
 
     <string name="lens_settings_title">Lens Settings</string>
     <string name="save_lenses">Save Lenses</string>
-    <string name="no_camera_alert">Please select a camera before selecting lenses</string>
 
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">Save Picture</string>
     <string name="image_saved_success">Saving image…</string>
-    <string name="saving_picture">Saving Picture</string>
     <string name="save_and_edit">Save and Edit Details</string>
     <string name="save_picture">Save Picture</string>
     <string name="gps_coordinates">GPS Coordinates</string>
@@ -134,11 +128,8 @@
     <!-- //Add Custom Camera Page -->
 
     <string name="custom_camera_name">CUSTOM CAMERA NAME</string>
-    <string name="custom_camera_distance">DISTANCE</string>
     <string name="custom_camera_width">WIDTH</string>
-    <string name="custom_camera_height">HEIGHT</string>
     <string name="custom_camera_focallength">FOCAL LENGTH (50mm)</string>
-    <string name="update_custom_camera">Update Custom Camera</string>
     <string name="untitle_custom_cam">Untitled Custom Camera</string>
     <string name="custom_camera_error">Custom Camera Input Error</string>
     <string name="custom_camera_error_message">The was a problem adding the new custom camera.  Please verify that the input values are valid and try again.</string>
@@ -159,12 +150,10 @@
 
     <!-- New Preference settings strings taken from preference_strings.xml -->
 
-    <string name="artemis">Artemis</string>
     <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn\'t already exist it will be created for you.</string>
     <string name="horizontal_lens_angle">Horizontal Lens Angle</string>
     <string name="vertical_lens_angle">Vertical Lens Angle</string>
     <string name="menu_artemis_quit">Quit</string>
-    <string name="menu_artemis_quit_description">Click me to quit Artemis.</string>
     <string name="feedback_report_issue">Issue / Feedback</string>
     <string name="feedback_report_issue_description">Report and Issue or give us your feedback, we appreciate your comments.</string>
     <string name="menu_artemis_about">About</string>
@@ -290,7 +279,6 @@
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">Add a note</string>
     <string name="add_custom_lens">Add Custom Lens</string>
-    <string name="add_custom_lens_upper">ADD CUSTOM LENS</string>
     <string name="input_focal_length">Enter the lens focal length in millimeters:</string>
     <string name="custom_lens_error">Custom Lens Input Error</string>
     <string name="custom_lens_error_message">The was a problem adding the new custom lens.  Please verify that the input values are valid and try again.</string>
