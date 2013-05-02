@@ -21,8 +21,8 @@
 	<string name="gps_on_off">GPS On / Off</string>
 	<string name="artemis_settings_title">Artemis Impostazioni</string>
 	<string name="choose_folder_for_image_saving">Image nome della cartella</string>
-	<string name="choose_path">Scegli</string>
-	<string name="auto_exposure">Esposizione automatica</string>
+	
+	
 	<string name="set_exposure_text">Set di esposizione</string>
 	<string name="set_exposure">Set di esposizione</string>
 	<string-array name="set_exposure_array">
@@ -63,12 +63,11 @@
 
 	<string name="lens_settings_title">Lente Impostazioni</string>
 	<string name="save_lenses">Salva Lenti</string>
-	<string name="no_camera_alert">Si prega di selezionare una telecamera prima di scegliere le lenti</string>
-
+	
 	<!--	//Save Picture Page-->
 
 	<string name="save_picture_title">Salva immagine</string>
-	<string name="saving_picture">Salvataggio di immagini</string>
+	
 	<string name="save_and_edit">Salvare e modificare i dettagli</string>
 	<string name="save_picture">Salva immagine</string>
 	<string name="gps_coordinates">Coordinate GPS</string>
@@ -81,9 +80,9 @@
 
 	<string name="add_custom_camera_title">Aggiungi personalizzato Camera-Tutti measurments in millimetri (mm)</string>
 	<string name="custom_camera_name">Creare un nome personalizzato camera</string>
-	<string name="custom_camera_distance">DISTANZA</string>
+	
 	<string name="custom_camera_width">LARGHEZZA</string>
-	<string name="custom_camera_height">ALTEZZA</string>
+	
 	<string name="custom_camera_focallength">LUNGHEZZA FOCALE</string>
 	
 	<string name="add_custom_camera_directions">Per inserire una telecamera personalizzata è necessario effettuare alcune semplici misure. Collocare la fotocamera una distanza fissa da un grafico a parete o messa a fuoco e misurare dal punto nodale della lente verso la superficie. Poi, con un obiettivo fisso, misurare esattamente la larghezza e l\'altezza di quello che potete vedere attraverso il mirino. Utilizzare unità coerenti.</string>
@@ -144,7 +143,7 @@
 
 	<!--	//Add Custom Camera Page-->
 
-	<string name="update_custom_camera">Aggiorna Camera Custom</string>
+	
 	<string name="custom_camera_options">Custom Opzioni della videocamera</string>
 	<string name="custom_camera_edit_camera">Modifica Camera</string>
 	<string name="custom_camera_delete_camera">Elimina Camera</string>
@@ -200,7 +199,7 @@
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"Aggiungere una nota"</string>
     <string name="add_custom_lens">"Aggiungi lente personalizzata"</string>
-    <string name="add_custom_lens_upper">"Aggiungi lente personalizzata"</string>
+  
     <string name="input_focal_length">"Immettere la lunghezza focale dell'obiettivo in millimetri:"</string>
     <string name="custom_lens_error">"Personalizzato errore di ingresso Lens"</string>
     <string name="custom_lens_error_message">"L'era un problema aggiungendo il nuovo obiettivo su misura. Si prega di verificare che i valori di input sono validi e riprovare."</string>
@@ -233,11 +232,11 @@
     <string name="save_raw_image_text">"No Border o testo"</string>
 
     <!-- Preference Strings -->
-    <string name="artemis">"Artemis"</string>
+    
     <string name="artemis_save_folder_summary">"Il nome della cartella per salvare le immagini create con Artemis. Se una cartella con questo nome non esiste già, verrà creato per voi."</string>
     <string name="horizontal_lens_angle">"Orizzontale Angle Lens"</string>
     <string name="vertical_lens_angle">"Angle Lens verticale"</string>
-    <string name="menu_artemis_quit_description">"Click me per smettere Artemis."</string>
+   
     <string name="feedback_report_issue">"Emissione / Feedback"</string>
     <string name="feedback_report_issue_description">"Relazione e rilasciare o darci il vostro feedback, apprezziamo i vostri commenti."</string>
     <string name="menu_artemis_about_description">"Un po 'di app e suoi sviluppatori."</string>
@@ -334,6 +333,6 @@
 
  <string name="heading_tilt_roll_promt">Selezionare Rubrica Opzioni</string>
  
- <string name="custom_camera_error_message">L'era un problema di aggiungere la nuova telecamera personalizzata. Si prega di verificare che i valori di input sono validi e riprovare.</string>
+ <string name="custom_camera_error_message">Lera un problema di aggiungere la nuova telecamera personalizzata. Si prega di verificare che i valori di input sono validi e riprovare.</string>
 	
 </resources>

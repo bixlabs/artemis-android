@@ -9,10 +9,10 @@
     <string name="menu_artemis_settings">の設定</string>
     <string name="menu_lens_settings">選択レンズ</string>
     <string name="menu_artemis_about">について</string>
-    <string name="menu_artemis_help">ヘルプ</string>
+   
 
     <!-- //Artemis Settings Page -->
-    <string name="new_features">近日公開 新機能</string>
+   
     <string name="gps_on_off">オン/オフ ターンのGPS</string>
     <string name="artemis_settings_title">設定のアルテミス</string>
     <string name="choose_folder_for_image_saving">画像の保存のための 先フォルダにコピーします。</string>
@@ -83,8 +83,7 @@
     <string name="custom_camera_width">幅</string>
     <string name="custom_camera_height">高さ</string>
     <string name="custom_camera_focallength">焦点距離</string>
-    <string name="save_custom_camera">は、カスタムカメラを追加します。</string>
-    <string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
+     <string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
 
     <!-- / / NEW TRANSLATIONS 2-15-11 -->
 
