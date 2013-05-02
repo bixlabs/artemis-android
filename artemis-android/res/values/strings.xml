@@ -3,19 +3,6 @@
 
     <!-- //English Strings -->
 
-
-    <!-- //General Strings / Artemis Preview -->
-
-    <string name="app_name">Artemis</string>
-    <string name="lensFocalLengthMM">mm</string>
-    <string name="left_roll">↶</string>
-    <string name="right_roll">↷</string>
-    <string name="roll_level">↔</string>
-    <string name="tilt_up">↑</string>
-    <string name="tilt_down">↓</string>
-    <string name="tilt_level">↕</string>
-    <string name="degree_symbol">°</string>
-
     <!-- //Artemis menu -->
 
     <string name="menu_camera_settings">Select Camera</string>
@@ -33,18 +20,6 @@
     <string name="auto_exposure">Automatic Exposure</string>
     <string name="set_exposure_text">Set Exposure</string>
     <string name="set_exposure">Set Exposure</string>
-
-    <string-array name="set_exposure_array">
-        <item>-3</item>
-        <item>-2</item>
-        <item>-1</item>
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-
     <string name="set_flash_mode_text">Flash/Torch Mode</string>
     <string name="set_flash_mode_spinner">Set Flash Mode</string>
 
@@ -77,64 +52,10 @@
         <item>Heading°</item>
         <item>Heading°|Tilt°|Roll°</item>
     </string-array>
-    <string-array name="heading_tilt_roll_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 
     <string name="save_artemis_settings">Save Artemis Settings</string>
     <string name="artemis_remote_text">Artemis Remote for Android tablets &amp; iPads</string>
     <string name="select_language_text">Select Language</string>
-
-    <string-array name="select_language_array">
-
-        <!-- <item>Čeština</item> -->
-        <!-- <item>Dansk</item> -->
-        <item>العربية</item>
-        <item>Deutsch</item>
-        <item>English</item>
-        <item>Español</item>
-        <item>Français</item>
-        <item>हिंदी</item>
-        <item>Italiano</item>
-        <!-- <item>Nederlands</item> -->
-        <!-- <item>Norsk bokmål</item> -->
-        <!-- <item>Polski</item> -->
-        <!-- <item>Português</item> -->
-        <!-- <item>Svenska</item> -->
-        <!-- <item>Türkçe</item> -->
-        <!-- <item>ελληνικά</item> -->
-        <item>Pусский</item>
-        <item>한국어</item>
-        <item>中文</item>
-        <item>日本語</item>
-    </string-array>
-    <!-- The language codes must correspond with the above language array -->
-    <string-array name="select_language_codes">
-
-        <!-- <item>cs</item> -->
-        <!-- <item>da</item> -->
-        <item>ar</item>
-        <item>de</item>
-        <item>en</item>
-        <item>es</item>
-        <item>fr</item>
-        <item>hi</item>
-        <item>it</item>
-        <!-- <item>nl</item> -->
-        <!-- <item>nb</item> -->
-        <!-- <item>pl</item> -->
-        <!-- <item>pt</item> -->
-        <!-- <item>sv</item> -->
-        <!-- <item>tr</item> -->
-        <!-- <item>el</item> -->
-        <item>ru</item>
-        <item>ko</item>
-        <item>zh</item>
-        <item>ja</item>
-    </string-array>
-
     <string name="reset_device_h_and_v_angles">Reset</string>
     <string name="auto_device_h_and_v_angles">Get Device Camera Angles Automatically</string>
     <string name="manually_set_h_angle_text">Set Device Camera Horizontal Angle</string>
@@ -183,7 +104,6 @@
     <string name="custom_camera_options">Custom Camera Options</string>
     <string name="custom_camera_edit_camera">Edit Camera</string>
     <string name="custom_camera_delete_camera">Delete Camera</string>
-    
 
     <!-- //Lense Settings Page -->
 
@@ -222,8 +142,8 @@
     <string name="untitle_custom_cam">Untitled Custom Camera</string>
     <string name="custom_camera_error">Custom Camera Input Error</string>
     <string name="custom_camera_error_message">The was a problem adding the new custom camera.  Please verify that the input values are valid and try again.</string>
-	<string name="ok">OK</string>
-    
+    <string name="ok">OK</string>
+
     <!-- Unlicensed dialog messages -->
     <string name="unlicensed_dialog_title">Application not licensed</string>
     <string name="error_dialog_title">Application license error</string>
@@ -236,5 +156,171 @@
 
     <!-- Gallery related messages -->
     <string name="gallery_no_images_found">No images found</string>
+
+    <!-- New Preference settings strings taken from preference_strings.xml -->
+
+    <string name="artemis">Artemis</string>
+    <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn\'t already exist it will be created for you.</string>
+    <string name="horizontal_lens_angle">Horizontal Lens Angle</string>
+    <string name="vertical_lens_angle">Vertical Lens Angle</string>
+    <string name="menu_artemis_quit">Quit</string>
+    <string name="menu_artemis_quit_description">Click me to quit Artemis.</string>
+    <string name="feedback_report_issue">Issue / Feedback</string>
+    <string name="feedback_report_issue_description">Report and Issue or give us your feedback, we appreciate your comments.</string>
+    <string name="menu_artemis_about">About</string>
+    <string name="menu_artemis_about_description">A little about the app and its developers.</string>
+
+    <string-array name="image_size_prefs">
+        <item>Small</item>
+        <item>Default</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="backkey_prefs">
+        <item>Exit Artemis immediately</item>
+        <item>Prompt before closing</item>
+        <item>Do nothing</item>
+    </string-array>
+
+    <string name="email_support">Email Support</string>
+
+    <string-array name="longPressShutter_entries">
+        <item>Autofocus camera and immediately capture image</item>
+        <item>Autofocus camera and capture image on button release</item>
+        <item>Autofocus camera only</item>
+        <item>Do nothing</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>Autofocus camera and immediately capture image</item>
+        <item>Take a picture</item>
+        <item>Autofocus camera</item>
+        <item>Do nothing</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>Take a picture</item>
+        <item>Do nothing</item>
+    </string-array>
+
+    <string name="camera_device_will_not_autofocus">Camera device will NOT autofocus before taking each picture</string>
+    <string name="camera_device_will_autofocus">Camera device will autofocus before taking each picture</string>
+    <string name="auto_focus_behaviour_when_long_pressing">Auto focus behaviour when long pressing the camera shutter (capture image) button.</string>
+    <string name="long_press_shutter_button_focus_behaviour">Long Press Shutter Button Focus Behaviour</string>
+    <string name="torch_while_in_preview_mode">Camera device will use the torch while in preview mode</string>
+    <string name="not_torch_while_in_preview_mode">Camera device will NOT use the torch while in preview mode</string>
+    <string name="camera_preview_will_show_all_colors">Camera preview will show all colors</string>
+    <string name="camera_preview_will_be_black_and_white">Camera preview will be black and white. Note: this will also affect saved images.</string>
+    <string name="device_camera_behaviour">Device Camera Behaviour</string>
+    <string name="device_camera_sensor">Device Camera Sensor</string>
+    <string name="device_camera_angles">Device Camera Angles</string>
+    <string name="use_the_custom_camera_angles">The application will use the custom values shown below.</string>
+    <string name="use_detected_device_angles">The application will use the values automatically detected from the device (current values shown below).</string>
+    <string name="detect_device_camera_angles_automatically">Detect Device Camera Angles Automatically</string>
+    <string name="heading_summary">Choose what to display in the heading of the main app.</string>
+    <string name="lockboxes_summary">Enable/Disable the Lens boxes from changing position on touch.</string>
+    <string name="lock_lens_boxes">Lock Lens Boxes</string>
+    <string name="backkey_summary">Choose the behaviour of the Android back button while the main app is running.</string>
+    <string name="back_button_behaviour">Back Button Behaviour</string>
+    <string name="haptic_feedback">Haptic Feedback</string>
+    <string name="hapticfeedback_off_summary">Artemis will NOT provide haptic feedback on button presses.</string>
+    <string name="haptic_feedback_on_summary">Artemis will provide haptic feedback on button presses.</string>
+    <string name="keep_screen_on_summary">The screen will be kept on and NEVER timeout while the main app is running.</string>
+    <string name="keep_screen_off_summary">The screen will timeout according to your devices default sleep setting.</string>
+    <string name="keep_screen_on">Keep Screen On</string>
+    <string name="gps_settings">GPS Settings</string>
+    <string name="screen_settings">Screen Settings</string>
+    <string name="user_interface_behaviour">User Interface Behaviour</string>
+    <string name="gps_summary_off">GPS is disabled. The device will not search for it\'s location.</string>
+    <string name="gps_summary_on">GPS is enabled and the device will search for it\'s location.</string>
+    <string name="key_mappings">Key Mappings</string>
+    <string name="map_volume_on">Don\'t override volume key behavior. Volume keys behave as default.</string>
+    <string name="map_volume_off">"Override volume key behavior while the main app is running. "</string>
+    <string name="map_volume_key_title">Override Volume Key Behavior</string>
+    <string name="volume_up_summary">Choose the behaviour when phones volume up key is pressed while the main app is running.</string>
+    <string name="volume_up_key_title">Volume Up Key Behaviour</string>
+    <string name="volume_down_summary">Choose the behaviour when phones volume down key is pressed while the main app is running.</string>
+    <string name="volume_down_key_title">Volume Down Key Behaviour</string>
+    <string name="language_summary">NOTE: You must quit and restart the application for changes to take effect.</string>
+    <string name="picture_save_location">Picture Save Location</string>
+    <string name="select_image_size">Select Image Size</string>
+    <string name="image_size_summary">Select the size of the final image saved to disk.</string>
+    <string name="saved_image_size">Saved Image Size</string>
+    <string name="select_image_quality">Select Image Quality</string>
+    <string name="image_quality_summary">Select the quality (compression) of the image saved to disk.</string>
+    <string name="saved_image_quality">Saved Image Quality</string>
+    <string name="smooth_image_off">Images will NOT be smooth filtered.</string>
+    <string name="smooth_image_on">A filter will be applied to make the images appear smoother when scaling is required.</string>
+    <string name="quick_picture_off">An image preview will be shown after pictures are saved.</string>
+    <string name="quick_picture_on">Quick pictures are enabled. An image preview will NOT be shown after pictures are saved.</string>
+
+    <!-- New strings for 2.0 taken from new_strings.xml -->
+    <!-- //New English Strings -->
+
+
+    <!-- New custom camera strings -->
+    <string name="custom_cameras">CUSTOM CAMERAS</string>
+    <string name="add_custom_camera_title">Add Custom Camera</string>
+    <string name="custom_camera_squeeze_ratio">SQUEEZE RATIO (1.0)</string>
+    <string name="custom_camera_aspect_ratio">ASPECT RATIO (1.78)</string>
+    <string name="custom_camera_save_start_button">START</string>
+    <string name="custom_camera_save_active_sensor">ACTIVE SENSOR SIZE</string>
+    <string name="add_custom_camera_directions">Squeeze Ratio is 1.0 for spherical lenses,
+         2.0 for standard 2:1 Anamorphic lenses and 1.3 for 1:3:1 Anamorphic lenses 
+         (ie Hawk V-lite 1.3\'s). After filing the above fields click start and hold your device at the
+         nodal point. If using a 50mm lens, the lens nodal point is 50mm in front of the sensor plane.
+         Using the plus and minus buttons, match the image you see on Atemis to the image on the camera.
+         The inside red buttons are for finer adjustment and press SAVE when you are happy. </string>
+    <string name="add_custom_camera_directions_active_chip">Squeeze Ratio is 1.0 for spherical lenses,
+         2.0 for standard 2:1 Anamorphic lenses and 1.3 for 1:3:1 Anamorphic lenses 
+         (ie Hawk V-lite 1.3\'s). </string>
+    <string name="custom_camera_chip_width">CHIP WIDTH (mm)</string>
+    <string name="custom_camera_chip_height">CHIP HEIGHT (mm)</string>
+    <string name="custom_camera_save_button">SAVE</string>
+
+    <!-- Calibrate Custom Camera Strings -->
+    <string name="calibrate_chip_width">Chip Width:</string>
+    <string name="calibrate_chip_height">Chip Height:</string>
+
+    <!-- New preferences strings -->
+    <string name="prefs_general_settings">General Settings</string>
+    <string name="prefs_general_settings_description">Settings for general operation of Artemis and the user interface</string>
+    <string name="prefs_camera_settings">Camera Settings</string>
+    <string name="prefs_camera_settings_description">Settings for customizing the behaviour of the device camera</string>
+    <string name="prefs_image_settings">Saved Image Settings</string>
+    <string name="prefs_image_settings_description">Adjustments for controlling properties of images saved to storage using Artemis</string>
+
+    <!-- NEW STRING NEEDS TO BE TRANSLATED -->
+    <string name="image_note_hint">Add a note</string>
+    <string name="add_custom_lens">Add Custom Lens</string>
+    <string name="add_custom_lens_upper">ADD CUSTOM LENS</string>
+    <string name="input_focal_length">Enter the lens focal length in millimeters:</string>
+    <string name="custom_lens_error">Custom Lens Input Error</string>
+    <string name="custom_lens_error_message">The was a problem adding the new custom lens.  Please verify that the input values are valid and try again.</string>
+
+    <!-- Gallery Strings -->
+    <string name="gallery_title">Artemis Gallery</string>
+
+    <!-- New Camera Settings Strings -->
+    <string name="camera_search">Search for cameras...</string>
+
+    <!-- //Save Picture Page -->
+
+    <string name="save_picture_details">Save Picture Details</string>
+    <string name="save">Save</string>
+    <string name="settings_reset_summary">Reset to Artemis default settings.  You will not lose any saved pictures.</string>
+    <string name="settings_reset_title">Reset to Default Settings</string>
+    <string name="reset_to_default_settings">Are you sure you want to reset to default settings?  You will lose all preferences.</string>
+    <string name="reset_artemis_settings">Reset Artemis Settings</string>
+    <string name="custom_zoom_lens">CUSTOM ZOOM LENS</string>
+    <string name="new_zoom_lens">NEW ZOOM LENS</string>
+    <string name="untitled_zoom_lens">Untitled Zoom Lens</string>
+    <string name="zoom_lens_name">Zoom Lens Name</string>
+    <string name="add">Add</string>
+    <string name="custom_zoom_lens_error">Custom Zoom Lens Input Error</string>
+    <string name="custom_zoom_lens_error_message">The was a problem adding the new custom zoom lens.  Please verify that the input values are valid and try again.</string>
+    <string name="max_focal_length">Max Focal Length</string>
+    <string name="min_focal_length">Min Focal Length</string>
+    <string name="image_save_no_media">ERROR: The image could not be saved.  No storage media was found.</string>
+    <string name="image_save_error">ERROR: The image could not be saved. The storage media may be full.</string>
+    <string name="save_raw_image_text">No Border or Text</string>
+    <string name="language">Language</string>
 
 </resources>

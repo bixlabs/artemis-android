@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
+    <string name="app_name">Artemis</string>
     <string name="preference_key_autofocusonpicture">autoFocusOnPicture</string>
     <string name="preference_key_gpsenabled">gpsEnabled</string>
     <string name="preference_key_selectedlensmake">selectedLensMake</string>
@@ -40,7 +41,7 @@
     <string name="preference_key_previewblackwhite">previewBlackWhite</string>
     <string name="preference_key_saveRawImage">saveRawImage</string>
     <string name="preference_key_mapVolumeKeys">mapVolumeKeys</string>
-    
+
     <!-- values and defaults -->
     <string name="artemis_save_location_default">DCIM/ARTEMIS</string>
     <string name="image_size_default">default</string>
@@ -97,5 +98,78 @@
     <string name="volumeUpAction_default">autofocusAndCapture</string>
     <string name="volumeUpAction_noautofocus_default">takePicture</string>
     <string name="volumeDownAction_default">nothing</string>
+
+    <string-array name="select_language_array">
+
+        <!-- <item>Čeština</item> -->
+        <!-- <item>Dansk</item> -->
+        <item>العربية</item>
+        <item>Deutsch</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>हिंदी</item>
+        <item>Italiano</item>
+        <!-- <item>Nederlands</item> -->
+        <!-- <item>Norsk bokmål</item> -->
+        <!-- <item>Polski</item> -->
+        <!-- <item>Português</item> -->
+        <!-- <item>Svenska</item> -->
+        <!-- <item>Türkçe</item> -->
+        <!-- <item>ελληνικά</item> -->
+        <item>Pусский</item>
+        <item>한국어</item>
+        <item>中文</item>
+        <item>日本語</item>
+    </string-array>
+    <!-- The language codes must correspond with the above language array -->
+    <string-array name="select_language_codes">
+
+        <!-- <item>cs</item> -->
+        <!-- <item>da</item> -->
+        <item>ar</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>hi</item>
+        <item>it</item>
+        <!-- <item>nl</item> -->
+        <!-- <item>nb</item> -->
+        <!-- <item>pl</item> -->
+        <!-- <item>pt</item> -->
+        <!-- <item>sv</item> -->
+        <!-- <item>tr</item> -->
+        <!-- <item>el</item> -->
+        <item>ru</item>
+        <item>ko</item>
+        <item>zh</item>
+        <item>ja</item>
+    </string-array>
+    <string-array name="heading_tilt_roll_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="set_exposure_array">
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!-- Symbols -->
+    <string name="lensFocalLengthMM">mm</string>
+    <string name="left_roll">↶</string>
+    <string name="right_roll">↷</string>
+    <string name="roll_level">↔</string>
+    <string name="tilt_up">↑</string>
+    <string name="tilt_down">↓</string>
+    <string name="tilt_level">↕</string>
+    <string name="degree_symbol">°</string>
 
 </resources>
