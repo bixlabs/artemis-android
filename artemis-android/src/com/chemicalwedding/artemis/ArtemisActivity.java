@@ -1172,12 +1172,12 @@ public class ArtemisActivity extends Activity implements
 		_lensSettingsFlipper.setDisplayedChild(0);
 		viewFlipper.setDisplayedChild(2);
 		currentViewId = R.id.lensSettings;
+		addCustomLensLayout.setVisibility(View.INVISIBLE);
 
 		ArrayList<String> lensMakes = null;
 		if (tempSelectedCamera != null && tempSelectedCamera.getRowid() != null
 				&& tempSelectedCamera.getRowid() == -1) {
 			// This is a custom camera
-			addCustomLensLayout.setVisibility(View.VISIBLE);
 			lensMakes = new ArrayList<String>();
 			lensMakes.add(DEFAULT_LENS_MAKE);
 		} else {
