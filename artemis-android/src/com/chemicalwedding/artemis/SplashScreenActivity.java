@@ -21,6 +21,7 @@ public class SplashScreenActivity extends Activity {
 	private LicenseChecker _checker;
 	private Handler mHandler = new Handler();
 	private static final String logTag = "SplashScreen";
+	private static boolean validLicenseFound = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,33 @@ public class SplashScreenActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
-		// Check license any time the splash screen starts, rather than just onCreate (fix bug leo found)
-		_checker.checkAccess(_licenseCheckerCallback);
-	}
 
+		if (!validLicenseFound) {
+			// Check license any time the splash screen starts, rather than just
+			// onCreate (fix bug leo found)
+			_checker.checkAccess(_licenseCheckerCallback);
+		}
+		else {
+			// We've already found a license, just start normally
+			Log.v(logTag, "Already found a license previously, starting normally.");
+			mHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					startArtemis();
+				}
+			}, 1000);
+			
+		}
+	}
+	
+	private void startArtemis() {
+		Intent i = new Intent(SplashScreenActivity.this,
+				ArtemisActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		startActivity(i);
+		finish();
+	}
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -73,19 +96,16 @@ public class SplashScreenActivity extends Activity {
 			}
 			Log.i(logTag, "Valid license found");
 			// Should allow user access.
+			validLicenseFound = true;
 
-			Intent i = new Intent(SplashScreenActivity.this,
-					ArtemisActivity.class);
-			i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-			startActivity(i);
-			finish();
+			startArtemis();
 		}
 
 		@Override
 		public void dontAllow(int reason) {
 			Log.i(logTag, "No license found");
 
-			AlertDialog dialog = new AlertDialog.Builder(
+			final AlertDialog dialog = new AlertDialog.Builder(
 					SplashScreenActivity.this)
 					.setTitle(R.string.unlicensed_dialog_title)
 					.setMessage(R.string.unlicensed_dialog_body)
@@ -97,6 +117,7 @@ public class SplashScreenActivity extends Activity {
 											Intent.ACTION_VIEW,
 											Uri.parse("http://market.android.com/details?id="
 													+ getPackageName()));
+									dialog.dismiss();
 									startActivity(marketIntent);
 								}
 							})
@@ -104,6 +125,7 @@ public class SplashScreenActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
+									dialog.dismiss();
 									finish();
 								}
 							}).create();
@@ -112,6 +134,9 @@ public class SplashScreenActivity extends Activity {
 			mHandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
+					if (dialog != null) {
+						dialog.dismiss();
+					}
 					finish();
 				}
 			}, 10000);
@@ -125,7 +150,7 @@ public class SplashScreenActivity extends Activity {
 			}
 			Log.i(logTag, "Licensing Error: " + errorCode);
 
-			AlertDialog dialog = new AlertDialog.Builder(
+			final AlertDialog dialog = new AlertDialog.Builder(
 					SplashScreenActivity.this)
 					.setTitle(R.string.error_dialog_title)
 					.setMessage(R.string.error_dialog_body)
@@ -133,6 +158,7 @@ public class SplashScreenActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
+									dialog.dismiss();
 									finish();
 								}
 							}).create();
@@ -141,6 +167,9 @@ public class SplashScreenActivity extends Activity {
 			mHandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
+					if (dialog != null) {
+						dialog.dismiss();
+					}
 					finish();
 				}
 			}, 10000);

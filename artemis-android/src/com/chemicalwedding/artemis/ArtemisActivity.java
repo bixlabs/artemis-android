@@ -218,13 +218,6 @@ public class ArtemisActivity extends Activity implements
 	protected void onPause() {
 		super.onPause();
 		Log.i(_logTag, "Pausing Artemis");
-		if (_cameraPreview != null) {
-			_cameraPreview.releaseCamera();
-			// _cameraPreview.removeAllViews();
-			// _cameraPreview = null;
-			// mCameraContainer.removeAllViews();
-		}
-
 		if (gpsEnabled)
 			locationManager.removeUpdates(locationListener);
 
@@ -236,21 +229,12 @@ public class ArtemisActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		Log.i(_logTag, "Stopping Artemis");
-
-		ArtemisActivity.arrowBackgroundImage.recycle();
-		ArtemisActivity.arrowBackgroundImage = null;
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
 		Log.i(_logTag, "Starting Artemis");
-
-		Options o = new Options();
-		o.inSampleSize = 2;
-		ArtemisActivity.arrowBackgroundImage = BitmapFactory.decodeResource(
-				getResources(), R.drawable.arrows, o);
-
 		startArtemis();
 	}
 
@@ -281,19 +265,19 @@ public class ArtemisActivity extends Activity implements
 		initLocationManager();
 
 		// Setup the language
-		SharedPreferences settings = this.getSharedPreferences(
-				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
-		String lang = settings.getString(ArtemisPreferences.SELECTED_LANGUAGE,
-				"");
-		if (!"".equals(lang)) {
-			Locale locale = new Locale(lang);
-			Locale.setDefault(locale);
-			Locale.setDefault(locale);
-			Configuration config = new Configuration();
-			config.locale = locale;
-			getBaseContext().getResources().updateConfiguration(config,
-					getBaseContext().getResources().getDisplayMetrics());
-		}
+//		SharedPreferences settings = this.getSharedPreferences(
+//				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
+//		String lang = settings.getString(ArtemisPreferences.SELECTED_LANGUAGE,
+//				"");
+//		if (!"".equals(lang)) {
+//			Locale locale = new Locale(lang);
+//			Locale.setDefault(locale);
+//			Locale.setDefault(locale);
+//			Configuration config = new Configuration();
+//			config.locale = locale;
+//			getBaseContext().getResources().updateConfiguration(config,
+//					getBaseContext().getResources().getDisplayMetrics());
+//		}
 
 		initPreferences();
 
@@ -1368,7 +1352,6 @@ public class ArtemisActivity extends Activity implements
 					addZoomLensDialog.setButton(Dialog.BUTTON_POSITIVE,
 							getString(R.string.add),
 							new DialogInterface.OnClickListener() {
-								@SuppressWarnings("unchecked")
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {

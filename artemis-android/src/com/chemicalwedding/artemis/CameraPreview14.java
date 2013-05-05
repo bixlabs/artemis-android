@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -365,7 +366,14 @@ public class CameraPreview14 extends ViewGroup {
 			@Override
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
+				// Set the background
+				
+				Options o = new Options();
+				o.inSampleSize = 2;
+				ArtemisActivity.arrowBackgroundImage = BitmapFactory.decodeResource(
+						getResources(), R.drawable.arrows, o);
 
+				
 				openCamera();
 			}
 
@@ -378,6 +386,10 @@ public class CameraPreview14 extends ViewGroup {
 			@Override
 			public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
 				releaseCamera();
+				
+				ArtemisActivity.arrowBackgroundImage.recycle();
+				ArtemisActivity.arrowBackgroundImage = null;
+				
 				return true;
 			}
 
