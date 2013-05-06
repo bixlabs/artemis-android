@@ -124,7 +124,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/prevButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -293,7 +293,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

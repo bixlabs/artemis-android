@@ -4,25 +4,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <LinearLayout
+    <com.chemicalwedding.artemis.CameraContainerView
         android:id="@+id/cameraContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/arrows" >
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
     <com.chemicalwedding.artemis.CustomCameraOverlay
-            android:id="@+id/cameraOverlay"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@null"
-            android:visibility="visible" />
-    
+        android:id="@+id/cameraOverlay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@null"
+        android:visibility="visible" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cameraoverlay_top"
+        android:baselineAligned="false"
         android:gravity="left|top" >
 
         <LinearLayout
@@ -50,7 +48,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-1dip"
                 android:lines="1"
-                
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
                 android:typeface="sans" />
@@ -82,12 +79,10 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="-1dip"
-                
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
                 android:typeface="sans" />
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -139,7 +134,6 @@
                     android:layout_width="75dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
-                    
                     android:textSize="12sp" />
             </LinearLayout>
         </FrameLayout>
@@ -159,7 +153,6 @@
             android:layout_weight=".1"
             android:clickable="true"
             android:src="@drawable/nextbutton" />
-
     </LinearLayout>
 
 </FrameLayout>

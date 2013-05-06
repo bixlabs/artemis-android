@@ -4,21 +4,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <LinearLayout
+    <com.chemicalwedding.artemis.CameraContainerView
         android:id="@+id/cameraContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/arrows" >
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
     <com.chemicalwedding.artemis.CustomCameraOverlay
-            android:id="@+id/cameraOverlay"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@null"
-            android:visibility="visible" />
-    
+        android:id="@+id/cameraOverlay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@null"
+        android:visibility="visible" />
+
     <RelativeLayout
         android:id="@+id/overlay"
         android:layout_width="fill_parent"
@@ -34,8 +31,6 @@
             android:src="@drawable/cameraoverlay"
             android:visibility="visible" />
     </RelativeLayout>
-    
-    
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -66,7 +61,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-1dip"
                 android:lines="1"
-                
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
                 android:typeface="sans" />
@@ -102,11 +96,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="-1dip"
-                
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
                 android:typeface="sans" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -132,7 +124,6 @@
             android:layout_height="35dp"
             android:clickable="true"
             android:src="@drawable/fineminusbutton" />
-
     </LinearLayout>
 
     <FrameLayout
@@ -140,43 +131,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center" >
 
-        
+        <Button
+            android:id="@+id/calibrateSaveButton"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="@string/custom_camera_save_button"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/calibrateSaveButton"
-                android:layout_width="80dp"
-                android:layout_height="35dp"
-                android:text="@string/custom_camera_save_button"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/calibrateFocalLength"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="20dp"
-                
-                android:textSize="12sp" />
-
-      
+        <Button
+            android:id="@+id/calibrateFocalLength"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="12sp" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="right|bottom" >
-
-        <!-- Space that holds lens vert/horiz info -->
-
-        <!-- empty space -->
-
-        <!-- <View android:id="@+id/vertHorizontalButton" -->
-        <!-- android:layout_width="10dip" android:layout_height="26dip" -->
-        <!--
-			android:paddingRight="20dip" android:clickable="true"
-			android:text="LALAL" />
-        -->
-
-        <!-- empty space -->
 
         <ImageView
             android:id="@+id/fineNextButton"
@@ -191,7 +164,6 @@
             android:layout_marginRight="5dp"
             android:clickable="true"
             android:src="@drawable/nextbutton" />
-
     </LinearLayout>
 
 </FrameLayout>

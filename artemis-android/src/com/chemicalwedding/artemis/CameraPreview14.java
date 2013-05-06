@@ -424,9 +424,10 @@ public class CameraPreview14 extends ViewGroup {
 	}
 
 	public void openCamera() {
-
+		
+		isCameraReleased = false;
 		mCamera = openFrontFacingCameraGingerbread();
-
+		
 		if (mCamera != null) {
 			Camera.Parameters parameters = mCamera.getParameters();
 			SharedPreferences artemisPrefs = getContext()
@@ -595,11 +596,14 @@ public class CameraPreview14 extends ViewGroup {
 			}
 		}
 	}
+	
+	protected boolean isCameraReleased = false;
 
 	public void releaseCamera() {
 		if (mCamera != null) {
 			mCamera.stopPreview();
 			mCamera.release();
+			isCameraReleased = true;
 			mCamera = null;
 			mTextureView.invalidate();
 		}
@@ -1109,5 +1113,4 @@ public class CameraPreview14 extends ViewGroup {
 				+ totalScreenWidth + " screenHeight: " + totalScreenHeight);
 		setMeasuredDimension(totalScreenWidth, totalScreenHeight);
 	}
-
 }

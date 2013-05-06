@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -20,11 +19,8 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -218,6 +214,8 @@ public class ArtemisActivity extends Activity implements
 	protected void onPause() {
 		super.onPause();
 		Log.i(_logTag, "Pausing Artemis");
+		_cameraPreview.releaseCamera();
+
 		if (gpsEnabled)
 			locationManager.removeUpdates(locationListener);
 
@@ -244,6 +242,10 @@ public class ArtemisActivity extends Activity implements
 		Log.i(_logTag, "Resuming Artemis");
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+		if (_cameraPreview.isCameraReleased) {
+			_cameraPreview.openCamera();
+		}
+
 		// Hide system UI buttons
 		// getWindow().getDecorView().setSystemUiVisibility(
 
@@ -265,19 +267,20 @@ public class ArtemisActivity extends Activity implements
 		initLocationManager();
 
 		// Setup the language
-//		SharedPreferences settings = this.getSharedPreferences(
-//				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
-//		String lang = settings.getString(ArtemisPreferences.SELECTED_LANGUAGE,
-//				"");
-//		if (!"".equals(lang)) {
-//			Locale locale = new Locale(lang);
-//			Locale.setDefault(locale);
-//			Locale.setDefault(locale);
-//			Configuration config = new Configuration();
-//			config.locale = locale;
-//			getBaseContext().getResources().updateConfiguration(config,
-//					getBaseContext().getResources().getDisplayMetrics());
-//		}
+		// SharedPreferences settings = this.getSharedPreferences(
+		// ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
+		// String lang =
+		// settings.getString(ArtemisPreferences.SELECTED_LANGUAGE,
+		// "");
+		// if (!"".equals(lang)) {
+		// Locale locale = new Locale(lang);
+		// Locale.setDefault(locale);
+		// Locale.setDefault(locale);
+		// Configuration config = new Configuration();
+		// config.locale = locale;
+		// getBaseContext().getResources().updateConfiguration(config,
+		// getBaseContext().getResources().getDisplayMetrics());
+		// }
 
 		initPreferences();
 
@@ -1421,8 +1424,9 @@ public class ArtemisActivity extends Activity implements
 			} else {
 				// Select zoom lens
 				if (tempSelectedCamera.getRowid() != -1) {
-					setSelectedCamera(tempSelectedCamera.getRowid(), true, false);
-				}	
+					setSelectedCamera(tempSelectedCamera.getRowid(), true,
+							false);
+				}
 				setSelectedZoomLens(zoomLenses.get(selected), true);
 				_lensSettingsFlipper.setInAnimation(null);
 				_lensSettingsFlipper.setOutAnimation(null);

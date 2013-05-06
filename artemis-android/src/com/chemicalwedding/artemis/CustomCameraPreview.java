@@ -4,8 +4,10 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
+import android.graphics.BitmapFactory.Options;
 import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -27,7 +29,7 @@ public class CustomCameraPreview extends ViewGroup {
 		super(context, attr);
 
 		totalScreenWidth = context.getResources().getDisplayMetrics().widthPixels;
-		
+
 		mTextureView = new MyTextureView(context);
 		addView(mTextureView);
 	}
@@ -48,6 +50,12 @@ public class CustomCameraPreview extends ViewGroup {
 			@Override
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
+				// Set the background
+
+				Options o = new Options();
+				o.inSampleSize = 2;
+				ArtemisActivity.arrowBackgroundImage = BitmapFactory
+						.decodeResource(getResources(), R.drawable.arrows, o);
 
 				openCamera();
 			}
@@ -61,6 +69,10 @@ public class CustomCameraPreview extends ViewGroup {
 			@Override
 			public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
 				releaseCamera();
+
+				ArtemisActivity.arrowBackgroundImage.recycle();
+				ArtemisActivity.arrowBackgroundImage = null;
+
 				return true;
 			}
 
@@ -99,10 +111,11 @@ public class CustomCameraPreview extends ViewGroup {
 		Matrix transform = new Matrix();
 
 		transform.postTranslate(_artemisMath.getCurrentGreenBox().left
-				- (ArtemisMath.scaledPreviewWidth - _artemisMath.getCurrentGreenBox()
-						.width()) / 2f, _artemisMath.getCurrentGreenBox().top
-				- (ArtemisMath.scaledPreviewHeight - _artemisMath.getCurrentGreenBox()
-						.height()) / 2f);
+				- (ArtemisMath.scaledPreviewWidth - _artemisMath
+						.getCurrentGreenBox().width()) / 2f,
+				_artemisMath.getCurrentGreenBox().top
+						- (ArtemisMath.scaledPreviewHeight - _artemisMath
+								.getCurrentGreenBox().height()) / 2f);
 		transform.postScale(scaleFactor, scaleFactor, _artemisMath
 				.getCurrentGreenBox().centerX(), _artemisMath
 				.getCurrentGreenBox().centerY());
@@ -150,12 +163,11 @@ public class CustomCameraPreview extends ViewGroup {
 			if (whiteBalance.length() > 0) {
 				parameters.setWhiteBalance(whiteBalance);
 			}
-		
+
 			Log.v(logTag, "Preview size selected: "
 					+ CameraPreview14.previewSize.width + "x"
 					+ CameraPreview14.previewSize.height);
-			parameters.setPreviewSize(
-					CameraPreview14.previewSize.width,
+			parameters.setPreviewSize(CameraPreview14.previewSize.width,
 					CameraPreview14.previewSize.height);
 			mCamera.setParameters(parameters);
 
@@ -199,23 +211,20 @@ public class CustomCameraPreview extends ViewGroup {
 
 			final float previewRatio = (float) previewWidth / previewHeight;
 
-			int scaledPreviewHeight = Math.round(requestedWidth
-					/ previewRatio);
+			int scaledPreviewHeight = Math.round(requestedWidth / previewRatio);
 
-			Log.v(logTag, "Scaled preview width: "
-					+ scaledPreviewWidth + " scaled height:"
-					+ scaledPreviewHeight);
+			Log.v(logTag, "Scaled preview width: " + scaledPreviewWidth
+					+ " scaled height:" + scaledPreviewHeight);
 
-			child.layout(0, 5, scaledPreviewWidth,
-					scaledPreviewHeight+5);
+			child.layout(0, 5, scaledPreviewWidth, scaledPreviewHeight + 5);
 
-			Log.v(logTag, "Scaled Preview width: "
-					+ scaledPreviewWidth + " height:"
-					+ scaledPreviewHeight);
+			Log.v(logTag, "Scaled Preview width: " + scaledPreviewWidth
+					+ " height:" + scaledPreviewHeight);
 
 			Log.v(logTag, "** Finished layout of Camera Preview");
 		}
 	}
+
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		final int width = resolveSize(getSuggestedMinimumWidth(),
