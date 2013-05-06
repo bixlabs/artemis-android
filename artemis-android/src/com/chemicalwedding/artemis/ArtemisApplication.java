@@ -25,8 +25,8 @@ public class ArtemisApplication extends Application {
 		initLanguage();
 	}
 
-	private void initLanguage() {
-
+	protected void initLanguage() {
+		Log.v(logTag, "Initializing language");
 		SharedPreferences settings = this.getSharedPreferences(
 				ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
 

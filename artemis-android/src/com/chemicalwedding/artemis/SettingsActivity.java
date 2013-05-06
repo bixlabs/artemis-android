@@ -89,18 +89,8 @@ public class SettingsActivity extends PreferenceActivity {
 										.putString(
 												ArtemisPreferences.SELECTED_LANGUAGE,
 												selectedLanguage).commit();
-								Locale locale = new Locale(selectedLanguage);
-								Locale.setDefault(locale);
-								Configuration config = new Configuration();
-								config.locale = locale;
-								getActivity()
-										.getApplication()
-										.getResources()
-										.updateConfiguration(
-												config,
-												getActivity().getApplication()
-														.getResources()
-														.getDisplayMetrics());
+								((ArtemisApplication)getActivity()
+										.getApplication()).initLanguage();
 							}
 
 							return true;
