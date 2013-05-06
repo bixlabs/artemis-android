@@ -14,10 +14,8 @@
     <string name="menu_artemis_settings">Настройки</string>
     <string name="menu_lens_settings">Выбрать объектив</string>
     <string name="menu_artemis_about">О программе</string>
-    <string name="menu_artemis_help">Справка</string>
-
+  
     <!-- //Artemis Settings Page -->
-    <string name="new_features">Новые возможности в следующих версиях</string>
     <string name="gps_on_off">GPS Включить/Выключить</string>
     <string name="artemis_settings_title">Artemis Настройки</string>
     <string name="choose_folder_for_image_saving">Изображение Имя папки</string>
@@ -89,7 +87,6 @@ Canon 5D и 7D
     <string name="custom_camera_width">ШИРИНА</string>
     <string name="custom_camera_height">ВЫСОТА</string>
     <string name="custom_camera_focallength">МЕСТНЫЕ ДЛИНА</string>
-    <string name="save_custom_camera">Добавление пользовательских камеры</string>
     <string name="add_custom_camera_directions">Для ввода пользовательских камер вам нужно сделать несколько простых измерений. Место камеры фиксированном расстоянии от стены или фокус-диаграммы и меры от узловой точки линзы на поверхность. Далее, с фиксированным объективом, точно измерить ширину и высоту, что можно увидеть через видоискатель. Использование последовательного единиц.</string>
 
     <!-- / / NEW TRANSLATIONS 2-15-11 -->

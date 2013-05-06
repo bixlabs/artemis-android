@@ -45,22 +45,26 @@
                 <View
                     android:layout_width="30dip"
                     android:layout_height="wrap_content" />
+                
+                 <Button
+                    android:id="@+id/savePictureCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel" />
 
+                
+
+                <View
+                    android:layout_width="30dip"
+                    android:layout_height="wrap_content" />
+                
                 <Button
                     android:id="@+id/savePictureAndEditButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/save_and_edit" />
 
-                <View
-                    android:layout_width="30dip"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/savePictureCancelButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancel" />
+               
             </LinearLayout>
         </LinearLayout>
 
@@ -235,10 +239,7 @@
                 android:layout_marginTop="-50dip"
                 android:gravity="center" >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+               
 
                     <Button
                         android:id="@+id/savePictureDetails"
@@ -256,7 +257,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="@string/cancel" />
-                </LinearLayout>
+              
             </RelativeLayout>
         </LinearLayout>
     </com.chemicalwedding.artemis.ArtemisViewFlipper>

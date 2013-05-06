@@ -14,15 +14,11 @@
     <string name="menu_artemis_settings">설정</string>
     <string name="menu_lens_settings">선택 렌즈</string>
     <string name="menu_artemis_about">소개</string>
-    <string name="menu_artemis_help">도움말</string>
-
+    
     <!-- //Artemis Settings Page -->
-    <string name="new_features">출시예정새로운 기능</string>
-    <string name="gps_on_off">켜기 / 끄기 회전 GPS를</string>
+        <string name="gps_on_off">켜기 / 끄기 회전 GPS를</string>
     <string name="artemis_settings_title">설정을 아르테 미스</string>
     <string name="choose_folder_for_image_saving">이미지 폴더 이름</string>
-    <string name="choose_path">경로를 선택 …</string>
-    <string name="auto_exposure">자동 노출</string>
     <string name="set_exposure_text">세트 노광</string>
     <string name="set_exposure">노출 세트</string>
 
@@ -66,12 +62,10 @@
 
     <string name="lens_settings_title">렌즈 설정</string>
     <string name="save_lenses">렌즈 저장</string>
-    <string name="no_camera_alert">렌즈를 선택하기 전에 카메라를 선택하십시오</string>
-
+   
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">이 사진을 저장</string>
-    <string name="saving_picture">사진 저장</string>
     <string name="save_and_edit">저장하고 세부 정보 편집</string>
     <string name="save_picture">이 사진을 저장</string>
     <string name="gps_coordinates">의 GPS 좌표</string>
@@ -84,11 +78,8 @@
 
     <string name="add_custom_camera_title">추가 사용자 정의 카메라 - 모든 측정 (㎜)</string>
     <string name="custom_camera_name">사용자 정의 카메라 이름을 만듭니다</string>
-    <string name="custom_camera_distance">거리</string>
     <string name="custom_camera_width">폭</string>
-    <string name="custom_camera_height">높이</string>
     <string name="custom_camera_focallength">초점 거리</string>
-    <string name="save_custom_camera">사용자 정의 카메라를 추가</string>
     <string name="add_custom_camera_directions">당신이 몇 가지 간단한 측정을 내리는 데 필요한 사용자 정의 카메라를 입력하십시오. 카메라를 벽이나 초점 차트와 측정 표면에 렌즈의 결절 지점부터 고정된 거리를 배치합니다. 다음, 고정 렌즈, 정확히 너비와 높이 당신은 뷰파인더를 통해 볼 수있는 무엇을 측정합니다. 일관성있는 단위를 사용합니다.</string>
 
     <!-- / / NEW TRANSLATIONS 2-15-11 -->
@@ -150,7 +141,6 @@
 
     <!-- //Add Custom Camera Page -->
 
-    <string name="update_custom_camera">업데이트 사용자 정의 카메라</string>
     <string name="custom_camera_options">사용자 정의 카메라 옵션</string>
     <string name="custom_camera_edit_camera">카메라 편집</string>
     <string name="custom_camera_delete_camera">삭제 카메라</string>
@@ -204,8 +194,7 @@
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"메모 추가"</string>
     <string name="add_custom_lens">"맞춤 렌즈 추가"</string>
-    <string name="add_custom_lens_upper">"맞춤 렌즈 추가"</string>
-    <string name="input_focal_length">"밀리미터 렌즈의 초점 길이를 입력합니다 :"</string>
+   <string name="input_focal_length">"밀리미터 렌즈의 초점 길이를 입력합니다 :"</string>
     <string name="custom_lens_error">"사용자 정의 렌즈 입력 오류"</string>
     <string name="custom_lens_error_message">"이 새 사용자 지정 렌즈를 추가하는 문제였다. 입력 값이 유효한지 확인하고 다시 시도하십시오."</string>
 
@@ -241,7 +230,6 @@
     <string name="artemis_save_folder_summary">"폴더 이름은 아르테미스하여 만든 이미지를 저장합니다. 이 이름을 가진 폴더가 존재하지 않는 경우가 생성됩니다."</string>
     <string name="horizontal_lens_angle">"수평 렌즈 각"</string>
     <string name="vertical_lens_angle">"수직 렌즈 각"</string>
-    <string name="menu_artemis_quit_description">"내가 아르테미스를 종료하려면 클릭하십시오."</string>
     <string name="feedback_report_issue">"문제 / 피드백"</string>
     <string name="feedback_report_issue_description">"보고하고 실행하거나 여러분의 의견을 알려주세요, 우리는 귀하의 의견을 주셔서 감사합니다."</string>
     <string name="menu_artemis_about_description">"응용 프로그램 및 개발자에 대한 약간."</string>

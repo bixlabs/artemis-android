@@ -82,6 +82,7 @@
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
             android:textColor="@color/previewTextColor"
+            android:textIsSelectable="true"
             android:textSize="15sp"
             android:typeface="monospace" />
     </LinearLayout>

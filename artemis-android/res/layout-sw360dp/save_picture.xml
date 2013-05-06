@@ -45,22 +45,25 @@
                 <View
                     android:layout_width="15dp"
                     android:layout_height="wrap_content" />
-
+                
                 <Button
-                    android:id="@+id/savePictureAndEditButton"
+                    android:id="@+id/savePictureCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/save_and_edit" />
+                    android:text="@string/cancel" />
+
+                
 
                 <View
                     android:layout_width="15dp"
                     android:layout_height="wrap_content" />
 
                 <Button
-                    android:id="@+id/savePictureCancelButton"
+                    android:id="@+id/savePictureAndEditButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cancel" />
+                    android:text="@string/save_and_edit" />
+                
             </LinearLayout>
         </LinearLayout>
 

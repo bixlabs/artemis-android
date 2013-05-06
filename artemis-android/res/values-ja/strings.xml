@@ -16,8 +16,6 @@
     <string name="gps_on_off">オン/オフ ターンのGPS</string>
     <string name="artemis_settings_title">設定のアルテミス</string>
     <string name="choose_folder_for_image_saving">画像の保存のための 先フォルダにコピーします。</string>
-    <string name="choose_path">選択..</string>
-    <string name="auto_exposure">自動露出</string>
     <string name="set_exposure_text">セット露出</string>
     <string name="set_exposure">は、露出を設定する</string>
 
@@ -61,12 +59,10 @@
 
     <string name="lens_settings_title">レンズの設定</string>
     <string name="save_lenses">は、レンズを保存</string>
-    <string name="no_camera_alert">は、レンズを選択する前に、カメラを選択してください。</string>
-
+   
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">画像を保存</string>
-    <string name="saving_picture">画像を保存する</string>
     <string name="save_and_edit">は、保存して、詳細を編集</string>
     <string name="save_picture">画像を保存</string>
     <string name="gps_coordinates">のGPS座標</string>
@@ -79,9 +75,7 @@
 
     <string name="add_custom_camera_title">[カスタムカメラ - milimeters内のすべてのmeasurmentsさ（mm）</string>
     <string name="custom_camera_name">は、カスタムカメラNAMEを作成する</string>
-    <string name="custom_camera_distance">距離</string>
     <string name="custom_camera_width">幅</string>
-    <string name="custom_camera_height">高さ</string>
     <string name="custom_camera_focallength">焦点距離</string>
      <string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
 
@@ -144,7 +138,6 @@
 
     <!-- //Add Custom Camera Page -->
 
-    <string name="update_custom_camera">更新カスタムカメラ</string>
     <string name="custom_camera_options">カスタムカメラオプション</string>
     <string name="custom_camera_edit_camera">カメラを編集する</string>
     <string name="custom_camera_delete_camera">削除カメラ</string>
@@ -198,7 +191,6 @@
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"メモを追加"</string>
     <string name="add_custom_lens">"カスタムレンズを追加"</string>
-    <string name="add_custom_lens_upper">"カスタムレンズを追加"</string>
     <string name="input_focal_length">"ミリでレンズの焦点距離を入力してください："</string>
     <string name="custom_lens_error">"カスタムレンズの入力エラー"</string>
     <string name="custom_lens_error_message">"新しいカスタムレンズを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。"</string>
@@ -231,11 +223,9 @@
     <string name="save_raw_image_text">"いいえボーダーないか、またはテキスト"</string>
 
     <!-- Preference Strings -->
-    <string name="artemis">"アルテミス"</string>
     <string name="artemis_save_folder_summary">"アルテミスでは、作成イメージを保存するフォルダ名。この名前のフォルダが存在しない場合、それはあなたのために作成されます。"</string>
     <string name="horizontal_lens_angle">"水平方向のレンズの角度"</string>
     <string name="vertical_lens_angle">"垂直レンズの角度"</string>
-    <string name="menu_artemis_quit_description">"私はアルテミスを終了する場合にクリックします。"</string>
     <string name="feedback_report_issue">"問題/フィードバック"</string>
     <string name="feedback_report_issue_description">"報告し、発行するか、または私達にあなたのフィードバックを与え、我々はあなたのコメントに感謝します。"</string>
     <string name="menu_artemis_about_description">"アプリとその開発について少し。"</string>

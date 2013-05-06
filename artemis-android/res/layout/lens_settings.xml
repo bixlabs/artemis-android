@@ -81,22 +81,29 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.15"
                 android:gravity="bottom|center_horizontal"
-                android:padding="2dip" >
+                android:padding="2dip"
+                style="?android:attr/buttonBarButtonStyle" >
 
-                <Button
-                    android:id="@+id/saveLenses"
-                    android:layout_width="140dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="50dip"
-                    android:layout_weight=".3"
-                    android:text="@string/save_lenses" />
-
-                <Button
+               <Button
                     android:id="@+id/cancelLenses"
                     android:layout_width="140dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".3"
-                    android:text="@string/cancel" />
+                    
+                    android:text="@string/cancel"
+                    style="?android:attr/buttonBarButtonStyle" />
+                
+                
+                
+                <Button
+                    android:id="@+id/saveLenses"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dip"
+                   
+                    android:text="@string/save_lenses"
+                    style="?android:attr/buttonBarButtonStyle" />
+
+                
             </LinearLayout>
         </LinearLayout>
 

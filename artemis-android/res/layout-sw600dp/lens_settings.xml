@@ -85,17 +85,17 @@
                 android:padding="2dip" >
 
                 <Button
+                    android:id="@+id/cancelLenses"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel" />
+
+                <Button
                     android:id="@+id/saveLenses"
                     android:layout_width="200dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="50dip"
                     android:text="@string/save_lenses" />
-
-                <Button
-                    android:id="@+id/cancelLenses"
-                    android:layout_width="200dip"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancel" />
             </LinearLayout>
         </LinearLayout>
     </com.chemicalwedding.artemis.ArtemisViewFlipper>
