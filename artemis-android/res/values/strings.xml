@@ -3,6 +3,7 @@
 
     <!-- //English Strings -->
 
+
     <!-- //Artemis menu -->
 
     <string name="menu_camera_settings">Select Camera</string>
@@ -310,5 +311,9 @@
     <string name="image_save_error">ERROR: The image could not be saved. The storage media may be full.</string>
     <string name="save_raw_image_text">No Border or Text</string>
     <string name="language">Language</string>
+
+    <!-- Newly added below here -->
+    <string name="sure_you_want_to_exit">Are you sure you want to exit?</string>
+    <string name="exit_artemis">Exit Artemis</string>
 
 </resources>

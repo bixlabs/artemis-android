@@ -1090,8 +1090,8 @@ public class ArtemisActivity extends Activity implements
 					// Present alert dialog
 					AlertDialog dialog = new AlertDialog.Builder(
 							ArtemisActivity.this)
-							.setMessage("Are you sure you want to exit?")
-							.setTitle("Exit Artemis")
+							.setMessage(R.string.sure_you_want_to_exit)
+							.setTitle(R.string.exit_artemis)
 							.setPositiveButton(R.string.ok,
 									new DialogInterface.OnClickListener() {
 										@Override
