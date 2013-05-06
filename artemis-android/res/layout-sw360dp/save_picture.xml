@@ -36,21 +36,21 @@
                 android:layout_weight="0.15"
                 android:gravity="bottom" >
 
-                <Button
-                    android:id="@+id/savePictureButton"
+              <Button
+                    android:id="@+id/savePictureCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/save_picture" />
+                    android:text="@string/cancel" />
 
                 <View
                     android:layout_width="15dp"
                     android:layout_height="wrap_content" />
                 
-                <Button
-                    android:id="@+id/savePictureCancelButton"
+                  <Button
+                    android:id="@+id/savePictureButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cancel" />
+                    android:text="@string/save_picture" />
 
                 
 
@@ -63,7 +63,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/save_and_edit" />
-                
             </LinearLayout>
         </LinearLayout>
 
@@ -240,18 +239,18 @@
                 android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/save_edit_details_PictureCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:layout_marginRight="25dp"
+                    android:text="@string/cancel" />
+
+                <Button
                     android:id="@+id/savePictureDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
-                    android:text="@string/save" />
-
-                <Button
-                    android:id="@+id/save_edit_details_PictureCancelButton"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
-                    android:text="@string/cancel" />
+                    android:text="@string/save" />
             </LinearLayout>
         </LinearLayout>
     </com.chemicalwedding.artemis.ArtemisViewFlipper>

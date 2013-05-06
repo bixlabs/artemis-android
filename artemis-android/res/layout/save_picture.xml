@@ -36,23 +36,24 @@
                 android:layout_weight="0.2"
                 android:gravity="bottom" >
 
-                <Button
-                    android:id="@+id/savePictureButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/save_picture" />
-
-                <View
-                    android:layout_width="30dip"
-                    android:layout_height="wrap_content" />
                 
-                 <Button
+                
+                  <Button
                     android:id="@+id/savePictureCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel" />
 
+                <View
+                    android:layout_width="30dip"
+                    android:layout_height="wrap_content" />
                 
+                <Button
+                    android:id="@+id/savePictureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_picture" />
+                                
 
                 <View
                     android:layout_width="30dip"
@@ -239,7 +240,17 @@
                 android:layout_marginTop="-50dip"
                 android:gravity="center" >
 
-               
+               <Button
+                        android:id="@+id/save_edit_details_PictureCancelButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancel" />
+
+                    
+
+                    <View
+                        android:layout_width="50dip"
+                        android:layout_height="wrap_content" />
 
                     <Button
                         android:id="@+id/savePictureDetails"
@@ -247,16 +258,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/save" />
-
-                    <View
-                        android:layout_width="50dip"
-                        android:layout_height="wrap_content" />
-
-                    <Button
-                        android:id="@+id/save_edit_details_PictureCancelButton"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cancel" />
               
             </RelativeLayout>
         </LinearLayout>
