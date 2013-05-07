@@ -315,5 +315,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
      <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">¿Está seguro de que desea salir?</string>
     <string name="exit_artemis">Salir de Artemis</string>
+    <string name="black_and_white_preview">Blanco y negro Vista previa</string>
     
 </resources>

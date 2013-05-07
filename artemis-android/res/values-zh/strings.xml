@@ -335,5 +335,6 @@
     <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">您确定要退出吗?</string>
     <string name="exit_artemis">退出阿耳忒弥斯</string>
+    <string name="black_and_white_preview">黑与白的预览</string>
     
 </resources>

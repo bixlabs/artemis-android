@@ -334,5 +334,6 @@ Canon 5D и 7D
     <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">Вы уверены, что хотите выйти?</string>
     <string name="exit_artemis">Выход Artemis</string>
+    <string name="black_and_white_preview">Черно-белое изображение</string>
 
 </resources>

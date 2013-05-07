@@ -33,7 +33,7 @@
             android:key="@string/preference_key_previewblackwhite"
             android:summaryOff="@string/camera_preview_will_show_all_colors"
             android:summaryOn="@string/camera_preview_will_be_black_and_white"
-            android:title="Black and White Preview" />
+            android:title="@string/black_and_white_preview" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/device_camera_sensor" >
         <ListPreference

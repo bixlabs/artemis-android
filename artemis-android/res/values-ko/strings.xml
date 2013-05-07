@@ -325,5 +325,6 @@
     <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">당신은 당신이 종료 하시겠습니까?</string>
     <string name="exit_artemis">아르테미스 종료</string>
+    <string name="black_and_white_preview">흑인과 백인 미리보기</string>
     
 </resources>

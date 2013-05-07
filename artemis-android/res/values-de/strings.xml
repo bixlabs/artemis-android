@@ -250,5 +250,6 @@
      <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">Sind Sie sicher, dass Sie beenden?</string>
     <string name="exit_artemis">Verlassen Artemis</string>
+    <string name="black_and_white_preview">Black and White Vorschau</string>
     
 </resources>

@@ -293,5 +293,6 @@
     <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">यदि आप बाहर निकलने के लिए चाहते हैं?</string>
     <string name="exit_artemis">आर्टेमिस से बाहर निकलें</string>
+    <string name="black_and_white_preview">काले और सफेद पूर्वावलोकन</string>
     
 </resources>

@@ -38,7 +38,7 @@
         <item>"إيقاف"</item>
     </string-array>
 
-    <string name="quickshot_text">"الوضع QuickShot"</string>
+    <string name="quickshot_text">"الوضع قطة سريعة"</string>
     <string name="lock_boxes_text">"قفل صناديق عدسة"</string>
     <string name="auto_white_balance">"توازن اللون الأبيض تلقائي"</string>
     <string name="set_white_balance_text">"ضبط توازن اللون الأبيض"</string>
@@ -289,5 +289,6 @@
     <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">هل أنت متأكد أنك تريد الخروج؟</string>
     <string name="exit_artemis">خروج أرتميس</string>
+    <string name="black_and_white_preview">معاينة أبيض وأسود</string>
 
 </resources>

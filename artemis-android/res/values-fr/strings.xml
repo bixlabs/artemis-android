@@ -309,5 +309,6 @@
      <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">Etes-vous sûr de vouloir quitter?</string>
     <string name="exit_artemis">Sortie Artemis</string>
+    <string name="black_and_white_preview">Noir et blanc Aperçu</string>
     
 </resources>

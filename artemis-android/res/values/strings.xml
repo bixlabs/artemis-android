@@ -315,5 +315,6 @@
     <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">Are you sure you want to exit?</string>
     <string name="exit_artemis">Exit Artemis</string>
+    <string name="black_and_white_preview">Black and White Preview</string>
 
 </resources>
