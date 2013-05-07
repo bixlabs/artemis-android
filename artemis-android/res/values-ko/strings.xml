@@ -14,9 +14,9 @@
     <string name="menu_artemis_settings">설정</string>
     <string name="menu_lens_settings">선택 렌즈</string>
     <string name="menu_artemis_about">소개</string>
-    
+
     <!-- //Artemis Settings Page -->
-        <string name="gps_on_off">켜기 / 끄기 회전 GPS를</string>
+    <string name="gps_on_off">켜기 / 끄기 회전 GPS를</string>
     <string name="artemis_settings_title">설정을 아르테 미스</string>
     <string name="choose_folder_for_image_saving">이미지 폴더 이름</string>
     <string name="set_exposure_text">세트 노광</string>
@@ -62,7 +62,7 @@
 
     <string name="lens_settings_title">렌즈 설정</string>
     <string name="save_lenses">렌즈 저장</string>
-   
+
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">이 사진을 저장</string>
@@ -194,7 +194,7 @@
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"메모 추가"</string>
     <string name="add_custom_lens">"맞춤 렌즈 추가"</string>
-   <string name="input_focal_length">"밀리미터 렌즈의 초점 길이를 입력합니다 :"</string>
+    <string name="input_focal_length">"밀리미터 렌즈의 초점 길이를 입력합니다 :"</string>
     <string name="custom_lens_error">"사용자 정의 렌즈 입력 오류"</string>
     <string name="custom_lens_error_message">"이 새 사용자 지정 렌즈를 추가하는 문제였다. 입력 값이 유효한지 확인하고 다시 시도하십시오."</string>
 
@@ -315,17 +315,15 @@
     <string name="quick_picture_off">"사진을 저장 한 후에 이미지 미리보기가 표시됩니다."</string>
     <string name="quick_picture_on">"빠른 사진을 사용할 수 있습니다. 사진을 저장 한 후에 이미지 미리보기가 표시되지 않습니다."</string>
     <string name="language">언어</string>
-    
     <string name="image_saved_success">이미지 저장 중...</string>
+    <string name="untitle_custom_cam">제목 없음 사용자 정의 카메라</string>
+    <string name="custom_camera_error">사용자 정의 카메라 입력 오류</string>
+    <string name="ok">확인</string>
+    <string name="heading_tilt_roll_promt">제목 옵션을 선택</string>
+    <string name="custom_camera_error_message">는 새로운 사용자 정의 카메라를 추가하는 문제였다.입력 값이 유효한지 확인하고 다시 시도하십시오.</string>
 
-<string name="untitle_custom_cam">제목 없음 사용자 정의 카메라</string>
-
-<string name="custom_camera_error">사용자 정의 카메라 입력 오류</string>
-
-<string name="ok">확인</string>
-
- <string name="heading_tilt_roll_promt">제목 옵션을 선택</string>
-
- <string name="custom_camera_error_message">는 새로운 사용자 정의 카메라를 추가하는 문제였다.입력 값이 유효한지 확인하고 다시 시도하십시오.</string>
- 
+    <!-- Newly added below here -->
+    <string name="sure_you_want_to_exit">당신은 당신이 종료 하시겠습니까?</string>
+    <string name="exit_artemis">아르테미스 종료</string>
+    
 </resources>

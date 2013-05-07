@@ -9,10 +9,9 @@
     <string name="menu_artemis_settings">の設定</string>
     <string name="menu_lens_settings">選択レンズ</string>
     <string name="menu_artemis_about">について</string>
-   
 
     <!-- //Artemis Settings Page -->
-   
+
     <string name="gps_on_off">オン/オフ ターンのGPS</string>
     <string name="artemis_settings_title">設定のアルテミス</string>
     <string name="choose_folder_for_image_saving">画像の保存のための 先フォルダにコピーします。</string>
@@ -59,7 +58,7 @@
 
     <string name="lens_settings_title">レンズの設定</string>
     <string name="save_lenses">は、レンズを保存</string>
-   
+
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">画像を保存</string>
@@ -77,7 +76,7 @@
     <string name="custom_camera_name">は、カスタムカメラNAMEを作成する</string>
     <string name="custom_camera_width">幅</string>
     <string name="custom_camera_focallength">焦点距離</string>
-     <string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
+    <string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
 
     <!-- / / NEW TRANSLATIONS 2-15-11 -->
 
@@ -311,17 +310,15 @@
     <string name="quick_picture_off">"映像が保存された後の画像のプレビューが表示される。"</string>
     <string name="quick_picture_on">"クイック写真は有効になっています。画像が保存された後の画像のプレビューが表示されません。"</string>
     <string name="language">言語</string>
-    
     <string name="image_saved_success">画像を保存しています...</string>
+    <string name="untitle_custom_cam">無題カスタムカメラ</string>
+    <string name="custom_camera_error">カスタムカメラ入力エラー</string>
+    <string name="ok">ok</string>
+    <string name="heading_tilt_roll_promt">見出しオプションを選択してください</string>
+    <string name="custom_camera_error_message">新しいカスタムカメラを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。</string>
 
-<string name="untitle_custom_cam">無題カスタムカメラ</string>
-
-<string name="custom_camera_error">カスタムカメラ入力エラー</string>
-
-<string name="ok">ok</string>
-
- <string name="heading_tilt_roll_promt">見出しオプションを選択してください</string>
- 
- <string name="custom_camera_error_message">新しいカスタムカメラを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。</string>
-
+    <!-- Newly added below here -->
+    <string name="sure_you_want_to_exit">あなたが終了してもよろしいですか？</string>
+    <string name="exit_artemis">アルテミスを終了</string>
+    
 </resources>

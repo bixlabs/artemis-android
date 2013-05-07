@@ -9,7 +9,6 @@
     <string name="artemis_settings_title">Artemis Einstellungen</string>
     <string name="choose_folder_for_image_saving">Zielordner für zu speichernde Bilder (SD: / / Galerie /   ..)</string>
     <string name="set_exposure">Belichtungskorrektur</string>
-
     <string name="auto_white_balance">Automatischer Weißabgleich</string>
     <string name="set_white_balance_text">Manueller Weißabgleich</string>
     <string name="set_white_balance">Manueller Weißabgleich</string>
@@ -92,9 +91,9 @@
     <string name="manually_set_v_angle_text">Vertikaler Kamerawinkel</string>
     <string name="auto_focus_text">Auto Focus</string>
     <string name="gallery_no_images_found">Keine Bilder gefunden</string>
-    
-<!--     New Strings 05-13 -->
- <!-- New custom camera strings -->
+
+    <!-- New Strings 05-13 -->
+    <!-- New custom camera strings -->
     <string name="custom_cameras">"Kundenspezifische Kameras"</string>
     <string name="custom_camera_squeeze_ratio">"Squeeze-Ratio"</string>
     <string name="custom_camera_aspect_ratio">"Aspect Ratio (1,78)"</string>
@@ -239,21 +238,17 @@
     <string name="smooth_image_on">"Ein Filter wird angewendet, um die Bilder glatter erscheinen bei der Skalierung erforderlich ist."</string>
     <string name="quick_picture_off">"Ein Bild wird nach einer Vorschau Bilder gespeichert werden werden."</string>
     <string name="quick_picture_on">"Schnelle Bilder sind aktiviert. Ein Bild-Vorschau wird nicht angezeigt, nachdem Bilder gespeichert werden werden."</string>
-<string name="language">Sprache</string>
+    <string name="language">Sprache</string>
+    <string name="set_exposure_text">Belichtung</string>
+    <string name="image_saved_success">Speichern Bild ...</string>
+    <string name="untitle_custom_cam">Untitled Individuelle Kamera</string>
+    <string name="custom_camera_error">Individuelle Kamera-Eingang Fehler</string>
+    <string name="ok">ok</string>
+    <string name="heading_tilt_roll_promt">Wählen Sie Optionen Unterwegs</string>
+    <string name="custom_camera_error_message">Das war ein Problem, indem Sie das neue benutzerdefinierte Kamera. Bitte überprüfen Sie, ob die eingegebenen Werte gültig sind und versuchen Sie es erneut.</string>
 
-<string name="set_exposure_text">Belichtung</string>
-
-<string name="image_saved_success">Speichern Bild ...</string>
-
-<string name="untitle_custom_cam">Untitled Individuelle Kamera</string>
-
-<string name="custom_camera_error">Individuelle Kamera-Eingang Fehler</string>
-
-<string name="ok">ok</string>
-
- <string name="heading_tilt_roll_promt">Wählen Sie Optionen Unterwegs</string>
-
- <string name="custom_camera_error_message">Das war ein Problem, indem Sie das neue benutzerdefinierte Kamera. Bitte überprüfen Sie, ob die eingegebenen Werte gültig sind und versuchen Sie es erneut.</string>
-
-
+     <!-- Newly added below here -->
+    <string name="sure_you_want_to_exit">Sind Sie sicher, dass Sie beenden?</string>
+    <string name="exit_artemis">Verlassen Artemis</string>
+    
 </resources>

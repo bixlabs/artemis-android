@@ -21,7 +21,6 @@
     <string name="choose_folder_for_image_saving">Le dossier de destination pour sauver l\'image.</string>
     <string name="set_exposure_text">Exposition Set</string>
     <string name="set_exposure">Exposition Set</string>
-
     <string name="auto_white_balance"> Balance des blancs automatique</string>
     <string name="set_white_balance_text">Régler la balance des blancs</string>
     <string name="set_white_balance">Régler la balance des blancs</string>
@@ -300,17 +299,15 @@
     <string name="quick_picture_off">"Un aperçu de l'image s'affiche après les images sont enregistrées."</string>
     <string name="quick_picture_on">"Images rapides sont activées. Un aperçu de l'image ne sera pas affiché après les images sont enregistrées."</string>
     <string name="language">langue</string>
-
     <string name="image_saved_success">Enregistrer limage ...</string>
+    <string name="untitle_custom_cam">Untitled caméra personnalisée</string>
+    <string name="custom_camera_error">Caméra personnalisée Erreur de saisie</string>
+    <string name="ok">ok</string>
+    <string name="heading_tilt_roll_promt">Sélectionnez Options Rubrique</string>
+    <string name="custom_camera_error_message">Il y avait un problème en ajoutant la nouvelle caméra personnalisé. Veuillez vérifier que les valeurs dentrée sont valables et essayez de nouveau.</string>
 
-<string name="untitle_custom_cam">Untitled caméra personnalisée</string>
-
-<string name="custom_camera_error">Caméra personnalisée Erreur de saisie</string>
-
-<string name="ok">ok</string>
-
- <string name="heading_tilt_roll_promt">Sélectionnez Options Rubrique</string>
- 
- <string name="custom_camera_error_message">Il y avait un problème en ajoutant la nouvelle caméra personnalisé. Veuillez vérifier que les valeurs dentrée sont valables et essayez de nouveau.</string>
+     <!-- Newly added below here -->
+    <string name="sure_you_want_to_exit">Etes-vous sûr de vouloir quitter?</string>
+    <string name="exit_artemis">Sortie Artemis</string>
     
 </resources>
