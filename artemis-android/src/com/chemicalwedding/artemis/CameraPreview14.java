@@ -367,12 +367,13 @@ public class CameraPreview14 extends ViewGroup {
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
 				// Set the background
-
-				Options o = new Options();
-				o.inSampleSize = 2;
-				ArtemisActivity.arrowBackgroundImage = BitmapFactory
-						.decodeResource(getResources(), R.drawable.arrows, o);
-
+				if (ArtemisActivity.arrowBackgroundImage == null) {
+					Options o = new Options();
+					o.inSampleSize = 2;
+					ArtemisActivity.arrowBackgroundImage = BitmapFactory
+							.decodeResource(getResources(), R.drawable.arrows,
+									o);
+				}
 				openCamera();
 			}
 

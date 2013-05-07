@@ -51,12 +51,13 @@ public class CustomCameraPreview extends ViewGroup {
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
 				// Set the background
-
-				Options o = new Options();
-				o.inSampleSize = 2;
-				ArtemisActivity.arrowBackgroundImage = BitmapFactory
-						.decodeResource(getResources(), R.drawable.arrows, o);
-
+				if (ArtemisActivity.arrowBackgroundImage == null) {
+					Options o = new Options();
+					o.inSampleSize = 2;
+					ArtemisActivity.arrowBackgroundImage = BitmapFactory
+							.decodeResource(getResources(), R.drawable.arrows,
+									o);
+				}
 				openCamera();
 			}
 
@@ -69,11 +70,6 @@ public class CustomCameraPreview extends ViewGroup {
 			@Override
 			public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
 				releaseCamera();
-
-				if (ArtemisActivity.arrowBackgroundImage != null) {
-					ArtemisActivity.arrowBackgroundImage.recycle();
-					ArtemisActivity.arrowBackgroundImage = null;
-				}
 
 				return true;
 			}
