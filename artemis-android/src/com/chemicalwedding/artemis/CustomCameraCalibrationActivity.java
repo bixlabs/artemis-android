@@ -9,10 +9,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -35,6 +37,7 @@ public class CustomCameraCalibrationActivity extends Activity {
 	private CustomCameraPreview cameraPreview;
 
 	private ArtemisDatabaseHelper mDBHelper;
+	private Handler mUiHandler = new Handler();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class CustomCameraCalibrationActivity extends Activity {
 				"Initial chip width: %f Height: %f LargestMM: %f", chipWidth,
 				chipHeight, largestViewableFocalLength));
 
-		new Handler().postDelayed(new Runnable() {
+		mUiHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				scalePreview();
@@ -97,42 +100,85 @@ public class CustomCameraCalibrationActivity extends Activity {
 		cameraPreview.releaseCamera();
 	}
 
+	private final Runnable prevRunnable = new Runnable() {
+		public void run() {
+			previous();
+		}
+	};
+
+	private final Runnable prevFineRunnable = new Runnable() {
+		public void run() {
+			previousFine();
+		}
+	};
+
+	private final Runnable nextRunnable = new Runnable() {
+		public void run() {
+			next();
+		}
+	};
+
+	private final Runnable nextFineRunnable = new Runnable() {
+		public void run() {
+			nextFine();
+		}
+	};
+
+	protected void previous() {
+		chipWidth += 1.0f;
+		calculateChipDimensions();
+		scalePreview();
+	}
+
+	protected void previousFine() {
+		chipWidth += 0.2f;
+		calculateChipDimensions();
+		scalePreview();
+	}
+
+	protected void next() {
+		chipWidth -= 1.0f;
+		calculateChipDimensions();
+		scalePreview();
+	}
+
+	protected void nextFine() {
+		chipWidth -= 0.2f;
+		calculateChipDimensions();
+		scalePreview();
+	}
+
 	private void bindViewEvents() {
-		findViewById(R.id.prevButton).setOnClickListener(new OnClickListener() {
+		LongPressButton prevButton = (LongPressButton) findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				chipWidth += 1.0f;
-				calculateChipDimensions();
-				scalePreview();
+				previous();
 			}
 		});
 
-		findViewById(R.id.finePrevButton).setOnClickListener(
-				new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						chipWidth += 0.2f;
-						calculateChipDimensions();
-						scalePreview();
-					}
-				});
-
-		findViewById(R.id.nextButton).setOnClickListener(new OnClickListener() {
+		LongPressButton finePrevButton = (LongPressButton) findViewById(R.id.finePrevButton);
+		finePrevButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				chipWidth -= 1.0f;
-				calculateChipDimensions();
-				scalePreview();
+				previousFine();
 			}
 		});
 
-		findViewById(R.id.fineNextButton).setOnClickListener(
+		LongPressButton nextButton = (LongPressButton) findViewById(R.id.nextButton);
+		nextButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				next();
+			}
+		});
+
+		LongPressButton fineNextButton = (LongPressButton) findViewById(R.id.fineNextButton);
+		fineNextButton.setOnClickListener(
 				new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						chipWidth -= 0.2f;
-						calculateChipDimensions();
-						scalePreview();
+						nextFine();
 					}
 				});
 
