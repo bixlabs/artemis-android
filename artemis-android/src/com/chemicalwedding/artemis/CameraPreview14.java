@@ -367,13 +367,12 @@ public class CameraPreview14 extends ViewGroup {
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
 				// Set the background
-				
+
 				Options o = new Options();
 				o.inSampleSize = 2;
-				ArtemisActivity.arrowBackgroundImage = BitmapFactory.decodeResource(
-						getResources(), R.drawable.arrows, o);
+				ArtemisActivity.arrowBackgroundImage = BitmapFactory
+						.decodeResource(getResources(), R.drawable.arrows, o);
 
-				
 				openCamera();
 			}
 
@@ -386,10 +385,12 @@ public class CameraPreview14 extends ViewGroup {
 			@Override
 			public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
 				releaseCamera();
-				
-				ArtemisActivity.arrowBackgroundImage.recycle();
-				ArtemisActivity.arrowBackgroundImage = null;
-				
+
+				if (ArtemisActivity.arrowBackgroundImage != null) {
+					ArtemisActivity.arrowBackgroundImage.recycle();
+					ArtemisActivity.arrowBackgroundImage = null;
+				}
+
 				return true;
 			}
 
@@ -424,10 +425,10 @@ public class CameraPreview14 extends ViewGroup {
 	}
 
 	public void openCamera() {
-		
+
 		isCameraReleased = false;
 		mCamera = openFrontFacingCameraGingerbread();
-		
+
 		if (mCamera != null) {
 			Camera.Parameters parameters = mCamera.getParameters();
 			SharedPreferences artemisPrefs = getContext()
@@ -596,7 +597,7 @@ public class CameraPreview14 extends ViewGroup {
 			}
 		}
 	}
-	
+
 	protected boolean isCameraReleased = false;
 
 	public void releaseCamera() {
@@ -1098,7 +1099,7 @@ public class CameraPreview14 extends ViewGroup {
 					+ ArtemisMath.scaledPreviewHeight);
 
 			child.layout(0, 5, ArtemisMath.scaledPreviewWidth,
-					ArtemisMath.scaledPreviewHeight+5);
+					ArtemisMath.scaledPreviewHeight + 5);
 
 			Log.v(logTag, "** Finished layout of Camera Preview");
 		}

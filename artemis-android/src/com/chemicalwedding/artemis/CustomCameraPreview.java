@@ -70,8 +70,10 @@ public class CustomCameraPreview extends ViewGroup {
 			public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
 				releaseCamera();
 
-				ArtemisActivity.arrowBackgroundImage.recycle();
-				ArtemisActivity.arrowBackgroundImage = null;
+				if (ArtemisActivity.arrowBackgroundImage != null) {
+					ArtemisActivity.arrowBackgroundImage.recycle();
+					ArtemisActivity.arrowBackgroundImage = null;
+				}
 
 				return true;
 			}
