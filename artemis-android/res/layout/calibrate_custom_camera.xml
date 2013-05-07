@@ -107,7 +107,7 @@
         android:layout_height="fill_parent"
         android:gravity="left|bottom" >
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/prevButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
@@ -116,9 +116,7 @@
             android:src="@drawable/prevbutton"
             android:visibility="visible" />
 
-        <!-- empty space -->
-
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/finePrevButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
@@ -151,18 +149,17 @@
         android:layout_height="fill_parent"
         android:gravity="right|bottom" >
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/fineNextButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
             android:src="@drawable/fineplusbutton" />
 
-        <ImageView
+        <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/nextButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
             android:layout_marginRight="5dp"
-            android:clickable="true"
             android:src="@drawable/nextbutton" />
     </LinearLayout>
 
