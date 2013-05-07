@@ -157,6 +157,8 @@ public class ArtemisActivity extends Activity implements
 	private boolean volumeDownPicture;
 	private boolean volumeDownAutoFocus;
 
+	protected static final long lensRepeatSpeed = 35;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(_logTag, "Creating Artemis Activity");
@@ -1842,7 +1844,7 @@ public class ArtemisActivity extends Activity implements
 				: false;
 	}
 
-	protected final long lensRepeatSpeed = 35;
+	
 
 	private final Runnable previousLensRunnable = new Runnable() {
 		public void run() {

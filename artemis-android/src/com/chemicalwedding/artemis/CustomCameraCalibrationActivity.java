@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.CustomCamera;
 
@@ -38,6 +39,8 @@ public class CustomCameraCalibrationActivity extends Activity {
 
 	private ArtemisDatabaseHelper mDBHelper;
 	private Handler mUiHandler = new Handler();
+	private ClickBoolean nextClick, nextFineClick, prevClick, prevFineClick;
+	protected static final long lensRepeatSpeed = 35;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,25 +105,44 @@ public class CustomCameraCalibrationActivity extends Activity {
 
 	private final Runnable prevRunnable = new Runnable() {
 		public void run() {
-			previous();
+			if (prevClick.isDown()) {
+				previous();
+				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+						+ lensRepeatSpeed);
+
+			}
 		}
 	};
 
 	private final Runnable prevFineRunnable = new Runnable() {
 		public void run() {
-			previousFine();
+			if (prevFineClick.isDown()) {
+				previousFine();
+				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+						+ lensRepeatSpeed);
+
+			}
 		}
 	};
 
 	private final Runnable nextRunnable = new Runnable() {
 		public void run() {
-			next();
+			if (nextClick.isDown()) {
+				next();
+				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+						+ lensRepeatSpeed);
+			}
 		}
 	};
 
 	private final Runnable nextFineRunnable = new Runnable() {
 		public void run() {
-			nextFine();
+			if (nextFineClick.isDown()) {
+				nextFine();
+				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+						+ lensRepeatSpeed);
+
+			}
 		}
 	};
 
@@ -156,12 +178,34 @@ public class CustomCameraCalibrationActivity extends Activity {
 				previous();
 			}
 		});
+		prevButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				prevClick.setDown(true);
+				mUiHandler.post(prevRunnable);
+				// if (isHapticFeedbackEnabled) {
+				// buzz(_lensFocalLengthText);
+				// }
+				return true;
+			}
+		});
 
 		LongPressButton finePrevButton = (LongPressButton) findViewById(R.id.finePrevButton);
 		finePrevButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				previousFine();
+			}
+		});
+		finePrevButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				prevFineClick.setDown(true);
+				mUiHandler.post(prevFineRunnable);
+				// if (isHapticFeedbackEnabled) {
+				// buzz(_lensFocalLengthText);
+				// }
+				return true;
 			}
 		});
 
@@ -172,15 +216,41 @@ public class CustomCameraCalibrationActivity extends Activity {
 				next();
 			}
 		});
+		nextButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				nextClick.setDown(true);
+				mUiHandler.post(nextRunnable);
+				// if (isHapticFeedbackEnabled) {
+				// buzz(_lensFocalLengthText);
+				// }
+				return true;
+			}
+		});
 
 		LongPressButton fineNextButton = (LongPressButton) findViewById(R.id.fineNextButton);
-		fineNextButton.setOnClickListener(
-				new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						nextFine();
-					}
-				});
+		fineNextButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				nextFine();
+			}
+		});
+		fineNextButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				nextFineClick.setDown(true);
+				mUiHandler.post(nextFineRunnable);
+				// if (isHapticFeedbackEnabled) {
+				// buzz(_lensFocalLengthText);
+				// }
+				return true;
+			}
+		});
+
+		nextClick = nextButton.getClickBoolean();
+		prevClick = prevButton.getClickBoolean();
+		nextFineClick = fineNextButton.getClickBoolean();
+		prevFineClick = finePrevButton.getClickBoolean();
 
 		findViewById(R.id.calibrateSaveButton).setOnClickListener(
 				addCustomCameraClickListener);
