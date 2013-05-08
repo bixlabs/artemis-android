@@ -99,7 +99,6 @@ public class CameraPreview14 extends ViewGroup {
 
 		artemisApplication = ((ArtemisApplication) (((Activity) context)
 				.getApplication()));
-
 		mTextureView = new MyTextureView(context);
 		addView(mTextureView);
 
@@ -366,14 +365,7 @@ public class CameraPreview14 extends ViewGroup {
 			@Override
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
-				// Set the background
-				if (ArtemisActivity.arrowBackgroundImage == null) {
-					Options o = new Options();
-					o.inSampleSize = 2;
-					ArtemisActivity.arrowBackgroundImage = BitmapFactory
-							.decodeResource(getResources(), R.drawable.arrows,
-									o);
-				}
+				
 				openCamera();
 			}
 
@@ -386,11 +378,6 @@ public class CameraPreview14 extends ViewGroup {
 			@Override
 			public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
 				releaseCamera();
-
-				if (ArtemisActivity.arrowBackgroundImage != null) {
-					ArtemisActivity.arrowBackgroundImage.recycle();
-					ArtemisActivity.arrowBackgroundImage = null;
-				}
 
 				return true;
 			}
@@ -569,16 +556,20 @@ public class CameraPreview14 extends ViewGroup {
 			_artemisMath.setDeviceSpecificDetails(totalScreenWidth,
 					totalScreenHeight, pixelDensityScale, effectiveHAngle,
 					effectiveVAngle);
+			
+			if (!_artemisMath.isInitializedFirstTime()) {
+				_artemisMath.calculateLargestLens();
+				_artemisMath.calculateRectBoxesAndLabelsForLenses();
+				_artemisMath.selectFirstMeaningFullLens();
+				_artemisMath.resetTouchToCenter(); // now with green box
+				_artemisMath.calculateRectBoxesAndLabelsForLenses();
+				_artemisMath.setInitializedFirstTime(true);
+			}
 
-			_artemisMath.calculateLargestLens();
-			_artemisMath.calculateRectBoxesAndLabelsForLenses();
-			_artemisMath.selectFirstMeaningFullLens();
-			_artemisMath.resetTouchToCenter(); // now with green box
-			_artemisMath.calculateRectBoxesAndLabelsForLenses();
-			_artemisMath.setInitializedFirstTime(true);
+			// Set the focal length lens textview
 			ArtemisActivity._lensFocalLengthText.setText(_artemisMath
 					.get_selectedLensFocalLength());
-
+			
 			// initialize the buffer used for drawing the fullscreen bitmap and
 			// enable preview callback
 			PixelFormat p = new PixelFormat();
@@ -595,6 +586,15 @@ public class CameraPreview14 extends ViewGroup {
 				mCamera.startPreview();
 			} catch (IOException ioe) {
 				// Something bad happened
+			}
+
+			// Set the background
+			if (ArtemisActivity.arrowBackgroundImage == null) {
+				Options o = new Options();
+				o.inSampleSize = 2;
+				ArtemisActivity.arrowBackgroundImage = BitmapFactory
+						.decodeResource(getResources(), R.drawable.arrows,
+								o);
 			}
 		}
 	}
@@ -646,10 +646,8 @@ public class CameraPreview14 extends ViewGroup {
 										- (ArtemisMath.scaledPreviewWidth - _artemisMath
 												.getCurrentGreenBox().width())
 										/ 2f,
-								_artemisMath.getCurrentGreenBox().top
-										- (ArtemisMath.scaledPreviewHeight - _artemisMath
-												.getCurrentGreenBox().height())
-										/ 2f);
+								(_artemisMath.getCurrentGreenBox().top - (ArtemisMath.scaledPreviewHeight - _artemisMath
+										.getCurrentGreenBox().height()) / 2f) - 5);
 				endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
 						.getCurrentGreenBox().centerX(), _artemisMath
 						.getCurrentGreenBox().centerY());
@@ -662,33 +660,6 @@ public class CameraPreview14 extends ViewGroup {
 		Log.v(logTag, "Zoom ScaleFactor: " + scaleFactor);
 		Log.v(logTag, "Selected Lens: " + _artemisMath.getSelectedLensBox());
 
-		// Matrix startTransform = new Matrix();
-		// mTextureView.getTransform(startTransform);
-		// startTransform.getValues(buf);
-		//
-		// ScaleAnimation scaleAnimation = new ScaleAnimation(prevScaleFactor,
-		// prevScaleFactor, prevScaleFactor, prevScaleFactor);
-		// scaleAnimation.setDuration(400);
-		// scaleAnimation.setFillAfter(true);
-		// scaleAnimation.setFillEnabled(true);
-		// scaleAnimation.setFillEnabled(false);
-		// scaleAnimation.setInterpolator(new LinearInterpolator());
-		// Matrix startMatrix = new Matrix();
-		// mTextureView.getTransform(startMatrix);
-		// MatrixAnimation animation = new MatrixAnimation(startMatrix);
-		// animation.setDuration(400);
-		// animation.setFillAfter(true);
-		//
-		// mTextureView.startAnimation(animation);
-		//
-		// float matrix[] = new float[9];
-		// endTransform.getValues(matrix);
-		//
-		// Log.v(logTag,
-		// String.format("Transform matrix: { %f %f %f %f %f %f %f %f %f }",
-		// matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5],
-		// matrix[6], matrix[7], matrix[8]));
-		//
 		mTextureView.setTransform(endTransform);
 	}
 

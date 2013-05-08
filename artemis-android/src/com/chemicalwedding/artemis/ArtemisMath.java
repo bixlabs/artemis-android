@@ -341,7 +341,7 @@ public class ArtemisMath {
 			}
 			int bottomy = vheight + y;
 
-			if (!ignoreThisOne) {
+			if (!ignoreThisOne || selectedZoomLens != null) {
 				// add box 1
 				ArtemisRectF box1 = new ArtemisRectF(
 						lensFLNumberFormat.format(lensFocalLength), x, y, x

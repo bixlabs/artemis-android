@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.hardware.Sensor;
@@ -157,8 +156,9 @@ public class ArtemisActivity extends Activity implements
 	private boolean volumeDownPicture;
 	private boolean volumeDownAutoFocus;
 
-	protected static final long lensRepeatSpeed = 35;
-	
+	protected static final long lensRepeatSpeedCustomLens = 35;
+	protected static final long lensRepeatSpeedNormal = 200;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(_logTag, "Creating Artemis Activity");
@@ -223,6 +223,11 @@ public class ArtemisActivity extends Activity implements
 
 		if (sensorEnabled)
 			sensorManager.unregisterListener(sensorEventListener);
+
+		if (ArtemisActivity.arrowBackgroundImage != null) {
+			ArtemisActivity.arrowBackgroundImage.recycle();
+			ArtemisActivity.arrowBackgroundImage = null;
+		}
 	}
 
 	@Override
@@ -242,7 +247,7 @@ public class ArtemisActivity extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		Log.i(_logTag, "Resuming Artemis");
-		
+
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
 		}
@@ -1735,7 +1740,8 @@ public class ArtemisActivity extends Activity implements
 								.hasNextZoomLens())) {
 					nextLens();
 					mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-							+ lensRepeatSpeed);
+							+ (isZoomLensSelected() ? lensRepeatSpeedCustomLens
+									: lensRepeatSpeedNormal));
 				}
 			}
 		}
@@ -1757,7 +1763,6 @@ public class ArtemisActivity extends Activity implements
 			if (_artemisMath.hasPreviousLens()) {
 				_prevLensButton.setVisibility(View.VISIBLE);
 			}
-			mCameraAngleDetailView.postInvalidate();
 		} else if (_artemisMath.isFullscreen()
 				&& _artemisMath.selectedZoomLens != null) {
 			_artemisMath.incrementFullscreenZoomLens();
@@ -1772,6 +1777,7 @@ public class ArtemisActivity extends Activity implements
 				_prevLensButton.setVisibility(View.VISIBLE);
 			}
 		}
+		mCameraAngleDetailView.postInvalidate();
 	}
 
 	protected void reconfigureNextAndPreviousLensButtons() {
@@ -1802,8 +1808,6 @@ public class ArtemisActivity extends Activity implements
 				: false;
 	}
 
-	
-
 	private final Runnable previousLensRunnable = new Runnable() {
 		public void run() {
 			if (prevClickBoolean.isDown()) {
@@ -1812,7 +1816,8 @@ public class ArtemisActivity extends Activity implements
 								.hasPreviousZoomLens())) {
 					previousLens();
 					mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-							+ lensRepeatSpeed);
+							+ (isZoomLensSelected() ? lensRepeatSpeedCustomLens
+									: lensRepeatSpeedNormal));
 
 				}
 			}
@@ -1823,7 +1828,6 @@ public class ArtemisActivity extends Activity implements
 		if (!_artemisMath.isFullscreen()
 				|| _artemisMath.selectedZoomLens == null) {
 			if (_artemisMath.selectPreviousLens()) {
-
 				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
 				if (_artemisMath.isFullscreen()) {
 					_cameraPreview.calculateZoom(true);
@@ -1835,14 +1839,10 @@ public class ArtemisActivity extends Activity implements
 			if (_artemisMath.hasNextLens()) {
 				_nextLensButton.setVisibility(View.VISIBLE);
 			}
-			mCameraAngleDetailView.postInvalidate();
 		} else if (_artemisMath.isFullscreen()
 				&& _artemisMath.selectedZoomLens != null) {
 			_artemisMath.decrementFullscreenZoomLens();
 			_cameraPreview.calculateZoom(true);
-
-			_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
-					.format(_artemisMath.zoomLensFullScreenFL));
 
 			if (!_artemisMath.hasPreviousZoomLens()) {
 				_prevLensButton.setVisibility(View.INVISIBLE);
@@ -1852,6 +1852,7 @@ public class ArtemisActivity extends Activity implements
 			}
 
 		}
+		mCameraAngleDetailView.postInvalidate();
 	}
 
 	final class focalLengthLensButtonViewClickListener implements
