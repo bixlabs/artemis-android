@@ -242,59 +242,17 @@ public class ArtemisActivity extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		Log.i(_logTag, "Resuming Artemis");
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+		
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
 		}
-
-		// Hide system UI buttons
-		// getWindow().getDecorView().setSystemUiVisibility(
-
-		// PowerManager pm = (PowerManager)
-		// getSystemService(Context.POWER_SERVICE);
-		// if (pm.isScreenOn() && _cameraPreview == null
-		// && mCameraContainer != null) {
-
-		// _cameraPreview = new CameraPreview14(this, null);
-
-		// mCameraContainer.addView((View) _cameraPreview,
-		// new ViewGroup.LayoutParams(
-		// ViewGroup.LayoutParams.MATCH_PARENT,
-		// ViewGroup.LayoutParams.MATCH_PARENT));
-		// }
 
 		initSensorManager();
 
 		initLocationManager();
 
-		// Setup the language
-		// SharedPreferences settings = this.getSharedPreferences(
-		// ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
-		// String lang =
-		// settings.getString(ArtemisPreferences.SELECTED_LANGUAGE,
-		// "");
-		// if (!"".equals(lang)) {
-		// Locale locale = new Locale(lang);
-		// Locale.setDefault(locale);
-		// Locale.setDefault(locale);
-		// Configuration config = new Configuration();
-		// config.locale = locale;
-		// getBaseContext().getResources().updateConfiguration(config,
-		// getBaseContext().getResources().getDisplayMetrics());
-		// }
-
 		initPreferences();
-
-		if (_cameraPreview != null && !isFirstStart) {
-			_cameraPreview.restartPreview();
-		}
-		reconfigureNextAndPreviousLensButtons();
-
-		isFirstStart = false;
 	}
-
-	private boolean isFirstStart = true;
 
 	private void initSensorManager() {
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
