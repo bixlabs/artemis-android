@@ -14,10 +14,10 @@
     <string name="menu_artemis_settings">設置</string>
     <string name="menu_lens_settings">選擇鏡片</string>
     <string name="menu_artemis_about">約</string>
-    <string name="menu_artemis_help">幫助</string>
+  
 
     <!-- //Artemis Settings Page -->
-    <string name="new_features">即將到來的新功能</string>
+   
     <string name="gps_on_off">在  打開 /關閉</string>
     <string name="artemis_settings_title">阿蒂米斯設置</string>
     <string name="choose_folder_for_image_saving">目標文件夾保存的圖像。</string>
@@ -88,7 +88,7 @@
     <string name="custom_camera_width">寬</string>
     <string name="custom_camera_height">高度</string>
     <string name="custom_camera_focallength">焦距</string>
-    <string name="save_custom_camera">添加自定義相機</string>
+  
     <string name="add_custom_camera_directions">要輸入一個自定義相機你需要做一些簡單的測量。將相機放置在一個固定的距離或重點從牆上的圖表，測量從結點到面的鏡頭。其次，以一個固定的鏡頭，精確測量的寬度和高度的東西，你可以看到，通過取景器。使用一致的單位。</string>
 
     <!-- / / NEW TRANSLATIONS 2-15-11 -->

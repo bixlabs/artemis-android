@@ -31,7 +31,7 @@
     </header>
     <header
         android:fragment="com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment"
-        android:icon="@drawable/about_icon"
+        android:icon="@drawable/quit_icon"
         android:summary="@string/settings_reset_summary"
         android:title="@string/settings_reset_title" />
 </preference-headers>

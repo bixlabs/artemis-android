@@ -226,7 +226,7 @@
     <string name="save_raw_image_text">"테두리하거나 텍스트"</string>
 
     <!-- Preference Strings -->
-    <string name="artemis">"아르테미스"</string>
+   
     <string name="artemis_save_folder_summary">"폴더 이름은 아르테미스하여 만든 이미지를 저장합니다. 이 이름을 가진 폴더가 존재하지 않는 경우가 생성됩니다."</string>
     <string name="horizontal_lens_angle">"수평 렌즈 각"</string>
     <string name="vertical_lens_angle">"수직 렌즈 각"</string>

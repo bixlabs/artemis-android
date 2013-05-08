@@ -19,8 +19,7 @@
     <string name="gps_on_off">GPS Включить/Выключить</string>
     <string name="artemis_settings_title">Artemis Настройки</string>
     <string name="choose_folder_for_image_saving">Изображение Имя папки</string>
-    <string name="choose_path">Выберите путь ..</string>
-    <string name="auto_exposure">Автоматическая настройка экспозиции</string>
+   
     <string name="set_exposure_text">Выдержка</string>
     <string name="set_exposure">Выдержка</string>
     <string name="auto_white_balance">Автоматический баланс белого</string>
@@ -65,12 +64,11 @@ Canon 5D и 7D
 
     <string name="lens_settings_title">Настройки объектива</string>
     <string name="save_lenses">Сохранить линзы</string>
-    <string name="no_camera_alert">Пожалуйста, выберите камеру, прежде чем выбрать линзы</string>
-
+   
     <!-- //Save Picture Page -->
 
     <string name="save_picture_title">Сохранить рисунок</string>
-    <string name="saving_picture">Сохранение фотография</string>
+   
     <string name="save_and_edit">Сохранить и редактировать</string>
     <string name="save_picture">Сохранить рисунок</string>
     <string name="gps_coordinates">GPS Координаты</string>
@@ -83,9 +81,9 @@ Canon 5D и 7D
 
     <string name="add_custom_camera_title">обавление пользовательских камер-Все Измерения в миллиметрах (мм)</string>
     <string name="custom_camera_name">Создание пользовательского название</string>
-    <string name="custom_camera_distance">РАССТОЯНИЕ</string>
+  
     <string name="custom_camera_width">ШИРИНА</string>
-    <string name="custom_camera_height">ВЫСОТА</string>
+  
     <string name="custom_camera_focallength">МЕСТНЫЕ ДЛИНА</string>
     <string name="add_custom_camera_directions">Для ввода пользовательских камер вам нужно сделать несколько простых измерений. Место камеры фиксированном расстоянии от стены или фокус-диаграммы и меры от узловой точки линзы на поверхность. Далее, с фиксированным объективом, точно измерить ширину и высоту, что можно увидеть через видоискатель. Использование последовательного единиц.</string>
 
@@ -145,7 +143,7 @@ Canon 5D и 7D
 
     <!-- //Add Custom Camera Page -->
 
-    <string name="update_custom_camera">обновление пользовательского камера</string>
+  
     <string name="custom_camera_options">Пользовательские Функции камеры</string>
     <string name="custom_camera_edit_camera">редактирования камеры</string>
     <string name="custom_camera_delete_camera">Удалить камера</string>
@@ -201,7 +199,7 @@ Canon 5D и 7D
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
     <string name="image_note_hint">"Добавить замечание"</string>
     <string name="add_custom_lens">"Добавление пользовательских объектива"</string>
-    <string name="add_custom_lens_upper">"Добавление пользовательских объектива"</string>
+ 
     <string name="input_focal_length">"Введите фокусное расстояние объектива в миллиметрах:"</string>
     <string name="custom_lens_error">"Пользовательские ошибки входную линзу"</string>
     <string name="custom_lens_error_message">"Удалось добавить новые пользовательские линзы. Пожалуйста, убедитесь, что входные значения являются действительными и повторите попытку."</string>
@@ -238,7 +236,7 @@ Canon 5D и 7D
     <string name="artemis_save_folder_summary">"Имя папки для сохранения изображений, созданные с Артемиды. Если папка с таким именем не существует, он будет создан для вас."</string>
     <string name="horizontal_lens_angle">"Горизонтальный угол объектива"</string>
     <string name="vertical_lens_angle">"Вертикальный угол объектива"</string>
-    <string name="menu_artemis_quit_description">"Нажмите, чтобы я бросил Артемиды."</string>
+  
     <string name="feedback_report_issue">"Выпуск / Обратная связь"</string>
     <string name="feedback_report_issue_description">"Сообщить о проблеме или и сообщите нам свое мнение, мы ценим ваши комментарии."</string>
     <string name="menu_artemis_about_description">"Немного о приложении и его разработчиков."</string>
