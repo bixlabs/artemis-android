@@ -727,20 +727,21 @@ public class CameraPreview14 extends ViewGroup {
 				ex.setAttribute(ExifInterface.TAG_MAKE,
 						ArtemisActivity._cameraDetailsText.getText().toString());
 
-				SharedPreferences artemisPrefs = getContext()
-						.getApplicationContext().getSharedPreferences(
-								ArtemisPreferences.class.getSimpleName(),
-								Context.MODE_PRIVATE);
-				String desc = artemisPrefs.getString(
-						ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, null);
-				String notes = artemisPrefs.getString(
-						ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, null);
-				if (desc != null && !desc.isEmpty()) {
-					ex.setAttribute("Description", desc);
-				}
-				if (notes != null && !notes.isEmpty()) {
-					ex.setAttribute("Notes", notes);
-				}
+//				SharedPreferences artemisPrefs = getContext()
+//						.getApplicationContext().getSharedPreferences(
+//								ArtemisPreferences.class.getSimpleName(),
+//								Context.MODE_PRIVATE);
+//				String desc = artemisPrefs.getString(
+//						ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, null);
+//				String notes = artemisPrefs.getString(
+//						ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, null);
+//				if (desc != null && !desc.isEmpty()) {
+//					ex.setAttribute("DocumentName", desc);
+//				}
+//				if (notes != null && !notes.isEmpty()) {
+//					ex.setAttribute("ImageDescription", notes);
+//				}
+
 				ex.saveAttributes();
 			} catch (IOException e) {
 				Log.e(logTag, "Could not open image for writing EXIF data");
