@@ -97,7 +97,7 @@
 
     <string name="volumeUpAction_default">autofocusAndCapture</string>
     <string name="volumeUpAction_noautofocus_default">takePicture</string>
-    <string name="volumeDownAction_default">nothing</string>
+    <string name="volumeDownAction_default">autofocus</string>
 
     <string-array name="select_language_array">
 
