@@ -3,7 +3,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final java.lang.String DEFAULT_LENSES
     private static final int DEFAULT_CAMERA_ROW
     private static final int GALLERY_IMAGE_LOADER
-    1222:1228:public static java.lang.String getBucketId(java.lang.String)
+    1209:1215:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
@@ -60,11 +60,11 @@ com.chemicalwedding.artemis.CameraPreview14:
     protected volatile java.nio.ByteBuffer currentFrame
     protected float zoomCenterX
     protected float zoomCenterY
-    115:116:public void surfaceDestroyed(android.view.SurfaceHolder)
-    119:119:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
-    963:963:public void clearFullScreenTempFrame()
-    967:1004:public static final void decodeYUV420SP2(int[],byte[],int,int)
-    1010:1013:public void resetDigitalZoomLevel()
+    116:117:public void surfaceDestroyed(android.view.SurfaceHolder)
+    120:120:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
+    979:979:public void clearFullScreenTempFrame()
+    983:1020:public static final void decodeYUV420SP2(int[],byte[],int,int)
+    1026:1029:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
 com.chemicalwedding.artemis.CustomCameraPreview:

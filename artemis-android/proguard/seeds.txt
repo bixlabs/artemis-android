@@ -307,6 +307,7 @@ com.chemicalwedding.artemis.R$string: int auto_white_balance
 com.chemicalwedding.artemis.R$string: int back_button_behaviour
 com.chemicalwedding.artemis.R$string: int backkey_default
 com.chemicalwedding.artemis.R$string: int backkey_summary
+com.chemicalwedding.artemis.R$string: int black_and_white_preview
 com.chemicalwedding.artemis.R$string: int buy_button
 com.chemicalwedding.artemis.R$string: int calibrate_chip_height
 com.chemicalwedding.artemis.R$string: int calibrate_chip_width
@@ -355,6 +356,7 @@ com.chemicalwedding.artemis.R$string: int device_camera_sensor
 com.chemicalwedding.artemis.R$string: int email_support
 com.chemicalwedding.artemis.R$string: int error_dialog_body
 com.chemicalwedding.artemis.R$string: int error_dialog_title
+com.chemicalwedding.artemis.R$string: int exit_artemis
 com.chemicalwedding.artemis.R$string: int feedback_report_issue
 com.chemicalwedding.artemis.R$string: int feedback_report_issue_description
 com.chemicalwedding.artemis.R$string: int gallery_no_images_found
@@ -510,6 +512,7 @@ com.chemicalwedding.artemis.R$string: int settings_reset_title
 com.chemicalwedding.artemis.R$string: int smooth_filter_text
 com.chemicalwedding.artemis.R$string: int smooth_image_off
 com.chemicalwedding.artemis.R$string: int smooth_image_on
+com.chemicalwedding.artemis.R$string: int sure_you_want_to_exit
 com.chemicalwedding.artemis.R$string: int tilt_and_roll_text
 com.chemicalwedding.artemis.R$string: int tilt_down
 com.chemicalwedding.artemis.R$string: int tilt_level
@@ -555,16 +558,16 @@ com.sbstrm.appirater.R$color: int appirator_button_start_color
 com.sbstrm.appirater.R$drawable: int button_appirator
 com.sbstrm.appirater.R$id: int message
 com.sbstrm.appirater.R$id: int cancel
-com.sbstrm.appirater.R$id: int rate
 com.sbstrm.appirater.R$id: int rateLater
+com.sbstrm.appirater.R$id: int rate
 com.sbstrm.appirater.R$integer: int appirator_days_until_prompt
 com.sbstrm.appirater.R$integer: int appirator_launches_until_prompt
 com.sbstrm.appirater.R$integer: int appirator_days_before_reminding
 com.sbstrm.appirater.R$layout: int appirater
 com.sbstrm.appirater.R$string: int appirator_app_title
+com.sbstrm.appirater.R$string: int rate_title
 com.sbstrm.appirater.R$string: int rate
 com.sbstrm.appirater.R$string: int appirator_market_url
-com.sbstrm.appirater.R$string: int rate_title
 com.sbstrm.appirater.R$string: int rate_later
 com.sbstrm.appirater.R$string: int rate_cancel
 com.sbstrm.appirater.R$string: int rate_message

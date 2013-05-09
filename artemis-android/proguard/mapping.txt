@@ -342,10 +342,13 @@ com.chemicalwedding.artemis.ArtemisActivity$focalLengthLensButtonViewClickListen
     void onClick(android.view.View) -> onClick
 com.chemicalwedding.artemis.ArtemisApplication -> com.chemicalwedding.artemis.ArtemisApplication:
     com.chemicalwedding.artemis.WorkerThread worker -> a
+    java.util.Locale locale -> b
     void onCreate() -> onCreate
+    void initLanguage() -> a
     void onTerminate() -> onTerminate
     void postOnWorkerThread(java.lang.Runnable) -> a
     void postDelayedOnWorkerThread$574944f(java.lang.Runnable) -> b
+    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
 com.chemicalwedding.artemis.ArtemisMath -> com.chemicalwedding.artemis.bb:
     com.chemicalwedding.artemis.ArtemisMath instance -> n
     com.chemicalwedding.artemis.database.Camera _selectedCamera -> o
@@ -496,16 +499,16 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     boolean isAutoFocusSupported -> l
     boolean autoFocusBeforePictureTake -> m
     android.hardware.Camera$Size previewSize -> n
-    android.hardware.Camera mCamera -> F
-    android.view.TextureView mTextureView -> G
-    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> H
-    int frameBufSize -> I
+    android.hardware.Camera mCamera -> G
+    android.view.TextureView mTextureView -> H
+    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> I
+    int frameBufSize -> J
     byte[] frameBuffer -> o
     int[] tempFrameBitmap -> p
     float scaleFactor -> q
     float digital -> r
-    int totalScreenHeight -> J
-    int totalScreenWidth -> K
+    int totalScreenHeight -> K
+    int totalScreenWidth -> L
     boolean widthAndHeightSwapped -> s
     int savedImageJPEGQuality -> t
     int savedImageSizeIndex -> u
@@ -517,10 +520,11 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     float diffScaleFactor -> A
     float diffZoomCenterX -> B
     float diffZoomCenterY -> C
-    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> L
-    java.lang.String degreeSymbolFromStringsXML -> M
+    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> M
+    java.lang.String degreeSymbolFromStringsXML -> N
     android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> D
     android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> E
+    boolean isCameraReleased -> F
     void initCameraDetails(android.hardware.Camera$Parameters) -> a
     android.hardware.Camera$Size getOptimalPreviewSize(java.util.List,int,int) -> a
     void takePicture() -> a
@@ -728,32 +732,40 @@ com.chemicalwedding.artemis.SplashScreenActivity -> com.chemicalwedding.artemis.
     com.google.android.vending.licensing.LicenseCheckerCallback _licenseCheckerCallback -> a
     com.google.android.vending.licensing.LicenseChecker _checker -> b
     android.os.Handler mHandler -> c
-    byte[] SALT -> d
+    boolean validLicenseFound -> d
+    byte[] SALT -> e
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onDestroy() -> onDestroy
-    android.os.Handler access$0(com.chemicalwedding.artemis.SplashScreenActivity) -> a
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback -> com.chemicalwedding.artemis.cg:
+    void access$0$1385ff() -> a
+    void access$1(com.chemicalwedding.artemis.SplashScreenActivity) -> a
+    android.os.Handler access$2(com.chemicalwedding.artemis.SplashScreenActivity) -> b
+com.chemicalwedding.artemis.SplashScreenActivity$1 -> com.chemicalwedding.artemis.cg:
+    com.chemicalwedding.artemis.SplashScreenActivity this$0 -> a
+    void run() -> run
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback -> com.chemicalwedding.artemis.ch:
     com.chemicalwedding.artemis.SplashScreenActivity this$0 -> a
     void allow$13462e() -> a
     void dontAllow$13462e() -> b
     void applicationError(int) -> a
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$1 -> com.chemicalwedding.artemis.ch:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$1 -> com.chemicalwedding.artemis.ci:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$2 -> com.chemicalwedding.artemis.ci:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$2 -> com.chemicalwedding.artemis.cj:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$3 -> com.chemicalwedding.artemis.cj:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$3 -> com.chemicalwedding.artemis.ck:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
+    android.app.AlertDialog val$dialog -> b
     void run() -> run
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$4 -> com.chemicalwedding.artemis.ck:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$4 -> com.chemicalwedding.artemis.cl:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$5 -> com.chemicalwedding.artemis.cl:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$5 -> com.chemicalwedding.artemis.cm:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
+    android.app.AlertDialog val$dialog -> b
     void run() -> run
-com.chemicalwedding.artemis.WorkerThread -> com.chemicalwedding.artemis.cm:
+com.chemicalwedding.artemis.WorkerThread -> com.chemicalwedding.artemis.cn:
     android.os.Handler mHandler -> a
     void run() -> run
     void stopThread() -> a
@@ -964,8 +976,8 @@ com.sbstrm.appirater.R$bool -> com.b.a.f:
 com.sbstrm.appirater.R$id -> com.b.a.g:
     int message -> message
     int cancel -> cancel
-    int rate -> rate
     int rateLater -> rateLater
+    int rate -> rate
 com.sbstrm.appirater.R$integer -> com.b.a.h:
     int appirator_days_until_prompt -> appirator_days_until_prompt
     int appirator_launches_until_prompt -> appirator_launches_until_prompt
@@ -974,9 +986,9 @@ com.sbstrm.appirater.R$layout -> com.b.a.i:
     int appirater -> appirater
 com.sbstrm.appirater.R$string -> com.b.a.j:
     int appirator_app_title -> appirator_app_title
+    int rate_title -> rate_title
     int rate -> rate
     int appirator_market_url -> appirator_market_url
-    int rate_title -> rate_title
     int rate_later -> rate_later
     int rate_cancel -> rate_cancel
     int rate_message -> rate_message

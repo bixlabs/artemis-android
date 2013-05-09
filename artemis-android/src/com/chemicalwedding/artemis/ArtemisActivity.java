@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.hardware.Sensor;
@@ -247,9 +248,11 @@ public class ArtemisActivity extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		Log.i(_logTag, "Resuming Artemis");
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
+			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 		}
 
 		initSensorManager();
