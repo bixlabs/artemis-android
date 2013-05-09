@@ -411,14 +411,12 @@ com.chemicalwedding.artemis.R$string: int max_focal_length
 com.chemicalwedding.artemis.R$string: int menu_artemis_about
 com.chemicalwedding.artemis.R$string: int menu_artemis_about_description
 com.chemicalwedding.artemis.R$string: int menu_artemis_gallery
-com.chemicalwedding.artemis.R$string: int menu_artemis_help
 com.chemicalwedding.artemis.R$string: int menu_artemis_quit
 com.chemicalwedding.artemis.R$string: int menu_artemis_quit_description
 com.chemicalwedding.artemis.R$string: int menu_artemis_settings
 com.chemicalwedding.artemis.R$string: int menu_camera_settings
 com.chemicalwedding.artemis.R$string: int menu_lens_settings
 com.chemicalwedding.artemis.R$string: int min_focal_length
-com.chemicalwedding.artemis.R$string: int new_features
 com.chemicalwedding.artemis.R$string: int new_zoom_lens
 com.chemicalwedding.artemis.R$string: int no_camera_alert
 com.chemicalwedding.artemis.R$string: int not_torch_while_in_preview_mode
@@ -486,7 +484,6 @@ com.chemicalwedding.artemis.R$string: int roll_level
 com.chemicalwedding.artemis.R$string: int save
 com.chemicalwedding.artemis.R$string: int save_and_edit
 com.chemicalwedding.artemis.R$string: int save_artemis_settings
-com.chemicalwedding.artemis.R$string: int save_custom_camera
 com.chemicalwedding.artemis.R$string: int save_lenses
 com.chemicalwedding.artemis.R$string: int save_picture
 com.chemicalwedding.artemis.R$string: int save_picture_details
