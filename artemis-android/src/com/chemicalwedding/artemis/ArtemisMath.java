@@ -357,7 +357,7 @@ public class ArtemisMath {
 				}
 				box1.setColor(rectColor);
 
-				if (!isFullscreen) {
+				if (!isFullscreen && !ignoreThisOne) {
 					_currentLensBoxes.add(box1);
 				}
 			}

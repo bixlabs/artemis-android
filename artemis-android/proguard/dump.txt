@@ -6551,7 +6551,7 @@ Methods (count = 83):
     Access flags: 0x1008
       = static synthetic void k(com.chemicalwedding.artemis.ArtemisActivity)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 160, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 182, locals = 1, stack = 4):
       [0] getstatic #308
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
       [3] invokevirtual #558
@@ -6597,24 +6597,24 @@ Methods (count = 83):
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
       [70] invokevirtual #561
         + Methodref [com/chemicalwedding/artemis/bb.p ()Z]
-      [73] ifeq +79 (target=152)
+      [73] ifeq +101 (target=174)
       [76] aload_0 v0
       [77] getfield #359
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.z Lcom/chemicalwedding/artemis/LongPressButton;]
       [80] iconst_0
       [81] invokevirtual #515
         + Methodref [com/chemicalwedding/artemis/LongPressButton.setVisibility (I)V]
-      [84] goto +68 (target=152)
+      [84] goto +90 (target=174)
       [87] getstatic #308
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
       [90] invokevirtual #558
         + Methodref [com/chemicalwedding/artemis/bb.g ()Z]
-      [93] ifeq +59 (target=152)
+      [93] ifeq +81 (target=174)
       [96] getstatic #308
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
       [99] getfield #380
         + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [102] ifnull +50 (target=152)
+      [102] ifnull +72 (target=174)
       [105] getstatic #308
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
       [108] invokevirtual #550
@@ -6624,34 +6624,49 @@ Methods (count = 83):
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.y Lcom/chemicalwedding/artemis/CameraPreview14;]
       [115] invokevirtual #511
         + Methodref [com/chemicalwedding/artemis/CameraPreview14.e ()V]
-      [118] getstatic #308
+      [118] getstatic #338
+        + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.e Landroid/widget/TextView;]
+      [121] getstatic #308
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
-      [121] invokevirtual #564
+      [124] getfield #382
+        + Fieldref [com/chemicalwedding/artemis/bb.m Ljava/text/NumberFormat;]
+      [127] getstatic #308
+        + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
+      [130] getfield #381
+        + Fieldref [com/chemicalwedding/artemis/bb.l F]
+      [133] f2d
+      [134] invokevirtual #613
+        + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
+      [137] invokevirtual #469
+        + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
+      [140] getstatic #308
+        + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
+      [143] invokevirtual #564
         + Methodref [com/chemicalwedding/artemis/bb.s ()Z]
-      [124] ifne +11 (target=135)
-      [127] aload_0 v0
-      [128] getfield #289
+      [146] ifne +11 (target=157)
+      [149] aload_0 v0
+      [150] getfield #289
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.A Lcom/chemicalwedding/artemis/LongPressButton;]
-      [131] iconst_4
-      [132] invokevirtual #515
+      [153] iconst_4
+      [154] invokevirtual #515
         + Methodref [com/chemicalwedding/artemis/LongPressButton.setVisibility (I)V]
-      [135] getstatic #308
+      [157] getstatic #308
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Lcom/chemicalwedding/artemis/bb;]
-      [138] invokevirtual #565
+      [160] invokevirtual #565
         + Methodref [com/chemicalwedding/artemis/bb.t ()Z]
-      [141] ifeq +11 (target=152)
-      [144] aload_0 v0
-      [145] getfield #359
+      [163] ifeq +11 (target=174)
+      [166] aload_0 v0
+      [167] getfield #359
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.z Lcom/chemicalwedding/artemis/LongPressButton;]
-      [148] iconst_0
-      [149] invokevirtual #515
+      [170] iconst_0
+      [171] invokevirtual #515
         + Methodref [com/chemicalwedding/artemis/LongPressButton.setVisibility (I)V]
-      [152] aload_0 v0
-      [153] getfield #340
+      [174] aload_0 v0
+      [175] getfield #340
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.g Lcom/chemicalwedding/artemis/CameraAngleDetailView;]
-      [156] invokevirtual #504
+      [178] invokevirtual #504
         + Methodref [com/chemicalwedding/artemis/CameraAngleDetailView.postInvalidate ()V]
-      [159] return
+      [181] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       l(Lcom/chemicalwedding/artemis/ArtemisActivity;)Lcom/chemicalwedding/artemis/cd;
@@ -18607,17 +18622,19 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [android/view/View$OnClickListener]
 
-Constant Pool (count = 68):
+Constant Pool (count = 81):
   + Integer [2131624025]
   + Class [android/view/View$OnClickListener]
   + Class [android/widget/RelativeLayout]
   + Class [android/widget/ViewFlipper]
   + Class [com/chemicalwedding/artemis/ArtemisActivity]
   + Class [com/chemicalwedding/artemis/ba]
+  + Class [com/chemicalwedding/artemis/bb]
   + Class [java/lang/Object]
   + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
   + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.h I]
   + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+  + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
   + Methodref [android/widget/RelativeLayout.setVisibility (I)V]
   + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
   + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
@@ -18626,8 +18643,10 @@ Constant Pool (count = 68):
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Lcom/chemicalwedding/artemis/ArtemisActivity;Z)V]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b ()Ljava/lang/String;]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.f (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/ViewFlipper;]
+  + Methodref [com/chemicalwedding/artemis/ArtemisActivity.g ()Lcom/chemicalwedding/artemis/bb;]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.h (Lcom/chemicalwedding/artemis/ArtemisActivity;)Z]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.q (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/RelativeLayout;]
+  + Methodref [com/chemicalwedding/artemis/ArtemisActivity.r (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
   + Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
   + NameAndType [a (Landroid/view/View;)V]
@@ -18636,13 +18655,17 @@ Constant Pool (count = 68):
   + NameAndType [a Lcom/chemicalwedding/artemis/ArtemisActivity;]
   + NameAndType [b ()Ljava/lang/String;]
   + NameAndType [f (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/ViewFlipper;]
+  + NameAndType [g ()Lcom/chemicalwedding/artemis/bb;]
   + NameAndType [h (Lcom/chemicalwedding/artemis/ArtemisActivity;)Z]
   + NameAndType [h I]
+  + NameAndType [j Lcom/chemicalwedding/artemis/a/e;]
   + NameAndType [q (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/RelativeLayout;]
+  + NameAndType [r (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
   + NameAndType [setDisplayedChild (I)V]
   + NameAndType [setInAnimation (Landroid/view/animation/Animation;)V]
   + NameAndType [setOutAnimation (Landroid/view/animation/Animation;)V]
   + NameAndType [setVisibility (I)V]
+  + Utf8 [()Lcom/chemicalwedding/artemis/bb;]
   + Utf8 [()Ljava/lang/String;]
   + Utf8 [()V]
   + Utf8 [(I)V]
@@ -18658,6 +18681,7 @@ Constant Pool (count = 68):
   + Utf8 [I]
   + Utf8 [Landroid/widget/ViewFlipper;]
   + Utf8 [Lcom/chemicalwedding/artemis/ArtemisActivity;]
+  + Utf8 [Lcom/chemicalwedding/artemis/a/e;]
   + Utf8 [StackMapTable]
   + Utf8 [a]
   + Utf8 [android/view/View$OnClickListener]
@@ -18666,11 +18690,15 @@ Constant Pool (count = 68):
   + Utf8 [b]
   + Utf8 [com/chemicalwedding/artemis/ArtemisActivity]
   + Utf8 [com/chemicalwedding/artemis/ba]
+  + Utf8 [com/chemicalwedding/artemis/bb]
   + Utf8 [f]
+  + Utf8 [g]
   + Utf8 [h]
+  + Utf8 [j]
   + Utf8 [java/lang/Object]
   + Utf8 [onClick]
   + Utf8 [q]
+  + Utf8 [r]
   + Utf8 [setDisplayedChild]
   + Utf8 [setInAnimation]
   + Utf8 [setOutAnimation]
@@ -18689,10 +18717,10 @@ Methods (count = 2):
     + Code attribute instructions (code length = 10, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #10
+      [2] putfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
       [5] aload_0 v0
-      [6] invokespecial #21
+      [6] invokespecial #25
         + Methodref [java/lang/Object.<init> ()V]
       [9] return
       Code attribute exceptions (count = 0):
@@ -18701,78 +18729,91 @@ Methods (count = 2):
     Access flags: 0x11
       = public final void onClick(android.view.View)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 92, locals = 2, stack = 2):
+    + Code attribute instructions (code length = 111, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #10
+      [1] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [4] invokestatic #20
+      [4] invokestatic #23
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.q (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/RelativeLayout;]
       [7] iconst_0
-      [8] invokevirtual #11
+      [8] invokevirtual #13
         + Methodref [android/widget/RelativeLayout.setVisibility (I)V]
       [11] aload_0 v0
-      [12] getfield #10
+      [12] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [15] invokevirtual #17
-        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b ()Ljava/lang/String;]
-      [18] pop
-      [19] aload_0 v0
-      [20] getfield #10
-        + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [23] invokestatic #18
+      [15] invokestatic #20
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.f (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/ViewFlipper;]
-      [26] aconst_null
-      [27] invokevirtual #13
+      [18] aconst_null
+      [19] invokevirtual #15
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
-      [30] aload_0 v0
-      [31] getfield #10
+      [22] aload_0 v0
+      [23] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [34] invokestatic #18
+      [26] invokestatic #20
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.f (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/ViewFlipper;]
-      [37] aconst_null
-      [38] invokevirtual #14
+      [29] aconst_null
+      [30] invokevirtual #16
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/view/animation/Animation;)V]
-      [41] aload_0 v0
-      [42] getfield #10
+      [33] invokestatic #21
+        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.g ()Lcom/chemicalwedding/artemis/bb;]
+      [36] getfield #12
+        + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
+      [39] ifnonnull +45 (target=84)
+      [42] aload_0 v0
+      [43] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [45] invokestatic #18
+      [46] invokevirtual #19
+        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b ()Ljava/lang/String;]
+      [49] pop
+      [50] aload_0 v0
+      [51] getfield #11
+        + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+      [54] invokestatic #20
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.f (Lcom/chemicalwedding/artemis/ArtemisActivity;)Landroid/widget/ViewFlipper;]
-      [48] iconst_1
-      [49] invokevirtual #12
+      [57] iconst_1
+      [58] invokevirtual #14
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
-      [52] ldc #1
+      [61] ldc #1
         + Integer [2131624025]
-      [54] putstatic #9
+      [63] putstatic #10
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.h I]
-      [57] getstatic #8
+      [66] getstatic #9
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
-      [60] iconst_2
-      [61] invokevirtual #12
+      [69] iconst_2
+      [70] invokevirtual #14
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
-      [64] aload_0 v0
-      [65] getfield #10
+      [73] aload_0 v0
+      [74] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [68] iconst_1
-      [69] invokestatic #16
+      [77] iconst_1
+      [78] invokestatic #18
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Lcom/chemicalwedding/artemis/ArtemisActivity;Z)V]
-      [72] aload_0 v0
-      [73] getfield #10
+      [81] goto +10 (target=91)
+      [84] aload_0 v0
+      [85] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [76] invokestatic #19
+      [88] invokestatic #24
+        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.r (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
+      [91] aload_0 v0
+      [92] getfield #11
+        + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+      [95] invokestatic #22
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.h (Lcom/chemicalwedding/artemis/ArtemisActivity;)Z]
-      [79] ifeq +12 (target=91)
-      [82] aload_0 v0
-      [83] getfield #10
+      [98] ifeq +12 (target=110)
+      [101] aload_0 v0
+      [102] getfield #11
         + Fieldref [com/chemicalwedding/artemis/ba.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [86] pop
-      [87] aload_1 v1
-      [88] invokestatic #15
+      [105] pop
+      [106] aload_1 v1
+      [107] invokestatic #17
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Landroid/view/View;)V]
-      [91] return
+      [110] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 1):
+      + Stack map table attribute (count = 3):
+        - [84] Var: ..., Stack: (empty)
         - [91] Var: ..., Stack: (empty)
+        - [110] Var: ..., Stack: (empty)
 
 Class file attributes (count = 0):
 
@@ -20047,7 +20088,7 @@ Methods (count = 45):
     Access flags: 0x11
       = public final void d()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 1081, locals = 18, stack = 8):
+    + Code attribute instructions (code length = 1088, locals = 18, stack = 8):
       [0] aload_0 v0
       [1] getfield #49
         + Fieldref [com/chemicalwedding/artemis/bb.b I]
@@ -20559,7 +20600,7 @@ Methods (count = 45):
       [682] invokevirtual #111
         + Methodref [java/util/ArrayList.iterator ()Ljava/util/Iterator;]
       [685] astore v7
-      [687] goto +383 (target=1070)
+      [687] goto +390 (target=1077)
       [690] aload v7
       [692] invokeinterface #114
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
@@ -20745,7 +20786,7 @@ Methods (count = 45):
       [965] aload_0 v0
       [966] getfield #57
         + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [969] ifnull +98 (target=1067)
+      [969] ifnull +105 (target=1074)
       [972] new #14
         + Class [com/chemicalwedding/artemis/ArtemisRectF]
       [975] dup
@@ -20768,57 +20809,59 @@ Methods (count = 45):
       [999] i2f
       [1000] invokespecial #74
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.<init> (Ljava/lang/String;FFFF)V]
-      [1003] astore_1 v1
+      [1003] astore_2 v2
       [1004] iload v4
       [1006] aload_0 v0
       [1007] getfield #67
         + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [1010] ificmpne +28 (target=1038)
+      [1010] ificmpne +29 (target=1039)
       [1013] ldc #3
         + Integer [-65536]
       [1015] invokestatic #92
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [1018] astore_2 v2
-      [1019] aload_0 v0
-      [1020] aload v6
-      [1022] putfield #64
+      [1018] astore v8
+      [1020] aload_0 v0
+      [1021] aload v6
+      [1023] putfield #64
         + Fieldref [com/chemicalwedding/artemis/bb.q Lcom/chemicalwedding/artemis/a/d;]
-      [1025] aload_0 v0
-      [1026] aload_1 v1
-      [1027] putfield #65
+      [1026] aload_0 v0
+      [1027] aload_2 v2
+      [1028] putfield #65
         + Fieldref [com/chemicalwedding/artemis/bb.r Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [1030] aload_0 v0
-      [1031] aload_3 v3
-      [1032] putfield #52
+      [1031] aload_0 v0
+      [1032] aload_3 v3
+      [1033] putfield #52
         + Fieldref [com/chemicalwedding/artemis/bb.e [F]
-      [1035] goto +8 (target=1043)
-      [1038] iconst_m1
-      [1039] invokestatic #92
+      [1036] goto +9 (target=1045)
+      [1039] iconst_m1
+      [1040] invokestatic #92
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [1042] astore_2 v2
-      [1043] aload_1 v1
-      [1044] aload_2 v2
-      [1045] invokevirtual #91
+      [1043] astore v8
+      [1045] aload_2 v2
+      [1046] aload v8
+      [1048] invokevirtual #91
         + Methodref [java/lang/Integer.intValue ()I]
-      [1048] invokevirtual #75
+      [1051] invokevirtual #75
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.a (I)V]
-      [1051] aload_0 v0
-      [1052] getfield #69
+      [1054] aload_0 v0
+      [1055] getfield #69
         + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [1055] ifne +12 (target=1067)
-      [1058] aload_0 v0
-      [1059] getfield #46
+      [1058] ifne +16 (target=1074)
+      [1061] iload_1 v1
+      [1062] ifne +12 (target=1074)
+      [1065] aload_0 v0
+      [1066] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
-      [1062] aload_1 v1
-      [1063] invokevirtual #108
+      [1069] aload_2 v2
+      [1070] invokevirtual #108
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
-      [1066] pop
-      [1067] iinc v4, 1
-      [1070] aload v7
-      [1072] invokeinterface #113
+      [1073] pop
+      [1074] iinc v4, 1
+      [1077] aload v7
+      [1079] invokeinterface #113
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
-      [1077] ifne -387 (target=690)
-      [1080] return
+      [1084] ifne -394 (target=690)
+      [1087] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 18):
@@ -20836,10 +20879,10 @@ Methods (count = 45):
         - [942] Var: ..., Stack: (empty)
         - [955] Var: ..., Stack: (empty)
         - [972] Var: ...[i], Stack: (empty)
-        - [1038] Var: ...[a:com/chemicalwedding/artemis/ArtemisRectF][a:java/lang/Integer], Stack: (empty)
-        - [1043] Var: ..., Stack: (empty)
-        - [1067] Var: -2, Stack: (empty)
-        - [1070] Var: [a:com/chemicalwedding/artemis/bb][i][i][a:[F][i][i][i][T][a:java/util/Iterator], Stack: 
+        - [1039] Var: ...[a:com/chemicalwedding/artemis/ArtemisRectF][a:java/lang/Integer], Stack: (empty)
+        - [1045] Var: ..., Stack: (empty)
+        - [1074] Var: -2, Stack: (empty)
+        - [1077] Var: [a:com/chemicalwedding/artemis/bb][i][i][a:[F][i][i][i][T][a:java/util/Iterator], Stack: 
   + Method:       e()Ljava/lang/String;
     Access flags: 0x11
       = public final java.lang.String e()

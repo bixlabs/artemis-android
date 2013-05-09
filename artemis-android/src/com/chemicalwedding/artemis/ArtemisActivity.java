@@ -1847,6 +1847,9 @@ public class ArtemisActivity extends Activity implements
 			_artemisMath.decrementFullscreenZoomLens();
 			_cameraPreview.calculateZoom(true);
 
+			_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
+					.format(_artemisMath.zoomLensFullScreenFL));
+
 			if (!_artemisMath.hasPreviousZoomLens()) {
 				_prevLensButton.setVisibility(View.INVISIBLE);
 			}
@@ -1864,17 +1867,23 @@ public class ArtemisActivity extends Activity implements
 		public void onClick(View v) {
 			addCustomLensLayout.setVisibility(View.VISIBLE);
 
-			loadLensesForLensMake();
-
 			_lensSettingsFlipper.setInAnimation(null);
 			_lensSettingsFlipper.setOutAnimation(null);
-			_lensSettingsFlipper.setDisplayedChild(1);
 
-			currentViewId = R.id.lensSettings;
+			if (_artemisMath.selectedZoomLens == null) {
+				// Go to the final lens setting page
+				loadLensesForLensMake();
+				_lensSettingsFlipper.setDisplayedChild(1);
 
-			viewFlipper.setDisplayedChild(2);
+				currentViewId = R.id.lensSettings;
+				viewFlipper.setDisplayedChild(2);
 
-			wasFocalLengthButtonPressed = true;
+				wasFocalLengthButtonPressed = true;
+
+			} else {
+				// Zoom lens selected
+				openLensSettingsView();
+			}
 
 			if (isHapticFeedbackEnabled) {
 				buzz(v);
