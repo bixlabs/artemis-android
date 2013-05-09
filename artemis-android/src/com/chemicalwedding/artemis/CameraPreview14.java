@@ -365,7 +365,7 @@ public class CameraPreview14 extends ViewGroup {
 			@Override
 			public void onSurfaceTextureAvailable(SurfaceTexture surface,
 					int width, int height) {
-				
+
 				openCamera();
 			}
 
@@ -556,7 +556,7 @@ public class CameraPreview14 extends ViewGroup {
 			_artemisMath.setDeviceSpecificDetails(totalScreenWidth,
 					totalScreenHeight, pixelDensityScale, effectiveHAngle,
 					effectiveVAngle);
-			
+
 			if (!_artemisMath.isInitializedFirstTime()) {
 				_artemisMath.calculateLargestLens();
 				_artemisMath.calculateRectBoxesAndLabelsForLenses();
@@ -569,7 +569,7 @@ public class CameraPreview14 extends ViewGroup {
 			// Set the focal length lens textview
 			ArtemisActivity._lensFocalLengthText.setText(_artemisMath
 					.get_selectedLensFocalLength());
-			
+
 			// initialize the buffer used for drawing the fullscreen bitmap and
 			// enable preview callback
 			PixelFormat p = new PixelFormat();
@@ -593,8 +593,7 @@ public class CameraPreview14 extends ViewGroup {
 				Options o = new Options();
 				o.inSampleSize = 2;
 				ArtemisActivity.arrowBackgroundImage = BitmapFactory
-						.decodeResource(getResources(), R.drawable.arrows,
-								o);
+						.decodeResource(getResources(), R.drawable.arrows, o);
 			}
 		}
 	}
@@ -714,6 +713,7 @@ public class CameraPreview14 extends ViewGroup {
 						.getLongitude());
 				String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
 						.getLongitude());
+
 				ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE, latString);
 				ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,
 						latRefString);
@@ -726,6 +726,21 @@ public class CameraPreview14 extends ViewGroup {
 						ArtemisActivity._lensMakeText.getText().toString());
 				ex.setAttribute(ExifInterface.TAG_MAKE,
 						ArtemisActivity._cameraDetailsText.getText().toString());
+
+				SharedPreferences artemisPrefs = getContext()
+						.getApplicationContext().getSharedPreferences(
+								ArtemisPreferences.class.getSimpleName(),
+								Context.MODE_PRIVATE);
+				String desc = artemisPrefs.getString(
+						ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, null);
+				String notes = artemisPrefs.getString(
+						ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, null);
+				if (desc != null && !desc.isEmpty()) {
+					ex.setAttribute("Description", desc);
+				}
+				if (notes != null && !notes.isEmpty()) {
+					ex.setAttribute("Notes", notes);
+				}
 				ex.saveAttributes();
 			} catch (IOException e) {
 				Log.e(logTag, "Could not open image for writing EXIF data");
