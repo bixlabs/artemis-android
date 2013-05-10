@@ -31,6 +31,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:theme="@style/ArtemisMain" >
             <intent-filter>
@@ -43,6 +44,7 @@
             android:name="ArtemisActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:theme="@style/ArtemisMain" >
         </activity>
