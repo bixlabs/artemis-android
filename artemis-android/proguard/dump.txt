@@ -51462,18 +51462,18 @@ Fields (count = 4):
     Class member attributes (count = 1):
     + Constant value attribute:
     + Integer [2131623960]
-  + Field:        rateLater I
-    Access flags: 0x19
-      = public static final int rateLater
-    Class member attributes (count = 1):
-    + Constant value attribute:
-    + Integer [2131623959]
   + Field:        rate I
     Access flags: 0x19
       = public static final int rate
     Class member attributes (count = 1):
     + Constant value attribute:
     + Integer [2131623958]
+  + Field:        rateLater I
+    Access flags: 0x19
+      = public static final int rateLater
+    Class member attributes (count = 1):
+    + Constant value attribute:
+    + Integer [2131623959]
 
 Methods (count = 0):
 
@@ -51598,12 +51598,6 @@ Fields (count = 7):
     Class member attributes (count = 1):
     + Constant value attribute:
     + Integer [2131099648]
-  + Field:        rate_title I
-    Access flags: 0x19
-      = public static final int rate_title
-    Class member attributes (count = 1):
-    + Constant value attribute:
-    + Integer [2131099650]
   + Field:        rate I
     Access flags: 0x19
       = public static final int rate
@@ -51616,6 +51610,12 @@ Fields (count = 7):
     Class member attributes (count = 1):
     + Constant value attribute:
     + Integer [2131099649]
+  + Field:        rate_title I
+    Access flags: 0x19
+      = public static final int rate_title
+    Class member attributes (count = 1):
+    + Constant value attribute:
+    + Integer [2131099650]
   + Field:        rate_later I
     Access flags: 0x19
       = public static final int rate_later
