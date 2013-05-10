@@ -63,9 +63,9 @@ com.chemicalwedding.artemis.CameraPreview14:
     protected float zoomCenterY
     115:116:public void surfaceDestroyed(android.view.SurfaceHolder)
     119:119:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
-    952:952:public void clearFullScreenTempFrame()
-    956:993:public static final void decodeYUV420SP2(int[],byte[],int,int)
-    999:1002:public void resetDigitalZoomLevel()
+    968:968:public void clearFullScreenTempFrame()
+    972:1009:public static final void decodeYUV420SP2(int[],byte[],int,int)
+    1015:1018:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed
