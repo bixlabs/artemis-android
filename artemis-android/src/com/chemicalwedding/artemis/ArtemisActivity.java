@@ -1994,6 +1994,7 @@ public class ArtemisActivity extends Activity implements
 			} else {
 				// just previously took a picture
 				pictureSavePreview.setImageBitmap(null);
+				System.gc();
 				if (_cameraPreview != null)
 					_cameraPreview.restartPreview();
 			}
@@ -2014,6 +2015,7 @@ public class ArtemisActivity extends Activity implements
 				@Override
 				protected String doInBackground(String... params) {
 					_cameraPreview.renderPictureDetailsAndSave();
+					System.gc();
 					return "";
 				}
 
@@ -2037,7 +2039,8 @@ public class ArtemisActivity extends Activity implements
 		@Override
 		public void onClick(View v) {
 			pictureSavePreview.setImageBitmap(null);
-
+			System.gc();
+			
 			loadPictureDetailsSettings();
 
 			savePictureViewFlipper.showNext();
@@ -2166,6 +2169,7 @@ public class ArtemisActivity extends Activity implements
 					@Override
 					protected String doInBackground(String... params) {
 						_cameraPreview.renderPictureDetailsAndSave();
+						System.gc();
 						return "";
 					}
 

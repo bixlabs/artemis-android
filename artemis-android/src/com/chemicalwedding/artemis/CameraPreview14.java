@@ -230,7 +230,7 @@ public class CameraPreview14 extends ViewGroup {
 			// Convert from Jpeg to Bitmap
 			bitmapToSave = BitmapFactory.decodeByteArray(
 					output_stream.toByteArray(), 0, output_stream.size());
-
+			System.gc();
 			
 			RectF selectedRect = _artemisMath.getSelectedLensBox();
 			RectF greenRect = _artemisMath.getCurrentGreenBox();
@@ -250,7 +250,9 @@ public class CameraPreview14 extends ViewGroup {
 						(int) (selectedRect.left), (int) (selectedRect.top),
 						(int) (selectedRect.width()),
 						(int) (selectedRect.height()));
-
+				
+				System.gc();
+				
 				float ratio = selectedRect.width() / selectedRect.height();
 				bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 						(int) (imageHeight * ratio), imageHeight,
@@ -300,6 +302,7 @@ public class CameraPreview14 extends ViewGroup {
 					@Override
 					protected String doInBackground(String... params) {
 						renderPictureDetailsAndSave();
+						System.gc();
 						return "";
 					}
 
