@@ -705,9 +705,7 @@ public class ArtemisActivity extends Activity implements
 				new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						Intent settingsIntent = new Intent(
-								ArtemisActivity.this, SettingsActivity.class);
-						startActivity(settingsIntent);
+						openArtemisSettings();
 						if (isHapticFeedbackEnabled) {
 							buzz(v);
 						}
@@ -2669,5 +2667,42 @@ public class ArtemisActivity extends Activity implements
 	@Override
 	public void onLoaderReset(Loader<Cursor> arg0) {
 
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.camera_settings:
+			openCameraSettingsView();
+			return true;
+		case R.id.lens_settings:
+			openLensSettingsView();
+			return true;
+		case R.id.artemis_settings:
+			openArtemisSettings();
+			return true;
+		case R.id.artemis_about:
+			openArtemisAboutView();
+			return true;
+		case R.id.artemis_gallery:
+			openGallery();
+			return true;
+		case R.id.artemis_quit:
+			finish();
+			return false;
+		}
+
+		return false;
+	}
+
+	private void openArtemisAboutView() {
+		Intent i = new Intent(ArtemisActivity.this, AboutActivity.class);
+		startActivityForResult(i, 1);
+	}
+
+	private void openArtemisSettings() {
+		Intent settingsIntent = new Intent(ArtemisActivity.this,
+				SettingsActivity.class);
+		startActivity(settingsIntent);
 	}
 }
