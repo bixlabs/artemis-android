@@ -92,7 +92,10 @@ com.chemicalwedding.artemis.ArtemisActivity -> com.chemicalwedding.artemis.Artem
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     boolean onSearchRequested() -> onSearchRequested
     void onBackPressed() -> onBackPressed
-    void openArtemisCameraPreviewView() -> i
+    void openCameraSettingsView() -> i
+    void openLensSettingsView() -> j
+    void openArtemisCameraPreviewView() -> k
+    void openGallery() -> l
     void setSelectedZoomLens(com.chemicalwedding.artemis.database.ZoomLens,boolean) -> a
     void setSelectedCamera(int,boolean,boolean) -> a
     void setSelectedLensMake(java.lang.String,boolean,boolean) -> a
@@ -102,12 +105,14 @@ com.chemicalwedding.artemis.ArtemisActivity -> com.chemicalwedding.artemis.Artem
     void shutterButtonPressed(android.view.View) -> b
     java.lang.String[] getGPSLocationDetailStrings(android.content.Context) -> a
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    void refreshCustomCameraList() -> j
+    void refreshCustomCameraList() -> m
     void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
     boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
     boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
     android.content.Loader onCreateLoader(int,android.os.Bundle) -> onCreateLoader
     void onLoaderReset(android.content.Loader) -> onLoaderReset
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void openArtemisSettings() -> n
     void onLoadFinished(android.content.Loader,java.lang.Object) -> onLoadFinished
     java.lang.String access$1() -> c
     void access$2(android.location.Location) -> a
@@ -160,8 +165,9 @@ com.chemicalwedding.artemis.ArtemisActivity -> com.chemicalwedding.artemis.Artem
     java.lang.Runnable access$49(com.chemicalwedding.artemis.ArtemisActivity) -> E
     boolean access$50(com.chemicalwedding.artemis.ArtemisActivity) -> F
     void access$51(com.chemicalwedding.artemis.ArtemisActivity) -> G
-    void access$52(com.chemicalwedding.artemis.ArtemisActivity,java.util.ArrayList) -> e
-    java.util.ArrayList access$53(com.chemicalwedding.artemis.ArtemisActivity) -> H
+    void access$52(com.chemicalwedding.artemis.ArtemisActivity) -> H
+    void access$53(com.chemicalwedding.artemis.ArtemisActivity,java.util.ArrayList) -> e
+    java.util.ArrayList access$54(com.chemicalwedding.artemis.ArtemisActivity) -> I
 com.chemicalwedding.artemis.ArtemisActivity$1 -> com.chemicalwedding.artemis.d:
     float[] lastAccelValue -> a
     float[] lastMagValue -> b
@@ -498,32 +504,25 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     boolean isAutoFocusSupported -> l
     boolean autoFocusBeforePictureTake -> m
     android.hardware.Camera$Size previewSize -> n
-    android.hardware.Camera mCamera -> G
-    android.view.TextureView mTextureView -> H
-    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> I
-    int frameBufSize -> J
-    byte[] frameBuffer -> o
-    int[] tempFrameBitmap -> p
-    float scaleFactor -> q
-    float digital -> r
-    int totalScreenHeight -> K
-    int totalScreenWidth -> L
-    boolean widthAndHeightSwapped -> s
-    int savedImageJPEGQuality -> t
-    int savedImageSizeIndex -> u
-    boolean blackAndWhitePreview -> v
-    int previewHeight -> w
-    int previewWidth -> x
-    int requestedWidthDiff -> y
-    android.graphics.Bitmap bitmapToSave -> z
-    float diffScaleFactor -> A
-    float diffZoomCenterX -> B
-    float diffZoomCenterY -> C
-    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> M
-    java.lang.String degreeSymbolFromStringsXML -> N
-    android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> D
-    android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> E
-    boolean isCameraReleased -> F
+    android.hardware.Camera mCamera -> A
+    android.view.TextureView mTextureView -> B
+    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> C
+    float scaleFactor -> o
+    int totalScreenHeight -> D
+    int totalScreenWidth -> E
+    boolean widthAndHeightSwapped -> p
+    int savedImageJPEGQuality -> q
+    int savedImageSizeIndex -> r
+    boolean blackAndWhitePreview -> s
+    int previewHeight -> t
+    int previewWidth -> u
+    int requestedWidthDiff -> v
+    android.graphics.Bitmap bitmapToSave -> w
+    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> F
+    java.lang.String degreeSymbolFromStringsXML -> G
+    android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> x
+    android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> y
+    boolean isCameraReleased -> z
     void initCameraDetails(android.hardware.Camera$Parameters) -> a
     android.hardware.Camera$Size getOptimalPreviewSize(java.util.List,int,int) -> a
     void takePicture() -> a
@@ -1020,8 +1019,8 @@ com.sbstrm.appirater.R$bool -> com.b.a.f:
 com.sbstrm.appirater.R$id -> com.b.a.g:
     int message -> message
     int cancel -> cancel
-    int rate -> rate
     int rateLater -> rateLater
+    int rate -> rate
 com.sbstrm.appirater.R$integer -> com.b.a.h:
     int appirator_days_until_prompt -> appirator_days_until_prompt
     int appirator_launches_until_prompt -> appirator_launches_until_prompt
@@ -1030,9 +1029,9 @@ com.sbstrm.appirater.R$layout -> com.b.a.i:
     int appirater -> appirater
 com.sbstrm.appirater.R$string -> com.b.a.j:
     int appirator_app_title -> appirator_app_title
+    int rate_title -> rate_title
     int rate -> rate
     int appirator_market_url -> appirator_market_url
-    int rate_title -> rate_title
     int rate_later -> rate_later
     int rate_cancel -> rate_cancel
     int rate_message -> rate_message
