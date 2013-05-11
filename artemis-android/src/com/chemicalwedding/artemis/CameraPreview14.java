@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,15 +18,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory.Options;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -69,13 +67,8 @@ public class CameraPreview14 extends ViewGroup {
 	private static final String logTag = "CameraPreview";
 
 	private ArtemisMath _artemisMath = ArtemisMath.getInstance();
-	private int frameBufSize;
-	protected volatile byte[] frameBuffer;
-	protected volatile int[] tempFrameBitmap; // holds decoded RGB 565 image
-	protected volatile ByteBuffer currentFrame;
-
-	protected float scaleFactor = 1f, zoomCenterX, zoomCenterY;
-	protected float digital = 1f;
+	
+	protected float scaleFactor = 1f;
 	private int totalScreenHeight;
 	private int totalScreenWidth;
 	protected static boolean widthAndHeightSwapped = false;
@@ -83,10 +76,8 @@ public class CameraPreview14 extends ViewGroup {
 	protected static int savedImageSizeIndex;
 	protected static boolean blackAndWhitePreview;
 
-	protected int previewHeight, previewWidth, requestedWidthDiff = 0;;
+	protected int previewHeight, previewWidth, requestedWidthDiff = 0;
 	protected Bitmap bitmapToSave;
-	protected float diffScaleFactor = 0f, diffZoomCenterX = 0f,
-			diffZoomCenterY = 0f;
 
 	private ArtemisApplication artemisApplication;
 	// private final float pixelDensity;
@@ -240,6 +231,7 @@ public class CameraPreview14 extends ViewGroup {
 			bitmapToSave = BitmapFactory.decodeByteArray(
 					output_stream.toByteArray(), 0, output_stream.size());
 
+			
 			RectF selectedRect = _artemisMath.getSelectedLensBox();
 			RectF greenRect = _artemisMath.getCurrentGreenBox();
 
@@ -572,12 +564,12 @@ public class CameraPreview14 extends ViewGroup {
 
 			// initialize the buffer used for drawing the fullscreen bitmap and
 			// enable preview callback
-			PixelFormat p = new PixelFormat();
-			PixelFormat.getPixelFormatInfo(parameters.getPreviewFormat(), p);
-			frameBufSize = (previewWidth * previewHeight * p.bitsPerPixel) / 8;
-			if (frameBuffer == null || frameBuffer.length != frameBufSize)
-				frameBuffer = new byte[frameBufSize];
-			tempFrameBitmap = new int[frameBufSize];
+//			PixelFormat p = new PixelFormat();
+//			PixelFormat.getPixelFormatInfo(parameters.getPreviewFormat(), p);
+//			frameBufSize = (previewWidth * previewHeight * p.bitsPerPixel) / 8;
+//			if (frameBuffer == null || frameBuffer.length != frameBufSize)
+//				frameBuffer = new byte[frameBufSize];
+//			tempFrameBitmap = new int[frameBufSize];
 
 			mCamera.setParameters(parameters);
 
@@ -965,47 +957,6 @@ public class CameraPreview14 extends ViewGroup {
 
 	public void clearFullScreenTempFrame() {
 		// tempFrameBitmap = new int[frameBufSize];
-	}
-
-	final static public void decodeYUV420SP2(int[] rgb, byte[] yuv420sp,
-			int width, int height) {
-		final int frameSize = width * height;
-
-		if (rgb != null) {
-			for (int j = 0, yp = 0; j < height; j++) {
-				int uvp = frameSize + (j >> 1) * width, u = 0, v = 0;
-				for (int i = 0; i < width; i++, yp++) {
-					int y = (0xff & ((int) yuv420sp[yp])) - 16;
-					if (y < 0)
-						y = 0;
-					if ((i & 1) == 0) {
-						v = (0xff & yuv420sp[uvp++]) - 128;
-						u = (0xff & yuv420sp[uvp++]) - 128;
-					}
-
-					int y1192 = 1192 * y;
-					int r = (y1192 + 1634 * v);
-					int g = (y1192 - 833 * v - 400 * u);
-					int b = (y1192 + 2066 * u);
-
-					if (r < 0)
-						r = 0;
-					else if (r > 262143)
-						r = 262143;
-					if (g < 0)
-						g = 0;
-					else if (g > 262143)
-						g = 262143;
-					if (b < 0)
-						b = 0;
-					else if (b > 262143)
-						b = 262143;
-
-					rgb[yp] = 0xff000000 | ((r << 6) & 0xff0000)
-							| ((g >> 2) & 0xff00) | ((b >> 10) & 0xff);
-				}
-			}
-		}
 	}
 
 	/**
