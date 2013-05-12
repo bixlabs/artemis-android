@@ -322,4 +322,8 @@
     <string name="exit_artemis">アルテミスを終了</string>
     <string name="black_and_white_preview">黒と白のプレビュー</string>
     
+    <string name="error_communicating_title">ライセンスサーバーの通信エラー</string>
+    <string name="error_communicating_dialog_body">グーグルプレイストアライセンスサーバーとの通信に問題が発生しました。あなたのインターネット接続を確認してからもう一度お試しください。問題が解決しない場合はアルテミスのサポートまでご連絡ください。</string>
+    <string name="retry_button">リトライ</string>
+    
 </resources>

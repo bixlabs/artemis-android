@@ -252,4 +252,8 @@
     <string name="exit_artemis">Verlassen Artemis</string>
     <string name="black_and_white_preview">Black and White Vorschau</string>
     
+     <string name="error_communicating_title">Lizenz-Server-Kommunikation Fehler</string>
+    <string name="error_communicating_dialog_body">Es gab ein Problem bei der Kommunikation mit Google-Play-Speicher Lizenzserver. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut. Wenn das Problem weiterhin besteht kontaktieren Sie bitte Artemis Unterstützung.</string>
+    <string name="retry_button">Wiederholen</string>
+    
 </resources>

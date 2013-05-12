@@ -290,5 +290,9 @@
     <string name="sure_you_want_to_exit">هل أنت متأكد أنك تريد الخروج؟</string>
     <string name="exit_artemis">خروج أرتميس</string>
     <string name="black_and_white_preview">معاينة أبيض وأسود</string>
+    
+    <string name="error_communicating_title">ترخيص خادم خطأ في الاتصال</string>
+    <string name="error_communicating_dialog_body">كان هناك مشكلة في الاتصال مع اللعب خادم ترخيص متجر جوجل. الرجاء التحقق من اتصال الإنترنت الخاص بك وحاول مرة أخرى. إذا استمرت المشكلة الرجاء الاتصال بالدعم أرتميس.</string>
+    <string name="retry_button">إعادة المحاولة</string>
 
 </resources>

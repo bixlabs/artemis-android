@@ -327,4 +327,8 @@
     <string name="exit_artemis">아르테미스 종료</string>
     <string name="black_and_white_preview">흑인과 백인 미리보기</string>
     
+    <string name="error_communicating_title">라이센스 서버 통신 오류</string>
+    <string name="error_communicating_dialog_body">구글 놀이 상점 라이센스 서버와 통신하는 데 문제가 발생했습니다. 당신의 인터넷 연결을 확인하고 다시 시도하십시오.문제가 지속되면 아르테미스 지원 센터에 문의하십시오.</string>
+    <string name="retry_button">재시도</string>
+    
 </resources>

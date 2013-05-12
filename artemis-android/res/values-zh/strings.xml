@@ -337,4 +337,8 @@
     <string name="exit_artemis">退出阿耳忒弥斯</string>
     <string name="black_and_white_preview">黑与白的预览</string>
     
+    <string name="error_communicating_title">许可证服务器通信错误</string>
+    <string name="error_communicating_dialog_body">有一个与谷歌Play商店的许可证服务器通信问题。请检查您的互联网连接，然后再试一次。如果问题仍然存在，请联系阿耳忒弥斯的支持。</string>
+    <string name="retry_button">重试</string>
+    
 </resources>

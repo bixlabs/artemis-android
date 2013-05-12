@@ -317,4 +317,8 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="exit_artemis">Salir de Artemis</string>
     <string name="black_and_white_preview">Blanco y negro Vista previa</string>
     
+     <string name="error_communicating_title">Error de comunicación del servidor de licencias</string>
+    <string name="error_communicating_dialog_body">Había un problema de comunicación con el servidor de licencias tienda Google Play. Por favor, compruebe su conexión a Internet y vuelva a intentarlo. Si el problema persiste, póngase en contacto con el servicio Artemis.</string>
+    <string name="retry_button">Reintentar</string>
+    
 </resources>

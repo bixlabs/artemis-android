@@ -325,4 +325,8 @@
     <string name="exit_artemis">uscire Artemis</string>
     <string name="black_and_white_preview">Bianco e nero Anteprimaw</string>
     
+    <string name="error_communicating_title">Errore di comunicazione con il server di licenza</string>
+    <string name="error_communicating_dialog_body">Cè stato un problema di comunicazione con il server di licenza Google Play Store. Verifica la tua connessione Internet e riprova. Se il problema persiste contattare il supporto Artemis.</string>
+    <string name="retry_button">Riprova</string>
+    
 </resources>

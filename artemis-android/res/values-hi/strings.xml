@@ -295,4 +295,8 @@
     <string name="exit_artemis">आर्टेमिस से बाहर निकलें</string>
     <string name="black_and_white_preview">काले और सफेद पूर्वावलोकन</string>
     
+    <string name="error_communicating_title">लाइसेंस सर्वर संचार त्रुटि</string>
+    <string name="error_communicating_dialog_body">गूगल प्ले स्टोर लाइसेंस सर्वर के साथ संवाद करने में कोई समस्या आई थी. अपने इंटरनेट कनेक्टिविटी की जाँच करें और पुन: प्रयास करें. यदि समस्या बनी रहती आर्टेमिस समर्थन से संपर्क करें.</string>
+    <string name="retry_button">पुन: प्रयास</string>
+    
 </resources>

@@ -333,5 +333,9 @@ Canon 5D и 7D
     <string name="sure_you_want_to_exit">Вы уверены, что хотите выйти?</string>
     <string name="exit_artemis">Выход Artemis</string>
     <string name="black_and_white_preview">Черно-белое изображение</string>
+    
+    <string name="error_communicating_title">Сервер лицензий ошибка связи</string>
+    <string name="error_communicating_dialog_body">Был проблемы, общаясь с Google Play сервер лицензий магазине. Пожалуйста, проверьте подключение к Интернету и повторите попытку. Если проблема не исчезнет, ​​обратитесь Артемиды поддержки.</string>
+    <string name="retry_button">Повторить</string>
 
 </resources>
