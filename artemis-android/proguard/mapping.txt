@@ -776,21 +776,27 @@ com.chemicalwedding.artemis.SplashScreenActivity -> com.chemicalwedding.artemis.
     com.google.android.vending.licensing.LicenseChecker _checker -> b
     android.os.Handler mHandler -> c
     boolean validLicenseFound -> d
-    byte[] SALT -> e
+    android.app.AlertDialog mDialog -> e
+    byte[] SALT -> f
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
+    void onPause() -> onPause
     void onDestroy() -> onDestroy
     void access$0$1385ff() -> a
     void access$1(com.chemicalwedding.artemis.SplashScreenActivity) -> a
-    android.os.Handler access$2(com.chemicalwedding.artemis.SplashScreenActivity) -> b
+    com.google.android.vending.licensing.LicenseChecker access$2(com.chemicalwedding.artemis.SplashScreenActivity) -> b
+    com.google.android.vending.licensing.LicenseCheckerCallback access$3(com.chemicalwedding.artemis.SplashScreenActivity) -> c
+    void access$4(com.chemicalwedding.artemis.SplashScreenActivity,android.app.AlertDialog) -> a
+    android.app.AlertDialog access$5(com.chemicalwedding.artemis.SplashScreenActivity) -> d
+    android.os.Handler access$6(com.chemicalwedding.artemis.SplashScreenActivity) -> e
 com.chemicalwedding.artemis.SplashScreenActivity$1 -> com.chemicalwedding.artemis.co:
     com.chemicalwedding.artemis.SplashScreenActivity this$0 -> a
     void run() -> run
 com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback -> com.chemicalwedding.artemis.cp:
     com.chemicalwedding.artemis.SplashScreenActivity this$0 -> a
     void allow$13462e() -> a
-    void dontAllow$13462e() -> b
-    void applicationError(int) -> a
+    void dontAllow(int) -> a
+    void applicationError(int) -> b
 com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$1 -> com.chemicalwedding.artemis.cq:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -799,16 +805,20 @@ com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$2 -> c
     void onClick(android.content.DialogInterface,int) -> onClick
 com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$3 -> com.chemicalwedding.artemis.cs:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
-    android.app.AlertDialog val$dialog -> b
-    void run() -> run
+    void onClick(android.content.DialogInterface,int) -> onClick
 com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$4 -> com.chemicalwedding.artemis.ct:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
 com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$5 -> com.chemicalwedding.artemis.cu:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
-    android.app.AlertDialog val$dialog -> b
     void run() -> run
-com.chemicalwedding.artemis.WorkerThread -> com.chemicalwedding.artemis.cv:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$6 -> com.chemicalwedding.artemis.cv:
+    com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$7 -> com.chemicalwedding.artemis.cw:
+    com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
+    void run() -> run
+com.chemicalwedding.artemis.WorkerThread -> com.chemicalwedding.artemis.cx:
     android.os.Handler mHandler -> a
     void run() -> run
     void stopThread() -> a
@@ -953,8 +963,8 @@ com.google.android.vending.licensing.LicenseChecker$ResultListener$2 -> com.a.a.
     void run() -> run
 com.google.android.vending.licensing.LicenseCheckerCallback -> com.a.a.a.a.m:
     void allow$13462e() -> a
-    void dontAllow$13462e() -> b
-    void applicationError(int) -> a
+    void dontAllow(int) -> a
+    void applicationError(int) -> b
 com.google.android.vending.licensing.LicenseValidator -> com.a.a.a.a.n:
     com.google.android.vending.licensing.Policy mPolicy -> f
     com.google.android.vending.licensing.LicenseCheckerCallback mCallback -> a

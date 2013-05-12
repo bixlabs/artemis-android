@@ -354,6 +354,8 @@ com.chemicalwedding.artemis.R$string: int device_camera_angles
 com.chemicalwedding.artemis.R$string: int device_camera_behaviour
 com.chemicalwedding.artemis.R$string: int device_camera_sensor
 com.chemicalwedding.artemis.R$string: int email_support
+com.chemicalwedding.artemis.R$string: int error_communicating_dialog_body
+com.chemicalwedding.artemis.R$string: int error_communicating_title
 com.chemicalwedding.artemis.R$string: int error_dialog_body
 com.chemicalwedding.artemis.R$string: int error_dialog_title
 com.chemicalwedding.artemis.R$string: int exit_artemis
@@ -479,6 +481,7 @@ com.chemicalwedding.artemis.R$string: int rate_title
 com.chemicalwedding.artemis.R$string: int reset_artemis_settings
 com.chemicalwedding.artemis.R$string: int reset_device_h_and_v_angles
 com.chemicalwedding.artemis.R$string: int reset_to_default_settings
+com.chemicalwedding.artemis.R$string: int retry_button
 com.chemicalwedding.artemis.R$string: int right_roll
 com.chemicalwedding.artemis.R$string: int roll_level
 com.chemicalwedding.artemis.R$string: int save
