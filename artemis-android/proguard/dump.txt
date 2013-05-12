@@ -19345,7 +19345,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 317):
+Constant Pool (count = 321):
   + Integer [-16777216]
   + Integer [-16711936]
   + Integer [-65536]
@@ -19430,6 +19430,8 @@ Constant Pool (count = 317):
   + Methodref [com/chemicalwedding/artemis/bb.a ()V]
   + Methodref [com/chemicalwedding/artemis/bb.c (F)[F]
   + Methodref [com/chemicalwedding/artemis/bb.d (F)F]
+  + Methodref [com/chemicalwedding/artemis/bb.p ()Z]
+  + Methodref [com/chemicalwedding/artemis/bb.r ()Z]
   + Methodref [com/chemicalwedding/artemis/bb.v ()V]
   + Methodref [java/lang/Float.floatValue ()F]
   + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
@@ -19512,8 +19514,10 @@ Constant Pool (count = 317):
   + NameAndType [n Lcom/chemicalwedding/artemis/bb;]
   + NameAndType [next ()Ljava/lang/Object;]
   + NameAndType [o Lcom/chemicalwedding/artemis/a/b;]
+  + NameAndType [p ()Z]
   + NameAndType [p Ljava/util/ArrayList;]
   + NameAndType [q Lcom/chemicalwedding/artemis/a/d;]
+  + NameAndType [r ()Z]
   + NameAndType [r Lcom/chemicalwedding/artemis/ArtemisRectF;]
   + NameAndType [right F]
   + NameAndType [s Lcom/chemicalwedding/artemis/ArtemisRectF;]
@@ -19783,7 +19787,7 @@ Methods (count = 45):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 48, locals = 1, stack = 3):
       [0] aload_0 v0
-      [1] invokespecial #97
+      [1] invokespecial #99
         + Methodref [java/lang/Object.<init> ()V]
       [4] aload_0 v0
       [5] iconst_0
@@ -19805,7 +19809,7 @@ Methods (count = 45):
       [25] new #25
         + Class [java/util/ArrayList]
       [28] dup
-      [29] invokespecial #107
+      [29] invokespecial #109
         + Methodref [java/util/ArrayList.<init> ()V]
       [32] putfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
@@ -19814,7 +19818,7 @@ Methods (count = 45):
       [37] putfield #47
         + Fieldref [com/chemicalwedding/artemis/bb.G Z]
       [40] aload_0 v0
-      [41] invokestatic #106
+      [41] invokestatic #108
         + Methodref [java/text/NumberFormat.getNumberInstance ()Ljava/text/NumberFormat;]
       [44] putfield #60
         + Fieldref [com/chemicalwedding/artemis/bb.m Ljava/text/NumberFormat;]
@@ -19836,7 +19840,7 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.s Lcom/chemicalwedding/artemis/ArtemisRectF;]
       [12] invokevirtual #77
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.centerX ()F]
-      [15] invokestatic #90
+      [15] invokestatic #92
         + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [18] putfield #70
         + Fieldref [com/chemicalwedding/artemis/bb.w Ljava/lang/Float;]
@@ -19846,7 +19850,7 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.s Lcom/chemicalwedding/artemis/ArtemisRectF;]
       [26] invokevirtual #78
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.centerY ()F]
-      [29] invokestatic #90
+      [29] invokestatic #92
         + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [32] putfield #71
         + Fieldref [com/chemicalwedding/artemis/bb.x Ljava/lang/Float;]
@@ -19858,7 +19862,7 @@ Methods (count = 45):
       [41] iconst_2
       [42] idiv
       [43] i2f
-      [44] invokestatic #90
+      [44] invokestatic #92
         + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [47] putfield #70
         + Fieldref [com/chemicalwedding/artemis/bb.w Ljava/lang/Float;]
@@ -19869,7 +19873,7 @@ Methods (count = 45):
       [55] iconst_2
       [56] idiv
       [57] i2f
-      [58] invokestatic #90
+      [58] invokestatic #92
         + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [61] putfield #71
         + Fieldref [com/chemicalwedding/artemis/bb.x Ljava/lang/Float;]
@@ -19911,9 +19915,9 @@ Methods (count = 45):
       [34] fconst_2
       [35] fdiv
       [36] f2d
-      [37] invokestatic #96
+      [37] invokestatic #98
         + Methodref [java/lang/Math.toRadians (D)D]
-      [40] invokestatic #94
+      [40] invokestatic #96
         + Methodref [java/lang/Math.tan (D)D]
       [43] ldc2_w #29
         + Double [1000.0]
@@ -19928,9 +19932,9 @@ Methods (count = 45):
       [57] fconst_2
       [58] fdiv
       [59] f2d
-      [60] invokestatic #96
+      [60] invokestatic #98
         + Methodref [java/lang/Math.toRadians (D)D]
-      [63] invokestatic #94
+      [63] invokestatic #96
         + Methodref [java/lang/Math.tan (D)D]
       [66] ldc2_w #29
         + Double [1000.0]
@@ -19944,30 +19948,30 @@ Methods (count = 45):
       [78] dup
       [79] ldc #12
         + String [Pixel Density: ]
-      [81] invokespecial #99
+      [81] invokespecial #101
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [84] aload_0 v0
       [85] getfield #68
         + Fieldref [com/chemicalwedding/artemis/bb.u F]
-      [88] invokevirtual #100
+      [88] invokevirtual #102
         + Methodref [java/lang/StringBuilder.append (F)Ljava/lang/StringBuilder;]
       [91] ldc #10
         + String [ Horiz:]
-      [93] invokevirtual #102
+      [93] invokevirtual #104
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [96] getstatic #50
         + Fieldref [com/chemicalwedding/artemis/bb.c F]
-      [99] invokevirtual #100
+      [99] invokevirtual #102
         + Methodref [java/lang/StringBuilder.append (F)Ljava/lang/StringBuilder;]
       [102] ldc #11
         + String [ Vert:]
-      [104] invokevirtual #102
+      [104] invokevirtual #104
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [107] getstatic #51
         + Fieldref [com/chemicalwedding/artemis/bb.d F]
-      [110] invokevirtual #100
+      [110] invokevirtual #102
         + Methodref [java/lang/StringBuilder.append (F)Ljava/lang/StringBuilder;]
-      [113] invokevirtual #103
+      [113] invokevirtual #105
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [116] pop
       [117] return
@@ -19983,14 +19987,14 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.o Lcom/chemicalwedding/artemis/a/b;]
       [4] getfield #37
         + Fieldref [com/chemicalwedding/artemis/a/b.d Ljava/lang/Float;]
-      [7] invokevirtual #89
+      [7] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [10] aload_0 v0
       [11] getfield #62
         + Fieldref [com/chemicalwedding/artemis/bb.o Lcom/chemicalwedding/artemis/a/b;]
       [14] getfield #39
         + Fieldref [com/chemicalwedding/artemis/a/b.f Ljava/lang/Float;]
-      [17] invokevirtual #89
+      [17] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [20] fmul
       [21] fconst_2
@@ -20003,7 +20007,7 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.o Lcom/chemicalwedding/artemis/a/b;]
       [30] getfield #38
         + Fieldref [com/chemicalwedding/artemis/a/b.e Ljava/lang/Float;]
-      [33] invokevirtual #89
+      [33] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [36] fconst_1
       [37] fmul
@@ -20016,9 +20020,9 @@ Methods (count = 45):
         + Double [2.0]
       [46] fload_2 v2
       [47] f2d
-      [48] invokestatic #93
+      [48] invokestatic #95
         + Methodref [java/lang/Math.atan (D)D]
-      [51] invokestatic #95
+      [51] invokestatic #97
         + Methodref [java/lang/Math.toDegrees (D)D]
       [54] dmul
       [55] d2f
@@ -20027,9 +20031,9 @@ Methods (count = 45):
         + Double [2.0]
       [60] fload_1 v1
       [61] f2d
-      [62] invokestatic #93
+      [62] invokestatic #95
         + Methodref [java/lang/Math.atan (D)D]
-      [65] invokestatic #95
+      [65] invokestatic #97
         + Methodref [java/lang/Math.toDegrees (D)D]
       [68] dmul
       [69] d2f
@@ -20094,18 +20098,18 @@ Methods (count = 45):
         + Float [2000.0]
       [8] fdiv
       [9] f2d
-      [10] invokestatic #93
+      [10] invokestatic #95
         + Methodref [java/lang/Math.atan (D)D]
-      [13] invokestatic #95
+      [13] invokestatic #97
         + Methodref [java/lang/Math.toDegrees (D)D]
       [16] dmul
       [17] d2f
       [18] fconst_2
       [19] fdiv
       [20] f2d
-      [21] invokestatic #96
+      [21] invokestatic #98
         + Methodref [java/lang/Math.toRadians (D)D]
-      [24] invokestatic #94
+      [24] invokestatic #96
         + Methodref [java/lang/Math.tan (D)D]
       [27] d2f
       [28] fstore_1 v1
@@ -20114,14 +20118,14 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.o Lcom/chemicalwedding/artemis/a/b;]
       [33] getfield #37
         + Fieldref [com/chemicalwedding/artemis/a/b.d Ljava/lang/Float;]
-      [36] invokevirtual #89
+      [36] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [39] aload_0 v0
       [40] getfield #62
         + Fieldref [com/chemicalwedding/artemis/bb.o Lcom/chemicalwedding/artemis/a/b;]
       [43] getfield #39
         + Fieldref [com/chemicalwedding/artemis/a/b.f Ljava/lang/Float;]
-      [46] invokevirtual #89
+      [46] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [49] fmul
       [50] fload_1 v1
@@ -20137,18 +20141,18 @@ Methods (count = 45):
         + Float [2000.0]
       [63] fdiv
       [64] f2d
-      [65] invokestatic #93
+      [65] invokestatic #95
         + Methodref [java/lang/Math.atan (D)D]
-      [68] invokestatic #95
+      [68] invokestatic #97
         + Methodref [java/lang/Math.toDegrees (D)D]
       [71] dmul
       [72] d2f
       [73] fconst_2
       [74] fdiv
       [75] f2d
-      [76] invokestatic #96
+      [76] invokestatic #98
         + Methodref [java/lang/Math.toRadians (D)D]
-      [79] invokestatic #94
+      [79] invokestatic #96
         + Methodref [java/lang/Math.tan (D)D]
       [82] d2f
       [83] fstore_2 v2
@@ -20157,7 +20161,7 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.o Lcom/chemicalwedding/artemis/a/b;]
       [88] getfield #38
         + Fieldref [com/chemicalwedding/artemis/a/b.e Ljava/lang/Float;]
-      [91] invokevirtual #89
+      [91] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [94] getstatic #53
         + Fieldref [com/chemicalwedding/artemis/bb.f I]
@@ -20201,9 +20205,9 @@ Methods (count = 45):
       [4] fconst_2
       [5] fdiv
       [6] f2d
-      [7] invokestatic #96
+      [7] invokestatic #98
         + Methodref [java/lang/Math.toRadians (D)D]
-      [10] invokestatic #94
+      [10] invokestatic #96
         + Methodref [java/lang/Math.tan (D)D]
       [13] dmul
       [14] d2f
@@ -20272,7 +20276,7 @@ Methods (count = 45):
       [20] aload_0 v0
       [21] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
-      [24] invokevirtual #109
+      [24] invokevirtual #111
         + Methodref [java/util/ArrayList.clear ()V]
       [27] aload_0 v0
       [28] aload_0 v0
@@ -20337,15 +20341,15 @@ Methods (count = 45):
       [101] new #23
         + Class [java/lang/StringBuilder]
       [104] dup
-      [105] invokespecial #98
+      [105] invokespecial #100
         + Methodref [java/lang/StringBuilder.<init> ()V]
       [108] aload_0 v0
       [109] getfield #45
         + Fieldref [com/chemicalwedding/artemis/bb.E F]
       [112] f2i
-      [113] invokevirtual #101
+      [113] invokevirtual #103
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [116] invokevirtual #103
+      [116] invokevirtual #105
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [119] fconst_2
       [120] iload_2 v2
@@ -20486,28 +20490,28 @@ Methods (count = 45):
       [303] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [306] aload v13
-      [308] invokevirtual #108
+      [308] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [311] pop
       [312] aload_0 v0
       [313] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [316] aload_1 v1
-      [317] invokevirtual #108
+      [317] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [320] pop
       [321] aload_0 v0
       [322] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [325] aload v11
-      [327] invokevirtual #108
+      [327] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [330] pop
       [331] aload_0 v0
       [332] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [335] aload v14
-      [337] invokevirtual #108
+      [337] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [340] pop
       [341] aload_0 v0
@@ -20572,15 +20576,15 @@ Methods (count = 45):
       [421] new #23
         + Class [java/lang/StringBuilder]
       [424] dup
-      [425] invokespecial #98
+      [425] invokespecial #100
         + Methodref [java/lang/StringBuilder.<init> ()V]
       [428] aload_0 v0
       [429] getfield #45
         + Fieldref [com/chemicalwedding/artemis/bb.E F]
       [432] f2i
-      [433] invokevirtual #101
+      [433] invokevirtual #103
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [436] invokevirtual #103
+      [436] invokevirtual #105
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [439] iload v7
       [441] i2f
@@ -20704,28 +20708,28 @@ Methods (count = 45):
       [602] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [605] aload v10
-      [607] invokevirtual #108
+      [607] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [610] pop
       [611] aload_0 v0
       [612] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [615] aload v11
-      [617] invokevirtual #108
+      [617] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [620] pop
       [621] aload_0 v0
       [622] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [625] aload v12
-      [627] invokevirtual #108
+      [627] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [630] pop
       [631] aload_0 v0
       [632] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [635] aload v13
-      [637] invokevirtual #108
+      [637] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [640] pop
       [641] aload_0 v0
@@ -20759,12 +20763,12 @@ Methods (count = 45):
       [678] aload_0 v0
       [679] getfield #63
         + Fieldref [com/chemicalwedding/artemis/bb.p Ljava/util/ArrayList;]
-      [682] invokevirtual #111
+      [682] invokevirtual #113
         + Methodref [java/util/ArrayList.iterator ()Ljava/util/Iterator;]
       [685] astore v7
       [687] goto +390 (target=1077)
       [690] aload v7
-      [692] invokeinterface #114
+      [692] invokeinterface #116
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
       [697] checkcast #16
         + Class [com/chemicalwedding/artemis/a/d]
@@ -20850,7 +20854,7 @@ Methods (count = 45):
       [814] aload_0 v0
       [815] getfield #70
         + Fieldref [com/chemicalwedding/artemis/bb.w Ljava/lang/Float;]
-      [818] invokevirtual #89
+      [818] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [821] iload v12
       [823] i2f
@@ -20861,7 +20865,7 @@ Methods (count = 45):
       [829] aload_0 v0
       [830] getfield #71
         + Fieldref [com/chemicalwedding/artemis/bb.x Ljava/lang/Float;]
-      [833] invokevirtual #89
+      [833] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [836] iload v13
       [838] i2f
@@ -20957,7 +20961,7 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.m Ljava/text/NumberFormat;]
       [980] fload v10
       [982] f2d
-      [983] invokevirtual #104
+      [983] invokevirtual #106
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
       [986] iload v8
       [988] i2f
@@ -20979,7 +20983,7 @@ Methods (count = 45):
       [1010] ificmpne +29 (target=1039)
       [1013] ldc #3
         + Integer [-65536]
-      [1015] invokestatic #92
+      [1015] invokestatic #94
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [1018] astore v8
       [1020] aload_0 v0
@@ -20996,12 +21000,12 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.e [F]
       [1036] goto +9 (target=1045)
       [1039] iconst_m1
-      [1040] invokestatic #92
+      [1040] invokestatic #94
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [1043] astore v8
       [1045] aload_2 v2
       [1046] aload v8
-      [1048] invokevirtual #91
+      [1048] invokevirtual #93
         + Methodref [java/lang/Integer.intValue ()I]
       [1051] invokevirtual #75
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.a (I)V]
@@ -21015,12 +21019,12 @@ Methods (count = 45):
       [1066] getfield #46
         + Fieldref [com/chemicalwedding/artemis/bb.F Ljava/util/ArrayList;]
       [1069] aload_2 v2
-      [1070] invokevirtual #108
+      [1070] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [1073] pop
       [1074] iinc v4, 1
       [1077] aload v7
-      [1079] invokeinterface #113
+      [1079] invokeinterface #115
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [1084] ifne -394 (target=690)
       [1087] return
@@ -21054,7 +21058,7 @@ Methods (count = 45):
       [1] getfield #64
         + Fieldref [com/chemicalwedding/artemis/bb.q Lcom/chemicalwedding/artemis/a/d;]
       [4] ifnull +18 (target=22)
-      [7] invokestatic #105
+      [7] invokestatic #107
         + Methodref [java/text/NumberFormat.getInstance ()Ljava/text/NumberFormat;]
       [10] aload_0 v0
       [11] getfield #64
@@ -21062,7 +21066,7 @@ Methods (count = 45):
       [14] getfield #40
         + Fieldref [com/chemicalwedding/artemis/a/d.h F]
       [17] f2d
-      [18] invokevirtual #104
+      [18] invokevirtual #106
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
       [21] areturn
       [22] ldc #9
@@ -21113,7 +21117,7 @@ Methods (count = 45):
     + Code attribute instructions (code length = 9, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] fload_1 v1
-      [2] invokestatic #90
+      [2] invokestatic #92
         + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [5] putfield #70
         + Fieldref [com/chemicalwedding/artemis/bb.w Ljava/lang/Float;]
@@ -21171,7 +21175,7 @@ Methods (count = 45):
     + Code attribute instructions (code length = 9, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] fload_1 v1
-      [2] invokestatic #90
+      [2] invokestatic #92
         + Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [5] putfield #71
         + Fieldref [com/chemicalwedding/artemis/bb.x Ljava/lang/Float;]
@@ -21223,7 +21227,7 @@ Methods (count = 45):
       [6] aload_0 v0
       [7] getfield #63
         + Fieldref [com/chemicalwedding/artemis/bb.p Ljava/util/ArrayList;]
-      [10] invokevirtual #112
+      [10] invokevirtual #114
         + Methodref [java/util/ArrayList.size ()I]
       [13] ificmpge +33 (target=46)
       [16] aload_0 v0
@@ -21241,7 +21245,7 @@ Methods (count = 45):
       [31] aload_0 v0
       [32] getfield #67
         + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [35] invokevirtual #110
+      [35] invokevirtual #112
         + Methodref [java/util/ArrayList.get (I)Ljava/lang/Object;]
       [38] checkcast #16
         + Class [com/chemicalwedding/artemis/a/d]
@@ -21268,7 +21272,7 @@ Methods (count = 45):
       [6] aload_0 v0
       [7] getfield #63
         + Fieldref [com/chemicalwedding/artemis/bb.p Ljava/util/ArrayList;]
-      [10] invokevirtual #112
+      [10] invokevirtual #114
         + Methodref [java/util/ArrayList.size ()I]
       [13] ificmpge +5 (target=18)
       [16] iconst_1
@@ -21303,7 +21307,7 @@ Methods (count = 45):
       [22] aload_0 v0
       [23] getfield #67
         + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [26] invokevirtual #110
+      [26] invokevirtual #112
         + Methodref [java/util/ArrayList.get (I)Ljava/lang/Object;]
       [29] checkcast #16
         + Class [com/chemicalwedding/artemis/a/d]
@@ -21321,140 +21325,113 @@ Methods (count = 45):
     Access flags: 0x11
       = public final boolean r()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 68, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 45, locals = 1, stack = 2):
       [0] aload_0 v0
       [1] getfield #69
         + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [4] ifne +30 (target=34)
+      [4] ifne +23 (target=27)
       [7] aload_0 v0
-      [8] getfield #57
-        + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [11] ifnonnull +23 (target=34)
+      [8] getfield #44
+        + Fieldref [com/chemicalwedding/artemis/bb.D I]
+      [11] ifle +16 (target=27)
       [14] aload_0 v0
-      [15] getfield #44
-        + Fieldref [com/chemicalwedding/artemis/bb.D I]
-      [18] ifle +16 (target=34)
-      [21] aload_0 v0
-      [22] getfield #67
+      [15] getfield #67
         + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [25] aload_0 v0
-      [26] getfield #44
+      [18] aload_0 v0
+      [19] getfield #44
         + Fieldref [com/chemicalwedding/artemis/bb.D I]
-      [29] ificmple +5 (target=34)
-      [32] iconst_1
-      [33] ireturn
-      [34] aload_0 v0
-      [35] getfield #69
+      [22] ificmple +5 (target=27)
+      [25] iconst_1
+      [26] ireturn
+      [27] aload_0 v0
+      [28] getfield #69
         + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [38] ifeq +12 (target=50)
-      [41] aload_0 v0
-      [42] getfield #67
+      [31] ifeq +12 (target=43)
+      [34] aload_0 v0
+      [35] getfield #67
         + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [45] ifle +5 (target=50)
-      [48] iconst_1
-      [49] ireturn
-      [50] aload_0 v0
-      [51] getfield #57
-        + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [54] ifnull +12 (target=66)
-      [57] aload_0 v0
-      [58] getfield #67
-        + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [61] ifle +5 (target=66)
-      [64] iconst_1
-      [65] ireturn
-      [66] iconst_0
-      [67] ireturn
+      [38] ifle +5 (target=43)
+      [41] iconst_1
+      [42] ireturn
+      [43] iconst_0
+      [44] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 3):
-        - [34] Var: ..., Stack: (empty)
-        - [50] Var: ..., Stack: (empty)
-        - [66] Var: ..., Stack: (empty)
+      + Stack map table attribute (count = 2):
+        - [27] Var: ..., Stack: (empty)
+        - [43] Var: ..., Stack: (empty)
   + Method:       s()Z
     Access flags: 0x11
       = public final boolean s()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 49, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 38, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #57
-        + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [4] ifnull +27 (target=31)
+      [1] getfield #69
+        + Fieldref [com/chemicalwedding/artemis/bb.v Z]
+      [4] ifeq +20 (target=24)
       [7] aload_0 v0
-      [8] getfield #69
-        + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [11] ifeq +20 (target=31)
-      [14] aload_0 v0
-      [15] getfield #59
+      [8] getfield #59
         + Fieldref [com/chemicalwedding/artemis/bb.l F]
-      [18] aload_0 v0
-      [19] getfield #57
+      [11] aload_0 v0
+      [12] getfield #57
         + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [22] invokevirtual #82
+      [15] invokevirtual #82
         + Methodref [com/chemicalwedding/artemis/a/e.c ()F]
-      [25] fcmpl
-      [26] ifle +5 (target=31)
-      [29] iconst_1
-      [30] ireturn
-      [31] aload_0 v0
-      [32] getfield #69
+      [18] fcmpl
+      [19] ifle +5 (target=24)
+      [22] iconst_1
+      [23] ireturn
+      [24] aload_0 v0
+      [25] getfield #69
         + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [35] ifne +12 (target=47)
-      [38] aload_0 v0
-      [39] getfield #67
-        + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [42] ifle +5 (target=47)
-      [45] iconst_1
-      [46] ireturn
-      [47] iconst_0
-      [48] ireturn
+      [28] ifne +8 (target=36)
+      [31] aload_0 v0
+      [32] invokevirtual #89
+        + Methodref [com/chemicalwedding/artemis/bb.r ()Z]
+      [35] ireturn
+      [36] iconst_0
+      [37] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 2):
-        - [31] Var: ..., Stack: (empty)
-        - [47] Var: ..., Stack: (empty)
+        - [24] Var: ..., Stack: (empty)
+        - [36] Var: ..., Stack: (empty)
   + Method:       t()Z
     Access flags: 0x11
       = public final boolean t()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 49, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 38, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #57
-        + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [4] ifnull +27 (target=31)
+      [1] getfield #69
+        + Fieldref [com/chemicalwedding/artemis/bb.v Z]
+      [4] ifeq +20 (target=24)
       [7] aload_0 v0
-      [8] getfield #69
-        + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [11] ifeq +20 (target=31)
-      [14] aload_0 v0
-      [15] getfield #59
+      [8] getfield #59
         + Fieldref [com/chemicalwedding/artemis/bb.l F]
-      [18] aload_0 v0
-      [19] getfield #57
+      [11] aload_0 v0
+      [12] getfield #57
         + Fieldref [com/chemicalwedding/artemis/bb.j Lcom/chemicalwedding/artemis/a/e;]
-      [22] invokevirtual #83
+      [15] invokevirtual #83
         + Methodref [com/chemicalwedding/artemis/a/e.d ()F]
-      [25] fcmpg
-      [26] ifge +5 (target=31)
-      [29] iconst_1
-      [30] ireturn
-      [31] aload_0 v0
-      [32] getfield #69
+      [18] fcmpg
+      [19] ifge +5 (target=24)
+      [22] iconst_1
+      [23] ireturn
+      [24] aload_0 v0
+      [25] getfield #69
         + Fieldref [com/chemicalwedding/artemis/bb.v Z]
-      [35] ifne +12 (target=47)
-      [38] aload_0 v0
-      [39] getfield #67
-        + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [42] ifgt +5 (target=47)
-      [45] iconst_1
-      [46] ireturn
-      [47] iconst_0
-      [48] ireturn
+      [28] ifne +8 (target=36)
+      [31] aload_0 v0
+      [32] invokevirtual #88
+        + Methodref [com/chemicalwedding/artemis/bb.p ()Z]
+      [35] ireturn
+      [36] iconst_0
+      [37] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 2):
-        - [31] Var: ..., Stack: (empty)
-        - [47] Var: ..., Stack: (empty)
+        - [24] Var: ..., Stack: (empty)
+        - [36] Var: ..., Stack: (empty)
   + Method:       u()V
     Access flags: 0x11
       = public final void u()
@@ -21468,7 +21445,7 @@ Methods (count = 45):
         + Fieldref [com/chemicalwedding/artemis/bb.D I]
       [8] ificmpge +7 (target=15)
       [11] aload_0 v0
-      [12] invokevirtual #88
+      [12] invokevirtual #90
         + Methodref [com/chemicalwedding/artemis/bb.v ()V]
       [15] return
       Code attribute exceptions (count = 0):
@@ -21495,7 +21472,7 @@ Methods (count = 45):
       [19] aload_0 v0
       [20] getfield #63
         + Fieldref [com/chemicalwedding/artemis/bb.p Ljava/util/ArrayList;]
-      [23] invokevirtual #112
+      [23] invokevirtual #114
         + Methodref [java/util/ArrayList.size ()I]
       [26] iconst_1
       [27] isub
@@ -21508,7 +21485,7 @@ Methods (count = 45):
       [36] aload_0 v0
       [37] getfield #67
         + Fieldref [com/chemicalwedding/artemis/bb.t I]
-      [40] invokevirtual #110
+      [40] invokevirtual #112
         + Methodref [java/util/ArrayList.get (I)Ljava/lang/Object;]
       [43] checkcast #16
         + Class [com/chemicalwedding/artemis/a/d]
@@ -21600,7 +21577,7 @@ Methods (count = 45):
       [97] aload_2 v2
       [98] getfield #70
         + Fieldref [com/chemicalwedding/artemis/bb.w Ljava/lang/Float;]
-      [101] invokevirtual #89
+      [101] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [104] fload_3 v3
       [105] fconst_2
@@ -21610,7 +21587,7 @@ Methods (count = 45):
       [110] aload_2 v2
       [111] getfield #71
         + Fieldref [com/chemicalwedding/artemis/bb.x Ljava/lang/Float;]
-      [114] invokevirtual #89
+      [114] invokevirtual #91
         + Methodref [java/lang/Float.floatValue ()F]
       [117] iload v4
       [119] i2f
@@ -21915,7 +21892,7 @@ Methods (count = 45):
       [20] getfield #63
         + Fieldref [com/chemicalwedding/artemis/bb.p Ljava/util/ArrayList;]
       [23] aload_1 v1
-      [24] invokevirtual #108
+      [24] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [27] pop
       [28] new #16
@@ -21936,7 +21913,7 @@ Methods (count = 45):
       [48] getfield #63
         + Fieldref [com/chemicalwedding/artemis/bb.p Ljava/util/ArrayList;]
       [51] aload_1 v1
-      [52] invokevirtual #108
+      [52] invokevirtual #110
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
       [55] pop
       [56] return

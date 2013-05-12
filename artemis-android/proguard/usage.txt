@@ -24,7 +24,7 @@ com.chemicalwedding.artemis.ArtemisMath:
     429:430:public void set_maxTouchY(float)
     445:445:public int get_selectedLensIndex()
     449:450:public void set_selectedLensIndex(int)
-    584:584:public float getPixelDensity()
+    581:581:public float getPixelDensity()
 com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String GPS_ENABLED
     public static final java.lang.String SELECTED_LENS_MAKE
