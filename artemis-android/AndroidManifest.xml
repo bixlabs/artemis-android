@@ -31,6 +31,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="false"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:theme="@style/ArtemisMain" >

@@ -76,14 +76,17 @@ public class SplashScreenActivity extends Activity {
 	}
 
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-
+	protected void onPause() {
+		super.onPause();
 		if (mDialog != null) {
 			mDialog.dismiss();
 			mDialog = null;
 		}
-		
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 		_checker.onDestroy();
 		_licenseCheckerCallback = null;
 		_checker = null;
@@ -118,7 +121,7 @@ public class SplashScreenActivity extends Activity {
 
 			if (reason == Policy.RETRY) {
 
-				final AlertDialog mDialog = new AlertDialog.Builder(
+				mDialog = new AlertDialog.Builder(
 						SplashScreenActivity.this)
 						.setTitle(R.string.error_communicating_title)
 						.setMessage(R.string.error_communicating_dialog_body)
@@ -139,7 +142,7 @@ public class SplashScreenActivity extends Activity {
 										mDialog = null;
 										finish();
 									}
-								}).create();
+								}).setCancelable(false).create();
 				mDialog.show();
 
 			} else if (reason == Policy.NOT_LICENSED) {
