@@ -13,6 +13,7 @@ import android.util.Log;
 import com.google.android.vending.licensing.AESObfuscator;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
+import com.google.android.vending.licensing.Policy;
 
 public class SplashScreenActivity extends Activity {
 
@@ -22,6 +23,7 @@ public class SplashScreenActivity extends Activity {
 	private Handler mHandler = new Handler();
 	private static final String logTag = "SplashScreen";
 	private static boolean validLicenseFound = false;
+	private AlertDialog mDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,32 +54,36 @@ public class SplashScreenActivity extends Activity {
 			// Check license any time the splash screen starts, rather than just
 			// onCreate (fix bug leo found)
 			_checker.checkAccess(_licenseCheckerCallback);
-		}
-		else {
+		} else {
 			// We've already found a license, just start normally
-			Log.v(logTag, "Already found a license previously, starting normally.");
+			Log.v(logTag,
+					"Already found a license previously, starting normally.");
 			mHandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
 					startArtemis();
 				}
 			}, 1000);
-			
+
 		}
 	}
-	
+
 	private void startArtemis() {
-		Intent i = new Intent(SplashScreenActivity.this,
-				ArtemisActivity.class);
+		Intent i = new Intent(SplashScreenActivity.this, ArtemisActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		startActivity(i);
 		finish();
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 
+		if (mDialog != null) {
+			mDialog.dismiss();
+			mDialog = null;
+		}
+		
 		_checker.onDestroy();
 		_licenseCheckerCallback = null;
 		_checker = null;
@@ -105,41 +111,73 @@ public class SplashScreenActivity extends Activity {
 		public void dontAllow(int reason) {
 			Log.i(logTag, "No license found");
 
-			final AlertDialog dialog = new AlertDialog.Builder(
-					SplashScreenActivity.this)
-					.setTitle(R.string.unlicensed_dialog_title)
-					.setMessage(R.string.unlicensed_dialog_body)
-					.setPositiveButton(R.string.buy_button,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									Intent marketIntent = new Intent(
-											Intent.ACTION_VIEW,
-											Uri.parse("http://market.android.com/details?id="
-													+ getPackageName()));
-									dialog.dismiss();
-									startActivity(marketIntent);
-								}
-							})
-					.setNegativeButton(R.string.quit_button,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									dialog.dismiss();
-									finish();
-								}
-							}).create();
-			dialog.show();
+			if (isFinishing()) {
+				// Don't update UI if Activity is finishing.
+				return;
+			}
 
-			mHandler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					if (dialog != null) {
-						dialog.dismiss();
+			if (reason == Policy.RETRY) {
+
+				final AlertDialog mDialog = new AlertDialog.Builder(
+						SplashScreenActivity.this)
+						.setTitle(R.string.error_communicating_title)
+						.setMessage(R.string.error_communicating_dialog_body)
+						.setPositiveButton(R.string.retry_button,
+								new DialogInterface.OnClickListener() {
+									public void onClick(
+											DialogInterface mDialog, int which) {
+										_checker.checkAccess(_licenseCheckerCallback);
+										mDialog.dismiss();
+										mDialog = null;
+									}
+								})
+						.setNegativeButton(R.string.quit_button,
+								new DialogInterface.OnClickListener() {
+									public void onClick(
+											DialogInterface mDialog, int which) {
+										mDialog.dismiss();
+										mDialog = null;
+										finish();
+									}
+								}).create();
+				mDialog.show();
+
+			} else if (reason == Policy.NOT_LICENSED) {
+
+				mDialog = new AlertDialog.Builder(SplashScreenActivity.this)
+						.setTitle(R.string.unlicensed_dialog_title)
+						.setMessage(R.string.unlicensed_dialog_body)
+						.setPositiveButton(R.string.buy_button,
+								new DialogInterface.OnClickListener() {
+									public void onClick(
+											DialogInterface mDialog, int which) {
+										Intent marketIntent = new Intent(
+												Intent.ACTION_VIEW,
+												Uri.parse("http://market.android.com/details?id="
+														+ getPackageName()));
+										mDialog.dismiss();
+										mDialog = null;
+										startActivity(marketIntent);
+									}
+								})
+						.setNegativeButton(R.string.quit_button,
+								new DialogInterface.OnClickListener() {
+									public void onClick(
+											DialogInterface mDialog, int which) {
+										mDialog.dismiss();
+										mDialog = null;
+										finish();
+									}
+								}).create();
+				mDialog.show();
+
+				mHandler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						finish();
 					}
-					finish();
-				}
-			}, 10000);
+				}, 10000);
+			}
 		}
 
 		@Override
@@ -150,30 +188,26 @@ public class SplashScreenActivity extends Activity {
 			}
 			Log.i(logTag, "Licensing Error: " + errorCode);
 
-			final AlertDialog dialog = new AlertDialog.Builder(
-					SplashScreenActivity.this)
+			mDialog = new AlertDialog.Builder(SplashScreenActivity.this)
 					.setTitle(R.string.error_dialog_title)
 					.setMessage(R.string.error_dialog_body)
 					.setPositiveButton(R.string.quit_button,
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
+								public void onClick(DialogInterface mDialog,
 										int which) {
-									dialog.dismiss();
+									mDialog.dismiss();
+									mDialog = null;
 									finish();
 								}
 							}).create();
-			dialog.show();
+			mDialog.show();
 
 			mHandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					if (dialog != null) {
-						dialog.dismiss();
-					}
 					finish();
 				}
 			}, 10000);
 		}
 	}
-
 }

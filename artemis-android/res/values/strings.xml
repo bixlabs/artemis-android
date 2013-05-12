@@ -311,10 +311,14 @@
     <string name="image_save_error">ERROR: The image could not be saved. The storage media may be full.</string>
     <string name="save_raw_image_text">No Border or Text</string>
     <string name="language">Language</string>
-
-    <!-- Newly added below here -->
     <string name="sure_you_want_to_exit">Are you sure you want to exit?</string>
     <string name="exit_artemis">Exit Artemis</string>
     <string name="black_and_white_preview">Black and White Preview</string>
+
+    <!-- Newly added below here -->
+
+    <string name="error_communicating_title">License Server Communication Error</string>
+    <string name="error_communicating_dialog_body">There was a problem communicating with Google Play store license server.  Please check your internet connectivity and try again.  If the problem persists please contact Artemis support.</string>
+    <string name="retry_button">Retry</string>
 
 </resources>
