@@ -463,7 +463,6 @@ public class ArtemisMath {
 	}
 
 	public boolean hasNextLens() {
-		//if (selectedZoomLens != null) return hasNextZoomLens();
 		if (_selectedLensIndex + 1 < _selectedLenses.size()) {
 			return true;
 		}
@@ -480,36 +479,33 @@ public class ArtemisMath {
 	}
 
 	public boolean hasPreviousLens() {
-		//if (selectedZoomLens != null) return hasPreviousZoomLens();
-		if (!isFullscreen && selectedZoomLens == null
-				&& firstMeaningfulLens > 0 && _selectedLensIndex > firstMeaningfulLens) {
+		if (!isFullscreen && firstMeaningfulLens > 0
+				&& _selectedLensIndex > firstMeaningfulLens) {
 			return true;
 		} else if (isFullscreen && _selectedLensIndex > 0) {
 			return true;
-		} else if (selectedZoomLens != null && _selectedLensIndex > 0) {
-			return true;
-		} 
+		}
 		return false;
 	}
 
 	public boolean hasPreviousZoomLens() {
-		if ((selectedZoomLens != null && isFullscreen && zoomLensFullScreenFL > selectedZoomLens.getMinFL())) {
+		if (isFullscreen && zoomLensFullScreenFL > selectedZoomLens.getMinFL()) {
 			return true;
-		} else if (!isFullscreen && _selectedLensIndex > 0) {
-			return true;
-		}
-		return false;
-	}
-	public boolean hasNextZoomLens() {
-		if (selectedZoomLens != null && isFullscreen && zoomLensFullScreenFL < selectedZoomLens.getMaxFL()) {
-			return true;
-		} else if (!isFullscreen && _selectedLensIndex < 1) {
-			return true;
+		} else if (!isFullscreen) {
+			return hasPreviousLens();
 		}
 		return false;
 	}
 
-	
+	public boolean hasNextZoomLens() {
+		if (isFullscreen && zoomLensFullScreenFL < selectedZoomLens.getMaxFL()) {
+			return true;
+		} else if (!isFullscreen) {
+			return hasNextLens();
+		}
+		return false;
+	}
+
 	public void onFullscreenOffSelectLens() {
 		// when we are coming out of fullscreen, make sure we have at least
 		// first meaningful lens
@@ -535,7 +531,8 @@ public class ArtemisMath {
 			lensFocalLength = _selectedLens.getFL();
 		} else {
 			lensFocalLength = zoomLensFullScreenFL;
-			selectedLensBox = this.calculateFullscreenLensBoxForFocalLength(lensFocalLength);
+			selectedLensBox = this
+					.calculateFullscreenLensBoxForFocalLength(lensFocalLength);
 		}
 		selectedLensAngleData = calculateViewingAngle(lensFocalLength);
 
@@ -597,8 +594,9 @@ public class ArtemisMath {
 	public void onFullscreenSetupZoomLens() {
 		zoomLensFullScreenFL = _selectedLens.getFL();
 	}
-	
-	public ArtemisRectF calculateFullscreenLensBoxForFocalLength(float lensFocalLength) {
+
+	public ArtemisRectF calculateFullscreenLensBoxForFocalLength(
+			float lensFocalLength) {
 		selectedLensAngleData = calculateViewingAngle(lensFocalLength);
 
 		float hwidth = (scaledPreviewWidth * selectedLensAngleData[0] / horizViewAngle);
@@ -607,8 +605,8 @@ public class ArtemisMath {
 			hwidth *= currentGreenBox.width() / scaledPreviewWidth;
 		}
 
-		int vheight = (int)(hwidth * myprop);
-		
+		int vheight = (int) (hwidth * myprop);
+
 		float newx = (_touchX - (hwidth / 2f));
 		float newy = (_touchY - (vheight / 2f));
 
@@ -621,11 +619,12 @@ public class ArtemisMath {
 				++validcount;
 			}
 		}
-		
+
 		int xmin = (int) currentGreenBox.left;
 		int ymin = (int) currentGreenBox.top;
-		int xmax = (int) currentGreenBox.right - (int)hwidth;
-		int ymax = (int) currentGreenBox.bottom - (SPACING * (validcount))- vheight;
+		int xmax = (int) currentGreenBox.right - (int) hwidth;
+		int ymax = (int) currentGreenBox.bottom - (SPACING * (validcount))
+				- vheight;
 
 		int x = (int) newx;
 		int y = (int) newy;
@@ -644,9 +643,8 @@ public class ArtemisMath {
 			y = ymax;
 		}
 		int bottomy = vheight + y;
-	
-		return new ArtemisRectF("",x, y, x
-				+ hwidth, bottomy);
+
+		return new ArtemisRectF("", x, y, x + hwidth, bottomy);
 	}
 
 	final static float ZOOM_LENS_CLICK_FACTOR = 1;
