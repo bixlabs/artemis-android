@@ -232,7 +232,7 @@ Canon 5D и 7D
     <string name="save_raw_image_text">"нет рамки или текстового"</string>
 
     <!-- Preference Strings -->
-    <string name="artemis">"Артемида"</string>
+    
     <string name="artemis_save_folder_summary">"Имя папки для сохранения изображений, созданные с Артемиды. Если папка с таким именем не существует, он будет создан для вас."</string>
     <string name="horizontal_lens_angle">"Горизонтальный угол объектива"</string>
     <string name="vertical_lens_angle">"Вертикальный угол объектива"</string>
