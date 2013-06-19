@@ -1027,21 +1027,21 @@ com.sbstrm.appirater.R -> com.b.a.e:
 com.sbstrm.appirater.R$bool -> com.b.a.f:
     int appirator_test_mode -> appirator_test_mode
 com.sbstrm.appirater.R$id -> com.b.a.g:
-    int message -> message
     int cancel -> cancel
-    int rateLater -> rateLater
+    int message -> message
     int rate -> rate
+    int rateLater -> rateLater
 com.sbstrm.appirater.R$integer -> com.b.a.h:
+    int appirator_days_before_reminding -> appirator_days_before_reminding
     int appirator_days_until_prompt -> appirator_days_until_prompt
     int appirator_launches_until_prompt -> appirator_launches_until_prompt
-    int appirator_days_before_reminding -> appirator_days_before_reminding
 com.sbstrm.appirater.R$layout -> com.b.a.i:
     int appirater -> appirater
 com.sbstrm.appirater.R$string -> com.b.a.j:
     int appirator_app_title -> appirator_app_title
-    int rate_title -> rate_title
-    int rate -> rate
     int appirator_market_url -> appirator_market_url
-    int rate_later -> rate_later
+    int rate -> rate
     int rate_cancel -> rate_cancel
+    int rate_later -> rate_later
     int rate_message -> rate_message
+    int rate_title -> rate_title

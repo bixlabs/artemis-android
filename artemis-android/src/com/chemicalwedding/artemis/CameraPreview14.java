@@ -514,13 +514,13 @@ public class CameraPreview14 extends ViewGroup {
 			}
 
 			// handle auto focus setup
-			if (parameters.getSupportedFocusModes().contains(
+/*			if (parameters.getSupportedFocusModes().contains(
 					Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
 				parameters.setFocusMode(Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
 				CameraPreview14.autoFocusBeforePictureTake = artemisPrefs
 						.getBoolean(ArtemisPreferences.AUTO_FOCUS_ON_PICTURE,
 								false);
-			} else if (parameters.getSupportedFocusModes().contains(
+			} else*/ if (parameters.getSupportedFocusModes().contains(
 					Camera.Parameters.FOCUS_MODE_AUTO)) {
 				parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
 				CameraPreview14.autoFocusBeforePictureTake = artemisPrefs

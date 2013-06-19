@@ -201,15 +201,15 @@ com.sbstrm.appirater.Appirater:
 com.sbstrm.appirater.R:
     9:9:public R()
 com.sbstrm.appirater.R$bool:
-    44:44:public R$bool()
+    10:10:public R$bool()
 com.sbstrm.appirater.R$color
 com.sbstrm.appirater.R$drawable
 com.sbstrm.appirater.R$id:
-    10:10:public R$id()
+    21:21:public R$id()
 com.sbstrm.appirater.R$integer:
-    19:19:public R$integer()
+    27:27:public R$integer()
 com.sbstrm.appirater.R$layout:
-    38:38:public R$layout()
+    32:32:public R$layout()
 com.sbstrm.appirater.R$string:
-    29:29:public R$string()
+    35:35:public R$string()
 com.sbstrm.appirater.R$style
