@@ -26354,9 +26354,9 @@ Methods (count = 25):
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.h F]
       [302] getstatic #187
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.h F]
-      [305] fconst_0
-      [306] fcmpl
-      [307] ifne +40 (target=347)
+      [305] fconst_1
+      [306] fcmpg
+      [307] ifge +40 (target=347)
       [310] ldc #19
         + Float [51.2]
       [312] putstatic #187
@@ -26365,9 +26365,9 @@ Methods (count = 25):
       [318] astore_1 v1
       [319] getstatic #187
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.h F]
-      [322] fconst_0
-      [323] fcmpl
-      [324] ifne +8 (target=332)
+      [322] fconst_1
+      [323] fcmpg
+      [324] ifge +8 (target=332)
       [327] ldc #19
         + Float [51.2]
       [329] putstatic #187
@@ -26376,9 +26376,9 @@ Methods (count = 25):
       [333] athrow
       [334] getstatic #187
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.h F]
-      [337] fconst_0
-      [338] fcmpl
-      [339] ifne +8 (target=347)
+      [337] fconst_1
+      [338] fcmpg
+      [339] ifge +8 (target=347)
       [342] ldc #19
         + Float [51.2]
       [344] putstatic #187
@@ -26396,9 +26396,9 @@ Methods (count = 25):
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.j F]
       [363] getstatic #189
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.j F]
-      [366] fconst_0
-      [367] fcmpl
-      [368] ifne +40 (target=408)
+      [366] fconst_1
+      [367] fcmpg
+      [368] ifge +40 (target=408)
       [371] ldc #17
         + Float [39.4]
       [373] putstatic #189
@@ -26407,9 +26407,9 @@ Methods (count = 25):
       [379] astore_1 v1
       [380] getstatic #189
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.j F]
-      [383] fconst_0
-      [384] fcmpl
-      [385] ifne +8 (target=393)
+      [383] fconst_1
+      [384] fcmpg
+      [385] ifge +8 (target=393)
       [388] ldc #17
         + Float [39.4]
       [390] putstatic #189
@@ -26418,9 +26418,9 @@ Methods (count = 25):
       [394] athrow
       [395] getstatic #189
         + Fieldref [com/chemicalwedding/artemis/CameraPreview14.j F]
-      [398] fconst_0
-      [399] fcmpl
-      [400] ifne +8 (target=408)
+      [398] fconst_1
+      [399] fcmpg
+      [400] ifge +8 (target=408)
       [403] ldc #17
         + Float [39.4]
       [405] putstatic #189
