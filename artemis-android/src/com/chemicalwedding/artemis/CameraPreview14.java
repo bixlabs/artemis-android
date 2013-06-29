@@ -478,7 +478,7 @@ public class CameraPreview14 extends ViewGroup {
 				// devices that crash on getting
 				// angle
 			} finally {
-				if (CameraPreview14.deviceHAngle == 0f) {
+				if (CameraPreview14.deviceHAngle < 1f) {
 					CameraPreview14.deviceHAngle = 51.2f;
 				}
 			}
@@ -494,7 +494,7 @@ public class CameraPreview14 extends ViewGroup {
 				// devices that crash on getting
 				// angle
 			} finally {
-				if (CameraPreview14.deviceVAngle == 0f) {
+				if (CameraPreview14.deviceVAngle < 1f) {
 					CameraPreview14.deviceVAngle = 39.4f;
 				}
 			}
