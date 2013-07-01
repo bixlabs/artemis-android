@@ -80,7 +80,7 @@ import com.sbstrm.appirater.Appirater;
 
 public class ArtemisActivity extends Activity implements
 		LoaderCallbacks<Cursor> {
-	private static final String _logTag = ArtemisActivity.class.getSimpleName();
+	private static final String TAG = ArtemisActivity.class.getSimpleName();
 
 	private static final String DEFAULT_LENS_MAKE = "Generic 35mm Lenses";
 	private static final String DEFAULT_LENSES = "77,80,84,88,92,96,100";
@@ -162,7 +162,7 @@ public class ArtemisActivity extends Activity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.i(_logTag, "Creating Artemis Activity");
+		Log.i(TAG, "Creating Artemis Activity");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		currentViewId = R.id.artemisPreview;
@@ -204,7 +204,7 @@ public class ArtemisActivity extends Activity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Log.i(_logTag, "Destroying Artemis");
+		Log.i(TAG, "Destroying Artemis");
 
 		// Close the database connection
 		if (_artemisDBHelper != null) {
@@ -216,7 +216,7 @@ public class ArtemisActivity extends Activity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		Log.i(_logTag, "Pausing Artemis");
+		Log.i(TAG, "Pausing Artemis");
 		_cameraPreview.releaseCamera();
 
 		if (gpsEnabled)
@@ -234,20 +234,20 @@ public class ArtemisActivity extends Activity implements
 	@Override
 	protected void onStop() {
 		super.onStop();
-		Log.i(_logTag, "Stopping Artemis");
+		Log.i(TAG, "Stopping Artemis");
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Log.i(_logTag, "Starting Artemis");
+		Log.i(TAG, "Starting Artemis");
 		startArtemis();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Log.i(_logTag, "Resuming Artemis");
+		Log.i(TAG, "Resuming Artemis");
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 		if (_cameraPreview.isCameraReleased) {
@@ -493,7 +493,7 @@ public class ArtemisActivity extends Activity implements
 
 	private void initLocationManager() {
 		if (gpsEnabled) {
-			Log.i(_logTag, "Artemis GPS is enabled");
+			Log.i(TAG, "Artemis GPS is enabled");
 			locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			Criteria criteria = new Criteria();
 			criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -506,7 +506,7 @@ public class ArtemisActivity extends Activity implements
 			if (locationProvider != null) {
 				lastKnownLocation = locationManager
 						.getLastKnownLocation(locationProvider);
-				Log.d(_logTag, "Last known location is "
+				Log.d(TAG, "Last known location is "
 						+ (lastKnownLocation == null ? "null" : "not null"));
 				locationManager.requestLocationUpdates(locationProvider, 60000, // 60
 						// secs
@@ -518,9 +518,9 @@ public class ArtemisActivity extends Activity implements
 
 	private final LocationListener locationListener = new LocationListener() {
 		public void onLocationChanged(Location location) {
-			Log.d(_logTag, "Updating Location");
+			Log.d(TAG, "Updating Location");
 			lastKnownLocation = location;
-			Log.d(_logTag, "Updated location is "
+			Log.d(TAG, "Updated location is "
 					+ (lastKnownLocation == null ? "null" : "not null"));
 
 		}
@@ -803,7 +803,7 @@ public class ArtemisActivity extends Activity implements
 			CustomCamera selectedCustomCamera = _artemisDBHelper
 					.getCustomCameraDetailsForRowId(-selectedCameraRowId);
 
-			Log.v(_logTag, String.format("Custom cam loaded on start: %s",
+			Log.v(TAG, String.format("Custom cam loaded on start: %s",
 					selectedCustomCamera));
 
 			_selectedCamera = new Camera(selectedCustomCamera);
@@ -857,7 +857,7 @@ public class ArtemisActivity extends Activity implements
 		savePictureFolder += artemisPrefs.getString(
 				ArtemisPreferences.SAVE_PICTURE_FOLDER,
 				getString(R.string.artemis_save_location_default));
-		Log.v(_logTag, "Save folder: " + savePictureFolder);
+		Log.v(TAG, "Save folder: " + savePictureFolder);
 
 		File saveFolder = new File(savePictureFolder);
 		if (!saveFolder.isDirectory()) {
@@ -900,19 +900,18 @@ public class ArtemisActivity extends Activity implements
 
 		if (!CameraPreview14.autoFocusBeforePictureTake) {
 			if ("autofocusAndCapture".equals(longPressShutterMode)) {
-				Log.v(_logTag, "init long press autofocus and capture");
+				Log.v(TAG, "init long press autofocus and capture");
 				autoFocusAfterLongClickShutter = true;
 				takePictureAfterAutoFocusAndLongClickShutter = true;
 				takePictureAfterReleaseLongClickShutter = false;
 			} else if ("autofocusAndCaptureOnRelease"
 					.equals(longPressShutterMode)) {
-				Log.v(_logTag,
-						"init long press autofocus and capture on release");
+				Log.v(TAG, "init long press autofocus and capture on release");
 				autoFocusAfterLongClickShutter = true;
 				takePictureAfterAutoFocusAndLongClickShutter = false;
 				takePictureAfterReleaseLongClickShutter = true;
 			} else if ("autofocus".equals(longPressShutterMode)) {
-				Log.v(_logTag, "init long press only autofocus");
+				Log.v(TAG, "init long press only autofocus");
 				autoFocusAfterLongClickShutter = true;
 				takePictureAfterAutoFocusAndLongClickShutter = false;
 				takePictureAfterReleaseLongClickShutter = false;
@@ -1141,7 +1140,7 @@ public class ArtemisActivity extends Activity implements
 					.getLensMakeForLensFormat(lensFormatsForCamera);
 		}
 		lensMakes.add(getString(R.string.custom_zoom_lens));
-		Log.i(_logTag, "Lens makers available: " + lensMakes.size());
+		Log.i(TAG, "Lens makers available: " + lensMakes.size());
 
 		ListView lensMakerList = (ListView) findViewById(R.id.lensMakerList);
 		ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
@@ -1177,7 +1176,7 @@ public class ArtemisActivity extends Activity implements
 			bucketName = bucketName.substring(0, bucketName.length() - 1);
 		}
 		String bucketId = Integer.toString(bucketName.hashCode());
-		Log.i(_logTag, "Gallery Intent Bucket ID: " + bucketId);
+		Log.i(TAG, "Gallery Intent Bucket ID: " + bucketId);
 		return bucketId;
 	}
 
@@ -1215,11 +1214,11 @@ public class ArtemisActivity extends Activity implements
 				return;
 			}
 
-			Log.i(_logTag, "Camera format selected: " + selectedFormat);
+			Log.i(TAG, "Camera format selected: " + selectedFormat);
 			// _currentCameraFormat = selectedFormat;
 			ArrayList<String> sensorListForCamera = _artemisDBHelper
 					.getCameraSensorsForFormat(selectedFormat);
-			Log.i(_logTag, "Sensors available: " + sensorListForCamera.size());
+			Log.i(TAG, "Sensors available: " + sensorListForCamera.size());
 
 			ListView cameraSensorList = (ListView) findViewById(R.id.cameraSensorList);
 			ArrayAdapter<String> sensorAdapter = new ArrayAdapter<String>(
@@ -1309,7 +1308,7 @@ public class ArtemisActivity extends Activity implements
 									View.inflate(ArtemisActivity.this,
 											R.layout.create_zoom_lens_dialog,
 											null))
-							.setTitle("Add New Zoom Lens")
+							.setTitle(R.string.add_new_zoom_lens)
 							.setNegativeButton(R.string.cancel,
 									new DialogInterface.OnClickListener() {
 										@Override
@@ -1440,11 +1439,11 @@ public class ArtemisActivity extends Activity implements
 				int arg2, long arg3) {
 			TextView selectedTextView = (TextView) selectedItem;
 			String selectedSensor = selectedTextView.getText().toString();
-			Log.i(_logTag, "Camera sensor selected: " + selectedSensor);
+			Log.i(TAG, "Camera sensor selected: " + selectedSensor);
 			// _currentCameraSensor = selectedSensor;
 			_ratiosListForCamera = _artemisDBHelper
 					.getCameraRatiosForSensor(selectedSensor);
-			Log.i(_logTag, "Ratios available: " + _ratiosListForCamera.size());
+			Log.i(TAG, "Ratios available: " + _ratiosListForCamera.size());
 
 			// Add the ratio names to a list and bind to the list view
 			ArrayList<String> ratioNames = new ArrayList<String>();
@@ -1629,7 +1628,7 @@ public class ArtemisActivity extends Activity implements
 					_selectedLenses.add(lens);
 				}
 			}
-			Log.i(_logTag, "SELECTED LENSES: " + selectedLensString);
+			Log.i(TAG, "SELECTED LENSES: " + selectedLensString);
 
 			if (tempSelectedCamera.getRowid() != -1) {
 				setSelectedCamera(tempSelectedCamera.getRowid(), true, false);
@@ -1958,7 +1957,7 @@ public class ArtemisActivity extends Activity implements
 	final OnClickListener takePictureClickListener = new android.view.View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Log.v(_logTag, "Artemis taking a picture");
+			Log.v(TAG, "Artemis taking a picture");
 			shutterButtonPressed(v);
 		}
 	};
@@ -2040,7 +2039,7 @@ public class ArtemisActivity extends Activity implements
 		public void onClick(View v) {
 			pictureSavePreview.setImageBitmap(null);
 			System.gc();
-			
+
 			loadPictureDetailsSettings();
 
 			savePictureViewFlipper.showNext();
@@ -2243,7 +2242,7 @@ public class ArtemisActivity extends Activity implements
 					}
 				}
 			} catch (IOException ioe) {
-				Log.e(_logTag, "Error retrieving geocoder location data");
+				Log.e(TAG, "Error retrieving geocoder location data");
 			}
 		}
 		return new String[] { gpsDetails, gpsLocationString };
@@ -2399,14 +2398,33 @@ public class ArtemisActivity extends Activity implements
 		customCameraList.setAdapter(adapter);
 	}
 
+	private void refreshZoomLensList() {
+		zoomLenses = _artemisDBHelper.getZoomLenses();
+		ZoomLens addnew = new ZoomLens();
+		addnew.setName(getString(R.string.new_zoom_lens));
+		zoomLenses.add(addnew);
+		ListView zoomLensList = (ListView) findViewById(R.id.customZoomLensList);
+		ArrayAdapter<ZoomLens> adapter = new ArrayAdapter<ZoomLens>(
+				_activityContext, R.layout.text_list_item, zoomLenses);
+		zoomLensList.setAdapter(adapter);
+	}
+
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View arg1,
+	public void onCreateContextMenu(ContextMenu menu, View view,
 			ContextMenuInfo contextMenuInfo) {
 		AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) contextMenuInfo;
-		if (menuInfo.position < customCameras.size() - 1) {
+		Log.d(TAG, String.format("%s %s", view.toString(), view.getParent()
+				.toString()));
+		if (((View) view.getParent()).getId() == R.id.camera_settings_flipper
+				&& menuInfo.position < customCameras.size() - 1) {
 			menu.setHeaderTitle(getString(R.string.custom_camera_options));
 			menu.add(0, 0, 0, getString(R.string.custom_camera_edit_camera));
 			menu.add(0, 1, 1, getString(R.string.custom_camera_delete_camera));
+		} else if (((View) view.getParent()).getId() == R.id.lens_settings_flipper
+				&& menuInfo.position < zoomLenses.size() - 1) {
+			menu.setHeaderTitle(getString(R.string.zoom_lens_options));
+			menu.add(1, 0, 0, getString(R.string.zoom_lens_edit));
+			menu.add(1, 1, 1, getString(R.string.zoom_lens_delete));
 		}
 	}
 
@@ -2414,8 +2432,7 @@ public class ArtemisActivity extends Activity implements
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item
 				.getMenuInfo();
-		switch (item.getItemId()) {
-		case 0:
+		if (item.getGroupId() == 0 && item.getItemId() == 0) {
 			// edit custom camera was selected...
 			CustomCamera editCamera = customCameras.get(menuInfo.position);
 
@@ -2440,14 +2457,104 @@ public class ArtemisActivity extends Activity implements
 			_cameraSettingsFlipper.setOutAnimation(_activityContext,
 					R.anim.slide_out_left);
 			_cameraSettingsFlipper.setDisplayedChild(5);
-			break;
-		case 1:
+		} else if (item.getGroupId() == 0 && item.getItemId() == 1) {
 			// delete custom camera
 			_artemisDBHelper.deleteCustomCameraByRowId(customCameras.get(
 					menuInfo.position).getPk());
 			refreshCustomCameraList();
-			break;
+		} else if (item.getGroupId() == 1 && item.getItemId() == 0) {
+			// edit zoom lens
+			final ZoomLens edited = zoomLenses.get(menuInfo.position);
+			View alertView = View.inflate(ArtemisActivity.this,
+					R.layout.create_zoom_lens_dialog, null);
+			((EditText) alertView.findViewById(R.id.zoomLensName))
+					.setText(edited.getName());
+			((EditText) alertView.findViewById(R.id.zoomLensMinFL))
+					.setText(edited.getMinFL() + "");
+			((EditText) alertView.findViewById(R.id.zoomLensMaxFL))
+					.setText(edited.getMaxFL() + "");
+
+			final AlertDialog addZoomLensDialog = new AlertDialog.Builder(
+					ArtemisActivity.this)
+					.setView(alertView)
+					.setTitle(R.string.edit_zoom_lens)
+					.setNegativeButton(R.string.cancel,
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).create();
+			addZoomLensDialog.setButton(Dialog.BUTTON_POSITIVE,
+					getString(R.string.save),
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+							String name = ((EditText) addZoomLensDialog
+									.findViewById(R.id.zoomLensName)).getText()
+									.toString();
+							if (name.isEmpty()) {
+								name = getString(R.string.untitled_zoom_lens);
+							}
+
+							String min = ((EditText) addZoomLensDialog
+									.findViewById(R.id.zoomLensMinFL))
+									.getText().toString();
+							String max = ((EditText) addZoomLensDialog
+									.findViewById(R.id.zoomLensMaxFL))
+									.getText().toString();
+
+							Float minFL = null;
+							try {
+								minFL = Float.parseFloat(min);
+							} catch (NumberFormatException e) {
+							}
+							Float maxFL = null;
+							try {
+								maxFL = Float.parseFloat(max);
+							} catch (NumberFormatException e) {
+							}
+
+							if (minFL == null || maxFL == null || minFL <= 0
+									|| maxFL <= 0 || minFL >= maxFL) {
+								new AlertDialog.Builder(ArtemisActivity.this)
+										.setTitle(
+												R.string.custom_zoom_lens_error)
+										.setMessage(
+												R.string.custom_zoom_lens_error_message)
+										.setPositiveButton(
+												R.string.ok,
+												new DialogInterface.OnClickListener() {
+													@Override
+													public void onClick(
+															DialogInterface dialog,
+															int which) {
+														addZoomLensDialog
+																.show();
+													}
+												}).create().show();
+
+							} else {
+								edited.setName(name);
+								edited.setMinFL(minFL);
+								edited.setMaxFL(maxFL);
+								_artemisDBHelper.updateZoomLens(edited);
+								((ArrayAdapter<?>) ((ListView) findViewById(R.id.customZoomLensList))
+										.getAdapter()).notifyDataSetChanged();
+							}
+						}
+					});
+			addZoomLensDialog.show();
+
+		} else if (item.getGroupId() == 1 && item.getItemId() == 1) {
+			// delete zoom lens
+			_artemisDBHelper.deleteZoomLensByPK(zoomLenses.get(
+					menuInfo.position).getPk());
+			refreshZoomLensList();
+
 		}
+
 		return super.onContextItemSelected(item);
 	}
 

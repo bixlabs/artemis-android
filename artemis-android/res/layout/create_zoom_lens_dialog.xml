@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/zoom_lens_name"
         android:inputType="textCapWords"
-        android:nextFocusDown="@+id/zoomLensMinFL" />
+        android:nextFocusDown="@+id/zoomLensMinFL"
+        android:selectAllOnFocus="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +26,8 @@
             android:layout_weight="0.47"
             android:hint="@string/min_focal_length"
             android:inputType="numberDecimal"
-            android:nextFocusDown="@+id/zoomLensMaxFL" />
+            android:nextFocusDown="@+id/zoomLensMaxFL"
+            android:selectAllOnFocus="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.47"
             android:hint="@string/max_focal_length"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="true" />
     </LinearLayout>
 
 </LinearLayout>

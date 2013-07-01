@@ -2,7 +2,7 @@
 <resources>
 
     <!-- //English Strings -->
-<string name="app_name">Аrtemis</string>
+    <string name="app_name">Аrtemis</string>
 
     <!-- //Artemis menu -->
 
@@ -314,11 +314,14 @@
     <string name="sure_you_want_to_exit">Are you sure you want to exit?</string>
     <string name="exit_artemis">Exit Artemis</string>
     <string name="black_and_white_preview">Black and White Preview</string>
-
-    <!-- Newly added below here -->
-
     <string name="error_communicating_title">License Server Communication Error</string>
     <string name="error_communicating_dialog_body">There was a problem communicating with Google Play store license server.  Please check your internet connectivity and try again.  If the problem persists please contact Artemis support.</string>
     <string name="retry_button">Retry</string>
 
+    <!-- Newly added below here -->
+	<string name="zoom_lens_options">Custom Zoom Lens Options</string>
+	<string name="zoom_lens_edit">Edit Zoom Lens</string>
+	<string name="zoom_lens_delete">Delete Zoom Lens</string>
+	<string name="edit_zoom_lens">Edit Zoom Lens</string>
+	<string name="add_new_zoom_lens">Add New Zoom Lens</string>
 </resources>

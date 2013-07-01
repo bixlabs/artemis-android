@@ -230,7 +230,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 		initialValues.put("ZSENSORWIDTH", customCamera.getSensorwidth());
 		initialValues.put("ZCAMERANAME", customCamera.getName());
 		initialValues.put("ZSQUEEZERATIO", customCamera.getSqueeze());
-		long result = _artemisDatabase.insert("zcustomcamera", null,
+		//long result = 
+		_artemisDatabase.insert("zcustomcamera", null,
 				initialValues);
 		_artemisDatabase.setTransactionSuccessful();
 		_artemisDatabase.endTransaction();
@@ -381,5 +382,22 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 		lens.setMinFL(cursor.getFloat(2));
 		lens.setMaxFL(cursor.getFloat(3));
 		return lens;
+	}
+	
+	public void deleteZoomLensByPK(int zoomLensPk) {
+		_artemisDatabase.beginTransaction();
+		_artemisDatabase.delete("zcustomzoomlens", "z_pk = ?", new String[] { ""
+				+ zoomLensPk });
+		_artemisDatabase.setTransactionSuccessful();
+		_artemisDatabase.endTransaction();
+	}
+
+	public void updateZoomLens(ZoomLens edited) {
+		ContentValues updatedValues = new ContentValues();
+		updatedValues.put("zname", edited.getName());
+		updatedValues.put("zminfl", edited.getMinFL());
+		updatedValues.put("zmaxfl", edited.getMaxFL());
+		_artemisDatabase.update("zcustomzoomlens", 
+				updatedValues, "z_pk = ?", new String[] { ""+edited.getPk() });
 	}
 }
