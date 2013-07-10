@@ -256,4 +256,11 @@
     <string name="error_communicating_dialog_body">Es gab ein Problem bei der Kommunikation mit Google-Play-Speicher Lizenzserver. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut. Wenn das Problem weiterhin besteht kontaktieren Sie bitte Artemis Unterstützung.</string>
     <string name="retry_button">Wiederholen</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">Individuelle Zoomobjektiv Optionen</string>
+	<string name="zoom_lens_edit">Bearbeiten Zoom-Objektiv</string>
+	<string name="zoom_lens_delete">Löschen Zoomobjektiv</string>
+	<string name="edit_zoom_lens">Bearbeiten Zoom-Objektiv</string>
+	<string name="add_new_zoom_lens">In New Zoomobjektiv</string>
+    
 </resources>

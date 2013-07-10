@@ -340,4 +340,11 @@
     <string name="error_communicating_dialog_body">有一个与谷歌Play商店的许可证服务器通信问题。请检查您的互联网连接，然后再试一次。如果问题仍然存在，请联系阿耳忒弥斯的支持。</string>
     <string name="retry_button">重试</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">定制变焦镜头选项的</string>
+	<string name="zoom_lens_edit">编辑变焦镜头</string>
+	<string name="zoom_lens_delete">删除变焦镜头</string>
+	<string name="edit_zoom_lens">编辑变焦镜头</string>
+	<string name="add_new_zoom_lens">添加新变焦镜头</string>
+    
 </resources>

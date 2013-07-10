@@ -294,5 +294,12 @@
     <string name="error_communicating_title">ترخيص خادم خطأ في الاتصال</string>
     <string name="error_communicating_dialog_body">كان هناك مشكلة في الاتصال مع اللعب خادم ترخيص متجر جوجل. الرجاء التحقق من اتصال الإنترنت الخاص بك وحاول مرة أخرى. إذا استمرت المشكلة الرجاء الاتصال بالدعم أرتميس.</string>
     <string name="retry_button">إعادة المحاولة</string>
+    
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">خيارات مخصصة عدسة زووم</string>
+	<string name="zoom_lens_edit">تعديل عدسة تكبير</string>
+	<string name="zoom_lens_delete">حذف عدسة تكبير</string>
+	<string name="edit_zoom_lens">تعديل عدسة تكبير</string>
+	<string name="add_new_zoom_lens">إضافة جديد عدسة تكبير</string>
 
 </resources>

@@ -315,4 +315,11 @@
     <string name="error_communicating_dialog_body">Il y avait un problème de communication avec le serveur de licence de magasin de jeu Google. Sil vous plaît vérifier votre connexion Internet et réessayez. Si le problème persiste sil vous plaît contactez le support Artemis.</string>
     <string name="retry_button">réessayez</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">Zoom Options de lentille sur mesure</string>
+	<string name="zoom_lens_edit">Modifier Zoom Lens</string>
+	<string name="zoom_lens_delete">Supprimer Zoom Lens</string>
+	<string name="edit_zoom_lens">Modifier Zoom Lens</string>
+	<string name="add_new_zoom_lens">Ajouter un nouvel objectif zoom</string>
+    
 </resources>

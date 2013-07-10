@@ -329,4 +329,11 @@
     <string name="error_communicating_dialog_body">Cè stato un problema di comunicazione con il server di licenza Google Play Store. Verifica la tua connessione Internet e riprova. Se il problema persiste contattare il supporto Artemis.</string>
     <string name="retry_button">Riprova</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">Opzioni obiettivo zoom personalizzato</string>
+	<string name="zoom_lens_edit">Modifica Zoom Lens</string>
+	<string name="zoom_lens_delete">Elimina Zoom Lens</string>
+	<string name="edit_zoom_lens">Modifica Zoom Lens</string>
+	<string name="add_new_zoom_lens">Aggiungi nuovo obiettivo zoom</string>
+    
 </resources>

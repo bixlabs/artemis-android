@@ -326,4 +326,11 @@
     <string name="error_communicating_dialog_body">グーグルプレイストアライセンスサーバーとの通信に問題が発生しました。あなたのインターネット接続を確認してからもう一度お試しください。問題が解決しない場合はアルテミスのサポートまでご連絡ください。</string>
     <string name="retry_button">リトライ</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">カスタムズームレンズオプション</string>
+	<string name="zoom_lens_edit">ズームレンズを編集</string>
+	<string name="zoom_lens_delete">ズームレンズを削除する</string>
+	<string name="edit_zoom_lens">ズームレンズを編集</string>
+	<string name="add_new_zoom_lens">新しいズームレンズを追加</string>
+    
 </resources>

@@ -299,4 +299,11 @@
     <string name="error_communicating_dialog_body">गूगल प्ले स्टोर लाइसेंस सर्वर के साथ संवाद करने में कोई समस्या आई थी. अपने इंटरनेट कनेक्टिविटी की जाँच करें और पुन: प्रयास करें. यदि समस्या बनी रहती आर्टेमिस समर्थन से संपर्क करें.</string>
     <string name="retry_button">पुन: प्रयास</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">कस्टम ज़ूम लेंस विकल्प</string>
+	<string name="zoom_lens_edit">ज़ूम लेंस संपादित करें</string>
+	<string name="zoom_lens_delete">ज़ूम लेंस हटाएँ</string>
+	<string name="edit_zoom_lens">ज़ूम लेंस संपादित करें</string>
+	<string name="add_new_zoom_lens">नई ज़ूम लेंस जोड़ें</string>
+    
 </resources>

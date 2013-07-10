@@ -321,4 +321,12 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="error_communicating_dialog_body">Había un problema de comunicación con el servidor de licencias tienda Google Play. Por favor, compruebe su conexión a Internet y vuelva a intentarlo. Si el problema persiste, póngase en contacto con el servicio Artemis.</string>
     <string name="retry_button">Reintentar</string>
     
+     <!-- Newly added below here 7-10-13-->
+	<string name="zoom_lens_options">Opciones de lentes de zoom personalizado</string>
+	<string name="zoom_lens_edit">Editar Zoom</string>
+	<string name="zoom_lens_delete">Eliminar Zoom</string>
+	<string name="edit_zoom_lens">Editar Zoom</string>
+	<string name="add_new_zoom_lens">Añadir nuevo objetivo zoom</string>
+    
+    
 </resources>
