@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,UnusedResources">
 
-    <string name="app_name">Artemis</string>
     <string name="preference_key_autofocusonpicture">autoFocusOnPicture</string>
     <string name="preference_key_gpsenabled">gpsEnabled</string>
     <string name="preference_key_selectedlensmake">selectedLensMake</string>
