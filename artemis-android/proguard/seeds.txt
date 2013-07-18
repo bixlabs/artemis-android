@@ -288,6 +288,7 @@ com.chemicalwedding.artemis.R$string: int add_custom_camera_directions
 com.chemicalwedding.artemis.R$string: int add_custom_camera_directions_active_chip
 com.chemicalwedding.artemis.R$string: int add_custom_camera_title
 com.chemicalwedding.artemis.R$string: int add_custom_lens
+com.chemicalwedding.artemis.R$string: int add_new_zoom_lens
 com.chemicalwedding.artemis.R$string: int app_name
 com.chemicalwedding.artemis.R$string: int appirator_app_title
 com.chemicalwedding.artemis.R$string: int appirator_market_url
@@ -347,6 +348,7 @@ com.chemicalwedding.artemis.R$string: int detect_device_camera_angles_automatica
 com.chemicalwedding.artemis.R$string: int device_camera_angles
 com.chemicalwedding.artemis.R$string: int device_camera_behaviour
 com.chemicalwedding.artemis.R$string: int device_camera_sensor
+com.chemicalwedding.artemis.R$string: int edit_zoom_lens
 com.chemicalwedding.artemis.R$string: int email_support
 com.chemicalwedding.artemis.R$string: int error_communicating_dialog_body
 com.chemicalwedding.artemis.R$string: int error_communicating_title
@@ -525,7 +527,10 @@ com.chemicalwedding.artemis.R$string: int volume_down_key_title
 com.chemicalwedding.artemis.R$string: int volume_down_summary
 com.chemicalwedding.artemis.R$string: int volume_up_key_title
 com.chemicalwedding.artemis.R$string: int volume_up_summary
+com.chemicalwedding.artemis.R$string: int zoom_lens_delete
+com.chemicalwedding.artemis.R$string: int zoom_lens_edit
 com.chemicalwedding.artemis.R$string: int zoom_lens_name
+com.chemicalwedding.artemis.R$string: int zoom_lens_options
 com.chemicalwedding.artemis.R$style: int ArtemisMain
 com.chemicalwedding.artemis.R$style: int appiratorButton
 com.chemicalwedding.artemis.R$xml: int camera_settings_preferences
