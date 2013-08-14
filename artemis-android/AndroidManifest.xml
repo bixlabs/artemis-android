@@ -44,7 +44,7 @@
         </activity>
         <activity
             android:name="ArtemisActivity"
-            android:configChanges="locale|layoutDirection|keyboardHidden"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"

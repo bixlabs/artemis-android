@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.chemicalwedding.artemis.CameraPreview14
-            android:id="@+id/cameraPreview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <!-- <com.chemicalwedding.artemis.CameraPreview14 -->
+        <!-- android:id="@+id/cameraPreview" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="match_parent" /> -->
     </com.chemicalwedding.artemis.CameraContainerView>
 
     <RelativeLayout
@@ -24,8 +24,6 @@
             android:id="@+id/cameraOverlay"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_alignBottom="@id/overlay"
-            android:layout_alignTop="@id/overlay"
             android:background="@null"
             android:visibility="visible" />
 

@@ -52,6 +52,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -89,6 +90,7 @@ public class ArtemisActivity extends Activity implements
 	private static final int GALLERY_IMAGE_LOADER = 1;
 
 	private Handler mUiHandler = new Handler();
+	private CameraContainerView mCameraContainer;
 	private CameraPreview14 _cameraPreview;
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
@@ -218,7 +220,8 @@ public class ArtemisActivity extends Activity implements
 		super.onPause();
 		Log.i(TAG, "Pausing Artemis");
 		_cameraPreview.releaseCamera();
-
+        mCameraContainer.removeAllViews();
+		
 		if (gpsEnabled)
 			locationManager.removeUpdates(locationListener);
 
@@ -250,9 +253,16 @@ public class ArtemisActivity extends Activity implements
 		Log.i(TAG, "Resuming Artemis");
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+		  _cameraPreview = new CameraPreview14(this, null);
+          mCameraContainer.addView(_cameraPreview,
+                  new ViewGroup.LayoutParams(
+                          ViewGroup.LayoutParams.MATCH_PARENT,
+                          ViewGroup.LayoutParams.MATCH_PARENT));
+		
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
+			mCameraOverlay.requestLayout();
 		}
 
 		initSensorManager();
@@ -536,8 +546,7 @@ public class ArtemisActivity extends Activity implements
 	};
 
 	private void bindViewObjects() {
-		_cameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
-		// mCameraContainer = (LinearLayout) findViewById(R.id.cameraContainer);
+		mCameraContainer = (CameraContainerView) findViewById(R.id.cameraContainer);
 		mCameraOverlay = (CameraOverlay) findViewById(R.id.cameraOverlay);
 		mCameraAngleDetailView = (CameraAngleDetailView) findViewById(R.id.CameraAngleDetailView);
 		viewFlipper = (ViewFlipper) findViewById(R.id.mainViewFlipper);
