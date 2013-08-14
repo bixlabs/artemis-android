@@ -71,7 +71,7 @@ public class CameraPreview14 extends ViewGroup {
 	protected float scaleFactor = 1f;
 	private int totalScreenHeight;
 	private int totalScreenWidth;
-	protected static boolean widthAndHeightSwapped = false;
+//	protected static boolean widthAndHeightSwapped = false;
 	protected static int savedImageJPEGQuality;
 	protected static int savedImageSizeIndex;
 	protected static boolean blackAndWhitePreview;
@@ -409,10 +409,11 @@ public class CameraPreview14 extends ViewGroup {
 
 	public void openCamera() {
 
-		isCameraReleased = false;
 		mCamera = openFrontFacingCameraGingerbread();
 
 		if (mCamera != null) {
+			isCameraReleased = false;
+			
 			Camera.Parameters parameters = mCamera.getParameters();
 			SharedPreferences artemisPrefs = getContext()
 					.getApplicationContext().getSharedPreferences(
