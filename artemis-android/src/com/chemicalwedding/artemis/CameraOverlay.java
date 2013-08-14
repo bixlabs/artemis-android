@@ -19,19 +19,19 @@ public class CameraOverlay extends View {
 	private DashPathEffect _boxLineEffect = new DashPathEffect(new float[] {
 			10, 5, 5, 5 }, 2.0f);
 	private ArtemisMath _artemisMath = ArtemisMath.getInstance();
-	private int screenWidth, screenHeight;
+//	private int screenWidth, screenHeight;
 	protected static boolean lockBoxEnabled = false;
 	
 	public CameraOverlay(Context context, AttributeSet attr) {
 		super(context, attr);
 
-		screenWidth = context.getResources().getDisplayMetrics().widthPixels;
-		screenHeight = context.getResources().getDisplayMetrics().heightPixels;
-		if (screenHeight > screenWidth) {
-			// swap!
-			screenWidth = getContext().getResources().getDisplayMetrics().heightPixels;
-			screenHeight = getContext().getResources().getDisplayMetrics().widthPixels;
-		}
+//		screenWidth = context.getResources().getDisplayMetrics().widthPixels;
+//		screenHeight = context.getResources().getDisplayMetrics().heightPixels;
+//		if (screenHeight > screenWidth) {
+//			// swap!
+//			screenWidth = getContext().getResources().getDisplayMetrics().heightPixels;
+//			screenHeight = getContext().getResources().getDisplayMetrics().widthPixels;
+//		}
 
 		// _paint.setAntiAlias(true);
 		// _paint.setTypeface(Typeface.DEFAULT_BOLD);
