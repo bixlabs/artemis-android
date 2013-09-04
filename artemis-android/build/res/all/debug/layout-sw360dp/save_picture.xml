@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <com.chemicalwedding.artemis.ArtemisViewFlipper
+        android:id="@+id/savePictureViewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#000"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save_picture_title" />
+
+            <ImageView
+                android:id="@+id/savePicturePreview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.55"
+                android:background="@color/transparent_artemis_view"
+                android:padding="1dp"
+                android:scaleType="fitCenter" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.15"
+                android:gravity="bottom" >
+
+              <Button
+                    android:id="@+id/savePictureCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel" />
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content" />
+                
+                  <Button
+                    android:id="@+id/savePictureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_picture" />
+
+                
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/savePictureAndEditButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_and_edit" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/save_picture_details" />
+
+            <EditText
+                android:id="@+id/imageDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/image_description_hint" />
+
+            <EditText
+                android:id="@+id/imageNotes"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/image_note_hint" />
+
+            <ScrollView
+                android:id="@+id/ScrollView_save_image"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight=".9" >
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="15dip"
+                    android:stretchColumns="0" >
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gps_coordinates" />
+
+                        <ToggleButton
+                            android:id="@+id/gpsDetailsToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gps_location" />
+
+                        <ToggleButton
+                            android:id="@+id/gpsLocationToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/camera_information" />
+
+                        <ToggleButton
+                            android:id="@+id/cameraDetailsToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lens_information" />
+
+                        <ToggleButton
+                            android:id="@+id/lensDetailsToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date_and_time_text" />
+
+                        <ToggleButton
+                            android:id="@+id/date_and_time_toggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/compass_heading_text" />
+
+                        <ToggleButton
+                            android:id="@+id/compass_heading_toggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tilt_and_roll_text" />
+
+                        <ToggleButton
+                            android:id="@+id/tilt_and_roll_toggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/h_and_v_angle_text" />
+
+                        <ToggleButton
+                            android:id="@+id/h_and_v_angle_toggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save_raw_image_text" />
+
+                        <ToggleButton
+                            android:id="@+id/save_raw_image_toggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false" />
+                    </TableRow>
+                </TableLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".025"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/save_edit_details_PictureCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:layout_marginRight="25dp"
+                    android:text="@string/cancel" />
+
+                <Button
+                    android:id="@+id/savePictureDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:text="@string/save" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.chemicalwedding.artemis.ArtemisViewFlipper>
+
+</LinearLayout><!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/layout-sw360dp/save_picture.xml -->

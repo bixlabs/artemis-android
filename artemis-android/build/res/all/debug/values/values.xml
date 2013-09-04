@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string-array name="backkey_prefs">
+        <item>Exit Artemis immediately</item>
+        <item>Prompt before closing</item>
+        <item>Do nothing</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string-array name="backkey_prefs_values">
+        <item>finish</item>
+        <item>prompt</item>
+        <item>nothing</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string-array name="heading_tilt_roll_array">
+        <item>None</item>
+        <item>Heading°</item>
+        <item>Heading°|Tilt°|Roll°</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string-array name="heading_tilt_roll_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="image_quality_prefs">
+        <item>0</item>
+        <item>25</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+        <item>85</item>
+        <item>90</item>
+        <item>95</item>
+        <item>100</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string-array name="image_size_prefs">
+        <item>Small</item>
+        <item>Default</item>
+        <item>Large</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string-array name="image_size_prefs_values">
+        <item>small</item>
+        <item>default</item>
+        <item>large</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string-array name="longPressShutter_entries">
+        <item>Autofocus camera and immediately capture image</item>
+        <item>Autofocus camera and capture image on button release</item>
+        <item>Autofocus camera only</item>
+        <item>Do nothing</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string-array name="longPressShutter_values">
+        <item>autofocusAndCapture</item>
+        <item>autofocusAndCaptureOnRelease</item>
+        <item>autofocus</item>
+        <item>nothing</item>
+    </string-array>
+    <string-array name="select_language_array">
+
+        <!-- <item>Čeština</item> -->
+        <!-- <item>Dansk</item> -->
+        <item>العربية</item>
+        <item>Deutsch</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>हिंदी</item>
+        <item>Italiano</item>
+        <!-- <item>Nederlands</item> -->
+        <!-- <item>Norsk bokmål</item> -->
+        <!-- <item>Polski</item> -->
+        <!-- <item>Português</item> -->
+        <!-- <item>Svenska</item> -->
+        <!-- <item>Türkçe</item> -->
+        <!-- <item>ελληνικά</item> -->
+        <item>Pусский</item>
+        <item>한국어</item>
+        <item>中文</item>
+        <item>日本語</item>
+    </string-array>
+    <string-array name="select_language_codes">
+
+        <!-- <item>cs</item> -->
+        <!-- <item>da</item> -->
+        <item>ar</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>hi</item>
+        <item>it</item>
+        <!-- <item>nl</item> -->
+        <!-- <item>nb</item> -->
+        <!-- <item>pl</item> -->
+        <!-- <item>pt</item> -->
+        <!-- <item>sv</item> -->
+        <!-- <item>tr</item> -->
+        <!-- <item>el</item> -->
+        <item>ru</item>
+        <item>ko</item>
+        <item>zh</item>
+        <item>ja</item>
+    </string-array>
+    <string-array name="set_exposure_array">
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string-array name="set_flash_mode_array">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
+    <string-array name="set_white_balance">
+        <item>Daylight</item>
+        <item>Cloudy</item>
+        <item>Flourescent</item>
+        <item>Incandescent</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>Autofocus camera and immediately capture image</item>
+        <item>Take a picture</item>
+        <item>Autofocus camera</item>
+        <item>Do nothing</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>Take a picture</item>
+        <item>Do nothing</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string-array name="volumeAction_values">
+        <item>autofocusAndCapture</item>
+        <item>takePicture</item>
+        <item>autofocus</item>
+        <item>nothing</item>
+    </string-array>
+    <string-array name="volumeAction_values_noautofocus">
+        <item>takePicture</item>
+        <item>nothing</item>
+    </string-array>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/appirater-settings.xml -->
+    <bool name="appirator_test_mode">false</bool>
+
+    <color name="appirator_button_end_color">#ff2f6699</color>
+    <color name="appirator_button_start_color">#ff449def</color>
+    <color name="appirator_button_text_color">#ffffffff</color>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/colors.xml -->
+    <color name="artemisSettingsText">#f2a700</color>
+    <color name="backgroundArtemisSettings">#29000000</color>
+    <color name="focalLengthHUD">#000000</color>
+    <color name="orangeArtemisText">#f2a700</color>
+    <color name="previewTextColor">#f2a700</color>
+    <color name="transparent_artemis_view">#00000000</color>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/dimensions.xml -->
+    <dimen name="artemisSettingsFontSize">14dp</dimen>
+    <dimen name="artemisSettingsFontSize_sw600dp">16dp</dimen>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/appirater-settings.xml -->
+    <integer name="appirator_days_before_reminding">5</integer>
+    <integer name="appirator_days_until_prompt">5</integer>
+    <integer name="appirator_launches_until_prompt">10</integer>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="about_back_button">Back</string>
+    <string name="add">Add</string>
+    <string name="add_custom_camera_directions">Squeeze Ratio is 1.0 for spherical lenses,
+         2.0 for standard 2:1 Anamorphic lenses and 1.3 for 1:3:1 Anamorphic lenses 
+         (ie Hawk V-lite 1.3\'s). After filing the above fields click start and hold your device at the
+         nodal point. If using a 50mm lens, the lens nodal point is 50mm in front of the sensor plane.
+         Using the plus and minus buttons, match the image you see on Atemis to the image on the camera.
+         The inside red buttons are for finer adjustment and press SAVE when you are happy. </string>
+    <string name="add_custom_camera_directions_active_chip">Squeeze Ratio is 1.0 for spherical lenses,
+         2.0 for standard 2:1 Anamorphic lenses and 1.3 for 1:3:1 Anamorphic lenses 
+         (ie Hawk V-lite 1.3\'s). </string>
+    <string name="add_custom_camera_title">Add Custom Camera</string>
+    <string name="add_custom_lens">Add Custom Lens</string>
+    <string name="add_new_zoom_lens">Add New Zoom Lens</string>
+    <string name="app_name">Artemis</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/appirater-settings.xml -->
+    <string name="appirator_app_title">Artemis</string>
+    <string name="appirator_market_url">market://details?id=%s</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="artemis_about_text">Artemis is a digital directors viewfinder designed
+		with both cinematographers and directors in mind. Artemis works nearly
+		the same way as a traditional directors viewfinder, though much more
+		accurately and much more conveniently. After selecting a camera
+		format, aspect ratio and lens type, Artemis uses the camera in your
+		mobile device to simulate the lens views you can expect when you come
+		to shoot. You can either compare all the lenses or hit zoom and the
+		camera will zoom in to fill the viewfinder with the equivalent view of
+		the lens you have chosen.
+		What cameras are covered?
+
+		Artemis has been
+		field tested and tweaked with every camera in our database
+		to make sure
+		that the field of view is correct. With digital film
+		cameras we found
+		that relying on the information from camera
+		manufacturers was not
+		always wise.
+
+		The following formats are covered so far:
+		\n\nStandard and
+		Super 16mm\nSuper 16mm Anamorphic\nStandard and Super 35mm\n35mm
+		Anamorphic\n65mm\n35mm Digital (D-21, RED, F35, Genesis)\n2/3 Digital
+		(F23, Viper)\n1/2 Digital\n1/3 Digital\nCanon 5D and 7D.\n\n
+		If you
+		find a format that\'s important to you is missing let us know and
+		we\'ll do our best to add it in the next update.</string>
+    <string name="artemis_about_title">About - Artemis for Android v</string>
+    <string name="artemis_remote_text">Artemis Remote for Android tablets &amp; iPads</string>
+    <string name="artemis_save_folder_summary">The folder name to save the images you create with Artemis.  If a folder with this name doesn\'t already exist it will be created for you.</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="artemis_save_location_default">DCIM/ARTEMIS</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="artemis_settings_title">Artemis Settings</string>
+    <string name="auto_device_h_and_v_angles">Get Device Camera Angles Automatically</string>
+    <string name="auto_focus_behaviour_when_long_pressing">Auto focus behaviour when long pressing the camera shutter (capture image) button.</string>
+    <string name="auto_focus_text">Auto Focus Images</string>
+    <string name="auto_white_balance">Automatic White Balance</string>
+    <string name="back_button_behaviour">Back Button Behaviour</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="backkey_default">prompt</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="backkey_summary">Choose the behaviour of the Android back button while the main app is running.</string>
+    <string name="black_and_white_preview">Black and White Preview</string>
+    <string name="buy_button">Buy app</string>
+    <string name="calibrate_chip_height">Chip Height:</string>
+    <string name="calibrate_chip_width">Chip Width:</string>
+    <string name="camera_device_will_autofocus">Camera device will autofocus before taking each picture</string>
+    <string name="camera_device_will_not_autofocus">Camera device will NOT autofocus before taking each picture</string>
+    <string name="camera_information">Camera Information</string>
+    <string name="camera_preview_will_be_black_and_white">Camera preview will be black and white. Note: this will also affect saved images.</string>
+    <string name="camera_preview_will_show_all_colors">Camera preview will show all colors</string>
+    <string name="camera_search">Search for cameras...</string>
+    <string name="camera_settings_title">Camera Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="chemical_wedding_about_text">Copyright 2010. Chemical Wedding.</string>
+    <string name="choose_folder_for_image_saving">Image Folder Name</string>
+    <string name="compass_heading_text">Compass Heading (N,S,E,W)</string>
+    <string name="custom_camera_aspect_ratio">ASPECT RATIO (1.78)</string>
+    <string name="custom_camera_chip_height">CHIP HEIGHT (mm)</string>
+    <string name="custom_camera_chip_width">CHIP WIDTH (mm)</string>
+    <string name="custom_camera_delete_camera">Delete Camera</string>
+    <string name="custom_camera_edit_camera">Edit Camera</string>
+    <string name="custom_camera_error">Custom Camera Input Error</string>
+    <string name="custom_camera_error_message">The was a problem adding the new custom camera.  Please verify that the input values are valid and try again.</string>
+    <string name="custom_camera_focallength">FOCAL LENGTH (50mm)</string>
+    <string name="custom_camera_name">CUSTOM CAMERA NAME</string>
+    <string name="custom_camera_new_camera">NEW CUSTOM CAMERA</string>
+    <string name="custom_camera_options">Custom Camera Options</string>
+    <string name="custom_camera_save_active_sensor">ACTIVE SENSOR SIZE</string>
+    <string name="custom_camera_save_button">SAVE</string>
+    <string name="custom_camera_save_start_button">START</string>
+    <string name="custom_camera_squeeze_ratio">SQUEEZE RATIO (1.0)</string>
+    <string name="custom_camera_width">WIDTH</string>
+    <string name="custom_cameras">CUSTOM CAMERAS</string>
+    <string name="custom_lens_error">Custom Lens Input Error</string>
+    <string name="custom_lens_error_message">The was a problem adding the new custom lens.  Please verify that the input values are valid and try again.</string>
+    <string name="custom_zoom_lens">CUSTOM ZOOM LENS</string>
+    <string name="custom_zoom_lens_error">Custom Zoom Lens Input Error</string>
+    <string name="custom_zoom_lens_error_message">The was a problem adding the new custom zoom lens.  Please verify that the input values are valid and try again.</string>
+    <string name="date_and_time_text">Date and Time</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="degree_symbol">°</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="detect_device_camera_angles_automatically">Detect Device Camera Angles Automatically</string>
+    <string name="device_camera_angles">Device Camera Angles</string>
+    <string name="device_camera_behaviour">Device Camera Behaviour</string>
+    <string name="device_camera_sensor">Device Camera Sensor</string>
+    <string name="edit_zoom_lens">Edit Zoom Lens</string>
+    <string name="email_support">Email Support</string>
+    <string name="error_communicating_dialog_body">There was a problem communicating with Google Play store license server.  Please check your internet connectivity and try again.  If the problem persists please contact Artemis support.</string>
+    <string name="error_communicating_title">License Server Communication Error</string>
+    <string name="error_dialog_body">There was an error verifying the application
+		license. If this problem persists, please contact support.</string>
+    <string name="error_dialog_title">Application license error</string>
+    <string name="exit_artemis">Exit Artemis</string>
+    <string name="feedback_report_issue">Issue / Feedback</string>
+    <string name="feedback_report_issue_description">Report and Issue or give us your feedback, we appreciate your comments.</string>
+    <string name="gallery_no_images_found">No images found</string>
+    <string name="gallery_title">Artemis Gallery</string>
+    <string name="gps_coordinates">GPS Coordinates</string>
+    <string name="gps_location">GPS Location Details</string>
+    <string name="gps_on_off">Turn GPS On / Off</string>
+    <string name="gps_settings">GPS Settings</string>
+    <string name="gps_summary_off">GPS is disabled. The device will not search for it\'s location.</string>
+    <string name="gps_summary_on">GPS is enabled and the device will search for it\'s location.</string>
+    <string name="h_and_v_angle_text">H and V Angle</string>
+    <string name="hangle_text">H Angle</string>
+    <string name="haptic_feedback">Haptic Feedback</string>
+    <string name="haptic_feedback_on_summary">Artemis will provide haptic feedback on button presses.</string>
+    <string name="hapticfeedback_off_summary">Artemis will NOT provide haptic feedback on button presses.</string>
+    <string name="heading_summary">Choose what to display in the heading of the main app.</string>
+    <string name="heading_tilt_roll_promt">Select Heading Options</string>
+    <string name="heading_tilt_roll_text">Heading Options</string>
+    <string name="horizontal_lens_angle">Horizontal Lens Angle</string>
+    <string name="image_description_hint">Add a description</string>
+    <string name="image_note_hint">Add a note</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="image_quality_default">90</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="image_quality_summary">Select the quality (compression) of the image saved to disk.</string>
+    <string name="image_save_error">ERROR: The image could not be saved. The storage media may be full.</string>
+    <string name="image_save_no_media">ERROR: The image could not be saved.  No storage media was found.</string>
+    <string name="image_saved_success">Saving image…</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="image_size_default">default</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="image_size_summary">Select the size of the final image saved to disk.</string>
+    <string name="input_focal_length">Enter the lens focal length in millimeters:</string>
+    <string name="keep_screen_off_summary">The screen will timeout according to your devices default sleep setting.</string>
+    <string name="keep_screen_on">Keep Screen On</string>
+    <string name="keep_screen_on_summary">The screen will be kept on and NEVER timeout while the main app is running.</string>
+    <string name="key_mappings">Key Mappings</string>
+    <string name="language">Language</string>
+    <string name="language_summary">NOTE: You must quit and restart the application for changes to take effect.</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="left_roll">↶</string>
+    <string name="lensFocalLengthMM">mm</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="lens_information">Lens Information</string>
+    <string name="lens_settings_title">Lens Settings</string>
+    <string name="lock_boxes_text">Lock Lens boxes</string>
+    <string name="lock_lens_boxes">Lock Lens Boxes</string>
+    <string name="lockboxes_summary">Enable/Disable the Lens boxes from changing position on touch.</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="longPressShutter_default">autofocusAndCapture</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="long_press_shutter_button_focus_behaviour">Long Press Shutter Button Focus Behaviour</string>
+    <string name="loon_films_about_text">Artemis for Android was developed by Loon Films.</string>
+    <string name="manually_set_h_angle_text">Set Device Camera Horizontal Angle</string>
+    <string name="manually_set_v_angle_text">Set Device Camera Vertical Angle</string>
+    <string name="map_volume_key_title">Override Volume Key Behavior</string>
+    <string name="map_volume_off">"Override volume key behavior while the main app is running. "</string>
+    <string name="map_volume_on">Don\'t override volume key behavior. Volume keys behave as default.</string>
+    <string name="max_focal_length">Max Focal Length</string>
+    <string name="menu_artemis_about">About</string>
+    <string name="menu_artemis_about_description">A little about the app and its developers.</string>
+    <string name="menu_artemis_gallery">Gallery</string>
+    <string name="menu_artemis_quit">Quit</string>
+    <string name="menu_artemis_settings">Settings</string>
+    <string name="menu_camera_settings">Select Camera</string>
+    <string name="menu_lens_settings">Select Lens</string>
+    <string name="min_focal_length">Min Focal Length</string>
+    <string name="new_zoom_lens">NEW ZOOM LENS</string>
+    <string name="not_torch_while_in_preview_mode">Camera device will NOT use the torch while in preview mode</string>
+    <string name="ok">OK</string>
+    <string name="picture_save_location">Picture Save Location</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="preference_key_artemissavefolder">artemisSaveFolder</string>
+    <string name="preference_key_autofocusonpicture">autoFocusOnPicture</string>
+    <string name="preference_key_automaticlensangles">automaticLensAngles</string>
+    <string name="preference_key_backkeyOption">backKeyOption</string>
+    <string name="preference_key_cameralenshangle">cameraLensHAngle</string>
+    <string name="preference_key_cameralensvangle">cameraLensVAngle</string>
+    <string name="preference_key_flashenabled">flashEnabled</string>
+    <string name="preference_key_gpsenabled">gpsEnabled</string>
+    <string name="preference_key_hapticfeedback">hapticFeedback</string>
+    <string name="preference_key_headingdisplay">headingDisplay</string>
+    <string name="preference_key_keepscreenon">keepScreenOn</string>
+    <string name="preference_key_lockboxesenabled">lockBoxesEnabled</string>
+    <string name="preference_key_longpressshutter">longPressShutter</string>
+    <string name="preference_key_mapVolumeKeys">mapVolumeKeys</string>
+    <string name="preference_key_previewblackwhite">previewBlackWhite</string>
+    <string name="preference_key_previewselectionindex1">previewSelectionIndex1</string>
+    <string name="preference_key_quickshotenabled">quickshotEnabled</string>
+    <string name="preference_key_saveRawImage">saveRawImage</string>
+    <string name="preference_key_savedImageQuality">savedImageQuality</string>
+    <string name="preference_key_savedImageScale">savedImageScale</string>
+    <string name="preference_key_selectedcamerarowid">selectedCameraRowId</string>
+    <string name="preference_key_selectedexposurelevel">selectedExposureLevel</string>
+    <string name="preference_key_selectedlanguage">selectedLanguage</string>
+    <string name="preference_key_selectedlensescsvstring">selectedLensesCSVString</string>
+    <string name="preference_key_selectedlensmake">selectedLensMake</string>
+    <string name="preference_key_selectedwhitebalance">selectedWhiteBalance</string>
+    <string name="preference_key_selectedzoomlens">selectedZoomLens</string>
+    <string name="preference_key_showcameradetails">showCameraDetails</string>
+    <string name="preference_key_showdatetime">showDateTime</string>
+    <string name="preference_key_showdescription">showDescription</string>
+    <string name="preference_key_showgpsdetails">showGpsDetails</string>
+    <string name="preference_key_showgpslocation">showGpsLocation</string>
+    <string name="preference_key_showheading">showHeading</string>
+    <string name="preference_key_showlensdetails">showLensDetails</string>
+    <string name="preference_key_showtiltroll">showTiltRoll</string>
+    <string name="preference_key_showviewangles">showViewAngles</string>
+    <string name="preference_key_smoothimageenabled">smoothImageEnabled</string>
+    <string name="preference_key_volumeDownAction">volumeDownAction</string>
+    <string name="preference_key_volumeUpAction">volumeUpAction</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="prefs_camera_settings">Camera Settings</string>
+    <string name="prefs_camera_settings_description">Settings for customizing the behaviour of the device camera</string>
+    <string name="prefs_general_settings">General Settings</string>
+    <string name="prefs_general_settings_description">Settings for general operation of Artemis and the user interface</string>
+    <string name="prefs_image_settings">Saved Image Settings</string>
+    <string name="prefs_image_settings_description">Adjustments for controlling properties of images saved to storage using Artemis</string>
+    <string name="quick_picture_off">An image preview will be shown after pictures are saved.</string>
+    <string name="quick_picture_on">Quick pictures are enabled. An image preview will NOT be shown after pictures are saved.</string>
+    <string name="quickshot_text">QuickShot Mode</string>
+    <string name="quit_button">Exit</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/build/exploded-bundles/ArtemisAndroidAppiraterAndroidUnspecified.aar/res/values/values.xml -->
+    <string name="rate">Yes, Rate %s</string>
+    <string name="rate_cancel">No, Thanks</string>
+    <string name="rate_later">Remind me later</string>
+    <string name="rate_message">If you enjoy using %s, would you mind taking a moment to rate it? Thanks for your support!</string>
+    <string name="rate_title">Rate %s</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="reset_artemis_settings">Reset Artemis Settings</string>
+    <string name="reset_device_h_and_v_angles">Reset</string>
+    <string name="reset_to_default_settings">Are you sure you want to reset to default settings?  You will lose all preferences.</string>
+    <string name="retry_button">Retry</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="right_roll">↷</string>
+    <string name="roll_level">↔</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="save">Save</string>
+    <string name="save_and_edit">Save and Edit Details</string>
+    <string name="save_artemis_settings">Save Artemis Settings</string>
+    <string name="save_lenses">Save Lenses</string>
+    <string name="save_picture">Save Picture</string>
+    <string name="save_picture_details">Save Picture Details</string>
+    <string name="save_picture_title">Save Picture</string>
+    <string name="save_raw_image_text">No Border or Text</string>
+    <string name="saved_image_quality">Saved Image Quality</string>
+    <string name="saved_image_size">Saved Image Size</string>
+    <string name="screen_settings">Screen Settings</string>
+    <string name="select_image_quality">Select Image Quality</string>
+    <string name="select_image_size">Select Image Size</string>
+    <string name="select_language_text">Select Language</string>
+    <string name="select_preview_size_text">Select Preview Resolution</string>
+    <string name="set_exposure">Set Exposure</string>
+    <string name="set_exposure_text">Set Exposure</string>
+    <string name="set_flash_mode_spinner">Set Flash Mode</string>
+    <string name="set_flash_mode_text">Flash/Torch Mode</string>
+    <string name="set_preview_size_text">Preview Resolution</string>
+    <string name="set_white_balance">Set White Balance</string>
+    <string name="set_white_balance_text">Set White Balance</string>
+    <string name="settings_reset_summary">Reset to Artemis default settings.  You will not lose any saved pictures.</string>
+    <string name="settings_reset_title">Reset to Default Settings</string>
+    <string name="smooth_filter_text">Smooth Image Filter</string>
+    <string name="smooth_image_off">Images will NOT be smooth filtered.</string>
+    <string name="smooth_image_on">A filter will be applied to make the images appear smoother when scaling is required.</string>
+    <string name="sure_you_want_to_exit">Are you sure you want to exit?</string>
+    <string name="tilt_and_roll_text">Tilt and Roll</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="tilt_down">↓</string>
+    <string name="tilt_level">↕</string>
+    <string name="tilt_up">↑</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="torch_while_in_preview_mode">Camera device will use the torch while in preview mode</string>
+    <string name="unlicensed_dialog_body">This application is not licensed. Please purchase
+		it from Android Market.</string>
+    <string name="unlicensed_dialog_title">Application not licensed</string>
+    <string name="untitle_custom_cam">Untitled Custom Camera</string>
+    <string name="untitled_zoom_lens">Untitled Zoom Lens</string>
+    <string name="use_detected_device_angles">The application will use the values automatically detected from the device (current values shown below).</string>
+    <string name="use_the_custom_camera_angles">The application will use the custom values shown below.</string>
+    <string name="user_interface_behaviour">User Interface Behaviour</string>
+    <string name="vangle_text">V Angle</string>
+    <string name="vertical_lens_angle">Vertical Lens Angle</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/preference_keys.xml -->
+    <string name="volumeDownAction_default">autofocus</string>
+    <string name="volumeUpAction_default">autofocusAndCapture</string>
+    <string name="volumeUpAction_noautofocus_default">takePicture</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/strings.xml -->
+    <string name="volume_down_key_title">Volume Down Key Behaviour</string>
+    <string name="volume_down_summary">Choose the behaviour when phones volume down key is pressed while the main app is running.</string>
+    <string name="volume_up_key_title">Volume Up Key Behaviour</string>
+    <string name="volume_up_summary">Choose the behaviour when phones volume up key is pressed while the main app is running.</string>
+    <string name="zoom_lens_delete">Delete Zoom Lens</string>
+    <string name="zoom_lens_edit">Edit Zoom Lens</string>
+    <string name="zoom_lens_name">Zoom Lens Name</string>
+    <string name="zoom_lens_options">Custom Zoom Lens Options</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values/styles.xml -->
+    <style name="ArtemisMain" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/build/exploded-bundles/ArtemisAndroidAppiraterAndroidUnspecified.aar/res/values/values.xml -->
+    <style name="appiratorButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_appirator</item>
+        <item name="android:textColor">@color/appirator_button_text_color</item>
+    </style>
+
+</resources>

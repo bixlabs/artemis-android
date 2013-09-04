@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-ko/strings.xml -->
+    <string-array name="backkey_prefs">
+        <item>"아르테미스 즉시 종료"</item>
+        <item>"닫기 전에 프롬프트"</item>
+        <item>"아무것도하지"</item>
+    </string-array>
+    <string-array name="heading_tilt_roll_array">
+        <item>없음</item>
+        <item>이 제목°</item>
+        <item>제목°|기울기°|롤°</item>
+    </string-array>
+    <string-array name="image_size_prefs">
+        <item>"작은"</item>
+        <item>"기본값"</item>
+        <item>"크게"</item>
+    </string-array>
+    <string-array name="longPressShutter_entries">
+        <item>"자동 초점 카메라와 바로 이미지를 캡처"</item>
+        <item>"버튼을 릴리스에 자동 초점 카메라와 캡처 이미지"</item>
+        <item>"자동 초점 카메라 만"</item>
+        <item>"아무것도하지"</item>
+    </string-array>
+    <string-array name="set_exposure_array">
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="set_flash_mode_array">
+        <item>에</item>
+        <item>끄기</item>
+    </string-array>
+    <string-array name="set_white_balance">
+        <item>일광</item>
+        <item>에 흐린</item>
+        <item>형광등</item>
+        <item>의 밝음</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"자동 초점 카메라와 바로 이미지를 캡처"</item>
+        <item>"사진을 촬영"</item>
+        <item>"자동 초점 카메라"</item>
+        <item>"아무것도하지"</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"사진을 촬영"</item>
+        <item>"아무것도하지"</item>
+    </string-array>
+
+    <string name="about_back_button">위로</string>
+    <string name="add">"추가 "</string>
+    <string name="add_custom_camera_directions">당신이 몇 가지 간단한 측정을 내리는 데 필요한 사용자 정의 카메라를 입력하십시오. 카메라를 벽이나 초점 차트와 측정 표면에 렌즈의 결절 지점부터 고정된 거리를 배치합니다. 다음, 고정 렌즈, 정확히 너비와 높이 당신은 뷰파인더를 통해 볼 수있는 무엇을 측정합니다. 일관성있는 단위를 사용합니다.</string>
+    <string name="add_custom_camera_directions_active_chip">"스퀴즈 비율은 구면 렌즈, 1:3:1초 아나모픽 렌즈 (즉, 호크 V-라이트 1.3의) 표준 2:1분 아나모픽 렌즈 2.0 1.3 1.0입니다."</string>
+    <string name="add_custom_camera_title">추가 사용자 정의 카메라 - 모든 측정 (㎜)</string>
+    <string name="add_custom_lens">"맞춤 렌즈 추가"</string>
+    <string name="add_new_zoom_lens">새로운 줌 렌즈 추가</string>
+    <string name="app_name">아르테 미스</string>
+    <string name="artemis_about_text">아르테 미스 모두  이사 염두에두고 설계된 디지털 이사 뷰파인더입니다. 아르테 미스하지만 훨씬 더 정확하고 훨씬 더 편리하게, 전통적인 감독의 뷰파인더과 거의 동일한 방식으로 작동합니다. 카메라 포맷, 화면 비율 및 렌즈의 유형을 선택한 후, 아르테 미스가 모바일 장치의 카메라를 사용하는 렌즈가 당신이 촬영에 오면 기대할 수 전망을 시뮬레이트. 당신도 모든 렌즈를 비교하거나 충돌 줌 및 카메라가 선택한 렌즈의 동등한 볼 수있는 뷰파인더를을 채우기 위해 확대됩니다.</string>
+    <string name="artemis_about_title">아르테 미스 안드로이드 베타 v</string>
+    <string name="artemis_remote_text">안드로이드의 정제 및 내가 패드 대한 원격 아르테 미스</string>
+    <string name="artemis_save_folder_summary">"폴더 이름은 아르테미스하여 만든 이미지를 저장합니다. 이 이름을 가진 폴더가 존재하지 않는 경우가 생성됩니다."</string>
+    <string name="artemis_settings_title">설정을 아르테 미스</string>
+    <string name="auto_device_h_and_v_angles">자동 장치 카메라 앵글 잡아</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"긴 카메라 셔터 (이미지 캡처) 버튼을 누르면 자동 초점 작동."</string>
+    <string name="auto_focus_text">자동 초점 이미지</string>
+    <string name="auto_white_balance">자동 화이트 밸런스</string>
+    <string name="back_button_behaviour">"다시 버튼 행동"</string>
+    <string name="backkey_summary">"주요 응용 프로그램이 실행되는 동안 안드로이드 백 버튼의 동작을 선택합니다."</string>
+    <string name="black_and_white_preview">흑인과 백인 미리보기</string>
+    <string name="buy_button">응용 프로그램을 구입</string>
+    <string name="calibrate_chip_height">"칩 신장 :"</string>
+    <string name="calibrate_chip_width">"칩 폭 :"</string>
+    <string name="camera_device_will_autofocus">"카메라 장치는 각각의 사진을 촬영하기 전에 오토 포커스 것"</string>
+    <string name="camera_device_will_not_autofocus">"카메라 장치는 각각의 사진을 찍기 전에 자동 초점되지 않습니다"</string>
+    <string name="camera_information">카메라 정보</string>
+    <string name="camera_preview_will_be_black_and_white">"카메라 미리보기는 검은 색과 흰색이됩니다. 참고 :이 또한 저장된 이미지에 영향을 미칠 것입니다."</string>
+    <string name="camera_preview_will_show_all_colors">"카메라 미리보기는 모든 색상을 표시합니다"</string>
+    <string name="camera_search">"카메라 검색 ..."</string>
+    <string name="camera_settings_title">카메라 설정</string>
+    <string name="cancel">취소</string>
+    <string name="chemical_wedding_about_text">저작권 2010.</string>
+    <string name="choose_folder_for_image_saving">이미지 폴더 이름</string>
+    <string name="compass_heading_text">나침반 제목 (없음, 에스, 전자, 승)</string>
+    <string name="custom_camera_aspect_ratio">"화면 비율 (1.78)"</string>
+    <string name="custom_camera_chip_height">"칩 높이 (mm)"</string>
+    <string name="custom_camera_chip_width">"칩 폭 (mm)"</string>
+    <string name="custom_camera_delete_camera">삭제 카메라</string>
+    <string name="custom_camera_edit_camera">카메라 편집</string>
+    <string name="custom_camera_error">사용자 정의 카메라 입력 오류</string>
+    <string name="custom_camera_error_message">는 새로운 사용자 정의 카메라를 추가하는 문제였다.입력 값이 유효한지 확인하고 다시 시도하십시오.</string>
+    <string name="custom_camera_focallength">초점 거리</string>
+    <string name="custom_camera_name">사용자 정의 카메라 이름을 만듭니다</string>
+    <string name="custom_camera_new_camera">새 사용자 지정 카메라</string>
+    <string name="custom_camera_options">사용자 정의 카메라 옵션</string>
+    <string name="custom_camera_save_active_sensor">"액티브 센서 크기"</string>
+    <string name="custom_camera_save_button">"저장"</string>
+    <string name="custom_camera_save_start_button">"시작"</string>
+    <string name="custom_camera_squeeze_ratio">"비율을 짜"</string>
+    <string name="custom_camera_width">폭</string>
+    <string name="custom_cameras">"사용자 정의 카메라"</string>
+    <string name="custom_lens_error">"사용자 정의 렌즈 입력 오류"</string>
+    <string name="custom_lens_error_message">"이 새 사용자 지정 렌즈를 추가하는 문제였다. 입력 값이 유효한지 확인하고 다시 시도하십시오."</string>
+    <string name="custom_zoom_lens">"사용자 정의 줌 렌즈"</string>
+    <string name="custom_zoom_lens_error">"사용자 정의 줌 렌즈 입력 오류"</string>
+    <string name="custom_zoom_lens_error_message">"이 새 사용자 지정 줌 렌즈를 추가하는 문제였다. 입력 값이 유효한지 확인하고 다시 시도하십시오."</string>
+    <string name="date_and_time_text">날짜 및 시간</string>
+    <string name="detect_device_camera_angles_automatically">"자동 장치 카메라 앵글을 감지"</string>
+    <string name="device_camera_angles">"장치 카메라 앵글"</string>
+    <string name="device_camera_behaviour">"장치 카메라 행동"</string>
+    <string name="device_camera_sensor">"장치 카메라 센서"</string>
+    <string name="edit_zoom_lens">줌 렌즈를 편집</string>
+    <string name="email_support">"이메일 지원"</string>
+    <string name="error_communicating_dialog_body">구글 놀이 상점 라이센스 서버와 통신하는 데 문제가 발생했습니다. 당신의 인터넷 연결을 확인하고 다시 시도하십시오.문제가 지속되면 아르테미스 지원 센터에 문의하십시오.</string>
+    <string name="error_communicating_title">라이센스 서버 통신 오류</string>
+    <string name="error_dialog_body">응용 프로그램 라이센스를 확인하는 도중 오류가 발생했습니다. 이 문제가 지속되면 지원부에 문의하시기 바랍니다.</string>
+    <string name="error_dialog_title">응용 프로그램 라이센스 오류</string>
+    <string name="exit_artemis">아르테미스 종료</string>
+    <string name="feedback_report_issue">"문제 / 피드백"</string>
+    <string name="feedback_report_issue_description">"보고하고 실행하거나 여러분의 의견을 알려주세요, 우리는 귀하의 의견을 주셔서 감사합니다."</string>
+    <string name="gallery_no_images_found">이미지를 찾을 수 없습니다</string>
+    <string name="gallery_title">"아르테미스 갤러리"</string>
+    <string name="gps_coordinates">의 GPS 좌표</string>
+    <string name="gps_location">GPS 위치 세부 정보</string>
+    <string name="gps_on_off">켜기 / 끄기 회전 GPS를</string>
+    <string name="gps_settings">"GPS 설정"</string>
+    <string name="gps_summary_off">"GPS를 사용할 수 없습니다. 이 장치는 그것의 위치를​​ 검색하지 않습니다."</string>
+    <string name="gps_summary_on">"GPS가 활성화되고 장치의 위치를​​ 검색합니다."</string>
+    <string name="h_and_v_angle_text">수평 및 수직 각도</string>
+    <string name="hangle_text">수평 각도</string>
+    <string name="haptic_feedback">"터치 시 진동"</string>
+    <string name="haptic_feedback_on_summary">"아르테미스 버튼 프레스 햅틱 피드백을 제공합니다."</string>
+    <string name="hapticfeedback_off_summary">"아르테미스 버튼 프레스 햅틱 피드백을 제공하지 않습니다."</string>
+    <string name="heading_summary">"무엇 주요 응용 프로그램의 제목에 표시 할 것인지를 선택합니다."</string>
+    <string name="heading_tilt_roll_promt">제목 옵션을 선택</string>
+    <string name="heading_tilt_roll_text">옵션 제목</string>
+    <string name="horizontal_lens_angle">"수평 렌즈 각"</string>
+    <string name="image_description_hint">설명 추가</string>
+    <string name="image_note_hint">"메모 추가"</string>
+    <string name="image_quality_summary">"디스크에 저장된 이미지의 품질 (압축)을 선택합니다."</string>
+    <string name="image_save_error">"오류 : 이미지를 저장할 수 없습니다. 저장 매체는 가득 차있을 수 있습니다."</string>
+    <string name="image_save_no_media">"오류 : 이미지를 저장할 수 없습니다. 저장 매체를 찾을 수없는 경우."</string>
+    <string name="image_saved_success">이미지 저장 중...</string>
+    <string name="image_size_summary">"디스크에 저장된 최종 이미지의 크기를 선택합니다."</string>
+    <string name="input_focal_length">"밀리미터 렌즈의 초점 길이를 입력합니다 :"</string>
+    <string name="keep_screen_off_summary">"화면 시간 제한 당신의 장치의 기본 절전 설정에 따라 것입니다."</string>
+    <string name="keep_screen_on">"에 화면을 유지"</string>
+    <string name="keep_screen_on_summary">"주요 응용 프로그램이 실행되는 동안 화면에 보관하고 시간 제한 NEVER됩니다."</string>
+    <string name="key_mappings">"키 매핑"</string>
+    <string name="language">언어</string>
+    <string name="language_summary">"참고 : 변경 사항을 적용하려면 응용 프로그램을 종료하고 다시 시작해야합니다."</string>
+    <string name="lensFocalLengthMM">mm</string>
+    <string name="lens_information">렌즈 정보</string>
+    <string name="lens_settings_title">렌즈 설정</string>
+    <string name="lock_boxes_text">조준 렌즈 박스</string>
+    <string name="lock_lens_boxes">"렌즈 상자를 잠금"</string>
+    <string name="lockboxes_summary">"터치에서 위치를 변경할 수 렌즈 상자를 활성화 / 비활성화합니다."</string>
+    <string name="long_press_shutter_button_focus_behaviour">"긴 셔터 버튼을 누릅니다 초점 행동"</string>
+    <string name="loon_films_about_text">안드로이드에 대한 의 아르테 미스는 존 서덜랜드와 얼간이 영화에 의해 개발되었다.</string>
+    <string name="manually_set_h_angle_text">설정 장치 카메라 수평각</string>
+    <string name="manually_set_v_angle_text">설정 장치 카메라 수직 각도</string>
+    <string name="map_volume_key_title">"볼륨 키 동작을 재정의"</string>
+    <string name="map_volume_off">"주요 응용 프로그램이 실행되는 동안 볼륨 키 동작을 재정의합니다."</string>
+    <string name="map_volume_on">"볼륨 키 동작을 재정의하지 않습니다. 볼륨 키는 기본적으로 작동합니다."</string>
+    <string name="max_focal_length">"최대 초점 거리"</string>
+    <string name="menu_artemis_about">소개</string>
+    <string name="menu_artemis_about_description">"응용 프로그램 및 개발자에 대한 약간."</string>
+    <string name="menu_artemis_gallery">갤러리</string>
+    <string name="menu_artemis_quit">종료</string>
+    <string name="menu_artemis_settings">설정</string>
+    <string name="menu_camera_settings">선택 카메라</string>
+    <string name="menu_lens_settings">선택 렌즈</string>
+    <string name="min_focal_length">"최소 초점 거리"</string>
+    <string name="new_zoom_lens">"새로운 줌 렌즈"</string>
+    <string name="not_torch_while_in_preview_mode">"카메라 장치는 미리보기 모드에서 토치 동안 사용하지 않을 것"</string>
+    <string name="ok">확인</string>
+    <string name="picture_save_location">"이미지 저장 위치"</string>
+    <string name="prefs_camera_settings">"카메라 설정"</string>
+    <string name="prefs_camera_settings_description">"장치 카메라의 동작을 사용자 정의 설정"</string>
+    <string name="prefs_general_settings">"일반 설정"</string>
+    <string name="prefs_general_settings_description">"일반적으로 아르테미스의 운영 및 사용자 인터페이스 설정"</string>
+    <string name="prefs_image_settings">"저장된 이미지 설정"</string>
+    <string name="prefs_image_settings_description">"이미지의 속성을 제어하기위한 조정 아르테미스를 사용하여 스토리지에 저장"</string>
+    <string name="quick_picture_off">"사진을 저장 한 후에 이미지 미리보기가 표시됩니다."</string>
+    <string name="quick_picture_on">"빠른 사진을 사용할 수 있습니다. 사진을 저장 한 후에 이미지 미리보기가 표시되지 않습니다."</string>
+    <string name="quickshot_text">빠른 모드 샷</string>
+    <string name="quit_button">출구</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/build/exploded-bundles/ArtemisAndroidAppiraterAndroidUnspecified.aar/res/values-ko/values.xml -->
+    <string name="rate">%s 평가하기</string>
+    <string name="rate_cancel">평가하지 않겠습니다</string>
+    <string name="rate_later">다음에 평가하겠습니다</string>
+    <string name="rate_message">%s 사용이 맘에 드셨나요? 잠시만 시간을 내서 평가를 부탁드리겠습니다. 감사합니다!</string>
+    <string name="rate_title">%s 평가하기</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-ko/strings.xml -->
+    <string name="reset_artemis_settings">"아르테미스 설정을 재설정"</string>
+    <string name="reset_device_h_and_v_angles">재설정</string>
+    <string name="reset_to_default_settings">"당신은 기본 설정으로 재설정 하시겠습니까? 당신은 모든 설정을 잃게됩니다."</string>
+    <string name="retry_button">재시도</string>
+    <string name="save">"저장"</string>
+    <string name="save_and_edit">저장하고 세부 정보 편집</string>
+    <string name="save_artemis_settings">이 아르테 미스 설정 저장</string>
+    <string name="save_lenses">렌즈 저장</string>
+    <string name="save_picture">이 사진을 저장</string>
+    <string name="save_picture_details">"사진 정보 저장"</string>
+    <string name="save_picture_title">이 사진을 저장</string>
+    <string name="save_raw_image_text">"테두리하거나 텍스트"</string>
+    <string name="saved_image_quality">"저장된 이미지 품질"</string>
+    <string name="saved_image_size">"저장된 이미지 크기"</string>
+    <string name="screen_settings">"화면 설정"</string>
+    <string name="select_image_quality">"이미지 품질을 선택"</string>
+    <string name="select_image_size">"이미지 크기를 선택"</string>
+    <string name="select_language_text">언어 선택</string>
+    <string name="select_preview_size_text">선택 미리보기 해상도</string>
+    <string name="set_exposure">노출 세트</string>
+    <string name="set_exposure_text">세트 노광</string>
+    <string name="set_flash_mode_spinner">설정 플래시 모드</string>
+    <string name="set_flash_mode_text">플래시 / 토치 모드</string>
+    <string name="set_preview_size_text">미리보기 해상도</string>
+    <string name="set_white_balance">화이트 밸런스 설정</string>
+    <string name="set_white_balance_text">화이트 밸런스 설정</string>
+    <string name="settings_reset_summary">"아르테미스 기본 설정으로 재설정합니다. 당신은 어떤 저장된 사진을 잃지 않을 것이다."</string>
+    <string name="settings_reset_title">"기본 설정으로 재설정"</string>
+    <string name="smooth_filter_text">부드러운 이미지 필터</string>
+    <string name="smooth_image_off">"이미지는 부드러운 필터링되지 않습니다."</string>
+    <string name="smooth_image_on">"필터는 확장이 필요할 때 이미지가 매끄럽게 보이도록 적용됩니다."</string>
+    <string name="sure_you_want_to_exit">당신은 당신이 종료 하시겠습니까?</string>
+    <string name="tilt_and_roll_text">틸트 및 롤</string>
+    <string name="torch_while_in_preview_mode">"카메라 장치는 미리보기 모드에서 토치 동안 사용합니다"</string>
+    <string name="unlicensed_dialog_body">이 응용 프로그램은 허가되지 않습니다. Android 마켓에서 구입하시기 바랍니다.</string>
+    <string name="unlicensed_dialog_title">응용 프로그램이 아니 라이센스</string>
+    <string name="untitle_custom_cam">제목 없음 사용자 정의 카메라</string>
+    <string name="untitled_zoom_lens">"제목 줌 렌즈"</string>
+    <string name="use_detected_device_angles">"응용 프로그램이 자동으로 장치 (전류 값을 아래 그림 참조)에서 감지 된 값을 사용합니다."</string>
+    <string name="use_the_custom_camera_angles">"응용 프로그램은 다음과 같이 정의 값을 사용합니다."</string>
+    <string name="user_interface_behaviour">"사용자 인터페이스 행동"</string>
+    <string name="vangle_text">수직 각도</string>
+    <string name="vertical_lens_angle">"수직 렌즈 각"</string>
+    <string name="volume_down_key_title">"주요 행동 볼륨 낮추기"</string>
+    <string name="volume_down_summary">"주요 응용 프로그램이 실행되는 동안 키 아래 전화 볼륨을 누를 때의 동작을 선택합니다."</string>
+    <string name="volume_up_key_title">"주요 행동 볼륨 업"</string>
+    <string name="volume_up_summary">"주요 응용 프로그램이 실행되는 동안 키까지 전화 볼륨을 누를 때의 동작을 선택합니다."</string>
+    <string name="zoom_lens_delete">줌 렌즈를 삭제</string>
+    <string name="zoom_lens_edit">줌 렌즈를 편집</string>
+    <string name="zoom_lens_name">"줌 렌즈 이름"</string>
+    <string name="zoom_lens_options">사용자 정의 줌 렌즈 옵션</string>
+
+</resources>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-zh/strings.xml -->
+    <string-array name="backkey_prefs">
+        <item>"立即退出阿耳忒弥斯"</item>
+        <item>"收盘前提示"</item>
+        <item>"什么都不做"</item>
+    </string-array>
+    <string-array name="heading_tilt_roll_array">
+        <item>无</item>
+        <item>标题°</item>
+        <item>标题°|倾斜°|辊°</item>
+    </string-array>
+    <string-array name="image_size_prefs">
+        <item>"小"</item>
+        <item>"默认"</item>
+        <item>"大"</item>
+    </string-array>
+    <string-array name="longPressShutter_entries">
+        <item>"自动对焦摄像头，并立即捕获图像"</item>
+        <item>"自动对焦摄像头和捕捉图像的按钮释放"</item>
+        <item>"仅自动对焦摄像头"</item>
+        <item>"什么都不做"</item>
+    </string-array>
+    <string-array name="set_exposure_array">
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="set_flash_mode_array">
+        <item>论</item>
+        <item>关</item>
+    </string-array>
+    <string-array name="set_white_balance">
+        <item>日光</item>
+        <item>多雲</item>
+        <item>熒光</item>
+        <item>白熾燈</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"自动对焦摄像头，并立即捕获图像"</item>
+        <item>"拍摄一张照片"</item>
+        <item>"自动对焦摄像头"</item>
+        <item>"什么都不做"</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"拍摄一张照片"</item>
+        <item>"什么都不做"</item>
+    </string-array>
+
+    <string name="about_back_button">返回</string>
+    <string name="add">"添加"</string>
+    <string name="add_custom_camera_directions">要輸入一個自定義相機你需要做一些簡單的測量。將相機放置在一個固定的距離或重點從牆上的圖表，測量從結點到面的鏡頭。其次，以一個固定的鏡頭，精確測量的寬度和高度的東西，你可以看到，通過取景器。使用一致的單位。</string>
+    <string name="add_custom_camera_directions_active_chip">"压榨比为1.0球面镜片，2.0为标准2:1变形镜头和1.3 1:3:1变形镜头（即鹰V-lite的1.3）。"</string>
+    <string name="add_custom_camera_title">添加自定義相機，所有的觀測值在  milimeters（毫米）</string>
+    <string name="add_custom_lens">"添加自定义镜头"</string>
+    <string name="add_new_zoom_lens">添加新变焦镜头</string>
+    <string name="app_name">阿蒂米斯</string>
+    <string name="artemis_about_text">Artemis是一個數碼董事取景器的設計與攝影師和導演都在心中。 Artemis的作品幾乎以同樣的方式作為一個傳統的董事取景器，但更準確和更方便。在選擇了一個攝像頭的格式，寬高比和鏡頭類型，阿蒂米斯使用相機在您的移動設備來模擬鏡頭意見你可以期待當你來到拍攝。您可以比較所有的鏡頭或打變焦，相機將變焦取景器，填補了用等效查看您所選擇的鏡頭。</string>
+    <string name="artemis_about_title">關於 - 阿蒂米斯Android的</string>
+    <string name="artemis_remote_text">阿蒂米斯远程机器人片和iPad</string>
+    <string name="artemis_save_folder_summary">"的文件夹名来保存你创建的阿耳忒弥斯的图像。如果这个名字的文件夹不存在，它会为您创建。"</string>
+    <string name="artemis_settings_title">阿蒂米斯設置</string>
+    <string name="auto_device_h_and_v_angles">镜头角度自动获取设备</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"长按相机快门（拍摄图像）按钮时自动对焦的行为。"</string>
+    <string name="auto_focus_text">自动对焦图片</string>
+    <string name="auto_white_balance">自動白平衡</string>
+    <string name="back_button_behaviour">"后退按钮行为"</string>
+    <string name="backkey_summary">"选择Android的后退按钮的行为，而主要的应用程序正在运行。"</string>
+    <string name="black_and_white_preview">黑与白的预览</string>
+    <string name="buy_button">购买程序</string>
+    <string name="calibrate_chip_height">"芯片高度："</string>
+    <string name="calibrate_chip_width">"芯片宽度："</string>
+    <string name="camera_device_will_autofocus">"将自动对焦摄像装置拍摄每张照片前"</string>
+    <string name="camera_device_will_not_autofocus">"摄像装置不会自动对焦拍摄每张照片前"</string>
+    <string name="camera_information">相機信息</string>
+    <string name="camera_preview_will_be_black_and_white">"相机预览将黑色和白色。注：这也会影响保存的图像。"</string>
+    <string name="camera_preview_will_show_all_colors">"相机的预览会显示所有的颜色"</string>
+    <string name="camera_search">"搜索相机..."</string>
+    <string name="camera_settings_title">相機設置</string>
+    <string name="cancel">取消</string>
+    <string name="chemical_wedding_about_text">版權所有 2010。化學的婚禮是一堆的英國人（當然，我們的一員，是種澳大利亞）誰住在洛杉磯，因為它更陽光在這裡。我們是一個奇怪的組合的電影專業人士，設計師和銀行家類型有廣泛的經驗，設計，編碼和技術。</string>
+    <string name="choose_folder_for_image_saving">目標文件夾保存的圖像。</string>
+    <string name="compass_heading_text">罗盘航向（氮，硫，英，西）</string>
+    <string name="custom_camera_aspect_ratio">"纵横比（1.78）"</string>
+    <string name="custom_camera_chip_height">"芯片高度（mm）"</string>
+    <string name="custom_camera_chip_width">"芯片宽度（mm）"</string>
+    <string name="custom_camera_delete_camera">删除相机</string>
+    <string name="custom_camera_edit_camera">编辑摄影机</string>
+    <string name="custom_camera_error">自定义相机输入错误</string>
+    <string name="custom_camera_error_message">被添加新的自定义相机的问题。请验证输入值是有效的，然后再试一次。</string>
+    <string name="custom_camera_focallength">焦距</string>
+    <string name="custom_camera_name">創建一個定制的相機名稱</string>
+    <string name="custom_camera_new_camera">新定制的相机</string>
+    <string name="custom_camera_options">自定义相机选项</string>
+    <string name="custom_camera_save_active_sensor">"有源传感器尺寸"</string>
+    <string name="custom_camera_save_button">"保存"</string>
+    <string name="custom_camera_save_start_button">"开始"</string>
+    <string name="custom_camera_squeeze_ratio">"压榨比"</string>
+    <string name="custom_camera_width">寬</string>
+    <string name="custom_cameras">"自定义相机"</string>
+    <string name="custom_lens_error">"自定义镜头输入错误"</string>
+    <string name="custom_lens_error_message">"被添加新的自定义镜头的问题。请验证输入值是有效的，然后再试一次。"</string>
+    <string name="custom_zoom_lens">"自定义缩放镜头"</string>
+    <string name="custom_zoom_lens_error">"定制变焦镜头输入错误的"</string>
+    <string name="custom_zoom_lens_error_message">"是一个问题，加入新的自定义变焦镜头。请验证输入值是有效的，然后再试一次。"</string>
+    <string name="date_and_time_text">日期和时间</string>
+    <string name="detect_device_camera_angles_automatically">"自动检测设备拍摄角度"</string>
+    <string name="device_camera_angles">"设备拍摄角度"</string>
+    <string name="device_camera_behaviour">"装置的相机行为"</string>
+    <string name="device_camera_sensor">"装置的相机传感器"</string>
+    <string name="edit_zoom_lens">编辑变焦镜头</string>
+    <string name="email_support">"电子邮件支持"</string>
+    <string name="error_communicating_dialog_body">有一个与谷歌Play商店的许可证服务器通信问题。请检查您的互联网连接，然后再试一次。如果问题仍然存在，请联系阿耳忒弥斯的支持。</string>
+    <string name="error_communicating_title">许可证服务器通信错误</string>
+    <string name="error_dialog_body">有一个错误核实申请许可证。如果这个问题仍然存在，请联系支持。</string>
+    <string name="error_dialog_title">牌照申请错误</string>
+    <string name="exit_artemis">退出阿耳忒弥斯</string>
+    <string name="feedback_report_issue">"发行/意见"</string>
+    <string name="feedback_report_issue_description">"报告并签发或给我们您的反馈，我们非常感谢您的意见。"</string>
+    <string name="gallery_no_images_found">找不到图片</string>
+    <string name="gallery_title">"阿耳忒弥斯库"</string>
+    <string name="gps_coordinates">全球定位系統坐標</string>
+    <string name="gps_location">GPS定位详情</string>
+    <string name="gps_on_off">在  打開 /關閉</string>
+    <string name="gps_settings">"GPS设置"</string>
+    <string name="gps_summary_off">"GPS被禁用。该设备不会为它的位置，搜索。"</string>
+    <string name="gps_summary_on">"启用GPS设备将搜索的位置。"</string>
+    <string name="h_and_v_angle_text">H和V角</string>
+    <string name="hangle_text">H角</string>
+    <string name="haptic_feedback">"触觉反馈"</string>
+    <string name="haptic_feedback_on_summary">"阿耳忒弥斯将提供按键的触觉反馈。"</string>
+    <string name="hapticfeedback_off_summary">"阿耳忒弥斯将不会提供对按键的触觉反馈。"</string>
+    <string name="heading_summary">"选择显示在标题中的主要应用程序。"</string>
+    <string name="heading_tilt_roll_promt">选择标题选项</string>
+    <string name="heading_tilt_roll_text">标题选项</string>
+    <string name="horizontal_lens_angle">"水平镜头角度"</string>
+    <string name="image_description_hint">添加描述</string>
+    <string name="image_note_hint">"添加笔记"</string>
+    <string name="image_quality_summary">"选择保存到磁盘上的图像的质量（压缩）。"</string>
+    <string name="image_save_error">"错误：图像无法被保存。存储介质可能已满。"</string>
+    <string name="image_save_no_media">"错误：图像无法被保存。无存储介质中被发现。"</string>
+    <string name="image_saved_success">保存图像...</string>
+    <string name="image_size_summary">"选择最终的图像保存到磁盘的大小。"</string>
+    <string name="input_focal_length">"输入镜头焦距以毫米为单位："</string>
+    <string name="keep_screen_off_summary">"屏幕将根据你的设备的默认的睡眠设置超时。"</string>
+    <string name="keep_screen_on">"保持屏幕开"</string>
+    <string name="keep_screen_on_summary">"屏幕将保持永不超时而主要的应用程序正在运行。"</string>
+    <string name="key_mappings">"键映射"</string>
+    <string name="language">语</string>
+    <string name="language_summary">"注意：您必须退出并重新启动应用程序更改生效。"</string>
+    <string name="lensFocalLengthMM">mm</string>
+    <string name="lens_information">*鏡頭信息</string>
+    <string name="lens_settings_title">鏡頭設置</string>
+    <string name="lock_boxes_text">锁定镜头盒</string>
+    <string name="lock_lens_boxes">"锁定镜头盒"</string>
+    <string name="lockboxes_summary">"启用/禁用改变触摸位置上镜头框。"</string>
+    <string name="long_press_shutter_button_focus_behaviour">"长按快门按钮焦点行为"</string>
+    <string name="loon_films_about_text">阿蒂米斯Android的開發由薩瑟蘭，龍膜。</string>
+    <string name="manually_set_h_angle_text">设置设备相机水平角</string>
+    <string name="manually_set_v_angle_text">设置设备照相机垂直角</string>
+    <string name="map_volume_key_title">"覆盖音量键行为"</string>
+    <string name="map_volume_off">"而主要的应用程序正在运行，覆盖音量键的行为。"</string>
+    <string name="map_volume_on">"不要重写音量键的行为。音量键作为默认的行为。"</string>
+    <string name="max_focal_length">"最大焦距"</string>
+    <string name="menu_artemis_about">約</string>
+    <string name="menu_artemis_about_description">"一个小的应用程序和开发商。"</string>
+    <string name="menu_artemis_gallery">画廊</string>
+    <string name="menu_artemis_quit">退出</string>
+    <string name="menu_artemis_settings">設置</string>
+    <string name="menu_camera_settings">選擇相機</string>
+    <string name="menu_lens_settings">選擇鏡片</string>
+    <string name="min_focal_length">"最小焦距"</string>
+    <string name="new_zoom_lens">"新款变焦镜头"</string>
+    <string name="not_torch_while_in_preview_mode">"摄像装置不会使用的火炬，而在预览模式下"</string>
+    <string name="ok">行</string>
+    <string name="picture_save_location">"图片保存位置"</string>
+    <string name="prefs_camera_settings">"相机设置"</string>
+    <string name="prefs_camera_settings_description">"自定义的行为的移动设备的摄像头的设置"</string>
+    <string name="prefs_general_settings">"通用设定"</string>
+    <string name="prefs_general_settings_description">"阿耳忒弥斯的一般操作，设置和用户界面"</string>
+    <string name="prefs_image_settings">"保存的图片设置"</string>
+    <string name="prefs_image_settings_description">"调整用于控制属性的图像保存到存储使用阿耳忒弥斯"</string>
+    <string name="quick_picture_off">"图片保存后，将显示一个图像预览。"</string>
+    <string name="quick_picture_on">"快速的图片被启用。图片保存后，将不会显示图像预览。"</string>
+    <string name="quickshot_text">快拍模式</string>
+    <string name="quit_button">退出</string>
+    <string name="reset_artemis_settings">"复位阿耳忒弥斯设置"</string>
+    <string name="reset_device_h_and_v_angles">复位</string>
+    <string name="reset_to_default_settings">"你确定要重置为默认设置？你将失去所有的喜好。"</string>
+    <string name="retry_button">重试</string>
+    <string name="save">"保存"</string>
+    <string name="save_and_edit">保存和編輯詳情</string>
+    <string name="save_artemis_settings">設置保存阿蒂米斯</string>
+    <string name="save_lenses">保存鏡頭</string>
+    <string name="save_picture">保存圖片</string>
+    <string name="save_picture_details">"保存图片详细信息"</string>
+    <string name="save_picture_title">保存圖片</string>
+    <string name="save_raw_image_text">"无边框或文字"</string>
+    <string name="saved_image_quality">"保存的图像质量"</string>
+    <string name="saved_image_size">"保存图像尺寸"</string>
+    <string name="screen_settings">"屏幕设置"</string>
+    <string name="select_image_quality">"选择图片质量"</string>
+    <string name="select_image_size">"选择图片大小"</string>
+    <string name="select_language_text">选择语言</string>
+    <string name="select_preview_size_text">选择预览分辨率</string>
+    <string name="set_exposure">設定曝光</string>
+    <string name="set_exposure_text">設定曝光</string>
+    <string name="set_flash_mode_spinner">设置闪光模式</string>
+    <string name="set_flash_mode_text">闪光灯/手电筒模式</string>
+    <string name="set_preview_size_text">预览分辨率</string>
+    <string name="set_white_balance">設置白平衡</string>
+    <string name="set_white_balance_text">設置白平衡 - （白熾燈 /熒光燈 /等。）</string>
+    <string name="settings_reset_summary">"复位阿耳忒弥斯的默认设置。你不会失去任何保存的图片。"</string>
+    <string name="settings_reset_title">"重置为默认设置"</string>
+    <string name="smooth_filter_text">平滑图像过滤器</string>
+    <string name="smooth_image_off">"图像不会被平滑过滤。"</string>
+    <string name="smooth_image_on">"将应用一个过滤器，使图像看起来更平滑缩放时需要。"</string>
+    <string name="sure_you_want_to_exit">您确定要退出吗?</string>
+    <string name="tilt_and_roll_text">倾斜和轧辊</string>
+    <string name="torch_while_in_preview_mode">"相机设备将使用火炬，而在预览模式"</string>
+    <string name="unlicensed_dialog_body">此应用程序是不许可。请购买从Android市场了。</string>
+    <string name="unlicensed_dialog_title">未授权的应用</string>
+    <string name="untitle_custom_cam">未命名的自定义相机</string>
+    <string name="untitled_zoom_lens">"无标题变焦镜头"</string>
+    <string name="use_detected_device_angles">"该应用程序将使用的值自动检测设备（当前值如下所示）。"</string>
+    <string name="use_the_custom_camera_angles">"该应用程序将使用自定义值，如下图所示。"</string>
+    <string name="user_interface_behaviour">"用户界面行为"</string>
+    <string name="vangle_text">V角</string>
+    <string name="vertical_lens_angle">"垂直镜头角度"</string>
+    <string name="volume_down_key_title">"音量向下键行为"</string>
+    <string name="volume_down_summary">"选择手机音量向下键同时按下的主要应用程序正在运行时的行为。"</string>
+    <string name="volume_up_key_title">"音量向上键行为"</string>
+    <string name="volume_up_summary">"选择手机音量键被按下时的行为，而主要的应用程序正在运行。"</string>
+    <string name="zoom_lens_delete">删除变焦镜头</string>
+    <string name="zoom_lens_edit">编辑变焦镜头</string>
+    <string name="zoom_lens_name">"变焦镜头名称"</string>
+    <string name="zoom_lens_options">定制变焦镜头选项的</string>
+
+</resources>

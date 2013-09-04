@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainFrame"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <com.chemicalwedding.artemis.CameraContainerView
+        android:id="@+id/cameraContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!-- <com.chemicalwedding.artemis.CameraPreview14 -->
+        <!-- android:id="@+id/cameraPreview" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="match_parent" /> -->
+    </com.chemicalwedding.artemis.CameraContainerView>
+
+    <RelativeLayout
+        android:id="@+id/overlay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <com.chemicalwedding.artemis.CameraOverlay
+            android:id="@+id/cameraOverlay"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="right|top"
+            android:paddingTop="12dip" >
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/cameraOverlayTop"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/cameraoverlay_top" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left|top" >
+
+        <LinearLayout
+            android:id="@+id/cameraDetailsView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip" >
+
+            <TextView
+                android:id="@+id/cameraDetailsText"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="-1dip"
+                android:lines="1"
+                android:text="@string/menu_camera_settings"
+                android:textColor="@color/previewTextColor"
+                android:textSize="18sp"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="1dip"
+        android:layout_marginRight="1dip"
+        android:gravity="center|top" >
+
+        <TextView
+            android:id="@+id/headingTiltText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip"
+            android:textColor="@color/previewTextColor"
+            android:textIsSelectable="true"
+            android:textSize="18sp"
+            android:typeface="monospace" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="right|top" >
+
+        <LinearLayout
+            android:id="@+id/lensMakeView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:gravity="right" >
+
+            <TextView
+                android:id="@+id/lensMakeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="-1dip"
+                android:text="@string/menu_lens_settings"
+                android:textColor="@color/previewTextColor"
+                android:textSize="18sp"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/cameraoverlay_bottom"
+        android:gravity="center_horizontal" >
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <com.chemicalwedding.artemis.LongPressButton
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:clickable="true"
+            android:paddingBottom="2dip"
+            android:src="@drawable/prevbutton"
+            android:visibility="visible" />
+
+        <!-- empty space -->
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
+            android:id="@+id/shutterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:clickable="true"
+            android:src="@drawable/camerabutton" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
+            android:id="@+id/fullscreenButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:paddingBottom="2dip"
+            android:src="@drawable/fullscreenbutton" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
+            android:id="@+id/galleryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/gallerybutton" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_weight=".2" >
+
+            <ImageView
+                android:id="@+id/focalLengthLensButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:clickable="true"
+                android:paddingTop="1dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/lensbutton" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center" >
+
+                <TextView
+                    android:id="@+id/lensFocalLengthText"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="1dip"
+                    android:layout_weight=".25"
+                    android:gravity="right"
+                    android:paddingBottom="2dip"
+                    android:text=""
+                    android:textColor="@color/focalLengthHUD"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lensFocalLengthMM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight=".25"
+                    android:text="@string/lensFocalLengthMM"
+                    android:textColor="@color/focalLengthHUD"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <com.chemicalwedding.artemis.CameraAngleDetailView
+                    android:id="@+id/CameraAngleDetailView"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight=".5"
+                    android:clickable="true" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
+            android:id="@+id/editMetaDataButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:clickable="true"
+            android:src="@drawable/editmeta" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:clickable="true"
+            android:src="@drawable/settingsbutton" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
+            android:id="@+id/helpButtonView"
+            android:layout_width="93dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:src="@drawable/helpbutton" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <com.chemicalwedding.artemis.LongPressButton
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:clickable="true"
+            android:paddingBottom="2dip"
+            android:src="@drawable/nextbutton" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+    </LinearLayout>
+
+</FrameLayout><!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/layout-sw720dp/artemis_preview.xml -->

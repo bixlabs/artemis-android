@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-hi/strings.xml -->
+    <string-array name="backkey_prefs">
+        <item>"आर्टेमिस तुरंत बाहर निकलें"</item>
+        <item>"बंद करने से पहले संकेत दें"</item>
+        <item>"कुछ न करें"</item>
+    </string-array>
+    <string-array name="heading_tilt_roll_array">
+        <item>"कोई नहीं "</item>
+        <item>"Heading"</item>
+        <item>"शीर्षक ° | ज़ोर ° | रोल °"</item>
+    </string-array>
+    <string-array name="image_size_prefs">
+        <item>"छोटा "</item>
+        <item>"डिफ़ॉल्ट"</item>
+        <item>"बड़ा "</item>
+    </string-array>
+    <string-array name="longPressShutter_entries">
+        <item>"ऑटोफोकस कैमरा और तुरंत छवि पर कब्जा"</item>
+        <item>"बटन रिलीज पर ऑटोफोकस कैमरा और कब्जा छवि"</item>
+        <item>"ऑटोफोकस कैमरा ही"</item>
+        <item>"कुछ न करें"</item>
+    </string-array>
+    <string-array name="set_flash_mode_array">
+        <item>"पर"</item>
+        <item>"ऑफ़ "</item>
+    </string-array>
+    <string-array name="set_white_balance">
+        <item>"सूर्य का प्रकाश"</item>
+        <item>"धुंधला "</item>
+        <item>"फ्लोरोसेंट"</item>
+        <item>"उज्जवल"</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"ऑटोफोकस कैमरा और तुरंत छवि पर कब्जा"</item>
+        <item>"एक तस्वीर ले लो"</item>
+        <item>"ऑटोफोकस कैमरा"</item>
+        <item>"कुछ न करें"</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"एक तस्वीर ले लो"</item>
+        <item>"कुछ न करें"</item>
+    </string-array>
+
+    <string name="about_back_button">"वापस"</string>
+    <string name="add">"जोड़ें"</string>
+    <string name="add_custom_camera_directions">"एक कस्टम कैमरा दर्ज करने के लिए आप कुछ सरल मापन करने की जरूरत है. कैमरे की सतह के लिए लेंस के नोडल बिंदु से एक दीवार या ध्यान चार्ट और उपाय से एक निश्चित दूरी रखें. इसके बाद, एक निर्धारित लेंस के साथ, वास्तव में आप दृश्यदर्शी के माध्यम से देख सकते हैं की चौड़ाई और ऊंचाई मापने. संगत इकाइयों का प्रयोग करें.
+	"</string>
+    <string name="add_custom_camera_directions_active_chip">"निचोड़ अनुपात गोलाकार लेंस, 1:3:1 एनामॉर्फिक लेंस (यानी हॉक वि लाइट 1.3 है) के लिए मानक 02:01 एनामॉर्फिक लेंस के लिए 2.0 और 1.3 के लिए 1.0 है. "</string>
+    <string name="add_custom_camera_title">"कस्टम कैमरा सभी मिलीमीटर में माप (मिमी) जोड़ें"</string>
+    <string name="add_custom_lens">"कस्टम लेंस जोड़ें"</string>
+    <string name="add_new_zoom_lens">नई ज़ूम लेंस जोड़ें</string>
+    <string name="app_name">"अर्तेमिस"</string>
+    <string name="artemis_about_text">"आर्टेमिस मन में दोनों सिने और निर्देशकों के साथ बनाया गया एक डिजिटल निर्देशकों दृश्यदर्शी है. आर्टेमिस बहुत अधिक सही और बहुत अधिक सुविधाजनक है, हालांकि एक पारंपरिक निर्देशकों दृश्यदर्शी के रूप में लगभग एक ही तरह से काम करता है. एक कैमरा प्रारूप, पहलू अनुपात और लेंस प्रकार चुनने के बाद, आर्टेमिस आप शूट करने के लिए आते हैं जब आप उम्मीद कर सकते हैं लेंस विचारों अनुकरण करने के लिए अपने मोबाइल डिवाइस में कैमरा का उपयोग करता है. आप या तो सभी लेंस या हिट ज़ूम और कैमरा तुम्हें चुना है लेंस के बराबर दृश्य के साथ दृश्यदर्शी भरने के लिए में ज़ूम जाएगा तुलना कर सकते हैं. क्या कैमरे कवर कर रहे हैं? आर्टेमिस क्षेत्र परीक्षण किया है और देखने के क्षेत्र सही है कि सुनिश्चित करने के लिए हमारे डेटाबेस में हर कैमरा के साथ tweaked किया गया है. डिजिटल फिल्म कैमरों के साथ हम कैमरा निर्माताओं से जानकारी पर भरोसा हमेशा बुद्धिमान नहीं था. निम्न स्वरूपों अब तक कवर कर रहे हैं: \ N \ nStandard और सुपर 16mm \ nSuper 16mm एनामॉर्फिक \ nStandard और सुपर 35 मिमी \ n35mm एनामॉर्फिक \ n65mm \ n35mm डिजिटल (डी -21, लाल, F35, उत्पत्ति) \ n डिजिटल (F23 , सांप) \ n  डिजिटल \ n डिजिटल \ nCanon 5D और 7d. \ n \ n क्या आप के लिए महत्वपूर्ण है कि एक प्रारूप हमें पता लापता है खोजने के लिए और हम अगले में यह जोड़ने के लिए हमारी पूरी कोशिश करूँगा तो अद्यतन."</string>
+    <string name="artemis_about_title">"के बारे में - ब्लैकबेरी वी के लिए आर्टेमिस"</string>
+    <string name="artemis_remote_text">"एंड्रॉयड गोलियाँ और iPads के लिए आर्टेमिस रिमोट
+	"</string>
+    <string name="artemis_save_folder_summary">"फ़ोल्डर नाम आप आर्टेमिस साथ बनाने छवियों को बचाने के लिए. इस नाम के साथ एक फ़ोल्डर में पहले से ही मौजूद नहीं है, तो यह आप के लिए बनाया जाएगा."</string>
+    <string name="artemis_settings_title">"आर्टेमिस सेटिंग्स"</string>
+    <string name="auto_device_h_and_v_angles">"स्वतः डिवाइस कैमरा एंगल्स करें"</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"लंबे कैमरा शटर (छवि पर कब्जा) बटन दबाने जब ऑटो फोकस व्यवहार."</string>
+    <string name="auto_focus_text">"ऑटो फोकस छवियाँ"</string>
+    <string name="auto_white_balance">"स्वत: सफेद संतुलन"</string>
+    <string name="back_button_behaviour">"बैक बटन व्यवहार"</string>
+    <string name="backkey_summary">"मुख्य अनुप्रयोग चल रहा है, जबकि Android के वापस बटन के व्यवहार को चुनें."</string>
+    <string name="black_and_white_preview">काले और सफेद पूर्वावलोकन</string>
+    <string name="buy_button">"अनुप्रयोग खरीदें"</string>
+    <string name="calibrate_chip_height">"चिप लम्बाई:"</string>
+    <string name="calibrate_chip_width">"चिप चौड़ाई:"</string>
+    <string name="camera_device_will_autofocus">"कैमरा डिवाइस प्रत्येक तस्वीर लेने से पहले ऑटो फोकस होगा"</string>
+    <string name="camera_device_will_not_autofocus">"कैमरा डिवाइस प्रत्येक तस्वीर लेने से पहले ऑटोफोकस नहीं होगा"</string>
+    <string name="camera_information">"कैमरा सूचना"</string>
+    <string name="camera_preview_will_be_black_and_white">"कैमरा पूर्वावलोकन काले और सफेद हो जाएगा. नोट: यह भी बचाया छवियों को प्रभावित करेगा."</string>
+    <string name="camera_preview_will_show_all_colors">"कैमरा पूर्वावलोकन सभी रंग दिखाएगा"</string>
+    <string name="camera_search">"कैमरों के लिए खोज ..."</string>
+    <string name="camera_settings_title">"कैमरा सेटिंग्स"</string>
+    <string name="cancel">"ठीक है"</string>
+    <string name="chemical_wedding_about_text">"कॉपीराइट 2010. रासायनिक शादी."</string>
+    <string name="choose_folder_for_image_saving">"छवि फ़ोल्डर का नाम"</string>
+    <string name="compass_heading_text">"कम्पास (एन, एस, ई, डब्ल्यू) शीर्षक"</string>
+    <string name="custom_camera_aspect_ratio">"पहलू अनुपात (1.78)"</string>
+    <string name="custom_camera_chip_height">"चिप ऊँचाई (मिमी)"</string>
+    <string name="custom_camera_chip_width">"चिप चौड़ाई (मिमी)"</string>
+    <string name="custom_camera_delete_camera">"कैमरा हटाएँ"</string>
+    <string name="custom_camera_edit_camera">"कैमरा संपादित करें"</string>
+    <string name="custom_camera_error">कस्टम कैमरा इनपुट त्रुटि</string>
+    <string name="custom_camera_error_message">नए कस्टम कैमरा जोड़ने में समस्या थी. इनपुट मूल्यों मान्य हैं कि सत्यापित करने और पुन: प्रयास करें.</string>
+    <string name="custom_camera_focallength">"फोकल लंबाई "</string>
+    <string name="custom_camera_name">"एक कस्टम कैमरा नाम बनाएँ"</string>
+    <string name="custom_camera_new_camera">"नए कस्टम कैमरा"</string>
+    <string name="custom_camera_options">"कस्टम कैमरा विकल्प"</string>
+    <string name="custom_camera_save_active_sensor">"सक्रिय सेंसर आकार"</string>
+    <string name="custom_camera_save_button">"सुरक्षित कीजिये"</string>
+    <string name="custom_camera_save_start_button">"शुरू करें "</string>
+    <string name="custom_camera_squeeze_ratio">"अनुपात निचोड़"</string>
+    <string name="custom_camera_width">"चौड़ाई "</string>
+    <string name="custom_cameras">"कस्टम कैमरा"</string>
+    <string name="custom_lens_error">"कस्टम लेंस इनपुट त्रुटि"</string>
+    <string name="custom_lens_error_message">"नए कस्टम लेंस जोड़ने में समस्या थी. इनपुट मूल्यों मान्य हैं कि सत्यापित करने और पुन: प्रयास करें."</string>
+    <string name="custom_zoom_lens">"कस्टम ज़ूम लेंस"</string>
+    <string name="custom_zoom_lens_error">"कस्टम ज़ूम लेंस इनपुट त्रुटि"</string>
+    <string name="custom_zoom_lens_error_message">"नए कस्टम ज़ूम लेंस जोड़ने में समस्या थी. इनपुट मूल्यों मान्य हैं कि सत्यापित करने और पुन: प्रयास करें."</string>
+    <string name="date_and_time_text">"दिनांक और समय"</string>
+    <string name="degree_symbol">"°"</string>
+    <string name="detect_device_camera_angles_automatically">"स्वतः डिवाइस कैमरा एंगल्स का पता लगाने"</string>
+    <string name="device_camera_angles">"डिवाइस कैमरा एंगल्स"</string>
+    <string name="device_camera_behaviour">"डिवाइस कैमरा व्यवहार"</string>
+    <string name="device_camera_sensor">"डिवाइस कैमरा सेंसर"</string>
+    <string name="edit_zoom_lens">ज़ूम लेंस संपादित करें</string>
+    <string name="email_support">"ईमेल सहायता:"</string>
+    <string name="error_communicating_dialog_body">गूगल प्ले स्टोर लाइसेंस सर्वर के साथ संवाद करने में कोई समस्या आई थी. अपने इंटरनेट कनेक्टिविटी की जाँच करें और पुन: प्रयास करें. यदि समस्या बनी रहती आर्टेमिस समर्थन से संपर्क करें.</string>
+    <string name="error_communicating_title">लाइसेंस सर्वर संचार त्रुटि</string>
+    <string name="error_dialog_body">"आवेदन लाइसेंस की पुष्टि करने में कोई त्रुटि थी. यह समस्या बनी रहती है, समर्थन से संपर्क करें."</string>
+    <string name="error_dialog_title">"आवेदन लाइसेंस त्रुटि"</string>
+    <string name="exit_artemis">आर्टेमिस से बाहर निकलें</string>
+    <string name="feedback_report_issue">"मुद्दा / प्रतिक्रिया"</string>
+    <string name="feedback_report_issue_description">"सूचना और अंक या हमें अपनी प्रतिक्रिया दे, हम आपकी टिप्पणियों की सराहना करते हैं."</string>
+    <string name="gallery_no_images_found">"कोई छवि नहीं मिली"</string>
+    <string name="gallery_title">"आर्टेमिस गैलरी"</string>
+    <string name="gps_coordinates">"जीपीएस निर्देशांक"</string>
+    <string name="gps_location">"जीपीएस स्थान के विवरण"</string>
+    <string name="gps_on_off">"पर / बंद जीपीएस बारी"</string>
+    <string name="gps_settings">"जीपीएस सेटिंग्स"</string>
+    <string name="gps_summary_off">"जीपीएस अक्षम है. डिवाइस यह स्थान के लिए खोज नहीं होगी."</string>
+    <string name="gps_summary_on">"जीपीएस सक्षम है और युक्ति यह स्थान के लिए खोज करेंगे."</string>
+    <string name="h_and_v_angle_text">"एच और वी कोण"</string>
+    <string name="hangle_text">"एच कोण"</string>
+    <string name="haptic_feedback">"हैपटिक फीडबैक "</string>
+    <string name="haptic_feedback_on_summary">"आर्टेमिस बटन प्रेस पर haptic राय प्रदान करेगा."</string>
+    <string name="hapticfeedback_off_summary">"आर्टेमिस बटन प्रेस पर haptic राय प्रदान नहीं करेगा."</string>
+    <string name="heading_summary">"क्या मुख्य अनुप्रयोग के शीर्षक में प्रदर्शित करने के लिए चुनें."</string>
+    <string name="heading_tilt_roll_promt">"शीर्ष विकल्प का चयन करें"</string>
+    <string name="heading_tilt_roll_text">"शीर्षक विकल्प"</string>
+    <string name="horizontal_lens_angle">"क्षैतिज लेंस कोण"</string>
+    <string name="image_description_hint">"एक वर्णन जोड़ें"</string>
+    <string name="image_note_hint">"एक नोट जोड़ें"</string>
+    <string name="image_quality_summary">"डिस्क को बचाया छवि की गुणवत्ता (सम्पीडन) का चयन करें."</string>
+    <string name="image_save_error">"त्रुटि: छवि को बचाया नहीं जा सका. भंडारण मीडिया भरा हो सकता है."</string>
+    <string name="image_save_no_media">"त्रुटि: छवि को बचाया नहीं जा सका. भंडारण मीडिया नहीं मिला."</string>
+    <string name="image_saved_success">"छवि सहेज रहा है ..."</string>
+    <string name="image_size_summary">"डिस्क को बचाया अंतिम छवि का आकार का चयन करें."</string>
+    <string name="input_focal_length">"मिलीमीटर में लेंस फोकल लंबाई दर्ज करें:"</string>
+    <string name="keep_screen_off_summary">"स्क्रीन मध्यांतर अपने उपकरणों डिफ़ॉल्ट नींद सेटिंग के अनुसार होगा."</string>
+    <string name="keep_screen_on">"ऑन स्क्रीन रखें"</string>
+    <string name="keep_screen_on_summary">"मुख्य अनुप्रयोग चल रहा है, जबकि स्क्रीन पर रखा और मध्यांतर कभी नहीं जाएगा."</string>
+    <string name="key_mappings">"कुंजी मैपिंग"</string>
+    <string name="language">भाषा</string>
+    <string name="language_summary">"नोट: आप परिवर्तनों को प्रभावी करने के लिए आवेदन छोड़ने और पुनः आरंभ करना होगा."</string>
+    <string name="left_roll">"↶"</string>
+    <string name="lensFocalLengthMM">"मिमी"</string>
+    <string name="lens_information">"लेंस जानकारी"</string>
+    <string name="lens_settings_title">"लेंस सेटिंग्स"</string>
+    <string name="lock_boxes_text">"लेंस बक्से लॉक"</string>
+    <string name="lock_lens_boxes">"लेंस बक्से लॉक"</string>
+    <string name="lockboxes_summary">"छूने पर स्थिति बदलने से लेंस बक्से सक्षम करें / निष्क्रिय करें."</string>
+    <string name="long_press_shutter_button_focus_behaviour">"लांग प्रेस शटर बटन फोकस व्यवहार"</string>
+    <string name="loon_films_about_text">"ब्लैकबेरी के लिए आर्टेमिस प्रकार की पक्षी फिल्म्स द्वारा विकसित किया गया था.
+	"</string>
+    <string name="manually_set_h_angle_text">"डिवाइस कैमरा क्षैतिज कोण सेट"</string>
+    <string name="manually_set_v_angle_text">"डिवाइस कैमरा कार्यक्षेत्र कोण सेट"</string>
+    <string name="map_volume_key_title">"वॉल्यूम कुंजी व्यवहार को ओवरराइड"</string>
+    <string name="map_volume_off">"मुख्य अनुप्रयोग चल रहा है, जबकि मात्रा कुंजी व्यवहार को ओवरराइड. "</string>
+    <string name="map_volume_on">"मात्रा कुंजी व्यवहार हावी नहीं है. वॉल्यूम कुंजियों डिफ़ॉल्ट के रूप में व्यवहार करते हैं."</string>
+    <string name="max_focal_length">"अधिकतम फोकल लंबाई"</string>
+    <string name="menu_artemis_about">"बारे में "</string>
+    <string name="menu_artemis_about_description">"अनुप्रयोग और उसके डेवलपर्स के बारे में एक छोटी सी."</string>
+    <string name="menu_artemis_gallery">"गैलरी"</string>
+    <string name="menu_artemis_quit">"छोड़ दें"</string>
+    <string name="menu_artemis_settings">"सेटिंग्स"</string>
+    <string name="menu_camera_settings">"कैमरा का चयन करें"</string>
+    <string name="menu_lens_settings">"लेंस का चयन करें"</string>
+    <string name="min_focal_length">"न्यूनतम फोकल लंबाई"</string>
+    <string name="new_zoom_lens">"नई ज़ूम लेंस"</string>
+    <string name="not_torch_while_in_preview_mode">"कैमरा डिवाइस पूर्वावलोकन मोड में मशाल जबकि उपयोग नहीं होगा"</string>
+    <string name="ok">ठीक</string>
+    <string name="picture_save_location">"चित्र सहेजें स्थान"</string>
+    <string name="prefs_camera_settings">"कैमरा सेटिंग्स"</string>
+    <string name="prefs_camera_settings_description">"डिवाइस कैमरा के व्यवहार को अनुकूलित करने के लिए सेटिंग्स"</string>
+    <string name="prefs_general_settings">"सामान्य सेटिंग्स "</string>
+    <string name="prefs_general_settings_description">"सामान्य अरतिमिस के संचालन और यूजर इंटरफेस के लिए सेटिंग्स"</string>
+    <string name="prefs_image_settings">"सहेजा छवि सेटिंग्स"</string>
+    <string name="prefs_image_settings_description">"छवियों के गुणों को नियंत्रित करने के लिए समायोजन अरतिमिस का उपयोग कर भंडारण को बचाया"</string>
+    <string name="quick_picture_off">"तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन दिखाया जाएगा."</string>
+    <string name="quick_picture_on">"त्वरित चित्रों सक्षम हैं. तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन नहीं दिखाया जाएगा."</string>
+    <string name="quickshot_text">"सितारा श्रेणी मोड"</string>
+    <string name="quit_button">"बाहर जाएं "</string>
+    <string name="reset_artemis_settings">"आर्टेमिस सेटिंग्स रीसेट"</string>
+    <string name="reset_device_h_and_v_angles">"रीसेट करें"</string>
+    <string name="reset_to_default_settings">"यदि आप डिफ़ॉल्ट सेटिंग्स को रीसेट करना चाहते हैं? आप सभी वरीयताओं खो देंगे."</string>
+    <string name="retry_button">पुन: प्रयास</string>
+    <string name="right_roll">"↷"</string>
+    <string name="roll_level">"↔"</string>
+    <string name="save">"सुरक्षित कीजिये"</string>
+    <string name="save_and_edit">"विवरण सहेजें और संपादित करें"</string>
+    <string name="save_artemis_settings">"आर्टेमिस सेटिंग्स सहेजें"</string>
+    <string name="save_lenses">"लेंस सहेजें"</string>
+    <string name="save_picture">"चित्र सहेजें"</string>
+    <string name="save_picture_details">"चित्र विवरण सहेजें"</string>
+    <string name="save_picture_title">"चित्र सहेजें"</string>
+    <string name="save_raw_image_text">"कोई सीमा या पाठ"</string>
+    <string name="saved_image_quality">"सहेजा छवि गुणवत्ता"</string>
+    <string name="saved_image_size">"सहेजा छवि का आकार"</string>
+    <string name="screen_settings">"स्क्रीन सेटिंग"</string>
+    <string name="select_image_quality">"छवि गुणवत्ता का चयन करें"</string>
+    <string name="select_image_size">"छवि का आकार का चयन करें"</string>
+    <string name="select_language_text">"भाषा चुनें "</string>
+    <string name="select_preview_size_text">"पूर्वावलोकन संकल्प का चयन करें"</string>
+    <string name="set_exposure">"एक्सपोजर सेट"</string>
+    <string name="set_exposure_text">"एक्सपोजर सेट"</string>
+    <string name="set_flash_mode_spinner">"फ़्लैश मोड सेट"</string>
+    <string name="set_flash_mode_text">"फ्लैश / मशाल मोड"</string>
+    <string name="set_preview_size_text">"पूर्वावलोकन संकल्प"</string>
+    <string name="set_white_balance">"व्हाइट बैलेंस सेट"</string>
+    <string name="set_white_balance_text">"व्हाइट बैलेंस सेट"</string>
+    <string name="settings_reset_summary">"आर्टेमिस डिफ़ॉल्ट सेटिंग्स को रीसेट. आप किसी भी बचाया चित्रों को खोना नहीं होगा."</string>
+    <string name="settings_reset_title">"डिफ़ॉल्ट सेटिंग्स को रीसेट"</string>
+    <string name="smooth_filter_text">"चिकनी छवि फ़िल्टर"</string>
+    <string name="smooth_image_off">"छवियाँ चिकनी फिल्टर नहीं किया जाएगा."</string>
+    <string name="smooth_image_on">"एक फिल्टर स्केलिंग की आवश्यकता है जब छवियों चिकनी प्रकट करने के लिए लागू किया जाएगा."</string>
+    <string name="sure_you_want_to_exit">यदि आप बाहर निकलने के लिए चाहते हैं?</string>
+    <string name="tilt_and_roll_text">"झुकाव और रोल"</string>
+    <string name="tilt_down">"↓"</string>
+    <string name="tilt_level">"↕"</string>
+    <string name="tilt_up">"↑"</string>
+    <string name="torch_while_in_preview_mode">"कैमरा डिवाइस पूर्वावलोकन मोड में मशाल जबकि उपयोग करेगा"</string>
+    <string name="unlicensed_dialog_body">"इस आवेदन स्वीकृत नहीं है. Android बाजार से खरीद करें."</string>
+    <string name="unlicensed_dialog_title">"आवेदन लाइसेंस नहीं"</string>
+    <string name="untitle_custom_cam">शीर्षकहीन कस्टम कैमरा</string>
+    <string name="untitled_zoom_lens">"शीर्षकहीन ज़ूम लेंस"</string>
+    <string name="use_detected_device_angles">"आवेदन स्वतः डिवाइस (वर्तमान मूल्यों के नीचे दिखाया गया है) से पता चला मूल्यों का प्रयोग करेंगे."</string>
+    <string name="use_the_custom_camera_angles">"आवेदन नीचे दिखाया कस्टम मूल्यों का प्रयोग करेंगे."</string>
+    <string name="user_interface_behaviour">"यूजर इंटरफेस व्यवहार"</string>
+    <string name="vangle_text">"वी कोण"</string>
+    <string name="vertical_lens_angle">"कार्यक्षेत्र लेंस कोण"</string>
+    <string name="volume_down_key_title">"कुंजी व्यवहार नीचे वॉल्यूम"</string>
+    <string name="volume_down_summary">"मुख्य अनुप्रयोग चल रहा है, जबकि कुंजी नीचे फोन मात्रा दबाया जाता है जब व्यवहार चुनें."</string>
+    <string name="volume_up_key_title">"कुंजी व्यवहार ऊपर वॉल्यूम"</string>
+    <string name="volume_up_summary">"मुख्य अनुप्रयोग चल रहा है, जबकि कुंजी फोन मात्रा दबाया जाता है जब व्यवहार चुनें."</string>
+    <string name="zoom_lens_delete">ज़ूम लेंस हटाएँ</string>
+    <string name="zoom_lens_edit">ज़ूम लेंस संपादित करें</string>
+    <string name="zoom_lens_name">"ज़ूम लेंस का नाम"</string>
+    <string name="zoom_lens_options">कस्टम ज़ूम लेंस विकल्प</string>
+
+</resources>

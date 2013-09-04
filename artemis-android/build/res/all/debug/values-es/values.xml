@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-es/strings.xml -->
+    <string-array name="backkey_prefs">
+        <item>"Salga inmediatamente Artemis"</item>
+        <item>"Preguntar antes de cerrar"</item>
+        <item>"No hacer nada."</item>
+    </string-array>
+    <string-array name="heading_tilt_roll_array">
+        <item>Ninguno</item>
+        <item>Denominación°</item>
+        <item>Denominación°|Inclinación°|Rodillo°</item>
+    </string-array>
+    <string-array name="image_size_prefs">
+        <item>"Pequeño"</item>
+        <item>"Predeterminada"</item>
+        <item>"Grande"</item>
+    </string-array>
+    <string-array name="longPressShutter_entries">
+        <item>"Cámara de enfoque automático y captura de imagen inmediatamente"</item>
+        <item>"Captura de imagen de la cámara de enfoque automático y el botón de liberación"</item>
+        <item>"Cámara de enfoque automático sólo"</item>
+        <item>"No hacer nada."</item>
+    </string-array>
+    <string-array name="set_flash_mode_array">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
+    <string-array name="set_white_balance">
+        <item>Hora</item>
+        <item>Nublado</item>
+        <item>Fluorescente</item>
+        <item>Incandescentes</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"Cámara de enfoque automático y captura de imagen inmediatamente"</item>
+        <item>"Tome una fotografía"</item>
+        <item>"Enfoque automático cámara"</item>
+        <item>"No hacer nada."</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"Tome una fotografía"</item>
+        <item>"No hacer nada."</item>
+    </string-array>
+
+    <string name="about_back_button">Volver</string>
+    <string name="add">"Añadir"</string>
+    <string name="add_custom_camera_directions">Para entrar en una cámara personalizada que necesita para tomar algunas medidas simples. Coloque la cámara una distancia fija de un gráfico de pared o el enfoque y la medida desde el punto nodal de la lente a la superficie. A continuación, con una lente fija, medir exactamente la anchura y la altura de lo que se puede ver a través del visor. Utilice unidades consistentes.</string>
+    <string name="add_custom_camera_directions_active_chip">"Ratio Squeeze es 1.0 para lentes esféricas, 2.0 estándar para lentes anamórficas 2:1 y 1.3 para 1:3:1 lentes anamórficas (es decir Hawk V-lite 1.3 's). "</string>
+    <string name="add_custom_camera_title">Añadir personalizado Cámara-Todas las medidas en milímetros  (mm)</string>
+    <string name="add_custom_lens">"Añadir lente personalizada"</string>
+    <string name="add_new_zoom_lens">Añadir nuevo objetivo zoom</string>
+    <string name="artemis_about_text">Artemis es un visor digital, diseñada directores
+con ambos cineastas y directores en mente. Artemis funciona casi
+del mismo modo que un visor directores tradicionales, aunque mucho más
+con precisión y mucho más convenientemente. Después de seleccionar una cámara
+formato, relación de aspecto y el tipo de lente, Artemis utiliza la cámara en su
+dispositivo móvil para simular la lente de puntos de vista que puede esperar cuando usted viene
+para disparar. Puede comparar todas las lentes de zoom o se golpea y la
+la cámara se acercará a llenar el visor con la opinión de equivalente de
+el objetivo que usted ha elegido.
+Lo que las cámaras están cubiertos?
+
+Artemis ha sido probado y ajustado a cada cámara en la base de datos para asegurarse de que el campo de visión es correcta. Con las cámaras de cine digital se encontró que confiar en la información de los fabricantes de cámaras no siempre fue sabio.
+
+Los siguientes formatos están cubiertos hasta el momento: \ nStandard y Super 16mm \ 16mm anamórfico nSuper \ nStandard y Super 35 mm \ n35mm anamórfico \ n65mm \ n35mm digital (D-21, ROJO, F35, Génesis) \ n2 / 3 "Digital (F23, Viper) \ n 1 / 2 "digital \ n 1 / 3" digital \ nCanon 5D y 7D. \ n
+Si usted encuentra un formato que es importante para usted le falta, háganoslo saber y nosotros haremos nuestro mejor esfuerzo para añadirlos en la próxima actualización.</string>
+    <string name="artemis_about_title">Acerca de - Artemis para Android v</string>
+    <string name="artemis_remote_text">Artemisa remoto para las tabletas de Android y iPads</string>
+    <string name="artemis_save_folder_summary">"El nombre de la carpeta para guardar las imágenes creadas con Artemis. Si una carpeta con ese nombre no existe, se creará para usted."</string>
+    <string name="artemis_settings_title">Configuración de Artemis</string>
+    <string name="auto_device_h_and_v_angles">Obtener los ángulos de cámara del dispositivo automáticamente</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"Comportamiento del foco automático al pulsar el botón de largo obturador de la cámara (captura de imagen)."</string>
+    <string name="auto_focus_text">Imágenes de enfoque automático</string>
+    <string name="auto_white_balance">Balance de blancos automático</string>
+    <string name="back_button_behaviour">"Volver Comportamiento Button"</string>
+    <string name="backkey_summary">"Elegir el comportamiento del botón de retroceso Android mientras que la aplicación principal está en ejecución."</string>
+    <string name="black_and_white_preview">Blanco y negro Vista previa</string>
+    <string name="buy_button">Aplicación Comprar</string>
+    <string name="calibrate_chip_height">"Chip Altura:"</string>
+    <string name="calibrate_chip_width">"Viruta Ancho:"</string>
+    <string name="camera_device_will_autofocus">"Dispositivo de la cámara enfocará automáticamente antes de tomar cada fotografía"</string>
+    <string name="camera_device_will_not_autofocus">"Dispositivo de la cámara no se enfoque automático antes de tomar cada fotografía"</string>
+    <string name="camera_information">Información sobre la cámara</string>
+    <string name="camera_preview_will_be_black_and_white">"Vista previa de la cámara será en blanco y negro. Nota: esto también afectará a las imágenes guardadas."</string>
+    <string name="camera_preview_will_show_all_colors">"Vista previa de la cámara mostrará todos los colores"</string>
+    <string name="camera_search">"Búsqueda para las cámaras ..."</string>
+    <string name="camera_settings_title">Configuración de la Cámara</string>
+    <string name="cancel">Cancelar</string>
+    <string name="chemical_wedding_about_text">Copyright 2010. Chemical Wedding</string>
+    <string name="choose_folder_for_image_saving">Carpeta de destino para guardar la imagen.</string>
+    <string name="compass_heading_text">Rumbo del Compás (N, S, E, W)</string>
+    <string name="custom_camera_aspect_ratio">"Relación de aspecto (1,78)"</string>
+    <string name="custom_camera_chip_height">"Altura Chip (mm)"</string>
+    <string name="custom_camera_chip_width">"Ancho Chip (mm)"</string>
+    <string name="custom_camera_delete_camera">Eliminar Cámara</string>
+    <string name="custom_camera_edit_camera">Editar Cámara</string>
+    <string name="custom_camera_error">Cámara de error de entrada personalizada</string>
+    <string name="custom_camera_error_message">El era un problema al añadir la nueva cámara personalizado. Verifique que los valores de entrada son válidos y vuelva a intentarlo.</string>
+    <string name="custom_camera_focallength">DISTANCIA FOCAL</string>
+    <string name="custom_camera_name">NOMBRE DE LA CÁMARA DE ENCARGO</string>
+    <string name="custom_camera_new_camera">NUEVA CÁMARA DE ENCARGO</string>
+    <string name="custom_camera_options">Personalizado Opciones de la Cámara</string>
+    <string name="custom_camera_save_active_sensor">"Active Sensor Tamaño"</string>
+    <string name="custom_camera_save_button">"Guardar"</string>
+    <string name="custom_camera_save_start_button">"Inicio"</string>
+    <string name="custom_camera_squeeze_ratio">"Apriete Ratio"</string>
+    <string name="custom_camera_width">ANCHO</string>
+    <string name="custom_cameras">"Cámaras personalizados"</string>
+    <string name="custom_lens_error">"Lente de error de entrada personalizada"</string>
+    <string name="custom_lens_error_message">"El era un problema al añadir el nuevo lente personalizado. Verifique que los valores de entrada son válidos y vuelva a intentarlo."</string>
+    <string name="custom_zoom_lens">"Lente zoom personalizado"</string>
+    <string name="custom_zoom_lens_error">"Lente zoom personalizado Error de entrada"</string>
+    <string name="custom_zoom_lens_error_message">"El era un problema al añadir el nuevo objetivo zoom personalizado. Verifique que los valores de entrada son válidos y vuelva a intentarlo."</string>
+    <string name="date_and_time_text">Fecha y hora</string>
+    <string name="detect_device_camera_angles_automatically">"Detectar ángulos de cámara del dispositivo automáticamente"</string>
+    <string name="device_camera_angles">"Ángulos de cámara del dispositivo"</string>
+    <string name="device_camera_behaviour">"Cámara Dispositivo de Conducta"</string>
+    <string name="device_camera_sensor">"Sensor de la cámara del dispositivo"</string>
+    <string name="edit_zoom_lens">Editar Zoom</string>
+    <string name="email_support">"Ayuda por e-mail"</string>
+    <string name="error_communicating_dialog_body">Había un problema de comunicación con el servidor de licencias tienda Google Play. Por favor, compruebe su conexión a Internet y vuelva a intentarlo. Si el problema persiste, póngase en contacto con el servicio Artemis.</string>
+    <string name="error_communicating_title">Error de comunicación del servidor de licencias</string>
+    <string name="error_dialog_body">Hubo un error al verificar la solicitud de licencia. Si este problema persiste, póngase en contacto.</string>
+    <string name="error_dialog_title">Solicitud de Licencia de Error</string>
+    <string name="exit_artemis">Salir de Artemis</string>
+    <string name="feedback_report_issue">"Edición / Feedback"</string>
+    <string name="feedback_report_issue_description">"Informar y emitir o denos sus comentarios, agradecemos sus comentarios."</string>
+    <string name="gallery_no_images_found">No se han encontrado imágenes</string>
+    <string name="gallery_title">"Artemis Gallery"</string>
+    <string name="gps_coordinates">Coordenadas GPS</string>
+    <string name="gps_location">Detalles Ubicación GPS</string>
+    <string name="gps_on_off">GPS - Activar / Desactivar</string>
+    <string name="gps_settings">"Configuración GPS"</string>
+    <string name="gps_summary_off">"GPS está desactivado. El dispositivo no buscará la ubicación del hotel."</string>
+    <string name="gps_summary_on">"GPS está activado y el dispositivo buscará la ubicación del hotel."</string>
+    <string name="h_and_v_angle_text">H y V ángulo</string>
+    <string name="hangle_text">H ÁNGULO</string>
+    <string name="haptic_feedback">"Haptic Feedback"</string>
+    <string name="haptic_feedback_on_summary">"Artemis proporcionará retroalimentación háptica de pulsaciones de botón."</string>
+    <string name="hapticfeedback_off_summary">"Artemis no proporcionará retroalimentación háptica de pulsaciones de botón."</string>
+    <string name="heading_summary">"Elija lo que desea mostrar en el título de la aplicación principal."</string>
+    <string name="heading_tilt_roll_promt">Seleccione Opciones Rúbrica</string>
+    <string name="heading_tilt_roll_text">Opciones de la partida</string>
+    <string name="horizontal_lens_angle">"Angular Horizontal"</string>
+    <string name="image_description_hint">Añadir una descripción</string>
+    <string name="image_note_hint">"Agregar una nota"</string>
+    <string name="image_quality_summary">"Seleccione la calidad (compresión) de la imagen guardada en el disco."</string>
+    <string name="image_save_error">"Error: la imagen no se puede guardar. Los medios de almacenamiento pueden estar llenos."</string>
+    <string name="image_save_no_media">"Error: la imagen no se puede guardar. No se encontraron medios de almacenamiento."</string>
+    <string name="image_saved_success">Guardar imagen ...</string>
+    <string name="image_size_summary">"Seleccionar el tamaño de la imagen final guardado en el disco."</string>
+    <string name="input_focal_length">"Introduzca la longitud focal del objetivo en milímetros:"</string>
+    <string name="keep_screen_off_summary">"La pantalla de tiempo de espera de acuerdo a su entorno de sueño default dispositivos."</string>
+    <string name="keep_screen_on">"Tenga en pantalla"</string>
+    <string name="keep_screen_on_summary">"La pantalla se mantendrá en el tiempo de espera y nunca mientras que la aplicación principal está en ejecución."</string>
+    <string name="key_mappings">"Asignaciones de clave"</string>
+    <string name="language">idioma</string>
+    <string name="language_summary">"NOTA: Debe salir y reiniciar la aplicación para que los cambios surtan efecto."</string>
+    <string name="lensFocalLengthMM">mm</string>
+    <string name="lens_information">Información de la lente</string>
+    <string name="lens_settings_title">Configuración de la lente</string>
+    <string name="lock_boxes_text">Bloqueo Lente Cajas</string>
+    <string name="lock_lens_boxes">"Bloquee Cajas de lentes"</string>
+    <string name="lockboxes_summary">"Activar / desactivar las casillas de la lente de contacto en la posición cambiante."</string>
+    <string name="long_press_shutter_button_focus_behaviour">"Pulsación larga Botón disparador Comportamiento Focus"</string>
+    <string name="loon_films_about_text">Artemis para Android fue desarrollado por Loon Films.</string>
+    <string name="manually_set_h_angle_text">Configuración de dispositivos de cámara de ángulo horizontal</string>
+    <string name="manually_set_v_angle_text">Configuración de dispositivos de cámara de ángulo vertical</string>
+    <string name="map_volume_key_title">"Anular Volumen Comportamiento Clave"</string>
+    <string name="map_volume_off">"Invalidar el comportamiento tecla de volumen mientras que la aplicación principal está en ejecución. "</string>
+    <string name="map_volume_on">"No anule el comportamiento tecla de volumen. Teclas de volumen se comportan de forma predeterminada."</string>
+    <string name="max_focal_length">"Max focal"</string>
+    <string name="menu_artemis_about">Acerca de</string>
+    <string name="menu_artemis_about_description">"Un poco acerca de la aplicación y sus desarrolladores."</string>
+    <string name="menu_artemis_gallery">Galería</string>
+    <string name="menu_artemis_quit">Salir</string>
+    <string name="menu_artemis_settings">Ajustes</string>
+    <string name="menu_camera_settings">Cámara Seleccione</string>
+    <string name="menu_lens_settings">Lente Seleccione</string>
+    <string name="min_focal_length">"Min focal"</string>
+    <string name="new_zoom_lens">"Nuevo objetivo zoom"</string>
+    <string name="not_torch_while_in_preview_mode">"Dispositivo de la cámara no utilizará el tiempo antorcha en modo de vista previa"</string>
+    <string name="ok">Bueno</string>
+    <string name="picture_save_location">"Imagen Guardar ubicación"</string>
+    <string name="prefs_camera_settings">"Ajustes de la cámara"</string>
+    <string name="prefs_camera_settings_description">"Configuración para personalizar el comportamiento de la cámara del dispositivo"</string>
+    <string name="prefs_general_settings">"Ajustes generales"</string>
+    <string name="prefs_general_settings_description">"Ajustes para el funcionamiento general de Artemisa y la interfaz de usuario"</string>
+    <string name="prefs_image_settings">"Configuración de imágenes guardadas"</string>
+    <string name="prefs_image_settings_description">"Ajustes para el control de las propiedades de las imágenes guardadas en el almacenamiento utilizando Artemis"</string>
+    <string name="quick_picture_off">"Una vista previa de la imagen se mostrará después de las imágenes se guardan."</string>
+    <string name="quick_picture_on">"Imágenes rápidas están habilitados. Una previsualización de la imagen no se mostrará después de las imágenes se guardan."</string>
+    <string name="quickshot_text">Tiro rápido modo</string>
+    <string name="quit_button">Salir</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/build/exploded-bundles/ArtemisAndroidAppiraterAndroidUnspecified.aar/res/values-es/values.xml -->
+    <string name="rate">Valorar %s</string>
+    <string name="rate_cancel">No, gracias</string>
+    <string name="rate_later">Recordar más tarde</string>
+    <string name="rate_message">Si le gusta utilizar %s, ¿le importaría valorarlo? No le llevará más de un minuto. ¡Gracias por su colaboración!</string>
+    <string name="rate_title">Valorar %s</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-es/strings.xml -->
+    <string name="reset_artemis_settings">"Restablecer configuración Artemis"</string>
+    <string name="reset_device_h_and_v_angles">Restablecer</string>
+    <string name="reset_to_default_settings">"¿Está seguro de que desea restablecer la configuración predeterminada? Perderá todos los gustos."</string>
+    <string name="retry_button">Reintentar</string>
+    <string name="save">"Guardar"</string>
+    <string name="save_and_edit">Guardar y editar detalles</string>
+    <string name="save_artemis_settings">Ajustes de ahorro de Artemis</string>
+    <string name="save_lenses">Guardar las lentes</string>
+    <string name="save_picture">Guardar imagen</string>
+    <string name="save_picture_details">"Guardar Detalles de la imagen"</string>
+    <string name="save_picture_title">Guardar imagen</string>
+    <string name="save_raw_image_text">"Sin borde o texto"</string>
+    <string name="saved_image_quality">"Guardado Calidad de imagen"</string>
+    <string name="saved_image_size">"Guardado Tamaño de la imagen"</string>
+    <string name="screen_settings">"Configuración de la pantalla"</string>
+    <string name="select_image_quality">"Seleccione la calidad de imagen"</string>
+    <string name="select_image_size">"Seleccione Tamaño de imagen"</string>
+    <string name="select_language_text">Seleccione Idioma</string>
+    <string name="select_preview_size_text">Seleccione Vista previa de la Resolución</string>
+    <string name="set_exposure">Ajuste de la exposición</string>
+    <string name="set_exposure_text"> La exposición Set</string>
+    <string name="set_flash_mode_spinner">Ajuste del modo flash </string>
+    <string name="set_flash_mode_text">Flash / Antorcha modo</string>
+    <string name="set_preview_size_text">Previa Resolución</string>
+    <string name="set_white_balance">Ajuste del balance de blancos</string>
+    <string name="set_white_balance_text">Ajuste de balance de blancos</string>
+    <string name="settings_reset_summary">"Restablecer la configuración predeterminada de Artemis. Usted no perderá ninguna de las imágenes guardadas."</string>
+    <string name="settings_reset_title">"Restablecer los ajustes predeterminados"</string>
+    <string name="smooth_filter_text">Suave de la Imagen Filtro</string>
+    <string name="smooth_image_off">"Las imágenes no se filtran sin problemas."</string>
+    <string name="smooth_image_on">"Un filtro se aplicará para que las imágenes aparezcan más nítidos cuando se requiere la ampliación."</string>
+    <string name="sure_you_want_to_exit">¿Está seguro de que desea salir?</string>
+    <string name="tilt_and_roll_text">En Altura y en Rollo</string>
+    <string name="torch_while_in_preview_mode">"Dispositivo de la cámara utilizará la antorcha, mientras en el modo de vista previa"</string>
+    <string name="unlicensed_dialog_body">Esta aplicación no tiene licencia. Por favor, compre desde Android Market.</string>
+    <string name="unlicensed_dialog_title">Aplicación no Autorizada</string>
+    <string name="untitle_custom_cam">Untitled cámara personalizada</string>
+    <string name="untitled_zoom_lens">"Sin título Zoom"</string>
+    <string name="use_detected_device_angles">"La aplicación utilizará los valores detectados de forma automática desde el dispositivo (valores corrientes muestran a continuación)."</string>
+    <string name="use_the_custom_camera_angles">"La aplicación utilizará los valores personalizados que se muestran a continuación."</string>
+    <string name="user_interface_behaviour">"Comportamiento de la interfaz de usuario"</string>
+    <string name="vangle_text">V ÁNGULO</string>
+    <string name="vertical_lens_angle">"Ángulo de la lente Vertical"</string>
+    <string name="volume_down_key_title">"Bajar volumen Comportamiento clave"</string>
+    <string name="volume_down_summary">"Elija el comportamiento cuando se pulsa volumen teléfonos tecla mientras la aplicación principal está en ejecución."</string>
+    <string name="volume_up_key_title">"Subir volumen Comportamiento clave"</string>
+    <string name="volume_up_summary">"Elija el comportamiento cuando se pulse teléfonos tecla de subir volumen mientras que la aplicación principal está en ejecución."</string>
+    <string name="zoom_lens_delete">Eliminar Zoom</string>
+    <string name="zoom_lens_edit">Editar Zoom</string>
+    <string name="zoom_lens_name">"Zoom Nombre del lente"</string>
+    <string name="zoom_lens_options">Opciones de lentes de zoom personalizado</string>
+
+</resources>

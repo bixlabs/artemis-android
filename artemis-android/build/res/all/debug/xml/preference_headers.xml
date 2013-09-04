@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment"
+        android:icon="@drawable/settings_menu_icon"
+        android:summary="@string/prefs_general_settings_description"
+        android:title="@string/prefs_general_settings" />
+    <header
+        android:fragment="com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment"
+        android:icon="@drawable/camera_icon"
+        android:summary="@string/prefs_camera_settings_description"
+        android:title="@string/prefs_camera_settings" />
+    <header
+        android:fragment="com.chemicalwedding.artemis.SettingsActivity$SavedImageSettingsFragment"
+        android:icon="@drawable/gallery_menu_icon"
+        android:summary="@string/prefs_image_settings_description"
+        android:title="@string/prefs_image_settings" />
+    <header
+        android:fragment="com.chemicalwedding.artemis.SettingsActivity$SendFeedbackFragment"
+        android:icon="@drawable/feedback_icon"
+        android:summary="@string/feedback_report_issue_description"
+        android:title="@string/feedback_report_issue" />
+    <header
+        android:icon="@drawable/about_icon"
+        android:summary="@string/menu_artemis_about_description"
+        android:title="@string/menu_artemis_about" >
+        <intent
+            android:targetClass="com.chemicalwedding.artemis.AboutActivity"
+            android:targetPackage="com.chemicalwedding.artemis" />
+    </header>
+    <header
+        android:fragment="com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment"
+        android:icon="@drawable/quit_icon"
+        android:summary="@string/settings_reset_summary"
+        android:title="@string/settings_reset_title" />
+</preference-headers><!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/xml/preference_headers.xml -->

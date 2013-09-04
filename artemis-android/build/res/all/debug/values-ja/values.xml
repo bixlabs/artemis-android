@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-ja/strings.xml -->
+    <string-array name="backkey_prefs">
+        <item>"アルテミスを直ちに終了"</item>
+        <item>"閉じる前にプロンプ​​ト"</item>
+        <item>"何もしない"</item>
+    </string-array>
+    <string-array name="heading_tilt_roll_array">
+        <item>なし</item>
+        <item>見出し°</item>
+        <item>見出し°|チルト°|ロール°</item>
+    </string-array>
+    <string-array name="image_size_prefs">
+        <item>"Small"</item>
+        <item>"初期値"</item>
+        <item>"Large"</item>
+    </string-array>
+    <string-array name="longPressShutter_entries">
+        <item>"オートフォーカスカメラとすぐに画像を取り込む"</item>
+        <item>"ボタンリリースでオートフォーカスカメラとキャプチャ画像"</item>
+        <item>"唯一のオートフォーカスカメラ"</item>
+        <item>"何もしない"</item>
+    </string-array>
+    <string-array name="set_exposure_array">
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="set_flash_mode_array">
+        <item>上</item>
+        <item>オフ</item>
+    </string-array>
+    <string-array name="set_white_balance">
+        <item>夏時間</item>
+        <item>曇り</item>
+        <item>蛍光</item>
+        <item>白熱灯</item>
+    </string-array>
+    <string-array name="volumeAction_entries">
+        <item>"オートフォーカスカメラとすぐに画像を取り込む"</item>
+        <item>"写真を撮る"</item>
+        <item>"自動焦点カメラ"</item>
+        <item>"何もしない"</item>
+    </string-array>
+    <string-array name="volumeAction_entries_noautofocus">
+        <item>"写真を撮る"</item>
+        <item>"何もしない"</item>
+    </string-array>
+
+    <string name="about_back_button">戻る</string>
+    <string name="add">"追加"</string>
+    <string name="add_custom_camera_directions">は、いくつかの簡単な測定を行う必要がありますカスタムカメラを入力してください。カメラ壁やフォーカスグラフと測定面にレンズの節点から一定の距離に配置します。次に、固定レンズと、正確に幅と高さは、ファインダーを見ることができるかを計測する。一貫した単位を使用してください。</string>
+    <string name="add_custom_camera_directions_active_chip">"スクイーズ比は1:3:1秒アナモフィックレンズ（すなわちホークV-liteの1.3 's）のために球面レンズ、標準の午前2:1アナモフィックレンズ用の2.0および1.3のために1.0である。"</string>
+    <string name="add_custom_camera_title">[カスタムカメラ - milimeters内のすべてのmeasurmentsさ（mm）</string>
+    <string name="add_custom_lens">"カスタムレンズを追加"</string>
+    <string name="add_new_zoom_lens">新しいズームレンズを追加</string>
+    <string name="app_name">アルテミス</string>
+    <string name="artemis_about_text">アルテミスは、撮影監督と監督を念頭に置いて設計されたディジタル取締役ファインダーです。アルテミスはもはるかに正確に、はるかに便利な、伝統的な取締役ファインダーとほぼ同じように動作します。カメラの形式は、アスペクト比とレンズの種類を選択した後、アルテミスは、お使いの携帯デバイスでは、カメラを使用して、レンズは、あなたが撮影に来るときに期待することができますビューシミュレートします。いずれかのすべてのレンズを比較したり、ヒットズームとカメラを使用すると、選択したレンズと同等の表示とファインダーを埋めるためにズームされます。</string>
+    <string name="artemis_about_title">アルテミスAndroidの v</string>
+    <string name="artemis_remote_text">Androidの錠剤とiパッドのアルテミスリモート</string>
+    <string name="artemis_save_folder_summary">"アルテミスでは、作成イメージを保存するフォルダ名。この名前のフォルダが存在しない場合、それはあなたのために作成されます。"</string>
+    <string name="artemis_settings_title">設定のアルテミス</string>
+    <string name="auto_device_h_and_v_angles">自動的にデバイスのカメラの角度を取得する</string>
+    <string name="auto_focus_behaviour_when_long_pressing">"長いカメラのシャッター（画像を取り込む）ボタンを押すと、オートフォーカスの動作。"</string>
+    <string name="auto_focus_text">オートフォーカスの画像</string>
+    <string name="auto_white_balance">自動ホワイトバランス</string>
+    <string name="back_button_behaviour">"戻るボタンの挙動"</string>
+    <string name="backkey_summary">"主なアプリの実行中にアンドロイドの戻るボタンの動作を選択してください。"</string>
+    <string name="black_and_white_preview">黒と白のプレビュー</string>
+    <string name="buy_button">アプリを購入</string>
+    <string name="calibrate_chip_height">"チップ高さ："</string>
+    <string name="calibrate_chip_width">"チップ幅："</string>
+    <string name="camera_device_will_autofocus">"カメラデバイスは、各写真を撮る前にオートフォーカス意志"</string>
+    <string name="camera_device_will_not_autofocus">"カメラデバイスは、各写真を撮る前にオートフォーカスしません"</string>
+    <string name="camera_information">カメラ情報</string>
+    <string name="camera_preview_will_be_black_and_white">"カメラのプレビューは、黒と白になります。注意：これはまた、保存した画像に影響を与えます。"</string>
+    <string name="camera_preview_will_show_all_colors">"カメラのプレビューは、すべての色が表示されます"</string>
+    <string name="camera_search">"カメラの検索..."</string>
+    <string name="camera_settings_title">カメラの設定</string>
+    <string name="cancel">キャンセル</string>
+    <string name="chemical_wedding_about_text">著作権2010。化学結婚式は（よく、一人は、オーストラリアの一種である）、ここでも晴れているので、ロサンゼルスに住んでいる英国人の集まりです。我々は、符号化技術、デザインの幅広い経験を持つフィルムの専門家、デザイナー、銀行の種類の奇妙なミックスをしています。</string>
+    <string name="choose_folder_for_image_saving">画像の保存のための 先フォルダにコピーします。</string>
+    <string name="compass_heading_text">コンパス見出し (がN、Sメールは、W)</string>
+    <string name="custom_camera_aspect_ratio">"アスペクト比（1.78）"</string>
+    <string name="custom_camera_chip_height">"チップ高さ（mm）"</string>
+    <string name="custom_camera_chip_width">"チップ幅（mm）"</string>
+    <string name="custom_camera_delete_camera">削除カメラ</string>
+    <string name="custom_camera_edit_camera">カメラを編集する</string>
+    <string name="custom_camera_error">カスタムカメラ入力エラー</string>
+    <string name="custom_camera_error_message">新しいカスタムカメラを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。</string>
+    <string name="custom_camera_focallength">焦点距離</string>
+    <string name="custom_camera_name">は、カスタムカメラNAMEを作成する</string>
+    <string name="custom_camera_new_camera">新しいカスタムカメラ</string>
+    <string name="custom_camera_options">カスタムカメラオプション</string>
+    <string name="custom_camera_save_active_sensor">"アクティブセンサーサイズ"</string>
+    <string name="custom_camera_save_button">"保存"</string>
+    <string name="custom_camera_save_start_button">"開始"</string>
+    <string name="custom_camera_squeeze_ratio">"比率を絞る"</string>
+    <string name="custom_camera_width">幅</string>
+    <string name="custom_cameras">"カスタムカメラ"</string>
+    <string name="custom_lens_error">"カスタムレンズの入力エラー"</string>
+    <string name="custom_lens_error_message">"新しいカスタムレンズを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。"</string>
+    <string name="custom_zoom_lens">"カスタムズームレンズ"</string>
+    <string name="custom_zoom_lens_error">"カスタムズームレンズ入力エラー"</string>
+    <string name="custom_zoom_lens_error_message">"新しいカスタムズームレンズを追加する問題だった。入力値が有効であることを確認してから、もう一度やり直してください。"</string>
+    <string name="date_and_time_text">日付と時刻</string>
+    <string name="detect_device_camera_angles_automatically">"自動的にデバイスのカメラアングルを検出"</string>
+    <string name="device_camera_angles">"デバイスのカメラアングル"</string>
+    <string name="device_camera_behaviour">"デバイスのカメラの行動"</string>
+    <string name="device_camera_sensor">"デバイスのカメラセンサー"</string>
+    <string name="edit_zoom_lens">ズームレンズを編集</string>
+    <string name="email_support">"メールサポート"</string>
+    <string name="error_communicating_dialog_body">グーグルプレイストアライセンスサーバーとの通信に問題が発生しました。あなたのインターネット接続を確認してからもう一度お試しください。問題が解決しない場合はアルテミスのサポートまでご連絡ください。</string>
+    <string name="error_communicating_title">ライセンスサーバーの通信エラー</string>
+    <string name="error_dialog_body">アプリケーションのライセンスを確認中にエラーが発生しました。この問題が解決しない場合は、サポートに連絡してください。</string>
+    <string name="error_dialog_title">アプリケーションのライセンスエラー</string>
+    <string name="exit_artemis">アルテミスを終了</string>
+    <string name="feedback_report_issue">"問題/フィードバック"</string>
+    <string name="feedback_report_issue_description">"報告し、発行するか、または私達にあなたのフィードバックを与え、我々はあなたのコメントに感謝します。"</string>
+    <string name="gallery_no_images_found">ない画像が見つかりませんでした</string>
+    <string name="gallery_title">"アルテミスギャラリー"</string>
+    <string name="gps_coordinates">のGPS座標</string>
+    <string name="gps_location">GPSによる位置情報の詳細</string>
+    <string name="gps_on_off">オン/オフ ターンのGPS</string>
+    <string name="gps_settings">"GPS設定"</string>
+    <string name="gps_summary_off">"GPSが無効になっています。デバイスはそれの場所を検索しません。"</string>
+    <string name="gps_summary_on">"GPSが有効になっており、デバイスがその場所を検索します。"</string>
+    <string name="h_and_v_angle_text">HおよびVアングル</string>
+    <string name="hangle_text">Hの角度</string>
+    <string name="haptic_feedback">"入力時バイブレーション"</string>
+    <string name="haptic_feedback_on_summary">"アルテミスは、ボタンの押下に触覚フィードバックを提供します。"</string>
+    <string name="hapticfeedback_off_summary">"アルテミスは、ボタンの押下に触覚フィードバックを提供しません。"</string>
+    <string name="heading_summary">"メインアプリの見出しに表示するかを選択してください。"</string>
+    <string name="heading_tilt_roll_promt">見出しオプションを選択してください</string>
+    <string name="heading_tilt_roll_text">オプションを見出し</string>
+    <string name="horizontal_lens_angle">"水平方向のレンズの角度"</string>
+    <string name="image_description_hint">説明を追加</string>
+    <string name="image_note_hint">"メモを追加"</string>
+    <string name="image_quality_summary">"ディスクに保存した画像の画質（圧縮率）を選択します。"</string>
+    <string name="image_save_error">"エラー：画像を保存できませんでした。記憶媒体はいっぱいかもしれません。"</string>
+    <string name="image_save_no_media">"エラー：画像を保存できませんでした。ストレージメディアが見つかりませんでした。"</string>
+    <string name="image_saved_success">画像を保存しています...</string>
+    <string name="image_size_summary">"ディスクに保存された最終的な画像のサイズを選択します。"</string>
+    <string name="input_focal_length">"ミリでレンズの焦点距離を入力してください："</string>
+    <string name="keep_screen_off_summary">"画面には、タイムアウト、デバイスのデフォルトのスリープ設定に従ってます。"</string>
+    <string name="keep_screen_on">"の画面を保つ"</string>
+    <string name="keep_screen_on_summary">"主なアプリの実行中に画面が上に保持し、タイムアウトNEVERされます。"</string>
+    <string name="key_mappings">"キーのマッピング"</string>
+    <string name="language">言語</string>
+    <string name="language_summary">"注：変更を有効にするには、アプリケーションを終了して再起動する必要があります。"</string>
+    <string name="lensFocalLengthMM">mm</string>
+    <string name="lens_information">レンズ情報</string>
+    <string name="lens_settings_title">レンズの設定</string>
+    <string name="lock_boxes_text">ロックレンズボックス</string>
+    <string name="lock_lens_boxes">"ロックレンズボックス"</string>
+    <string name="lockboxes_summary">"touch上で位置を変えるからレンズボックスを有効/無効にします。"</string>
+    <string name="long_press_shutter_button_focus_behaviour">"長押しのシャッターボタンフォーカス行動"</string>
+    <string name="loon_films_about_text">Android用 アルテミスはサザーランドとルーンファンによって開発されました。</string>
+    <string name="manually_set_h_angle_text">設定デバイスカメラ水平画角</string>
+    <string name="manually_set_v_angle_text">設定デバイスカメラ垂直アングル</string>
+    <string name="map_volume_key_title">"ボリュームキーの動作をオーバーライドする"</string>
+    <string name="map_volume_off">"主なアプリの実行中にボリュームキーの動作をオーバーライドします。"</string>
+    <string name="map_volume_on">"ボリュームキーの動作を上書きしないでください。ボリュームキーは、デフォルトとして振る舞う。"</string>
+    <string name="max_focal_length">"最大焦点距離"</string>
+    <string name="menu_artemis_about">について</string>
+    <string name="menu_artemis_about_description">"アプリとその開発について少し。"</string>
+    <string name="menu_artemis_gallery">ギャラリー</string>
+    <string name="menu_artemis_quit">終了</string>
+    <string name="menu_artemis_settings">の設定</string>
+    <string name="menu_camera_settings">カメラの選択</string>
+    <string name="menu_lens_settings">選択レンズ</string>
+    <string name="min_focal_length">"最小焦点距離"</string>
+    <string name="new_zoom_lens">"新しいズームレンズ"</string>
+    <string name="not_torch_while_in_preview_mode">"カメラデバイスがプレビューモードでトーチしばらく使用することはありません"</string>
+    <string name="ok">ok</string>
+    <string name="picture_save_location">"画像の保存場所"</string>
+    <string name="prefs_camera_settings">"カメラ設定"</string>
+    <string name="prefs_camera_settings_description">"素子カメラの動作をカスタマイズするための設定"</string>
+    <string name="prefs_general_settings">"全般設定"</string>
+    <string name="prefs_general_settings_description">"一般アルテミスの操作、ユーザーインターフェイスの設定"</string>
+    <string name="prefs_image_settings">"保存した画像の設定"</string>
+    <string name="prefs_image_settings_description">"アルテミスを使用して、ストレージに保存された画像の制御特性​​の調整"</string>
+    <string name="quick_picture_off">"映像が保存された後の画像のプレビューが表示される。"</string>
+    <string name="quick_picture_on">"クイック写真は有効になっています。画像が保存された後の画像のプレビューが表示されません。"</string>
+    <string name="quickshot_text">クイックモードでの撮影</string>
+    <string name="quit_button">終了\</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/build/exploded-bundles/ArtemisAndroidAppiraterAndroidUnspecified.aar/res/values-ja/values.xml -->
+    <string name="rate">%sを評価する</string>
+    <string name="rate_cancel">いいえ</string>
+    <string name="rate_later">後で見る</string>
+    <string name="rate_message">楽しんでいただけたならば簡単なご意見をお願いします。%sを評価しますか？</string>
+    <string name="rate_title">%sの評価</string>
+    <!-- From: file:/C:/Users/jon/git/artemis-android/artemis-android/res/values-ja/strings.xml -->
+    <string name="reset_artemis_settings">"アルテミス設定をリセット"</string>
+    <string name="reset_device_h_and_v_angles">リセット</string>
+    <string name="reset_to_default_settings">"デフォルトの設定にリセットしてもよろしいですか？あなたは、すべての設定が失われます。"</string>
+    <string name="retry_button">リトライ</string>
+    <string name="save">"保存"</string>
+    <string name="save_and_edit">は、保存して、詳細を編集</string>
+    <string name="save_artemis_settings">は、アルテミスの設定を保存</string>
+    <string name="save_lenses">は、レンズを保存</string>
+    <string name="save_picture">画像を保存</string>
+    <string name="save_picture_details">"画像の詳細を保存する"</string>
+    <string name="save_picture_title">画像を保存</string>
+    <string name="save_raw_image_text">"いいえボーダーないか、またはテキスト"</string>
+    <string name="saved_image_quality">"保存された画質"</string>
+    <string name="saved_image_size">"保存された画像サイズ"</string>
+    <string name="screen_settings">"画面設定"</string>
+    <string name="select_image_quality">"画質を選択してください"</string>
+    <string name="select_image_size">"画像サイズを選択してください"</string>
+    <string name="select_language_text">言語の選択</string>
+    <string name="select_preview_size_text">選択プレビューの解像度</string>
+    <string name="set_exposure">は、露出を設定する</string>
+    <string name="set_exposure_text">セット露出</string>
+    <string name="set_flash_mode_spinner">設定フラッシュモード</string>
+    <string name="set_flash_mode_text">フラッシュ/トーチモード</string>
+    <string name="set_preview_size_text">プレビュー解像度</string>
+    <string name="set_white_balance">ホワイトバランスを設定する</string>
+    <string name="set_white_balance_text">ホワイトバランス - （白熱灯/蛍光灯/など）。</string>
+    <string name="settings_reset_summary">"アルテミスのデフォルト設定にリセットします。あなたは、任意の保存された写真を失うことはありません。"</string>
+    <string name="settings_reset_title">"デフォルト設定へのリセット"</string>
+    <string name="smooth_filter_text">滑らかな画像フィルタ</string>
+    <string name="smooth_image_off">"画像は滑らかでフィルタリングされません。"</string>
+    <string name="smooth_image_on">"フィルタは、スケーリングが必要とされる場合、画像が滑らかに表示されるように適用される。"</string>
+    <string name="sure_you_want_to_exit">あなたが終了してもよろしいですか？</string>
+    <string name="tilt_and_roll_text">傾斜とロール</string>
+    <string name="torch_while_in_preview_mode">"カメラ装置は、プレビューモードでトーチ一方を使用する"</string>
+    <string name="unlicensed_dialog_body">このアプリケーションは、ライセンスされていません。 Android Marketからそれを購入してください。</string>
+    <string name="unlicensed_dialog_title">アプリケーションがライセンスを取得</string>
+    <string name="untitle_custom_cam">無題カスタムカメラ</string>
+    <string name="untitled_zoom_lens">"無題ズームレンズ"</string>
+    <string name="use_detected_device_angles">"アプリケーションが自動的にデバイス（電流値は下記参照）から検出された値を使用します。"</string>
+    <string name="use_the_custom_camera_angles">"アプリケーションは、次に示すカスタム値を使用します。"</string>
+    <string name="user_interface_behaviour">"ユーザーインターフェイスの行動"</string>
+    <string name="vangle_text">Vの角度</string>
+    <string name="vertical_lens_angle">"垂直レンズの角度"</string>
+    <string name="volume_down_key_title">"キー行動音量ダウン"</string>
+    <string name="volume_down_summary">"主なアプリの実行中にキーを携帯電話の音量が押されたときの動作を選択してください。"</string>
+    <string name="volume_up_key_title">"キー行動音量アップ"</string>
+    <string name="volume_up_summary">"主なアプリの実行中にキーまで電話ボリュームが押されたときの動作を選択してください。"</string>
+    <string name="zoom_lens_delete">ズームレンズを削除する</string>
+    <string name="zoom_lens_edit">ズームレンズを編集</string>
+    <string name="zoom_lens_name">"ズームレンズ名"</string>
+    <string name="zoom_lens_options">カスタムズームレンズオプション</string>
+
+</resources>
