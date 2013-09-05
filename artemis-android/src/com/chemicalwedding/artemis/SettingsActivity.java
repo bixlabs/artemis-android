@@ -280,12 +280,17 @@ public class SettingsActivity extends PreferenceActivity {
                 NumberFormat numberFormat = NumberFormat.getNumberInstance();
                 numberFormat.setMinimumFractionDigits(2);
 
-                int defaultVal = 0;
+                int exposureLevel = getSharedPreferences()
+                        .getInt(getString(R.string.preference_key_selectedexposurelevel),
+                                0);
+                CharSequence selectedValue = null;
                 for (int i = 0; i < exposureValues.length; i++) {
                     exposureValues[i] = CameraPreview14.supportedExposureLevels
                             .get(i).toString();
-                    if (exposureValues[i].equals("0")) {
-                        defaultVal = i;
+                    if (CameraPreview14.supportedExposureLevels
+                            .get(i) == exposureLevel) {
+                        selectedValue = exposureValues[i];
+
                     }
                     exposureLabels[i] =
                             numberFormat.format(CameraPreview14.supportedExposureLevels
@@ -294,30 +299,25 @@ public class SettingsActivity extends PreferenceActivity {
                 exposurePref.setEntries(exposureLabels);
                 exposurePref.setEntryValues(exposureValues);
 
-                int exposureIndex = getSharedPreferences()
-                        .getInt(getString(R.string.preference_key_selectedexposurelevel),
-                                defaultVal);
 
-                exposurePref.setValue(CameraPreview14.supportedExposureLevels
-                        .get(exposureIndex) + "");
-//                exposurePref
-//                        .setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-//                            @Override
-//                            public boolean onPreferenceChange(
-//                                    Preference preference, Object newValue) {
-//                                Integer newValueInt = Integer
-//                                        .parseInt((String) newValue);
-//                                        getSharedPreferences()
-//                                                .edit()
-//                                                .putInt(getString(R.string.preference_key_selectedexposurelevel),
-//                                                        index).commit();
-//                                    }
-//                                    index++;
-//                                }
-//
-//                                return true;
-//                            }
-//                        });
+                exposurePref.setValue(selectedValue.toString());
+                exposurePref
+                        .setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                            @Override
+                            public boolean onPreferenceChange(
+                                    Preference preference, Object newValue) {
+                                Integer newValueInt = Integer
+                                        .parseInt((String) newValue);
+                                Log.d("Exposure", "Selected "+newValueInt);
+                                getSharedPreferences()
+                                        .edit()
+                                        .putInt(getString(R.string.preference_key_selectedexposurelevel),
+                                                newValueInt).commit();
+
+                                return true;
+                            }
+                        }
+                        );
             }
             if (CameraPreview14.isAutoFocusSupported) {
                 findPreference(
