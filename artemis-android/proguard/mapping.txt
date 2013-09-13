@@ -515,24 +515,28 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.bg:
     boolean isAutoFocusSupported -> l
     boolean autoFocusBeforePictureTake -> m
     android.hardware.Camera$Size previewSize -> n
-    android.hardware.Camera mCamera -> z
-    android.view.TextureView mTextureView -> A
-    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> B
-    float scaleFactor -> o
-    int totalScreenHeight -> C
-    int totalScreenWidth -> D
-    int savedImageJPEGQuality -> p
-    int savedImageSizeIndex -> q
-    boolean blackAndWhitePreview -> r
-    int previewHeight -> s
-    int previewWidth -> t
-    int requestedWidthDiff -> u
-    android.graphics.Bitmap bitmapToSave -> v
-    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> E
-    java.lang.String degreeSymbolFromStringsXML -> F
-    android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> w
-    android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> x
-    boolean isCameraReleased -> y
+    float exposureStep -> o
+    android.hardware.Camera mCamera -> A
+    android.view.TextureView mTextureView -> B
+    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> C
+    float scaleFactor -> p
+    int totalScreenHeight -> D
+    int totalScreenWidth -> E
+    int savedImageJPEGQuality -> q
+    int savedImageSizeIndex -> r
+    boolean blackAndWhitePreview -> s
+    int[] tempFrameBitmap -> F
+    int frameBufSize -> G
+    byte[] frameBuffer -> H
+    int previewHeight -> t
+    int previewWidth -> u
+    int requestedWidthDiff -> v
+    android.graphics.Bitmap bitmapToSave -> w
+    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> I
+    java.lang.String degreeSymbolFromStringsXML -> J
+    android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> x
+    android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> y
+    boolean isCameraReleased -> z
     void initCameraDetails(android.hardware.Camera$Parameters) -> a
     android.hardware.Camera$Size getOptimalPreviewSize(java.util.List,int,int) -> a
     void takePicture() -> a
@@ -546,6 +550,7 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.bg:
     void calculateZoom$1385ff() -> e
     java.lang.String makeLatLongString(double) -> a
     void renderPictureDetailsAndSave() -> f
+    void decodeYUV420SP2(int[],byte[],int,int) -> a
     void setWhiteBalance(java.lang.String) -> setWhiteBalance
     void setExposureCompensation(java.lang.Integer) -> setExposureCompensation
     void setFlash(boolean) -> setFlash
@@ -553,9 +558,10 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.bg:
     void onLayout(boolean,int,int,int,int) -> onLayout
     void onMeasure(int,int) -> onMeasure
     void access$0(com.chemicalwedding.artemis.CameraPreview14) -> a
-    com.chemicalwedding.artemis.ArtemisMath access$1(com.chemicalwedding.artemis.CameraPreview14) -> b
-    int access$2(com.chemicalwedding.artemis.CameraPreview14) -> c
-    android.hardware.Camera access$3(com.chemicalwedding.artemis.CameraPreview14) -> d
+    int[] access$1(com.chemicalwedding.artemis.CameraPreview14) -> b
+    com.chemicalwedding.artemis.ArtemisMath access$2(com.chemicalwedding.artemis.CameraPreview14) -> c
+    int access$3(com.chemicalwedding.artemis.CameraPreview14) -> d
+    android.hardware.Camera access$4(com.chemicalwedding.artemis.CameraPreview14) -> e
 com.chemicalwedding.artemis.CameraPreview14$1 -> com.chemicalwedding.artemis.bh:
     com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
     void onAutoFocus(boolean,android.hardware.Camera) -> onAutoFocus

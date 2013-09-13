@@ -1,6 +1,5 @@
 package com.chemicalwedding.artemis;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,15 +21,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.graphics.Typeface;
-import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
@@ -72,16 +70,16 @@ public class CameraPreview14 extends ViewGroup {
     protected float scaleFactor = 1f;
     private int totalScreenHeight;
     private int totalScreenWidth;
-    //	protected static boolean widthAndHeightSwapped = false;
     protected static int savedImageJPEGQuality;
     protected static int savedImageSizeIndex;
     protected static boolean blackAndWhitePreview;
-
+	private int[] tempFrameBitmap;
+	private int frameBufSize;
+	private byte[] frameBuffer;
     protected int previewHeight, previewWidth, requestedWidthDiff = 0;
     protected Bitmap bitmapToSave;
 
     private ArtemisApplication artemisApplication;
-    // private final float pixelDensity;
     private final String degreeSymbolFromStringsXML;
 
     // private List<Size> supportedPictureSizes;
@@ -220,18 +218,21 @@ public class CameraPreview14 extends ViewGroup {
     final PreviewCallback takePicturePreviewCallback = new PreviewCallback() {
         @Override
         public void onPreviewFrame(byte[] data, Camera camera) {
+        	decodeYUV420SP2(tempFrameBitmap, data, previewWidth, previewHeight);
+        	bitmapToSave = Bitmap.createBitmap(tempFrameBitmap, previewWidth,
+					previewHeight, Bitmap.Config.RGB_565);
 
-            // Get the YuV image
-            YuvImage yuv_image = new YuvImage(data, ImageFormat.NV21,
-                    previewWidth, previewHeight, null);
-            // Convert YuV to Jpeg
-            Rect rect = new Rect(0, 0, previewWidth, previewHeight);
-            ByteArrayOutputStream output_stream = new ByteArrayOutputStream();
-            yuv_image.compressToJpeg(rect, 100, output_stream);
-            // Convert from Jpeg to Bitmap
-            bitmapToSave = BitmapFactory.decodeByteArray(
-                    output_stream.toByteArray(), 0, output_stream.size());
-            System.gc();
+//            // Get the YuV image
+//            YuvImage yuv_image = new YuvImage(data, ImageFormat.NV21,
+//                    previewWidth, previewHeight, null);
+//            // Convert YuV to Jpeg
+//            Rect rect = new Rect(0, 0, previewWidth, previewHeight);
+//            ByteArrayOutputStream output_stream = new ByteArrayOutputStream();
+//            yuv_image.compressToJpeg(rect, 100, output_stream);
+//            // Convert from Jpeg to Bitmap
+//            bitmapToSave = BitmapFactory.decodeByteArray(
+//                    output_stream.toByteArray(), 0, output_stream.size());
+//        	System.gc();
 
             RectF selectedRect = _artemisMath.getSelectedLensBox();
             RectF greenRect = _artemisMath.getCurrentGreenBox();
@@ -342,7 +343,6 @@ public class CameraPreview14 extends ViewGroup {
         }
 
     };
-
     // private Size pictureSize;
 
     class MyTextureView extends TextureView {
@@ -573,12 +573,12 @@ public class CameraPreview14 extends ViewGroup {
 
             // initialize the buffer used for drawing the fullscreen bitmap and
             // enable preview callback
-//			PixelFormat p = new PixelFormat();
-//			PixelFormat.getPixelFormatInfo(parameters.getPreviewFormat(), p);
-//			frameBufSize = (previewWidth * previewHeight * p.bitsPerPixel) / 8;
-//			if (frameBuffer == null || frameBuffer.length != frameBufSize)
-//				frameBuffer = new byte[frameBufSize];
-//			tempFrameBitmap = new int[frameBufSize];
+			PixelFormat p = new PixelFormat();
+			PixelFormat.getPixelFormatInfo(parameters.getPreviewFormat(), p);
+			frameBufSize = (previewWidth * previewHeight * p.bitsPerPixel) / 8;
+			if (frameBuffer == null || frameBuffer.length != frameBufSize)
+				frameBuffer = new byte[frameBufSize];
+			tempFrameBitmap = new int[frameBufSize];
 
             mCamera.setParameters(parameters);
 
@@ -964,6 +964,47 @@ public class CameraPreview14 extends ViewGroup {
         savePicture(blankBmp, showGpsDetails);
     }
 
+	final static public void decodeYUV420SP2(int[] rgb, byte[] yuv420sp,
+			int width, int height) {
+		final int frameSize = width * height;
+
+		if (rgb != null) {
+			for (int j = 0, yp = 0; j < height; j++) {
+				int uvp = frameSize + (j >> 1) * width, u = 0, v = 0;
+				for (int i = 0; i < width; i++, yp++) {
+					int y = (0xff & ((int) yuv420sp[yp])) - 16;
+					if (y < 0)
+						y = 0;
+					if ((i & 1) == 0) {
+						v = (0xff & yuv420sp[uvp++]) - 128;
+						u = (0xff & yuv420sp[uvp++]) - 128;
+					}
+
+					int y1192 = 1192 * y;
+					int r = (y1192 + 1634 * v);
+					int g = (y1192 - 833 * v - 400 * u);
+					int b = (y1192 + 2066 * u);
+
+					if (r < 0)
+						r = 0;
+					else if (r > 262143)
+						r = 262143;
+					if (g < 0)
+						g = 0;
+					else if (g > 262143)
+						g = 262143;
+					if (b < 0)
+						b = 0;
+					else if (b > 262143)
+						b = 262143;
+
+					rgb[yp] = 0xff000000 | ((r << 6) & 0xff0000)
+							| ((g >> 2) & 0xff00) | ((b >> 10) & 0xff);
+				}
+			}
+		}
+	}
+    
     public void clearFullScreenTempFrame() {
         // tempFrameBitmap = new int[frameBufSize];
     }
