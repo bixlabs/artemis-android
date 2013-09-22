@@ -294,7 +294,7 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                     exposureLabels[i] =
                             numberFormat.format(CameraPreview14.supportedExposureLevels
-                                    .get(i) * CameraPreview14.exposureStep) + " eV";
+                                    .get(i) * CameraPreview14.exposureStep) + " EV";
                 }
                 exposurePref.setEntries(exposureLabels);
                 exposurePref.setEntryValues(exposureValues);
