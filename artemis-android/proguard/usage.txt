@@ -58,10 +58,10 @@ com.chemicalwedding.artemis.ArtemisPreferences:
 com.chemicalwedding.artemis.BuildConfig
 com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
-    105:106:public void surfaceDestroyed(android.view.SurfaceHolder)
-    109:109:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
-    1010:1010:public void clearFullScreenTempFrame()
-    1016:1019:public void resetDigitalZoomLevel()
+    107:108:public void surfaceDestroyed(android.view.SurfaceHolder)
+    111:111:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
+    969:969:public void clearFullScreenTempFrame()
+    975:978:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed

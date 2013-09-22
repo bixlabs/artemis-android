@@ -25496,11 +25496,8 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 982):
+Constant Pool (count = 955):
   + Integer [-16777216]
-  + Integer [65280]
-  + Integer [262143]
-  + Integer [16711680]
   + Integer [2130837506]
   + Integer [2131099679]
   + Integer [2131099709]
@@ -25581,8 +25578,6 @@ Constant Pool (count = 982):
   + String [torch]
   + String [x]
   + String [yyyy-MM-dd HHmmss.S]
-  + Class [[B]
-  + Class [[I]
   + Class [android/app/Activity]
   + Class [android/content/Context]
   + Class [android/content/SharedPreferences]
@@ -25597,7 +25592,6 @@ Constant Pool (count = 982):
   + Class [android/graphics/Matrix$ScaleToFit]
   + Class [android/graphics/Paint]
   + Class [android/graphics/Paint$Align]
-  + Class [android/graphics/PixelFormat]
   + Class [android/graphics/Typeface]
   + Class [android/hardware/Camera]
   + Class [android/hardware/Camera$CameraInfo]
@@ -25656,7 +25650,6 @@ Constant Pool (count = 982):
   + Fieldref [android/graphics/Matrix$ScaleToFit.CENTER Landroid/graphics/Matrix$ScaleToFit;]
   + Fieldref [android/graphics/Paint$Align.CENTER Landroid/graphics/Paint$Align;]
   + Fieldref [android/graphics/Paint$Align.LEFT Landroid/graphics/Paint$Align;]
-  + Fieldref [android/graphics/PixelFormat.bitsPerPixel I]
   + Fieldref [android/graphics/Typeface.DEFAULT_BOLD Landroid/graphics/Typeface;]
   + Fieldref [android/hardware/Camera$CameraInfo.facing I]
   + Fieldref [android/hardware/Camera$Size.height I]
@@ -25681,11 +25674,8 @@ Constant Pool (count = 982):
   + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
   + Fieldref [com/chemicalwedding/artemis/bg.D I]
   + Fieldref [com/chemicalwedding/artemis/bg.E I]
-  + Fieldref [com/chemicalwedding/artemis/bg.F [I]
-  + Fieldref [com/chemicalwedding/artemis/bg.G I]
-  + Fieldref [com/chemicalwedding/artemis/bg.H [B]
-  + Fieldref [com/chemicalwedding/artemis/bg.I Lcom/chemicalwedding/artemis/ArtemisApplication;]
-  + Fieldref [com/chemicalwedding/artemis/bg.J Ljava/lang/String;]
+  + Fieldref [com/chemicalwedding/artemis/bg.F Lcom/chemicalwedding/artemis/ArtemisApplication;]
+  + Fieldref [com/chemicalwedding/artemis/bg.G Ljava/lang/String;]
   + Fieldref [com/chemicalwedding/artemis/bg.a Ljava/util/List;]
   + Fieldref [com/chemicalwedding/artemis/bg.b Ljava/util/List;]
   + Fieldref [com/chemicalwedding/artemis/bg.c Ljava/util/List;]
@@ -25744,8 +25734,6 @@ Constant Pool (count = 982):
   + Methodref [android/graphics/Paint.setTextScaleX (F)V]
   + Methodref [android/graphics/Paint.setTextSize (F)V]
   + Methodref [android/graphics/Paint.setTypeface (Landroid/graphics/Typeface;)Landroid/graphics/Typeface;]
-  + Methodref [android/graphics/PixelFormat.<init> ()V]
-  + Methodref [android/graphics/PixelFormat.getPixelFormatInfo (ILandroid/graphics/PixelFormat;)V]
   + Methodref [android/hardware/Camera.autoFocus (Landroid/hardware/Camera$AutoFocusCallback;)V]
   + Methodref [android/hardware/Camera.getCameraInfo (ILandroid/hardware/Camera$CameraInfo;)V]
   + Methodref [android/hardware/Camera.getNumberOfCameras ()I]
@@ -25890,11 +25878,8 @@ Constant Pool (count = 982):
   + NameAndType [D I]
   + NameAndType [DEFAULT_BOLD Landroid/graphics/Typeface;]
   + NameAndType [E I]
-  + NameAndType [F [I]
-  + NameAndType [G I]
-  + NameAndType [H [B]
-  + NameAndType [I Lcom/chemicalwedding/artemis/ArtemisApplication;]
-  + NameAndType [J Ljava/lang/String;]
+  + NameAndType [F Lcom/chemicalwedding/artemis/ArtemisApplication;]
+  + NameAndType [G Ljava/lang/String;]
   + NameAndType [JPEG Landroid/graphics/Bitmap$CompressFormat;]
   + NameAndType [LEFT Landroid/graphics/Paint$Align;]
   + NameAndType [RGB_565 Landroid/graphics/Bitmap$Config;]
@@ -25917,7 +25902,6 @@ Constant Pool (count = 982):
   + NameAndType [b (Ljava/lang/Runnable;)V]
   + NameAndType [b Landroid/widget/TextView;]
   + NameAndType [b Ljava/util/List;]
-  + NameAndType [bitsPerPixel I]
   + NameAndType [c Landroid/widget/TextView;]
   + NameAndType [c Ljava/util/List;]
   + NameAndType [centerX ()F]
@@ -25973,7 +25957,6 @@ Constant Pool (count = 982):
   + NameAndType [getMinExposureCompensation ()I]
   + NameAndType [getNumberOfCameras ()I]
   + NameAndType [getParameters ()Landroid/hardware/Camera$Parameters;]
-  + NameAndType [getPixelFormatInfo (ILandroid/graphics/PixelFormat;)V]
   + NameAndType [getPreviewFormat ()I]
   + NameAndType [getResources ()Landroid/content/res/Resources;]
   + NameAndType [getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
@@ -26126,7 +26109,6 @@ Constant Pool (count = 982):
   + Utf8 [(IIFFF)V]
   + Utf8 [(IIII)V]
   + Utf8 [(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
-  + Utf8 [(ILandroid/graphics/PixelFormat;)V]
   + Utf8 [(ILandroid/hardware/Camera$CameraInfo;)V]
   + Utf8 [(Landroid/content/Context;)V]
   + Utf8 [(Landroid/content/Context;)[Ljava/lang/String;]
@@ -26149,7 +26131,6 @@ Constant Pool (count = 982):
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;)V]
-  + Utf8 [(Lcom/chemicalwedding/artemis/bg;)[I]
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;Landroid/content/Context;)V]
   + Utf8 [(Ljava/lang/CharSequence;)V]
   + Utf8 [(Ljava/lang/Integer;)V]
@@ -26174,7 +26155,6 @@ Constant Pool (count = 982):
   + Utf8 [(Ljava/util/List;II)Landroid/hardware/Camera$Size;]
   + Utf8 [(Z)V]
   + Utf8 [(ZIIII)V]
-  + Utf8 [([I[BII)V]
   + Utf8 [.jpg]
   + Utf8 [/]
   + Utf8 [/1,]
@@ -26202,9 +26182,7 @@ Constant Pool (count = 982):
   + Utf8 [GPSLatitudeRef]
   + Utf8 [GPSLongitude]
   + Utf8 [GPSLongitudeRef]
-  + Utf8 [H]
   + Utf8 [I]
-  + Utf8 [J]
   + Utf8 [JPEG]
   + Utf8 [LEFT]
   + Utf8 [Landroid/graphics/Bitmap$CompressFormat;]
@@ -26240,9 +26218,7 @@ Constant Pool (count = 982):
   + Utf8 [W]
   + Utf8 [Z]
   + Utf8 [Zoom ScaleFactor: ]
-  + Utf8 [[B]
   + Utf8 [[F]
-  + Utf8 [[I]
   + Utf8 [a]
   + Utf8 [abs]
   + Utf8 [add]
@@ -26261,7 +26237,6 @@ Constant Pool (count = 982):
   + Utf8 [android/graphics/Matrix$ScaleToFit]
   + Utf8 [android/graphics/Paint]
   + Utf8 [android/graphics/Paint$Align]
-  + Utf8 [android/graphics/PixelFormat]
   + Utf8 [android/graphics/Typeface]
   + Utf8 [android/hardware/Camera]
   + Utf8 [android/hardware/Camera$CameraInfo]
@@ -26282,7 +26257,6 @@ Constant Pool (count = 982):
   + Utf8 [autoFocus]
   + Utf8 [autoFocusOnPicture]
   + Utf8 [b]
-  + Utf8 [bitsPerPixel]
   + Utf8 [c]
   + Utf8 [cameraLensHAngle]
   + Utf8 [cameraLensVAngle]
@@ -26341,7 +26315,6 @@ Constant Pool (count = 982):
   + Utf8 [getMinExposureCompensation]
   + Utf8 [getNumberOfCameras]
   + Utf8 [getParameters]
-  + Utf8 [getPixelFormatInfo]
   + Utf8 [getPreviewFormat]
   + Utf8 [getResources]
   + Utf8 [getSharedPreferences]
@@ -26475,7 +26448,7 @@ Constant Pool (count = 982):
   + Utf8 [yyyy-MM-dd HHmmss.S]
   + Utf8 [z]
 
-Fields (count = 36):
+Fields (count = 33):
   + Field:        a Ljava/util/List;
     Access flags: 0xc
       = protected static java.util.List a
@@ -26548,15 +26521,6 @@ Fields (count = 36):
   + Field:        s Z
     Access flags: 0xc
       = protected static boolean s
-  + Field:        F [I
-    Access flags: 0x2
-      = private int[] F
-  + Field:        G I
-    Access flags: 0x2
-      = private int G
-  + Field:        H [B
-    Access flags: 0x2
-      = private byte[] H
   + Field:        t I
     Access flags: 0x4
       = protected int t
@@ -26569,12 +26533,12 @@ Fields (count = 36):
   + Field:        w Landroid/graphics/Bitmap;
     Access flags: 0x4
       = protected android.graphics.Bitmap w
-  + Field:        I Lcom/chemicalwedding/artemis/ArtemisApplication;
+  + Field:        F Lcom/chemicalwedding/artemis/ArtemisApplication;
     Access flags: 0x2
-      = private com.chemicalwedding.artemis.ArtemisApplication I
-  + Field:        J Ljava/lang/String;
+      = private com.chemicalwedding.artemis.ArtemisApplication F
+  + Field:        G Ljava/lang/String;
     Access flags: 0x12
-      = private final java.lang.String J
+      = private final java.lang.String G
   + Field:        x Landroid/hardware/Camera$AutoFocusCallback;
     Access flags: 0x10
       = final android.hardware.Camera$AutoFocusCallback x
@@ -26585,26 +26549,26 @@ Fields (count = 36):
     Access flags: 0x4
       = protected boolean z
 
-Methods (count = 27):
+Methods (count = 25):
   - Method:       <clinit>()V
     Access flags: 0x8
       = static void <clinit>()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 21, locals = 0, stack = 1):
       [0] iconst_0
-      [1] putstatic #198
+      [1] putstatic #188
         + Fieldref [com/chemicalwedding/artemis/bg.e Z]
       [4] iconst_0
-      [5] putstatic #199
+      [5] putstatic #189
         + Fieldref [com/chemicalwedding/artemis/bg.f Z]
       [8] iconst_0
-      [9] putstatic #200
+      [9] putstatic #190
         + Fieldref [com/chemicalwedding/artemis/bg.g Z]
       [12] iconst_0
-      [13] putstatic #205
+      [13] putstatic #195
         + Fieldref [com/chemicalwedding/artemis/bg.l Z]
       [16] iconst_0
-      [17] putstatic #206
+      [17] putstatic #196
         + Fieldref [com/chemicalwedding/artemis/bg.m Z]
       [20] return
       Code attribute exceptions (count = 0):
@@ -26617,91 +26581,91 @@ Methods (count = 27):
       [0] aload_0 v0
       [1] aload_1 v1
       [2] aconst_null
-      [3] invokespecial #293
+      [3] invokespecial #281
         + Methodref [android/view/ViewGroup.<init> (Landroid/content/Context;Landroid/util/AttributeSet;)V]
       [6] aload_0 v0
-      [7] invokestatic #312
+      [7] invokestatic #300
         + Methodref [com/chemicalwedding/artemis/be.n ()Lcom/chemicalwedding/artemis/be;]
-      [10] putfield #186
+      [10] putfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
       [13] aload_0 v0
       [14] fconst_1
-      [15] putfield #209
+      [15] putfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
       [18] aload_0 v0
       [19] iconst_0
-      [20] putfield #214
+      [20] putfield #204
         + Fieldref [com/chemicalwedding/artemis/bg.v I]
       [23] aload_0 v0
-      [24] new #123
+      [24] new #117
         + Class [com/chemicalwedding/artemis/bh]
       [27] dup
       [28] aload_0 v0
-      [29] invokespecial #331
+      [29] invokespecial #319
         + Methodref [com/chemicalwedding/artemis/bh.<init> (Lcom/chemicalwedding/artemis/bg;)V]
-      [32] putfield #216
+      [32] putfield #206
         + Fieldref [com/chemicalwedding/artemis/bg.x Landroid/hardware/Camera$AutoFocusCallback;]
       [35] aload_0 v0
-      [36] new #124
+      [36] new #118
         + Class [com/chemicalwedding/artemis/bi]
       [39] dup
       [40] aload_0 v0
-      [41] invokespecial #332
+      [41] invokespecial #320
         + Methodref [com/chemicalwedding/artemis/bi.<init> (Lcom/chemicalwedding/artemis/bg;)V]
-      [44] putfield #217
+      [44] putfield #207
         + Fieldref [com/chemicalwedding/artemis/bg.y Landroid/hardware/Camera$PreviewCallback;]
       [47] aload_0 v0
       [48] iconst_0
-      [49] putfield #218
+      [49] putfield #208
         + Fieldref [com/chemicalwedding/artemis/bg.z Z]
       [52] aload_0 v0
       [53] aload_1 v1
-      [54] checkcast #87
+      [54] checkcast #82
         + Class [android/app/Activity]
-      [57] invokevirtual #219
+      [57] invokevirtual #209
         + Methodref [android/app/Activity.getApplication ()Landroid/app/Application;]
-      [60] checkcast #118
+      [60] checkcast #112
         + Class [com/chemicalwedding/artemis/ArtemisApplication]
-      [63] putfield #192
-        + Fieldref [com/chemicalwedding/artemis/bg.I Lcom/chemicalwedding/artemis/ArtemisApplication;]
+      [63] putfield #182
+        + Fieldref [com/chemicalwedding/artemis/bg.F Lcom/chemicalwedding/artemis/ArtemisApplication;]
       [66] aload_0 v0
-      [67] new #128
+      [67] new #122
         + Class [com/chemicalwedding/artemis/bn]
       [70] dup
       [71] aload_0 v0
       [72] aload_1 v1
-      [73] invokespecial #336
+      [73] invokespecial #324
         + Methodref [com/chemicalwedding/artemis/bn.<init> (Lcom/chemicalwedding/artemis/bg;Landroid/content/Context;)V]
-      [76] putfield #185
+      [76] putfield #178
         + Fieldref [com/chemicalwedding/artemis/bg.B Landroid/view/TextureView;]
       [79] aload_0 v0
       [80] aload_0 v0
-      [81] getfield #185
+      [81] getfield #178
         + Fieldref [com/chemicalwedding/artemis/bg.B Landroid/view/TextureView;]
-      [84] invokevirtual #319
+      [84] invokevirtual #307
         + Methodref [com/chemicalwedding/artemis/bg.addView (Landroid/view/View;)V]
-      [87] invokestatic #327
+      [87] invokestatic #315
         + Methodref [com/chemicalwedding/artemis/bg.h ()Landroid/hardware/Camera;]
       [90] dup
       [91] astore_2 v2
       [92] ifnull +15 (target=107)
       [95] aload_0 v0
       [96] aload_2 v2
-      [97] invokevirtual #257
+      [97] invokevirtual #245
         + Methodref [android/hardware/Camera.getParameters ()Landroid/hardware/Camera$Parameters;]
-      [100] invokespecial #317
+      [100] invokespecial #305
         + Methodref [com/chemicalwedding/artemis/bg.a (Landroid/hardware/Camera$Parameters;)V]
       [103] aload_2 v2
-      [104] invokevirtual #259
+      [104] invokevirtual #247
         + Methodref [android/hardware/Camera.release ()V]
       [107] aload_0 v0
       [108] aload_1 v1
-      [109] ldc #7
+      [109] ldc #4
         + Integer [2131099709]
-      [111] invokevirtual #223
+      [111] invokevirtual #213
         + Methodref [android/content/Context.getString (I)Ljava/lang/String;]
-      [114] putfield #193
-        + Fieldref [com/chemicalwedding/artemis/bg.J Ljava/lang/String;]
+      [114] putfield #183
+        + Fieldref [com/chemicalwedding/artemis/bg.G Ljava/lang/String;]
       [117] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
@@ -26713,124 +26677,124 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 180, locals = 4, stack = 3):
       [0] aload_1 v1
-      [1] invokevirtual #272
+      [1] invokevirtual #260
         + Methodref [android/hardware/Camera$Parameters.getSupportedPreviewSizes ()Ljava/util/List;]
-      [4] putstatic #197
+      [4] putstatic #187
         + Fieldref [com/chemicalwedding/artemis/bg.d Ljava/util/List;]
-      [7] new #140
+      [7] new #134
         + Class [java/lang/StringBuilder]
       [10] dup
-      [11] ldc #51
+      [11] ldc #48
         + String [Preview sizes supported: ]
-      [13] invokespecial #353
+      [13] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [16] getstatic #197
+      [16] getstatic #187
         + Fieldref [com/chemicalwedding/artemis/bg.d Ljava/util/List;]
-      [19] invokeinterface #379
+      [19] invokeinterface #367
         + InterfaceMethodref [java/util/List.size ()I]
-      [24] invokevirtual #355
+      [24] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [27] invokevirtual #358
+      [27] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [30] pop
-      [31] getstatic #197
+      [31] getstatic #187
         + Fieldref [com/chemicalwedding/artemis/bg.d Ljava/util/List;]
-      [34] invokeinterface #378
+      [34] invokeinterface #366
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [39] astore_3 v3
       [40] goto +43 (target=83)
       [43] aload_3 v3
-      [44] invokeinterface #375
+      [44] invokeinterface #363
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [49] checkcast #106
+      [49] checkcast #100
         + Class [android/hardware/Camera$Size]
       [52] astore_2 v2
-      [53] new #140
+      [53] new #134
         + Class [java/lang/StringBuilder]
       [56] dup
       [57] aload_2 v2
-      [58] getfield #168
+      [58] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
-      [61] invokestatic #351
+      [61] invokestatic #339
         + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
-      [64] invokespecial #353
+      [64] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [67] ldc #83
+      [67] ldc #80
         + String [x]
-      [69] invokevirtual #357
+      [69] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [72] aload_2 v2
-      [73] getfield #167
+      [73] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
-      [76] invokevirtual #355
+      [76] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [79] invokevirtual #358
+      [79] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [82] pop
       [83] aload_3 v3
-      [84] invokeinterface #374
+      [84] invokeinterface #362
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [89] ifne -46 (target=43)
-      [92] getstatic #197
+      [92] getstatic #187
         + Fieldref [com/chemicalwedding/artemis/bg.d Ljava/util/List;]
       [95] aload_0 v0
-      [96] getfield #188
+      [96] getfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
       [99] aload_0 v0
-      [100] getfield #187
+      [100] getfield #180
         + Fieldref [com/chemicalwedding/artemis/bg.D I]
-      [103] invokestatic #318
+      [103] invokestatic #306
         + Methodref [com/chemicalwedding/artemis/bg.a (Ljava/util/List;II)Landroid/hardware/Camera$Size;]
-      [106] putstatic #207
+      [106] putstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [109] new #140
+      [109] new #134
         + Class [java/lang/StringBuilder]
       [112] dup
-      [113] ldc #50
+      [113] ldc #47
         + String [Preview size selected: ]
-      [115] invokespecial #353
+      [115] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [118] getstatic #207
+      [118] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [121] getfield #168
+      [121] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
-      [124] invokevirtual #355
+      [124] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [127] ldc #83
+      [127] ldc #80
         + String [x]
-      [129] invokevirtual #357
+      [129] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [132] getstatic #207
+      [132] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [135] getfield #167
+      [135] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
-      [138] invokevirtual #355
+      [138] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [141] invokevirtual #358
+      [141] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [144] pop
       [145] aload_0 v0
-      [146] getstatic #207
+      [146] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [149] getfield #168
+      [149] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
-      [152] putfield #213
+      [152] putfield #203
         + Fieldref [com/chemicalwedding/artemis/bg.u I]
       [155] aload_0 v0
-      [156] getstatic #207
+      [156] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [159] getfield #167
+      [159] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
-      [162] putfield #212
+      [162] putfield #202
         + Fieldref [com/chemicalwedding/artemis/bg.t I]
       [165] aload_1 v1
-      [166] invokevirtual #271
+      [166] invokevirtual #259
         + Methodref [android/hardware/Camera$Parameters.getSupportedFocusModes ()Ljava/util/List;]
-      [169] ldc #59
+      [169] ldc #56
         + String [auto]
-      [171] invokeinterface #377
+      [171] invokeinterface #365
         + InterfaceMethodref [java/util/List.contains (Ljava/lang/Object;)Z]
-      [176] putstatic #205
+      [176] putstatic #195
         + Fieldref [com/chemicalwedding/artemis/bg.l Z]
       [179] return
       Code attribute exceptions (count = 0):
@@ -26858,46 +26822,46 @@ Methods (count = 27):
       [14] iconst_0
       [15] istore_2 v2
       [16] aload_0 v0
-      [17] invokeinterface #378
+      [17] invokeinterface #366
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [22] astore v5
       [24] goto +52 (target=76)
       [27] aload v5
-      [29] invokeinterface #375
+      [29] invokeinterface #363
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [34] checkcast #106
+      [34] checkcast #100
         + Class [android/hardware/Camera$Size]
       [37] dup
       [38] astore_0 v0
-      [39] getfield #168
+      [39] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
       [42] i2d
       [43] aload_0 v0
-      [44] getfield #167
+      [44] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
       [47] i2d
       [48] ddiv
       [49] dload_3 v3
       [50] dsub
-      [51] invokestatic #345
+      [51] invokestatic #333
         + Methodref [java/lang/Math.abs (D)D]
-      [54] ldc2_w #150
+      [54] ldc2_w #144
         + Double [0.1]
       [57] dcmpl
       [58] ifgt +18 (target=76)
       [61] aload_0 v0
-      [62] getfield #168
+      [62] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
       [65] iload_2 v2
       [66] ificmple +10 (target=76)
       [69] aload_0 v0
       [70] astore_1 v1
       [71] aload_0 v0
-      [72] getfield #168
+      [72] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
       [75] istore_2 v2
       [76] aload v5
-      [78] invokeinterface #374
+      [78] invokeinterface #362
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [83] ifne -56 (target=27)
       [86] aload_1 v1
@@ -26914,23 +26878,23 @@ Methods (count = 27):
       = public final void a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 29, locals = 1, stack = 2):
-      [0] getstatic #205
+      [0] getstatic #195
         + Fieldref [com/chemicalwedding/artemis/bg.l Z]
       [3] ifeq +21 (target=24)
-      [6] getstatic #206
+      [6] getstatic #196
         + Fieldref [com/chemicalwedding/artemis/bg.m Z]
       [9] ifeq +15 (target=24)
       [12] aload_0 v0
-      [13] getfield #184
+      [13] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [16] aload_0 v0
-      [17] getfield #216
+      [17] getfield #206
         + Fieldref [com/chemicalwedding/artemis/bg.x Landroid/hardware/Camera$AutoFocusCallback;]
-      [20] invokevirtual #254
+      [20] invokevirtual #242
         + Methodref [android/hardware/Camera.autoFocus (Landroid/hardware/Camera$AutoFocusCallback;)V]
       [23] return
       [24] aload_0 v0
-      [25] invokespecial #322
+      [25] invokespecial #310
         + Methodref [com/chemicalwedding/artemis/bg.g ()V]
       [28] return
       Code attribute exceptions (count = 0):
@@ -26944,34 +26908,34 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 47, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [4] ifnull +42 (target=46)
-      [7] getstatic #205
+      [7] getstatic #195
         + Fieldref [com/chemicalwedding/artemis/bg.l Z]
       [10] ifne +12 (target=22)
       [13] iload_1 v1
       [14] ifeq +8 (target=22)
       [17] aload_0 v0
-      [18] invokespecial #322
+      [18] invokespecial #310
         + Methodref [com/chemicalwedding/artemis/bg.g ()V]
       [21] return
       [22] iload_1 v1
       [23] ifeq +15 (target=38)
       [26] aload_0 v0
-      [27] getfield #184
+      [27] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [30] aload_0 v0
-      [31] getfield #216
+      [31] getfield #206
         + Fieldref [com/chemicalwedding/artemis/bg.x Landroid/hardware/Camera$AutoFocusCallback;]
-      [34] invokevirtual #254
+      [34] invokevirtual #242
         + Methodref [android/hardware/Camera.autoFocus (Landroid/hardware/Camera$AutoFocusCallback;)V]
       [37] return
       [38] aload_0 v0
-      [39] getfield #184
+      [39] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [42] aconst_null
-      [43] invokevirtual #254
+      [43] invokevirtual #242
         + Methodref [android/hardware/Camera.autoFocus (Landroid/hardware/Camera$AutoFocusCallback;)V]
       [46] return
       Code attribute exceptions (count = 0):
@@ -26986,15 +26950,15 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 16, locals = 1, stack = 4):
       [0] aload_0 v0
-      [1] getfield #192
-        + Fieldref [com/chemicalwedding/artemis/bg.I Lcom/chemicalwedding/artemis/ArtemisApplication;]
-      [4] new #125
+      [1] getfield #182
+        + Fieldref [com/chemicalwedding/artemis/bg.F Lcom/chemicalwedding/artemis/ArtemisApplication;]
+      [4] new #119
         + Class [com/chemicalwedding/artemis/bk]
       [7] dup
       [8] aload_0 v0
-      [9] invokespecial #333
+      [9] invokespecial #321
         + Methodref [com/chemicalwedding/artemis/bk.<init> (Lcom/chemicalwedding/artemis/bg;)V]
-      [12] invokevirtual #298
+      [12] invokevirtual #286
         + Methodref [com/chemicalwedding/artemis/ArtemisApplication.b (Ljava/lang/Runnable;)V]
       [15] return
       Code attribute exceptions (count = 0):
@@ -27006,13 +26970,13 @@ Methods (count = 27):
     + Code attribute instructions (code length = 82, locals = 5, stack = 4):
       [0] aconst_null
       [1] astore_1 v1
-      [2] new #104
+      [2] new #98
         + Class [android/hardware/Camera$CameraInfo]
       [5] dup
-      [6] invokespecial #264
+      [6] invokespecial #252
         + Methodref [android/hardware/Camera$CameraInfo.<init> ()V]
       [9] astore_2 v2
-      [10] invokestatic #256
+      [10] invokestatic #244
         + Methodref [android/hardware/Camera.getNumberOfCameras ()I]
       [13] istore_0 v0
       [14] iconst_0
@@ -27020,38 +26984,38 @@ Methods (count = 27):
       [16] goto +59 (target=75)
       [19] iload_3 v3
       [20] aload_2 v2
-      [21] invokestatic #255
+      [21] invokestatic #243
         + Methodref [android/hardware/Camera.getCameraInfo (ILandroid/hardware/Camera$CameraInfo;)V]
       [24] aload_2 v2
-      [25] getfield #166
+      [25] getfield #159
         + Fieldref [android/hardware/Camera$CameraInfo.facing I]
       [28] ifeq +8 (target=36)
       [31] iload_0 v0
       [32] iconst_1
       [33] ificmpne +39 (target=72)
       [36] iload_3 v3
-      [37] invokestatic #258
+      [37] invokestatic #246
         + Methodref [android/hardware/Camera.open (I)Landroid/hardware/Camera;]
       [40] astore_1 v1
       [41] goto +31 (target=72)
       [44] astore v4
-      [46] ldc #36
+      [46] ldc #33
         + String [CameraPreview]
-      [48] new #140
+      [48] new #134
         + Class [java/lang/StringBuilder]
       [51] dup
-      [52] ldc #35
+      [52] ldc #32
         + String [Camera failed to open: ]
-      [54] invokespecial #353
+      [54] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [57] aload v4
-      [59] invokevirtual #347
+      [59] invokevirtual #335
         + Methodref [java/lang/RuntimeException.getLocalizedMessage ()Ljava/lang/String;]
-      [62] invokevirtual #357
+      [62] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [65] invokevirtual #358
+      [65] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [68] invokestatic #287
+      [68] invokestatic #275
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [71] pop
       [72] iinc v3, 1
@@ -27074,78 +27038,78 @@ Methods (count = 27):
     Access flags: 0x11
       = public final void b()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 797, locals = 7, stack = 6):
+    + Code attribute instructions (code length = 721, locals = 7, stack = 6):
       [0] aload_0 v0
-      [1] invokestatic #327
+      [1] invokestatic #315
         + Methodref [com/chemicalwedding/artemis/bg.h ()Landroid/hardware/Camera;]
-      [4] putfield #184
+      [4] putfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [7] aload_0 v0
-      [8] getfield #184
+      [8] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [11] ifnull +785 (target=796)
+      [11] ifnull +709 (target=720)
       [14] aload_0 v0
       [15] iconst_0
-      [16] putfield #218
+      [16] putfield #208
         + Fieldref [com/chemicalwedding/artemis/bg.z Z]
       [19] aload_0 v0
-      [20] getfield #184
+      [20] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [23] invokevirtual #257
+      [23] invokevirtual #245
         + Methodref [android/hardware/Camera.getParameters ()Landroid/hardware/Camera$Parameters;]
       [26] astore_1 v1
       [27] aload_0 v0
-      [28] invokevirtual #325
+      [28] invokevirtual #313
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [31] invokevirtual #220
+      [31] invokevirtual #210
         + Methodref [android/content/Context.getApplicationContext ()Landroid/content/Context;]
-      [34] ldc #121
+      [34] ldc #115
         + Class [com/chemicalwedding/artemis/bf]
-      [36] invokevirtual #341
+      [36] invokevirtual #329
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [39] iconst_0
-      [40] invokevirtual #222
+      [40] invokevirtual #212
         + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [43] astore_2 v2
       [44] aload_1 v1
-      [45] invokevirtual #268
+      [45] invokevirtual #256
         + Methodref [android/hardware/Camera$Parameters.getMinExposureCompensation ()I]
       [48] istore_3 v3
       [49] aload_1 v1
-      [50] invokevirtual #267
+      [50] invokevirtual #255
         + Methodref [android/hardware/Camera$Parameters.getMaxExposureCompensation ()I]
       [53] istore v4
       [55] aload_1 v1
-      [56] invokevirtual #265
+      [56] invokevirtual #253
         + Methodref [android/hardware/Camera$Parameters.getExposureCompensationStep ()F]
-      [59] putstatic #208
+      [59] putstatic #198
         + Fieldref [com/chemicalwedding/artemis/bg.o F]
-      [62] new #140
+      [62] new #134
         + Class [java/lang/StringBuilder]
       [65] dup
-      [66] ldc #34
+      [66] ldc #31
         + String [Camera Exposure min: ]
-      [68] invokespecial #353
+      [68] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [71] iload_3 v3
-      [72] invokevirtual #355
+      [72] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [75] ldc #27
+      [75] ldc #24
         + String [ max: ]
-      [77] invokevirtual #357
+      [77] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [80] iload v4
-      [82] invokevirtual #355
+      [82] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [85] invokevirtual #358
+      [85] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [88] pop
-      [89] new #144
+      [89] new #138
         + Class [java/util/ArrayList]
       [92] dup
-      [93] invokespecial #364
+      [93] invokespecial #352
         + Methodref [java/util/ArrayList.<init> ()V]
-      [96] putstatic #194
+      [96] putstatic #184
         + Fieldref [com/chemicalwedding/artemis/bg.a Ljava/util/List;]
       [99] iconst_0
       [100] istore v5
@@ -27156,12 +27120,12 @@ Methods (count = 27):
       [109] ifne +7 (target=116)
       [112] iload v5
       [114] istore v6
-      [116] getstatic #194
+      [116] getstatic #184
         + Fieldref [com/chemicalwedding/artemis/bg.a Ljava/util/List;]
       [119] iload_3 v3
-      [120] invokestatic #344
+      [120] invokestatic #332
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [123] invokeinterface #376
+      [123] invokeinterface #364
         + InterfaceMethodref [java/util/List.add (Ljava/lang/Object;)Z]
       [128] pop
       [129] iinc v5, 1
@@ -27169,454 +27133,400 @@ Methods (count = 27):
       [135] iload_3 v3
       [136] iload v4
       [138] ificmple -30 (target=108)
-      [141] getstatic #211
+      [141] getstatic #201
         + Fieldref [com/chemicalwedding/artemis/bg.s Z]
       [144] ifeq +12 (target=156)
       [147] aload_1 v1
-      [148] ldc #66
+      [148] ldc #63
         + String [mono]
-      [150] invokevirtual #275
+      [150] invokevirtual #263
         + Methodref [android/hardware/Camera$Parameters.setColorEffect (Ljava/lang/String;)V]
       [153] goto +9 (target=162)
       [156] aload_1 v1
-      [157] ldc #67
+      [157] ldc #64
         + String [none]
-      [159] invokevirtual #275
+      [159] invokevirtual #263
         + Methodref [android/hardware/Camera$Parameters.setColorEffect (Ljava/lang/String;)V]
       [162] aload_1 v1
-      [163] invokevirtual #273
+      [163] invokevirtual #261
         + Methodref [android/hardware/Camera$Parameters.getSupportedWhiteBalance ()Ljava/util/List;]
-      [166] putstatic #195
+      [166] putstatic #185
         + Fieldref [com/chemicalwedding/artemis/bg.b Ljava/util/List;]
       [169] aload_1 v1
-      [170] invokevirtual #270
+      [170] invokevirtual #258
         + Methodref [android/hardware/Camera$Parameters.getSupportedFlashModes ()Ljava/util/List;]
       [173] dup
-      [174] putstatic #196
+      [174] putstatic #186
         + Fieldref [com/chemicalwedding/artemis/bg.c Ljava/util/List;]
       [177] ifnull +60 (target=237)
-      [180] getstatic #196
+      [180] getstatic #186
         + Fieldref [com/chemicalwedding/artemis/bg.c Ljava/util/List;]
-      [183] invokeinterface #378
+      [183] invokeinterface #366
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [188] astore_3 v3
       [189] goto +10 (target=199)
       [192] aload_3 v3
-      [193] invokeinterface #375
+      [193] invokeinterface #363
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
       [198] pop
       [199] aload_3 v3
-      [200] invokeinterface #374
+      [200] invokeinterface #362
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [205] ifne -13 (target=192)
       [208] aload_2 v2
-      [209] ldc #63
+      [209] ldc #60
         + String [flashEnabled]
       [211] iconst_0
-      [212] invokeinterface #369
+      [212] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [217] iconst_0
       [218] istore_3 v3
       [219] ifeq +12 (target=231)
       [222] aload_1 v1
-      [223] ldc #82
+      [223] ldc #79
         + String [torch]
-      [225] invokevirtual #277
+      [225] invokevirtual #265
         + Methodref [android/hardware/Camera$Parameters.setFlashMode (Ljava/lang/String;)V]
       [228] goto +9 (target=237)
       [231] aload_1 v1
-      [232] ldc #68
+      [232] ldc #65
         + String [off]
-      [234] invokevirtual #277
+      [234] invokevirtual #265
         + Methodref [android/hardware/Camera$Parameters.setFlashMode (Ljava/lang/String;)V]
       [237] aload_2 v2
-      [238] ldc #70
+      [238] ldc #67
         + String [selectedExposureLevel]
       [240] iload v6
-      [242] invokeinterface #371
+      [242] invokeinterface #359
         + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
       [247] istore_3 v3
       [248] aload_1 v1
       [249] iload_3 v3
-      [250] invokevirtual #276
+      [250] invokevirtual #264
         + Methodref [android/hardware/Camera$Parameters.setExposureCompensation (I)V]
       [253] aload_2 v2
-      [254] ldc #71
+      [254] ldc #68
         + String [selectedWhiteBalance]
-      [256] ldc #24
+      [256] ldc #21
         + String []
-      [258] invokeinterface #372
+      [258] invokeinterface #360
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [263] dup
       [264] astore_3 v3
-      [265] invokevirtual #349
+      [265] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [268] ifle +8 (target=276)
       [271] aload_1 v1
       [272] aload_3 v3
-      [273] invokevirtual #281
+      [273] invokevirtual #269
         + Methodref [android/hardware/Camera$Parameters.setWhiteBalance (Ljava/lang/String;)V]
       [276] aload_1 v1
       [277] bipush 100
-      [279] invokevirtual #279
+      [279] invokevirtual #267
         + Methodref [android/hardware/Camera$Parameters.setJpegQuality (I)V]
       [282] aload_0 v0
-      [283] getfield #184
+      [283] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [286] aload_1 v1
-      [287] invokevirtual #260
+      [287] invokevirtual #248
         + Methodref [android/hardware/Camera.setParameters (Landroid/hardware/Camera$Parameters;)V]
       [290] aload_1 v1
-      [291] getstatic #207
+      [291] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [294] getfield #168
+      [294] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
-      [297] getstatic #207
+      [297] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [300] getfield #167
+      [300] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
-      [303] invokevirtual #280
+      [303] invokevirtual #268
         + Methodref [android/hardware/Camera$Parameters.setPreviewSize (II)V]
       [306] aload_1 v1
-      [307] invokevirtual #266
+      [307] invokevirtual #254
         + Methodref [android/hardware/Camera$Parameters.getHorizontalViewAngle ()F]
-      [310] putstatic #201
+      [310] putstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
       [313] goto +41 (target=354)
       [316] pop
-      [317] ldc #22
+      [317] ldc #19
         + Float [51.2]
-      [319] putstatic #201
+      [319] putstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
-      [322] getstatic #201
+      [322] getstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
       [325] fconst_1
       [326] fcmpg
       [327] ifge +40 (target=367)
-      [330] ldc #22
+      [330] ldc #19
         + Float [51.2]
-      [332] putstatic #201
+      [332] putstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
       [335] goto +32 (target=367)
-      [338] astore_2 v2
-      [339] getstatic #201
+      [338] astore_1 v1
+      [339] getstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
       [342] fconst_1
       [343] fcmpg
       [344] ifge +8 (target=352)
-      [347] ldc #22
+      [347] ldc #19
         + Float [51.2]
-      [349] putstatic #201
+      [349] putstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
-      [352] aload_2 v2
+      [352] aload_1 v1
       [353] athrow
-      [354] getstatic #201
+      [354] getstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
       [357] fconst_1
       [358] fcmpg
       [359] ifge +8 (target=367)
-      [362] ldc #22
+      [362] ldc #19
         + Float [51.2]
-      [364] putstatic #201
+      [364] putstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
       [367] aload_1 v1
-      [368] invokevirtual #274
+      [368] invokevirtual #262
         + Methodref [android/hardware/Camera$Parameters.getVerticalViewAngle ()F]
-      [371] putstatic #203
+      [371] putstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
       [374] goto +41 (target=415)
       [377] pop
-      [378] ldc #20
+      [378] ldc #17
         + Float [39.4]
-      [380] putstatic #203
+      [380] putstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
-      [383] getstatic #203
+      [383] getstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
       [386] fconst_1
       [387] fcmpg
       [388] ifge +40 (target=428)
-      [391] ldc #20
+      [391] ldc #17
         + Float [39.4]
-      [393] putstatic #203
+      [393] putstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
       [396] goto +32 (target=428)
-      [399] astore_2 v2
-      [400] getstatic #203
+      [399] astore_1 v1
+      [400] getstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
       [403] fconst_1
       [404] fcmpg
       [405] ifge +8 (target=413)
-      [408] ldc #20
+      [408] ldc #17
         + Float [39.4]
-      [410] putstatic #203
+      [410] putstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
-      [413] aload_2 v2
+      [413] aload_1 v1
       [414] athrow
-      [415] getstatic #203
+      [415] getstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
       [418] fconst_1
       [419] fcmpg
       [420] ifge +8 (target=428)
-      [423] ldc #20
+      [423] ldc #17
         + Float [39.4]
-      [425] putstatic #203
+      [425] putstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
       [428] aload_2 v2
       [429] aload_0 v0
-      [430] invokevirtual #325
+      [430] invokevirtual #313
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [433] ldc #6
+      [433] ldc #3
         + Integer [2131099679]
-      [435] invokevirtual #223
+      [435] invokevirtual #213
         + Methodref [android/content/Context.getString (I)Ljava/lang/String;]
       [438] iconst_1
-      [439] invokeinterface #369
+      [439] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [444] ifne +34 (target=478)
       [447] aload_2 v2
-      [448] ldc #61
+      [448] ldc #58
         + String [cameraLensHAngle]
-      [450] getstatic #201
+      [450] getstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
-      [453] invokeinterface #370
+      [453] invokeinterface #358
         + InterfaceMethodref [android/content/SharedPreferences.getFloat (Ljava/lang/String;F)F]
-      [458] putstatic #202
+      [458] putstatic #192
         + Fieldref [com/chemicalwedding/artemis/bg.i F]
       [461] aload_2 v2
-      [462] ldc #62
+      [462] ldc #59
         + String [cameraLensVAngle]
-      [464] getstatic #203
+      [464] getstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
-      [467] invokeinterface #370
+      [467] invokeinterface #358
         + InterfaceMethodref [android/content/SharedPreferences.getFloat (Ljava/lang/String;F)F]
-      [472] putstatic #204
+      [472] putstatic #194
         + Fieldref [com/chemicalwedding/artemis/bg.k F]
       [475] goto +15 (target=490)
-      [478] getstatic #201
+      [478] getstatic #191
         + Fieldref [com/chemicalwedding/artemis/bg.h F]
-      [481] putstatic #202
+      [481] putstatic #192
         + Fieldref [com/chemicalwedding/artemis/bg.i F]
-      [484] getstatic #203
+      [484] getstatic #193
         + Fieldref [com/chemicalwedding/artemis/bg.j F]
-      [487] putstatic #204
+      [487] putstatic #194
         + Fieldref [com/chemicalwedding/artemis/bg.k F]
       [490] aload_1 v1
-      [491] invokevirtual #271
+      [491] invokevirtual #259
         + Methodref [android/hardware/Camera$Parameters.getSupportedFocusModes ()Ljava/util/List;]
-      [494] ldc #59
+      [494] ldc #56
         + String [auto]
-      [496] invokeinterface #377
+      [496] invokeinterface #365
         + InterfaceMethodref [java/util/List.contains (Ljava/lang/Object;)Z]
       [501] ifeq +21 (target=522)
       [504] aload_1 v1
-      [505] ldc #59
+      [505] ldc #56
         + String [auto]
-      [507] invokevirtual #278
+      [507] invokevirtual #266
         + Methodref [android/hardware/Camera$Parameters.setFocusMode (Ljava/lang/String;)V]
       [510] aload_2 v2
-      [511] ldc #60
+      [511] ldc #57
         + String [autoFocusOnPicture]
       [513] iconst_0
-      [514] invokeinterface #369
+      [514] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [519] putstatic #206
+      [519] putstatic #196
         + Fieldref [com/chemicalwedding/artemis/bg.m Z]
-      [522] new #140
+      [522] new #134
         + Class [java/lang/StringBuilder]
       [525] dup
-      [526] ldc #39
+      [526] ldc #36
         + String [Current preview format: ]
-      [528] invokespecial #353
+      [528] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [531] aload_1 v1
-      [532] invokevirtual #269
+      [532] invokevirtual #257
         + Methodref [android/hardware/Camera$Parameters.getPreviewFormat ()I]
-      [535] invokevirtual #355
+      [535] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [538] invokevirtual #358
+      [538] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [541] pop
       [542] aload_0 v0
-      [543] invokevirtual #326
+      [543] invokevirtual #314
         + Methodref [com/chemicalwedding/artemis/bg.getResources ()Landroid/content/res/Resources;]
-      [546] ldc #10
+      [546] ldc #7
         + Integer [2131296263]
-      [548] invokevirtual #224
+      [548] invokevirtual #214
         + Methodref [android/content/res/Resources.getColor (I)I]
-      [551] putstatic #183
+      [551] putstatic #176
         + Fieldref [com/chemicalwedding/artemis/be.k I]
       [554] aload_0 v0
-      [555] invokevirtual #325
+      [555] invokevirtual #313
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [558] invokevirtual #221
+      [558] invokevirtual #211
         + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
-      [561] invokevirtual #225
+      [561] invokevirtual #215
         + Methodref [android/content/res/Resources.getDisplayMetrics ()Landroid/util/DisplayMetrics;]
-      [564] getfield #169
+      [564] getfield #162
         + Fieldref [android/util/DisplayMetrics.density F]
       [567] fstore_2 v2
       [568] aload_0 v0
-      [569] getfield #186
+      [569] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
       [572] aload_0 v0
-      [573] getfield #188
+      [573] getfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
       [576] aload_0 v0
-      [577] getfield #187
+      [577] getfield #180
         + Fieldref [com/chemicalwedding/artemis/bg.D I]
       [580] fload_2 v2
-      [581] getstatic #202
+      [581] getstatic #192
         + Fieldref [com/chemicalwedding/artemis/bg.i F]
-      [584] getstatic #204
+      [584] getstatic #194
         + Fieldref [com/chemicalwedding/artemis/bg.k F]
-      [587] invokevirtual #307
+      [587] invokevirtual #295
         + Methodref [com/chemicalwedding/artemis/be.a (IIFFF)V]
       [590] aload_0 v0
-      [591] getfield #186
+      [591] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [594] invokevirtual #305
+      [594] invokevirtual #293
         + Methodref [com/chemicalwedding/artemis/be.C ()Z]
       [597] ifne +45 (target=642)
       [600] aload_0 v0
-      [601] getfield #186
+      [601] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [604] invokevirtual #308
+      [604] invokevirtual #296
         + Methodref [com/chemicalwedding/artemis/be.b ()V]
       [607] aload_0 v0
-      [608] getfield #186
+      [608] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [611] invokevirtual #309
+      [611] invokevirtual #297
         + Methodref [com/chemicalwedding/artemis/be.d ()V]
       [614] aload_0 v0
-      [615] getfield #186
+      [615] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [618] invokevirtual #313
+      [618] invokevirtual #301
         + Methodref [com/chemicalwedding/artemis/be.v ()V]
       [621] aload_0 v0
-      [622] getfield #186
+      [622] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [625] invokevirtual #306
+      [625] invokevirtual #294
         + Methodref [com/chemicalwedding/artemis/be.a ()V]
       [628] aload_0 v0
-      [629] getfield #186
+      [629] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [632] invokevirtual #309
+      [632] invokevirtual #297
         + Methodref [com/chemicalwedding/artemis/be.d ()V]
       [635] aload_0 v0
-      [636] getfield #186
+      [636] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [639] invokevirtual #304
+      [639] invokevirtual #292
         + Methodref [com/chemicalwedding/artemis/be.B ()V]
-      [642] getstatic #172
+      [642] getstatic #165
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.e Landroid/widget/TextView;]
       [645] aload_0 v0
-      [646] getfield #186
+      [646] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [649] invokevirtual #310
+      [649] invokevirtual #298
         + Methodref [com/chemicalwedding/artemis/be.e ()Ljava/lang/String;]
-      [652] invokevirtual #296
+      [652] invokevirtual #284
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
-      [655] new #101
-        + Class [android/graphics/PixelFormat]
-      [658] dup
-      [659] invokespecial #252
-        + Methodref [android/graphics/PixelFormat.<init> ()V]
-      [662] astore_2 v2
-      [663] aload_1 v1
-      [664] invokevirtual #269
-        + Methodref [android/hardware/Camera$Parameters.getPreviewFormat ()I]
-      [667] aload_2 v2
-      [668] invokestatic #253
-        + Methodref [android/graphics/PixelFormat.getPixelFormatInfo (ILandroid/graphics/PixelFormat;)V]
-      [671] aload_0 v0
-      [672] aload_0 v0
-      [673] getfield #213
-        + Fieldref [com/chemicalwedding/artemis/bg.u I]
-      [676] aload_0 v0
-      [677] getfield #212
-        + Fieldref [com/chemicalwedding/artemis/bg.t I]
-      [680] imul
-      [681] aload_2 v2
-      [682] getfield #164
-        + Fieldref [android/graphics/PixelFormat.bitsPerPixel I]
-      [685] imul
-      [686] bipush 8
-      [688] idiv
-      [689] putfield #190
-        + Fieldref [com/chemicalwedding/artemis/bg.G I]
-      [692] aload_0 v0
-      [693] getfield #191
-        + Fieldref [com/chemicalwedding/artemis/bg.H [B]
-      [696] ifnull +15 (target=711)
-      [699] aload_0 v0
-      [700] getfield #191
-        + Fieldref [com/chemicalwedding/artemis/bg.H [B]
-      [703] arraylength
-      [704] aload_0 v0
-      [705] getfield #190
-        + Fieldref [com/chemicalwedding/artemis/bg.G I]
-      [708] ificmpeq +13 (target=721)
-      [711] aload_0 v0
-      [712] aload_0 v0
-      [713] getfield #190
-        + Fieldref [com/chemicalwedding/artemis/bg.G I]
-      [716] newarray 8
-      [718] putfield #191
-        + Fieldref [com/chemicalwedding/artemis/bg.H [B]
-      [721] aload_0 v0
-      [722] aload_0 v0
-      [723] getfield #190
-        + Fieldref [com/chemicalwedding/artemis/bg.G I]
-      [726] newarray 10
-      [728] putfield #189
-        + Fieldref [com/chemicalwedding/artemis/bg.F [I]
-      [731] aload_0 v0
-      [732] getfield #184
+      [655] aload_0 v0
+      [656] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [735] aload_1 v1
-      [736] invokevirtual #260
+      [659] aload_1 v1
+      [660] invokevirtual #248
         + Methodref [android/hardware/Camera.setParameters (Landroid/hardware/Camera$Parameters;)V]
-      [739] aload_0 v0
-      [740] getfield #184
+      [663] aload_0 v0
+      [664] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [743] aload_0 v0
-      [744] getfield #185
+      [667] aload_0 v0
+      [668] getfield #178
         + Fieldref [com/chemicalwedding/artemis/bg.B Landroid/view/TextureView;]
-      [747] invokevirtual #288
+      [671] invokevirtual #276
         + Methodref [android/view/TextureView.getSurfaceTexture ()Landroid/graphics/SurfaceTexture;]
-      [750] invokevirtual #261
+      [674] invokevirtual #249
         + Methodref [android/hardware/Camera.setPreviewTexture (Landroid/graphics/SurfaceTexture;)V]
-      [753] aload_0 v0
-      [754] getfield #184
+      [677] aload_0 v0
+      [678] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [757] invokevirtual #262
+      [681] invokevirtual #250
         + Methodref [android/hardware/Camera.startPreview ()V]
-      [760] goto +4 (target=764)
-      [763] pop
-      [764] getstatic #177
+      [684] goto +4 (target=688)
+      [687] pop
+      [688] getstatic #170
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.q Landroid/graphics/Bitmap;]
-      [767] ifnonnull +29 (target=796)
-      [770] new #95
+      [691] ifnonnull +29 (target=720)
+      [694] new #90
         + Class [android/graphics/BitmapFactory$Options]
-      [773] dup
-      [774] invokespecial #233
+      [697] dup
+      [698] invokespecial #223
         + Methodref [android/graphics/BitmapFactory$Options.<init> ()V]
-      [777] dup
-      [778] astore_1 v1
-      [779] iconst_2
-      [780] putfield #160
+      [701] dup
+      [702] astore_1 v1
+      [703] iconst_2
+      [704] putfield #154
         + Fieldref [android/graphics/BitmapFactory$Options.inSampleSize I]
-      [783] aload_0 v0
-      [784] invokevirtual #326
+      [707] aload_0 v0
+      [708] invokevirtual #314
         + Methodref [com/chemicalwedding/artemis/bg.getResources ()Landroid/content/res/Resources;]
-      [787] ldc #5
+      [711] ldc #2
         + Integer [2130837506]
-      [789] aload_1 v1
-      [790] invokestatic #232
+      [713] aload_1 v1
+      [714] invokestatic #222
         + Methodref [android/graphics/BitmapFactory.decodeResource (Landroid/content/res/Resources;ILandroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;]
-      [793] putstatic #177
+      [717] putstatic #170
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.q Landroid/graphics/Bitmap;]
-      [796] return
+      [720] return
       Code attribute exceptions (count = 5):
       - ExceptionInfo (306 -> 313: 316):
       + Class [java/lang/Exception]
@@ -27624,10 +27534,10 @@ Methods (count = 27):
       - ExceptionInfo (367 -> 374: 377):
       + Class [java/lang/Exception]
       - ExceptionInfo (367 -> 383: 399):
-      - ExceptionInfo (739 -> 760: 763):
+      - ExceptionInfo (663 -> 684: 687):
       + Class [java/io/IOException]
       Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 31):
+      + Stack map table attribute (count = 29):
         - [108] Var: [a:com/chemicalwedding/artemis/bg][a:android/hardware/Camera$Parameters][a:android/content/SharedPreferences][i][i][i][i][i], Stack: 
         - [116] Var: ..., Stack: (empty)
         - [135] Var: ..., Stack: (empty)
@@ -27654,42 +27564,40 @@ Methods (count = 27):
         - [490] Var: ..., Stack: (empty)
         - [522] Var: ..., Stack: (empty)
         - [642] Var: ...[f], Stack: (empty)
-        - [711] Var: ...[a:android/graphics/PixelFormat], Stack: (empty)
-        - [721] Var: ..., Stack: (empty)
-        - [763] Var: ..., Stack: [a:java/io/IOException]
-        - [764] Var: ..., Stack: (empty)
-        - [796] Var: [a:com/chemicalwedding/artemis/bg], Stack: 
+        - [687] Var: ..., Stack: [a:java/io/IOException]
+        - [688] Var: ..., Stack: (empty)
+        - [720] Var: [a:com/chemicalwedding/artemis/bg], Stack: 
   + Method:       c()V
     Access flags: 0x11
       = public final void c()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 39, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [4] ifnull +34 (target=38)
       [7] aload_0 v0
-      [8] getfield #184
+      [8] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [11] invokevirtual #263
+      [11] invokevirtual #251
         + Methodref [android/hardware/Camera.stopPreview ()V]
       [14] aload_0 v0
-      [15] getfield #184
+      [15] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [18] invokevirtual #259
+      [18] invokevirtual #247
         + Methodref [android/hardware/Camera.release ()V]
       [21] aload_0 v0
       [22] iconst_1
-      [23] putfield #218
+      [23] putfield #208
         + Fieldref [com/chemicalwedding/artemis/bg.z Z]
       [26] aload_0 v0
       [27] aconst_null
-      [28] putfield #184
+      [28] putfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [31] aload_0 v0
-      [32] getfield #185
+      [32] getfield #178
         + Fieldref [com/chemicalwedding/artemis/bg.B Landroid/view/TextureView;]
-      [35] invokevirtual #289
+      [35] invokevirtual #277
         + Methodref [android/view/TextureView.invalidate ()V]
       [38] return
       Code attribute exceptions (count = 0):
@@ -27703,7 +27611,7 @@ Methods (count = 27):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #186
+      [2] putfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
       [5] return
       Code attribute exceptions (count = 0):
@@ -27714,17 +27622,17 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 20, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [4] ifnull +11 (target=15)
       [7] aload_0 v0
-      [8] getfield #184
+      [8] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [11] invokevirtual #262
+      [11] invokevirtual #250
         + Methodref [android/hardware/Camera.startPreview ()V]
       [14] return
       [15] aload_0 v0
-      [16] invokevirtual #320
+      [16] invokevirtual #308
         + Methodref [com/chemicalwedding/artemis/bg.b ()V]
       [19] return
       Code attribute exceptions (count = 0):
@@ -27737,164 +27645,164 @@ Methods (count = 27):
       = public final void e()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 220, locals = 2, stack = 5):
-      [0] new #97
+      [0] new #92
         + Class [android/graphics/Matrix]
       [3] dup
-      [4] invokespecial #239
+      [4] invokespecial #229
         + Methodref [android/graphics/Matrix.<init> ()V]
       [7] astore_1 v1
       [8] aload_0 v0
-      [9] getfield #186
+      [9] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [12] invokevirtual #311
+      [12] invokevirtual #299
         + Methodref [com/chemicalwedding/artemis/be.g ()Z]
       [15] ifeq +148 (target=163)
       [18] aload_0 v0
       [19] aload_0 v0
-      [20] getfield #186
+      [20] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [23] invokevirtual #314
+      [23] invokevirtual #302
         + Methodref [com/chemicalwedding/artemis/be.w ()F]
-      [26] putfield #209
+      [26] putfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
       [29] aload_0 v0
-      [30] getfield #209
+      [30] getfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
       [33] fconst_1
       [34] fcmpl
       [35] ifle +28 (target=63)
       [38] aload_1 v1
       [39] aload_0 v0
-      [40] getfield #186
+      [40] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [43] invokevirtual #315
+      [43] invokevirtual #303
         + Methodref [com/chemicalwedding/artemis/be.z ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
       [46] aload_0 v0
-      [47] getfield #186
+      [47] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [50] invokevirtual #303
+      [50] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [53] getstatic #161
+      [53] getstatic #155
         + Fieldref [android/graphics/Matrix$ScaleToFit.CENTER Landroid/graphics/Matrix$ScaleToFit;]
-      [56] invokevirtual #242
+      [56] invokevirtual #232
         + Methodref [android/graphics/Matrix.setRectToRect (Landroid/graphics/RectF;Landroid/graphics/RectF;Landroid/graphics/Matrix$ScaleToFit;)Z]
       [59] pop
       [60] goto +108 (target=168)
       [63] aload_1 v1
       [64] aload_0 v0
-      [65] getfield #186
+      [65] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [68] invokevirtual #303
+      [68] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [71] getfield #178
+      [71] getfield #171
         + Fieldref [com/chemicalwedding/artemis/ArtemisRectF.left F]
-      [74] getstatic #181
+      [74] getstatic #174
         + Fieldref [com/chemicalwedding/artemis/be.f I]
       [77] i2f
       [78] aload_0 v0
-      [79] getfield #186
+      [79] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [82] invokevirtual #303
+      [82] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [85] invokevirtual #302
+      [85] invokevirtual #290
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.width ()F]
       [88] fsub
       [89] fconst_2
       [90] fdiv
       [91] fsub
       [92] aload_0 v0
-      [93] getfield #186
+      [93] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [96] invokevirtual #303
+      [96] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [99] getfield #179
+      [99] getfield #172
         + Fieldref [com/chemicalwedding/artemis/ArtemisRectF.top F]
-      [102] getstatic #182
+      [102] getstatic #175
         + Fieldref [com/chemicalwedding/artemis/be.g I]
       [105] i2f
       [106] aload_0 v0
-      [107] getfield #186
+      [107] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [110] invokevirtual #303
+      [110] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [113] invokevirtual #301
+      [113] invokevirtual #289
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.height ()F]
       [116] fsub
       [117] fconst_2
       [118] fdiv
       [119] fsub
-      [120] ldc #14
+      [120] ldc #11
         + Float [5.0]
       [122] fsub
-      [123] invokevirtual #241
+      [123] invokevirtual #231
         + Methodref [android/graphics/Matrix.postTranslate (FF)Z]
       [126] pop
       [127] aload_1 v1
       [128] aload_0 v0
-      [129] getfield #209
+      [129] getfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
       [132] aload_0 v0
-      [133] getfield #209
+      [133] getfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
       [136] aload_0 v0
-      [137] getfield #186
+      [137] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [140] invokevirtual #303
+      [140] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [143] invokevirtual #299
+      [143] invokevirtual #287
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.centerX ()F]
       [146] aload_0 v0
-      [147] getfield #186
+      [147] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [150] invokevirtual #303
+      [150] invokevirtual #291
         + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [153] invokevirtual #300
+      [153] invokevirtual #288
         + Methodref [com/chemicalwedding/artemis/ArtemisRectF.centerY ()F]
-      [156] invokevirtual #240
+      [156] invokevirtual #230
         + Methodref [android/graphics/Matrix.postScale (FFFF)Z]
       [159] pop
       [160] goto +8 (target=168)
       [163] aload_0 v0
       [164] fconst_1
-      [165] putfield #209
+      [165] putfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
-      [168] new #140
+      [168] new #134
         + Class [java/lang/StringBuilder]
       [171] dup
-      [172] ldc #58
+      [172] ldc #55
         + String [Zoom ScaleFactor: ]
-      [174] invokespecial #353
+      [174] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [177] aload_0 v0
-      [178] getfield #209
+      [178] getfield #199
         + Fieldref [com/chemicalwedding/artemis/bg.p F]
-      [181] invokevirtual #354
+      [181] invokevirtual #342
         + Methodref [java/lang/StringBuilder.append (F)Ljava/lang/StringBuilder;]
-      [184] invokevirtual #358
+      [184] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [187] pop
-      [188] new #140
+      [188] new #134
         + Class [java/lang/StringBuilder]
       [191] dup
-      [192] ldc #56
+      [192] ldc #53
         + String [Selected Lens: ]
-      [194] invokespecial #353
+      [194] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [197] aload_0 v0
-      [198] getfield #186
+      [198] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [201] invokevirtual #315
+      [201] invokevirtual #303
         + Methodref [com/chemicalwedding/artemis/be.z ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [204] invokevirtual #356
+      [204] invokevirtual #344
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-      [207] invokevirtual #358
+      [207] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [210] pop
       [211] aload_0 v0
-      [212] getfield #185
+      [212] getfield #178
         + Fieldref [com/chemicalwedding/artemis/bg.B Landroid/view/TextureView;]
       [215] aload_1 v1
-      [216] invokevirtual #290
+      [216] invokevirtual #278
         + Methodref [android/view/TextureView.setTransform (Landroid/graphics/Matrix;)V]
       [219] return
       Code attribute exceptions (count = 0):
@@ -27912,7 +27820,7 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 76, locals = 5, stack = 4):
       [0] dload_0 v0
-      [1] invokestatic #345
+      [1] invokestatic #333
         + Methodref [java/lang/Math.abs (D)D]
       [4] dup2
       [5] dstore_0 v0
@@ -27924,53 +27832,53 @@ Methods (count = 27):
       [11] dsub
       [12] dup2
       [13] dstore_3 v3
-      [14] ldc2_w #154
+      [14] ldc2_w #148
         + Double [60.0]
       [17] dmul
       [18] d2i
       [19] istore_0 v0
       [20] dload_3 v3
-      [21] ldc2_w #154
+      [21] ldc2_w #148
         + Double [60.0]
       [24] dmul
       [25] iload_0 v0
       [26] i2d
       [27] dsub
-      [28] ldc2_w #154
+      [28] ldc2_w #148
         + Double [60.0]
       [31] dmul
-      [32] ldc2_w #156
+      [32] ldc2_w #150
         + Double [1000.0]
       [35] dmul
       [36] d2i
       [37] istore_1 v1
-      [38] new #140
+      [38] new #134
         + Class [java/lang/StringBuilder]
       [41] dup
       [42] iload_2 v2
-      [43] invokestatic #351
+      [43] invokestatic #339
         + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
-      [46] invokespecial #353
+      [46] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [49] ldc #32
+      [49] ldc #29
         + String [/1,]
-      [51] invokevirtual #357
+      [51] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [54] iload_0 v0
-      [55] invokevirtual #355
+      [55] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [58] ldc #32
+      [58] ldc #29
         + String [/1,]
-      [60] invokevirtual #357
+      [60] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [63] iload_1 v1
-      [64] invokevirtual #355
+      [64] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [67] ldc #33
+      [67] ldc #30
         + String [/1000]
-      [69] invokevirtual #357
+      [69] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [72] invokevirtual #358
+      [72] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [75] areturn
       Code attribute exceptions (count = 0):
@@ -27981,101 +27889,101 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 1611, locals = 16, stack = 6):
       [0] aload_0 v0
-      [1] invokevirtual #325
+      [1] invokevirtual #313
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [4] invokevirtual #220
+      [4] invokevirtual #210
         + Methodref [android/content/Context.getApplicationContext ()Landroid/content/Context;]
-      [7] ldc #121
+      [7] ldc #115
         + Class [com/chemicalwedding/artemis/bf]
-      [9] invokevirtual #341
+      [9] invokevirtual #329
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [12] iconst_0
-      [13] invokevirtual #222
+      [13] invokevirtual #212
         + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [16] dup
       [17] astore_1 v1
-      [18] ldc #75
+      [18] ldc #72
         + String [showGpsDetails]
       [20] iconst_1
-      [21] invokeinterface #369
+      [21] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [26] istore_2 v2
       [27] aload_0 v0
-      [28] getfield #215
+      [28] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
       [31] astore_3 v3
       [32] aload_1 v1
-      [33] ldc #69
+      [33] ldc #66
         + String [saveRawImage]
       [35] iconst_0
-      [36] invokeinterface #369
+      [36] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [41] ifne +1220 (target=1261)
       [44] bipush 10
       [46] istore_3 v3
       [47] aload_0 v0
-      [48] getfield #215
+      [48] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [51] invokevirtual #230
+      [51] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [54] i2f
       [55] aload_0 v0
-      [56] getfield #215
+      [56] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [59] invokevirtual #229
+      [59] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [62] i2f
       [63] fdiv
       [64] f2d
-      [65] ldc2_w #152
+      [65] ldc2_w #146
         + Double [1.4]
       [68] dcmpg
       [69] ifge +7 (target=76)
       [72] sipush 259
       [75] istore_3 v3
       [76] aload_0 v0
-      [77] getfield #215
+      [77] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [80] invokevirtual #230
+      [80] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [83] iload_3 v3
       [84] iadd
       [85] aload_0 v0
-      [86] getfield #215
+      [86] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [89] invokevirtual #229
+      [89] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [92] bipush 75
       [94] iadd
-      [95] getstatic #159
+      [95] getstatic #153
         + Fieldref [android/graphics/Bitmap$Config.RGB_565 Landroid/graphics/Bitmap$Config;]
-      [98] invokestatic #228
+      [98] invokestatic #218
         + Methodref [android/graphics/Bitmap.createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
       [101] astore_3 v3
-      [102] new #99
+      [102] new #94
         + Class [android/graphics/Paint]
       [105] dup
-      [106] invokespecial #243
+      [106] invokespecial #233
         + Methodref [android/graphics/Paint.<init> ()V]
       [109] astore v4
-      [111] new #96
+      [111] new #91
         + Class [android/graphics/Canvas]
       [114] dup
       [115] aload_3 v3
-      [116] invokespecial #234
+      [116] invokespecial #224
         + Methodref [android/graphics/Canvas.<init> (Landroid/graphics/Bitmap;)V]
       [119] dup
       [120] astore v5
       [122] iconst_m1
-      [123] invokevirtual #236
+      [123] invokevirtual #226
         + Methodref [android/graphics/Canvas.drawColor (I)V]
       [126] aload_3 v3
-      [127] invokevirtual #230
+      [127] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [130] aload_0 v0
-      [131] getfield #215
+      [131] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [134] invokevirtual #230
+      [134] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [137] isub
       [138] iconst_2
@@ -28083,49 +27991,49 @@ Methods (count = 27):
       [140] istore v6
       [142] aload v5
       [144] aload_0 v0
-      [145] getfield #215
+      [145] getfield #205
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
       [148] iload v6
       [150] i2f
-      [151] ldc #14
+      [151] ldc #11
         + Float [5.0]
       [153] aload v4
-      [155] invokevirtual #235
+      [155] invokevirtual #225
         + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
       [158] aload v4
       [160] ldc #1
         + Integer [-16777216]
-      [162] invokevirtual #245
+      [162] invokevirtual #235
         + Methodref [android/graphics/Paint.setColor (I)V]
       [165] aload v4
       [167] iconst_1
-      [168] invokevirtual #244
+      [168] invokevirtual #234
         + Methodref [android/graphics/Paint.setAntiAlias (Z)V]
       [171] aload v4
       [173] iconst_1
-      [174] invokevirtual #247
+      [174] invokevirtual #237
         + Methodref [android/graphics/Paint.setSubpixelText (Z)V]
       [177] aload v4
-      [179] getstatic #165
+      [179] getstatic #158
         + Fieldref [android/graphics/Typeface.DEFAULT_BOLD Landroid/graphics/Typeface;]
-      [182] invokevirtual #251
+      [182] invokevirtual #241
         + Methodref [android/graphics/Paint.setTypeface (Landroid/graphics/Typeface;)Landroid/graphics/Typeface;]
       [185] pop
-      [186] getstatic #172
+      [186] getstatic #165
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.e Landroid/widget/TextView;]
-      [189] invokevirtual #295
+      [189] invokevirtual #283
         + Methodref [android/widget/TextView.getText ()Ljava/lang/CharSequence;]
-      [192] invokeinterface #373
+      [192] invokeinterface #361
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
       [197] dup
       [198] astore v6
-      [200] invokestatic #342
+      [200] invokestatic #330
         + Methodref [java/lang/Float.parseFloat (Ljava/lang/String;)F]
       [203] fstore v7
       [205] iconst_0
       [206] istore v8
       [208] aload v6
-      [210] invokevirtual #349
+      [210] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [213] iconst_3
       [214] ificmpge +11 (target=225)
@@ -28133,12 +28041,12 @@ Methods (count = 27):
       [220] istore v8
       [222] goto +50 (target=272)
       [225] aload v6
-      [227] invokevirtual #349
+      [227] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [230] iconst_3
       [231] ificmplt +19 (target=250)
       [234] fload v7
-      [236] ldc #23
+      [236] ldc #20
         + Float [100.0]
       [238] fcmpg
       [239] ifge +11 (target=250)
@@ -28146,153 +28054,153 @@ Methods (count = 27):
       [245] istore v8
       [247] goto +25 (target=272)
       [250] aload v6
-      [252] invokevirtual #349
+      [252] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [255] iconst_3
       [256] ificmplt +16 (target=272)
       [259] fload v7
-      [261] ldc #23
+      [261] ldc #20
         + Float [100.0]
       [263] fcmpl
       [264] iflt +8 (target=272)
       [267] sipush 220
       [270] istore v8
       [272] aload_1 v1
-      [273] ldc #74
+      [273] ldc #71
         + String [showDescription]
-      [275] ldc #24
+      [275] ldc #21
         + String []
-      [277] invokeinterface #372
+      [277] invokeinterface #360
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [282] astore v7
       [284] aload_1 v1
-      [285] ldc #79
+      [285] ldc #76
         + String [showNotes]
-      [287] ldc #24
+      [287] ldc #21
         + String []
-      [289] invokeinterface #372
+      [289] invokeinterface #360
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [294] astore v9
       [296] aload_1 v1
-      [297] ldc #72
+      [297] ldc #69
         + String [showCameraDetails]
       [299] iconst_1
-      [300] invokeinterface #369
+      [300] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [305] istore v10
       [307] aload_1 v1
-      [308] ldc #78
+      [308] ldc #75
         + String [showLensDetails]
       [310] iconst_1
-      [311] invokeinterface #369
+      [311] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [316] istore v11
       [318] aload_1 v1
-      [319] ldc #76
+      [319] ldc #73
         + String [showGpsLocation]
       [321] iconst_1
-      [322] invokeinterface #369
+      [322] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [327] istore v12
       [329] aload_1 v1
-      [330] ldc #81
+      [330] ldc #78
         + String [showViewAngles]
       [332] iconst_1
-      [333] invokeinterface #369
+      [333] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [338] istore v13
       [340] aload_1 v1
-      [341] ldc #73
+      [341] ldc #70
         + String [showDateTime]
       [343] iconst_1
-      [344] invokeinterface #369
+      [344] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [349] istore v14
       [351] aload_1 v1
-      [352] ldc #77
+      [352] ldc #74
         + String [showHeading]
       [354] iconst_1
-      [355] invokeinterface #369
+      [355] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [360] istore v15
       [362] aload_1 v1
-      [363] ldc #80
+      [363] ldc #77
         + String [showTiltRoll]
       [365] iconst_1
-      [366] invokeinterface #369
+      [366] invokeinterface #357
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [371] istore_1 v1
       [372] aload v4
-      [374] ldc #19
+      [374] ldc #16
         + Float [18.0]
-      [376] invokevirtual #250
+      [376] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
       [379] aload v7
-      [381] invokevirtual #349
+      [381] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [384] ifle +22 (target=406)
       [387] aload v5
       [389] aload v7
-      [391] ldc #15
+      [391] ldc #12
         + Float [10.0]
       [393] aload_3 v3
-      [394] invokevirtual #229
+      [394] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [397] bipush 50
       [399] isub
       [400] i2f
       [401] aload v4
-      [403] invokevirtual #238
+      [403] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [406] aload v4
-      [408] ldc #18
+      [408] ldc #15
         + Float [14.0]
-      [410] invokevirtual #250
+      [410] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
       [413] iload v10
       [415] ifeq +31 (target=446)
       [418] aload v5
-      [420] getstatic #170
+      [420] getstatic #163
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.b Landroid/widget/TextView;]
-      [423] invokevirtual #295
+      [423] invokevirtual #283
         + Methodref [android/widget/TextView.getText ()Ljava/lang/CharSequence;]
-      [426] invokeinterface #373
+      [426] invokeinterface #361
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
-      [431] ldc #15
+      [431] ldc #12
         + Float [10.0]
       [433] aload_3 v3
-      [434] invokevirtual #229
+      [434] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [437] bipush 30
       [439] isub
       [440] i2f
       [441] aload v4
-      [443] invokevirtual #238
+      [443] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [446] aload v4
       [448] aconst_null
-      [449] invokevirtual #251
+      [449] invokevirtual #241
         + Methodref [android/graphics/Paint.setTypeface (Landroid/graphics/Typeface;)Landroid/graphics/Typeface;]
       [452] pop
       [453] aload v9
-      [455] invokevirtual #349
+      [455] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [458] ifle +22 (target=480)
       [461] aload v5
       [463] aload v9
-      [465] ldc #15
+      [465] ldc #12
         + Float [10.0]
       [467] aload_3 v3
-      [468] invokevirtual #229
+      [468] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [471] bipush 10
       [473] isub
       [474] i2f
       [475] aload v4
-      [477] invokevirtual #238
+      [477] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [480] aload_3 v3
-      [481] invokevirtual #230
+      [481] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [484] iconst_2
       [485] idiv
@@ -28304,9 +28212,9 @@ Methods (count = 27):
       [495] iload v12
       [497] ifeq +75 (target=572)
       [500] aload_0 v0
-      [501] invokevirtual #325
+      [501] invokevirtual #313
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [504] invokestatic #297
+      [504] invokestatic #285
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Landroid/content/Context;)[Ljava/lang/String;]
       [507] astore v9
       [509] iload v12
@@ -28316,14 +28224,14 @@ Methods (count = 27):
       [517] iconst_1
       [518] ificmple +54 (target=572)
       [521] aload v4
-      [523] getstatic #162
+      [523] getstatic #156
         + Fieldref [android/graphics/Paint$Align.CENTER Landroid/graphics/Paint$Align;]
-      [526] invokevirtual #248
+      [526] invokevirtual #238
         + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
       [529] aload v4
-      [531] ldc #11
+      [531] ldc #8
         + Float [0.87]
-      [533] invokevirtual #249
+      [533] invokevirtual #239
         + Methodref [android/graphics/Paint.setTextScaleX (F)V]
       [536] aload v5
       [538] aload v9
@@ -28332,233 +28240,233 @@ Methods (count = 27):
       [542] iload v7
       [544] i2f
       [545] aload_3 v3
-      [546] invokevirtual #229
+      [546] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [549] bipush 10
       [551] isub
       [552] i2f
       [553] aload v4
-      [555] invokevirtual #238
+      [555] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [558] aload v4
-      [560] getstatic #163
+      [560] getstatic #157
         + Fieldref [android/graphics/Paint$Align.LEFT Landroid/graphics/Paint$Align;]
-      [563] invokevirtual #248
+      [563] invokevirtual #238
         + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
       [566] aload v4
       [568] fconst_1
-      [569] invokevirtual #249
+      [569] invokevirtual #239
         + Methodref [android/graphics/Paint.setTextScaleX (F)V]
       [572] aload v4
-      [574] getstatic #162
+      [574] getstatic #156
         + Fieldref [android/graphics/Paint$Align.CENTER Landroid/graphics/Paint$Align;]
-      [577] invokevirtual #248
+      [577] invokevirtual #238
         + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
       [580] iload v15
       [582] ifeq +31 (target=613)
       [585] iload_1 v1
       [586] ifeq +27 (target=613)
       [589] aload v5
-      [591] getstatic #174
+      [591] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
       [594] iload v7
       [596] i2f
       [597] aload_3 v3
-      [598] invokevirtual #229
+      [598] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [601] bipush 50
       [603] isub
       [604] i2f
       [605] aload v4
-      [607] invokevirtual #238
+      [607] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [610] goto +133 (target=743)
       [613] iload v15
       [615] ifeq +77 (target=692)
-      [618] getstatic #176
+      [618] getstatic #169
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.p I]
       [621] iconst_1
       [622] ificmpne +27 (target=649)
       [625] aload v5
-      [627] getstatic #174
+      [627] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
       [630] iload v7
       [632] i2f
       [633] aload_3 v3
-      [634] invokevirtual #229
+      [634] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [637] bipush 50
       [639] isub
       [640] i2f
       [641] aload v4
-      [643] invokevirtual #238
+      [643] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [646] goto +97 (target=743)
-      [649] getstatic #176
+      [649] getstatic #169
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.p I]
       [652] iconst_2
       [653] ificmpne +90 (target=743)
       [656] aload v5
-      [658] getstatic #174
+      [658] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
       [661] iconst_0
-      [662] getstatic #174
+      [662] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
       [665] bipush 124
-      [667] invokevirtual #348
+      [667] invokevirtual #336
         + Methodref [java/lang/String.indexOf (I)I]
-      [670] invokevirtual #350
+      [670] invokevirtual #338
         + Methodref [java/lang/String.substring (II)Ljava/lang/String;]
       [673] iload v7
       [675] i2f
       [676] aload_3 v3
-      [677] invokevirtual #229
+      [677] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [680] bipush 50
       [682] isub
       [683] i2f
       [684] aload v4
-      [686] invokevirtual #238
+      [686] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [689] goto +54 (target=743)
       [692] iload_1 v1
       [693] ifeq +50 (target=743)
-      [696] getstatic #176
+      [696] getstatic #169
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.p I]
       [699] iconst_2
       [700] ificmpne +43 (target=743)
       [703] aload v5
-      [705] getstatic #174
+      [705] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
-      [708] getstatic #174
+      [708] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
       [711] bipush 124
-      [713] invokevirtual #348
+      [713] invokevirtual #336
         + Methodref [java/lang/String.indexOf (I)I]
-      [716] getstatic #174
+      [716] getstatic #167
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.l Ljava/lang/String;]
-      [719] invokevirtual #349
+      [719] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [722] iconst_1
       [723] isub
-      [724] invokevirtual #350
+      [724] invokevirtual #338
         + Methodref [java/lang/String.substring (II)Ljava/lang/String;]
       [727] iload v7
       [729] i2f
       [730] aload_3 v3
-      [731] invokevirtual #229
+      [731] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [734] bipush 50
       [736] isub
       [737] i2f
       [738] aload v4
-      [740] invokevirtual #238
+      [740] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [743] aload v4
-      [745] getstatic #163
+      [745] getstatic #157
         + Fieldref [android/graphics/Paint$Align.LEFT Landroid/graphics/Paint$Align;]
-      [748] invokevirtual #248
+      [748] invokevirtual #238
         + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
       [751] iload v13
       [753] ifeq +248 (target=1001)
-      [756] invokestatic #360
+      [756] invokestatic #348
         + Methodref [java/text/NumberFormat.getInstance ()Ljava/text/NumberFormat;]
       [759] dup
       [760] astore v9
       [762] iconst_1
-      [763] invokevirtual #361
+      [763] invokevirtual #349
         + Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
       [766] aload v4
-      [768] getstatic #165
+      [768] getstatic #158
         + Fieldref [android/graphics/Typeface.DEFAULT_BOLD Landroid/graphics/Typeface;]
-      [771] invokevirtual #251
+      [771] invokevirtual #241
         + Methodref [android/graphics/Paint.setTypeface (Landroid/graphics/Typeface;)Landroid/graphics/Typeface;]
       [774] pop
       [775] aload v4
-      [777] ldc #19
+      [777] ldc #16
         + Float [18.0]
-      [779] invokevirtual #250
+      [779] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
-      [782] new #140
+      [782] new #134
         + Class [java/lang/StringBuilder]
       [785] dup
       [786] aload_0 v0
-      [787] invokevirtual #326
+      [787] invokevirtual #314
         + Methodref [com/chemicalwedding/artemis/bg.getResources ()Landroid/content/res/Resources;]
-      [790] ldc #9
+      [790] ldc #6
         + Integer [2131099765]
-      [792] invokevirtual #226
+      [792] invokevirtual #216
         + Methodref [android/content/res/Resources.getString (I)Ljava/lang/String;]
-      [795] invokestatic #352
+      [795] invokestatic #340
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [798] invokespecial #353
+      [798] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [801] ldc #25
+      [801] ldc #22
         + String [ ]
-      [803] invokevirtual #357
+      [803] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [806] aload v9
       [808] aload_0 v0
-      [809] getfield #186
+      [809] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [812] getfield #180
+      [812] getfield #173
         + Fieldref [com/chemicalwedding/artemis/be.e [F]
       [815] iconst_0
       [816] faload
       [817] f2d
-      [818] invokevirtual #359
+      [818] invokevirtual #347
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
-      [821] invokevirtual #357
+      [821] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [824] aload_0 v0
-      [825] getfield #193
-        + Fieldref [com/chemicalwedding/artemis/bg.J Ljava/lang/String;]
-      [828] invokevirtual #357
+      [825] getfield #183
+        + Fieldref [com/chemicalwedding/artemis/bg.G Ljava/lang/String;]
+      [828] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [831] invokevirtual #358
+      [831] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [834] astore_1 v1
-      [835] new #140
+      [835] new #134
         + Class [java/lang/StringBuilder]
       [838] dup
       [839] aload_0 v0
-      [840] invokevirtual #326
+      [840] invokevirtual #314
         + Methodref [com/chemicalwedding/artemis/bg.getResources ()Landroid/content/res/Resources;]
-      [843] ldc #8
+      [843] ldc #5
         + Integer [2131099764]
-      [845] invokevirtual #226
+      [845] invokevirtual #216
         + Methodref [android/content/res/Resources.getString (I)Ljava/lang/String;]
-      [848] invokestatic #352
+      [848] invokestatic #340
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [851] invokespecial #353
+      [851] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [854] ldc #25
+      [854] ldc #22
         + String [ ]
-      [856] invokevirtual #357
+      [856] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [859] aload v9
       [861] aload_0 v0
-      [862] getfield #186
+      [862] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [865] getfield #180
+      [865] getfield #173
         + Fieldref [com/chemicalwedding/artemis/be.e [F]
       [868] iconst_1
       [869] faload
       [870] f2d
-      [871] invokevirtual #359
+      [871] invokevirtual #347
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
-      [874] invokevirtual #357
+      [874] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [877] aload_0 v0
-      [878] getfield #193
-        + Fieldref [com/chemicalwedding/artemis/bg.J Ljava/lang/String;]
-      [881] invokevirtual #357
+      [878] getfield #183
+        + Fieldref [com/chemicalwedding/artemis/bg.G Ljava/lang/String;]
+      [881] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [884] invokevirtual #358
+      [884] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [887] astore v7
       [889] aload_1 v1
-      [890] invokevirtual #349
+      [890] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [893] bipush 14
       [895] ificmpge +9 (target=904)
@@ -28567,7 +28475,7 @@ Methods (count = 27):
       [904] sipush 150
       [907] istore v9
       [909] aload v7
-      [911] invokevirtual #349
+      [911] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [914] bipush 14
       [916] ificmpge +9 (target=925)
@@ -28585,7 +28493,7 @@ Methods (count = 27):
       [946] aload v5
       [948] aload_1 v1
       [949] aload_3 v3
-      [950] invokevirtual #230
+      [950] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [953] iload v8
       [955] isub
@@ -28593,18 +28501,18 @@ Methods (count = 27):
       [958] isub
       [959] i2f
       [960] aload_3 v3
-      [961] invokevirtual #229
+      [961] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [964] bipush 32
       [966] isub
       [967] i2f
       [968] aload v4
-      [970] invokevirtual #238
+      [970] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [973] aload v5
       [975] aload v7
       [977] aload_3 v3
-      [978] invokevirtual #230
+      [978] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [981] iload v8
       [983] isub
@@ -28612,48 +28520,48 @@ Methods (count = 27):
       [986] isub
       [987] i2f
       [988] aload_3 v3
-      [989] invokevirtual #229
+      [989] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [992] bipush 10
       [994] isub
       [995] i2f
       [996] aload v4
-      [998] invokevirtual #238
+      [998] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [1001] iload v14
       [1003] ifeq +72 (target=1075)
       [1006] aload v4
-      [1008] getstatic #165
+      [1008] getstatic #158
         + Fieldref [android/graphics/Typeface.DEFAULT_BOLD Landroid/graphics/Typeface;]
-      [1011] invokevirtual #251
+      [1011] invokevirtual #241
         + Methodref [android/graphics/Paint.setTypeface (Landroid/graphics/Typeface;)Landroid/graphics/Typeface;]
       [1014] pop
       [1015] aload v4
-      [1017] ldc #16
+      [1017] ldc #13
         + Float [10.5]
-      [1019] invokevirtual #250
+      [1019] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
-      [1022] new #143
+      [1022] new #137
         + Class [java/text/SimpleDateFormat]
       [1025] dup
-      [1026] ldc #64
+      [1026] ldc #61
         + String [hh:mm aa | MM/dd/yyyy]
-      [1028] invokestatic #368
+      [1028] invokestatic #356
         + Methodref [java/util/Locale.getDefault ()Ljava/util/Locale;]
-      [1031] invokespecial #362
+      [1031] invokespecial #350
         + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;Ljava/util/Locale;)V]
       [1034] astore v9
       [1036] aload v5
       [1038] aload v9
-      [1040] new #146
+      [1040] new #140
         + Class [java/util/Date]
       [1043] dup
-      [1044] invokespecial #367
+      [1044] invokespecial #355
         + Methodref [java/util/Date.<init> ()V]
-      [1047] invokevirtual #363
+      [1047] invokevirtual #351
         + Methodref [java/text/SimpleDateFormat.format (Ljava/util/Date;)Ljava/lang/String;]
       [1050] aload_3 v3
-      [1051] invokevirtual #230
+      [1051] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [1054] iload v8
       [1056] isub
@@ -28661,87 +28569,87 @@ Methods (count = 27):
       [1060] isub
       [1061] i2f
       [1062] aload_3 v3
-      [1063] invokevirtual #229
+      [1063] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [1066] bipush 56
       [1068] isub
       [1069] i2f
       [1070] aload v4
-      [1072] invokevirtual #238
+      [1072] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [1075] iload v11
       [1077] ifeq +184 (target=1261)
-      [1080] getstatic #171
+      [1080] getstatic #164
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.c Landroid/widget/TextView;]
-      [1083] invokevirtual #295
+      [1083] invokevirtual #283
         + Methodref [android/widget/TextView.getText ()Ljava/lang/CharSequence;]
-      [1086] invokeinterface #373
+      [1086] invokeinterface #361
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
       [1091] astore v9
       [1093] aload v4
-      [1095] ldc #21
+      [1095] ldc #18
         + Float [50.0]
-      [1097] invokevirtual #250
+      [1097] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
       [1100] aload v5
-      [1102] new #140
+      [1102] new #134
         + Class [java/lang/StringBuilder]
       [1105] dup
       [1106] aload v6
-      [1108] invokestatic #352
+      [1108] invokestatic #340
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [1111] invokespecial #353
+      [1111] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [1114] ldc #65
+      [1114] ldc #62
         + String [mm]
-      [1116] invokevirtual #357
+      [1116] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [1119] invokevirtual #358
+      [1119] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [1122] aload_3 v3
-      [1123] invokevirtual #230
+      [1123] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [1126] iload v8
       [1128] isub
       [1129] i2f
       [1130] aload_3 v3
-      [1131] invokevirtual #229
+      [1131] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [1134] bipush 10
       [1136] isub
       [1137] i2f
       [1138] aload v4
-      [1140] invokevirtual #238
+      [1140] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [1143] aload v4
-      [1145] ldc #17
+      [1145] ldc #14
         + Float [12.0]
-      [1147] invokevirtual #250
+      [1147] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
       [1150] aload v9
-      [1152] invokevirtual #349
+      [1152] invokevirtual #337
         + Methodref [java/lang/String.length ()I]
       [1155] bipush 28
       [1157] ificmple +17 (target=1174)
       [1160] aload v4
-      [1162] ldc #15
+      [1162] ldc #12
         + Float [10.0]
-      [1164] invokevirtual #250
+      [1164] invokevirtual #240
         + Methodref [android/graphics/Paint.setTextSize (F)V]
       [1167] aload v4
-      [1169] ldc #12
+      [1169] ldc #9
         + Float [0.9]
-      [1171] invokevirtual #249
+      [1171] invokevirtual #239
         + Methodref [android/graphics/Paint.setTextScaleX (F)V]
       [1174] aload v4
-      [1176] getstatic #162
+      [1176] getstatic #156
         + Fieldref [android/graphics/Paint$Align.CENTER Landroid/graphics/Paint$Align;]
-      [1179] invokevirtual #248
+      [1179] invokevirtual #238
         + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
       [1182] aload v5
       [1184] aload v9
       [1186] aload_3 v3
-      [1187] invokevirtual #230
+      [1187] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [1190] iload v8
       [1192] isub
@@ -28749,22 +28657,22 @@ Methods (count = 27):
       [1195] iadd
       [1196] i2f
       [1197] aload_3 v3
-      [1198] invokevirtual #229
+      [1198] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [1201] bipush 56
       [1203] isub
       [1204] i2f
       [1205] aload v4
-      [1207] invokevirtual #238
+      [1207] invokevirtual #228
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
       [1210] aload v4
-      [1212] ldc #13
+      [1212] ldc #10
         + Float [4.0]
-      [1214] invokevirtual #246
+      [1214] invokevirtual #236
         + Methodref [android/graphics/Paint.setStrokeWidth (F)V]
       [1217] aload v5
       [1219] aload_3 v3
-      [1220] invokevirtual #230
+      [1220] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [1223] iload v8
       [1225] isub
@@ -28772,13 +28680,13 @@ Methods (count = 27):
       [1228] isub
       [1229] i2f
       [1230] aload_3 v3
-      [1231] invokevirtual #229
+      [1231] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [1234] bipush 68
       [1236] isub
       [1237] i2f
       [1238] aload_3 v3
-      [1239] invokevirtual #230
+      [1239] invokevirtual #220
         + Methodref [android/graphics/Bitmap.getWidth ()I]
       [1242] iload v8
       [1244] isub
@@ -28786,13 +28694,13 @@ Methods (count = 27):
       [1247] isub
       [1248] i2f
       [1249] aload_3 v3
-      [1250] invokevirtual #229
+      [1250] invokevirtual #219
         + Methodref [android/graphics/Bitmap.getHeight ()I]
       [1253] iconst_3
       [1254] isub
       [1255] i2f
       [1256] aload v4
-      [1258] invokevirtual #237
+      [1258] invokevirtual #227
         + Methodref [android/graphics/Canvas.drawLine (FFFFLandroid/graphics/Paint;)V]
       [1261] aload_0 v0
       [1262] aload_3 v3
@@ -28800,237 +28708,237 @@ Methods (count = 27):
       [1264] istore_3 v3
       [1265] astore_2 v2
       [1266] astore_1 v1
-      [1267] new #143
+      [1267] new #137
         + Class [java/text/SimpleDateFormat]
       [1270] dup
-      [1271] ldc #84
+      [1271] ldc #81
         + String [yyyy-MM-dd HHmmss.S]
-      [1273] invokestatic #368
+      [1273] invokestatic #356
         + Methodref [java/util/Locale.getDefault ()Ljava/util/Locale;]
-      [1276] invokespecial #362
+      [1276] invokespecial #350
         + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;Ljava/util/Locale;)V]
-      [1279] invokestatic #365
+      [1279] invokestatic #353
         + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
-      [1282] invokevirtual #366
+      [1282] invokevirtual #354
         + Methodref [java/util/Calendar.getTime ()Ljava/util/Date;]
-      [1285] invokevirtual #363
+      [1285] invokevirtual #351
         + Methodref [java/text/SimpleDateFormat.format (Ljava/util/Date;)Ljava/lang/String;]
       [1288] astore v4
-      [1290] new #140
+      [1290] new #134
         + Class [java/lang/StringBuilder]
       [1293] dup
-      [1294] getstatic #175
+      [1294] getstatic #168
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.m Ljava/lang/String;]
-      [1297] invokestatic #352
+      [1297] invokestatic #340
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [1300] invokespecial #353
+      [1300] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [1303] ldc #31
+      [1303] ldc #28
         + String [/]
-      [1305] invokevirtual #357
+      [1305] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [1308] aload v4
-      [1310] invokevirtual #357
+      [1310] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [1313] ldc #30
+      [1313] ldc #27
         + String [.jpg]
-      [1315] invokevirtual #357
+      [1315] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [1318] invokevirtual #358
+      [1318] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [1321] astore v4
-      [1323] new #140
+      [1323] new #134
         + Class [java/lang/StringBuilder]
       [1326] dup
-      [1327] ldc #54
+      [1327] ldc #51
         + String [Saving file: ]
-      [1329] invokespecial #353
+      [1329] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [1332] aload v4
-      [1334] invokevirtual #357
+      [1334] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [1337] invokevirtual #358
+      [1337] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [1340] pop
       [1341] aconst_null
       [1342] astore v5
-      [1344] new #130
+      [1344] new #124
         + Class [java/io/FileOutputStream]
       [1347] dup
       [1348] aload v4
-      [1350] invokespecial #337
+      [1350] invokespecial #325
         + Methodref [java/io/FileOutputStream.<init> (Ljava/lang/String;)V]
       [1353] astore v5
       [1355] aload_2 v2
-      [1356] getstatic #158
+      [1356] getstatic #152
         + Fieldref [android/graphics/Bitmap$CompressFormat.JPEG Landroid/graphics/Bitmap$CompressFormat;]
-      [1359] getstatic #210
+      [1359] getstatic #200
         + Fieldref [com/chemicalwedding/artemis/bg.q I]
       [1362] aload v5
-      [1364] invokevirtual #227
+      [1364] invokevirtual #217
         + Methodref [android/graphics/Bitmap.compress (Landroid/graphics/Bitmap$CompressFormat;ILjava/io/OutputStream;)Z]
       [1367] pop
       [1368] aload v5
-      [1370] invokevirtual #339
+      [1370] invokevirtual #327
         + Methodref [java/io/FileOutputStream.flush ()V]
       [1373] aload v5
-      [1375] invokevirtual #338
+      [1375] invokevirtual #326
         + Methodref [java/io/FileOutputStream.close ()V]
       [1378] goto +48 (target=1426)
       [1381] pop
-      [1382] ldc #36
+      [1382] ldc #33
         + String [CameraPreview]
-      [1384] ldc #49
+      [1384] ldc #46
         + String [Picture file could not be created]
-      [1386] invokestatic #287
+      [1386] invokestatic #275
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [1389] pop
       [1390] aload_1 v1
-      [1391] new #126
+      [1391] new #120
         + Class [com/chemicalwedding/artemis/bl]
       [1394] dup
       [1395] aload_1 v1
-      [1396] invokespecial #334
+      [1396] invokespecial #322
         + Methodref [com/chemicalwedding/artemis/bl.<init> (Lcom/chemicalwedding/artemis/bg;)V]
-      [1399] invokevirtual #328
+      [1399] invokevirtual #316
         + Methodref [com/chemicalwedding/artemis/bg.post (Ljava/lang/Runnable;)Z]
       [1402] pop
       [1403] goto +23 (target=1426)
       [1406] astore v5
       [1408] aload_1 v1
-      [1409] new #127
+      [1409] new #121
         + Class [com/chemicalwedding/artemis/bm]
       [1412] dup
       [1413] aload_1 v1
-      [1414] invokespecial #335
+      [1414] invokespecial #323
         + Methodref [com/chemicalwedding/artemis/bm.<init> (Lcom/chemicalwedding/artemis/bg;)V]
-      [1417] invokevirtual #328
+      [1417] invokevirtual #316
         + Methodref [com/chemicalwedding/artemis/bg.post (Ljava/lang/Runnable;)Z]
       [1420] pop
       [1421] aload v5
-      [1423] invokevirtual #340
+      [1423] invokevirtual #328
         + Methodref [java/io/IOException.printStackTrace ()V]
       [1426] aload_2 v2
-      [1427] invokevirtual #231
+      [1427] invokevirtual #221
         + Methodref [android/graphics/Bitmap.recycle ()V]
       [1430] iload_3 v3
       [1431] ifeq +179 (target=1610)
-      [1434] getstatic #173
+      [1434] getstatic #166
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
       [1437] ifnull +173 (target=1610)
-      [1440] new #108
+      [1440] new #102
         + Class [android/media/ExifInterface]
       [1443] dup
       [1444] aload v4
-      [1446] invokespecial #284
+      [1446] invokespecial #272
         + Methodref [android/media/ExifInterface.<init> (Ljava/lang/String;)V]
       [1449] astore v5
-      [1451] getstatic #173
+      [1451] getstatic #166
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [1454] invokevirtual #282
+      [1454] invokevirtual #270
         + Methodref [android/location/Location.getLatitude ()D]
-      [1457] invokestatic #316
+      [1457] invokestatic #304
         + Methodref [com/chemicalwedding/artemis/bg.a (D)Ljava/lang/String;]
       [1460] astore_2 v2
-      [1461] getstatic #173
+      [1461] getstatic #166
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [1464] invokevirtual #282
+      [1464] invokevirtual #270
         + Methodref [android/location/Location.getLatitude ()D]
       [1467] dconst_0
       [1468] dcmpl
       [1469] iflt +8 (target=1477)
-      [1472] ldc #48
+      [1472] ldc #45
         + String [N]
       [1474] goto +5 (target=1479)
-      [1477] ldc #53
+      [1477] ldc #50
         + String [S]
       [1479] astore_3 v3
-      [1480] getstatic #173
+      [1480] getstatic #166
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [1483] invokevirtual #283
+      [1483] invokevirtual #271
         + Methodref [android/location/Location.getLongitude ()D]
-      [1486] invokestatic #316
+      [1486] invokestatic #304
         + Methodref [com/chemicalwedding/artemis/bg.a (D)Ljava/lang/String;]
       [1489] astore v4
-      [1491] getstatic #173
+      [1491] getstatic #166
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [1494] invokevirtual #283
+      [1494] invokevirtual #271
         + Methodref [android/location/Location.getLongitude ()D]
       [1497] dconst_0
       [1498] dcmpl
       [1499] iflt +8 (target=1507)
-      [1502] ldc #40
+      [1502] ldc #37
         + String [E]
       [1504] goto +5 (target=1509)
-      [1507] ldc #57
+      [1507] ldc #54
         + String [W]
       [1509] astore v6
       [1511] aload v5
-      [1513] ldc #42
+      [1513] ldc #39
         + String [GPSLatitude]
       [1515] aload_2 v2
-      [1516] invokevirtual #286
+      [1516] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1519] aload v5
-      [1521] ldc #43
+      [1521] ldc #40
         + String [GPSLatitudeRef]
       [1523] aload_3 v3
-      [1524] invokevirtual #286
+      [1524] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1527] aload v5
-      [1529] ldc #44
+      [1529] ldc #41
         + String [GPSLongitude]
       [1531] aload v4
-      [1533] invokevirtual #286
+      [1533] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1536] aload v5
-      [1538] ldc #45
+      [1538] ldc #42
         + String [GPSLongitudeRef]
       [1540] aload v6
-      [1542] invokevirtual #286
+      [1542] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1545] aload v5
-      [1547] ldc #41
+      [1547] ldc #38
         + String [FocalLength]
       [1549] aload_1 v1
-      [1550] getfield #186
+      [1550] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
-      [1553] invokevirtual #310
+      [1553] invokevirtual #298
         + Methodref [com/chemicalwedding/artemis/be.e ()Ljava/lang/String;]
-      [1556] invokevirtual #286
+      [1556] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1559] aload v5
-      [1561] ldc #47
+      [1561] ldc #44
         + String [Model]
-      [1563] getstatic #171
+      [1563] getstatic #164
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.c Landroid/widget/TextView;]
-      [1566] invokevirtual #295
+      [1566] invokevirtual #283
         + Methodref [android/widget/TextView.getText ()Ljava/lang/CharSequence;]
-      [1569] invokeinterface #373
+      [1569] invokeinterface #361
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
-      [1574] invokevirtual #286
+      [1574] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1577] aload v5
-      [1579] ldc #46
+      [1579] ldc #43
         + String [Make]
-      [1581] getstatic #170
+      [1581] getstatic #163
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.b Landroid/widget/TextView;]
-      [1584] invokevirtual #295
+      [1584] invokevirtual #283
         + Methodref [android/widget/TextView.getText ()Ljava/lang/CharSequence;]
-      [1587] invokeinterface #373
+      [1587] invokeinterface #361
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
-      [1592] invokevirtual #286
+      [1592] invokevirtual #274
         + Methodref [android/media/ExifInterface.setAttribute (Ljava/lang/String;Ljava/lang/String;)V]
       [1595] aload v5
-      [1597] invokevirtual #285
+      [1597] invokevirtual #273
         + Methodref [android/media/ExifInterface.saveAttributes ()V]
       [1600] return
       [1601] pop
-      [1602] ldc #36
+      [1602] ldc #33
         + String [CameraPreview]
-      [1604] ldc #38
+      [1604] ldc #35
         + String [Could not open image for writing EXIF data]
-      [1606] invokestatic #287
+      [1606] invokestatic #275
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [1609] pop
       [1610] return
@@ -29067,204 +28975,26 @@ Methods (count = 27):
         - [1075] Var: ..., Stack: (empty)
         - [1174] Var: ...[a:java/lang/String], Stack: (empty)
         - [1261] Var: [a:com/chemicalwedding/artemis/bg][a:android/content/SharedPreferences][i][a:android/graphics/Bitmap], Stack: 
-  + Method:       a([I[BII)V
-    Access flags: 0x19
-      = public static final void a(int[],byte[],int,int)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 270, locals = 14, stack = 5):
-      [0] iload_2 v2
-      [1] iload_3 v3
-      [2] imul
-      [3] istore v4
-      [5] aload_0 v0
-      [6] ifnull +263 (target=269)
-      [9] iconst_0
-      [10] istore v5
-      [12] iconst_0
-      [13] istore v6
-      [15] goto +248 (target=263)
-      [18] iload v4
-      [20] iload v5
-      [22] iconst_1
-      [23] ishr
-      [24] iload_2 v2
-      [25] imul
-      [26] iadd
-      [27] istore v7
-      [29] iconst_0
-      [30] istore v8
-      [32] iconst_0
-      [33] istore v9
-      [35] iconst_0
-      [36] istore v10
-      [38] goto +216 (target=254)
-      [41] sipush 255
-      [44] aload_1 v1
-      [45] iload v6
-      [47] baload
-      [48] iand
-      [49] bipush 16
-      [51] isub
-      [52] dup
-      [53] istore v11
-      [55] ifge +6 (target=61)
-      [58] iconst_0
-      [59] istore v11
-      [61] iload v10
-      [63] iconst_1
-      [64] iand
-      [65] ifne +37 (target=102)
-      [68] sipush 255
-      [71] aload_1 v1
-      [72] iload v7
-      [74] iinc v7, 1
-      [77] baload
-      [78] iand
-      [79] sipush 128
-      [82] isub
-      [83] istore v9
-      [85] sipush 255
-      [88] aload_1 v1
-      [89] iload v7
-      [91] iinc v7, 1
-      [94] baload
-      [95] iand
-      [96] sipush 128
-      [99] isub
-      [100] istore v8
-      [102] sipush 1192
-      [105] iload v11
-      [107] imul
-      [108] dup
-      [109] istore v11
-      [111] sipush 1634
-      [114] iload v9
-      [116] imul
-      [117] iadd
-      [118] istore v12
-      [120] iload v11
-      [122] sipush 833
-      [125] iload v9
-      [127] imul
-      [128] isub
-      [129] sipush 400
-      [132] iload v8
-      [134] imul
-      [135] isub
-      [136] istore v13
-      [138] iload v11
-      [140] sipush 2066
-      [143] iload v8
-      [145] imul
-      [146] iadd
-      [147] istore v11
-      [149] iload v12
-      [151] ifge +9 (target=160)
-      [154] iconst_0
-      [155] istore v12
-      [157] goto +14 (target=171)
-      [160] iload v12
-      [162] ldc #3
-        + Integer [262143]
-      [164] ificmple +7 (target=171)
-      [167] ldc #3
-        + Integer [262143]
-      [169] istore v12
-      [171] iload v13
-      [173] ifge +9 (target=182)
-      [176] iconst_0
-      [177] istore v13
-      [179] goto +14 (target=193)
-      [182] iload v13
-      [184] ldc #3
-        + Integer [262143]
-      [186] ificmple +7 (target=193)
-      [189] ldc #3
-        + Integer [262143]
-      [191] istore v13
-      [193] iload v11
-      [195] ifge +9 (target=204)
-      [198] iconst_0
-      [199] istore v11
-      [201] goto +14 (target=215)
-      [204] iload v11
-      [206] ldc #3
-        + Integer [262143]
-      [208] ificmple +7 (target=215)
-      [211] ldc #3
-        + Integer [262143]
-      [213] istore v11
-      [215] aload_0 v0
-      [216] iload v6
-      [218] ldc #1
-        + Integer [-16777216]
-      [220] iload v12
-      [222] bipush 6
-      [224] ishl
-      [225] ldc #4
-        + Integer [16711680]
-      [227] iand
-      [228] ior
-      [229] iload v13
-      [231] iconst_2
-      [232] ishr
-      [233] ldc #2
-        + Integer [65280]
-      [235] iand
-      [236] ior
-      [237] iload v11
-      [239] bipush 10
-      [241] ishr
-      [242] sipush 255
-      [245] iand
-      [246] ior
-      [247] iastore
-      [248] iinc v10, 1
-      [251] iinc v6, 1
-      [254] iload v10
-      [256] iload_2 v2
-      [257] ificmplt -216 (target=41)
-      [260] iinc v5, 1
-      [263] iload v5
-      [265] iload_3 v3
-      [266] ificmplt -248 (target=18)
-      [269] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 13):
-        - [18] Var: ...[i][i][i], Stack: (empty)
-        - [41] Var: [a:[I][a:[B][i][i][i][i][i][i][i][i][i], Stack: 
-        - [61] Var: ...[i], Stack: (empty)
-        - [102] Var: ..., Stack: (empty)
-        - [160] Var: [a:[I][a:[B][i][i][i][i][i][i][i][i][i][i][i][i][i][i], Stack: 
-        - [171] Var: ..., Stack: (empty)
-        - [182] Var: ..., Stack: (empty)
-        - [193] Var: ..., Stack: (empty)
-        - [204] Var: ..., Stack: (empty)
-        - [215] Var: ..., Stack: (empty)
-        - [254] Var: [a:[I][a:[B][i][i][i][i][i][i][i][i][i], Stack: 
-        - [263] Var: [a:[I][a:[B][i][i][i][i][i], Stack: 
-        - [269] Var: -2, Stack: (empty)
   + Method:       setWhiteBalance(Ljava/lang/String;)V
     Access flags: 0x11
       = public final void setWhiteBalance(java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 22, locals = 3, stack = 2):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [4] invokevirtual #257
+      [4] invokevirtual #245
         + Methodref [android/hardware/Camera.getParameters ()Landroid/hardware/Camera$Parameters;]
       [7] dup
       [8] astore_2 v2
       [9] aload_1 v1
-      [10] invokevirtual #281
+      [10] invokevirtual #269
         + Methodref [android/hardware/Camera$Parameters.setWhiteBalance (Ljava/lang/String;)V]
       [13] aload_0 v0
-      [14] getfield #184
+      [14] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [17] aload_2 v2
-      [18] invokevirtual #260
+      [18] invokevirtual #248
         + Methodref [android/hardware/Camera.setParameters (Landroid/hardware/Camera$Parameters;)V]
       [21] return
       Code attribute exceptions (count = 0):
@@ -29275,22 +29005,22 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 25, locals = 3, stack = 2):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [4] invokevirtual #257
+      [4] invokevirtual #245
         + Methodref [android/hardware/Camera.getParameters ()Landroid/hardware/Camera$Parameters;]
       [7] dup
       [8] astore_2 v2
       [9] aload_1 v1
-      [10] invokevirtual #343
+      [10] invokevirtual #331
         + Methodref [java/lang/Integer.intValue ()I]
-      [13] invokevirtual #276
+      [13] invokevirtual #264
         + Methodref [android/hardware/Camera$Parameters.setExposureCompensation (I)V]
       [16] aload_0 v0
-      [17] getfield #184
+      [17] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [20] aload_2 v2
-      [21] invokevirtual #260
+      [21] invokevirtual #248
         + Methodref [android/hardware/Camera.setParameters (Landroid/hardware/Camera$Parameters;)V]
       [24] return
       Code attribute exceptions (count = 0):
@@ -29301,29 +29031,29 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 36, locals = 3, stack = 2):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [4] invokevirtual #257
+      [4] invokevirtual #245
         + Methodref [android/hardware/Camera.getParameters ()Landroid/hardware/Camera$Parameters;]
       [7] astore_2 v2
       [8] iload_1 v1
       [9] ifeq +12 (target=21)
       [12] aload_2 v2
-      [13] ldc #82
+      [13] ldc #79
         + String [torch]
-      [15] invokevirtual #277
+      [15] invokevirtual #265
         + Methodref [android/hardware/Camera$Parameters.setFlashMode (Ljava/lang/String;)V]
       [18] goto +9 (target=27)
       [21] aload_2 v2
-      [22] ldc #68
+      [22] ldc #65
         + String [off]
-      [24] invokevirtual #277
+      [24] invokevirtual #265
         + Methodref [android/hardware/Camera$Parameters.setFlashMode (Ljava/lang/String;)V]
       [27] aload_0 v0
-      [28] getfield #184
+      [28] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [31] aload_2 v2
-      [32] invokevirtual #260
+      [32] invokevirtual #248
         + Methodref [android/hardware/Camera.setParameters (Landroid/hardware/Camera$Parameters;)V]
       [35] return
       Code attribute exceptions (count = 0):
@@ -29337,39 +29067,39 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 48, locals = 3, stack = 3):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [4] invokevirtual #257
+      [4] invokevirtual #245
         + Methodref [android/hardware/Camera.getParameters ()Landroid/hardware/Camera$Parameters;]
       [7] astore_2 v2
       [8] aload_0 v0
-      [9] getfield #184
+      [9] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
-      [12] invokevirtual #263
+      [12] invokevirtual #251
         + Methodref [android/hardware/Camera.stopPreview ()V]
       [15] aload_1 v1
-      [16] putstatic #207
+      [16] putstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
       [19] aload_2 v2
       [20] aload_1 v1
-      [21] getfield #168
+      [21] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
       [24] aload_1 v1
-      [25] getfield #167
+      [25] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
-      [28] invokevirtual #280
+      [28] invokevirtual #268
         + Methodref [android/hardware/Camera$Parameters.setPreviewSize (II)V]
       [31] aload_0 v0
-      [32] getfield #184
+      [32] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [35] aload_2 v2
-      [36] invokevirtual #260
+      [36] invokevirtual #248
         + Methodref [android/hardware/Camera.setParameters (Landroid/hardware/Camera$Parameters;)V]
       [39] aload_0 v0
-      [40] invokevirtual #321
+      [40] invokevirtual #309
         + Methodref [com/chemicalwedding/artemis/bg.d ()V]
       [43] aload_0 v0
-      [44] invokevirtual #329
+      [44] invokevirtual #317
         + Methodref [com/chemicalwedding/artemis/bg.requestLayout ()V]
       [47] return
       Code attribute exceptions (count = 0):
@@ -29380,48 +29110,48 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 133, locals = 6, stack = 6):
       [0] aload_0 v0
-      [1] invokevirtual #324
+      [1] invokevirtual #312
         + Methodref [com/chemicalwedding/artemis/bg.getChildCount ()I]
       [4] ifle +128 (target=132)
       [7] iload_1 v1
       [8] ifeq +124 (target=132)
       [11] aload_0 v0
       [12] iconst_0
-      [13] invokevirtual #323
+      [13] invokevirtual #311
         + Methodref [com/chemicalwedding/artemis/bg.getChildAt (I)Landroid/view/View;]
       [16] astore_1 v1
-      [17] getstatic #207
+      [17] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [20] getfield #168
+      [20] getfield #161
         + Fieldref [android/hardware/Camera$Size.width I]
       [23] istore_2 v2
-      [24] getstatic #207
+      [24] getstatic #197
         + Fieldref [com/chemicalwedding/artemis/bg.n Landroid/hardware/Camera$Size;]
-      [27] getfield #167
+      [27] getfield #160
         + Fieldref [android/hardware/Camera$Size.height I]
       [30] istore_3 v3
-      [31] new #140
+      [31] new #134
         + Class [java/lang/StringBuilder]
       [34] dup
-      [35] ldc #52
+      [35] ldc #49
         + String [Preview width: ]
-      [37] invokespecial #353
+      [37] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [40] iload_2 v2
-      [41] invokevirtual #355
+      [41] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [44] ldc #26
+      [44] ldc #23
         + String [ height:]
-      [46] invokevirtual #357
+      [46] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [49] iload_3 v3
-      [50] invokevirtual #355
+      [50] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [53] invokevirtual #358
+      [53] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [56] pop
       [57] aload_0 v0
-      [58] getfield #188
+      [58] getfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
       [61] i2f
       [62] fconst_1
@@ -29429,7 +29159,7 @@ Methods (count = 27):
       [64] f2i
       [65] dup
       [66] istore v4
-      [68] putstatic #181
+      [68] putstatic #174
         + Fieldref [com/chemicalwedding/artemis/be.f I]
       [71] iload_2 v2
       [72] i2f
@@ -29441,42 +29171,42 @@ Methods (count = 27):
       [79] i2f
       [80] fload_2 v2
       [81] fdiv
-      [82] invokestatic #346
+      [82] invokestatic #334
         + Methodref [java/lang/Math.round (F)I]
-      [85] putstatic #182
+      [85] putstatic #175
         + Fieldref [com/chemicalwedding/artemis/be.g I]
-      [88] new #140
+      [88] new #134
         + Class [java/lang/StringBuilder]
       [91] dup
-      [92] ldc #55
+      [92] ldc #52
         + String [Scaled preview width: ]
-      [94] invokespecial #353
+      [94] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [97] getstatic #181
+      [97] getstatic #174
         + Fieldref [com/chemicalwedding/artemis/be.f I]
-      [100] invokevirtual #355
+      [100] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [103] ldc #28
+      [103] ldc #25
         + String [ scaled height:]
-      [105] invokevirtual #357
+      [105] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [108] getstatic #182
+      [108] getstatic #175
         + Fieldref [com/chemicalwedding/artemis/be.g I]
-      [111] invokevirtual #355
+      [111] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [114] invokevirtual #358
+      [114] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [117] pop
       [118] aload_1 v1
       [119] iconst_0
       [120] iconst_5
-      [121] getstatic #181
+      [121] getstatic #174
         + Fieldref [com/chemicalwedding/artemis/be.f I]
-      [124] getstatic #182
+      [124] getstatic #175
         + Fieldref [com/chemicalwedding/artemis/be.g I]
       [127] iconst_5
       [128] iadd
-      [129] invokevirtual #291
+      [129] invokevirtual #279
         + Methodref [android/view/View.layout (IIII)V]
       [132] return
       Code attribute exceptions (count = 0):
@@ -29491,52 +29221,52 @@ Methods (count = 27):
       [0] aload_0 v0
       [1] iload_1 v1
       [2] iload_2 v2
-      [3] invokespecial #294
+      [3] invokespecial #282
         + Methodref [android/view/ViewGroup.onMeasure (II)V]
       [6] aload_0 v0
       [7] iload_1 v1
-      [8] invokestatic #292
+      [8] invokestatic #280
         + Methodref [android/view/View$MeasureSpec.getSize (I)I]
-      [11] putfield #188
+      [11] putfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
       [14] aload_0 v0
       [15] iload_2 v2
-      [16] invokestatic #292
+      [16] invokestatic #280
         + Methodref [android/view/View$MeasureSpec.getSize (I)I]
-      [19] putfield #187
+      [19] putfield #180
         + Fieldref [com/chemicalwedding/artemis/bg.D I]
-      [22] new #140
+      [22] new #134
         + Class [java/lang/StringBuilder]
       [25] dup
-      [26] ldc #37
+      [26] ldc #34
         + String [CameraPreview onMeasure screenWidth: ]
-      [28] invokespecial #353
+      [28] invokespecial #341
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [31] aload_0 v0
-      [32] getfield #188
+      [32] getfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
-      [35] invokevirtual #355
+      [35] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [38] ldc #29
+      [38] ldc #26
         + String [ screenHeight: ]
-      [40] invokevirtual #357
+      [40] invokevirtual #345
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [43] aload_0 v0
-      [44] getfield #187
+      [44] getfield #180
         + Fieldref [com/chemicalwedding/artemis/bg.D I]
-      [47] invokevirtual #355
+      [47] invokevirtual #343
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [50] invokevirtual #358
+      [50] invokevirtual #346
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [53] pop
       [54] aload_0 v0
       [55] aload_0 v0
-      [56] getfield #188
+      [56] getfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
       [59] aload_0 v0
-      [60] getfield #187
+      [60] getfield #180
         + Fieldref [com/chemicalwedding/artemis/bg.D I]
-      [63] invokevirtual #330
+      [63] invokevirtual #318
         + Methodref [com/chemicalwedding/artemis/bg.setMeasuredDimension (II)V]
       [66] return
       Code attribute exceptions (count = 0):
@@ -29547,51 +29277,40 @@ Methods (count = 27):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #322
+      [1] invokespecial #310
         + Methodref [com/chemicalwedding/artemis/bg.g ()V]
       [4] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       b(Lcom/chemicalwedding/artemis/bg;)[I
+  + Method:       b(Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;
     Access flags: 0x1008
-      = static synthetic int[] b(com.chemicalwedding.artemis.bg)
+      = static synthetic com.chemicalwedding.artemis.be b(com.chemicalwedding.artemis.bg)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #189
-        + Fieldref [com/chemicalwedding/artemis/bg.F [I]
-      [4] areturn
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       c(Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;
-    Access flags: 0x1008
-      = static synthetic com.chemicalwedding.artemis.be c(com.chemicalwedding.artemis.bg)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
-      [0] aload_0 v0
-      [1] getfield #186
+      [1] getfield #179
         + Fieldref [com/chemicalwedding/artemis/bg.C Lcom/chemicalwedding/artemis/be;]
       [4] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       d(Lcom/chemicalwedding/artemis/bg;)I
+  + Method:       c(Lcom/chemicalwedding/artemis/bg;)I
     Access flags: 0x1008
-      = static synthetic int d(com.chemicalwedding.artemis.bg)
+      = static synthetic int c(com.chemicalwedding.artemis.bg)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #188
+      [1] getfield #181
         + Fieldref [com/chemicalwedding/artemis/bg.E I]
       [4] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       e(Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;
+  + Method:       d(Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;
     Access flags: 0x1008
-      = static synthetic android.hardware.Camera e(com.chemicalwedding.artemis.bg)
+      = static synthetic android.hardware.Camera d(com.chemicalwedding.artemis.bg)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #177
         + Fieldref [com/chemicalwedding/artemis/bg.A Landroid/hardware/Camera;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -29682,16 +29401,20 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [android/hardware/Camera$PreviewCallback]
 
-Constant Pool (count = 225):
+Constant Pool (count = 244):
   + Integer [2131099753]
   + Integer [2131624026]
+  + Class [[B]
   + Class [android/content/Context]
   + Class [android/graphics/Bitmap]
   + Class [android/graphics/Bitmap$Config]
+  + Class [android/graphics/BitmapFactory]
   + Class [android/graphics/Canvas]
   + Class [android/graphics/Paint]
   + Class [android/graphics/Rect]
   + Class [android/graphics/RectF]
+  + Class [android/graphics/YuvImage]
+  + Class [android/hardware/Camera]
   + Class [android/hardware/Camera$PreviewCallback]
   + Class [android/widget/ImageView]
   + Class [android/widget/Toast]
@@ -29701,6 +29424,7 @@ Constant Pool (count = 225):
   + Class [com/chemicalwedding/artemis/bg]
   + Class [com/chemicalwedding/artemis/bi]
   + Class [com/chemicalwedding/artemis/bj]
+  + Class [java/io/ByteArrayOutputStream]
   + Class [java/lang/Math]
   + Class [java/lang/Object]
   + Class [java/lang/String]
@@ -29729,10 +29453,10 @@ Constant Pool (count = 225):
   + Methodref [android/content/Context.getString (I)Ljava/lang/String;]
   + Methodref [android/graphics/Bitmap.createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
   + Methodref [android/graphics/Bitmap.createBitmap (Landroid/graphics/Bitmap;IIII)Landroid/graphics/Bitmap;]
-  + Methodref [android/graphics/Bitmap.createBitmap ([IIILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
   + Methodref [android/graphics/Bitmap.createScaledBitmap (Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
   + Methodref [android/graphics/Bitmap.getHeight ()I]
   + Methodref [android/graphics/Bitmap.getWidth ()I]
+  + Methodref [android/graphics/BitmapFactory.decodeByteArray ([BII)Landroid/graphics/Bitmap;]
   + Methodref [android/graphics/Canvas.<init> (Landroid/graphics/Bitmap;)V]
   + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
   + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Rect;Landroid/graphics/Paint;)V]
@@ -29742,6 +29466,8 @@ Constant Pool (count = 225):
   + Methodref [android/graphics/Rect.<init> (IIII)V]
   + Methodref [android/graphics/RectF.height ()F]
   + Methodref [android/graphics/RectF.width ()F]
+  + Methodref [android/graphics/YuvImage.<init> ([BIII[I)V]
+  + Methodref [android/graphics/YuvImage.compressToJpeg (Landroid/graphics/Rect;ILjava/io/OutputStream;)Z]
   + Methodref [android/widget/ImageView.setImageBitmap (Landroid/graphics/Bitmap;)V]
   + Methodref [android/widget/Toast.makeText (Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;]
   + Methodref [android/widget/Toast.show ()V]
@@ -29749,13 +29475,14 @@ Constant Pool (count = 225):
   + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
   + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
   + Methodref [com/chemicalwedding/artemis/be.z ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-  + Methodref [com/chemicalwedding/artemis/bg.a ([I[BII)V]
-  + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)[I]
-  + Methodref [com/chemicalwedding/artemis/bg.c (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
-  + Methodref [com/chemicalwedding/artemis/bg.d (Lcom/chemicalwedding/artemis/bg;)I]
+  + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
+  + Methodref [com/chemicalwedding/artemis/bg.c (Lcom/chemicalwedding/artemis/bg;)I]
   + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
   + Methodref [com/chemicalwedding/artemis/bj.<init> (Lcom/chemicalwedding/artemis/bi;Landroid/widget/Toast;)V]
   + Methodref [com/chemicalwedding/artemis/bj.execute ([Ljava/lang/Object;)Landroid/os/AsyncTask;]
+  + Methodref [java/io/ByteArrayOutputStream.<init> ()V]
+  + Methodref [java/io/ByteArrayOutputStream.size ()I]
+  + Methodref [java/io/ByteArrayOutputStream.toByteArray ()[B]
   + Methodref [java/lang/Math.round (D)J]
   + Methodref [java/lang/Object.<init> ()V]
   + Methodref [java/lang/System.gc ()V]
@@ -29763,18 +29490,18 @@ Constant Pool (count = 225):
   + NameAndType [<init> (IIII)V]
   + NameAndType [<init> (Landroid/graphics/Bitmap;)V]
   + NameAndType [<init> (Lcom/chemicalwedding/artemis/bi;Landroid/widget/Toast;)V]
+  + NameAndType [<init> ([BIII[I)V]
   + NameAndType [A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
   + NameAndType [RGB_565 Landroid/graphics/Bitmap$Config;]
-  + NameAndType [a ([I[BII)V]
   + NameAndType [a Landroid/widget/ViewFlipper;]
   + NameAndType [a Lcom/chemicalwedding/artemis/bg;]
-  + NameAndType [b (Lcom/chemicalwedding/artemis/bg;)[I]
-  + NameAndType [c (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
+  + NameAndType [b (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
+  + NameAndType [c (Lcom/chemicalwedding/artemis/bg;)I]
+  + NameAndType [compressToJpeg (Landroid/graphics/Rect;ILjava/io/OutputStream;)Z]
   + NameAndType [createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
   + NameAndType [createBitmap (Landroid/graphics/Bitmap;IIII)Landroid/graphics/Bitmap;]
-  + NameAndType [createBitmap ([IIILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
   + NameAndType [createScaledBitmap (Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
-  + NameAndType [d (Lcom/chemicalwedding/artemis/bg;)I]
+  + NameAndType [decodeByteArray ([BII)Landroid/graphics/Bitmap;]
   + NameAndType [drawBitmap (Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
   + NameAndType [drawBitmap (Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Rect;Landroid/graphics/Paint;)V]
   + NameAndType [e [F]
@@ -29802,7 +29529,9 @@ Constant Pool (count = 225):
   + NameAndType [setImageBitmap (Landroid/graphics/Bitmap;)V]
   + NameAndType [setInAnimation (Landroid/view/animation/Animation;)V]
   + NameAndType [show ()V]
+  + NameAndType [size ()I]
   + NameAndType [t I]
+  + NameAndType [toByteArray ()[B]
   + NameAndType [top F]
   + NameAndType [u I]
   + NameAndType [w Landroid/graphics/Bitmap;]
@@ -29813,6 +29542,7 @@ Constant Pool (count = 225):
   + Utf8 [()Landroid/content/Context;]
   + Utf8 [()Lcom/chemicalwedding/artemis/ArtemisRectF;]
   + Utf8 [()V]
+  + Utf8 [()[B]
   + Utf8 [(D)J]
   + Utf8 [(I)Ljava/lang/String;]
   + Utf8 [(I)V]
@@ -29824,16 +29554,16 @@ Constant Pool (count = 225):
   + Utf8 [(Landroid/graphics/Bitmap;IIII)Landroid/graphics/Bitmap;]
   + Utf8 [(Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
   + Utf8 [(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Rect;Landroid/graphics/Paint;)V]
+  + Utf8 [(Landroid/graphics/Rect;ILjava/io/OutputStream;)Z]
   + Utf8 [(Landroid/view/animation/Animation;)V]
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;)I]
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
   + Utf8 [(Lcom/chemicalwedding/artemis/bg;)V]
-  + Utf8 [(Lcom/chemicalwedding/artemis/bg;)[I]
   + Utf8 [(Lcom/chemicalwedding/artemis/bi;)Lcom/chemicalwedding/artemis/bg;]
   + Utf8 [(Lcom/chemicalwedding/artemis/bi;Landroid/widget/Toast;)V]
+  + Utf8 [([BII)Landroid/graphics/Bitmap;]
+  + Utf8 [([BIII[I)V]
   + Utf8 [([BLandroid/hardware/Camera;)V]
-  + Utf8 [([IIILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
-  + Utf8 [([I[BII)V]
   + Utf8 [([Ljava/lang/Object;)Landroid/os/AsyncTask;]
   + Utf8 [<init>]
   + Utf8 [A]
@@ -29848,15 +29578,19 @@ Constant Pool (count = 225):
   + Utf8 [RGB_565]
   + Utf8 [StackMapTable]
   + Utf8 [Z]
+  + Utf8 [[B]
   + Utf8 [[F]
   + Utf8 [a]
   + Utf8 [android/content/Context]
   + Utf8 [android/graphics/Bitmap]
   + Utf8 [android/graphics/Bitmap$Config]
+  + Utf8 [android/graphics/BitmapFactory]
   + Utf8 [android/graphics/Canvas]
   + Utf8 [android/graphics/Paint]
   + Utf8 [android/graphics/Rect]
   + Utf8 [android/graphics/RectF]
+  + Utf8 [android/graphics/YuvImage]
+  + Utf8 [android/hardware/Camera]
   + Utf8 [android/hardware/Camera$PreviewCallback]
   + Utf8 [android/widget/ImageView]
   + Utf8 [android/widget/Toast]
@@ -29868,9 +29602,10 @@ Constant Pool (count = 225):
   + Utf8 [com/chemicalwedding/artemis/bg]
   + Utf8 [com/chemicalwedding/artemis/bi]
   + Utf8 [com/chemicalwedding/artemis/bj]
+  + Utf8 [compressToJpeg]
   + Utf8 [createBitmap]
   + Utf8 [createScaledBitmap]
-  + Utf8 [d]
+  + Utf8 [decodeByteArray]
   + Utf8 [drawBitmap]
   + Utf8 [e]
   + Utf8 [execute]
@@ -29884,6 +29619,7 @@ Constant Pool (count = 225):
   + Utf8 [h]
   + Utf8 [height]
   + Utf8 [j]
+  + Utf8 [java/io/ByteArrayOutputStream]
   + Utf8 [java/lang/Math]
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/String]
@@ -29899,7 +29635,9 @@ Constant Pool (count = 225):
   + Utf8 [setImageBitmap]
   + Utf8 [setInAnimation]
   + Utf8 [show]
+  + Utf8 [size]
   + Utf8 [t]
+  + Utf8 [toByteArray]
   + Utf8 [top]
   + Utf8 [u]
   + Utf8 [w]
@@ -29919,10 +29657,10 @@ Methods (count = 3):
     + Code attribute instructions (code length = 10, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #45
+      [2] putfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
       [5] aload_0 v0
-      [6] invokespecial #77
+      [6] invokespecial #85
         + Methodref [java/lang/Object.<init> ()V]
       [9] return
       Code attribute exceptions (count = 0):
@@ -29931,422 +29669,446 @@ Methods (count = 3):
     Access flags: 0x11
       = public final void onPreviewFrame(byte[],android.hardware.Camera)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 571, locals = 8, stack = 9):
-      [0] aload_0 v0
-      [1] getfield #45
+    + Code attribute instructions (code length = 599, locals = 8, stack = 9):
+      [0] new #12
+        + Class [android/graphics/YuvImage]
+      [3] dup
+      [4] aload_1 v1
+      [5] bipush 17
+      [7] aload_0 v0
+      [8] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [4] invokestatic #70
-        + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)[I]
-      [7] aload_1 v1
-      [8] aload_0 v0
-      [9] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [12] getfield #43
+      [11] getfield #48
         + Fieldref [com/chemicalwedding/artemis/bg.u I]
-      [15] aload_0 v0
-      [16] getfield #45
+      [14] aload_0 v0
+      [15] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [19] getfield #42
+      [18] getfield #47
         + Fieldref [com/chemicalwedding/artemis/bg.t I]
-      [22] invokestatic #69
-        + Methodref [com/chemicalwedding/artemis/bg.a ([I[BII)V]
-      [25] aload_0 v0
-      [26] getfield #45
+      [21] aconst_null
+      [22] invokespecial #67
+        + Methodref [android/graphics/YuvImage.<init> ([BIII[I)V]
+      [25] astore_1 v1
+      [26] new #10
+        + Class [android/graphics/Rect]
+      [29] dup
+      [30] iconst_0
+      [31] iconst_0
+      [32] aload_0 v0
+      [33] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [29] aload_0 v0
-      [30] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [33] invokestatic #70
-        + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)[I]
-      [36] aload_0 v0
-      [37] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [40] getfield #43
+      [36] getfield #48
         + Fieldref [com/chemicalwedding/artemis/bg.u I]
-      [43] aload_0 v0
-      [44] getfield #45
+      [39] aload_0 v0
+      [40] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [47] getfield #42
+      [43] getfield #47
         + Fieldref [com/chemicalwedding/artemis/bg.t I]
-      [50] getstatic #27
-        + Fieldref [android/graphics/Bitmap$Config.RGB_565 Landroid/graphics/Bitmap$Config;]
-      [53] invokestatic #49
-        + Methodref [android/graphics/Bitmap.createBitmap ([IIILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
-      [56] putfield #44
+      [46] invokespecial #64
+        + Methodref [android/graphics/Rect.<init> (IIII)V]
+      [49] astore_2 v2
+      [50] new #23
+        + Class [java/io/ByteArrayOutputStream]
+      [53] dup
+      [54] invokespecial #81
+        + Methodref [java/io/ByteArrayOutputStream.<init> ()V]
+      [57] astore_3 v3
+      [58] aload_1 v1
+      [59] aload_2 v2
+      [60] bipush 100
+      [62] aload_3 v3
+      [63] invokevirtual #68
+        + Methodref [android/graphics/YuvImage.compressToJpeg (Landroid/graphics/Rect;ILjava/io/OutputStream;)Z]
+      [66] pop
+      [67] aload_0 v0
+      [68] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [71] aload_3 v3
+      [72] invokevirtual #83
+        + Methodref [java/io/ByteArrayOutputStream.toByteArray ()[B]
+      [75] iconst_0
+      [76] aload_3 v3
+      [77] invokevirtual #82
+        + Methodref [java/io/ByteArrayOutputStream.size ()I]
+      [80] invokestatic #57
+        + Methodref [android/graphics/BitmapFactory.decodeByteArray ([BII)Landroid/graphics/Bitmap;]
+      [83] putfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [59] aload_0 v0
-      [60] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [63] invokestatic #71
-        + Methodref [com/chemicalwedding/artemis/bg.c (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
-      [66] invokevirtual #68
-        + Methodref [com/chemicalwedding/artemis/be.z ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [69] astore_1 v1
-      [70] aload_0 v0
-      [71] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [74] invokestatic #71
-        + Methodref [com/chemicalwedding/artemis/bg.c (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
-      [77] invokevirtual #67
-        + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
-      [80] astore_2 v2
-      [81] aload_0 v0
-      [82] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [85] getfield #42
-        + Fieldref [com/chemicalwedding/artemis/bg.t I]
-      [88] istore_3 v3
-      [89] getstatic #41
-        + Fieldref [com/chemicalwedding/artemis/bg.r I]
-      [92] tableswitch (2 offsets, default=49) (target=141)
-        1: offset = 24, target = 116
-        2: offset = 38, target = 130
-        default: offset = 49, target = 141
-      [116] iload_3 v3
-      [117] i2d
-      [118] ldc2_w #25
-        + Double [1.25]
-      [121] dmul
-      [122] invokestatic #76
-        + Methodref [java/lang/Math.round (D)J]
-      [125] l2i
-      [126] istore_3 v3
-      [127] goto +14 (target=141)
-      [130] iload_3 v3
-      [131] i2d
-      [132] ldc2_w #23
-        + Double [0.75]
-      [135] dmul
-      [136] invokestatic #76
-        + Methodref [java/lang/Math.round (D)J]
-      [139] l2i
-      [140] istore_3 v3
-      [141] iload_3 v3
-      [142] sipush 420
-      [145] ificmpge +9 (target=154)
-      [148] sipush 420
-      [151] goto +4 (target=155)
-      [154] iload_3 v3
-      [155] istore_3 v3
-      [156] aload_0 v0
-      [157] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [160] getfield #40
-        + Fieldref [com/chemicalwedding/artemis/bg.p F]
-      [163] fconst_1
-      [164] fcmpl
-      [165] iflt +108 (target=273)
-      [168] aload_0 v0
-      [169] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [172] aload_0 v0
-      [173] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [176] getfield #44
-        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [179] getstatic #35
-        + Fieldref [com/chemicalwedding/artemis/be.f I]
-      [182] getstatic #36
-        + Fieldref [com/chemicalwedding/artemis/be.g I]
-      [185] getstatic #39
-        + Fieldref [com/chemicalwedding/artemis/bg.g Z]
-      [188] invokestatic #50
-        + Methodref [android/graphics/Bitmap.createScaledBitmap (Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
-      [191] putfield #44
-        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [194] aload_0 v0
-      [195] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [198] aload_0 v0
-      [199] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [202] getfield #44
-        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [205] aload_1 v1
-      [206] getfield #28
-        + Fieldref [android/graphics/RectF.left F]
-      [209] f2i
-      [210] aload_1 v1
-      [211] getfield #29
-        + Fieldref [android/graphics/RectF.top F]
-      [214] f2i
-      [215] aload_1 v1
-      [216] invokevirtual #61
-        + Methodref [android/graphics/RectF.width ()F]
-      [219] f2i
-      [220] aload_1 v1
-      [221] invokevirtual #60
-        + Methodref [android/graphics/RectF.height ()F]
-      [224] f2i
-      [225] invokestatic #48
-        + Methodref [android/graphics/Bitmap.createBitmap (Landroid/graphics/Bitmap;IIII)Landroid/graphics/Bitmap;]
-      [228] putfield #44
-        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [231] invokestatic #78
+      [86] invokestatic #86
         + Methodref [java/lang/System.gc ()V]
-      [234] aload_1 v1
-      [235] invokevirtual #61
-        + Methodref [android/graphics/RectF.width ()F]
-      [238] aload_1 v1
-      [239] invokevirtual #60
-        + Methodref [android/graphics/RectF.height ()F]
-      [242] fdiv
-      [243] fstore_1 v1
-      [244] aload_0 v0
-      [245] getfield #45
+      [89] aload_0 v0
+      [90] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [248] aload_0 v0
-      [249] getfield #45
+      [93] invokestatic #76
+        + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
+      [96] invokevirtual #75
+        + Methodref [com/chemicalwedding/artemis/be.z ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
+      [99] astore_1 v1
+      [100] aload_0 v0
+      [101] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [252] getfield #44
+      [104] invokestatic #76
+        + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
+      [107] invokevirtual #74
+        + Methodref [com/chemicalwedding/artemis/be.A ()Lcom/chemicalwedding/artemis/ArtemisRectF;]
+      [110] astore_2 v2
+      [111] aload_0 v0
+      [112] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [115] getfield #47
+        + Fieldref [com/chemicalwedding/artemis/bg.t I]
+      [118] istore_3 v3
+      [119] getstatic #46
+        + Fieldref [com/chemicalwedding/artemis/bg.r I]
+      [122] tableswitch (2 offsets, default=47) (target=169)
+        1: offset = 22, target = 144
+        2: offset = 36, target = 158
+        default: offset = 47, target = 169
+      [144] iload_3 v3
+      [145] i2d
+      [146] ldc2_w #30
+        + Double [1.25]
+      [149] dmul
+      [150] invokestatic #84
+        + Methodref [java/lang/Math.round (D)J]
+      [153] l2i
+      [154] istore_3 v3
+      [155] goto +14 (target=169)
+      [158] iload_3 v3
+      [159] i2d
+      [160] ldc2_w #28
+        + Double [0.75]
+      [163] dmul
+      [164] invokestatic #84
+        + Methodref [java/lang/Math.round (D)J]
+      [167] l2i
+      [168] istore_3 v3
+      [169] iload_3 v3
+      [170] sipush 420
+      [173] ificmpge +9 (target=182)
+      [176] sipush 420
+      [179] goto +4 (target=183)
+      [182] iload_3 v3
+      [183] istore_3 v3
+      [184] aload_0 v0
+      [185] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [188] getfield #45
+        + Fieldref [com/chemicalwedding/artemis/bg.p F]
+      [191] fconst_1
+      [192] fcmpl
+      [193] iflt +108 (target=301)
+      [196] aload_0 v0
+      [197] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [200] aload_0 v0
+      [201] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [204] getfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [255] iload_3 v3
-      [256] i2f
-      [257] fload_1 v1
-      [258] fmul
-      [259] f2i
-      [260] iload_3 v3
-      [261] getstatic #39
+      [207] getstatic #40
+        + Fieldref [com/chemicalwedding/artemis/be.f I]
+      [210] getstatic #41
+        + Fieldref [com/chemicalwedding/artemis/be.g I]
+      [213] getstatic #44
         + Fieldref [com/chemicalwedding/artemis/bg.g Z]
-      [264] invokestatic #50
+      [216] invokestatic #54
         + Methodref [android/graphics/Bitmap.createScaledBitmap (Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
-      [267] putfield #44
+      [219] putfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [270] goto +216 (target=486)
-      [273] aload_2 v2
-      [274] invokevirtual #61
+      [222] aload_0 v0
+      [223] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [226] aload_0 v0
+      [227] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [230] getfield #49
+        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
+      [233] aload_1 v1
+      [234] getfield #33
+        + Fieldref [android/graphics/RectF.left F]
+      [237] f2i
+      [238] aload_1 v1
+      [239] getfield #34
+        + Fieldref [android/graphics/RectF.top F]
+      [242] f2i
+      [243] aload_1 v1
+      [244] invokevirtual #66
         + Methodref [android/graphics/RectF.width ()F]
-      [277] aload_2 v2
-      [278] invokevirtual #60
+      [247] f2i
+      [248] aload_1 v1
+      [249] invokevirtual #65
         + Methodref [android/graphics/RectF.height ()F]
-      [281] fdiv
-      [282] fstore_1 v1
+      [252] f2i
+      [253] invokestatic #53
+        + Methodref [android/graphics/Bitmap.createBitmap (Landroid/graphics/Bitmap;IIII)Landroid/graphics/Bitmap;]
+      [256] putfield #49
+        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
+      [259] invokestatic #86
+        + Methodref [java/lang/System.gc ()V]
+      [262] aload_1 v1
+      [263] invokevirtual #66
+        + Methodref [android/graphics/RectF.width ()F]
+      [266] aload_1 v1
+      [267] invokevirtual #65
+        + Methodref [android/graphics/RectF.height ()F]
+      [270] fdiv
+      [271] fstore_1 v1
+      [272] aload_0 v0
+      [273] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [276] aload_0 v0
+      [277] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [280] getfield #49
+        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
       [283] iload_3 v3
       [284] i2f
       [285] fload_1 v1
       [286] fmul
       [287] f2i
-      [288] dup
-      [289] istore_1 v1
-      [290] iload_3 v3
-      [291] getstatic #27
-        + Fieldref [android/graphics/Bitmap$Config.RGB_565 Landroid/graphics/Bitmap$Config;]
-      [294] invokestatic #47
-        + Methodref [android/graphics/Bitmap.createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
-      [297] astore v4
-      [299] new #6
-        + Class [android/graphics/Canvas]
-      [302] dup
-      [303] aload v4
-      [305] invokespecial #53
-        + Methodref [android/graphics/Canvas.<init> (Landroid/graphics/Bitmap;)V]
-      [308] astore v5
-      [310] new #7
-        + Class [android/graphics/Paint]
-      [313] dup
-      [314] invokespecial #58
-        + Methodref [android/graphics/Paint.<init> ()V]
-      [317] astore v6
-      [319] iload_1 v1
-      [320] i2f
-      [321] getstatic #37
-        + Fieldref [com/chemicalwedding/artemis/be.h F]
-      [324] fmul
-      [325] aload_0 v0
-      [326] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [329] invokestatic #71
-        + Methodref [com/chemicalwedding/artemis/bg.c (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
-      [332] getfield #34
-        + Fieldref [com/chemicalwedding/artemis/be.e [F]
-      [335] iconst_0
-      [336] faload
-      [337] fdiv
-      [338] aload_0 v0
-      [339] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [342] invokestatic #72
-        + Methodref [com/chemicalwedding/artemis/bg.d (Lcom/chemicalwedding/artemis/bg;)I]
-      [345] i2f
-      [346] fmul
-      [347] aload_2 v2
-      [348] invokevirtual #61
-        + Methodref [android/graphics/RectF.width ()F]
-      [351] fdiv
-      [352] fstore_2 v2
-      [353] aload_0 v0
-      [354] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [357] getfield #42
-        + Fieldref [com/chemicalwedding/artemis/bg.t I]
-      [360] i2f
-      [361] aload_0 v0
-      [362] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [365] getfield #43
-        + Fieldref [com/chemicalwedding/artemis/bg.u I]
-      [368] i2f
-      [369] fdiv
-      [370] fstore v7
-      [372] aload_0 v0
-      [373] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [376] aload_0 v0
-      [377] getfield #45
-        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [380] getfield #44
-        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [383] fload_2 v2
-      [384] f2i
-      [385] fload_2 v2
-      [386] fload v7
-      [388] fmul
-      [389] f2i
-      [390] getstatic #39
+      [288] iload_3 v3
+      [289] getstatic #44
         + Fieldref [com/chemicalwedding/artemis/bg.g Z]
-      [393] invokestatic #50
+      [292] invokestatic #54
         + Methodref [android/graphics/Bitmap.createScaledBitmap (Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
-      [396] putfield #44
+      [295] putfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [399] iload_1 v1
+      [298] goto +216 (target=514)
+      [301] aload_2 v2
+      [302] invokevirtual #66
+        + Methodref [android/graphics/RectF.width ()F]
+      [305] aload_2 v2
+      [306] invokevirtual #65
+        + Methodref [android/graphics/RectF.height ()F]
+      [309] fdiv
+      [310] fstore_1 v1
+      [311] iload_3 v3
+      [312] i2f
+      [313] fload_1 v1
+      [314] fmul
+      [315] f2i
+      [316] dup
+      [317] istore_1 v1
+      [318] iload_3 v3
+      [319] getstatic #32
+        + Fieldref [android/graphics/Bitmap$Config.RGB_565 Landroid/graphics/Bitmap$Config;]
+      [322] invokestatic #52
+        + Methodref [android/graphics/Bitmap.createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
+      [325] astore v4
+      [327] new #8
+        + Class [android/graphics/Canvas]
+      [330] dup
+      [331] aload v4
+      [333] invokespecial #58
+        + Methodref [android/graphics/Canvas.<init> (Landroid/graphics/Bitmap;)V]
+      [336] astore v5
+      [338] new #9
+        + Class [android/graphics/Paint]
+      [341] dup
+      [342] invokespecial #63
+        + Methodref [android/graphics/Paint.<init> ()V]
+      [345] astore v6
+      [347] iload_1 v1
+      [348] i2f
+      [349] getstatic #42
+        + Fieldref [com/chemicalwedding/artemis/be.h F]
+      [352] fmul
+      [353] aload_0 v0
+      [354] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [357] invokestatic #76
+        + Methodref [com/chemicalwedding/artemis/bg.b (Lcom/chemicalwedding/artemis/bg;)Lcom/chemicalwedding/artemis/be;]
+      [360] getfield #39
+        + Fieldref [com/chemicalwedding/artemis/be.e [F]
+      [363] iconst_0
+      [364] faload
+      [365] fdiv
+      [366] aload_0 v0
+      [367] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [370] invokestatic #77
+        + Methodref [com/chemicalwedding/artemis/bg.c (Lcom/chemicalwedding/artemis/bg;)I]
+      [373] i2f
+      [374] fmul
+      [375] aload_2 v2
+      [376] invokevirtual #66
+        + Methodref [android/graphics/RectF.width ()F]
+      [379] fdiv
+      [380] fstore_2 v2
+      [381] aload_0 v0
+      [382] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [385] getfield #47
+        + Fieldref [com/chemicalwedding/artemis/bg.t I]
+      [388] i2f
+      [389] aload_0 v0
+      [390] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [393] getfield #48
+        + Fieldref [com/chemicalwedding/artemis/bg.u I]
+      [396] i2f
+      [397] fdiv
+      [398] fstore v7
       [400] aload_0 v0
-      [401] getfield #45
+      [401] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [404] getfield #44
+      [404] aload_0 v0
+      [405] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [408] getfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [407] invokevirtual #52
+      [411] fload_2 v2
+      [412] f2i
+      [413] fload_2 v2
+      [414] fload v7
+      [416] fmul
+      [417] f2i
+      [418] getstatic #44
+        + Fieldref [com/chemicalwedding/artemis/bg.g Z]
+      [421] invokestatic #54
+        + Methodref [android/graphics/Bitmap.createScaledBitmap (Landroid/graphics/Bitmap;IIZ)Landroid/graphics/Bitmap;]
+      [424] putfield #49
+        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
+      [427] iload_1 v1
+      [428] aload_0 v0
+      [429] getfield #50
+        + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
+      [432] getfield #49
+        + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
+      [435] invokevirtual #56
         + Methodref [android/graphics/Bitmap.getWidth ()I]
-      [410] isub
-      [411] iconst_2
-      [412] idiv
-      [413] istore_1 v1
-      [414] iload_3 v3
-      [415] aload_0 v0
-      [416] getfield #45
+      [438] isub
+      [439] iconst_2
+      [440] idiv
+      [441] istore_1 v1
+      [442] iload_3 v3
+      [443] aload_0 v0
+      [444] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [419] getfield #44
+      [447] getfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [422] invokevirtual #51
+      [450] invokevirtual #55
         + Methodref [android/graphics/Bitmap.getHeight ()I]
-      [425] isub
-      [426] iconst_2
-      [427] idiv
-      [428] istore_2 v2
-      [429] aload v5
-      [431] getstatic #33
+      [453] isub
+      [454] iconst_2
+      [455] idiv
+      [456] istore_2 v2
+      [457] aload v5
+      [459] getstatic #38
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.q Landroid/graphics/Bitmap;]
-      [434] aconst_null
-      [435] new #8
+      [462] aconst_null
+      [463] new #10
         + Class [android/graphics/Rect]
-      [438] dup
-      [439] iconst_0
-      [440] iconst_0
-      [441] aload v5
-      [443] invokevirtual #57
+      [466] dup
+      [467] iconst_0
+      [468] iconst_0
+      [469] aload v5
+      [471] invokevirtual #62
         + Methodref [android/graphics/Canvas.getWidth ()I]
-      [446] aload v5
-      [448] invokevirtual #56
+      [474] aload v5
+      [476] invokevirtual #61
         + Methodref [android/graphics/Canvas.getHeight ()I]
-      [451] invokespecial #59
+      [479] invokespecial #64
         + Methodref [android/graphics/Rect.<init> (IIII)V]
-      [454] aload v6
-      [456] invokevirtual #55
+      [482] aload v6
+      [484] invokevirtual #60
         + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Rect;Landroid/graphics/Paint;)V]
-      [459] aload v5
-      [461] aload_0 v0
-      [462] getfield #45
+      [487] aload v5
+      [489] aload_0 v0
+      [490] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [465] getfield #44
+      [493] getfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [468] iload_1 v1
-      [469] i2f
-      [470] iload_2 v2
-      [471] i2f
-      [472] aload v6
-      [474] invokevirtual #54
+      [496] iload_1 v1
+      [497] i2f
+      [498] iload_2 v2
+      [499] i2f
+      [500] aload v6
+      [502] invokevirtual #59
         + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
-      [477] aload_0 v0
-      [478] getfield #45
+      [505] aload_0 v0
+      [506] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [481] aload v4
-      [483] putfield #44
+      [509] aload v4
+      [511] putfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [486] getstatic #38
+      [514] getstatic #43
         + Fieldref [com/chemicalwedding/artemis/bg.f Z]
-      [489] ifne +36 (target=525)
-      [492] getstatic #32
+      [517] ifne +36 (target=553)
+      [520] getstatic #37
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.j Landroid/widget/ImageView;]
-      [495] aload_0 v0
-      [496] getfield #45
+      [523] aload_0 v0
+      [524] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [499] getfield #44
+      [527] getfield #49
         + Fieldref [com/chemicalwedding/artemis/bg.w Landroid/graphics/Bitmap;]
-      [502] invokevirtual #62
+      [530] invokevirtual #69
         + Methodref [android/widget/ImageView.setImageBitmap (Landroid/graphics/Bitmap;)V]
-      [505] getstatic #30
+      [533] getstatic #35
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
-      [508] aconst_null
-      [509] invokevirtual #66
+      [536] aconst_null
+      [537] invokevirtual #73
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
-      [512] getstatic #30
+      [540] getstatic #35
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
-      [515] iconst_3
-      [516] invokevirtual #65
+      [543] iconst_3
+      [544] invokevirtual #72
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
-      [519] ldc #2
+      [547] ldc #2
         + Integer [2131624026]
-      [521] putstatic #31
+      [549] putstatic #36
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.h I]
-      [524] return
-      [525] aload_0 v0
-      [526] getfield #45
+      [552] return
+      [553] aload_0 v0
+      [554] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [529] invokevirtual #73
+      [557] invokevirtual #78
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [532] aload_0 v0
-      [533] getfield #45
+      [560] aload_0 v0
+      [561] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
-      [536] invokevirtual #73
+      [564] invokevirtual #78
         + Methodref [com/chemicalwedding/artemis/bg.getContext ()Landroid/content/Context;]
-      [539] ldc #1
+      [567] ldc #1
         + Integer [2131099753]
-      [541] invokevirtual #46
+      [569] invokevirtual #51
         + Methodref [android/content/Context.getString (I)Ljava/lang/String;]
-      [544] iconst_0
-      [545] invokestatic #63
+      [572] iconst_0
+      [573] invokestatic #70
         + Methodref [android/widget/Toast.makeText (Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;]
-      [548] dup
-      [549] astore_1 v1
-      [550] invokevirtual #64
+      [576] dup
+      [577] astore_1 v1
+      [578] invokevirtual #71
         + Methodref [android/widget/Toast.show ()V]
-      [553] new #18
+      [581] new #22
         + Class [com/chemicalwedding/artemis/bj]
-      [556] dup
-      [557] aload_0 v0
-      [558] aload_1 v1
-      [559] invokespecial #74
+      [584] dup
+      [585] aload_0 v0
+      [586] aload_1 v1
+      [587] invokespecial #79
         + Methodref [com/chemicalwedding/artemis/bj.<init> (Lcom/chemicalwedding/artemis/bi;Landroid/widget/Toast;)V]
-      [562] iconst_0
-      [563] anewarray #21
+      [590] iconst_0
+      [591] anewarray #26
         + Class [java/lang/String]
-      [566] invokevirtual #75
+      [594] invokevirtual #80
         + Methodref [com/chemicalwedding/artemis/bj.execute ([Ljava/lang/Object;)Landroid/os/AsyncTask;]
-      [569] pop
-      [570] return
+      [597] pop
+      [598] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 4):
-        - [273] Var: ...[a:android/graphics/RectF][a:android/graphics/RectF][i], Stack: (empty)
-        - [486] Var: ..., Stack: (empty)
-        - [525] Var: ..., Stack: (empty)
-        - [570] Var: ..., Stack: (empty)
+        - [301] Var: [a:com/chemicalwedding/artemis/bi][a:[B][a:android/hardware/Camera][a:android/graphics/YuvImage][a:android/graphics/Rect][a:java/io/ByteArrayOutputStream][a:android/graphics/RectF][a:android/graphics/RectF][i], Stack: 
+        - [514] Var: ..., Stack: (empty)
+        - [553] Var: ..., Stack: (empty)
+        - [598] Var: ..., Stack: (empty)
   + Method:       a(Lcom/chemicalwedding/artemis/bi;)Lcom/chemicalwedding/artemis/bg;
     Access flags: 0x1008
       = static synthetic com.chemicalwedding.artemis.bg a(com.chemicalwedding.artemis.bi)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #45
+      [1] getfield #50
         + Fieldref [com/chemicalwedding/artemis/bi.a Lcom/chemicalwedding/artemis/bg;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -30570,11 +30332,11 @@ Constant Pool (count = 34):
   + Fieldref [com/chemicalwedding/artemis/bg.y Landroid/hardware/Camera$PreviewCallback;]
   + Fieldref [com/chemicalwedding/artemis/bk.a Lcom/chemicalwedding/artemis/bg;]
   + Methodref [android/hardware/Camera.setOneShotPreviewCallback (Landroid/hardware/Camera$PreviewCallback;)V]
-  + Methodref [com/chemicalwedding/artemis/bg.e (Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
+  + Methodref [com/chemicalwedding/artemis/bg.d (Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
   + Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
   + NameAndType [a Lcom/chemicalwedding/artemis/bg;]
-  + NameAndType [e (Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
+  + NameAndType [d (Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
   + NameAndType [setOneShotPreviewCallback (Landroid/hardware/Camera$PreviewCallback;)V]
   + NameAndType [y Landroid/hardware/Camera$PreviewCallback;]
   + Utf8 [()V]
@@ -30589,7 +30351,7 @@ Constant Pool (count = 34):
   + Utf8 [android/hardware/Camera]
   + Utf8 [com/chemicalwedding/artemis/bg]
   + Utf8 [com/chemicalwedding/artemis/bk]
-  + Utf8 [e]
+  + Utf8 [d]
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/Runnable]
   + Utf8 [run]
@@ -30626,7 +30388,7 @@ Methods (count = 2):
       [1] getfield #7
         + Fieldref [com/chemicalwedding/artemis/bk.a Lcom/chemicalwedding/artemis/bg;]
       [4] invokestatic #9
-        + Methodref [com/chemicalwedding/artemis/bg.e (Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
+        + Methodref [com/chemicalwedding/artemis/bg.d (Lcom/chemicalwedding/artemis/bg;)Landroid/hardware/Camera;]
       [7] aload_0 v0
       [8] getfield #7
         + Fieldref [com/chemicalwedding/artemis/bk.a Lcom/chemicalwedding/artemis/bg;]
@@ -37244,7 +37006,7 @@ Constant Pool (count = 225):
   + Integer [2131099783]
   + Integer [2131099784]
   + String [ - ]
-  + String [ eV]
+  + String [ EV]
   + Class [[Ljava/lang/CharSequence;]
   + Class [android/content/SharedPreferences]
   + Class [android/os/Bundle]
@@ -37363,7 +37125,7 @@ Constant Pool (count = 225):
   + NameAndType [valueOf (F)Ljava/lang/Float;]
   + NameAndType [valueOf (Ljava/lang/Object;)Ljava/lang/String;]
   + Utf8 [ - ]
-  + Utf8 [ eV]
+  + Utf8 [ EV]
   + Utf8 [()I]
   + Utf8 [()Ljava/lang/CharSequence;]
   + Utf8 [()Ljava/lang/String;]
@@ -37866,7 +37628,7 @@ Methods (count = 4):
       [543] invokespecial #73
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [546] ldc #13
-        + String [ eV]
+        + String [ EV]
       [548] invokevirtual #75
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [551] invokevirtual #76

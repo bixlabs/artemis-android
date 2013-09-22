@@ -525,15 +525,12 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.bg:
     int savedImageJPEGQuality -> q
     int savedImageSizeIndex -> r
     boolean blackAndWhitePreview -> s
-    int[] tempFrameBitmap -> F
-    int frameBufSize -> G
-    byte[] frameBuffer -> H
     int previewHeight -> t
     int previewWidth -> u
     int requestedWidthDiff -> v
     android.graphics.Bitmap bitmapToSave -> w
-    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> I
-    java.lang.String degreeSymbolFromStringsXML -> J
+    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> F
+    java.lang.String degreeSymbolFromStringsXML -> G
     android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> x
     android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> y
     boolean isCameraReleased -> z
@@ -550,7 +547,6 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.bg:
     void calculateZoom$1385ff() -> e
     java.lang.String makeLatLongString(double) -> a
     void renderPictureDetailsAndSave() -> f
-    void decodeYUV420SP2(int[],byte[],int,int) -> a
     void setWhiteBalance(java.lang.String) -> setWhiteBalance
     void setExposureCompensation(java.lang.Integer) -> setExposureCompensation
     void setFlash(boolean) -> setFlash
@@ -558,10 +554,9 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.bg:
     void onLayout(boolean,int,int,int,int) -> onLayout
     void onMeasure(int,int) -> onMeasure
     void access$0(com.chemicalwedding.artemis.CameraPreview14) -> a
-    int[] access$1(com.chemicalwedding.artemis.CameraPreview14) -> b
-    com.chemicalwedding.artemis.ArtemisMath access$2(com.chemicalwedding.artemis.CameraPreview14) -> c
-    int access$3(com.chemicalwedding.artemis.CameraPreview14) -> d
-    android.hardware.Camera access$4(com.chemicalwedding.artemis.CameraPreview14) -> e
+    com.chemicalwedding.artemis.ArtemisMath access$1(com.chemicalwedding.artemis.CameraPreview14) -> b
+    int access$2(com.chemicalwedding.artemis.CameraPreview14) -> c
+    android.hardware.Camera access$3(com.chemicalwedding.artemis.CameraPreview14) -> d
 com.chemicalwedding.artemis.CameraPreview14$1 -> com.chemicalwedding.artemis.bh:
     com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
     void onAutoFocus(boolean,android.hardware.Camera) -> onAutoFocus
