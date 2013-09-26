@@ -233,6 +233,8 @@ public class ArtemisActivity extends Activity implements
 			ArtemisActivity.arrowBackgroundImage.recycle();
 			ArtemisActivity.arrowBackgroundImage = null;
 		}
+		
+		_artemisDBHelper.close();
 	}
 
 	@Override
