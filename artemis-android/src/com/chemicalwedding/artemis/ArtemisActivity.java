@@ -19,6 +19,7 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.hardware.Sensor;
@@ -220,8 +221,8 @@ public class ArtemisActivity extends Activity implements
 		super.onPause();
 		Log.i(TAG, "Pausing Artemis");
 		_cameraPreview.releaseCamera();
-        mCameraContainer.removeAllViews();
-		
+		mCameraContainer.removeAllViews();
+
 		if (gpsEnabled)
 			locationManager.removeUpdates(locationListener);
 
@@ -251,14 +252,12 @@ public class ArtemisActivity extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		Log.i(TAG, "Resuming Artemis");
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-		  _cameraPreview = new CameraPreview14(this, null);
-          mCameraContainer.addView(_cameraPreview,
-                  new ViewGroup.LayoutParams(
-                          ViewGroup.LayoutParams.MATCH_PARENT,
-                          ViewGroup.LayoutParams.MATCH_PARENT));
-		
+		_cameraPreview = new CameraPreview14(this, null);
+		mCameraContainer.addView(_cameraPreview, new ViewGroup.LayoutParams(
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT));
+
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
@@ -2824,5 +2823,10 @@ public class ArtemisActivity extends Activity implements
 		Intent settingsIntent = new Intent(ArtemisActivity.this,
 				SettingsActivity.class);
 		startActivity(settingsIntent);
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
 	}
 }
