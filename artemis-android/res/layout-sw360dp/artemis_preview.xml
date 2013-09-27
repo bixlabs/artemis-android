@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-<!--         <com.chemicalwedding.artemis.CameraPreview14 -->
-<!--             android:id="@+id/cameraPreview" -->
-<!--             android:layout_width="match_parent" -->
-<!--             android:layout_height="match_parent" /> -->
+        <com.chemicalwedding.artemis.CameraPreview14
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </com.chemicalwedding.artemis.CameraContainerView>
 
     <RelativeLayout
@@ -75,12 +75,12 @@
 
         <TextView
             android:id="@+id/headingTiltText"
-            android:textIsSelectable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
             android:textColor="@color/previewTextColor"
+            android:textIsSelectable="true"
             android:textSize="10sp"
             android:typeface="monospace" />
     </LinearLayout>

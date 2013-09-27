@@ -91,7 +91,6 @@ public class ArtemisActivity extends Activity implements
 	private static final int GALLERY_IMAGE_LOADER = 1;
 
 	private Handler mUiHandler = new Handler();
-	private CameraContainerView mCameraContainer;
 	private CameraPreview14 _cameraPreview;
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
@@ -221,7 +220,10 @@ public class ArtemisActivity extends Activity implements
 		super.onPause();
 		Log.i(TAG, "Pausing Artemis");
 		_cameraPreview.releaseCamera();
+<<<<<<< HEAD
 		mCameraContainer.removeAllViews();
+=======
+>>>>>>> f0bf7d9 (Revert back galaxy nexus changes)
 
 		if (gpsEnabled)
 			locationManager.removeUpdates(locationListener);
@@ -255,11 +257,14 @@ public class ArtemisActivity extends Activity implements
 		super.onResume();
 		Log.i(TAG, "Resuming Artemis");
 
+<<<<<<< HEAD
 		_cameraPreview = new CameraPreview14(this, null);
 		mCameraContainer.addView(_cameraPreview, new ViewGroup.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT));
 
+=======
+>>>>>>> f0bf7d9 (Revert back galaxy nexus changes)
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
@@ -547,7 +552,8 @@ public class ArtemisActivity extends Activity implements
 	};
 
 	private void bindViewObjects() {
-		mCameraContainer = (CameraContainerView) findViewById(R.id.cameraContainer);
+		_cameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
+		// mCameraContainer = (LinearLayout) findViewById(R.id.cameraContainer);
 		mCameraOverlay = (CameraOverlay) findViewById(R.id.cameraOverlay);
 		mCameraAngleDetailView = (CameraAngleDetailView) findViewById(R.id.CameraAngleDetailView);
 		viewFlipper = (ViewFlipper) findViewById(R.id.mainViewFlipper);
