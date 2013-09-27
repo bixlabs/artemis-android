@@ -572,7 +572,7 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [android/app/LoaderManager$LoaderCallbacks]
 
-Constant Pool (count = 1601):
+Constant Pool (count = 1602):
   + Integer [2130903047]
   + Integer [2130903049]
   + Integer [2130903051]
@@ -974,6 +974,7 @@ Constant Pool (count = 1601):
   + Fieldref [com/chemicalwedding/artemis/bg.z Z]
   + Methodref [android/app/Activity.<init> ()V]
   + Methodref [android/app/Activity.dispatchKeyEvent (Landroid/view/KeyEvent;)Z]
+  + Methodref [android/app/Activity.onConfigurationChanged (Landroid/content/res/Configuration;)V]
   + Methodref [android/app/Activity.onContextItemSelected (Landroid/view/MenuItem;)Z]
   + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
   + Methodref [android/app/Activity.onCreateOptionsMenu (Landroid/view/Menu;)Z]
@@ -1103,7 +1104,6 @@ Constant Pool (count = 1601):
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.m ()V]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.n ()V]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.setContentView (I)V]
-  + Methodref [com/chemicalwedding/artemis/ArtemisActivity.setRequestedOrientation (I)V]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.startActivity (Landroid/content/Intent;)V]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.startActivityForResult (Landroid/content/Intent;I)V]
   + Methodref [com/chemicalwedding/artemis/ArtemisApplication.a (Ljava/lang/Runnable;)V]
@@ -1481,6 +1481,7 @@ Constant Pool (count = 1601):
   + NameAndType [next ()Ljava/lang/Object;]
   + NameAndType [o ()Z]
   + NameAndType [o Z]
+  + NameAndType [onConfigurationChanged (Landroid/content/res/Configuration;)V]
   + NameAndType [onContextItemSelected (Landroid/view/MenuItem;)Z]
   + NameAndType [onCreate (Landroid/os/Bundle;)V]
   + NameAndType [onCreateOptionsMenu (Landroid/view/Menu;)Z]
@@ -1544,7 +1545,6 @@ Constant Pool (count = 1601):
   + NameAndType [setPositiveButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
   + NameAndType [setPowerRequirement (I)V]
   + NameAndType [setQuery (Ljava/lang/CharSequence;Z)V]
-  + NameAndType [setRequestedOrientation (I)V]
   + NameAndType [setText (Ljava/lang/CharSequence;)V]
   + NameAndType [setTextFilterEnabled (Z)V]
   + NameAndType [setTitle (I)Landroid/app/AlertDialog$Builder;]
@@ -1649,6 +1649,7 @@ Constant Pool (count = 1601):
   + Utf8 [(Landroid/content/Intent;I)V]
   + Utf8 [(Landroid/content/Loader;)V]
   + Utf8 [(Landroid/content/Loader;Ljava/lang/Object;)V]
+  + Utf8 [(Landroid/content/res/Configuration;)V]
   + Utf8 [(Landroid/hardware/SensorEventListener;)V]
   + Utf8 [(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z]
   + Utf8 [(Landroid/location/Criteria;Z)Ljava/lang/String;]
@@ -2066,6 +2067,7 @@ Constant Pool (count = 1601):
   + Utf8 [o]
   + Utf8 [onActivityResult]
   + Utf8 [onBackPressed]
+  + Utf8 [onConfigurationChanged]
   + Utf8 [onContextItemSelected]
   + Utf8 [onCreate]
   + Utf8 [onCreateContextMenu]
@@ -2134,7 +2136,6 @@ Constant Pool (count = 1601):
   + Utf8 [setPositiveButton]
   + Utf8 [setPowerRequirement]
   + Utf8 [setQuery]
-  + Utf8 [setRequestedOrientation]
   + Utf8 [setText]
   + Utf8 [setTextFilterEnabled]
   + Utf8 [setTitle]
@@ -2390,7 +2391,7 @@ Fields (count = 72):
     Access flags: 0x2
       = private android.view.View$OnClickListener at
 
-Methods (count = 89):
+Methods (count = 90):
   - Method:       <clinit>()V
     Access flags: 0x8
       = static void <clinit>()
@@ -2430,7 +2431,7 @@ Methods (count = 89):
       [5] new #199
         + Class [android/os/Handler]
       [8] dup
-      [9] invokespecial #465
+      [9] invokespecial #466
         + Methodref [android/os/Handler.<init> ()V]
       [12] putfield #376
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.x Landroid/os/Handler;]
@@ -2596,12 +2597,12 @@ Methods (count = 89):
       [3] pop
       [4] aload_0 v0
       [5] aload_1 v1
-      [6] invokespecial #405
+      [6] invokespecial #406
         + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [9] aload_0 v0
       [10] ldc #3
         + Integer [2130903051]
-      [12] invokevirtual #532
+      [12] invokevirtual #533
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.setContentView (I)V]
       [15] ldc #89
         + Integer [2131624022]
@@ -2617,31 +2618,31 @@ Methods (count = 89):
       [29] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [32] iconst_0
-      [33] invokevirtual #521
+      [33] invokevirtual #522
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [36] aload_0 v0
       [37] ldc #12
         + Integer [2131099685]
-      [39] invokevirtual #522
+      [39] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [42] iconst_0
       [43] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [48] ifeq +13 (target=61)
       [51] aload_0 v0
-      [52] invokevirtual #524
+      [52] invokevirtual #525
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getWindow ()Landroid/view/Window;]
       [55] sipush 128
-      [58] invokevirtual #479
+      [58] invokevirtual #480
         + Methodref [android/view/Window.addFlags (I)V]
       [61] aload_0 v0
       [62] dup
       [63] astore_1 v1
-      [64] invokevirtual #426
+      [64] invokevirtual #427
         + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
       [67] getstatic #303
         + Fieldref [com/b/a/f.appirator_test_mode I]
-      [70] invokevirtual #434
+      [70] invokevirtual #435
         + Methodref [android/content/res/Resources.getBoolean (I)Z]
       [73] istore_2 v2
       [74] aload_1 v1
@@ -2649,7 +2650,7 @@ Methods (count = 89):
         + Class [java/lang/StringBuilder]
       [78] dup
       [79] aload_1 v1
-      [80] invokevirtual #425
+      [80] invokevirtual #426
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
       [83] invokestatic #653
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
@@ -2662,7 +2663,7 @@ Methods (count = 89):
       [94] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [97] iconst_0
-      [98] invokevirtual #427
+      [98] invokevirtual #428
         + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [101] astore_3 v3
       [102] iload_2 v2
@@ -2690,7 +2691,7 @@ Methods (count = 89):
       [140] ifeq +10 (target=150)
       [143] aload_1 v1
       [144] aload v4
-      [146] invokestatic #509
+      [146] invokestatic #510
         + Methodref [com/b/a/a.a (Landroid/content/Context;Landroid/content/SharedPreferences$Editor;)V]
       [149] return
       [150] aload_3 v3
@@ -2715,13 +2716,13 @@ Methods (count = 89):
         + InterfaceMethodref [android/content/SharedPreferences.getLong (Ljava/lang/String;J)J]
       [181] lstore v9
       [183] aload_1 v1
-      [184] invokevirtual #424
+      [184] invokevirtual #425
         + Methodref [android/content/Context.getPackageManager ()Landroid/content/pm/PackageManager;]
       [187] aload_1 v1
-      [188] invokevirtual #425
+      [188] invokevirtual #426
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
       [191] iconst_0
-      [192] invokevirtual #433
+      [192] invokevirtual #434
         + Methodref [android/content/pm/PackageManager.getPackageInfo (Ljava/lang/String;I)Landroid/content/pm/PackageInfo;]
       [195] getfield #300
         + Fieldref [android/content/pm/PackageInfo.versionCode I]
@@ -2772,21 +2773,21 @@ Methods (count = 89):
       [274] pop
       [275] lload v5
       [277] aload_1 v1
-      [278] invokevirtual #426
+      [278] invokevirtual #427
         + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
       [281] getstatic #306
         + Fieldref [com/b/a/h.appirator_launches_until_prompt I]
-      [284] invokevirtual #435
+      [284] invokevirtual #436
         + Methodref [android/content/res/Resources.getInteger (I)I]
       [287] i2l
       [288] lcmp
       [289] iflt +101 (target=390)
       [292] aload_1 v1
-      [293] invokevirtual #426
+      [293] invokevirtual #427
         + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
       [296] getstatic #305
         + Fieldref [com/b/a/h.appirator_days_until_prompt I]
-      [299] invokevirtual #435
+      [299] invokevirtual #436
         + Methodref [android/content/res/Resources.getInteger (I)I]
       [302] bipush 24
       [304] imul
@@ -2812,15 +2813,15 @@ Methods (count = 89):
       [334] ifne +12 (target=346)
       [337] aload_1 v1
       [338] aload v4
-      [340] invokestatic #509
+      [340] invokestatic #510
         + Methodref [com/b/a/a.a (Landroid/content/Context;Landroid/content/SharedPreferences$Editor;)V]
       [343] goto +47 (target=390)
       [346] aload_1 v1
-      [347] invokevirtual #426
+      [347] invokevirtual #427
         + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
       [350] getstatic #304
         + Fieldref [com/b/a/h.appirator_days_before_reminding I]
-      [353] invokevirtual #435
+      [353] invokevirtual #436
         + Methodref [android/content/res/Resources.getInteger (I)I]
       [356] bipush 24
       [358] imul
@@ -2842,7 +2843,7 @@ Methods (count = 89):
       [381] iflt +9 (target=390)
       [384] aload_1 v1
       [385] aload v4
-      [387] invokestatic #509
+      [387] invokestatic #510
         + Methodref [com/b/a/a.a (Landroid/content/Context;Landroid/content/SharedPreferences$Editor;)V]
       [390] aload v4
       [392] invokeinterface #674
@@ -2861,7 +2862,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 28, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #407
+      [1] invokespecial #408
         + Methodref [android/app/Activity.onDestroy ()V]
       [4] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
@@ -2888,9 +2889,9 @@ Methods (count = 89):
     Access flags: 0x4
       = protected void onPause()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 73, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 80, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #408
+      [1] invokespecial #409
         + Methodref [android/app/Activity.onPause ()V]
       [4] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
@@ -2914,7 +2915,7 @@ Methods (count = 89):
       [32] aload_0 v0
       [33] getfield #344
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.ak Landroid/location/LocationListener;]
-      [36] invokevirtual #459
+      [36] invokevirtual #460
         + Methodref [android/location/LocationManager.removeUpdates (Landroid/location/LocationListener;)V]
       [39] getstatic #367
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.o Z]
@@ -2925,19 +2926,24 @@ Methods (count = 89):
       [49] aload_0 v0
       [50] getfield #343
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.aj Landroid/hardware/SensorEventListener;]
-      [53] invokevirtual #439
+      [53] invokevirtual #440
         + Methodref [android/hardware/SensorManager.unregisterListener (Landroid/hardware/SensorEventListener;)V]
       [56] getstatic #369
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.q Landroid/graphics/Bitmap;]
       [59] ifnull +13 (target=72)
       [62] getstatic #369
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.q Landroid/graphics/Bitmap;]
-      [65] invokevirtual #436
+      [65] invokevirtual #437
         + Methodref [android/graphics/Bitmap.recycle ()V]
       [68] aconst_null
       [69] putstatic #369
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.q Landroid/graphics/Bitmap;]
-      [72] return
+      [72] aload_0 v0
+      [73] getfield #316
+        + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.J Lcom/chemicalwedding/artemis/a/a;]
+      [76] invokevirtual #557
+        + Methodref [com/chemicalwedding/artemis/a/a.close ()V]
+      [79] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 3):
@@ -2950,7 +2956,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 9, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #411
+      [1] invokespecial #412
         + Methodref [android/app/Activity.onStop ()V]
       [4] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
@@ -2964,7 +2970,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 719, locals = 3, stack = 4):
       [0] aload_0 v0
-      [1] invokespecial #410
+      [1] invokespecial #411
         + Methodref [android/app/Activity.onStart ()V]
       [4] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
@@ -2977,7 +2983,7 @@ Methods (count = 89):
       [13] astore_2 v2
       [14] ldc #53
         + Integer [2131623962]
-      [16] invokevirtual #516
+      [16] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [19] checkcast #229
         + Class [com/chemicalwedding/artemis/CameraContainerView]
@@ -2987,7 +2993,7 @@ Methods (count = 89):
       [26] aload_2 v2
       [27] ldc #54
         + Integer [2131623964]
-      [29] invokevirtual #516
+      [29] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [32] checkcast #230
         + Class [com/chemicalwedding/artemis/CameraOverlay]
@@ -2997,7 +3003,7 @@ Methods (count = 89):
       [39] aload_2 v2
       [40] ldc #66
         + Integer [2131623978]
-      [42] invokevirtual #516
+      [42] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [45] checkcast #228
         + Class [com/chemicalwedding/artemis/CameraAngleDetailView]
@@ -3006,7 +3012,7 @@ Methods (count = 89):
       [51] aload_2 v2
       [52] ldc #88
         + Integer [2131624021]
-      [54] invokevirtual #516
+      [54] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [57] checkcast #221
         + Class [android/widget/ViewFlipper]
@@ -3016,7 +3022,7 @@ Methods (count = 89):
       [64] aload_2 v2
       [65] ldc #82
         + Integer [2131624015]
-      [67] invokevirtual #516
+      [67] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [70] checkcast #221
         + Class [android/widget/ViewFlipper]
@@ -3025,7 +3031,7 @@ Methods (count = 89):
       [76] aload_2 v2
       [77] ldc #56
         + Integer [2131623967]
-      [79] invokevirtual #516
+      [79] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [82] checkcast #218
         + Class [android/widget/TextView]
@@ -3034,7 +3040,7 @@ Methods (count = 89):
       [88] aload_2 v2
       [89] ldc #59
         + Integer [2131623970]
-      [91] invokevirtual #516
+      [91] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [94] checkcast #218
         + Class [android/widget/TextView]
@@ -3043,7 +3049,7 @@ Methods (count = 89):
       [100] aload_2 v2
       [101] ldc #57
         + Integer [2131623968]
-      [103] invokevirtual #516
+      [103] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [106] checkcast #218
         + Class [android/widget/TextView]
@@ -3053,7 +3059,7 @@ Methods (count = 89):
       [113] aload_2 v2
       [114] ldc #70
         + Integer [2131623982]
-      [116] invokevirtual #516
+      [116] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [119] checkcast #231
         + Class [com/chemicalwedding/artemis/LongPressButton]
@@ -3063,7 +3069,7 @@ Methods (count = 89):
       [126] aload_2 v2
       [127] ldc #60
         + Integer [2131623971]
-      [129] invokevirtual #516
+      [129] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [132] checkcast #231
         + Class [com/chemicalwedding/artemis/LongPressButton]
@@ -3088,7 +3094,7 @@ Methods (count = 89):
       [160] aload_2 v2
       [161] ldc #65
         + Integer [2131623976]
-      [163] invokevirtual #516
+      [163] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [166] checkcast #218
         + Class [android/widget/TextView]
@@ -3097,7 +3103,7 @@ Methods (count = 89):
       [172] aload_2 v2
       [173] ldc #93
         + Integer [2131624027]
-      [175] invokevirtual #516
+      [175] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [178] checkcast #214
         + Class [android/widget/ImageView]
@@ -3107,7 +3113,7 @@ Methods (count = 89):
       [185] aload_2 v2
       [186] ldc #92
         + Integer [2131624026]
-      [188] invokevirtual #516
+      [188] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [191] checkcast #221
         + Class [android/widget/ViewFlipper]
@@ -3117,7 +3123,7 @@ Methods (count = 89):
       [198] aload_2 v2
       [199] ldc #80
         + Integer [2131624012]
-      [201] invokevirtual #516
+      [201] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [204] checkcast #216
         + Class [android/widget/RelativeLayout]
@@ -3128,7 +3134,7 @@ Methods (count = 89):
       [212] astore_2 v2
       [213] ldc #69
         + Integer [2131623981]
-      [215] invokevirtual #516
+      [215] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [218] new #267
         + Class [com/chemicalwedding/artemis/l]
@@ -3136,12 +3142,12 @@ Methods (count = 89):
       [222] aload_2 v2
       [223] invokespecial #619
         + Methodref [com/chemicalwedding/artemis/l.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [226] invokevirtual #475
+      [226] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [229] aload_2 v2
       [230] ldc #55
         + Integer [2131623966]
-      [232] invokevirtual #516
+      [232] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [235] new #268
         + Class [com/chemicalwedding/artemis/m]
@@ -3149,12 +3155,12 @@ Methods (count = 89):
       [239] aload_2 v2
       [240] invokespecial #620
         + Methodref [com/chemicalwedding/artemis/m.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [243] invokevirtual #475
+      [243] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [246] aload_2 v2
       [247] ldc #58
         + Integer [2131623969]
-      [249] invokevirtual #516
+      [249] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [252] new #269
         + Class [com/chemicalwedding/artemis/n]
@@ -3162,12 +3168,12 @@ Methods (count = 89):
       [256] aload_2 v2
       [257] invokespecial #621
         + Methodref [com/chemicalwedding/artemis/n.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [260] invokevirtual #475
+      [260] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [263] aload_2 v2
       [264] ldc #85
         + Integer [2131624018]
-      [266] invokevirtual #516
+      [266] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [269] checkcast #212
         + Class [android/widget/Button]
@@ -3177,12 +3183,12 @@ Methods (count = 89):
       [276] aload_2 v2
       [277] invokespecial #583
         + Methodref [com/chemicalwedding/artemis/aw.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [280] invokevirtual #481
+      [280] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [283] aload_2 v2
       [284] ldc #86
         + Integer [2131624019]
-      [286] invokevirtual #516
+      [286] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [289] checkcast #212
         + Class [android/widget/Button]
@@ -3192,7 +3198,7 @@ Methods (count = 89):
       [296] aload_2 v2
       [297] invokespecial #584
         + Methodref [com/chemicalwedding/artemis/ax.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [300] invokevirtual #481
+      [300] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [303] aload_2 v2
       [304] getfield #307
@@ -3235,7 +3241,7 @@ Methods (count = 89):
       [355] aload_2 v2
       [356] ldc #64
         + Integer [2131623975]
-      [358] invokevirtual #516
+      [358] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [361] checkcast #214
         + Class [android/widget/ImageView]
@@ -3245,24 +3251,24 @@ Methods (count = 89):
       [368] aload_2 v2
       [369] invokespecial #588
         + Methodref [com/chemicalwedding/artemis/bd.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [372] invokevirtual #484
+      [372] invokevirtual #485
         + Methodref [android/widget/ImageView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [375] aload_2 v2
       [376] ldc #62
         + Integer [2131623973]
-      [378] invokevirtual #516
+      [378] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [381] checkcast #214
         + Class [android/widget/ImageView]
       [384] aload_2 v2
       [385] getfield #373
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.u Landroid/view/View$OnClickListener;]
-      [388] invokevirtual #484
+      [388] invokevirtual #485
         + Methodref [android/widget/ImageView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [391] aload_2 v2
       [392] ldc #94
         + Integer [2131624028]
-      [394] invokevirtual #516
+      [394] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [397] checkcast #212
         + Class [android/widget/Button]
@@ -3272,12 +3278,12 @@ Methods (count = 89):
       [404] aload_2 v2
       [405] invokespecial #580
         + Methodref [com/chemicalwedding/artemis/as.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [408] invokevirtual #481
+      [408] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [411] aload_2 v2
       [412] ldc #108
         + Integer [2131624043]
-      [414] invokevirtual #516
+      [414] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [417] checkcast #212
         + Class [android/widget/Button]
@@ -3287,12 +3293,12 @@ Methods (count = 89):
       [424] aload_2 v2
       [425] invokespecial #580
         + Methodref [com/chemicalwedding/artemis/as.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [428] invokevirtual #481
+      [428] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [431] aload_2 v2
       [432] ldc #96
         + Integer [2131624030]
-      [434] invokevirtual #516
+      [434] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [437] checkcast #212
         + Class [android/widget/Button]
@@ -3302,12 +3308,12 @@ Methods (count = 89):
       [444] aload_2 v2
       [445] invokespecial #581
         + Methodref [com/chemicalwedding/artemis/au.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [448] invokevirtual #481
+      [448] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [451] aload_2 v2
       [452] ldc #95
         + Integer [2131624029]
-      [454] invokevirtual #516
+      [454] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [457] checkcast #212
         + Class [android/widget/Button]
@@ -3317,12 +3323,12 @@ Methods (count = 89):
       [464] aload_2 v2
       [465] invokespecial #585
         + Methodref [com/chemicalwedding/artemis/ay.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [468] invokevirtual #481
+      [468] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [471] aload_2 v2
       [472] ldc #109
         + Integer [2131624044]
-      [474] invokevirtual #516
+      [474] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [477] checkcast #212
         + Class [android/widget/Button]
@@ -3332,7 +3338,7 @@ Methods (count = 89):
       [484] aload_2 v2
       [485] invokespecial #586
         + Methodref [com/chemicalwedding/artemis/ba.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [488] invokevirtual #481
+      [488] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [491] aload_2 v2
       [492] getfield #359
@@ -3348,7 +3354,7 @@ Methods (count = 89):
       [506] aload_2 v2
       [507] ldc #71
         + Integer [2131623994]
-      [509] invokevirtual #516
+      [509] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [512] checkcast #214
         + Class [android/widget/ImageView]
@@ -3358,12 +3364,12 @@ Methods (count = 89):
       [519] aload_2 v2
       [520] invokespecial #626
         + Methodref [com/chemicalwedding/artemis/s.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [523] invokevirtual #484
+      [523] invokevirtual #485
         + Methodref [android/widget/ImageView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [526] aload_2 v2
       [527] ldc #79
         + Integer [2131624006]
-      [529] invokevirtual #516
+      [529] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [532] checkcast #214
         + Class [android/widget/ImageView]
@@ -3373,12 +3379,12 @@ Methods (count = 89):
       [539] aload_2 v2
       [540] invokespecial #627
         + Methodref [com/chemicalwedding/artemis/t.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [543] invokevirtual #484
+      [543] invokevirtual #485
         + Methodref [android/widget/ImageView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [546] aload_2 v2
       [547] ldc #68
         + Integer [2131623980]
-      [549] invokevirtual #516
+      [549] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [552] new #276
         + Class [com/chemicalwedding/artemis/u]
@@ -3386,12 +3392,12 @@ Methods (count = 89):
       [556] aload_2 v2
       [557] invokespecial #628
         + Methodref [com/chemicalwedding/artemis/u.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [560] invokevirtual #475
+      [560] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [563] aload_2 v2
       [564] ldc #72
         + Integer [2131623996]
-      [566] invokevirtual #516
+      [566] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [569] checkcast #217
         + Class [android/widget/SearchView]
@@ -3401,62 +3407,62 @@ Methods (count = 89):
       [576] aload_2 v2
       [577] invokespecial #579
         + Methodref [com/chemicalwedding/artemis/aq.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [580] invokevirtual #493
+      [580] invokevirtual #494
         + Methodref [android/widget/SearchView.setOnQueryTextListener (Landroid/widget/SearchView$OnQueryTextListener;)V]
       [583] aload_2 v2
       [584] ldc #52
         + Integer [2131623956]
-      [586] invokevirtual #516
+      [586] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [589] aload_2 v2
       [590] getfield #352
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.as Landroid/view/View$OnClickListener;]
-      [593] invokevirtual #475
+      [593] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [596] aload_2 v2
       [597] ldc #46
         + Integer [2131623950]
-      [599] invokevirtual #516
+      [599] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [602] aload_2 v2
       [603] getfield #345
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.al Landroid/view/View$OnClickListener;]
-      [606] invokevirtual #475
+      [606] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [609] aload_2 v2
       [610] ldc #47
         + Integer [2131623951]
-      [612] invokevirtual #516
+      [612] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [615] aload_2 v2
       [616] getfield #346
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.am Landroid/view/View$OnClickListener;]
-      [619] invokevirtual #475
+      [619] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [622] aload_2 v2
       [623] ldc #81
         + Integer [2131624014]
-      [625] invokevirtual #516
+      [625] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [628] aload_2 v2
       [629] getfield #353
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.at Landroid/view/View$OnClickListener;]
-      [632] invokevirtual #475
+      [632] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [635] aload_2 v2
       [636] ldc #80
         + Integer [2131624012]
-      [638] invokevirtual #516
+      [638] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [641] aload_2 v2
       [642] getfield #353
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.at Landroid/view/View$OnClickListener;]
-      [645] invokevirtual #475
+      [645] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [648] aload_2 v2
       [649] ldc #63
         + Integer [2131623974]
-      [651] invokevirtual #516
+      [651] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [654] new #277
         + Class [com/chemicalwedding/artemis/v]
@@ -3464,12 +3470,12 @@ Methods (count = 89):
       [658] aload_2 v2
       [659] invokespecial #629
         + Methodref [com/chemicalwedding/artemis/v.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [662] invokevirtual #475
+      [662] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [665] aload_2 v2
       [666] ldc #67
         + Integer [2131623979]
-      [668] invokevirtual #516
+      [668] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [671] new #278
         + Class [com/chemicalwedding/artemis/w]
@@ -3477,7 +3483,7 @@ Methods (count = 89):
       [675] aload_2 v2
       [676] invokespecial #630
         + Methodref [com/chemicalwedding/artemis/w.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [679] invokevirtual #475
+      [679] invokevirtual #476
         + Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [682] aload_1 v1
       [683] dup
@@ -3491,7 +3497,7 @@ Methods (count = 89):
       [693] putfield #316
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.J Lcom/chemicalwedding/artemis/a/a;]
       [696] aload_2 v2
-      [697] invokevirtual #518
+      [697] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [700] checkcast #227
         + Class [com/chemicalwedding/artemis/ArtemisApplication]
@@ -3504,7 +3510,7 @@ Methods (count = 89):
       [711] invokevirtual #536
         + Methodref [com/chemicalwedding/artemis/ArtemisApplication.a (Ljava/lang/Runnable;)V]
       [714] aload_1 v1
-      [715] invokespecial #525
+      [715] invokespecial #526
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.h ()V]
       [718] return
       Code attribute exceptions (count = 0):
@@ -3513,222 +3519,218 @@ Methods (count = 89):
     Access flags: 0x4
       = protected void onResume()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 286, locals = 3, stack = 6):
+    + Code attribute instructions (code length = 281, locals = 3, stack = 6):
       [0] aload_0 v0
-      [1] invokespecial #409
+      [1] invokespecial #410
         + Methodref [android/app/Activity.onResume ()V]
       [4] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
       [7] pop
       [8] aload_0 v0
-      [9] iconst_0
-      [10] invokevirtual #533
-        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.setRequestedOrientation (I)V]
-      [13] aload_0 v0
-      [14] new #261
+      [9] new #261
         + Class [com/chemicalwedding/artemis/bg]
-      [17] dup
-      [18] aload_0 v0
-      [19] invokespecial #608
+      [12] dup
+      [13] aload_0 v0
+      [14] invokespecial #608
         + Methodref [com/chemicalwedding/artemis/bg.<init> (Landroid/content/Context;)V]
-      [22] putfield #378
+      [17] putfield #378
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.z Lcom/chemicalwedding/artemis/bg;]
-      [25] aload_0 v0
-      [26] getfield #377
+      [20] aload_0 v0
+      [21] getfield #377
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.y Lcom/chemicalwedding/artemis/CameraContainerView;]
-      [29] aload_0 v0
-      [30] getfield #378
+      [24] aload_0 v0
+      [25] getfield #378
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.z Lcom/chemicalwedding/artemis/bg;]
-      [33] new #208
+      [28] new #208
         + Class [android/view/ViewGroup$LayoutParams]
-      [36] dup
-      [37] iconst_m1
-      [38] iconst_m1
-      [39] invokespecial #478
+      [31] dup
+      [32] iconst_m1
+      [33] iconst_m1
+      [34] invokespecial #479
         + Methodref [android/view/ViewGroup$LayoutParams.<init> (II)V]
-      [42] invokevirtual #539
+      [37] invokevirtual #539
         + Methodref [com/chemicalwedding/artemis/CameraContainerView.addView (Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V]
-      [45] aload_0 v0
-      [46] getfield #378
+      [40] aload_0 v0
+      [41] getfield #378
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.z Lcom/chemicalwedding/artemis/bg;]
-      [49] getfield #401
+      [44] getfield #401
         + Fieldref [com/chemicalwedding/artemis/bg.z Z]
-      [52] ifeq +23 (target=75)
-      [55] aload_0 v0
-      [56] getfield #378
+      [47] ifeq +23 (target=70)
+      [50] aload_0 v0
+      [51] getfield #378
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.z Lcom/chemicalwedding/artemis/bg;]
-      [59] invokevirtual #611
+      [54] invokevirtual #611
         + Methodref [com/chemicalwedding/artemis/bg.b ()V]
-      [62] getstatic #327
+      [57] getstatic #327
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.U Lcom/chemicalwedding/artemis/be;]
-      [65] invokevirtual #596
+      [60] invokevirtual #596
         + Methodref [com/chemicalwedding/artemis/be.d ()V]
-      [68] aload_0 v0
-      [69] getfield #358
+      [63] aload_0 v0
+      [64] getfield #358
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.f Lcom/chemicalwedding/artemis/CameraOverlay;]
-      [72] invokevirtual #542
+      [67] invokevirtual #542
         + Methodref [com/chemicalwedding/artemis/CameraOverlay.requestLayout ()V]
-      [75] aload_0 v0
-      [76] dup
-      [77] dup
-      [78] astore_1 v1
-      [79] ldc #160
+      [70] aload_0 v0
+      [71] dup
+      [72] dup
+      [73] astore_1 v1
+      [74] ldc #160
         + String [sensor]
-      [81] invokevirtual #523
+      [76] invokevirtual #524
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
-      [84] checkcast #191
+      [79] checkcast #191
         + Class [android/hardware/SensorManager]
-      [87] putfield #329
+      [82] putfield #329
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.W Landroid/hardware/SensorManager;]
-      [90] aload_1 v1
-      [91] getfield #329
+      [85] aload_1 v1
+      [86] getfield #329
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.W Landroid/hardware/SensorManager;]
-      [94] aload_1 v1
-      [95] getfield #343
+      [89] aload_1 v1
+      [90] getfield #343
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.aj Landroid/hardware/SensorEventListener;]
-      [98] aload_1 v1
-      [99] getfield #329
+      [93] aload_1 v1
+      [94] getfield #329
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.W Landroid/hardware/SensorManager;]
-      [102] iconst_1
-      [103] invokevirtual #437
+      [97] iconst_1
+      [98] invokevirtual #438
         + Methodref [android/hardware/SensorManager.getDefaultSensor (I)Landroid/hardware/Sensor;]
-      [106] iconst_2
-      [107] invokevirtual #438
+      [101] iconst_2
+      [102] invokevirtual #439
         + Methodref [android/hardware/SensorManager.registerListener (Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z]
-      [110] pop
-      [111] aload_1 v1
-      [112] getfield #329
+      [105] pop
+      [106] aload_1 v1
+      [107] getfield #329
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.W Landroid/hardware/SensorManager;]
-      [115] aload_1 v1
-      [116] getfield #343
+      [110] aload_1 v1
+      [111] getfield #343
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.aj Landroid/hardware/SensorEventListener;]
-      [119] aload_1 v1
-      [120] getfield #329
+      [114] aload_1 v1
+      [115] getfield #329
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.W Landroid/hardware/SensorManager;]
-      [123] iconst_2
-      [124] invokevirtual #437
+      [118] iconst_2
+      [119] invokevirtual #438
         + Methodref [android/hardware/SensorManager.getDefaultSensor (I)Landroid/hardware/Sensor;]
-      [127] iconst_2
-      [128] invokevirtual #438
+      [122] iconst_2
+      [123] invokevirtual #439
         + Methodref [android/hardware/SensorManager.registerListener (Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z]
-      [131] pop
-      [132] iconst_1
-      [133] putstatic #367
+      [126] pop
+      [127] iconst_1
+      [128] putstatic #367
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.o Z]
-      [136] aload_0 v0
-      [137] astore_1 v1
-      [138] getstatic #366
+      [131] aload_0 v0
+      [132] astore_1 v1
+      [133] getstatic #366
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.n Z]
-      [141] ifeq +140 (target=281)
-      [144] getstatic #375
+      [136] ifeq +140 (target=276)
+      [139] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
-      [147] pop
-      [148] aload_1 v1
-      [149] aload_1 v1
-      [150] ldc #148
+      [142] pop
+      [143] aload_1 v1
+      [144] aload_1 v1
+      [145] ldc #148
         + String [location]
-      [152] invokevirtual #523
+      [147] invokevirtual #524
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
-      [155] checkcast #196
+      [150] checkcast #196
         + Class [android/location/LocationManager]
-      [158] putfield #328
+      [153] putfield #328
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.V Landroid/location/LocationManager;]
-      [161] new #193
+      [156] new #193
         + Class [android/location/Criteria]
-      [164] dup
-      [165] invokespecial #446
+      [159] dup
+      [160] invokespecial #447
         + Methodref [android/location/Criteria.<init> ()V]
-      [168] dup
-      [169] astore_2 v2
-      [170] iconst_1
-      [171] invokevirtual #447
+      [163] dup
+      [164] astore_2 v2
+      [165] iconst_1
+      [166] invokevirtual #448
         + Methodref [android/location/Criteria.setAccuracy (I)V]
+      [169] aload_2 v2
+      [170] iconst_1
+      [171] invokevirtual #449
+        + Methodref [android/location/Criteria.setAltitudeRequired (Z)V]
       [174] aload_2 v2
       [175] iconst_1
-      [176] invokevirtual #448
-        + Methodref [android/location/Criteria.setAltitudeRequired (Z)V]
+      [176] invokevirtual #450
+        + Methodref [android/location/Criteria.setBearingRequired (Z)V]
       [179] aload_2 v2
       [180] iconst_1
-      [181] invokevirtual #449
-        + Methodref [android/location/Criteria.setBearingRequired (Z)V]
+      [181] invokevirtual #451
+        + Methodref [android/location/Criteria.setCostAllowed (Z)V]
       [184] aload_2 v2
       [185] iconst_1
-      [186] invokevirtual #450
-        + Methodref [android/location/Criteria.setCostAllowed (Z)V]
-      [189] aload_2 v2
-      [190] iconst_1
-      [191] invokevirtual #451
+      [186] invokevirtual #452
         + Methodref [android/location/Criteria.setPowerRequirement (I)V]
-      [194] aload_1 v1
-      [195] aload_1 v1
-      [196] getfield #328
+      [189] aload_1 v1
+      [190] aload_1 v1
+      [191] getfield #328
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.V Landroid/location/LocationManager;]
-      [199] aload_2 v2
-      [200] iconst_1
-      [201] invokevirtual #457
+      [194] aload_2 v2
+      [195] iconst_1
+      [196] invokevirtual #458
         + Methodref [android/location/LocationManager.getBestProvider (Landroid/location/Criteria;Z)Ljava/lang/String;]
-      [204] putfield #330
+      [199] putfield #330
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.X Ljava/lang/String;]
-      [207] aload_1 v1
-      [208] getfield #330
+      [202] aload_1 v1
+      [203] getfield #330
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.X Ljava/lang/String;]
-      [211] ifnull +70 (target=281)
-      [214] aload_1 v1
-      [215] getfield #328
+      [206] ifnull +70 (target=276)
+      [209] aload_1 v1
+      [210] getfield #328
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.V Landroid/location/LocationManager;]
-      [218] aload_1 v1
-      [219] getfield #330
+      [213] aload_1 v1
+      [214] getfield #330
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.X Ljava/lang/String;]
-      [222] invokevirtual #458
+      [217] invokevirtual #459
         + Methodref [android/location/LocationManager.getLastKnownLocation (Ljava/lang/String;)Landroid/location/Location;]
-      [225] putstatic #331
+      [220] putstatic #331
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.Y Landroid/location/Location;]
-      [228] getstatic #375
+      [223] getstatic #375
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
-      [231] pop
-      [232] new #290
+      [226] pop
+      [227] new #290
         + Class [java/lang/StringBuilder]
-      [235] dup
-      [236] ldc #127
+      [230] dup
+      [231] ldc #127
         + String [Last known location is ]
-      [238] invokespecial #654
+      [233] invokespecial #654
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [241] getstatic #331
+      [236] getstatic #331
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.Y Landroid/location/Location;]
-      [244] ifnonnull +8 (target=252)
-      [247] ldc #153
+      [239] ifnonnull +8 (target=247)
+      [242] ldc #153
         + String [null]
-      [249] goto +5 (target=254)
-      [252] ldc #151
+      [244] goto +5 (target=249)
+      [247] ldc #151
         + String [not null]
-      [254] invokevirtual #657
+      [249] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [257] invokevirtual #658
+      [252] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [260] pop
-      [261] aload_1 v1
-      [262] getfield #328
+      [255] pop
+      [256] aload_1 v1
+      [257] getfield #328
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.V Landroid/location/LocationManager;]
-      [265] aload_1 v1
-      [266] getfield #330
+      [260] aload_1 v1
+      [261] getfield #330
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.X Ljava/lang/String;]
-      [269] ldc2_w #298
+      [264] ldc2_w #298
         + Long [60000]
-      [272] ldc #110
+      [267] ldc #110
         + Float [300.0]
-      [274] aload_1 v1
-      [275] getfield #344
+      [269] aload_1 v1
+      [270] getfield #344
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.ak Landroid/location/LocationListener;]
-      [278] invokevirtual #460
+      [273] invokevirtual #461
         + Methodref [android/location/LocationManager.requestLocationUpdates (Ljava/lang/String;JFLandroid/location/LocationListener;)V]
-      [281] aload_0 v0
-      [282] invokespecial #525
+      [276] aload_0 v0
+      [277] invokespecial #526
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.h ()V]
-      [285] return
+      [280] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 1):
-        - [75] Var: ..., Stack: (empty)
+        - [70] Var: ..., Stack: (empty)
   + Method:       a(Landroid/view/View;)V
     Access flags: 0xc
       = protected static void a(android.view.View)
@@ -3737,7 +3739,7 @@ Methods (count = 89):
       [0] aload_0 v0
       [1] iconst_1
       [2] iconst_3
-      [3] invokevirtual #474
+      [3] invokevirtual #475
         + Methodref [android/view/View.performHapticFeedback (II)Z]
       [6] pop
       [7] return
@@ -3749,14 +3751,14 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 861, locals = 5, stack = 5):
       [0] aload_0 v0
-      [1] invokevirtual #518
+      [1] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [4] ldc_w #260
         + Class [com/chemicalwedding/artemis/bf]
       [7] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [10] iconst_0
-      [11] invokevirtual #421
+      [11] invokevirtual #422
         + Methodref [android/app/Application.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [14] dup
       [15] astore_1 v1
@@ -3778,7 +3780,7 @@ Methods (count = 89):
       [38] aload_0 v0
       [39] ldc #17
         + Integer [2131099690]
-      [41] invokevirtual #522
+      [41] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [44] iconst_m1
       [45] invokeinterface #671
@@ -3790,7 +3792,7 @@ Methods (count = 89):
       [57] iload_2 v2
       [58] iconst_0
       [59] iconst_0
-      [60] invokespecial #511
+      [60] invokespecial #512
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (IZZ)V]
       [63] goto +105 (target=168)
       [66] aload_0 v0
@@ -3868,7 +3870,7 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [162] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [165] invokevirtual #497
+      [165] invokevirtual #498
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [168] iload v4
       [170] ifge +31 (target=201)
@@ -3876,7 +3878,7 @@ Methods (count = 89):
       [174] aload_3 v3
       [175] iconst_0
       [176] iconst_0
-      [177] invokespecial #513
+      [177] invokespecial #514
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Ljava/lang/String;ZZ)V]
       [180] aload_1 v1
       [181] ldc #159
@@ -3890,7 +3892,7 @@ Methods (count = 89):
       [192] aload_2 v2
       [193] iconst_1
       [194] iconst_0
-      [195] invokespecial #515
+      [195] invokespecial #516
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b (Ljava/lang/String;ZZ)V]
       [198] goto +17 (target=215)
       [201] aload_0 v0
@@ -3901,7 +3903,7 @@ Methods (count = 89):
       [208] invokevirtual #555
         + Methodref [com/chemicalwedding/artemis/a/a.c (I)Lcom/chemicalwedding/artemis/a/e;]
       [211] iconst_0
-      [212] invokevirtual #512
+      [212] invokevirtual #513
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Lcom/chemicalwedding/artemis/a/e;Z)V]
       [215] aload_1 v1
       [216] ldc #143
@@ -3947,7 +3949,7 @@ Methods (count = 89):
       [276] aload_0 v0
       [277] ldc #18
         + Integer [2131099691]
-      [279] invokevirtual #522
+      [279] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [282] iconst_0
       [283] invokeinterface #670
@@ -3957,7 +3959,7 @@ Methods (count = 89):
       [291] new #290
         + Class [java/lang/StringBuilder]
       [294] dup
-      [295] invokestatic #464
+      [295] invokestatic #465
         + Methodref [android/os/Environment.getExternalStorageDirectory ()Ljava/io/File;]
       [298] invokevirtual #635
         + Methodref [java/io/File.getAbsolutePath ()Ljava/lang/String;]
@@ -3990,7 +3992,7 @@ Methods (count = 89):
       [336] aload_0 v0
       [337] ldc #21
         + Integer [2131099694]
-      [339] invokevirtual #522
+      [339] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [342] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4046,7 +4048,7 @@ Methods (count = 89):
       [416] aload_0 v0
       [417] ldc #13
         + Integer [2131099686]
-      [419] invokevirtual #522
+      [419] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [422] iconst_1
       [423] invokeinterface #670
@@ -4057,12 +4059,12 @@ Methods (count = 89):
       [432] aload_0 v0
       [433] ldc #10
         + Integer [2131099683]
-      [435] invokevirtual #522
+      [435] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [438] aload_0 v0
       [439] ldc #24
         + Integer [2131099697]
-      [441] invokevirtual #522
+      [441] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [444] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4074,12 +4076,12 @@ Methods (count = 89):
       [456] aload_0 v0
       [457] ldc #9
         + Integer [2131099682]
-      [459] invokevirtual #522
+      [459] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [462] aload_0 v0
       [463] ldc #22
         + Integer [2131099695]
-      [465] invokevirtual #522
+      [465] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [468] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4112,12 +4114,12 @@ Methods (count = 89):
       [512] aload_0 v0
       [513] ldc #11
         + Integer [2131099684]
-      [515] invokevirtual #522
+      [515] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [518] aload_0 v0
       [519] ldc #23
         + Integer [2131099696]
-      [521] invokevirtual #522
+      [521] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [524] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4127,12 +4129,12 @@ Methods (count = 89):
       [533] aload_0 v0
       [534] ldc #14
         + Integer [2131099687]
-      [536] invokevirtual #522
+      [536] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [539] aload_0 v0
       [540] ldc #25
         + Integer [2131099698]
-      [542] invokevirtual #522
+      [542] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [545] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4220,7 +4222,7 @@ Methods (count = 89):
       [662] aload_0 v0
       [663] ldc #61
         + Integer [2131623972]
-      [665] invokevirtual #516
+      [665] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [668] checkcast #214
         + Class [android/widget/ImageView]
@@ -4229,7 +4231,7 @@ Methods (count = 89):
       [673] aload_0 v0
       [674] getfield #374
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.v Landroid/view/View$OnClickListener;]
-      [677] invokevirtual #484
+      [677] invokevirtual #485
         + Methodref [android/widget/ImageView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [680] aload_0 v0
       [681] getfield #371
@@ -4242,13 +4244,13 @@ Methods (count = 89):
       [692] aload_0 v0
       [693] invokespecial #632
         + Methodref [com/chemicalwedding/artemis/y.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [696] invokevirtual #485
+      [696] invokevirtual #486
         + Methodref [android/widget/ImageView.setOnLongClickListener (Landroid/view/View$OnLongClickListener;)V]
       [699] aload_1 v1
       [700] aload_0 v0
       [701] ldc #20
         + Integer [2131099693]
-      [703] invokevirtual #522
+      [703] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [706] iconst_1
       [707] invokeinterface #670
@@ -4258,7 +4260,7 @@ Methods (count = 89):
       [716] aload_0 v0
       [717] ldc #16
         + Integer [2131099689]
-      [719] invokevirtual #522
+      [719] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [722] getstatic #396
         + Fieldref [com/chemicalwedding/artemis/bg.l Z]
@@ -4266,13 +4268,13 @@ Methods (count = 89):
       [728] aload_0 v0
       [729] ldc #26
         + Integer [2131099699]
-      [731] invokevirtual #522
+      [731] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [734] goto +9 (target=743)
       [737] aload_0 v0
       [738] ldc #27
         + Integer [2131099700]
-      [740] invokevirtual #522
+      [740] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [743] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4313,12 +4315,12 @@ Methods (count = 89):
       [798] aload_0 v0
       [799] ldc #15
         + Integer [2131099688]
-      [801] invokevirtual #522
+      [801] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [804] aload_0 v0
       [805] ldc #28
         + Integer [2131099701]
-      [807] invokevirtual #522
+      [807] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [810] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -4385,16 +4387,16 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 16, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] invokevirtual #520
+      [1] invokevirtual #521
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getMenuInflater ()Landroid/view/MenuInflater;]
       [4] ldc #45
         + Integer [2131558400]
       [6] aload_1 v1
-      [7] invokevirtual #469
+      [7] invokevirtual #470
         + Methodref [android/view/MenuInflater.inflate (ILandroid/view/Menu;)V]
       [10] aload_0 v0
       [11] aload_1 v1
-      [12] invokespecial #406
+      [12] invokespecial #407
         + Methodref [android/app/Activity.onCreateOptionsMenu (Landroid/view/Menu;)Z]
       [15] ireturn
       Code attribute exceptions (count = 0):
@@ -4425,7 +4427,7 @@ Methods (count = 89):
       [36] aload_0 v0
       [37] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
-      [40] invokevirtual #503
+      [40] invokevirtual #504
         + Methodref [android/widget/ViewFlipper.getDisplayedChild ()I]
       [43] dup
       [44] istore_1 v1
@@ -4439,7 +4441,7 @@ Methods (count = 89):
       [57] aload_0 v0
       [58] ldc #5
         + Integer [2130968576]
-      [60] invokevirtual #505
+      [60] invokevirtual #506
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/content/Context;I)V]
       [63] aload_0 v0
       [64] getfield #311
@@ -4447,7 +4449,7 @@ Methods (count = 89):
       [67] aload_0 v0
       [68] ldc #8
         + Integer [2130968580]
-      [70] invokevirtual #507
+      [70] invokevirtual #508
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/content/Context;I)V]
       [73] aload_0 v0
       [74] getfield #311
@@ -4455,7 +4457,7 @@ Methods (count = 89):
       [77] iload_1 v1
       [78] iconst_1
       [79] isub
-      [80] invokevirtual #504
+      [80] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [83] return
       [84] iload_1 v1
@@ -4467,7 +4469,7 @@ Methods (count = 89):
       [93] aload_0 v0
       [94] ldc #5
         + Integer [2130968576]
-      [96] invokevirtual #505
+      [96] invokevirtual #506
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/content/Context;I)V]
       [99] aload_0 v0
       [100] getfield #311
@@ -4475,30 +4477,30 @@ Methods (count = 89):
       [103] aload_0 v0
       [104] ldc #8
         + Integer [2130968580]
-      [106] invokevirtual #507
+      [106] invokevirtual #508
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/content/Context;I)V]
       [109] aload_0 v0
       [110] ldc #72
         + Integer [2131623996]
-      [112] invokevirtual #516
+      [112] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [115] iconst_0
-      [116] invokevirtual #476
+      [116] invokevirtual #477
         + Methodref [android/view/View.setVisibility (I)V]
       [119] aload_0 v0
       [120] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [123] iconst_0
-      [124] invokevirtual #504
+      [124] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [127] return
-      [128] invokestatic #528
+      [128] invokestatic #529
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.k ()V]
       [131] return
       [132] aload_0 v0
       [133] getfield #312
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.F Landroid/widget/ViewFlipper;]
-      [136] invokevirtual #503
+      [136] invokevirtual #504
         + Methodref [android/widget/ViewFlipper.getDisplayedChild ()I]
       [139] dup
       [140] istore_1 v1
@@ -4530,7 +4532,7 @@ Methods (count = 89):
       [183] getfield #326
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Landroid/widget/RelativeLayout;]
       [186] iconst_4
-      [187] invokevirtual #492
+      [187] invokevirtual #493
         + Methodref [android/widget/RelativeLayout.setVisibility (I)V]
       [190] aload_0 v0
       [191] getfield #312
@@ -4538,7 +4540,7 @@ Methods (count = 89):
       [194] aload_0 v0
       [195] ldc #5
         + Integer [2130968576]
-      [197] invokevirtual #505
+      [197] invokevirtual #506
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/content/Context;I)V]
       [200] aload_0 v0
       [201] getfield #312
@@ -4546,12 +4548,12 @@ Methods (count = 89):
       [204] aload_0 v0
       [205] ldc #8
         + Integer [2130968580]
-      [207] invokevirtual #507
+      [207] invokevirtual #508
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/content/Context;I)V]
       [210] aload_0 v0
       [211] getfield #312
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.F Landroid/widget/ViewFlipper;]
-      [214] invokevirtual #503
+      [214] invokevirtual #504
         + Methodref [android/widget/ViewFlipper.getDisplayedChild ()I]
       [217] iconst_2
       [218] ificmpne +12 (target=230)
@@ -4559,7 +4561,7 @@ Methods (count = 89):
       [222] getfield #312
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.F Landroid/widget/ViewFlipper;]
       [225] iconst_0
-      [226] invokevirtual #504
+      [226] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [229] return
       [230] aload_0 v0
@@ -4568,13 +4570,13 @@ Methods (count = 89):
       [234] iload_1 v1
       [235] iconst_1
       [236] isub
-      [237] invokevirtual #504
+      [237] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [240] return
-      [241] invokestatic #528
+      [241] invokestatic #529
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.k ()V]
       [244] return
-      [245] invokestatic #528
+      [245] invokestatic #529
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.k ()V]
       [248] return
       [249] aload_0 v0
@@ -4593,15 +4595,15 @@ Methods (count = 89):
         + Class [android/app/AlertDialog$Builder]
       [271] dup
       [272] aload_0 v0
-      [273] invokespecial #414
+      [273] invokespecial #415
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [276] ldc #39
         + Integer [2131099886]
-      [278] invokevirtual #416
+      [278] invokevirtual #417
         + Methodref [android/app/AlertDialog$Builder.setMessage (I)Landroid/app/AlertDialog$Builder;]
       [281] ldc #40
         + Integer [2131099887]
-      [283] invokevirtual #419
+      [283] invokevirtual #420
         + Methodref [android/app/AlertDialog$Builder.setTitle (I)Landroid/app/AlertDialog$Builder;]
       [286] ldc #34
         + Integer [2131099774]
@@ -4611,7 +4613,7 @@ Methods (count = 89):
       [292] aload_0 v0
       [293] invokespecial #633
         + Methodref [com/chemicalwedding/artemis/z.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [296] invokevirtual #418
+      [296] invokevirtual #419
         + Methodref [android/app/AlertDialog$Builder.setPositiveButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
       [299] ldc #33
         + Integer [2131099760]
@@ -4621,11 +4623,11 @@ Methods (count = 89):
       [305] aload_0 v0
       [306] invokespecial #568
         + Methodref [com/chemicalwedding/artemis/aa.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [309] invokevirtual #417
+      [309] invokevirtual #418
         + Methodref [android/app/AlertDialog$Builder.setNegativeButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
-      [312] invokevirtual #415
+      [312] invokevirtual #416
         + Methodref [android/app/AlertDialog$Builder.create ()Landroid/app/AlertDialog;]
-      [315] invokevirtual #413
+      [315] invokevirtual #414
         + Methodref [android/app/AlertDialog.show ()V]
       [318] return
       [319] ldc #152
@@ -4637,10 +4639,10 @@ Methods (count = 89):
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [328] ifne +11 (target=339)
       [331] aload_0 v0
-      [332] invokevirtual #517
+      [332] invokevirtual #518
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.finish ()V]
       [335] return
-      [336] invokestatic #528
+      [336] invokestatic #529
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.k ()V]
       [339] return
       Code attribute exceptions (count = 0):
@@ -4675,7 +4677,7 @@ Methods (count = 89):
       [8] aload_0 v0
       [9] ldc #73
         + Integer [2131623997]
-      [11] invokevirtual #516
+      [11] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [14] checkcast #221
         + Class [android/widget/ViewFlipper]
@@ -4685,46 +4687,46 @@ Methods (count = 89):
       [21] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [24] aconst_null
-      [25] invokevirtual #506
+      [25] invokevirtual #507
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
       [28] aload_0 v0
       [29] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [32] aconst_null
-      [33] invokevirtual #508
+      [33] invokevirtual #509
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/view/animation/Animation;)V]
       [36] aload_0 v0
       [37] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [40] iconst_0
-      [41] invokevirtual #504
+      [41] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [44] aload_0 v0
       [45] ldc #72
         + Integer [2131623996]
-      [47] invokevirtual #516
+      [47] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [50] checkcast #217
         + Class [android/widget/SearchView]
       [53] ldc #111
         + String []
       [55] iconst_0
-      [56] invokevirtual #494
+      [56] invokevirtual #495
         + Methodref [android/widget/SearchView.setQuery (Ljava/lang/CharSequence;Z)V]
       [59] aload_0 v0
       [60] ldc #72
         + Integer [2131623996]
-      [62] invokevirtual #516
+      [62] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [65] checkcast #217
         + Class [android/widget/SearchView]
       [68] iconst_0
-      [69] invokevirtual #495
+      [69] invokevirtual #496
         + Methodref [android/widget/SearchView.setVisibility (I)V]
       [72] getstatic #333
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
       [75] iconst_1
-      [76] invokevirtual #504
+      [76] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [79] ldc #90
         + Integer [2131624023]
@@ -4733,7 +4735,7 @@ Methods (count = 89):
       [84] aload_0 v0
       [85] ldc #74
         + Integer [2131623998]
-      [87] invokevirtual #516
+      [87] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [90] checkcast #215
         + Class [android/widget/ListView]
@@ -4747,16 +4749,16 @@ Methods (count = 89):
       [101] aload_0 v0
       [102] getfield #319
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.M Ljava/util/ArrayList;]
-      [105] invokespecial #480
+      [105] invokespecial #481
         + Methodref [android/widget/ArrayAdapter.<init> (Landroid/content/Context;ILjava/util/List;)V]
       [108] astore_2 v2
       [109] aload_1 v1
       [110] aload_2 v2
-      [111] invokevirtual #487
+      [111] invokevirtual #488
         + Methodref [android/widget/ListView.setAdapter (Landroid/widget/ListAdapter;)V]
       [114] aload_1 v1
       [115] iconst_1
-      [116] invokevirtual #491
+      [116] invokevirtual #492
         + Methodref [android/widget/ListView.setTextFilterEnabled (Z)V]
       [119] aload_1 v1
       [120] new #248
@@ -4765,10 +4767,10 @@ Methods (count = 89):
       [124] aload_0 v0
       [125] invokespecial #578
         + Methodref [com/chemicalwedding/artemis/ao.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [128] invokevirtual #490
+      [128] invokevirtual #491
         + Methodref [android/widget/ListView.setOnItemClickListener (Landroid/widget/AdapterView$OnItemClickListener;)V]
       [131] aload_1 v1
-      [132] invokevirtual #486
+      [132] invokevirtual #487
         + Methodref [android/widget/ListView.requestFocus ()Z]
       [135] pop
       [136] return
@@ -4785,18 +4787,18 @@ Methods (count = 89):
       [1] getfield #312
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.F Landroid/widget/ViewFlipper;]
       [4] aconst_null
-      [5] invokevirtual #506
+      [5] invokevirtual #507
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
       [8] aload_0 v0
       [9] getfield #312
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.F Landroid/widget/ViewFlipper;]
       [12] iconst_0
-      [13] invokevirtual #504
+      [13] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [16] getstatic #333
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
       [19] iconst_2
-      [20] invokevirtual #504
+      [20] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [23] ldc #91
         + Integer [2131624024]
@@ -4806,7 +4808,7 @@ Methods (count = 89):
       [29] getfield #326
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.T Landroid/widget/RelativeLayout;]
       [32] iconst_4
-      [33] invokevirtual #492
+      [33] invokevirtual #493
         + Methodref [android/widget/RelativeLayout.setVisibility (I)V]
       [36] aload_0 v0
       [37] getfield #318
@@ -4861,7 +4863,7 @@ Methods (count = 89):
       [108] aload_0 v0
       [109] ldc #37
         + Integer [2131099873]
-      [111] invokevirtual #522
+      [111] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [114] invokevirtual #663
         + Methodref [java/util/ArrayList.add (Ljava/lang/Object;)Z]
@@ -4887,7 +4889,7 @@ Methods (count = 89):
       [142] aload_0 v0
       [143] ldc #83
         + Integer [2131624016]
-      [145] invokevirtual #516
+      [145] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [148] checkcast #215
         + Class [android/widget/ListView]
@@ -4899,16 +4901,16 @@ Methods (count = 89):
       [157] ldc #4
         + Integer [2130903055]
       [159] aload_1 v1
-      [160] invokespecial #480
+      [160] invokespecial #481
         + Methodref [android/widget/ArrayAdapter.<init> (Landroid/content/Context;ILjava/util/List;)V]
       [163] astore_1 v1
       [164] aload_2 v2
       [165] aload_1 v1
-      [166] invokevirtual #487
+      [166] invokevirtual #488
         + Methodref [android/widget/ListView.setAdapter (Landroid/widget/ListAdapter;)V]
       [169] aload_2 v2
       [170] iconst_1
-      [171] invokevirtual #491
+      [171] invokevirtual #492
         + Methodref [android/widget/ListView.setTextFilterEnabled (Z)V]
       [174] aload_2 v2
       [175] new #252
@@ -4917,7 +4919,7 @@ Methods (count = 89):
       [179] aload_0 v0
       [180] invokespecial #582
         + Methodref [com/chemicalwedding/artemis/av.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [183] invokevirtual #490
+      [183] invokevirtual #491
         + Methodref [android/widget/ListView.setOnItemClickListener (Landroid/widget/AdapterView$OnItemClickListener;)V]
       [186] return
       Code attribute exceptions (count = 0):
@@ -4933,12 +4935,12 @@ Methods (count = 89):
       [0] getstatic #333
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
       [3] aconst_null
-      [4] invokevirtual #506
+      [4] invokevirtual #507
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
       [7] getstatic #333
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.a Landroid/widget/ViewFlipper;]
       [10] iconst_0
-      [11] invokevirtual #504
+      [11] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [14] ldc #89
         + Integer [2131624022]
@@ -4953,12 +4955,12 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 12, locals = 1, stack = 4):
       [0] aload_0 v0
-      [1] invokevirtual #519
+      [1] invokevirtual #520
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getLoaderManager ()Landroid/app/LoaderManager;]
       [4] iconst_1
       [5] aconst_null
       [6] aload_0 v0
-      [7] invokevirtual #423
+      [7] invokevirtual #424
         + Methodref [android/app/LoaderManager.initLoader (ILandroid/os/Bundle;Landroid/app/LoaderManager$LoaderCallbacks;)Landroid/content/Loader;]
       [10] pop
       [11] return
@@ -4996,7 +4998,7 @@ Methods (count = 89):
       [35] aload_0 v0
       [36] ldc #59
         + Integer [2131623970]
-      [38] invokevirtual #516
+      [38] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [41] checkcast #218
         + Class [android/widget/TextView]
@@ -5006,7 +5008,7 @@ Methods (count = 89):
         + Fieldref [com/chemicalwedding/artemis/be.j Lcom/chemicalwedding/artemis/a/e;]
       [50] invokevirtual #567
         + Methodref [com/chemicalwedding/artemis/a/e.toString ()Ljava/lang/String;]
-      [53] invokevirtual #497
+      [53] invokevirtual #498
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [56] getstatic #327
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.U Lcom/chemicalwedding/artemis/be;]
@@ -5034,19 +5036,19 @@ Methods (count = 89):
       [90] invokevirtual #613
         + Methodref [com/chemicalwedding/artemis/bg.e ()V]
       [93] aload_0 v0
-      [94] invokevirtual #510
+      [94] invokevirtual #511
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a ()V]
       [97] iload_2 v2
       [98] ifeq +50 (target=148)
       [101] aload_0 v0
-      [102] invokevirtual #518
+      [102] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [105] ldc_w #260
         + Class [com/chemicalwedding/artemis/bf]
       [108] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [111] iconst_0
-      [112] invokevirtual #421
+      [112] invokevirtual #422
         + Methodref [android/app/Application.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [115] invokeinterface #669
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
@@ -5055,7 +5057,7 @@ Methods (count = 89):
       [122] aload_0 v0
       [123] ldc #17
         + Integer [2131099690]
-      [125] invokevirtual #522
+      [125] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [128] aload_1 v1
       [129] invokevirtual #562
@@ -5144,19 +5146,19 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [90] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [93] invokevirtual #497
+      [93] invokevirtual #498
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [96] iload_2 v2
       [97] ifeq +40 (target=137)
       [100] aload_0 v0
-      [101] invokevirtual #518
+      [101] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [104] ldc_w #260
         + Class [com/chemicalwedding/artemis/bf]
       [107] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [110] iconst_0
-      [111] invokevirtual #421
+      [111] invokevirtual #422
         + Methodref [android/app/Application.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [114] invokeinterface #669
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
@@ -5208,12 +5210,12 @@ Methods (count = 89):
       [29] aload_0 v0
       [30] ldc #59
         + Integer [2131623970]
-      [32] invokevirtual #516
+      [32] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [35] checkcast #218
         + Class [android/widget/TextView]
       [38] aload_1 v1
-      [39] invokevirtual #497
+      [39] invokevirtual #498
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [42] goto +20 (target=62)
       [45] aload_0 v0
@@ -5232,14 +5234,14 @@ Methods (count = 89):
       [62] iload_2 v2
       [63] ifeq +40 (target=103)
       [66] aload_0 v0
-      [67] invokevirtual #518
+      [67] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [70] ldc_w #260
         + Class [com/chemicalwedding/artemis/bf]
       [73] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [76] iconst_0
-      [77] invokevirtual #421
+      [77] invokevirtual #422
         + Methodref [android/app/Application.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [80] invokeinterface #669
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
@@ -5346,14 +5348,14 @@ Methods (count = 89):
       [128] iload_3 v3
       [129] ifeq +53 (target=182)
       [132] aload_0 v0
-      [133] invokevirtual #518
+      [133] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [136] ldc_w #260
         + Class [com/chemicalwedding/artemis/bf]
       [139] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [142] iconst_0
-      [143] invokevirtual #421
+      [143] invokevirtual #422
         + Methodref [android/app/Application.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [146] invokeinterface #669
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
@@ -5369,7 +5371,7 @@ Methods (count = 89):
       [163] aload_0 v0
       [164] ldc #17
         + Integer [2131099690]
-      [166] invokevirtual #522
+      [166] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [169] invokeinterface #678
         + InterfaceMethodref [android/content/SharedPreferences$Editor.remove (Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;]
@@ -5554,7 +5556,7 @@ Methods (count = 89):
       [166] aload_0 v0
       [167] ldc #84
         + Integer [2131624017]
-      [169] invokevirtual #516
+      [169] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [172] checkcast #215
         + Class [android/widget/ListView]
@@ -5569,26 +5571,26 @@ Methods (count = 89):
       [186] ldc #2
         + Integer [2130903049]
       [188] aload_1 v1
-      [189] invokespecial #480
+      [189] invokespecial #481
         + Methodref [android/widget/ArrayAdapter.<init> (Landroid/content/Context;ILjava/util/List;)V]
       [192] astore v6
       [194] aload_0 v0
       [195] getfield #314
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.H Landroid/widget/ListView;]
       [198] aload v6
-      [200] invokevirtual #487
+      [200] invokevirtual #488
         + Methodref [android/widget/ListView.setAdapter (Landroid/widget/ListAdapter;)V]
       [203] aload_0 v0
       [204] getfield #314
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.H Landroid/widget/ListView;]
       [207] iconst_1
-      [208] invokevirtual #491
+      [208] invokevirtual #492
         + Methodref [android/widget/ListView.setTextFilterEnabled (Z)V]
       [211] aload_0 v0
       [212] getfield #314
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.H Landroid/widget/ListView;]
       [215] iconst_2
-      [216] invokevirtual #488
+      [216] invokevirtual #489
         + Methodref [android/widget/ListView.setChoiceMode (I)V]
       [219] aload_2 v2
       [220] invokevirtual #667
@@ -5608,7 +5610,7 @@ Methods (count = 89):
       [244] invokevirtual #640
         + Methodref [java/lang/Integer.intValue ()I]
       [247] iconst_1
-      [248] invokevirtual #489
+      [248] invokevirtual #490
         + Methodref [android/widget/ListView.setItemChecked (IZ)V]
       [251] aload_1 v1
       [252] invokeinterface #689
@@ -5638,7 +5640,7 @@ Methods (count = 89):
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
       [12] getstatic #356
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.d Landroid/widget/TextView;]
-      [15] invokevirtual #496
+      [15] invokevirtual #497
         + Methodref [android/widget/TextView.getText ()Ljava/lang/CharSequence;]
       [18] invokeinterface #688
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
@@ -5657,13 +5659,13 @@ Methods (count = 89):
       [41] getfield #313
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.G Landroid/widget/ViewFlipper;]
       [44] aconst_null
-      [45] invokevirtual #506
+      [45] invokevirtual #507
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
       [48] aload_0 v0
       [49] getfield #313
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.G Landroid/widget/ViewFlipper;]
       [52] iconst_0
-      [53] invokevirtual #504
+      [53] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [56] aload_0 v0
       [57] getfield #378
@@ -5677,7 +5679,7 @@ Methods (count = 89):
       [70] aload_1 v1
       [71] iconst_1
       [72] iconst_3
-      [73] invokevirtual #474
+      [73] invokevirtual #475
         + Methodref [android/view/View.performHapticFeedback (II)Z]
       [76] pop
       [77] return
@@ -5713,10 +5715,10 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [27] getstatic #363
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [30] invokevirtual #455
+      [30] invokevirtual #456
         + Methodref [android/location/Location.getLatitude ()D]
       [33] iconst_0
-      [34] invokestatic #454
+      [34] invokestatic #455
         + Methodref [android/location/Location.convert (DI)Ljava/lang/String;]
       [37] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5726,10 +5728,10 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [45] getstatic #363
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [48] invokevirtual #456
+      [48] invokevirtual #457
         + Methodref [android/location/Location.getLongitude ()D]
       [51] iconst_0
-      [52] invokestatic #454
+      [52] invokestatic #455
         + Methodref [android/location/Location.convert (DI)Ljava/lang/String;]
       [55] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5740,20 +5742,20 @@ Methods (count = 89):
         + Class [android/location/Geocoder]
       [65] dup
       [66] aload_0 v0
-      [67] invokespecial #452
+      [67] invokespecial #453
         + Methodref [android/location/Geocoder.<init> (Landroid/content/Context;)V]
       [70] astore_0 v0
       [71] aload_0 v0
       [72] getstatic #363
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [75] invokevirtual #455
+      [75] invokevirtual #456
         + Methodref [android/location/Location.getLatitude ()D]
       [78] getstatic #363
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.k Landroid/location/Location;]
-      [81] invokevirtual #456
+      [81] invokevirtual #457
         + Methodref [android/location/Location.getLongitude ()D]
       [84] iconst_1
-      [85] invokevirtual #453
+      [85] invokevirtual #454
         + Methodref [android/location/Geocoder.getFromLocation (DDI)Ljava/util/List;]
       [88] dup
       [89] astore_0 v0
@@ -5774,7 +5776,7 @@ Methods (count = 89):
       [119] istore_3 v3
       [120] aload_0 v0
       [121] iconst_0
-      [122] invokevirtual #440
+      [122] invokevirtual #441
         + Methodref [android/location/Address.getAddressLine (I)Ljava/lang/String;]
       [125] ifnull +29 (target=154)
       [128] new #290
@@ -5787,7 +5789,7 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [139] aload_0 v0
       [140] iconst_0
-      [141] invokevirtual #440
+      [141] invokevirtual #441
         + Methodref [android/location/Address.getAddressLine (I)Ljava/lang/String;]
       [144] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5796,7 +5798,7 @@ Methods (count = 89):
       [150] astore_2 v2
       [151] iinc v3, 1
       [154] aload_0 v0
-      [155] invokevirtual #444
+      [155] invokevirtual #445
         + Methodref [android/location/Address.getLocality ()Ljava/lang/String;]
       [158] ifnull +52 (target=210)
       [161] iload_3 v3
@@ -5825,7 +5827,7 @@ Methods (count = 89):
       [193] invokespecial #654
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [196] aload_0 v0
-      [197] invokevirtual #444
+      [197] invokevirtual #445
         + Methodref [android/location/Address.getLocality ()Ljava/lang/String;]
       [200] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5834,7 +5836,7 @@ Methods (count = 89):
       [206] astore_2 v2
       [207] iinc v3, 1
       [210] aload_0 v0
-      [211] invokevirtual #441
+      [211] invokevirtual #442
         + Methodref [android/location/Address.getAdminArea ()Ljava/lang/String;]
       [214] ifnull +52 (target=266)
       [217] iload_3 v3
@@ -5863,7 +5865,7 @@ Methods (count = 89):
       [249] invokespecial #654
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [252] aload_0 v0
-      [253] invokevirtual #441
+      [253] invokevirtual #442
         + Methodref [android/location/Address.getAdminArea ()Ljava/lang/String;]
       [256] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5872,7 +5874,7 @@ Methods (count = 89):
       [262] astore_2 v2
       [263] iinc v3, 1
       [266] aload_0 v0
-      [267] invokevirtual #445
+      [267] invokevirtual #446
         + Methodref [android/location/Address.getPostalCode ()Ljava/lang/String;]
       [270] ifnull +52 (target=322)
       [273] iload_3 v3
@@ -5901,7 +5903,7 @@ Methods (count = 89):
       [305] invokespecial #654
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [308] aload_0 v0
-      [309] invokevirtual #445
+      [309] invokevirtual #446
         + Methodref [android/location/Address.getPostalCode ()Ljava/lang/String;]
       [312] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5910,7 +5912,7 @@ Methods (count = 89):
       [318] astore_2 v2
       [319] iinc v3, 1
       [322] aload_0 v0
-      [323] invokevirtual #443
+      [323] invokevirtual #444
         + Methodref [android/location/Address.getCountryName ()Ljava/lang/String;]
       [326] ifnull +62 (target=388)
       [329] iload_3 v3
@@ -5939,7 +5941,7 @@ Methods (count = 89):
       [361] invokespecial #654
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [364] aload_0 v0
-      [365] invokevirtual #442
+      [365] invokevirtual #443
         + Methodref [android/location/Address.getCountryCode ()Ljava/lang/String;]
       [368] invokevirtual #657
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -5952,7 +5954,7 @@ Methods (count = 89):
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.w Ljava/lang/String;]
       [382] ldc #125
         + String [Error retrieving geocoder location data]
-      [384] invokestatic #466
+      [384] invokestatic #467
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [387] pop
       [388] iconst_2
@@ -5998,23 +6000,23 @@ Methods (count = 89):
       [11] ldc #150
         + String [newcustomcam]
       [13] iconst_0
-      [14] invokevirtual #431
+      [14] invokevirtual #432
         + Methodref [android/content/Intent.getBooleanExtra (Ljava/lang/String;Z)Z]
       [17] ifeq +39 (target=56)
       [20] aload_0 v0
-      [21] invokespecial #530
+      [21] invokespecial #531
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.m ()V]
       [24] aload_0 v0
       [25] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [28] aconst_null
-      [29] invokevirtual #506
+      [29] invokevirtual #507
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/view/animation/Animation;)V]
       [32] aload_0 v0
       [33] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [36] aconst_null
-      [37] invokevirtual #508
+      [37] invokevirtual #509
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/view/animation/Animation;)V]
       [40] aload_0 v0
       [41] getfield #311
@@ -6022,11 +6024,11 @@ Methods (count = 89):
       [44] aload_0 v0
       [45] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
-      [48] invokevirtual #503
+      [48] invokevirtual #504
         + Methodref [android/widget/ViewFlipper.getDisplayedChild ()I]
       [51] iconst_1
       [52] isub
-      [53] invokevirtual #504
+      [53] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [56] return
       Code attribute exceptions (count = 0):
@@ -6056,7 +6058,7 @@ Methods (count = 89):
       [20] aload_0 v0
       [21] ldc #29
         + Integer [2131099746]
-      [23] invokevirtual #522
+      [23] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [26] putfield #385
         + Fieldref [com/chemicalwedding/artemis/a/c.b Ljava/lang/String;]
@@ -6070,7 +6072,7 @@ Methods (count = 89):
       [38] aload_0 v0
       [39] ldc #75
         + Integer [2131624001]
-      [41] invokevirtual #516
+      [41] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [44] checkcast #215
         + Class [android/widget/ListView]
@@ -6086,12 +6088,12 @@ Methods (count = 89):
       [58] aload_0 v0
       [59] getfield #324
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.R Ljava/util/ArrayList;]
-      [62] invokespecial #480
+      [62] invokespecial #481
         + Methodref [android/widget/ArrayAdapter.<init> (Landroid/content/Context;ILjava/util/List;)V]
       [65] astore_2 v2
       [66] aload_1 v1
       [67] aload_2 v2
-      [68] invokevirtual #487
+      [68] invokevirtual #488
         + Methodref [android/widget/ListView.setAdapter (Landroid/widget/ListAdapter;)V]
       [71] return
       Code attribute exceptions (count = 0):
@@ -6116,13 +6118,13 @@ Methods (count = 89):
       [15] dup
       [16] iconst_0
       [17] aload_2 v2
-      [18] invokevirtual #477
+      [18] invokevirtual #478
         + Methodref [android/view/View.toString ()Ljava/lang/String;]
       [21] aastore
       [22] dup
       [23] iconst_1
       [24] aload_2 v2
-      [25] invokevirtual #472
+      [25] invokevirtual #473
         + Methodref [android/view/View.getParent ()Landroid/view/ViewParent;]
       [28] invokevirtual #645
         + Methodref [java/lang/Object.toString ()Ljava/lang/String;]
@@ -6131,11 +6133,11 @@ Methods (count = 89):
         + Methodref [java/lang/String.format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
       [35] pop
       [36] aload_2 v2
-      [37] invokevirtual #472
+      [37] invokevirtual #473
         + Methodref [android/view/View.getParent ()Landroid/view/ViewParent;]
       [40] checkcast #207
         + Class [android/view/View]
-      [43] invokevirtual #471
+      [43] invokevirtual #472
         + Methodref [android/view/View.getId ()I]
       [46] ldc #73
         + Integer [2131623997]
@@ -6155,7 +6157,7 @@ Methods (count = 89):
       [68] aload_0 v0
       [69] ldc #30
         + Integer [2131099747]
-      [71] invokevirtual #522
+      [71] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [74] invokeinterface #684
         + InterfaceMethodref [android/view/ContextMenu.setHeaderTitle (Ljava/lang/CharSequence;)Landroid/view/ContextMenu;]
@@ -6167,7 +6169,7 @@ Methods (count = 89):
       [84] aload_0 v0
       [85] ldc #31
         + Integer [2131099748]
-      [87] invokevirtual #522
+      [87] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [90] invokeinterface #683
         + InterfaceMethodref [android/view/ContextMenu.add (IIILjava/lang/CharSequence;)Landroid/view/MenuItem;]
@@ -6179,18 +6181,18 @@ Methods (count = 89):
       [100] aload_0 v0
       [101] ldc #32
         + Integer [2131099749]
-      [103] invokevirtual #522
+      [103] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [106] invokeinterface #683
         + InterfaceMethodref [android/view/ContextMenu.add (IIILjava/lang/CharSequence;)Landroid/view/MenuItem;]
       [111] pop
       [112] return
       [113] aload_2 v2
-      [114] invokevirtual #472
+      [114] invokevirtual #473
         + Methodref [android/view/View.getParent ()Landroid/view/ViewParent;]
       [117] checkcast #207
         + Class [android/view/View]
-      [120] invokevirtual #471
+      [120] invokevirtual #472
         + Methodref [android/view/View.getId ()I]
       [123] ldc #82
         + Integer [2131624015]
@@ -6210,7 +6212,7 @@ Methods (count = 89):
       [145] aload_0 v0
       [146] ldc #41
         + Integer [2131099892]
-      [148] invokevirtual #522
+      [148] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [151] invokeinterface #684
         + InterfaceMethodref [android/view/ContextMenu.setHeaderTitle (Ljava/lang/CharSequence;)Landroid/view/ContextMenu;]
@@ -6222,7 +6224,7 @@ Methods (count = 89):
       [161] aload_0 v0
       [162] ldc #42
         + Integer [2131099893]
-      [164] invokevirtual #522
+      [164] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [167] invokeinterface #683
         + InterfaceMethodref [android/view/ContextMenu.add (IIILjava/lang/CharSequence;)Landroid/view/MenuItem;]
@@ -6234,7 +6236,7 @@ Methods (count = 89):
       [177] aload_0 v0
       [178] ldc #43
         + Integer [2131099894]
-      [180] invokevirtual #522
+      [180] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [183] invokeinterface #683
         + InterfaceMethodref [android/view/ContextMenu.add (IIILjava/lang/CharSequence;)Landroid/view/MenuItem;]
@@ -6278,7 +6280,7 @@ Methods (count = 89):
       [43] aload_0 v0
       [44] ldc #52
         + Integer [2131623956]
-      [46] invokevirtual #516
+      [46] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [49] checkcast #212
         + Class [android/widget/Button]
@@ -6289,30 +6291,30 @@ Methods (count = 89):
       [57] aload_2 v2
       [58] invokespecial #587
         + Methodref [com/chemicalwedding/artemis/bc.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;Lcom/chemicalwedding/artemis/a/c;)V]
-      [61] invokevirtual #481
+      [61] invokevirtual #482
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [64] aload_0 v0
       [65] ldc #48
         + Integer [2131623952]
-      [67] invokevirtual #516
+      [67] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [70] checkcast #213
         + Class [android/widget/EditText]
       [73] aload_2 v2
       [74] getfield #385
         + Fieldref [com/chemicalwedding/artemis/a/c.b Ljava/lang/String;]
-      [77] invokevirtual #483
+      [77] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [80] aload_0 v0
       [81] ldc #51
         + Integer [2131623955]
-      [83] invokevirtual #516
+      [83] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [86] checkcast #213
         + Class [android/widget/EditText]
       [89] dup
       [90] astore_3 v3
-      [91] invokevirtual #482
+      [91] invokevirtual #483
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
       [94] invokeinterface #682
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
@@ -6322,12 +6324,12 @@ Methods (count = 89):
       [105] aload_3 v3
       [106] ldc #122
         + String [1]
-      [108] invokevirtual #483
+      [108] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [111] aload_0 v0
       [112] ldc #49
         + Integer [2131623953]
-      [114] invokevirtual #516
+      [114] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [117] checkcast #213
         + Class [android/widget/EditText]
@@ -6343,12 +6345,12 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [134] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [137] invokevirtual #483
+      [137] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [140] aload_0 v0
       [141] ldc #50
         + Integer [2131623954]
-      [143] invokevirtual #516
+      [143] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [146] checkcast #213
         + Class [android/widget/EditText]
@@ -6364,7 +6366,7 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [163] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [166] invokevirtual #483
+      [166] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [169] aload_0 v0
       [170] getfield #311
@@ -6374,7 +6376,7 @@ Methods (count = 89):
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.I Landroid/content/Context;]
       [177] ldc #6
         + Integer [2130968577]
-      [179] invokevirtual #505
+      [179] invokevirtual #506
         + Methodref [android/widget/ViewFlipper.setInAnimation (Landroid/content/Context;I)V]
       [182] aload_0 v0
       [183] getfield #311
@@ -6384,13 +6386,13 @@ Methods (count = 89):
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.I Landroid/content/Context;]
       [190] ldc #7
         + Integer [2130968579]
-      [192] invokevirtual #507
+      [192] invokevirtual #508
         + Methodref [android/widget/ViewFlipper.setOutAnimation (Landroid/content/Context;I)V]
       [195] aload_0 v0
       [196] getfield #311
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.E Landroid/widget/ViewFlipper;]
       [199] iconst_5
-      [200] invokevirtual #504
+      [200] invokevirtual #505
         + Methodref [android/widget/ViewFlipper.setDisplayedChild (I)V]
       [203] goto +354 (target=557)
       [206] aload_1 v1
@@ -6422,7 +6424,7 @@ Methods (count = 89):
       [249] invokevirtual #552
         + Methodref [com/chemicalwedding/artemis/a/a.b (I)V]
       [252] aload_0 v0
-      [253] invokespecial #530
+      [253] invokespecial #531
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.m ()V]
       [256] goto +301 (target=557)
       [259] aload_1 v1
@@ -6449,25 +6451,25 @@ Methods (count = 89):
       [294] ldc #1
         + Integer [2130903047]
       [296] aconst_null
-      [297] invokestatic #473
+      [297] invokestatic #474
         + Methodref [android/view/View.inflate (Landroid/content/Context;ILandroid/view/ViewGroup;)Landroid/view/View;]
       [300] dup
       [301] astore_3 v3
       [302] ldc #76
         + Integer [2131624002]
-      [304] invokevirtual #470
+      [304] invokevirtual #471
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
       [307] checkcast #213
         + Class [android/widget/EditText]
       [310] aload_2 v2
       [311] invokevirtual #564
         + Methodref [com/chemicalwedding/artemis/a/e.b ()Ljava/lang/String;]
-      [314] invokevirtual #483
+      [314] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [317] aload_3 v3
       [318] ldc #77
         + Integer [2131624003]
-      [320] invokevirtual #470
+      [320] invokevirtual #471
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
       [323] checkcast #213
         + Class [android/widget/EditText]
@@ -6483,12 +6485,12 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [340] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [343] invokevirtual #483
+      [343] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [346] aload_3 v3
       [347] ldc #78
         + Integer [2131624004]
-      [349] invokevirtual #470
+      [349] invokevirtual #471
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
       [352] checkcast #213
         + Class [android/widget/EditText]
@@ -6504,20 +6506,20 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [369] invokevirtual #658
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [372] invokevirtual #483
+      [372] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [375] new #177
         + Class [android/app/AlertDialog$Builder]
       [378] dup
       [379] aload_0 v0
-      [380] invokespecial #414
+      [380] invokespecial #415
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [383] aload_3 v3
-      [384] invokevirtual #420
+      [384] invokevirtual #421
         + Methodref [android/app/AlertDialog$Builder.setView (Landroid/view/View;)Landroid/app/AlertDialog$Builder;]
       [387] ldc #44
         + Integer [2131099895]
-      [389] invokevirtual #419
+      [389] invokevirtual #420
         + Methodref [android/app/AlertDialog$Builder.setTitle (I)Landroid/app/AlertDialog$Builder;]
       [392] ldc #33
         + Integer [2131099760]
@@ -6527,9 +6529,9 @@ Methods (count = 89):
       [398] aload_0 v0
       [399] invokespecial #569
         + Methodref [com/chemicalwedding/artemis/ab.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
-      [402] invokevirtual #417
+      [402] invokevirtual #418
         + Methodref [android/app/AlertDialog$Builder.setNegativeButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
-      [405] invokevirtual #415
+      [405] invokevirtual #416
         + Methodref [android/app/AlertDialog$Builder.create ()Landroid/app/AlertDialog;]
       [408] dup
       [409] astore_3 v3
@@ -6537,7 +6539,7 @@ Methods (count = 89):
       [411] aload_0 v0
       [412] ldc #36
         + Integer [2131099868]
-      [414] invokevirtual #522
+      [414] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [417] new #241
         + Class [com/chemicalwedding/artemis/ad]
@@ -6547,10 +6549,10 @@ Methods (count = 89):
       [423] aload_2 v2
       [424] invokespecial #571
         + Methodref [com/chemicalwedding/artemis/ad.<init> (Lcom/chemicalwedding/artemis/ArtemisActivity;Landroid/app/AlertDialog;Lcom/chemicalwedding/artemis/a/e;)V]
-      [427] invokevirtual #412
+      [427] invokevirtual #413
         + Methodref [android/app/AlertDialog.setButton (ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V]
       [430] aload_3 v3
-      [431] invokevirtual #413
+      [431] invokevirtual #414
         + Methodref [android/app/AlertDialog.show ()V]
       [434] goto +123 (target=557)
       [437] aload_1 v1
@@ -6602,7 +6604,7 @@ Methods (count = 89):
       [506] aload_2 v2
       [507] ldc #38
         + Integer [2131099874]
-      [509] invokevirtual #522
+      [509] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [512] invokevirtual #563
         + Methodref [com/chemicalwedding/artemis/a/e.a (Ljava/lang/String;)V]
@@ -6616,7 +6618,7 @@ Methods (count = 89):
       [524] aload_2 v2
       [525] ldc #87
         + Integer [2131624020]
-      [527] invokevirtual #516
+      [527] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [530] checkcast #215
         + Class [android/widget/ListView]
@@ -6632,16 +6634,16 @@ Methods (count = 89):
       [544] aload_2 v2
       [545] getfield #325
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.S Ljava/util/ArrayList;]
-      [548] invokespecial #480
+      [548] invokespecial #481
         + Methodref [android/widget/ArrayAdapter.<init> (Landroid/content/Context;ILjava/util/List;)V]
       [551] astore_2 v2
       [552] aload_3 v3
       [553] aload_2 v2
-      [554] invokevirtual #487
+      [554] invokevirtual #488
         + Methodref [android/widget/ListView.setAdapter (Landroid/widget/ListAdapter;)V]
       [557] aload_0 v0
       [558] aload_1 v1
-      [559] invokespecial #404
+      [559] invokespecial #405
         + Methodref [android/app/Activity.onContextItemSelected (Landroid/view/MenuItem;)Z]
       [562] ireturn
       Code attribute exceptions (count = 0):
@@ -6658,11 +6660,11 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 178, locals = 3, stack = 2):
       [0] aload_1 v1
-      [1] invokevirtual #467
+      [1] invokevirtual #468
         + Methodref [android/view/KeyEvent.getAction ()I]
       [4] istore_2 v2
       [5] aload_1 v1
-      [6] invokevirtual #468
+      [6] invokevirtual #469
         + Methodref [android/view/KeyEvent.getKeyCode ()I]
       [9] tableswitch (4 offsets, default=163) (target=172)
         24: offset = 31, target = 40
@@ -6749,7 +6751,7 @@ Methods (count = 89):
       [163] aload_0 v0
       [164] getstatic #357
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.e Landroid/widget/TextView;]
-      [167] invokespecial #514
+      [167] invokespecial #515
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b (Landroid/view/View;)V]
       [170] iconst_1
       [171] ireturn
@@ -6782,17 +6784,17 @@ Methods (count = 89):
         1: offset = 19, target = 20
         default: offset = 138, target = 139
       [20] aload_0 v0
-      [21] invokevirtual #518
+      [21] invokevirtual #519
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getApplication ()Landroid/app/Application;]
       [24] ldc_w #260
         + Class [com/chemicalwedding/artemis/bf]
       [27] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [30] iconst_0
-      [31] invokevirtual #421
+      [31] invokevirtual #422
         + Methodref [android/app/Application.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [34] astore_1 v1
-      [35] invokestatic #464
+      [35] invokestatic #465
         + Methodref [android/os/Environment.getExternalStorageDirectory ()Ljava/io/File;]
       [38] invokevirtual #635
         + Methodref [java/io/File.getAbsolutePath ()Ljava/lang/String;]
@@ -6817,7 +6819,7 @@ Methods (count = 89):
       [64] aload_0 v0
       [65] ldc #21
         + Integer [2131099694]
-      [67] invokevirtual #522
+      [67] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [70] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -6869,7 +6871,7 @@ Methods (count = 89):
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [133] aastore
       [134] aconst_null
-      [135] invokespecial #428
+      [135] invokespecial #429
         + Methodref [android/content/CursorLoader.<init> (Landroid/content/Context;Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)V]
       [138] areturn
       [139] aconst_null
@@ -6904,17 +6906,17 @@ Methods (count = 89):
         2131624060: offset = 83, target = 89
         default: offset = 89, target = 95
       [44] aload_0 v0
-      [45] invokespecial #526
+      [45] invokespecial #527
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.i ()V]
       [48] iconst_1
       [49] ireturn
       [50] aload_0 v0
-      [51] invokespecial #527
+      [51] invokespecial #528
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.j ()V]
       [54] iconst_1
       [55] ireturn
       [56] aload_0 v0
-      [57] invokespecial #531
+      [57] invokespecial #532
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.n ()V]
       [60] iconst_1
       [61] ireturn
@@ -6926,7 +6928,7 @@ Methods (count = 89):
       [68] aload_1 v1
       [69] ldc #225
         + Class [com/chemicalwedding/artemis/AboutActivity]
-      [71] invokespecial #429
+      [71] invokespecial #430
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [74] astore_2 v2
       [75] aload_1 v1
@@ -6937,12 +6939,12 @@ Methods (count = 89):
       [81] iconst_1
       [82] ireturn
       [83] aload_0 v0
-      [84] invokespecial #529
+      [84] invokespecial #530
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.l ()V]
       [87] iconst_1
       [88] ireturn
       [89] aload_0 v0
-      [90] invokevirtual #517
+      [90] invokevirtual #518
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.finish ()V]
       [93] iconst_0
       [94] ireturn
@@ -6969,7 +6971,7 @@ Methods (count = 89):
       [4] aload_0 v0
       [5] ldc #232
         + Class [com/chemicalwedding/artemis/SettingsActivity]
-      [7] invokespecial #429
+      [7] invokespecial #430
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [10] astore_1 v1
       [11] aload_0 v0
@@ -6977,6 +6979,18 @@ Methods (count = 89):
       [13] invokevirtual #534
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.startActivity (Landroid/content/Intent;)V]
       [16] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onConfigurationChanged(Landroid/content/res/Configuration;)V
+    Access flags: 0x1
+      = public void onConfigurationChanged(android.content.res.Configuration)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 6, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] invokespecial #404
+        + Methodref [android/app/Activity.onConfigurationChanged (Landroid/content/res/Configuration;)V]
+      [5] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       onLoadFinished(Landroid/content/Loader;Ljava/lang/Object;)V
@@ -7010,7 +7024,7 @@ Methods (count = 89):
       [36] iload_2 v2
       [37] invokestatic #643
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
-      [40] invokestatic #463
+      [40] invokestatic #464
         + Methodref [android/net/Uri.withAppendedPath (Landroid/net/Uri;Ljava/lang/String;)Landroid/net/Uri;]
       [43] astore_2 v2
       [44] new #183
@@ -7018,16 +7032,16 @@ Methods (count = 89):
       [47] dup
       [48] ldc #133
         + String [android.intent.action.VIEW]
-      [50] invokespecial #430
+      [50] invokespecial #431
         + Methodref [android/content/Intent.<init> (Ljava/lang/String;)V]
       [53] dup
       [54] astore_3 v3
       [55] aload_2 v2
-      [56] invokevirtual #432
+      [56] invokevirtual #433
         + Methodref [android/content/Intent.setData (Landroid/net/Uri;)Landroid/content/Intent;]
       [59] pop
       [60] aload_2 v2
-      [61] invokevirtual #462
+      [61] invokevirtual #463
         + Methodref [android/net/Uri.toString ()Ljava/lang/String;]
       [64] pop
       [65] aload_1 v1
@@ -7043,27 +7057,27 @@ Methods (count = 89):
       [79] aload_2 v2
       [80] ldc #35
         + Integer [2131099781]
-      [82] invokevirtual #522
+      [82] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [85] iconst_1
-      [86] invokestatic #498
+      [86] invokestatic #499
         + Methodref [android/widget/Toast.makeText (Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;]
       [89] dup
       [90] astore_2 v2
       [91] sipush 2000
-      [94] invokevirtual #499
+      [94] invokevirtual #500
         + Methodref [android/widget/Toast.setDuration (I)V]
       [97] aload_2 v2
-      [98] invokevirtual #500
+      [98] invokevirtual #501
         + Methodref [android/widget/Toast.show ()V]
       [101] goto +6 (target=107)
       [104] invokevirtual #639
         + Methodref [java/lang/Exception.printStackTrace ()V]
       [107] aload_1 v1
-      [108] invokevirtual #519
+      [108] invokevirtual #520
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getLoaderManager ()Landroid/app/LoaderManager;]
       [111] iconst_1
-      [112] invokevirtual #422
+      [112] invokevirtual #423
         + Methodref [android/app/LoaderManager.destroyLoader (I)V]
       [115] return
       Code attribute exceptions (count = 1):
@@ -7165,7 +7179,7 @@ Methods (count = 89):
       [1] iload_1 v1
       [2] iload_2 v2
       [3] iload_3 v3
-      [4] invokespecial #511
+      [4] invokespecial #512
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (IZZ)V]
       [7] return
       Code attribute exceptions (count = 0):
@@ -7186,7 +7200,7 @@ Methods (count = 89):
       = static synthetic void e()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 4, locals = 0, stack = 0):
-      [0] invokestatic #528
+      [0] invokestatic #529
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.k ()V]
       [3] return
       Code attribute exceptions (count = 0):
@@ -7281,7 +7295,7 @@ Methods (count = 89):
       [133] f2d
       [134] invokevirtual #660
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
-      [137] invokevirtual #497
+      [137] invokevirtual #498
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [140] getstatic #327
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.U Lcom/chemicalwedding/artemis/be;]
@@ -7465,7 +7479,7 @@ Methods (count = 89):
       [133] f2d
       [134] invokevirtual #660
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
-      [137] invokevirtual #497
+      [137] invokevirtual #498
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [140] getstatic #327
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.U Lcom/chemicalwedding/artemis/be;]
@@ -7526,7 +7540,7 @@ Methods (count = 89):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #514
+      [2] invokespecial #515
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b (Landroid/view/View;)V]
       [5] return
       Code attribute exceptions (count = 0):
@@ -7537,7 +7551,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #530
+      [1] invokespecial #531
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.m ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -7551,7 +7565,7 @@ Methods (count = 89):
       [1] aload_1 v1
       [2] iload_2 v2
       [3] iload_3 v3
-      [4] invokespecial #513
+      [4] invokespecial #514
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.a (Ljava/lang/String;ZZ)V]
       [7] return
       Code attribute exceptions (count = 0):
@@ -7565,7 +7579,7 @@ Methods (count = 89):
       [1] aload_1 v1
       [2] iload_2 v2
       [3] iconst_1
-      [4] invokespecial #515
+      [4] invokespecial #516
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.b (Ljava/lang/String;ZZ)V]
       [7] return
       Code attribute exceptions (count = 0):
@@ -7633,7 +7647,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #527
+      [1] invokespecial #528
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.j ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -7805,18 +7819,18 @@ Methods (count = 89):
       [6] aload_0 v0
       [7] ldc #99
         + Integer [2131624034]
-      [9] invokevirtual #516
+      [9] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [12] checkcast #220
         + Class [android/widget/ToggleButton]
       [15] dup
       [16] astore_1 v1
       [17] iconst_0
-      [18] invokevirtual #502
+      [18] invokevirtual #503
         + Methodref [android/widget/ToggleButton.setEnabled (Z)V]
       [21] aload_1 v1
       [22] iconst_0
-      [23] invokevirtual #501
+      [23] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [26] aload_0 v0
       [27] ldc_w #260
@@ -7824,13 +7838,13 @@ Methods (count = 89):
       [30] invokevirtual #638
         + Methodref [java/lang/Class.getSimpleName ()Ljava/lang/String;]
       [33] iconst_0
-      [34] invokevirtual #521
+      [34] invokevirtual #522
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [37] astore_1 v1
       [38] aload_0 v0
       [39] ldc #97
         + Integer [2131624031]
-      [41] invokevirtual #516
+      [41] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [44] checkcast #213
         + Class [android/widget/EditText]
@@ -7841,12 +7855,12 @@ Methods (count = 89):
         + String []
       [52] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-      [57] invokevirtual #483
+      [57] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [60] aload_0 v0
       [61] ldc #98
         + Integer [2131624032]
-      [63] invokevirtual #516
+      [63] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [66] checkcast #213
         + Class [android/widget/EditText]
@@ -7857,12 +7871,12 @@ Methods (count = 89):
         + String []
       [74] invokeinterface #673
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-      [79] invokevirtual #483
+      [79] invokevirtual #484
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [82] aload_0 v0
       [83] ldc #101
         + Integer [2131624036]
-      [85] invokevirtual #516
+      [85] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [88] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7872,12 +7886,12 @@ Methods (count = 89):
       [94] iconst_1
       [95] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [100] invokevirtual #501
+      [100] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [103] aload_0 v0
       [104] ldc #102
         + Integer [2131624037]
-      [106] invokevirtual #516
+      [106] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [109] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7887,12 +7901,12 @@ Methods (count = 89):
       [115] iconst_1
       [116] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [121] invokevirtual #501
+      [121] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [124] aload_0 v0
       [125] ldc #99
         + Integer [2131624034]
-      [127] invokevirtual #516
+      [127] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [130] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7902,12 +7916,12 @@ Methods (count = 89):
       [136] iconst_1
       [137] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [142] invokevirtual #501
+      [142] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [145] aload_0 v0
       [146] ldc #100
         + Integer [2131624035]
-      [148] invokevirtual #516
+      [148] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [151] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7917,12 +7931,12 @@ Methods (count = 89):
       [157] iconst_1
       [158] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [163] invokevirtual #501
+      [163] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [166] aload_0 v0
       [167] ldc #106
         + Integer [2131624041]
-      [169] invokevirtual #516
+      [169] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [172] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7932,12 +7946,12 @@ Methods (count = 89):
       [178] iconst_1
       [179] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [184] invokevirtual #501
+      [184] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [187] aload_0 v0
       [188] ldc #103
         + Integer [2131624038]
-      [190] invokevirtual #516
+      [190] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [193] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7947,12 +7961,12 @@ Methods (count = 89):
       [199] iconst_1
       [200] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [205] invokevirtual #501
+      [205] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [208] aload_0 v0
       [209] ldc #104
         + Integer [2131624039]
-      [211] invokevirtual #516
+      [211] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [214] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7964,19 +7978,19 @@ Methods (count = 89):
       [222] iconst_1
       [223] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [228] invokevirtual #501
+      [228] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [231] getstatic #368
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.p I]
       [234] ifne +8 (target=242)
       [237] aload_2 v2
       [238] iconst_0
-      [239] invokevirtual #502
+      [239] invokevirtual #503
         + Methodref [android/widget/ToggleButton.setEnabled (Z)V]
       [242] aload_0 v0
       [243] ldc #105
         + Integer [2131624040]
-      [245] invokevirtual #516
+      [245] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [248] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -7988,7 +8002,7 @@ Methods (count = 89):
       [256] iconst_1
       [257] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [262] invokevirtual #501
+      [262] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [265] getstatic #368
         + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.p I]
@@ -7999,12 +8013,12 @@ Methods (count = 89):
       [275] ificmpne +8 (target=283)
       [278] aload_2 v2
       [279] iconst_0
-      [280] invokevirtual #502
+      [280] invokevirtual #503
         + Methodref [android/widget/ToggleButton.setEnabled (Z)V]
       [283] aload_0 v0
       [284] ldc #107
         + Integer [2131624042]
-      [286] invokevirtual #516
+      [286] invokevirtual #517
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
       [289] checkcast #220
         + Class [android/widget/ToggleButton]
@@ -8012,12 +8026,12 @@ Methods (count = 89):
       [293] aload_0 v0
       [294] ldc #19
         + Integer [2131099692]
-      [296] invokevirtual #522
+      [296] invokevirtual #523
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.getString (I)Ljava/lang/String;]
       [299] iconst_0
       [300] invokeinterface #670
         + InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
-      [305] invokevirtual #501
+      [305] invokevirtual #502
         + Methodref [android/widget/ToggleButton.setChecked (Z)V]
       [308] return
       Code attribute exceptions (count = 0):
@@ -8078,15 +8092,15 @@ Methods (count = 89):
       [3] dup
       [4] ldc #133
         + String [android.intent.action.VIEW]
-      [6] invokespecial #430
+      [6] invokespecial #431
         + Methodref [android/content/Intent.<init> (Ljava/lang/String;)V]
       [9] dup
       [10] astore_1 v1
       [11] ldc #145
         + String [https://docs.google.com/document/d/1aS4i-ipOhgPgQRC47QCYq7Tji-dxeIQLJzhdgd_mNL8/edit?hl=en&pli=1&rm=demo]
-      [13] invokestatic #461
+      [13] invokestatic #462
         + Methodref [android/net/Uri.parse (Ljava/lang/String;)Landroid/net/Uri;]
-      [16] invokevirtual #432
+      [16] invokevirtual #433
         + Methodref [android/content/Intent.setData (Landroid/net/Uri;)Landroid/content/Intent;]
       [19] pop
       [20] aload_0 v0
@@ -8102,7 +8116,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #526
+      [1] invokespecial #527
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.i ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -8146,7 +8160,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #531
+      [1] invokespecial #532
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.n ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -8157,7 +8171,7 @@ Methods (count = 89):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #529
+      [1] invokespecial #530
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.l ()V]
       [4] return
       Code attribute exceptions (count = 0):

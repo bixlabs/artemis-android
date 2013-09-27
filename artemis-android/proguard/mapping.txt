@@ -114,6 +114,7 @@ com.chemicalwedding.artemis.ArtemisActivity -> com.chemicalwedding.artemis.Artem
     void onLoaderReset(android.content.Loader) -> onLoaderReset
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void openArtemisSettings() -> n
+    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void onLoadFinished(android.content.Loader,java.lang.Object) -> onLoadFinished
     java.lang.String access$1() -> c
     void access$2(android.location.Location) -> a
