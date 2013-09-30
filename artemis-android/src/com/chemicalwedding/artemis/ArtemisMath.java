@@ -82,7 +82,8 @@ public class ArtemisMath {
 		deviceVerticalWidth = (float) (2 * (Math.tan(Math
 				.toRadians(vertViewAngle / 2)) * WALL_DISTANCE));
 
-		Log.v(logTag, "Pixel Density: " + _pixelDensity + " Horiz:"
+		Log.v(logTag, "SetDeviceDetails: Screen width: " + screenWidth + " Screen height: "
+				+ screenHeight + " Pixel Density: " + _pixelDensity + " Horiz:"
 				+ deviceHorizontalWidth + " Vert:" + deviceVerticalWidth);
 	}
 
