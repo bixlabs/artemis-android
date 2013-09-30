@@ -5,7 +5,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1184:1190:public static java.lang.String getBucketId(java.lang.String)
+    1175:1181:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
@@ -16,15 +16,15 @@ com.chemicalwedding.artemis.ArtemisMath:
     private static final int SPACING
     static final float ZOOM_LENS_CLICK_FACTOR
     58:58:public void setupDeviceCameraDetails()
-    90:96:public void setCustomViewAngle(float,float)
-    154:154:public static float calculateAngleForCustomCamera(float)
-    405:406:public void set_minTouchX(float)
-    413:414:public void set_minTouchY(float)
-    421:422:public void set_maxTouchX(float)
-    429:430:public void set_maxTouchY(float)
-    445:445:public int get_selectedLensIndex()
-    449:450:public void set_selectedLensIndex(int)
-    581:581:public float getPixelDensity()
+    91:97:public void setCustomViewAngle(float,float)
+    155:155:public static float calculateAngleForCustomCamera(float)
+    406:407:public void set_minTouchX(float)
+    414:415:public void set_minTouchY(float)
+    422:423:public void set_maxTouchX(float)
+    430:431:public void set_maxTouchY(float)
+    446:446:public int get_selectedLensIndex()
+    450:451:public void set_selectedLensIndex(int)
+    582:582:public float getPixelDensity()
 com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String GPS_ENABLED
     public static final java.lang.String SELECTED_LENS_MAKE
@@ -60,8 +60,8 @@ com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
     107:108:public void surfaceDestroyed(android.view.SurfaceHolder)
     111:111:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
-    969:969:public void clearFullScreenTempFrame()
-    975:978:public void resetDigitalZoomLevel()
+    968:968:public void clearFullScreenTempFrame()
+    974:977:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed
