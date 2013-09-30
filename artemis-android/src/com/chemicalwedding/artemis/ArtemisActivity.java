@@ -266,7 +266,6 @@ public class ArtemisActivity extends Activity implements
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
-			mCameraOverlay.requestLayout();
 		}
 
 		initSensorManager();

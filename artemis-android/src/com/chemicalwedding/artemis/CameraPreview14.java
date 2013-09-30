@@ -554,11 +554,10 @@ public class CameraPreview14 extends ViewGroup {
             float pixelDensityScale = getContext().getResources()
                     .getDisplayMetrics().density;
 
-            _artemisMath.setDeviceSpecificDetails(totalScreenWidth,
-                    totalScreenHeight, pixelDensityScale, effectiveHAngle,
-                    effectiveVAngle);
-
             if (!_artemisMath.isInitializedFirstTime()) {
+                _artemisMath.setDeviceSpecificDetails(totalScreenWidth,
+                        totalScreenHeight, pixelDensityScale, effectiveHAngle,
+                        effectiveVAngle);
                 _artemisMath.calculateLargestLens();
                 _artemisMath.calculateRectBoxesAndLabelsForLenses();
                 _artemisMath.selectFirstMeaningFullLens();
@@ -1012,7 +1011,6 @@ public class CameraPreview14 extends ViewGroup {
         parms.setPreviewSize(size.width, size.height);
         mCamera.setParameters(parms);
         restartPreview();
-        requestLayout();
     }
 
     @Override
