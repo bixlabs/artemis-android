@@ -234,9 +234,7 @@ public class ArtemisActivity extends Activity implements
 		if (ArtemisActivity.arrowBackgroundImage != null) {
 			ArtemisActivity.arrowBackgroundImage.recycle();
 			ArtemisActivity.arrowBackgroundImage = null;
-		}
-		
-		_artemisDBHelper.close();
+		}		
 	}
 
 	@Override
