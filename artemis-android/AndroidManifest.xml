@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chemicalwedding.artemis"
     android:installLocation="auto"
-    android:versionCode="28"
-    android:versionName="2.0.5 Beta2 2015011013" >
+    android:versionCode="29"
+    android:versionName="2.0.5b3" >
 
     <supports-screens
         android:anyDensity="true"
@@ -33,7 +33,6 @@
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:hardwareAccelerated="false"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:theme="@style/ArtemisMain" >
             <intent-filter>
@@ -46,7 +45,6 @@
             android:name="ArtemisActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:theme="@style/ArtemisMain" >
         </activity>
