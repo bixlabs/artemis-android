@@ -6,7 +6,7 @@ public class ArtemisPreferences {
 	public static final String SELECTED_LENS_ROW_CSV = "selectedLensesCSVString";
 	public static final String SAVE_PICTURE_FOLDER = "artemisSaveFolder";
 	public static final String SELECTED_CAMERA_ROW = "selectedCameraRowId";
-	public static final String SELECTED_EXPOSURE_LEVEL = "selectedExposureLevel";
+	public static final String SELECTED_EXPOSURE_LEVEL = "selectedExposureLevel1";
 	public static final String SELECTED_WHITE_BALANCE = "selectedWhiteBalance";
 	public static final String FLASH_ENABLED = "flashEnabled";
 	public static final String QUICKSHOT_ENABLED = "quickshotEnabled";
