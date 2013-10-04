@@ -2009,9 +2009,11 @@ public class ArtemisActivity extends Activity implements
 				// just previously took a picture
 				pictureSavePreview.setImageBitmap(null);
 				System.gc();
+				
 				if (_cameraPreview != null)
 					_cameraPreview.restartPreview();
 			}
+			savePictureViewFlipper.setDisplayedChild(0); // reset to first view
 			openArtemisCameraPreviewView();
 		}
 	}
