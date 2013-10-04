@@ -14,11 +14,6 @@
             android:background="#000"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/save_picture_title" />
-
             <ImageView
                 android:id="@+id/savePicturePreview"
                 android:layout_width="match_parent"
@@ -36,7 +31,7 @@
                 android:layout_weight="0.15"
                 android:gravity="bottom" >
 
-              <Button
+                <Button
                     android:id="@+id/savePictureCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,14 +40,12 @@
                 <View
                     android:layout_width="15dp"
                     android:layout_height="wrap_content" />
-                
-                  <Button
+
+                <Button
                     android:id="@+id/savePictureButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/save_picture" />
-
-                
 
                 <View
                     android:layout_width="15dp"
@@ -242,7 +235,7 @@
                     android:id="@+id/save_edit_details_PictureCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     android:layout_marginRight="25dp"
+                    android:layout_marginRight="25dp"
                     android:text="@string/cancel" />
 
                 <Button
