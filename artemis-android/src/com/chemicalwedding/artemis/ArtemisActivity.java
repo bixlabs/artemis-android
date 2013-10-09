@@ -938,6 +938,8 @@ public class ArtemisActivity extends Activity implements
 			takePictureButton.setOnLongClickListener(new OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View v) {
+					pictureSaveHeadingTiltString = headingTiltText.getText().toString();
+					
 					_cameraPreview
 							.autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
 					if (autoFocusAfterLongClickShutter
@@ -2208,7 +2210,7 @@ public class ArtemisActivity extends Activity implements
 		String gpsDetails = "";
 		String gpsLocationString = "";
 
-		if (lastKnownLocation != null && gpsEnabled) {
+		if (pictureSaveLocation != null && gpsEnabled) {
 			gpsDetails = "Lat: "
 					+ Location.convert(pictureSaveLocation.getLatitude(),
 							Location.FORMAT_DEGREES)
@@ -2703,6 +2705,7 @@ public class ArtemisActivity extends Activity implements
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_VOLUME_UP:
 			if (action == KeyEvent.ACTION_DOWN) {
+				pictureSaveHeadingTiltString = headingTiltText.getText().toString();
 				if (volumeUpAutoFocusAndPicture) {
 					_cameraPreview.autofocusCamera(true);
 				} else if (volumeUpPicture) {
@@ -2714,6 +2717,7 @@ public class ArtemisActivity extends Activity implements
 			return true;
 		case KeyEvent.KEYCODE_VOLUME_DOWN:
 			if (action == KeyEvent.ACTION_DOWN) {
+				pictureSaveHeadingTiltString = headingTiltText.getText().toString();
 				if (volumeDownAutoFocusAndPicture) {
 					_cameraPreview.autofocusCamera(true);
 				} else if (volumeDownPicture) {
@@ -2726,6 +2730,7 @@ public class ArtemisActivity extends Activity implements
 		case KeyEvent.KEYCODE_CAMERA:
 			if (action == KeyEvent.ACTION_DOWN && _cameraPreview != null) {
 				// just pass a view to the shutter event
+				pictureSaveHeadingTiltString = headingTiltText.getText().toString();
 				shutterButtonPressed(_lensFocalLengthText);
 			}
 			return true;
