@@ -155,8 +155,8 @@ com.chemicalwedding.artemis.ArtemisActivity -> com.chemicalwedding.artemis.Artem
     void access$38(com.chemicalwedding.artemis.ArtemisActivity) -> w
     boolean access$39(com.chemicalwedding.artemis.ArtemisActivity) -> x
     void access$40(com.chemicalwedding.artemis.ArtemisActivity,boolean) -> b
-    void access$41(com.chemicalwedding.artemis.ArtemisActivity) -> y
-    android.widget.ViewFlipper access$42(com.chemicalwedding.artemis.ArtemisActivity) -> z
+    android.widget.ViewFlipper access$41(com.chemicalwedding.artemis.ArtemisActivity) -> y
+    void access$42(com.chemicalwedding.artemis.ArtemisActivity) -> z
     void access$43(com.chemicalwedding.artemis.ArtemisActivity,com.chemicalwedding.artemis.database.Camera) -> a
     void access$44(com.chemicalwedding.artemis.ArtemisActivity,com.chemicalwedding.artemis.database.Camera) -> b
     com.chemicalwedding.artemis.database.Camera access$45(com.chemicalwedding.artemis.ArtemisActivity) -> A

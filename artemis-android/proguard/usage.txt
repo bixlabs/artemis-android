@@ -5,7 +5,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1175:1181:public static java.lang.String getBucketId(java.lang.String)
+    1177:1183:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
