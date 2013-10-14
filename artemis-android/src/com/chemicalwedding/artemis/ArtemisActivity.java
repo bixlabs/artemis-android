@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -53,8 +52,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -2498,8 +2497,21 @@ public class ArtemisActivity extends Activity implements
 					.setText(edited.getName());
 			((EditText) alertView.findViewById(R.id.zoomLensMinFL))
 					.setText(edited.getMinFL() + "");
-			((EditText) alertView.findViewById(R.id.zoomLensMaxFL))
-					.setText(edited.getMaxFL() + "");
+			EditText finalEditText = (EditText) alertView
+					.findViewById(R.id.zoomLensMaxFL);
+			finalEditText.setText(edited.getMaxFL() + "");
+			finalEditText
+					.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+						@Override
+						public boolean onEditorAction(TextView v, int action,
+								KeyEvent event) {
+							if (action == EditorInfo.IME_ACTION_DONE) {
+								((View) v.getParent().getParent())
+										.requestFocus();
+							}
+							return false;
+						}
+					});
 
 			final AlertDialog addZoomLensDialog = new AlertDialog.Builder(
 					ArtemisActivity.this)
