@@ -201,7 +201,7 @@ public class ArtemisMath {
 					+ (int) _largestViewableFocalLength, xmin, y,
 					xmin + hwidth, y + vheight);
 			if (!isFullscreen) {
-				greenBox.setColor(Color.GREEN);
+				greenBox.setColor(orangeBoxColor);
 			} else
 				greenBox.setColor(Color.RED);
 
