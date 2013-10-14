@@ -234,7 +234,7 @@ public class ArtemisActivity extends Activity implements
 		if (ArtemisActivity.arrowBackgroundImage != null) {
 			ArtemisActivity.arrowBackgroundImage.recycle();
 			ArtemisActivity.arrowBackgroundImage = null;
-		}		
+		}
 	}
 
 	@Override
@@ -938,8 +938,9 @@ public class ArtemisActivity extends Activity implements
 			takePictureButton.setOnLongClickListener(new OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View v) {
-					pictureSaveHeadingTiltString = headingTiltText.getText().toString();
-					
+					pictureSaveHeadingTiltString = headingTiltText.getText()
+							.toString();
+
 					_cameraPreview
 							.autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
 					if (autoFocusAfterLongClickShutter
@@ -1796,15 +1797,24 @@ public class ArtemisActivity extends Activity implements
 	}
 
 	protected void reconfigureNextAndPreviousLensButtons() {
-		if (_artemisMath.hasNextLens()) {
-			_nextLensButton.setVisibility(View.VISIBLE);
+		if (_artemisMath.selectedZoomLens == null) {
+			if (_artemisMath.hasNextLens()) {
+				_nextLensButton.setVisibility(View.VISIBLE);
+			} else {
+				_nextLensButton.setVisibility(View.INVISIBLE);
+			}
+			if (_artemisMath.hasPreviousLens()) {
+				_prevLensButton.setVisibility(View.VISIBLE);
+			} else {
+				_prevLensButton.setVisibility(View.INVISIBLE);
+			}
 		} else {
-			_nextLensButton.setVisibility(View.INVISIBLE);
-		}
-		if (_artemisMath.hasPreviousLens()) {
-			_prevLensButton.setVisibility(View.VISIBLE);
-		} else {
-			_prevLensButton.setVisibility(View.INVISIBLE);
+			if (!_artemisMath.hasNextZoomLens()) {
+				_nextLensButton.setVisibility(View.INVISIBLE);
+			}
+			if (_artemisMath.hasPreviousZoomLens()) {
+				_prevLensButton.setVisibility(View.VISIBLE);
+			}
 		}
 	}
 
@@ -2009,7 +2019,7 @@ public class ArtemisActivity extends Activity implements
 				// just previously took a picture
 				pictureSavePreview.setImageBitmap(null);
 				System.gc();
-				
+
 				if (_cameraPreview != null)
 					_cameraPreview.restartPreview();
 			}
@@ -2707,7 +2717,8 @@ public class ArtemisActivity extends Activity implements
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_VOLUME_UP:
 			if (action == KeyEvent.ACTION_DOWN) {
-				pictureSaveHeadingTiltString = headingTiltText.getText().toString();
+				pictureSaveHeadingTiltString = headingTiltText.getText()
+						.toString();
 				if (volumeUpAutoFocusAndPicture) {
 					_cameraPreview.autofocusCamera(true);
 				} else if (volumeUpPicture) {
@@ -2719,7 +2730,8 @@ public class ArtemisActivity extends Activity implements
 			return true;
 		case KeyEvent.KEYCODE_VOLUME_DOWN:
 			if (action == KeyEvent.ACTION_DOWN) {
-				pictureSaveHeadingTiltString = headingTiltText.getText().toString();
+				pictureSaveHeadingTiltString = headingTiltText.getText()
+						.toString();
 				if (volumeDownAutoFocusAndPicture) {
 					_cameraPreview.autofocusCamera(true);
 				} else if (volumeDownPicture) {
@@ -2732,7 +2744,8 @@ public class ArtemisActivity extends Activity implements
 		case KeyEvent.KEYCODE_CAMERA:
 			if (action == KeyEvent.ACTION_DOWN && _cameraPreview != null) {
 				// just pass a view to the shutter event
-				pictureSaveHeadingTiltString = headingTiltText.getText().toString();
+				pictureSaveHeadingTiltString = headingTiltText.getText()
+						.toString();
 				shutterButtonPressed(_lensFocalLengthText);
 			}
 			return true;
@@ -2836,7 +2849,7 @@ public class ArtemisActivity extends Activity implements
 				SettingsActivity.class);
 		startActivity(settingsIntent);
 	}
-	
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);

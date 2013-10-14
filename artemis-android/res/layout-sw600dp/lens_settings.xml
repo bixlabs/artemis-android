@@ -98,6 +98,12 @@
                     android:text="@string/save_lenses" />
             </LinearLayout>
         </LinearLayout>
+
+        <ListView
+            android:id="@+id/customZoomLensList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
     </com.chemicalwedding.artemis.ArtemisViewFlipper>
 
 </LinearLayout>
