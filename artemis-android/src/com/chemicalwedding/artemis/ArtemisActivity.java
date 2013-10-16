@@ -1412,6 +1412,7 @@ public class ArtemisActivity extends Activity implements
 				_lensSettingsFlipper.setOutAnimation(null);
 				_lensSettingsFlipper.setDisplayedChild(0);
 				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
+				mCameraAngleDetailView.postInvalidate();
 				openArtemisCameraPreviewView();
 			}
 		}
@@ -1653,14 +1654,13 @@ public class ArtemisActivity extends Activity implements
 			updateLensesInDB();
 			_artemisMath.setFullscreen(false);
 			_artemisMath.calculateLargestLens();
-			// call twice fixes the refresh bug after select lenses.
-			// otherwise it doesn't redraw, strange looking boxes appear ???
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 			_artemisMath.selectFirstMeaningFullLens();
 			_artemisMath.onFullscreenOffSelectLens();
 			_artemisMath.resetTouchToCenter();
 			_cameraPreview.calculateZoom(true);
 			mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
+			mCameraAngleDetailView.postInvalidate();
 			reconfigureNextAndPreviousLensButtons();
 			openArtemisCameraPreviewView();
 		}
@@ -2333,6 +2333,7 @@ public class ArtemisActivity extends Activity implements
 				_artemisMath.onFullscreenOffSelectLens();
 				_artemisMath.resetTouchToCenter();
 				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
+				mCameraAngleDetailView.postInvalidate();
 				openLensSettingsView();
 			}
 
