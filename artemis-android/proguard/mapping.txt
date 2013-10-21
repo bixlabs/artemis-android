@@ -405,6 +405,7 @@ com.chemicalwedding.artemis.ArtemisMath -> com.chemicalwedding.artemis.bf:
     java.text.NumberFormat lensFLNumberFormat -> m
     void resetTouchToCenter() -> a
     void setDeviceSpecificDetails(int,int,float,float,float) -> a
+    void setCustomViewAngle(float,float) -> a
     float[] calculateViewingAngle(float) -> c
     void calculateLargestLens() -> b
     float calculateWidthAndHeightLens(float) -> d

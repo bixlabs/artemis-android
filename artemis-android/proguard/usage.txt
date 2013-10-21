@@ -16,7 +16,6 @@ com.chemicalwedding.artemis.ArtemisMath:
     private static final int SPACING
     static final float ZOOM_LENS_CLICK_FACTOR
     58:58:public void setupDeviceCameraDetails()
-    91:97:public void setCustomViewAngle(float,float)
     155:155:public static float calculateAngleForCustomCamera(float)
     406:407:public void set_minTouchX(float)
     414:415:public void set_minTouchY(float)
