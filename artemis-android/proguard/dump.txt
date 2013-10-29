@@ -10885,33 +10885,84 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 27):
+Constant Pool (count = 78):
+  + Integer [2131623971]
+  + String [ ]
   + Class [android/os/AsyncTask]
+  + Class [android/widget/TextView]
   + Class [com/chemicalwedding/artemis/ArtemisActivity]
+  + Class [com/chemicalwedding/artemis/a/b]
   + Class [com/chemicalwedding/artemis/l]
+  + Class [java/lang/String]
+  + Class [java/lang/StringBuilder]
+  + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.b Landroid/widget/TextView;]
+  + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.i Ljava/lang/String;]
+  + Fieldref [com/chemicalwedding/artemis/a/b.b Ljava/lang/String;]
+  + Fieldref [com/chemicalwedding/artemis/a/b.c Ljava/lang/String;]
   + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
   + Methodref [android/os/AsyncTask.<init> ()V]
+  + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
+  + Methodref [com/chemicalwedding/artemis/ArtemisActivity.A (Lcom/chemicalwedding/artemis/ArtemisActivity;)Lcom/chemicalwedding/artemis/a/b;]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.B (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
   + Methodref [com/chemicalwedding/artemis/ArtemisActivity.C (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
+  + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
+  + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
+  + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+  + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+  + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
   + NameAndType [<init> ()V]
+  + NameAndType [<init> (Ljava/lang/String;)V]
+  + NameAndType [A (Lcom/chemicalwedding/artemis/ArtemisActivity;)Lcom/chemicalwedding/artemis/a/b;]
   + NameAndType [B (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
   + NameAndType [C (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
   + NameAndType [a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+  + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+  + NameAndType [b Landroid/widget/TextView;]
+  + NameAndType [b Ljava/lang/String;]
+  + NameAndType [c Ljava/lang/String;]
+  + NameAndType [findViewById (I)Landroid/view/View;]
+  + NameAndType [i Ljava/lang/String;]
+  + NameAndType [setText (Ljava/lang/CharSequence;)V]
+  + NameAndType [toString ()Ljava/lang/String;]
+  + NameAndType [valueOf (Ljava/lang/Object;)Ljava/lang/String;]
+  + Utf8 [ ]
+  + Utf8 [()Ljava/lang/String;]
   + Utf8 [()V]
+  + Utf8 [(I)Landroid/view/View;]
+  + Utf8 [(Lcom/chemicalwedding/artemis/ArtemisActivity;)Lcom/chemicalwedding/artemis/a/b;]
   + Utf8 [(Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
+  + Utf8 [(Ljava/lang/CharSequence;)V]
+  + Utf8 [(Ljava/lang/Object;)Ljava/lang/String;]
   + Utf8 [(Ljava/lang/Object;)V]
+  + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
+  + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [([Ljava/lang/Object;)Ljava/lang/Object;]
   + Utf8 [<init>]
+  + Utf8 [A]
   + Utf8 [B]
   + Utf8 [C]
   + Utf8 [Code]
+  + Utf8 [Landroid/widget/TextView;]
   + Utf8 [Lcom/chemicalwedding/artemis/ArtemisActivity;]
+  + Utf8 [Ljava/lang/String;]
   + Utf8 [a]
   + Utf8 [android/os/AsyncTask]
+  + Utf8 [android/widget/TextView]
+  + Utf8 [append]
+  + Utf8 [b]
+  + Utf8 [c]
   + Utf8 [com/chemicalwedding/artemis/ArtemisActivity]
+  + Utf8 [com/chemicalwedding/artemis/a/b]
   + Utf8 [com/chemicalwedding/artemis/l]
   + Utf8 [doInBackground]
+  + Utf8 [findViewById]
+  + Utf8 [i]
+  + Utf8 [java/lang/String]
+  + Utf8 [java/lang/StringBuilder]
   + Utf8 [onPostExecute]
+  + Utf8 [setText]
+  + Utf8 [toString]
+  + Utf8 [valueOf]
 
 Fields (count = 1):
   + Field:        a Lcom/chemicalwedding/artemis/ArtemisActivity;
@@ -10926,20 +10977,71 @@ Methods (count = 3):
     + Code attribute instructions (code length = 10, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #4
+      [2] putfield #14
         + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
       [5] aload_0 v0
-      [6] invokespecial #5
+      [6] invokespecial #15
         + Methodref [android/os/AsyncTask.<init> ()V]
       [9] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       onPostExecute(Ljava/lang/Object;)V
-    Access flags: 0x1054
-      = protected final bridge synthetic void onPostExecute(java.lang.Object)
+    Access flags: 0x1014
+      = protected final synthetic void onPostExecute(java.lang.Object)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 1, locals = 2, stack = 0):
-      [0] return
+    + Code attribute instructions (code length = 72, locals = 2, stack = 4):
+      [0] aload_0 v0
+      [1] astore_1 v1
+      [2] getstatic #10
+        + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.b Landroid/widget/TextView;]
+      [5] new #9
+        + Class [java/lang/StringBuilder]
+      [8] dup
+      [9] aload_1 v1
+      [10] getfield #14
+        + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+      [13] invokestatic #17
+        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.A (Lcom/chemicalwedding/artemis/ArtemisActivity;)Lcom/chemicalwedding/artemis/a/b;]
+      [16] getfield #12
+        + Fieldref [com/chemicalwedding/artemis/a/b.b Ljava/lang/String;]
+      [19] invokestatic #21
+        + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
+      [22] invokespecial #22
+        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+      [25] ldc #2
+        + String [ ]
+      [27] invokevirtual #23
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [30] aload_1 v1
+      [31] getfield #14
+        + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+      [34] invokestatic #17
+        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.A (Lcom/chemicalwedding/artemis/ArtemisActivity;)Lcom/chemicalwedding/artemis/a/b;]
+      [37] getfield #13
+        + Fieldref [com/chemicalwedding/artemis/a/b.c Ljava/lang/String;]
+      [40] invokevirtual #23
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [43] invokevirtual #24
+        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+      [46] invokevirtual #16
+        + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
+      [49] aload_1 v1
+      [50] getfield #14
+        + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+      [53] ldc #1
+        + Integer [2131623971]
+      [55] invokevirtual #20
+        + Methodref [com/chemicalwedding/artemis/ArtemisActivity.findViewById (I)Landroid/view/View;]
+      [58] checkcast #4
+        + Class [android/widget/TextView]
+      [61] aload_1 v1
+      [62] getfield #14
+        + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
+      [65] getfield #11
+        + Fieldref [com/chemicalwedding/artemis/ArtemisActivity.i Ljava/lang/String;]
+      [68] invokevirtual #16
+        + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
+      [71] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       doInBackground([Ljava/lang/Object;)Ljava/lang/Object;
@@ -10950,14 +11052,14 @@ Methods (count = 3):
       [0] aload_0 v0
       [1] dup
       [2] astore_1 v1
-      [3] getfield #4
+      [3] getfield #14
         + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [6] invokestatic #6
+      [6] invokestatic #18
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.B (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
       [9] aload_1 v1
-      [10] getfield #4
+      [10] getfield #14
         + Fieldref [com/chemicalwedding/artemis/l.a Lcom/chemicalwedding/artemis/ArtemisActivity;]
-      [13] invokestatic #7
+      [13] invokestatic #19
         + Methodref [com/chemicalwedding/artemis/ArtemisActivity.C (Lcom/chemicalwedding/artemis/ArtemisActivity;)V]
       [16] aconst_null
       [17] areturn

@@ -374,7 +374,7 @@ public class CameraPreview14 extends ViewGroup {
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
                 releaseCamera();
 
-                return true;
+                return false;
             }
 
             @Override
