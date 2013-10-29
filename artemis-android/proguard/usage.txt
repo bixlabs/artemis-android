@@ -5,11 +5,12 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1177:1183:public static java.lang.String getBucketId(java.lang.String)
+    1190:1196:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
     private static final java.lang.String logTag
+    55:56:public void postOnWorkerThread(java.lang.Runnable)
 com.chemicalwedding.artemis.ArtemisMath:
     private static final float WALL_DISTANCE
     private static final java.lang.String logTag
@@ -57,10 +58,10 @@ com.chemicalwedding.artemis.ArtemisPreferences:
 com.chemicalwedding.artemis.BuildConfig
 com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
-    107:108:public void surfaceDestroyed(android.view.SurfaceHolder)
-    111:111:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
-    968:968:public void clearFullScreenTempFrame()
-    974:977:public void resetDigitalZoomLevel()
+    101:102:public void surfaceDestroyed(android.view.SurfaceHolder)
+    105:105:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
+    967:967:public void clearFullScreenTempFrame()
+    973:976:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed
@@ -103,6 +104,8 @@ com.chemicalwedding.artemis.R$xml
 com.chemicalwedding.artemis.SplashScreenActivity:
     private static final java.lang.String logTag
     private static final java.lang.String BASE64_PUBLIC_KEY
+com.chemicalwedding.artemis.WorkerThread:
+    22:23:public void post(java.lang.Runnable)
 com.chemicalwedding.artemis.database.ArtemisDatabaseHelper:
     private static final int DB_VERSION
     private static final java.lang.String TAG
