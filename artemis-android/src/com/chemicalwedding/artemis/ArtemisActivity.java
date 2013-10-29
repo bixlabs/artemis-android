@@ -211,7 +211,10 @@ public class ArtemisActivity extends Activity implements
 			}
 
 			protected void onPostExecute(Void result) {
-
+				_cameraDetailsText.setText(_selectedCamera.getSensor() + " "
+						+ _selectedCamera.getRatio());
+				((TextView) findViewById(R.id.lensMakeText))
+						.setText(tempSelectedLensMake);
 			}
 		}.execute();
 	}
