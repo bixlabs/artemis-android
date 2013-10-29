@@ -14,6 +14,7 @@ import com.google.android.vending.licensing.AESObfuscator;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
 import com.google.android.vending.licensing.Policy;
+import com.google.android.vending.licensing.ServerManagedPolicy;
 
 public class SplashScreenActivity extends Activity {
 
@@ -43,7 +44,7 @@ public class SplashScreenActivity extends Activity {
 
 		_licenseCheckerCallback = new MyLicenseCheckerCallback();
 		// Construct the LicenseChecker with a policy.
-		_checker = new LicenseChecker(this, new MyServerManagedPolicy(this,
+		_checker = new LicenseChecker(this, new ServerManagedPolicy(this,
 				new AESObfuscator(SALT, getPackageName(), deviceId)),
 				BASE64_PUBLIC_KEY);
 	}
