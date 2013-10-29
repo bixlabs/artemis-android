@@ -179,6 +179,11 @@ public class ArtemisActivity extends Activity implements
 					.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		}
 
+		// Avoid the top bar animation in fullscreen app
+		getWindow().addFlags(
+				WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+						| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
 		// Appirator
 		Appirater.appLaunched(this);
 
@@ -193,25 +198,28 @@ public class ArtemisActivity extends Activity implements
 		bindViewEvents();
 
 		// connect to the database and load some initial data
-		initDatabase();
+		new AsyncTask<Void, Void, Void>() {
 
-		// init the user preferences
-		initPreferences();
+			@Override
+			protected Void doInBackground(Void... params) {
 
-		// init dynamic screen and box drawing
-		// initDisplay();
+				initDatabase();
+
+				initPreferences();
+
+				return null;
+			}
+
+			protected void onPostExecute(Void result) {
+
+			}
+		}.execute();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.i(TAG, "Destroying Artemis");
-
-		// Close the database connection
-		if (_artemisDBHelper != null) {
-			_artemisDBHelper.close();
-			_artemisDBHelper = null;
-		}
 	}
 
 	@Override
@@ -224,7 +232,7 @@ public class ArtemisActivity extends Activity implements
 =======
 >>>>>>> f0bf7d9 (Revert back galaxy nexus changes)
 
-		if (gpsEnabled)
+		if (gpsEnabled && locationManager != null)
 			locationManager.removeUpdates(locationListener);
 
 		if (sensorEnabled)
@@ -240,6 +248,12 @@ public class ArtemisActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		Log.i(TAG, "Stopping Artemis");
+
+		// Close the database connection
+		if (_artemisDBHelper != null) {
+			_artemisDBHelper.close();
+			_artemisDBHelper = null;
+		}
 	}
 
 	@Override
@@ -264,14 +278,14 @@ public class ArtemisActivity extends Activity implements
 >>>>>>> f0bf7d9 (Revert back galaxy nexus changes)
 		if (_cameraPreview.isCameraReleased) {
 			_cameraPreview.openCamera();
-			_artemisMath.calculateRectBoxesAndLabelsForLenses();
+			// _artemisMath.calculateRectBoxesAndLabelsForLenses();
 		}
 
 		initSensorManager();
 
 		initLocationManager();
 
-		initPreferences();
+		// initPreferences();
 	}
 
 	private void initSensorManager() {
@@ -785,15 +799,14 @@ public class ArtemisActivity extends Activity implements
 		_artemisDBHelper = new ArtemisDatabaseHelper(this);
 
 		// load initialization data for the first camera selection
-		((ArtemisApplication) getApplication())
-				.postOnWorkerThread(new Runnable() {
-					@Override
-					public void run() {
-						_allCameraFormats = _artemisDBHelper.getCameraFormats();
-						_allCameraFormats
-								.add(getString(R.string.custom_cameras));
-					}
-				});
+		// ((ArtemisApplication) getApplication())
+		// .postOnWorkerThread(new Runnable() {
+		// @Override
+		// public void run() {
+		_allCameraFormats = _artemisDBHelper.getCameraFormats();
+		_allCameraFormats.add(getString(R.string.custom_cameras));
+		// }
+		// });
 	}
 
 	private void initPreferences() {
@@ -809,7 +822,7 @@ public class ArtemisActivity extends Activity implements
 
 		if (selectedCameraRowId > 0) {
 			// Id is above 0, this is a normal Camera from the Camera's table
-			setSelectedCamera(selectedCameraRowId, false, false);
+			setSelectedCamera(selectedCameraRowId, false, false, true);
 		} else {
 			// Set custom camera
 			CustomCamera selectedCustomCamera = _artemisDBHelper
@@ -828,7 +841,7 @@ public class ArtemisActivity extends Activity implements
 		}
 
 		if (selectedZoomLensPK < 0) {
-			setSelectedLensMake(lensMake, false, false);
+			setSelectedLensMake(lensMake, false, false, true);
 
 			String selectedLensesRowIds = artemisPrefs.getString(
 					ArtemisPreferences.SELECTED_LENS_ROW_CSV, DEFAULT_LENSES);
@@ -1405,7 +1418,7 @@ public class ArtemisActivity extends Activity implements
 				// Select zoom lens
 				if (tempSelectedCamera.getRowid() != -1) {
 					setSelectedCamera(tempSelectedCamera.getRowid(), true,
-							false);
+							false, false);
 				}
 				setSelectedZoomLens(zoomLenses.get(selected), true);
 				_lensSettingsFlipper.setInAnimation(null);
@@ -1499,7 +1512,7 @@ public class ArtemisActivity extends Activity implements
 			// _selectedCameraRatioIndex = selectedIndex;
 			int rowid = _ratiosListForCamera.get(selectedIndex).first;
 			// tempCameraRowId = rowid;
-			setSelectedCamera(rowid, false, true);
+			setSelectedCamera(rowid, false, true, false);
 
 			addCustomLensLayout.setVisibility(View.INVISIBLE);
 
@@ -1571,7 +1584,7 @@ public class ArtemisActivity extends Activity implements
 				TextView selectedTextView = (TextView) selectedItem;
 				tempSelectedLensMake = selectedTextView.getText().toString();
 				// Log.i(_logTag, "Lens make selected: " + selectedLensMake);
-				setSelectedLensMake(tempSelectedLensMake, false, true);
+				setSelectedLensMake(tempSelectedLensMake, false, true, false);
 				// Log.i(_logTag, "Lenses available: " + _lensesForMake.size());
 
 				loadLensesForLensMake();
@@ -1647,9 +1660,10 @@ public class ArtemisActivity extends Activity implements
 			Log.i(TAG, "SELECTED LENSES: " + selectedLensString);
 
 			if (tempSelectedCamera.getRowid() != -1) {
-				setSelectedCamera(tempSelectedCamera.getRowid(), true, false);
+				setSelectedCamera(tempSelectedCamera.getRowid(), true, false,
+						false);
 			}
-			setSelectedLensMake(tempSelectedLensMake, true, false);
+			setSelectedLensMake(tempSelectedLensMake, true, false, false);
 			setSelectedLenses(selectedLensString, true, true);
 			updateLensesInDB();
 			_artemisMath.setFullscreen(false);
@@ -1668,7 +1682,8 @@ public class ArtemisActivity extends Activity implements
 	}
 
 	private void setSelectedCamera(int cameraRowId,
-			boolean saveToAppPreferences, boolean saveTemporary) {
+			boolean saveToAppPreferences, boolean saveTemporary,
+			boolean frombackgroundThread) {
 		if (saveTemporary) {
 			tempSelectedCamera = _artemisDBHelper
 					.getCameraDetailsForRowId(cameraRowId);
@@ -1678,8 +1693,10 @@ public class ArtemisActivity extends Activity implements
 					.getCameraDetailsForRowId(cameraRowId);
 			tempSelectedCamera = _selectedCamera;
 			_artemisMath.setSelectedCamera(_selectedCamera);
-			_cameraDetailsText.setText(_selectedCamera.getSensor() + " "
-					+ _selectedCamera.getRatio());
+
+			if (!frombackgroundThread)
+				_cameraDetailsText.setText(_selectedCamera.getSensor() + " "
+						+ _selectedCamera.getRatio());
 		}
 		if (saveToAppPreferences) {
 			Editor appPrefsEditor = getApplication().getSharedPreferences(
@@ -1691,12 +1708,16 @@ public class ArtemisActivity extends Activity implements
 	}
 
 	private void setSelectedLensMake(String lensMake,
-			boolean saveToAppPreferences, boolean saveTemporary) {
+			boolean saveToAppPreferences, boolean saveTemporary,
+			boolean fromBackgroundThread) {
 		if (!saveTemporary) {
 			_lensesForMake = _artemisDBHelper.getLensesForMake(lensMake);
 			tempLensesForMake = _lensesForMake;
 			tempSelectedLensMake = lensMake;
-			((TextView) findViewById(R.id.lensMakeText)).setText(lensMake);
+
+			if (!fromBackgroundThread) {
+				((TextView) findViewById(R.id.lensMakeText)).setText(lensMake);
+			}
 		} else {
 			tempLensesForMake = _artemisDBHelper.getLensesForMake(lensMake);
 			tempSelectedLensMake = lensMake;
@@ -2316,7 +2337,7 @@ public class ArtemisActivity extends Activity implements
 						-selectedCustomCamera.getPk());
 				appPrefsEditor.commit();
 
-				setSelectedLensMake(DEFAULT_LENS_MAKE, false, false);
+				setSelectedLensMake(DEFAULT_LENS_MAKE, false, false, false);
 
 				setSelectedLenses(loadLensesForLensMake(), true, true);
 				_cameraDetailsText.setText(selectedCustomCamera.getName() + " "
@@ -2701,7 +2722,7 @@ public class ArtemisActivity extends Activity implements
 
 									setSelectedLensMake(
 											customLens.getLensMake(), true,
-											false);
+											false, false);
 									setSelectedLenses(loadLensesForLensMake(),
 											false, true);
 

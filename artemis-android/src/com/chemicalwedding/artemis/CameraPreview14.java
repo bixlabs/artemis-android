@@ -70,14 +70,14 @@ public class CameraPreview14 extends ViewGroup {
     private ArtemisMath _artemisMath = ArtemisMath.getInstance();
 
     protected float scaleFactor = 1f;
-    private int totalScreenHeight;
-    private int totalScreenWidth;
+    static private int totalScreenHeight;
+    static private int totalScreenWidth;
     //	protected static boolean widthAndHeightSwapped = false;
     protected static int savedImageJPEGQuality;
     protected static int savedImageSizeIndex;
     protected static boolean blackAndWhitePreview;
 
-    protected int previewHeight, previewWidth, requestedWidthDiff = 0;
+    static protected int previewHeight, previewWidth, requestedWidthDiff = 0;
     protected Bitmap bitmapToSave;
 
     private ArtemisApplication artemisApplication;
@@ -94,12 +94,6 @@ public class CameraPreview14 extends ViewGroup {
         mTextureView = new MyTextureView(context);
         addView(mTextureView);
 
-        Camera camera = openFrontFacingCameraGingerbread();
-        if (camera != null) {
-            initCameraDetails(camera.getParameters());
-            camera.release();
-        }
-
         degreeSymbolFromStringsXML = context.getString(R.string.degree_symbol);
     }
 
@@ -110,7 +104,11 @@ public class CameraPreview14 extends ViewGroup {
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
     }
 
-    private void initCameraDetails(Camera.Parameters parameters) {
+    public static void initCameraDetails() {
+    	
+    	Camera camera = CameraPreview14.openFrontFacingCameraGingerbread();
+    	Parameters parameters = camera.getParameters();
+    	
         supportedPreviewSizes = parameters.getSupportedPreviewSizes();
         // supportedPictureSizes = parameters.getSupportedPictureSizes();
 
@@ -142,9 +140,10 @@ public class CameraPreview14 extends ViewGroup {
         // Log.v(logTag, "Picture size selected: " + pictureSize.width + "x"
         // + pictureSize.height);
 
+        camera.release();
     }
 
-    private Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
+    private static Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
         if (sizes == null)
             return null;
         final double ASPECT_TOLERANCE = 0.1;
@@ -387,7 +386,7 @@ public class CameraPreview14 extends ViewGroup {
 
     }
 
-    private Camera openFrontFacingCameraGingerbread() {
+    public static Camera openFrontFacingCameraGingerbread() {
         int cameraCount = 0;
         Camera cam = null;
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
@@ -1058,6 +1057,6 @@ public class CameraPreview14 extends ViewGroup {
         totalScreenHeight = MeasureSpec.getSize(heightMeasureSpec);
         Log.v(logTag, "CameraPreview onMeasure screenWidth: "
                 + totalScreenWidth + " screenHeight: " + totalScreenHeight);
-        setMeasuredDimension(totalScreenWidth, totalScreenHeight);
+//        setMeasuredDimension(totalScreenWidth, totalScreenHeight);
     }
 }

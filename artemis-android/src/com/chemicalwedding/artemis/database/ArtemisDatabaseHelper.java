@@ -28,6 +28,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 	public ArtemisDatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
 		this._context = context;
+		if (_artemisDatabase != null) {
+			_artemisDatabase.close();
+		}
 		_artemisDatabase = this.getWritableDatabase();
 	}
 
@@ -342,6 +345,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 						customLens.toString(), result));
 		_artemisDatabase.setTransactionSuccessful();
 		_artemisDatabase.endTransaction();
+		c.close();
 	}
 
 	public ArrayList<ZoomLens> getZoomLenses() {
@@ -357,6 +361,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 			lens.setMaxFL(cursor.getFloat(3));
 			zoomLenses.add(lens);
 		}
+		cursor.close();
 		return zoomLenses;
 	}
 
@@ -381,6 +386,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 		lens.setName(cursor.getString(1));
 		lens.setMinFL(cursor.getFloat(2));
 		lens.setMaxFL(cursor.getFloat(3));
+		cursor.close();
 		return lens;
 	}
 	
