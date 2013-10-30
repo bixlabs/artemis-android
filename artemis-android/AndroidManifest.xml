@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chemicalwedding.artemis"
     android:installLocation="auto"
-    android:versionCode="31"
+    android:versionCode="32"
     android:versionName="2.0.6b1" >
 
     <supports-screens
