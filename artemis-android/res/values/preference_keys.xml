@@ -7,7 +7,7 @@
     <string name="preference_key_selectedlensescsvstring">selectedLensesCSVString</string>
     <string name="preference_key_artemissavefolder">artemisSaveFolder</string>
     <string name="preference_key_selectedcamerarowid">selectedCameraRowId</string>
-    <string name="preference_key_selectedexposurelevel">selectedExposureLevel</string>
+    <string name="preference_key_selectedexposurelevel">selectedExposureLevel1</string>
     <string name="preference_key_selectedwhitebalance">selectedWhiteBalance</string>
     <string name="preference_key_flashenabled">flashEnabled</string>
     <string name="preference_key_quickshotenabled">quickshotEnabled</string>

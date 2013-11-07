@@ -372,13 +372,9 @@ public class CameraPreview14 extends ViewGroup {
 					.getExposureCompensationStep();
 			Log.v(logTag, "Camera Exposure min: " + min + " max: " + max);
 			CameraPreview14.supportedExposureLevels = new ArrayList<Integer>();
-			int index = 0, defaultExposure = 0;
+			int defaultExposure = 0;
 			for (int i = min; i <= max; i++) {
-				if (i == 0) {
-					defaultExposure = index;
-				}
 				CameraPreview14.supportedExposureLevels.add(i);
-				index++;
 			}
 			if (blackAndWhitePreview) {
 				Log.i(logTag, "BLACK AND WHITE ON");
@@ -405,14 +401,15 @@ public class CameraPreview14 extends ViewGroup {
 					parameters.setFlashMode("off");
 
 			}
-			
+
 			int exposureLevelIndex = artemisPrefs
 					.getInt(ArtemisPreferences.SELECTED_EXPOSURE_LEVEL,
 							defaultExposure);
-			Log.v(logTag, String.format("Selected exposure compensation index: %d", exposureLevelIndex));
+			Log.v(logTag, String.format(
+					"Selected exposure compensation index: %d",
+					exposureLevelIndex));
 			parameters.setExposureCompensation(exposureLevelIndex);
-			
-			
+
 			String whiteBalance = artemisPrefs.getString(
 					ArtemisPreferences.SELECTED_WHITE_BALANCE, "");
 			if (whiteBalance.length() > 0) {
@@ -525,7 +522,7 @@ public class CameraPreview14 extends ViewGroup {
 
 			// Start the preview
 			mCamera.startPreview();
-			
+
 			// Set the background
 			if (ArtemisActivity.arrowBackgroundImage == null) {
 				Options o = new Options();
@@ -946,7 +943,8 @@ public class CameraPreview14 extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		if (getChildCount() > 0 && changed) {
+		if (getChildCount() > 0 && changed
+				&& CameraPreview14.previewSize != null) {
 			Log.v(logTag, "** Laying out Camera Preview");
 
 			final View child = getChildAt(0);

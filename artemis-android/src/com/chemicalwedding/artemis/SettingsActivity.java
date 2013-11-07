@@ -2,6 +2,7 @@ package com.chemicalwedding.artemis;
 
 import java.io.File;
 import java.text.NumberFormat;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,6 +22,18 @@ import android.preference.PreferenceActivity;
 import android.util.Log;
 
 public class SettingsActivity extends PreferenceActivity {
+
+	@Override
+	protected boolean isValidFragment(String fragmentName) {
+		if (fragmentName.equals(GeneralSettingsFragment.class.getName())
+				|| fragmentName.equals(CameraSettingsFragment.class.getName())
+				|| fragmentName.equals(SavedImageSettingsFragment.class.getName())
+				|| fragmentName.equals(ResetDefaultSettingsFragment.class.getName())
+				|| fragmentName.equals(SendFeedbackFragment.class.getName())) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
