@@ -21,6 +21,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.SurfaceTexture;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -49,6 +50,8 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.TextureView;
+import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -80,7 +83,7 @@ import com.chemicalwedding.artemis.database.ZoomLens;
 import com.sbstrm.appirater.Appirater;
 
 public class ArtemisActivity extends Activity implements
-		LoaderCallbacks<Cursor> {
+		SurfaceTextureListener, LoaderCallbacks<Cursor> {
 	private static final String TAG = ArtemisActivity.class.getSimpleName();
 
 	private static final String DEFAULT_LENS_MAKE = "Generic 35mm Lenses";
@@ -90,7 +93,12 @@ public class ArtemisActivity extends Activity implements
 	private static final int GALLERY_IMAGE_LOADER = 1;
 
 	private Handler mUiHandler = new Handler();
-	private CameraPreview14 _cameraPreview;
+	
+	private CameraPreview14 mCameraPreview;
+	private TextureView mTextureView;
+	private android.hardware.Camera mCamera;
+	
+	
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
 	private ClickBoolean nextClickBoolean;
@@ -187,7 +195,7 @@ public class ArtemisActivity extends Activity implements
 		// Appirator
 		Appirater.appLaunched(this);
 
-		// startArtemis();
+		startArtemis();
 	}
 
 	protected void startArtemis() {
@@ -213,11 +221,14 @@ public class ArtemisActivity extends Activity implements
 	protected void onPause() {
 		super.onPause();
 		Log.i(TAG, "Pausing Artemis");
+<<<<<<< HEAD
 		_cameraPreview.releaseCamera();
 <<<<<<< HEAD
 		mCameraContainer.removeAllViews();
 =======
 >>>>>>> f0bf7d9 (Revert back galaxy nexus changes)
+=======
+>>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
 
 		if (gpsEnabled && locationManager != null)
 			locationManager.removeUpdates(locationListener);
@@ -247,7 +258,6 @@ public class ArtemisActivity extends Activity implements
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
-		startArtemis();
 	}
 
 	@Override
@@ -255,6 +265,7 @@ public class ArtemisActivity extends Activity implements
 		super.onResume();
 		Log.i(TAG, "Resuming Artemis");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		_cameraPreview = new CameraPreview14(this, null);
 		mCameraContainer.addView(_cameraPreview, new ViewGroup.LayoutParams(
@@ -268,11 +279,11 @@ public class ArtemisActivity extends Activity implements
 			// _artemisMath.calculateRectBoxesAndLabelsForLenses();
 		}
 
+=======
+>>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
 		initSensorManager();
 
 		initLocationManager();
-
-		// initPreferences();
 	}
 
 	private void initSensorManager() {
@@ -549,8 +560,11 @@ public class ArtemisActivity extends Activity implements
 	};
 
 	private void bindViewObjects() {
-		_cameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
-		// mCameraContainer = (LinearLayout) findViewById(R.id.cameraContainer);
+		mCameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
+		TextureView textureView = new TextureView(this);
+		textureView.setSurfaceTextureListener(this);
+		mCameraPreview.addView(textureView);
+
 		mCameraOverlay = (CameraOverlay) findViewById(R.id.cameraOverlay);
 		mCameraAngleDetailView = (CameraAngleDetailView) findViewById(R.id.CameraAngleDetailView);
 		viewFlipper = (ViewFlipper) findViewById(R.id.mainViewFlipper);
@@ -940,7 +954,7 @@ public class ArtemisActivity extends Activity implements
 					pictureSaveHeadingTiltString = headingTiltText.getText()
 							.toString();
 
-					_cameraPreview
+					mCameraPreview
 							.autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
 					if (autoFocusAfterLongClickShutter
 							&& !takePictureAfterReleaseLongClickShutter) {
@@ -1433,7 +1447,7 @@ public class ArtemisActivity extends Activity implements
 		_artemisMath.calculateRectBoxesAndLabelsForLenses();
 		_artemisMath.selectFirstMeaningFullLens();
 		_artemisMath.onFullscreenOffSelectLens();
-		_cameraPreview.calculateZoom(true);
+		mCameraPreview.calculateZoom(true);
 		reconfigureNextAndPreviousLensButtons();
 
 		if (savePreference) {
@@ -1658,7 +1672,7 @@ public class ArtemisActivity extends Activity implements
 			_artemisMath.selectFirstMeaningFullLens();
 			_artemisMath.onFullscreenOffSelectLens();
 			_artemisMath.resetTouchToCenter();
-			_cameraPreview.calculateZoom(true);
+			mCameraPreview.calculateZoom(true);
 			mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
 			mCameraAngleDetailView.postInvalidate();
 			reconfigureNextAndPreviousLensButtons();
@@ -1771,7 +1785,7 @@ public class ArtemisActivity extends Activity implements
 			if (_artemisMath.selectNextLens()) {
 				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
 				if (_artemisMath.isFullscreen()) {
-					_cameraPreview.calculateZoom(true);
+					mCameraPreview.calculateZoom(true);
 				}
 			}
 			if (!_artemisMath.hasNextLens()) {
@@ -1783,7 +1797,7 @@ public class ArtemisActivity extends Activity implements
 		} else if (_artemisMath.isFullscreen()
 				&& _artemisMath.selectedZoomLens != null) {
 			_artemisMath.incrementFullscreenZoomLens();
-			_cameraPreview.calculateZoom(true);
+			mCameraPreview.calculateZoom(true);
 
 			_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
 					.format(_artemisMath.zoomLensFullScreenFL));
@@ -1856,7 +1870,7 @@ public class ArtemisActivity extends Activity implements
 			if (_artemisMath.selectPreviousLens()) {
 				mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
 				if (_artemisMath.isFullscreen()) {
-					_cameraPreview.calculateZoom(true);
+					mCameraPreview.calculateZoom(true);
 				}
 			}
 			if (!_artemisMath.hasPreviousLens()) {
@@ -1868,7 +1882,7 @@ public class ArtemisActivity extends Activity implements
 		} else if (_artemisMath.isFullscreen()
 				&& _artemisMath.selectedZoomLens != null) {
 			_artemisMath.decrementFullscreenZoomLens();
-			_cameraPreview.calculateZoom(true);
+			mCameraPreview.calculateZoom(true);
 
 			_lensFocalLengthText.setText(_artemisMath.lensFLNumberFormat
 					.format(_artemisMath.zoomLensFullScreenFL));
@@ -1972,7 +1986,7 @@ public class ArtemisActivity extends Activity implements
 			}
 			reconfigureNextAndPreviousLensButtons();
 			mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
-			_cameraPreview.calculateZoom(true);
+			mCameraPreview.calculateZoom(true);
 
 			if (isHapticFeedbackEnabled) {
 				buzz(v);
@@ -1995,14 +2009,14 @@ public class ArtemisActivity extends Activity implements
 		pictureSaveHeadingTiltString = headingTiltText.getText().toString();
 
 		if (CameraPreview14.quickshotEnabled) {
-			_cameraPreview.takePicture();
+			mCameraPreview.takePicture();
 			return;
 		}
 
 		savePictureViewFlipper.setInAnimation(null);
 		savePictureViewFlipper.setDisplayedChild(0);
 		// normal take picture (not quickshot)
-		_cameraPreview.takePicture();
+		mCameraPreview.takePicture();
 
 		if (isHapticFeedbackEnabled) {
 			buzz(sender);
@@ -2021,8 +2035,8 @@ public class ArtemisActivity extends Activity implements
 				pictureSavePreview.setImageBitmap(null);
 				System.gc();
 
-				if (_cameraPreview != null)
-					_cameraPreview.restartPreview();
+				if (mCameraPreview != null)
+					mCameraPreview.restartPreview();
 			}
 			savePictureViewFlipper.setDisplayedChild(0); // reset to first view
 			openArtemisCameraPreviewView();
@@ -2041,7 +2055,7 @@ public class ArtemisActivity extends Activity implements
 			new AsyncTask<String, Void, String>() {
 				@Override
 				protected String doInBackground(String... params) {
-					_cameraPreview.renderPictureDetailsAndSave();
+					mCameraPreview.renderPictureDetailsAndSave();
 					System.gc();
 					return "";
 				}
@@ -2056,7 +2070,7 @@ public class ArtemisActivity extends Activity implements
 				}
 			}.execute(new String[] {});
 
-			_cameraPreview.restartPreview();
+			mCameraPreview.restartPreview();
 			openArtemisCameraPreviewView();
 		}
 	}
@@ -2195,7 +2209,7 @@ public class ArtemisActivity extends Activity implements
 				new AsyncTask<String, Void, String>() {
 					@Override
 					protected String doInBackground(String... params) {
-						_cameraPreview.renderPictureDetailsAndSave();
+						mCameraPreview.renderPictureDetailsAndSave();
 						System.gc();
 						return "";
 					}
@@ -2210,7 +2224,7 @@ public class ArtemisActivity extends Activity implements
 					}
 				}.execute(new String[] {});
 
-				_cameraPreview.restartPreview();
+				mCameraPreview.restartPreview();
 			}
 
 			savePictureViewFlipper.setDisplayedChild(0);
@@ -2735,11 +2749,11 @@ public class ArtemisActivity extends Activity implements
 				pictureSaveHeadingTiltString = headingTiltText.getText()
 						.toString();
 				if (volumeUpAutoFocusAndPicture) {
-					_cameraPreview.autofocusCamera(true);
+					mCameraPreview.autofocusCamera(true);
 				} else if (volumeUpPicture) {
-					_cameraPreview.takePicture();
+					mCameraPreview.takePicture();
 				} else if (volumeUpAutoFocus) {
-					_cameraPreview.autofocusCamera(false);
+					mCameraPreview.autofocusCamera(false);
 				}
 			}
 			return true;
@@ -2748,16 +2762,16 @@ public class ArtemisActivity extends Activity implements
 				pictureSaveHeadingTiltString = headingTiltText.getText()
 						.toString();
 				if (volumeDownAutoFocusAndPicture) {
-					_cameraPreview.autofocusCamera(true);
+					mCameraPreview.autofocusCamera(true);
 				} else if (volumeDownPicture) {
-					_cameraPreview.takePicture();
+					mCameraPreview.takePicture();
 				} else if (volumeDownAutoFocus) {
-					_cameraPreview.autofocusCamera(false);
+					mCameraPreview.autofocusCamera(false);
 				}
 			}
 			return true;
 		case KeyEvent.KEYCODE_CAMERA:
-			if (action == KeyEvent.ACTION_DOWN && _cameraPreview != null) {
+			if (action == KeyEvent.ACTION_DOWN && mCameraPreview != null) {
 				// just pass a view to the shutter event
 				pictureSaveHeadingTiltString = headingTiltText.getText()
 						.toString();
@@ -2868,5 +2882,35 @@ public class ArtemisActivity extends Activity implements
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
+	}
+
+	@Override
+	public void onSurfaceTextureAvailable(SurfaceTexture surface, int width,
+			int height) {
+		mCamera = android.hardware.Camera.open();
+
+		try {
+			mCamera.setPreviewTexture(surface);
+		} catch (IOException t) {
+		}
+
+		mCameraPreview.openCamera(mCamera, mTextureView);
+	}
+
+	@Override
+	public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width,
+			int height) {
+	}
+
+	@Override
+	public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+		mCamera.stopPreview();
+		mCamera.release();
+		return true;
+	}
+
+	@Override
+	public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+		// Invoked every time there's a new Camera preview frame
 	}
 }
