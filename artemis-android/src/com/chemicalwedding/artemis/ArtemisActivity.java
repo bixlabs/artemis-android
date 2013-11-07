@@ -95,9 +95,7 @@ public class ArtemisActivity extends Activity implements
 	private Handler mUiHandler = new Handler();
 	
 	private CameraPreview14 mCameraPreview;
-	private TextureView mTextureView;
 	private android.hardware.Camera mCamera;
-	
 	
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
@@ -563,6 +561,7 @@ public class ArtemisActivity extends Activity implements
 		mCameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
 		TextureView textureView = new TextureView(this);
 		textureView.setSurfaceTextureListener(this);
+		mCameraPreview.setTextureView(textureView);
 		mCameraPreview.addView(textureView);
 
 		mCameraOverlay = (CameraOverlay) findViewById(R.id.cameraOverlay);
@@ -2894,7 +2893,7 @@ public class ArtemisActivity extends Activity implements
 		} catch (IOException t) {
 		}
 
-		mCameraPreview.openCamera(mCamera, mTextureView);
+		mCameraPreview.openCamera(mCamera);
 	}
 
 	@Override

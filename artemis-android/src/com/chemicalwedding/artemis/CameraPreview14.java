@@ -351,12 +351,15 @@ public class CameraPreview14 extends ViewGroup {
 
 		return cam;
 	}
+	
+	public void setTextureView(TextureView textureView) {
+		mTextureView = textureView;
+	}
 
-	public void openCamera(Camera camera, TextureView textureView) {
+	public void openCamera(Camera camera) {
 
 		mCamera = camera;
-		mTextureView = textureView;
-
+		
 		if (mCamera != null) {
 
 			Camera.Parameters parameters = mCamera.getParameters();
