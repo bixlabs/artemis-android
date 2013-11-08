@@ -1,5 +1,6 @@
 package com.chemicalwedding.artemis;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +36,8 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.TextureView;
@@ -294,17 +298,17 @@ public class CameraPreview14 extends ViewGroup {
 					return "";
 				}
 
-				@Override
-				protected void onPostExecute(String result) {
-					toast.cancel();
-					getContext()
-							.sendBroadcast(
-									new Intent(
-											Intent.ACTION_MEDIA_MOUNTED,
-											Uri.parse("file://"
-													+ Environment
-															.getExternalStorageDirectory())));
-				}
+//				@Override
+//				protected void onPostExecute(String result) {
+//					toast.cancel();
+//					getContext()
+//							.sendBroadcast(
+//									new Intent(
+//											Intent.ACTION_MEDIA_MOUNTED,
+//											Uri.parse("file://"
+//													+ Environment
+//															.getExternalStorageDirectory())));
+//				}
 			}.execute(new String[] {});
 		}
 		// }
@@ -657,26 +661,29 @@ public class CameraPreview14 extends ViewGroup {
 				ex.setAttribute(ExifInterface.TAG_MAKE,
 						ArtemisActivity._cameraDetailsText.getText().toString());
 
-				// SharedPreferences artemisPrefs = getContext()
-				// .getApplicationContext().getSharedPreferences(
-				// ArtemisPreferences.class.getSimpleName(),
-				// Context.MODE_PRIVATE);
-				// String desc = artemisPrefs.getString(
-				// ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, null);
-				// String notes = artemisPrefs.getString(
-				// ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, null);
-				// if (desc != null && !desc.isEmpty()) {
-				// ex.setAttribute("DocumentName", desc);
-				// }
-				// if (notes != null && !notes.isEmpty()) {
-				// ex.setAttribute("ImageDescription", notes);
-				// }
-
 				ex.saveAttributes();
 			} catch (IOException e) {
 				Log.e(logTag, "Could not open image for writing EXIF data");
 			}
 		}
+
+		ContentValues image = new ContentValues();
+		image.put(Images.Media.TITLE, title);
+		image.put(Images.Media.MIME_TYPE, "image/png");
+		image.put(Images.Media.ORIENTATION, 0);
+
+		File imageFile = new File(filePath);
+		File parent = imageFile.getParentFile();
+		String path = parent.toString().toLowerCase();
+		String name = parent.getName().toLowerCase();
+		image.put(Images.ImageColumns.BUCKET_ID, path.hashCode());
+		image.put(Images.ImageColumns.BUCKET_DISPLAY_NAME, name);
+		image.put(Images.Media.SIZE, imageFile.length());
+
+		image.put(Images.Media.DATA, imageFile.getAbsolutePath());
+
+		Uri result = getContext().getContentResolver().insert(
+				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, image);
 
 	}
 

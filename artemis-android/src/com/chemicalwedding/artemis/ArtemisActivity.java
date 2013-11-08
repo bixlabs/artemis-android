@@ -2059,14 +2059,14 @@ public class ArtemisActivity extends Activity implements
 					return "";
 				}
 
-				@Override
-				protected void onPostExecute(String result) {
-					toast.cancel();
-					sendBroadcast(new Intent(
-							Intent.ACTION_MEDIA_MOUNTED,
-							Uri.parse("file:/"
-									+ Environment.getExternalStorageDirectory())));
-				}
+//				@Override
+//				protected void onPostExecute(String result) {
+//					toast.cancel();
+//					sendBroadcast(new Intent(
+//							Intent.ACTION_MEDIA_MOUNTED,
+//							Uri.parse("file:/"
+//									+ Environment.getExternalStorageDirectory())));
+//				}
 			}.execute(new String[] {});
 
 			mCameraPreview.restartPreview();
@@ -2253,31 +2253,31 @@ public class ArtemisActivity extends Activity implements
 					int nItems = 0;
 					if (addr.getAddressLine(0) != null) {
 						if (nItems > 0)
-							gpsLocationString += " • ";
+							gpsLocationString += " ï¿½ ";
 						gpsLocationString += addr.getAddressLine(0);
 						++nItems;
 					}
 					if (addr.getLocality() != null) {
 						if (nItems > 0)
-							gpsLocationString += " • ";
+							gpsLocationString += " ï¿½ ";
 						gpsLocationString += addr.getLocality();
 						++nItems;
 					}
 					if (addr.getAdminArea() != null) {
 						if (nItems > 0)
-							gpsLocationString += " • ";
+							gpsLocationString += " ï¿½ ";
 						gpsLocationString += addr.getAdminArea();
 						++nItems;
 					}
 					if (addr.getPostalCode() != null) {
 						if (nItems > 0)
-							gpsLocationString += " • ";
+							gpsLocationString += " ï¿½ ";
 						gpsLocationString += addr.getPostalCode();
 						++nItems;
 					}
 					if (addr.getCountryName() != null) {
 						if (nItems > 0)
-							gpsLocationString += " • ";
+							gpsLocationString += " ï¿½ ";
 						gpsLocationString += addr.getCountryCode();
 						++nItems;
 					}
