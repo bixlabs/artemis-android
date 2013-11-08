@@ -33,10 +33,12 @@ import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.media.ExifInterface;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Files.FileColumns;
 import android.provider.MediaStore.Images;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -298,17 +300,17 @@ public class CameraPreview14 extends ViewGroup {
 					return "";
 				}
 
-//				@Override
-//				protected void onPostExecute(String result) {
-//					toast.cancel();
-//					getContext()
-//							.sendBroadcast(
-//									new Intent(
-//											Intent.ACTION_MEDIA_MOUNTED,
-//											Uri.parse("file://"
-//													+ Environment
-//															.getExternalStorageDirectory())));
-//				}
+				// @Override
+				// protected void onPostExecute(String result) {
+				// toast.cancel();
+				// getContext()
+				// .sendBroadcast(
+				// new Intent(
+				// Intent.ACTION_MEDIA_MOUNTED,
+				// Uri.parse("file://"
+				// + Environment
+				// .getExternalStorageDirectory())));
+				// }
 			}.execute(new String[] {});
 		}
 		// }
@@ -635,56 +637,43 @@ public class CameraPreview14 extends ViewGroup {
 		}
 		bitmap.recycle();
 
-		if (writeEXIFlocationInfo
-				&& ArtemisActivity.pictureSaveLocation != null) {
+		if (writeEXIFlocationInfo) {
 			try {
 				ExifInterface ex = new ExifInterface(filePath);
-				String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-						.getLatitude());
-				String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
-						.getLatitude());
-				String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-						.getLongitude());
-				String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
-						.getLongitude());
 
-				ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE, latString);
-				ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,
-						latRefString);
-				ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, longString);
-				ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF,
-						longRefString);
+				if (ArtemisActivity.pictureSaveLocation != null) {
+					String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+							.getLatitude());
+					String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
+							.getLatitude());
+					String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+							.getLongitude());
+					String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
+							.getLongitude());
+
+					ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE, latString);
+					ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,
+							latRefString);
+					ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, longString);
+					ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF,
+							longRefString);
+				}
+
 				ex.setAttribute(ExifInterface.TAG_FOCAL_LENGTH,
 						_artemisMath.get_selectedLensFocalLength());
 				ex.setAttribute(ExifInterface.TAG_MODEL,
 						ArtemisActivity._lensMakeText.getText().toString());
 				ex.setAttribute(ExifInterface.TAG_MAKE,
 						ArtemisActivity._cameraDetailsText.getText().toString());
-
 				ex.saveAttributes();
+
 			} catch (IOException e) {
 				Log.e(logTag, "Could not open image for writing EXIF data");
 			}
 		}
 
-		ContentValues image = new ContentValues();
-		image.put(Images.Media.TITLE, title);
-		image.put(Images.Media.MIME_TYPE, "image/png");
-		image.put(Images.Media.ORIENTATION, 0);
-
-		File imageFile = new File(filePath);
-		File parent = imageFile.getParentFile();
-		String path = parent.toString().toLowerCase();
-		String name = parent.getName().toLowerCase();
-		image.put(Images.ImageColumns.BUCKET_ID, path.hashCode());
-		image.put(Images.ImageColumns.BUCKET_DISPLAY_NAME, name);
-		image.put(Images.Media.SIZE, imageFile.length());
-
-		image.put(Images.Media.DATA, imageFile.getAbsolutePath());
-
-		Uri result = getContext().getContentResolver().insert(
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, image);
-
+		MediaScannerConnection.scanFile(getContext(),
+				new String[] { filePath }, new String[] { "image/jpeg" }, null);
 	}
 
 	public static String makeLatLongString(double d) {
