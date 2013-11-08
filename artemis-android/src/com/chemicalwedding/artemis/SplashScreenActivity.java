@@ -23,7 +23,7 @@ public class SplashScreenActivity extends Activity {
 	private LicenseChecker _checker;
 	private Handler mHandler = new Handler();
 	private static final String logTag = "SplashScreen";
-	private static boolean validLicenseFound = false;
+	private static boolean validLicenseFound = true;
 	private AlertDialog mDialog;
 
 	@Override
