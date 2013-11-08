@@ -5,7 +5,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1177:1183:public static java.lang.String getBucketId(java.lang.String)
+    1178:1184:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
@@ -58,10 +58,9 @@ com.chemicalwedding.artemis.ArtemisPreferences:
 com.chemicalwedding.artemis.BuildConfig
 com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
-    101:102:public void surfaceDestroyed(android.view.SurfaceHolder)
-    105:105:public void surfaceChanged(android.view.SurfaceHolder,int,int,int)
-    967:967:public void clearFullScreenTempFrame()
-    973:976:public void resetDigitalZoomLevel()
+    540:545:public void releaseCamera()
+    899:899:public void clearFullScreenTempFrame()
+    905:908:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed

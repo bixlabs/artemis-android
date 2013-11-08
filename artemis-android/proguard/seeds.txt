@@ -16,6 +16,7 @@ com.chemicalwedding.artemis.CameraOverlay
 com.chemicalwedding.artemis.CameraOverlay: CameraOverlay(android.content.Context,android.util.AttributeSet)
 com.chemicalwedding.artemis.CameraPreview14
 com.chemicalwedding.artemis.CameraPreview14: CameraPreview14(android.content.Context,android.util.AttributeSet)
+com.chemicalwedding.artemis.CameraPreview14: void setTextureView(android.view.TextureView)
 com.chemicalwedding.artemis.CameraPreview14: void setArtemisMath(com.chemicalwedding.artemis.ArtemisMath)
 com.chemicalwedding.artemis.CameraPreview14: void setWhiteBalance(java.lang.String)
 com.chemicalwedding.artemis.CameraPreview14: void setExposureCompensation(java.lang.Integer)
