@@ -2,6 +2,7 @@ package com.chemicalwedding.artemis;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -47,8 +48,8 @@ public class CameraAngleDetailView extends View {
 	public CameraAngleDetailView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		hAngleString = context.getString(R.string.hangle_text).toUpperCase();
-		vAngleString = context.getString(R.string.vangle_text).toUpperCase();
+		hAngleString = context.getString(R.string.hangle_text).toUpperCase(Locale.getDefault());
+		vAngleString = context.getString(R.string.vangle_text).toUpperCase(Locale.getDefault());
 		degreeSymbol = context.getString(R.string.degree_symbol);
 
 		_paint.setAntiAlias(true);
