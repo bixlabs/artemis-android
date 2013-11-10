@@ -89,7 +89,8 @@
     <string name="quickshot_text">빠른 모드 샷</string>
     <string name="select_language_text">언어 선택</string>
     <string name="heading_tilt_roll_text">옵션 제목</string>
-
+	<string name="smooth_filter_text">부드러운 이미지 필터</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>없음</item>
         <item>이 제목°</item>
@@ -278,6 +279,8 @@
     <string name="select_image_quality">"이미지 품질을 선택"</string>
     <string name="image_quality_summary">"디스크에 저장된 이미지의 품질 (압축)을 선택합니다."</string>
     <string name="saved_image_quality">"저장된 이미지 품질"</string>
+    <string name="smooth_image_off">"이미지는 부드러운 필터링되지 않습니다."</string>
+    <string name="smooth_image_on">"필터는 확장이 필요할 때 이미지가 매끄럽게 보이도록 적용됩니다."</string>
     <string name="quick_picture_off">"사진을 저장 한 후에 이미지 미리보기가 표시됩니다."</string>
     <string name="quick_picture_on">"빠른 사진을 사용할 수 있습니다. 사진을 저장 한 후에 이미지 미리보기가 표시되지 않습니다."</string>
     <string name="language">언어</string>

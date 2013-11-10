@@ -93,6 +93,7 @@
     <string name="quickshot_text">快拍模式</string>
     <string name="select_language_text">选择语言</string>
     <string name="heading_tilt_roll_text">标题选项</string>
+	<string name="smooth_filter_text">平滑图像过滤器</string>
 
     <string-array name="heading_tilt_roll_array">
         <item>无</item>
@@ -285,6 +286,8 @@
     <string name="select_image_quality">"选择图片质量"</string>
     <string name="image_quality_summary">"选择保存到磁盘上的图像的质量（压缩）。"</string>
     <string name="saved_image_quality">"保存的图像质量"</string>
+    <string name="smooth_image_off">"图像不会被平滑过滤。"</string>
+    <string name="smooth_image_on">"将应用一个过滤器，使图像看起来更平滑缩放时需要。"</string>
     <string name="quick_picture_off">"图片保存后，将显示一个图像预览。"</string>
     <string name="quick_picture_on">"快速的图片被启用。图片保存后，将不会显示图像预览。"</string>
     <string name="language">语</string>

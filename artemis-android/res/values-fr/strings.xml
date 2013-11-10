@@ -74,7 +74,8 @@
     <string name="quickshot_text">Mode rapide tournage</string>
     <string name="select_language_text">Sélectionnez la langue</string>
     <string name="heading_tilt_roll_text">Intitulé Options</string>
-
+ 	<string name="smooth_filter_text">Image lisse filtre</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>Aucun</item>
         <item>Intitulé°</item>
@@ -264,6 +265,8 @@
     <string name="select_image_quality">"Sélectionnez la qualité d'image"</string>
     <string name="image_quality_summary">"Sélectionnez la qualité (compression) de l'image enregistrée sur le disque."</string>
     <string name="saved_image_quality">"Sauvés Qualité d'image"</string>
+    <string name="smooth_image_off">"Images ne sera pas facile filtrés."</string>
+    <string name="smooth_image_on">"Un filtre sera appliqué à rendre les images apparaissent plus lisses lorsque l'échelle est nécessaire."</string>
     <string name="quick_picture_off">"Un aperçu de l'image s'affiche après les images sont enregistrées."</string>
     <string name="quick_picture_on">"Images rapides sont activées. Un aperçu de l'image ne sera pas affiché après les images sont enregistrées."</string>
     <string name="language">langue</string>

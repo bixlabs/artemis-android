@@ -44,7 +44,8 @@
 
     <string name="select_language_text">"भाषा चुनें "</string>
     <string name="auto_focus_text">"ऑटो फोकस छवियाँ"</string>
-
+	<string name="smooth_filter_text">"चिकनी छवि फ़िल्टर"</string>
+    
     <!-- //About Page -->
 
     <string name="artemis_about_title">"के बारे में - ब्लैकबेरी वी के लिए आर्टेमिस"</string>
@@ -249,6 +250,8 @@
     <string name="select_image_quality">"छवि गुणवत्ता का चयन करें"</string>
     <string name="image_quality_summary">"डिस्क को बचाया छवि की गुणवत्ता (सम्पीडन) का चयन करें."</string>
     <string name="saved_image_quality">"सहेजा छवि गुणवत्ता"</string>
+    <string name="smooth_image_off">"छवियाँ चिकनी फिल्टर नहीं किया जाएगा."</string>
+    <string name="smooth_image_on">"एक फिल्टर स्केलिंग की आवश्यकता है जब छवियों चिकनी प्रकट करने के लिए लागू किया जाएगा."</string>
     <string name="quick_picture_off">"तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन दिखाया जाएगा."</string>
     <string name="quick_picture_on">"त्वरित चित्रों सक्षम हैं. तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन नहीं दिखाया जाएगा."</string>
     <string name="language">भाषा</string>

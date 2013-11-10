@@ -90,7 +90,8 @@ Canon 5D и 7D
     <string name="quickshot_text">Режим быстрой съемки</string>
     <string name="select_language_text">Выбрать язык</string>
     <string name="heading_tilt_roll_text">Опции направления</string>
-
+	<string name="smooth_filter_text">Фильтр сглаживания изображения</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>Никто</item>
         <item>Заголовок°</item>
@@ -284,6 +285,8 @@ Canon 5D и 7D
     <string name="select_image_quality">"Выбора качества изображения"</string>
     <string name="image_quality_summary">"Выберите качество (степень сжатия) изображения сохраняются на диске."</string>
     <string name="saved_image_quality">"Сохранено Изображение Качество"</string>
+    <string name="smooth_image_off">"Изображение не будет гладким фильтруется."</string>
+    <string name="smooth_image_on">"Фильтр будет применяться, чтобы сделать изображение ровнее, когда требуется масштабирование."</string>
     <string name="quick_picture_off">"Изображение предварительного просмотра будет показано после фотографии будут сохранены."</string>
     <string name="quick_picture_on">"Быстрые снимки включена. Предварительный просмотр изображения не будут отображаться после фотографии будут сохранены."</string>
     <string name="language">язык</string>

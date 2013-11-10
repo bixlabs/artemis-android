@@ -87,7 +87,8 @@
     <string name="quickshot_text">Modalità ripresa veloce</string>
     <string name="select_language_text">Scegli la lingua</string>
     <string name="heading_tilt_roll_text">La voce Opzioni</string>
-
+	<string name="smooth_filter_text">Smooth Image Filter</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>Nessuno</item>
         <item>Denominazione°</item>
@@ -278,6 +279,8 @@
     <string name="select_image_quality">"Selezionare Qualità immagine"</string>
     <string name="image_quality_summary">"Selezionare la qualità (compressione) dell'immagine salvata su disco."</string>
     <string name="saved_image_quality">"Salvato Qualità immagine"</string>
+    <string name="smooth_image_off">"Le immagini potranno non essere regolare filtrati."</string>
+    <string name="smooth_image_on">"Un filtro sarà applicato per rendere le immagini appaiono agevole quando è richiesta scalatura."</string>
     <string name="quick_picture_off">"L'anteprima dell'immagine viene visualizzata dopo le immagini vengono salvate."</string>
     <string name="quick_picture_on">"Immagini veloci sono abilitati. L'anteprima immagine non verrà mostrata dopo le immagini vengono salvate."</string>
     <string name="language">lingua</string>

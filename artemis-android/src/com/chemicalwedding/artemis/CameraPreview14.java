@@ -44,7 +44,8 @@ public class CameraPreview14 extends ViewGroup {
 	protected static List<Integer> supportedExposureLevels;
 	protected static List<String> supportedWhiteBalance, supportedFlashModes;
 	protected static List<Size> supportedPreviewSizes;
-	protected static boolean lockBoxEnabled = false, quickshotEnabled = false;
+	protected static boolean lockBoxEnabled = false, quickshotEnabled = false,
+			smoothImagesEnabled = false;
 	protected static float deviceHAngle, effectiveHAngle, deviceVAngle,
 			effectiveVAngle;
 
@@ -193,7 +194,7 @@ public class CameraPreview14 extends ViewGroup {
 			public void run() {
 				takePictureFrame();
 			}
-		}, 250);
+		}, 300);
 	}
 
 	// final PreviewCallback takePicturePreviewCallback = new PreviewCallback()
@@ -231,7 +232,7 @@ public class CameraPreview14 extends ViewGroup {
 
 			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 					ArtemisMath.scaledPreviewWidth,
-					ArtemisMath.scaledPreviewHeight, false);
+					ArtemisMath.scaledPreviewHeight, smoothImagesEnabled);
 
 			bitmapToSave = Bitmap
 					.createBitmap(bitmapToSave, (int) (selectedRect.left),
@@ -244,7 +245,7 @@ public class CameraPreview14 extends ViewGroup {
 			float ratio = selectedRect.width() / selectedRect.height();
 			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 					(int) (imageHeight * ratio), imageHeight,
-					false);
+					smoothImagesEnabled);
 		}
 		// We need to scale down
 		else {
@@ -262,7 +263,7 @@ public class CameraPreview14 extends ViewGroup {
 			float previewRatio = (float) previewHeight / previewWidth;
 			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 					(int) (width), (int) (width * previewRatio),
-					false);
+					smoothImagesEnabled);
 
 			int xpos = (newwidth - bitmapToSave.getWidth()) / 2;
 			int ypos = (imageHeight - bitmapToSave.getHeight()) / 2;

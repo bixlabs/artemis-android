@@ -3,7 +3,7 @@
     package="com.chemicalwedding.artemis"
     android:installLocation="auto"
     android:versionCode="34"
-    android:versionName="2.0.7b1" >
+    android:versionName="2.0.7b2" >
 
     <supports-screens
         android:anyDensity="true"

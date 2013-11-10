@@ -18,7 +18,7 @@
 
     <string name="quickshot_text">QuickShot Mode</string>
     <string name="set_white_balance_text">Set White Balance</string>
-
+	<string name="smooth_filter_text">Smooth Image Filter</string>
     <string name="heading_tilt_roll_text">Heading Options</string>
     <string name="heading_tilt_roll_promt">Select Heading Options</string>
 
@@ -207,6 +207,8 @@
     <string name="select_image_quality">Select Image Quality</string>
     <string name="image_quality_summary">Select the quality (compression) of the image saved to disk.</string>
     <string name="saved_image_quality">Saved Image Quality</string>
+    <string name="smooth_image_off">Images will NOT be smooth filtered.</string>
+    <string name="smooth_image_on">A filter will be applied to make the images appear smoother when scaling is required.</string>
     <string name="quick_picture_off">An image preview will be shown after pictures are saved.</string>
     <string name="quick_picture_on">Quick pictures are enabled. An image preview will NOT be shown after pictures are saved.</string>
 

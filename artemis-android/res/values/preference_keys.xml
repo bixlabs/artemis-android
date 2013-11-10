@@ -170,5 +170,6 @@
     <string name="tilt_down">↓</string>
     <string name="tilt_level">↕</string>
     <string name="degree_symbol">°</string>
+    <string name="bullet">•</string>
 
 </resources>

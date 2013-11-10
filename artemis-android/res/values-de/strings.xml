@@ -38,7 +38,8 @@
     <string name="quickshot_text">Schnell Schuss Modus</string>
     <string name="select_language_text">Sprache wählen</string>
     <string name="heading_tilt_roll_text">Position Optionen</string>
-
+	<string name="smooth_filter_text">Glattes Bild Filter</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>Keine</item>
         <item>Position</item>
@@ -207,6 +208,8 @@
     <string name="select_image_quality">"Wählen Sie die Bildqualität"</string>
     <string name="image_quality_summary">"Wählen Sie die Qualität (Komprimierung) des Bildes auf der Festplatte gespeichert."</string>
     <string name="saved_image_quality">"Gespeichert Bildqualität"</string>
+    <string name="smooth_image_off">"Bilder werden nicht glatt sein gefiltert."</string>
+    <string name="smooth_image_on">"Ein Filter wird angewendet, um die Bilder glatter erscheinen bei der Skalierung erforderlich ist."</string>
     <string name="quick_picture_off">"Ein Bild wird nach einer Vorschau Bilder gespeichert werden werden."</string>
     <string name="quick_picture_on">"Schnelle Bilder sind aktiviert. Ein Bild-Vorschau wird nicht angezeigt, nachdem Bilder gespeichert werden werden."</string>
     <string name="language">Sprache</string>

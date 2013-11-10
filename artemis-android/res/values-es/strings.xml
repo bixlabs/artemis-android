@@ -82,7 +82,8 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
     <string name="quickshot_text">Tiro rápido modo</string>
     <string name="heading_tilt_roll_text">Opciones de la partida</string>
-
+	<string name="smooth_filter_text">Suave de la Imagen Filtro</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>Ninguno</item>
         <item>Denominación°</item>
@@ -272,6 +273,8 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="select_image_quality">"Seleccione la calidad de imagen"</string>
     <string name="image_quality_summary">"Seleccione la calidad (compresión) de la imagen guardada en el disco."</string>
     <string name="saved_image_quality">"Guardado Calidad de imagen"</string>
+    <string name="smooth_image_off">"Las imágenes no se filtran sin problemas."</string>
+    <string name="smooth_image_on">"Un filtro se aplicará para que las imágenes aparezcan más nítidos cuando se requiere la ampliación."</string>
     <string name="quick_picture_off">"Una vista previa de la imagen se mostrará después de las imágenes se guardan."</string>
     <string name="quick_picture_on">"Imágenes rápidas están habilitados. Una previsualización de la imagen no se mostrará después de las imágenes se guardan."</string>
     <string name="language">idioma</string>

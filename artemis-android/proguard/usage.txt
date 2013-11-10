@@ -5,7 +5,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1178:1184:public static java.lang.String getBucketId(java.lang.String)
+    1174:1180:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
@@ -38,7 +38,6 @@ com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String QUICKSHOT_ENABLED
     public static final java.lang.String LOCK_BOXES_ENABLED
     public static final java.lang.String PREVIEW_SELECTION
-    public static final java.lang.String SMOOTH_IMAGE_ENABLED
     public static final java.lang.String HEADING_DISPLAY
     public static final java.lang.String SAVE_PICTURE_SHOW_DESCRIPTION
     public static final java.lang.String SAVE_PICTURE_SHOW_NOTES
@@ -59,9 +58,9 @@ com.chemicalwedding.artemis.ArtemisPreferences:
 com.chemicalwedding.artemis.BuildConfig
 com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
-    545:550:public void releaseCamera()
-    894:894:public void clearFullScreenTempFrame()
-    900:903:public void resetDigitalZoomLevel()
+    543:548:public void releaseCamera()
+    892:892:public void clearFullScreenTempFrame()
+    898:901:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed
@@ -74,7 +73,6 @@ com.chemicalwedding.artemis.R$array
 com.chemicalwedding.artemis.R$attr
 com.chemicalwedding.artemis.R$bool
 com.chemicalwedding.artemis.R$color
-com.chemicalwedding.artemis.R$dimen
 com.chemicalwedding.artemis.R$drawable
 com.chemicalwedding.artemis.R$id
 com.chemicalwedding.artemis.R$integer

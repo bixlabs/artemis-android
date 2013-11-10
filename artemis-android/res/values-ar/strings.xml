@@ -31,7 +31,7 @@
 
     <string name="quickshot_text">"الوضع قطة سريعة"</string>
     <string name="set_white_balance_text">"ضبط توازن اللون الأبيض"</string>
-
+ 	<string name="smooth_filter_text">"على نحو سلس تصفية صورة"</string>
     <string name="heading_tilt_roll_text">"خيارات البند"</string>
     <string name="heading_tilt_roll_promt">"حدد خيارات العنوان"</string>
 
@@ -245,6 +245,8 @@
     <string name="select_image_quality">"اختر جودة الصورة"</string>
     <string name="image_quality_summary">"حدد نوعية (ضغط) من الصورة المحفوظة على القرص."</string>
     <string name="saved_image_quality">"حفظ جودة الصورة"</string>
+    <string name="smooth_image_off">"لن يتم تصفيتها الصور على نحو سلس."</string>
+    <string name="smooth_image_on">"وسيتم تطبيق فلتر لجعل الصور تظهر أكثر سلاسة عندما يكون مطلوبا التحجيم."</string>
     <string name="quick_picture_off">"سيظهر معاينة للصورة بعد يتم حفظ الصور."</string>
     <string name="quick_picture_on">"يتم تمكين الصور سريعة. ولن تظهر معاينة للصورة بعد يتم حفظ الصور."</string>
     <string name="language">لغة</string>

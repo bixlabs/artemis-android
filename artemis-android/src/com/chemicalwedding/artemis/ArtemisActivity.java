@@ -863,6 +863,10 @@ public class ArtemisActivity extends Activity implements
 		CameraPreview14.quickshotEnabled = artemisPrefs.getBoolean(
 				ArtemisPreferences.QUICKSHOT_ENABLED, false);
 
+		// smooth image filter
+		CameraPreview14.smoothImagesEnabled = artemisPrefs.getBoolean(
+				ArtemisPreferences.SMOOTH_IMAGE_ENABLED, true);
+
 		// autofocus camera before picture
 		CameraPreview14.autoFocusBeforePictureTake = artemisPrefs.getBoolean(
 				ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false);

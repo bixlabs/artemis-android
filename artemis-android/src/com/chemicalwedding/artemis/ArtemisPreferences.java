@@ -12,6 +12,7 @@ public class ArtemisPreferences {
 	public static final String QUICKSHOT_ENABLED = "quickshotEnabled";
 	public static final String LOCK_BOXES_ENABLED = "lockBoxesEnabled";
 	public static final String PREVIEW_SELECTION = "previewSelectionIndex1";
+	public static final String SMOOTH_IMAGE_ENABLED = "smoothImageEnabled";
 	public static final String HEADING_DISPLAY = "headingDisplay";
 	public static final String SAVE_PICTURE_SHOW_DESCRIPTION = "showDescription";
 	public static final String SAVE_PICTURE_SHOW_NOTES = "showNotes";

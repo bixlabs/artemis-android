@@ -506,30 +506,29 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     java.util.List supportedPreviewSizes -> d
     boolean lockBoxEnabled -> e
     boolean quickshotEnabled -> f
-    boolean smoothImagesEnabled -> g
-    float deviceHAngle -> h
-    float effectiveHAngle -> i
-    float deviceVAngle -> j
-    float effectiveVAngle -> k
-    boolean isAutoFocusSupported -> l
-    boolean autoFocusBeforePictureTake -> m
-    android.hardware.Camera$Size previewSize -> n
-    float exposureStep -> o
-    android.hardware.Camera mCamera -> y
-    android.view.TextureView mTextureView -> z
-    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> A
-    float scaleFactor -> p
-    int totalScreenHeight -> B
-    int totalScreenWidth -> C
-    int savedImageJPEGQuality -> q
-    int savedImageSizeIndex -> r
-    boolean blackAndWhitePreview -> s
-    int previewHeight -> t
-    int previewWidth -> u
-    int requestedWidthDiff -> v
-    android.graphics.Bitmap bitmapToSave -> w
-    java.lang.String degreeSymbolFromStringsXML -> D
-    android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> x
+    float deviceHAngle -> g
+    float effectiveHAngle -> h
+    float deviceVAngle -> i
+    float effectiveVAngle -> j
+    boolean isAutoFocusSupported -> k
+    boolean autoFocusBeforePictureTake -> l
+    android.hardware.Camera$Size previewSize -> m
+    float exposureStep -> n
+    android.hardware.Camera mCamera -> x
+    android.view.TextureView mTextureView -> y
+    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> z
+    float scaleFactor -> o
+    int totalScreenHeight -> A
+    int totalScreenWidth -> B
+    int savedImageJPEGQuality -> p
+    int savedImageSizeIndex -> q
+    boolean blackAndWhitePreview -> r
+    int previewHeight -> s
+    int previewWidth -> t
+    int requestedWidthDiff -> u
+    android.graphics.Bitmap bitmapToSave -> v
+    java.lang.String degreeSymbolFromStringsXML -> C
+    android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> w
     void initCameraDetails() -> a
     android.hardware.Camera$Size getOptimalPreviewSize(java.util.List,int,int) -> a
     void takePicture() -> b

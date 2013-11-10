@@ -85,7 +85,8 @@
     <string name="quickshot_text">クイックモードでの撮影</string>
     <string name="select_language_text">言語の選択</string>
     <string name="heading_tilt_roll_text">オプションを見出し</string>
-
+	<string name="smooth_filter_text">滑らかな画像フィルタ</string>
+    
     <string-array name="heading_tilt_roll_array">
         <item>なし</item>
         <item>見出し°</item>
@@ -273,6 +274,8 @@
     <string name="select_image_quality">"画質を選択してください"</string>
     <string name="image_quality_summary">"ディスクに保存した画像の画質（圧縮率）を選択します。"</string>
     <string name="saved_image_quality">"保存された画質"</string>
+    <string name="smooth_image_off">"画像は滑らかでフィルタリングされません。"</string>
+    <string name="smooth_image_on">"フィルタは、スケーリングが必要とされる場合、画像が滑らかに表示されるように適用される。"</string>
     <string name="quick_picture_off">"映像が保存された後の画像のプレビューが表示される。"</string>
     <string name="quick_picture_on">"クイック写真は有効になっています。画像が保存された後の画像のプレビューが表示されません。"</string>
     <string name="language">言語</string>
