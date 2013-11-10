@@ -2894,6 +2894,7 @@ public class ArtemisActivity extends Activity implements
 		}
 
 		mCameraPreview.openCamera(mCamera);
+		this.reconfigureNextAndPreviousLensButtons();
 	}
 
 	@Override

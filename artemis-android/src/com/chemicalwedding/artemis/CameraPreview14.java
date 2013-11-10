@@ -92,41 +92,44 @@ public class CameraPreview14 extends ViewGroup {
 
 	public static void initCameraDetails() {
 
-		Camera camera = CameraPreview14.openFrontFacingCameraGingerbread();
-		Parameters parameters = camera.getParameters();
+		if (CameraPreview14.previewSize == null) {
+			Camera camera = CameraPreview14.openFrontFacingCameraGingerbread();
+			Parameters parameters = camera.getParameters();
 
-		supportedPreviewSizes = parameters.getSupportedPreviewSizes();
-		// supportedPictureSizes = parameters.getSupportedPictureSizes();
+			supportedPreviewSizes = parameters.getSupportedPreviewSizes();
+			// supportedPictureSizes = parameters.getSupportedPictureSizes();
 
-		Log.v(logTag, "Preview sizes supported: "
-				+ CameraPreview14.supportedPreviewSizes.size());
-		for (Size size : CameraPreview14.supportedPreviewSizes) {
-			Log.v(logTag, size.width + "x" + size.height);
+			Log.v(logTag, "Preview sizes supported: "
+					+ CameraPreview14.supportedPreviewSizes.size());
+			for (Size size : CameraPreview14.supportedPreviewSizes) {
+				Log.v(logTag, size.width + "x" + size.height);
+			}
+			CameraPreview14.previewSize = getOptimalPreviewSize(
+					CameraPreview14.supportedPreviewSizes, totalScreenWidth,
+					totalScreenHeight);
+
+			Log.v(logTag, "Preview size selected: " + previewSize.width + "x"
+					+ previewSize.height);
+			// parameters.setPreviewSize(previewSize.width, previewSize.height);
+			previewWidth = previewSize.width;
+			previewHeight = previewSize.height;
+
+			isAutoFocusSupported = parameters.getSupportedFocusModes()
+					.contains(Camera.Parameters.FOCUS_MODE_AUTO);
+			// pictureSize = getOptimalPictureSize(supportedPictureSizes,
+			// totalScreenWidth, totalScreenHeight);
+			// // parameters.setPictureSize(pictureSize.width,
+			// pictureSize.height);
+			// Log.v(logTag,
+			// "Picture sizes supported: " + supportedPictureSizes.size());
+			// for (Size size : supportedPictureSizes) {
+			// Log.v(logTag, size.width + "x" + size.height);
+			// }
+			// Log.v(logTag, "Picture size selected: " + pictureSize.width + "x"
+			// + pictureSize.height);
+
+			camera.release();
 		}
-		CameraPreview14.previewSize = getOptimalPreviewSize(
-				CameraPreview14.supportedPreviewSizes, totalScreenWidth,
-				totalScreenHeight);
-
-		Log.v(logTag, "Preview size selected: " + previewSize.width + "x"
-				+ previewSize.height);
-		// parameters.setPreviewSize(previewSize.width, previewSize.height);
-		previewWidth = previewSize.width;
-		previewHeight = previewSize.height;
-
-		isAutoFocusSupported = parameters.getSupportedFocusModes().contains(
-				Camera.Parameters.FOCUS_MODE_AUTO);
-		// pictureSize = getOptimalPictureSize(supportedPictureSizes,
-		// totalScreenWidth, totalScreenHeight);
-		// // parameters.setPictureSize(pictureSize.width, pictureSize.height);
-		// Log.v(logTag,
-		// "Picture sizes supported: " + supportedPictureSizes.size());
-		// for (Size size : supportedPictureSizes) {
-		// Log.v(logTag, size.width + "x" + size.height);
-		// }
-		// Log.v(logTag, "Picture size selected: " + pictureSize.width + "x"
-		// + pictureSize.height);
-
-		camera.release();
 	}
 
 	private static Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
@@ -520,6 +523,10 @@ public class CameraPreview14 extends ViewGroup {
 				_artemisMath.resetTouchToCenter(); // now with green box
 				_artemisMath.calculateRectBoxesAndLabelsForLenses();
 				_artemisMath.setInitializedFirstTime(true);
+			}
+
+			if (_artemisMath.isFullscreen()) {
+				this.calculateZoom(true);
 			}
 
 			// Set the focal length lens textview
