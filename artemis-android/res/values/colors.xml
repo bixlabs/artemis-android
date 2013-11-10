@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="previewTextColor">#f2a700</color>
-	<color name="backgroundArtemisSettings">#29000000</color>
-	<color name="artemisSettingsText">#f2a700</color>
 	<color name="focalLengthHUD">#000000</color>
 	<color name="orangeArtemisText">#f2a700</color>
 	<color name="transparent_artemis_view">#00000000</color>

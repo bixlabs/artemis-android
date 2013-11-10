@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">Artemis</string>
+    
     <!-- //Artemis menu -->
 
     <string name="menu_camera_settings">Cámara Seleccione</string>
@@ -10,22 +12,8 @@
 
     <!-- //Artemis Settings Page -->
     <string name="gps_on_off">GPS - Activar / Desactivar</string>
-    <string name="artemis_settings_title">Configuración de Artemis</string>
-    <string name="choose_folder_for_image_saving">Carpeta de destino para guardar la imagen.</string>
     <string name="set_exposure_text"> La exposición Set</string>
-    <string name="set_exposure">Ajuste de la exposición</string>
-    <string name="auto_white_balance">Balance de blancos automático</string>
     <string name="set_white_balance_text">Ajuste de balance de blancos</string>
-    <string name="set_white_balance">Ajuste del balance de blancos</string>
-
-    <string-array name="set_white_balance">
-        <item>Hora</item>
-        <item>Nublado</item>
-        <item>Fluorescente</item>
-        <item>Incandescentes</item>
-    </string-array>
-
-    <string name="save_artemis_settings">Ajustes de ahorro de Artemis</string>
 
     <!-- //About Page -->
 
@@ -60,7 +48,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">Guardar imagen</string>
     <string name="save_and_edit">Guardar y editar detalles</string>
     <string name="save_picture">Guardar imagen</string>
     <string name="gps_coordinates">Coordenadas GPS</string>
@@ -92,18 +79,8 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <!-- //Artemis Settings Page -->
 
     <string name="set_flash_mode_text">Flash / Antorcha modo</string>
-    <string name="set_flash_mode_spinner">Ajuste del modo flash </string>
-
-    <string-array name="set_flash_mode_array">
-        <item>On</item>
-        <item>Off</item>
-    </string-array>
 
     <string name="quickshot_text">Tiro rápido modo</string>
-    <string name="lock_boxes_text">Bloqueo Lente Cajas</string>
-    <string name="set_preview_size_text">Previa Resolución</string>
-    <string name="smooth_filter_text">Suave de la Imagen Filtro</string>
-    <string name="select_preview_size_text">Seleccione Vista previa de la Resolución</string>
     <string name="heading_tilt_roll_text">Opciones de la partida</string>
 
     <string-array name="heading_tilt_roll_array">
@@ -112,7 +89,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
         <item>Denominación°|Inclinación°|Rodillo°</item>
     </string-array>
 
-    <string name="artemis_remote_text">Artemisa remoto para las tabletas de Android y iPads</string>
     <string name="select_language_text">Seleccione Idioma</string>
 
     <!-- //About Page -->
@@ -148,10 +124,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="quit_button">Salir</string>
 
     <!-- / / NEW TRANSLATIONS 4-30-11 -->
-    <string name="reset_device_h_and_v_angles">Restablecer</string>
-    <string name="auto_device_h_and_v_angles">Obtener los ángulos de cámara del dispositivo automáticamente</string>
-    <string name="manually_set_h_angle_text">Configuración de dispositivos de cámara de ángulo horizontal</string>
-    <string name="manually_set_v_angle_text">Configuración de dispositivos de cámara de ángulo vertical</string>
 
     <!-- / / NEW TRANSLATIONS 07-19-11 -->
     <string name="auto_focus_text">Imágenes de enfoque automático</string>
@@ -300,8 +272,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="select_image_quality">"Seleccione la calidad de imagen"</string>
     <string name="image_quality_summary">"Seleccione la calidad (compresión) de la imagen guardada en el disco."</string>
     <string name="saved_image_quality">"Guardado Calidad de imagen"</string>
-    <string name="smooth_image_off">"Las imágenes no se filtran sin problemas."</string>
-    <string name="smooth_image_on">"Un filtro se aplicará para que las imágenes aparezcan más nítidos cuando se requiere la ampliación."</string>
     <string name="quick_picture_off">"Una vista previa de la imagen se mostrará después de las imágenes se guardan."</string>
     <string name="quick_picture_on">"Imágenes rápidas están habilitados. Una previsualización de la imagen no se mostrará después de las imágenes se guardan."</string>
     <string name="language">idioma</string>

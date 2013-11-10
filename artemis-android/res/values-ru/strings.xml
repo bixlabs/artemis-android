@@ -17,23 +17,9 @@
 
     <!-- //Artemis Settings Page -->
     <string name="gps_on_off">GPS Включить/Выключить</string>
-    <string name="artemis_settings_title">Artemis Настройки</string>
-    <string name="choose_folder_for_image_saving">Изображение Имя папки</string>
    
     <string name="set_exposure_text">Выдержка</string>
-    <string name="set_exposure">Выдержка</string>
-    <string name="auto_white_balance">Автоматический баланс белого</string>
     <string name="set_white_balance_text">Баланс белого</string>
-    <string name="set_white_balance">Баланс белого</string>
-
-    <string-array name="set_white_balance">
-        <item>Дневной свет</item>
-        <item>Облачно</item>
-        <item>Флуоресцентные</item>
-        <item>Лампы накаливания</item>
-    </string-array>
-
-    <string name="save_artemis_settings">Сохранить настройки Artemis</string>
 
     <!-- //About Page -->
 
@@ -67,8 +53,6 @@ Canon 5D и 7D
    
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">Сохранить рисунок</string>
-   
     <string name="save_and_edit">Сохранить и редактировать</string>
     <string name="save_picture">Сохранить рисунок</string>
     <string name="gps_coordinates">GPS Координаты</string>
@@ -102,19 +86,8 @@ Canon 5D и 7D
     <!-- //Artemis Settings Page -->
 
     <string name="set_flash_mode_text">Режим Вспышки/Факела</string>
-    <string name="set_flash_mode_spinner">Режим Вспышки/Факела</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>на</item>
-        <item>от</item>
-    </string-array>
 
     <string name="quickshot_text">Режим быстрой съемки</string>
-    <string name="lock_boxes_text">Блокировка рамок кадра</string>
-    <string name="set_preview_size_text">Разрешение превью</string>
-    <string name="smooth_filter_text">Фильтр сглаживания изображения</string>
-    <string name="select_preview_size_text">Разрешение превью</string>
-    <string name="artemis_remote_text">Artemis Remote для планшетов на базе Android и iPad</string>
     <string name="select_language_text">Выбрать язык</string>
     <string name="heading_tilt_roll_text">Опции направления</string>
 
@@ -158,12 +131,6 @@ Canon 5D и 7D
 		лицензии. Если проблема не устраняется, обратитесь в службу поддержки.</string>
     <string name="buy_button">Купить приложение</string>
     <string name="quit_button">Выход</string>
-
-    <!-- / / NEW TRANSLATIONS 4-30-11 -->
-    <string name="reset_device_h_and_v_angles">Сброс</string>
-    <string name="auto_device_h_and_v_angles">Получить углы устройства камера автоматически</string>
-    <string name="manually_set_h_angle_text">Установите устройство камеры Горизонтальный угол</string>
-    <string name="manually_set_v_angle_text">Установите устройство камеры Вертикальный угол</string>
 
     <!-- / / NEW TRANSLATIONS 07-19-11 -->
     <string name="auto_focus_text">Изображения автофокусировки</string>
@@ -317,8 +284,6 @@ Canon 5D и 7D
     <string name="select_image_quality">"Выбора качества изображения"</string>
     <string name="image_quality_summary">"Выберите качество (степень сжатия) изображения сохраняются на диске."</string>
     <string name="saved_image_quality">"Сохранено Изображение Качество"</string>
-    <string name="smooth_image_off">"Изображение не будет гладким фильтруется."</string>
-    <string name="smooth_image_on">"Фильтр будет применяться, чтобы сделать изображение ровнее, когда требуется масштабирование."</string>
     <string name="quick_picture_off">"Изображение предварительного просмотра будет показано после фотографии будут сохранены."</string>
     <string name="quick_picture_on">"Быстрые снимки включена. Предварительный просмотр изображения не будут отображаться после фотографии будут сохранены."</string>
     <string name="language">язык</string>

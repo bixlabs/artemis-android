@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:textSize="10dip" >
+    android:textSize="10sp" >
 
     <LinearLayout
         android:id="@+id/LinearLayout_horiz_camera_settings"

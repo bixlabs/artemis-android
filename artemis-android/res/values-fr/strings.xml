@@ -17,22 +17,8 @@
 
     <!-- //Artemis Settings Page -->
     <string name="gps_on_off">GPS Activer / Désactiver</string>
-    <string name="artemis_settings_title">Artemis Paramètres</string>
-    <string name="choose_folder_for_image_saving">Le dossier de destination pour sauver l\'image.</string>
     <string name="set_exposure_text">Exposition Set</string>
-    <string name="set_exposure">Exposition Set</string>
-    <string name="auto_white_balance"> Balance des blancs automatique</string>
     <string name="set_white_balance_text">Régler la balance des blancs</string>
-    <string name="set_white_balance">Régler la balance des blancs</string>
-
-    <string-array name="set_white_balance">
-        <item>Daylight</item>
-        <item>Nuageux</item>
-        <item> Fluorescent</item>
-        <item>Incandescent</item>
-    </string-array>
-
-    <string name="save_artemis_settings">Enregistrer les paramètres Artemis</string>
 
     <!-- //About Page -->
 
@@ -53,7 +39,6 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">Enregistrer l\'image</string>
     <string name="save_and_edit"> Enregistrer et modifier des détails</string>
     <string name="save_picture">Enregistrer l\'image</string>
     <string name="gps_coordinates">Coordonnées GPS</string>
@@ -85,19 +70,8 @@
     <!-- //Artemis Settings Page -->
 
     <string name="set_flash_mode_text">Flash / Mode de la flamme</string>
-    <string name="set_flash_mode_spinner">Réglez le mode flash</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>On</item>
-        <item>Off</item>
-    </string-array>
 
     <string name="quickshot_text">Mode rapide tournage</string>
-    <string name="lock_boxes_text">Lock boîtes Lens</string>
-    <string name="set_preview_size_text">Résolution de prévisualisation</string>
-    <string name="smooth_filter_text">Image lisse filtre</string>
-    <string name="select_preview_size_text">Résolution Sélectionnez Aperçu</string>
-    <string name="artemis_remote_text">Artemis à distance pour les comprimés et Android iPads</string>
     <string name="select_language_text">Sélectionnez la langue</string>
     <string name="heading_tilt_roll_text">Intitulé Options</string>
 
@@ -140,10 +114,6 @@
     <string name="quit_button">Exit</string>
 
     <!-- / / NEW TRANSLATIONS 4-30-11 -->
-    <string name="reset_device_h_and_v_angles">Reset</string>
-    <string name="auto_device_h_and_v_angles">Obtenez Angles de caméra appareil automatiquement</string>
-    <string name="manually_set_h_angle_text">Angle Camera Device Set horizontale</string>
-    <string name="manually_set_v_angle_text">Angle Camera Set dispositif vertical</string>
 
     <!-- / / NEW TRANSLATIONS 07-19-11 -->
     <string name="auto_focus_text">Images Auto Focus</string>
@@ -294,8 +264,6 @@
     <string name="select_image_quality">"Sélectionnez la qualité d'image"</string>
     <string name="image_quality_summary">"Sélectionnez la qualité (compression) de l'image enregistrée sur le disque."</string>
     <string name="saved_image_quality">"Sauvés Qualité d'image"</string>
-    <string name="smooth_image_off">"Images ne sera pas facile filtrés."</string>
-    <string name="smooth_image_on">"Un filtre sera appliqué à rendre les images apparaissent plus lisses lorsque l'échelle est nécessaire."</string>
     <string name="quick_picture_off">"Un aperçu de l'image s'affiche après les images sont enregistrées."</string>
     <string name="quick_picture_on">"Images rapides sont activées. Un aperçu de l'image ne sera pas affiché après les images sont enregistrées."</string>
     <string name="language">langue</string>

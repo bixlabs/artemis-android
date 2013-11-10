@@ -26,34 +26,12 @@
 
     <!-- //Artemis Settings Page -->
     <string name="gps_on_off">"بدوره GPS تشغيل / إيقاف"</string>
-    <string name="artemis_settings_title">"إعدادات أرتميس"</string>
-    <string name="choose_folder_for_image_saving">"صورة اسم المجلد"</string>
     <string name="set_exposure_text">"ضبط التعرض"</string>
-    <string name="set_exposure">"ضبط التعرض"</string>
     <string name="set_flash_mode_text">"فلاش / الشعلة الوضع"</string>
-    <string name="set_flash_mode_spinner">"تعيين وضع الفلاش"</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>"في"</item>
-        <item>"إيقاف"</item>
-    </string-array>
 
     <string name="quickshot_text">"الوضع قطة سريعة"</string>
-    <string name="lock_boxes_text">"قفل صناديق عدسة"</string>
-    <string name="auto_white_balance">"توازن اللون الأبيض تلقائي"</string>
     <string name="set_white_balance_text">"ضبط توازن اللون الأبيض"</string>
-    <string name="set_white_balance">"ضبط توازن اللون الأبيض"</string>
 
-    <string-array name="set_white_balance">
-        <item>"ضوء النهار"</item>
-        <item>"غائم"</item>
-        <item>"الفلورسنت"</item>
-        <item>"وهاج"</item>
-    </string-array>
-
-    <string name="set_preview_size_text">"قرار المعاينة"</string>
-    <string name="smooth_filter_text">"على نحو سلس تصفية صورة"</string>
-    <string name="select_preview_size_text">"حدد القرار معاينة"</string>
     <string name="heading_tilt_roll_text">"خيارات البند"</string>
     <string name="heading_tilt_roll_promt">"حدد خيارات العنوان"</string>
 
@@ -63,14 +41,7 @@
         <item>"عنوان ° | ° الخيمة | لفة °"</item>
     </string-array>
 
-    <string name="save_artemis_settings">"حفظ الإعدادات أرتميس"</string>
-    <string name="artemis_remote_text">"أرتميس البعيد لالروبوت أقراص ولاب توب
-	"</string>
     <string name="select_language_text">"اختيار اللغة"</string>
-    <string name="reset_device_h_and_v_angles">"إعادة التعيين"</string>
-    <string name="auto_device_h_and_v_angles">"الحصول على زوايا الكاميرا الجهاز تلقائيا"</string>
-    <string name="manually_set_h_angle_text">"تعيين جهاز الكاميرا زاوية أفقي"</string>
-    <string name="manually_set_v_angle_text">"تعيين جهاز الكاميرا زاوية عمودية"</string>
     <string name="auto_focus_text">"السيارات تركيز الصور"</string>
 
     <!-- //About Page -->
@@ -97,7 +68,6 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">"حفظ الصورة"</string>
     <string name="save_and_edit">"حفظ وتعديل التفاصيل"</string>
     <string name="save_picture">"حفظ الصورة"</string>
     <string name="gps_coordinates">"الإحداثيات"</string>
@@ -275,8 +245,6 @@
     <string name="select_image_quality">"اختر جودة الصورة"</string>
     <string name="image_quality_summary">"حدد نوعية (ضغط) من الصورة المحفوظة على القرص."</string>
     <string name="saved_image_quality">"حفظ جودة الصورة"</string>
-    <string name="smooth_image_off">"لن يتم تصفيتها الصور على نحو سلس."</string>
-    <string name="smooth_image_on">"وسيتم تطبيق فلتر لجعل الصور تظهر أكثر سلاسة عندما يكون مطلوبا التحجيم."</string>
     <string name="quick_picture_off">"سيظهر معاينة للصورة بعد يتم حفظ الصور."</string>
     <string name="quick_picture_on">"يتم تمكين الصور سريعة. ولن تظهر معاينة للصورة بعد يتم حفظ الصور."</string>
     <string name="language">لغة</string>

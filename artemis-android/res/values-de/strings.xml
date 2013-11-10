@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
 
+    <string name="app_name">Artemis</string>
+    
     <string name="menu_camera_settings">Kamera wählen</string>
     <string name="menu_artemis_settings">Einstellungen</string>
     <string name="menu_lens_settings">Objektive wählen</string>
     <string name="menu_artemis_about">Über</string>
     <string name="gps_on_off">GPS aktivieren /deaktivieren</string>
-    <string name="artemis_settings_title">Artemis Einstellungen</string>
-    <string name="choose_folder_for_image_saving">Zielordner für zu speichernde Bilder (SD: / / Galerie /   ..)</string>
-    <string name="set_exposure">Belichtungskorrektur</string>
-    <string name="auto_white_balance">Automatischer Weißabgleich</string>
     <string name="set_white_balance_text">Manueller Weißabgleich</string>
-    <string name="set_white_balance">Manueller Weißabgleich</string>
 
-    <string-array name="set_white_balance">
-        <item>Tageslicht</item>
-        <item>Bewölkt</item>
-        <item>Leuchtstoffröhren</item>
-        <item>Kunstlicht</item>
-    </string-array>
-
-    <string name="save_artemis_settings">Artemis Einstellungen speichern</string>
     <string name="artemis_about_title">Über Artemis für Android v1.0</string>
     <string name="artemis_about_text">Artemis ist ein digitaler Motivsucher der sowohl für Kameraleute als auch Regisseure entwickelt wurde. Artemis arbeitet fast auf die gleiche Weise wie ein traditioneller Motivsucher, obgleich er viel genauer ist und sich bequemer bedienen lässt. Nach der Wahl einer Kamera, des Seitenverhältnisses und des Objektivtyps benutzt Artemis die Kamera ihres mobilen Geräts zur Simulation des gewünschten Objektivs beim Dreh. Sie können entweder alle Optiken gleichzeitig anzeigen lassen oder den Zoommodus aktivieren um den Ausschnitt des gewählten Objektivs bildfüllend darzustellen. Welche Kameras werden unterstützt? Artemis hat jede Kamera in unserer Datenbank ausführlichen Tests unterworfen, um sicherzustellen, dass das Sichtfeld korrekt ist. Bei den digitalen Filmkameras stellten wir fest, dass es nicht immer ausreichend war sich auf die Angaben der Kamerahersteller zu verlassen. Die folgenden Formate werden bis jetzt unterstützt: \ nStandard und Super 16mm \   nSuper 16mm Anamorphic \ nStandard und Super 35mm \ n35mm Anamorphic \   n65mm \ n35mm Digital (D-21, RED, F35, Genesis) \ n2 / 3 "Digital   (F23, Viper) \ n1 / 2 "Digital \ n1 / 3" Digital \ nCanon 5D und 7D. \   n   Wenn Sie feststellen, dass ein Format, welches Sie benötigen fehlt, lassen Sie es uns wissen und wir werden unser Bestes geben es Ihnen mit dem nächsten Update zur Verfügung zu stellen.</string>
     <string name="chemical_wedding_about_text">Copyright 2010. Chemical Wedding</string>
@@ -29,7 +18,6 @@
     <string name="camera_settings_title">Kamera Einstellungen</string>
     <string name="lens_settings_title">Objektiv Einstellungen</string>
     <string name="save_lenses">Objektive speichern</string>
-    <string name="save_picture_title">Bild speichern</string>
     <string name="save_and_edit">Speichern und Bearbeiten von Details</string>
     <string name="save_picture">Bild speichern</string>
     <string name="gps_coordinates">GPS-Koordinaten</string>
@@ -46,19 +34,8 @@
     <string name="menu_artemis_gallery">Galerie</string>
     <string name="menu_artemis_quit">Beenden</string>
     <string name="set_flash_mode_text">Blitz Modus</string>
-    <string name="set_flash_mode_spinner">Blitzmodus einstellen</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>Ein</item>
-        <item>Aus</item>
-    </string-array>
 
     <string name="quickshot_text">Schnell Schuss Modus</string>
-    <string name="lock_boxes_text">Objektivmarkierungen fixieren</string>
-    <string name="set_preview_size_text">Vorschau Auflösung</string>
-    <string name="smooth_filter_text">Glattes Bild Filter</string>
-    <string name="select_preview_size_text">Vorschau Auflösung</string>
-    <string name="artemis_remote_text">Artemis Fernbedienung für Android Tablets und iPads</string>
     <string name="select_language_text">Sprache wählen</string>
     <string name="heading_tilt_roll_text">Position Optionen</string>
 
@@ -85,10 +62,6 @@
     <string name="error_dialog_body">Es gab einen Fehler bei der Überprüfung der Anwendungslizenz. Wenn dieses Problem weiterhin besteht, wenden Sie sich bitte an den Support.</string>
     <string name="buy_button">App kaufen</string>
     <string name="quit_button">Beenden</string>
-    <string name="reset_device_h_and_v_angles">Reset</string>
-    <string name="auto_device_h_and_v_angles">Integrierte Kamera automatisch erkennen</string>
-    <string name="manually_set_h_angle_text">Horizontaler Kamerawinkel</string>
-    <string name="manually_set_v_angle_text">Vertikaler Kamerawinkel</string>
     <string name="auto_focus_text">Auto Focus</string>
     <string name="gallery_no_images_found">Keine Bilder gefunden</string>
 
@@ -234,8 +207,6 @@
     <string name="select_image_quality">"Wählen Sie die Bildqualität"</string>
     <string name="image_quality_summary">"Wählen Sie die Qualität (Komprimierung) des Bildes auf der Festplatte gespeichert."</string>
     <string name="saved_image_quality">"Gespeichert Bildqualität"</string>
-    <string name="smooth_image_off">"Bilder werden nicht glatt sein gefiltert."</string>
-    <string name="smooth_image_on">"Ein Filter wird angewendet, um die Bilder glatter erscheinen bei der Skalierung erforderlich ist."</string>
     <string name="quick_picture_off">"Ein Bild wird nach einer Vorschau Bilder gespeichert werden werden."</string>
     <string name="quick_picture_on">"Schnelle Bilder sind aktiviert. Ein Bild-Vorschau wird nicht angezeigt, nachdem Bilder gespeichert werden werden."</string>
     <string name="language">Sprache</string>

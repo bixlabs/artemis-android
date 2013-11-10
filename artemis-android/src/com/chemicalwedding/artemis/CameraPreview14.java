@@ -1,6 +1,5 @@
 package com.chemicalwedding.artemis;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,9 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -34,12 +31,7 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.provider.MediaStore.Files.FileColumns;
-import android.provider.MediaStore.Images;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.TextureView;
@@ -52,8 +44,7 @@ public class CameraPreview14 extends ViewGroup {
 	protected static List<Integer> supportedExposureLevels;
 	protected static List<String> supportedWhiteBalance, supportedFlashModes;
 	protected static List<Size> supportedPreviewSizes;
-	protected static boolean lockBoxEnabled = false, quickshotEnabled = false,
-			smoothImagesEnabled = false;
+	protected static boolean lockBoxEnabled = false, quickshotEnabled = false;
 	protected static float deviceHAngle, effectiveHAngle, deviceVAngle,
 			effectiveVAngle;
 
@@ -202,7 +193,7 @@ public class CameraPreview14 extends ViewGroup {
 			public void run() {
 				takePictureFrame();
 			}
-		}, 200);
+		}, 250);
 	}
 
 	// final PreviewCallback takePicturePreviewCallback = new PreviewCallback()
@@ -240,7 +231,7 @@ public class CameraPreview14 extends ViewGroup {
 
 			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 					ArtemisMath.scaledPreviewWidth,
-					ArtemisMath.scaledPreviewHeight, smoothImagesEnabled);
+					ArtemisMath.scaledPreviewHeight, false);
 
 			bitmapToSave = Bitmap
 					.createBitmap(bitmapToSave, (int) (selectedRect.left),
@@ -253,7 +244,7 @@ public class CameraPreview14 extends ViewGroup {
 			float ratio = selectedRect.width() / selectedRect.height();
 			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 					(int) (imageHeight * ratio), imageHeight,
-					smoothImagesEnabled);
+					false);
 		}
 		// We need to scale down
 		else {
@@ -271,7 +262,7 @@ public class CameraPreview14 extends ViewGroup {
 			float previewRatio = (float) previewHeight / previewWidth;
 			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
 					(int) (width), (int) (width * previewRatio),
-					smoothImagesEnabled);
+					false);
 
 			int xpos = (newwidth - bitmapToSave.getWidth()) / 2;
 			int ypos = (imageHeight - bitmapToSave.getHeight()) / 2;

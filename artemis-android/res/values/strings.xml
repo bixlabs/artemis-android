@@ -13,34 +13,12 @@
 
     <!-- //Artemis Settings Page -->
     <string name="gps_on_off">Turn GPS On / Off</string>
-    <string name="artemis_settings_title">Artemis Settings</string>
-    <string name="choose_folder_for_image_saving">Image Folder Name</string>
     <string name="set_exposure_text">Set Exposure</string>
-    <string name="set_exposure">Set Exposure</string>
     <string name="set_flash_mode_text">Flash/Torch Mode</string>
-    <string name="set_flash_mode_spinner">Set Flash Mode</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>On</item>
-        <item>Off</item>
-    </string-array>
 
     <string name="quickshot_text">QuickShot Mode</string>
-    <string name="lock_boxes_text">Lock Lens boxes</string>
-    <string name="auto_white_balance">Automatic White Balance</string>
     <string name="set_white_balance_text">Set White Balance</string>
-    <string name="set_white_balance">Set White Balance</string>
 
-    <string-array name="set_white_balance">
-        <item>Daylight</item>
-        <item>Cloudy</item>
-        <item>Flourescent</item>
-        <item>Incandescent</item>
-    </string-array>
-
-    <string name="set_preview_size_text">Preview Resolution</string>
-    <string name="smooth_filter_text">Smooth Image Filter</string>
-    <string name="select_preview_size_text">Select Preview Resolution</string>
     <string name="heading_tilt_roll_text">Heading Options</string>
     <string name="heading_tilt_roll_promt">Select Heading Options</string>
 
@@ -50,13 +28,7 @@
         <item>Heading°|Tilt°|Roll°</item>
     </string-array>
 
-    <string name="save_artemis_settings">Save Artemis Settings</string>
-    <string name="artemis_remote_text">Artemis Remote for Android tablets &amp; iPads</string>
     <string name="select_language_text">Select Language</string>
-    <string name="reset_device_h_and_v_angles">Reset</string>
-    <string name="auto_device_h_and_v_angles">Get Device Camera Angles Automatically</string>
-    <string name="manually_set_h_angle_text">Set Device Camera Horizontal Angle</string>
-    <string name="manually_set_v_angle_text">Set Device Camera Vertical Angle</string>
     <string name="auto_focus_text">Auto Focus Images</string>
 
     <!-- //About Page -->
@@ -109,7 +81,6 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">Save Picture</string>
     <string name="image_saved_success">Saving image…</string>
     <string name="save_and_edit">Save and Edit Details</string>
     <string name="save_picture">Save Picture</string>
@@ -236,8 +207,6 @@
     <string name="select_image_quality">Select Image Quality</string>
     <string name="image_quality_summary">Select the quality (compression) of the image saved to disk.</string>
     <string name="saved_image_quality">Saved Image Quality</string>
-    <string name="smooth_image_off">Images will NOT be smooth filtered.</string>
-    <string name="smooth_image_on">A filter will be applied to make the images appear smoother when scaling is required.</string>
     <string name="quick_picture_off">An image preview will be shown after pictures are saved.</string>
     <string name="quick_picture_on">Quick pictures are enabled. An image preview will NOT be shown after pictures are saved.</string>
 

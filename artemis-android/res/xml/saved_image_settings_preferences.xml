@@ -28,12 +28,6 @@
         android:title="@string/saved_image_quality" />
 
     <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="@string/preference_key_smoothimageenabled"
-        android:summaryOff="@string/smooth_image_off"
-        android:summaryOn="@string/smooth_image_on"
-        android:title="@string/smooth_filter_text" />
-    <CheckBoxPreference
         android:defaultValue="false"
         android:key="@string/preference_key_quickshotenabled"
         android:summaryOff="@string/quick_picture_off"

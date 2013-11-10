@@ -18,10 +18,7 @@
     <!-- //Artemis Settings Page -->
 
     <string name="gps_on_off">GPS On / Off</string>
-    <string name="artemis_settings_title">Artemis Impostazioni</string>
-    <string name="choose_folder_for_image_saving">Image nome della cartella</string>
     <string name="set_exposure_text">Set di esposizione</string>
-    <string name="set_exposure">Set di esposizione</string>
 
     <string-array name="set_exposure_array">
         <item>-3</item>
@@ -34,18 +31,7 @@
         <item>4</item>
     </string-array>
 
-    <string name="auto_white_balance">Bilanciamento del bianco automatico</string>
     <string name="set_white_balance_text">Impostare il bilanciamento del bianco</string>
-    <string name="set_white_balance">Impostare il bilanciamento del bianco</string>
-
-    <string-array name="set_white_balance">
-        <item>Luce del giorno</item>
-        <item>Nuvoloso</item>
-        <item>Fluorescente</item>
-        <item>A Incandescenza</item>
-    </string-array>
-
-    <string name="save_artemis_settings">Salva impostazioni Artemis</string>
 
     <!-- //About Page -->
 
@@ -66,7 +52,6 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">Salva immagine</string>
     <string name="save_and_edit">Salvare e modificare i dettagli</string>
     <string name="save_picture">Salva immagine</string>
     <string name="gps_coordinates">Coordinate GPS</string>
@@ -98,19 +83,8 @@
     <!-- //Artemis Settings Page -->
 
     <string name="set_flash_mode_text">Flash / Modalità Torch</string>
-    <string name="set_flash_mode_spinner">Set modalità Flash</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>On</item>
-        <item>Off</item>
-    </string-array>
 
     <string name="quickshot_text">Modalità ripresa veloce</string>
-    <string name="lock_boxes_text">Blocca Lens scatole</string>
-    <string name="set_preview_size_text">Risoluzione anteprima</string>
-    <string name="smooth_filter_text">Smooth Image Filter</string>
-    <string name="select_preview_size_text">Selezionate Anteprima risoluzione</string>
-    <string name="artemis_remote_text">Artemis a distanza per le tavolette Android e iPads</string>
     <string name="select_language_text">Scegli la lingua</string>
     <string name="heading_tilt_roll_text">La voce Opzioni</string>
 
@@ -153,10 +127,6 @@
     <string name="quit_button">Esci</string>
 
     <!-- / / NEW TRANSLATIONS 4-30-11 -->
-    <string name="reset_device_h_and_v_angles">Reset</string>
-    <string name="auto_device_h_and_v_angles">Set Angolo della videocamera del dispositivo orizzontale</string>
-    <string name="manually_set_h_angle_text">Set Angolo della videocamera del dispositivo orizzontale</string>
-    <string name="manually_set_v_angle_text">Set Angolo della videocamera del dispositivo verticale</string>
 
     <!-- / / NEW TRANSLATIONS 07-19-11 -->
     <string name="auto_focus_text">Auto Focus Immagini</string>
@@ -308,8 +278,6 @@
     <string name="select_image_quality">"Selezionare Qualità immagine"</string>
     <string name="image_quality_summary">"Selezionare la qualità (compressione) dell'immagine salvata su disco."</string>
     <string name="saved_image_quality">"Salvato Qualità immagine"</string>
-    <string name="smooth_image_off">"Le immagini potranno non essere regolare filtrati."</string>
-    <string name="smooth_image_on">"Un filtro sarà applicato per rendere le immagini appaiono agevole quando è richiesta scalatura."</string>
     <string name="quick_picture_off">"L'anteprima dell'immagine viene visualizzata dopo le immagini vengono salvate."</string>
     <string name="quick_picture_on">"Immagini veloci sono abilitati. L'anteprima immagine non verrà mostrata dopo le immagini vengono salvate."</string>
     <string name="language">lingua</string>

@@ -27,34 +27,12 @@
     <!-- //Artemis Settings Page -->
 
     <string name="gps_on_off">"पर / बंद जीपीएस बारी"</string>
-    <string name="artemis_settings_title">"आर्टेमिस सेटिंग्स"</string>
-    <string name="choose_folder_for_image_saving">"छवि फ़ोल्डर का नाम"</string>
     <string name="set_exposure_text">"एक्सपोजर सेट"</string>
-    <string name="set_exposure">"एक्सपोजर सेट"</string>
     <string name="set_flash_mode_text">"फ्लैश / मशाल मोड"</string>
-    <string name="set_flash_mode_spinner">"फ़्लैश मोड सेट"</string>
-
-    <string-array name="set_flash_mode_array">
-        <item>"पर"</item>
-        <item>"ऑफ़ "</item>
-    </string-array>
 
     <string name="quickshot_text">"सितारा श्रेणी मोड"</string>
-    <string name="lock_boxes_text">"लेंस बक्से लॉक"</string>
-    <string name="auto_white_balance">"स्वत: सफेद संतुलन"</string>
     <string name="set_white_balance_text">"व्हाइट बैलेंस सेट"</string>
-    <string name="set_white_balance">"व्हाइट बैलेंस सेट"</string>
 
-    <string-array name="set_white_balance">
-        <item>"सूर्य का प्रकाश"</item>
-        <item>"धुंधला "</item>
-        <item>"फ्लोरोसेंट"</item>
-        <item>"उज्जवल"</item>
-    </string-array>
-
-    <string name="set_preview_size_text">"पूर्वावलोकन संकल्प"</string>
-    <string name="smooth_filter_text">"चिकनी छवि फ़िल्टर"</string>
-    <string name="select_preview_size_text">"पूर्वावलोकन संकल्प का चयन करें"</string>
     <string name="heading_tilt_roll_text">"शीर्षक विकल्प"</string>
     <string name="heading_tilt_roll_promt">"शीर्ष विकल्प का चयन करें"</string>
 
@@ -64,14 +42,7 @@
         <item>"शीर्षक ° | ज़ोर ° | रोल °"</item>
     </string-array>
 
-    <string name="save_artemis_settings">"आर्टेमिस सेटिंग्स सहेजें"</string>
-    <string name="artemis_remote_text">"एंड्रॉयड गोलियाँ और iPads के लिए आर्टेमिस रिमोट
-	"</string>
     <string name="select_language_text">"भाषा चुनें "</string>
-    <string name="reset_device_h_and_v_angles">"रीसेट करें"</string>
-    <string name="auto_device_h_and_v_angles">"स्वतः डिवाइस कैमरा एंगल्स करें"</string>
-    <string name="manually_set_h_angle_text">"डिवाइस कैमरा क्षैतिज कोण सेट"</string>
-    <string name="manually_set_v_angle_text">"डिवाइस कैमरा कार्यक्षेत्र कोण सेट"</string>
     <string name="auto_focus_text">"ऑटो फोकस छवियाँ"</string>
 
     <!-- //About Page -->
@@ -98,7 +69,6 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_title">"चित्र सहेजें"</string>
     <string name="save_and_edit">"विवरण सहेजें और संपादित करें"</string>
     <string name="save_picture">"चित्र सहेजें"</string>
     <string name="gps_coordinates">"जीपीएस निर्देशांक"</string>
@@ -279,8 +249,6 @@
     <string name="select_image_quality">"छवि गुणवत्ता का चयन करें"</string>
     <string name="image_quality_summary">"डिस्क को बचाया छवि की गुणवत्ता (सम्पीडन) का चयन करें."</string>
     <string name="saved_image_quality">"सहेजा छवि गुणवत्ता"</string>
-    <string name="smooth_image_off">"छवियाँ चिकनी फिल्टर नहीं किया जाएगा."</string>
-    <string name="smooth_image_on">"एक फिल्टर स्केलिंग की आवश्यकता है जब छवियों चिकनी प्रकट करने के लिए लागू किया जाएगा."</string>
     <string name="quick_picture_off">"तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन दिखाया जाएगा."</string>
     <string name="quick_picture_on">"त्वरित चित्रों सक्षम हैं. तस्वीरों बच रहे हैं के बाद एक छवि पूर्वावलोकन नहीं दिखाया जाएगा."</string>
     <string name="language">भाषा</string>
