@@ -2,7 +2,6 @@ package com.chemicalwedding.artemis;
 
 import java.io.File;
 import java.text.NumberFormat;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -10,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,8 +27,10 @@ public class SettingsActivity extends PreferenceActivity {
 	protected boolean isValidFragment(String fragmentName) {
 		if (fragmentName.equals(GeneralSettingsFragment.class.getName())
 				|| fragmentName.equals(CameraSettingsFragment.class.getName())
-				|| fragmentName.equals(SavedImageSettingsFragment.class.getName())
-				|| fragmentName.equals(ResetDefaultSettingsFragment.class.getName())
+				|| fragmentName.equals(SavedImageSettingsFragment.class
+						.getName())
+				|| fragmentName.equals(ResetDefaultSettingsFragment.class
+						.getName())
 				|| fragmentName.equals(SendFeedbackFragment.class.getName())) {
 			return true;
 		}
@@ -284,6 +286,7 @@ public class SettingsActivity extends PreferenceActivity {
 							}
 						});
 			}
+
 			ListPreference exposurePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedexposurelevel));
 			if (CameraPreview14.supportedExposureLevels != null) {
 				CharSequence[] exposureValues = new CharSequence[CameraPreview14.supportedExposureLevels
@@ -329,15 +332,67 @@ public class SettingsActivity extends PreferenceActivity {
 								return true;
 							}
 						});
+			} else {
+				exposurePref.setEnabled(false);
 			}
-			if (CameraPreview14.isAutoFocusSupported) {
-				findPreference(
-						getString(R.string.preference_key_longpressshutter))
-						.setEnabled(true);
-				findPreference(
-						getString(R.string.preference_key_autofocusonpicture))
-						.setEnabled(true);
+
+			ListPreference focusPref = (ListPreference) findPreference(getString(R.string.preference_key_selectedfocusmode));
+			if (CameraPreview14.supportedFocusModes != null) {
+				CharSequence[] values = new CharSequence[CameraPreview14.supportedFocusModes
+						.size()];
+				for (int i = 0; i < values.length; i++) {
+					values[i] = CameraPreview14.supportedFocusModes.get(i);
+				}
+				focusPref.setEntries(values);
+				focusPref.setEntryValues(values);
+
+				focusPref
+						.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+							@Override
+							public boolean onPreferenceChange(
+									Preference preference, Object newValue) {
+								setAutoFocusOptionsState((String) newValue);
+								return true;
+							}
+						});
+			} else {
+				focusPref.setEnabled(false);
 			}
+
+			setAutoFocusOptionsState(focusPref.getValue());
+
+			ListPreference sceneModePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedscenemode));
+			if (CameraPreview14.supportedSceneModes != null
+					&& CameraPreview14.supportedSceneModes.size() > 0) {
+				CharSequence[] values = new CharSequence[CameraPreview14.supportedSceneModes
+						.size()];
+				for (int i = 0; i < values.length; i++) {
+					values[i] = CameraPreview14.supportedSceneModes.get(i);
+				}
+				sceneModePref.setEntries(values);
+				sceneModePref.setEntryValues(values);
+
+			} else {
+				sceneModePref.setEnabled(false);
+			}
+		}
+
+		private void setAutoFocusOptionsState(String val) {
+			boolean enabled = false;
+			if (Camera.Parameters.FOCUS_MODE_AUTO.equals(val)
+					|| Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE
+							.equals(val)
+					|| Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO
+							.equals(val)
+					|| Camera.Parameters.FOCUS_MODE_MACRO.equals(val)) {
+				enabled = true;
+			}
+			findPreference(getString(R.string.preference_key_longpressshutter))
+					.setEnabled(enabled);
+			findPreference(
+					getString(R.string.preference_key_autofocusonpicture))
+					.setEnabled(enabled);
+
 		}
 
 		@Override

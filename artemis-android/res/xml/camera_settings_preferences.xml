@@ -3,8 +3,19 @@
     android:persistent="true" >
 
     <PreferenceCategory android:title="@string/device_camera_behaviour" >
+        <ListPreference
+            android:defaultValue="auto"
+            android:key="@string/preference_key_selectedscenemode"
+            android:title="@string/set_scene_mode" />
+        <ListPreference
+            android:defaultValue="@string/selectedFocus_default"
+            android:disableDependentsState="@string/selectedFocus_default"
+            android:key="@string/preference_key_selectedfocusmode"
+            android:title="@string/set_focus_mode" />
+
         <CheckBoxPreference
             android:defaultValue="false"
+            android:dependency="@string/preference_key_selectedfocusmode"
             android:disableDependentsState="true"
             android:enabled="false"
             android:key="@string/preference_key_autofocusonpicture"

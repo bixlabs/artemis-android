@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,8 @@ import android.widget.Toast;
 public class CameraPreview14 extends ViewGroup {
 
 	protected static List<Integer> supportedExposureLevels;
-	protected static List<String> supportedWhiteBalance, supportedFlashModes;
+	protected static List<String> supportedWhiteBalance, supportedFlashModes,
+			supportedFocusModes, supportedSceneModes;
 	protected static List<Size> supportedPreviewSizes;
 	protected static boolean lockBoxEnabled = false, quickshotEnabled = false,
 			smoothImagesEnabled = false;
@@ -194,7 +196,7 @@ public class CameraPreview14 extends ViewGroup {
 			public void run() {
 				takePictureFrame();
 			}
-		}, 300);
+		}, 350);
 	}
 
 	// final PreviewCallback takePicturePreviewCallback = new PreviewCallback()
@@ -390,6 +392,7 @@ public class CameraPreview14 extends ViewGroup {
 					.getSupportedWhiteBalance();
 			CameraPreview14.supportedFlashModes = parameters
 					.getSupportedFlashModes();
+
 			if (CameraPreview14.supportedFlashModes != null) {
 				Log.v(logTag, "Supported Flash modes: ");
 				for (String flashMode : CameraPreview14.supportedFlashModes) {
@@ -418,7 +421,29 @@ public class CameraPreview14 extends ViewGroup {
 			if (whiteBalance.length() > 0) {
 				parameters.setWhiteBalance(whiteBalance);
 			}
-			parameters.setJpegQuality(100);
+
+			CameraPreview14.supportedFocusModes = parameters
+					.getSupportedFocusModes();
+			if (CameraPreview14.supportedFocusModes != null) {
+				String focusMode = artemisPrefs.getString(
+						ArtemisPreferences.SELECTED_FOCUS_MODE, "");
+				if (focusMode.length() == 0
+						&& CameraPreview14.supportedFocusModes
+								.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+					parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
+				} else {
+					parameters.setFocusMode(focusMode);
+				}
+			}
+			CameraPreview14.autoFocusBeforePictureTake = artemisPrefs
+					.getBoolean(ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false);
+
+			CameraPreview14.supportedSceneModes = parameters
+					.getSupportedSceneModes();
+			if (CameraPreview14.supportedSceneModes != null) {
+				parameters.setSceneMode(artemisPrefs.getString(
+						ArtemisPreferences.SELECTED_SCENE_MODE, "auto"));
+			}
 
 			parameters.setPreviewSize(previewSize.width, previewSize.height);
 			// parameters.setPictureSize(pictureSize.width, pictureSize.height);
@@ -469,21 +494,6 @@ public class CameraPreview14 extends ViewGroup {
 			}
 
 			// handle auto focus setup
-			/*
-			 * if (parameters.getSupportedFocusModes().contains(
-			 * Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
-			 * parameters.setFocusMode(Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
-			 * CameraPreview14.autoFocusBeforePictureTake = artemisPrefs
-			 * .getBoolean(ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false); }
-			 * else
-			 */
-			if (parameters.getSupportedFocusModes().contains(
-					Camera.Parameters.FOCUS_MODE_AUTO)) {
-				parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
-				CameraPreview14.autoFocusBeforePictureTake = artemisPrefs
-						.getBoolean(ArtemisPreferences.AUTO_FOCUS_ON_PICTURE,
-								false);
-			}
 
 			Log.v(logTag,
 					"Current preview format: " + parameters.getPreviewFormat());
@@ -509,17 +519,15 @@ public class CameraPreview14 extends ViewGroup {
 				_artemisMath.setDeviceSpecificDetails(totalScreenWidth,
 						totalScreenHeight, pixelDensityScale, effectiveHAngle,
 						effectiveVAngle);
-				_artemisMath.calculateLargestLens();
-				_artemisMath.calculateRectBoxesAndLabelsForLenses();
-				_artemisMath.selectFirstMeaningFullLens();
 				_artemisMath.resetTouchToCenter(); // now with green box
 				_artemisMath.calculateRectBoxesAndLabelsForLenses();
 				_artemisMath.setInitializedFirstTime(true);
 			}
 
-			if (_artemisMath.isFullscreen()) {
-				this.calculateZoom(true);
-			}
+			_artemisMath.calculateLargestLens();
+			_artemisMath.selectFirstMeaningFullLens();
+			_artemisMath.calculateRectBoxesAndLabelsForLenses();
+			this.calculateZoom(true);
 
 			// Set the focal length lens textview
 			ArtemisActivity._lensFocalLengthText.setText(_artemisMath

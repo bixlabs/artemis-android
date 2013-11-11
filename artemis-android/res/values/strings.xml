@@ -15,10 +15,9 @@
     <string name="gps_on_off">Turn GPS On / Off</string>
     <string name="set_exposure_text">Set Exposure</string>
     <string name="set_flash_mode_text">Flash/Torch Mode</string>
-
     <string name="quickshot_text">QuickShot Mode</string>
     <string name="set_white_balance_text">Set White Balance</string>
-	<string name="smooth_filter_text">Smooth Image Filter</string>
+    <string name="smooth_filter_text">Smooth Image Filter</string>
     <string name="heading_tilt_roll_text">Heading Options</string>
     <string name="heading_tilt_roll_promt">Select Heading Options</string>
 
@@ -289,10 +288,15 @@
     <string name="error_communicating_dialog_body">There was a problem communicating with Google Play store license server.  Please check your internet connectivity and try again.  If the problem persists please contact Artemis support.</string>
     <string name="retry_button">Retry</string>
 
-    <!-- Newly added below here 7-10-13-->
-	<string name="zoom_lens_options">Custom Zoom Lens Options</string>
-	<string name="zoom_lens_edit">Edit Zoom Lens</string>
-	<string name="zoom_lens_delete">Delete Zoom Lens</string>
-	<string name="edit_zoom_lens">Edit Zoom Lens</string>
-	<string name="add_new_zoom_lens">Add New Zoom Lens</string>
+    <!-- Newly added below here 7-10-13 -->
+    <string name="zoom_lens_options">Custom Zoom Lens Options</string>
+    <string name="zoom_lens_edit">Edit Zoom Lens</string>
+    <string name="zoom_lens_delete">Delete Zoom Lens</string>
+    <string name="edit_zoom_lens">Edit Zoom Lens</string>
+    <string name="add_new_zoom_lens">Add New Zoom Lens</string>
+
+    <!-- New below here 11-11-2013 -->
+    <string name="set_scene_mode">Set Scene Mode</string>
+    <string name="set_focus_mode">Set Focus Mode</string>
+
 </resources>

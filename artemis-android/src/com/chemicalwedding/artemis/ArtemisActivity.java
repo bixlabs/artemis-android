@@ -2251,33 +2251,34 @@ public class ArtemisActivity extends Activity implements
 				if (addressList.iterator().hasNext()) {
 					Address addr = addressList.iterator().next();
 					int nItems = 0;
+					String bullet = " "+context.getString(R.string.bullet)+ " ";
 					if (addr.getAddressLine(0) != null) {
 						if (nItems > 0)
-							gpsLocationString += " � ";
+							gpsLocationString += bullet;
 						gpsLocationString += addr.getAddressLine(0);
 						++nItems;
 					}
 					if (addr.getLocality() != null) {
 						if (nItems > 0)
-							gpsLocationString += " � ";
+							gpsLocationString += bullet;
 						gpsLocationString += addr.getLocality();
 						++nItems;
 					}
 					if (addr.getAdminArea() != null) {
 						if (nItems > 0)
-							gpsLocationString += " � ";
+							gpsLocationString += bullet;
 						gpsLocationString += addr.getAdminArea();
 						++nItems;
 					}
 					if (addr.getPostalCode() != null) {
 						if (nItems > 0)
-							gpsLocationString += " � ";
+							gpsLocationString += bullet;
 						gpsLocationString += addr.getPostalCode();
 						++nItems;
 					}
 					if (addr.getCountryName() != null) {
 						if (nItems > 0)
-							gpsLocationString += " � ";
+							gpsLocationString += bullet;
 						gpsLocationString += addr.getCountryCode();
 						++nItems;
 					}

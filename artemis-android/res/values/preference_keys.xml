@@ -40,7 +40,9 @@
     <string name="preference_key_previewblackwhite">previewBlackWhite</string>
     <string name="preference_key_saveRawImage">saveRawImage</string>
     <string name="preference_key_mapVolumeKeys">mapVolumeKeys</string>
-
+	<string name="preference_key_selectedfocusmode">selectedFocusMode</string>
+    <string name="preference_key_selectedscenemode">selectedSceneMode</string>
+    
     <!-- values and defaults -->
     <string name="artemis_save_location_default">DCIM/ARTEMIS</string>
     <string name="image_size_default">default</string>
@@ -161,6 +163,8 @@
         <item>4</item>
     </string-array>
 
+    <string name="selectedFocus_default">auto</string>
+    
     <!-- Symbols -->
     <string name="lensFocalLengthMM">mm</string>
     <string name="left_roll">↶</string>

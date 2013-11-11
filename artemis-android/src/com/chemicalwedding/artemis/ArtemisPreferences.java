@@ -30,4 +30,6 @@ public class ArtemisPreferences {
 	public static final String CAMERA_LENS_V_ANGLE = "cameraLensVAngle";
 	public static final String AUTO_FOCUS_ON_PICTURE = "autoFocusOnPicture";
 	public static final String SAVE_RAW_IMAGE = "saveRawImage";
+	public static final String SELECTED_FOCUS_MODE = "selectedFocusMode";
+	public static final String SELECTED_SCENE_MODE = "selectedSceneMode";
 }
