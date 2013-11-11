@@ -1,30 +1,36 @@
 package com.chemicalwedding.artemis;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Color;
+import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.TextureView;
+import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.CustomCamera;
 
-public class CustomCameraCalibrationActivity extends Activity {
+public class CustomCameraCalibrationActivity extends Activity implements
+		SurfaceTextureListener {
 	private static final float WALL_DISTANCE = 1000f;
 
 	private float chipWidth;
@@ -35,12 +41,13 @@ public class CustomCameraCalibrationActivity extends Activity {
 	private TextView chipWidthView, chipHeightView;
 
 	private NumberFormat chipSizeFormat;
-	private CustomCameraPreview cameraPreview;
+	private CustomCameraPreview customCameraPreview;
 
 	private ArtemisDatabaseHelper mDBHelper;
 	private Handler mUiHandler = new Handler();
 	private ClickBoolean nextClick, nextFineClick, prevClick, prevFineClick;
 	protected static final long lensRepeatSpeed = 35;
+	private Camera mCamera;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +57,12 @@ public class CustomCameraCalibrationActivity extends Activity {
 
 		mDBHelper = new ArtemisDatabaseHelper(this);
 
-		cameraPreview = new CustomCameraPreview(this, null);
+		customCameraPreview = (CustomCameraPreview) findViewById(R.id.customCameraPreview);
 
-		((LinearLayout) findViewById(R.id.cameraContainer)).addView(
-				(View) cameraPreview, new ViewGroup.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT,
-						ViewGroup.LayoutParams.MATCH_PARENT));
+		TextureView textureView = new TextureView(this);
+		textureView.setSurfaceTextureListener(this);
+		customCameraPreview.setTextureView(textureView);
+		customCameraPreview.addView(textureView);
 
 		aspectRatio = getIntent().getFloatExtra("ratio", 1.78f);
 		squeezeRatio = getIntent().getFloatExtra("squeeze", 1f);
@@ -99,8 +106,6 @@ public class CustomCameraCalibrationActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-
-		cameraPreview.releaseCamera();
 	}
 
 	private final Runnable prevRunnable = new Runnable() {
@@ -285,25 +290,26 @@ public class CustomCameraCalibrationActivity extends Activity {
 		float[] angles = calculateViewingAngle(focalLength);
 
 		float hprop = angles[4];
-		float vprop = angles[5];
+		// float vprop = angles[5];
 
 		float hWidth = angles[2];
-		float vHeight = angles[3];
-		float myprop = hWidth / vHeight;
+		// float vHeight = angles[3];
+		// float myprop = hWidth / vHeight;
 
-		float hwidth = (ArtemisMath.scaledPreviewWidth * angles[0] / ArtemisMath.horizViewAngle);
-		ArtemisRectF currentGreenBox = ArtemisMath.getInstance()
-				.getCurrentGreenBox();
+		// float hwidth = (ArtemisMath.scaledPreviewWidth * angles[0] /
+		// ArtemisMath.horizViewAngle);
+		// ArtemisRectF currentGreenBox = ArtemisMath.getInstance()
+		// .getCurrentGreenBox();
 		// if (myprop < 1.4f) {
 		// hwidth *= currentGreenBox.width() / ArtemisMath.scaledPreviewWidth;
 		// }
 
-		cameraPreview.scaleFactor = 1 / hprop;
+		customCameraPreview.scaleFactor = 1 / hprop;
 
 		Log.v("CustomCameraCalibration", String.format(
 				"CustomCam %f hWidth: %f hangle: %f",
-				cameraPreview.scaleFactor, hWidth, angles[0]));
-		cameraPreview.calculateZoom(false);
+				customCameraPreview.scaleFactor, hWidth, angles[0]));
+		customCameraPreview.calculateZoom(false);
 	}
 
 	private void createOrangeBox() {
@@ -323,7 +329,7 @@ public class CustomCameraCalibrationActivity extends Activity {
 		int xmax = xmin + maximumWidth;
 		ArtemisRectF greenBox = new ArtemisRectF("", xmin, topMargin, xmax,
 				lowerMargin);
-		greenBox.setColor(ArtemisMath.getInstance().orangeBoxColor);
+		greenBox.setColor(ArtemisMath.orangeBoxColor);
 
 		ArrayList<ArtemisRectF> boxes = ArtemisMath.getInstance()
 				.get_currentLensBoxes();
@@ -393,4 +399,43 @@ public class CustomCameraCalibrationActivity extends Activity {
 		}
 
 	};
+
+	@Override
+	public void onSurfaceTextureAvailable(SurfaceTexture surface, int width,
+			int height) {
+		// Set the background
+		if (ArtemisActivity.arrowBackgroundImage == null) {
+			Options o = new Options();
+			o.inSampleSize = 2;
+			ArtemisActivity.arrowBackgroundImage = BitmapFactory
+					.decodeResource(getResources(), R.drawable.arrows,
+							o);
+		}
+		
+		mCamera = android.hardware.Camera.open();
+
+		try {
+			mCamera.setPreviewTexture(surface);
+		} catch (IOException t) {
+		}
+
+		customCameraPreview.openCamera(mCamera);
+	}
+
+	@Override
+	public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width,
+			int height) {
+	}
+
+	@Override
+	public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+		mCamera.stopPreview();
+		mCamera.release();
+		return true;
+	}
+
+	@Override
+	public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+		// Invoked every time there's a new Camera preview frame
+	}
 }

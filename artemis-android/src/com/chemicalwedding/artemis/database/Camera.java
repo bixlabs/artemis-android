@@ -1,6 +1,5 @@
 package com.chemicalwedding.artemis.database;
 
-import com.chemicalwedding.artemis.ArtemisMath;
 
 /**
  * Data place-holder for camera information.

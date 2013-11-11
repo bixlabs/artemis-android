@@ -21,6 +21,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.SurfaceTexture;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -93,10 +95,10 @@ public class ArtemisActivity extends Activity implements
 	private static final int GALLERY_IMAGE_LOADER = 1;
 
 	private Handler mUiHandler = new Handler();
-	
+
 	private CameraPreview14 mCameraPreview;
 	private android.hardware.Camera mCamera;
-	
+
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
 	private ClickBoolean nextClickBoolean;
@@ -190,6 +192,9 @@ public class ArtemisActivity extends Activity implements
 
 		// Appirator
 		Appirater.appLaunched(this);
+
+		startArtemis();
+
 	}
 
 	protected void startArtemis() {
@@ -225,6 +230,12 @@ public class ArtemisActivity extends Activity implements
 =======
 >>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
 
+		if (mCamera != null) {
+			mCamera.stopPreview();
+			mCamera.release();
+			mCamera = null;
+		}
+
 		if (gpsEnabled && locationManager != null)
 			locationManager.removeUpdates(locationListener);
 
@@ -241,7 +252,7 @@ public class ArtemisActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		Log.i(TAG, "Stopping Artemis");
-
+		
 		// Close the database connection
 		if (_artemisDBHelper != null) {
 			_artemisDBHelper.close();
@@ -253,7 +264,6 @@ public class ArtemisActivity extends Activity implements
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
-		startArtemis();
 	}
 
 	@Override
@@ -280,8 +290,12 @@ public class ArtemisActivity extends Activity implements
 >>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
 =======
 		initPreferences();
+<<<<<<< HEAD
 		
 >>>>>>> 71b640f (Fix resuming from settings and new changes not being applied)
+=======
+
+>>>>>>> 42f959f (Fix custom camera calibration activity on kitkat)
 		initSensorManager();
 
 		initLocationManager();
@@ -710,7 +724,8 @@ public class ArtemisActivity extends Activity implements
 							_lensSettingsFlipper.setInAnimation(
 									ArtemisActivity.this, R.anim.slide_in_left);
 							_lensSettingsFlipper.setOutAnimation(
-									ArtemisActivity.this, R.anim.slide_out_right);
+									ArtemisActivity.this,
+									R.anim.slide_out_right);
 							addCustomLensLayout.setVisibility(View.INVISIBLE);
 
 							_lensSettingsFlipper.showPrevious();
@@ -724,7 +739,8 @@ public class ArtemisActivity extends Activity implements
 							_lensSettingsFlipper.setInAnimation(
 									ArtemisActivity.this, R.anim.slide_in_left);
 							_lensSettingsFlipper.setOutAnimation(
-									ArtemisActivity.this, R.anim.slide_out_right);
+									ArtemisActivity.this,
+									R.anim.slide_out_right);
 							_lensSettingsFlipper.setDisplayedChild(0);
 						}
 					}
@@ -799,15 +815,17 @@ public class ArtemisActivity extends Activity implements
 
 	private void initDatabase() {
 		// Open Database
-		_artemisDBHelper = new ArtemisDatabaseHelper(this);
+		if (_artemisDBHelper == null) {
+			_artemisDBHelper = new ArtemisDatabaseHelper(this);
 
-		// load initialization data for the first camera selection
-		// ((ArtemisApplication) getApplication())
-		// .postOnWorkerThread(new Runnable() {
-		// @Override
-		// public void run() {
-		_allCameraFormats = _artemisDBHelper.getCameraFormats();
-		_allCameraFormats.add(getString(R.string.custom_cameras));
+			// load initialization data for the first camera selection
+			// ((ArtemisApplication) getApplication())
+			// .postOnWorkerThread(new Runnable() {
+			// @Override
+			// public void run() {
+			_allCameraFormats = _artemisDBHelper.getCameraFormats();
+			_allCameraFormats.add(getString(R.string.custom_cameras));
+		}
 		// }
 		// });
 	}
@@ -959,11 +977,11 @@ public class ArtemisActivity extends Activity implements
 
 		}
 	}
-	
+
 	private void initCameraAndLensSelection() {
 		SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
 				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
-		
+
 		// Retrieve the previously selected camera and lenses
 		int selectedCameraRowId = artemisPrefs.getInt(
 				ArtemisPreferences.SELECTED_CAMERA_ROW, DEFAULT_CAMERA_ROW);
@@ -2068,14 +2086,14 @@ public class ArtemisActivity extends Activity implements
 					return "";
 				}
 
-//				@Override
-//				protected void onPostExecute(String result) {
-//					toast.cancel();
-//					sendBroadcast(new Intent(
-//							Intent.ACTION_MEDIA_MOUNTED,
-//							Uri.parse("file:/"
-//									+ Environment.getExternalStorageDirectory())));
-//				}
+				// @Override
+				// protected void onPostExecute(String result) {
+				// toast.cancel();
+				// sendBroadcast(new Intent(
+				// Intent.ACTION_MEDIA_MOUNTED,
+				// Uri.parse("file:/"
+				// + Environment.getExternalStorageDirectory())));
+				// }
 			}.execute(new String[] {});
 
 			mCameraPreview.restartPreview();
@@ -2260,7 +2278,8 @@ public class ArtemisActivity extends Activity implements
 				if (addressList.iterator().hasNext()) {
 					Address addr = addressList.iterator().next();
 					int nItems = 0;
-					String bullet = " "+context.getString(R.string.bullet)+ " ";
+					String bullet = " " + context.getString(R.string.bullet)
+							+ " ";
 					if (addr.getAddressLine(0) != null) {
 						if (nItems > 0)
 							gpsLocationString += bullet;
@@ -2896,6 +2915,15 @@ public class ArtemisActivity extends Activity implements
 	@Override
 	public void onSurfaceTextureAvailable(SurfaceTexture surface, int width,
 			int height) {
+		// Set the background
+		if (ArtemisActivity.arrowBackgroundImage == null) {
+			Options o = new Options();
+			o.inSampleSize = 2;
+			ArtemisActivity.arrowBackgroundImage = BitmapFactory
+					.decodeResource(getResources(), R.drawable.arrows,
+							o);
+		}
+		
 		mCamera = android.hardware.Camera.open();
 
 		try {
@@ -2914,8 +2942,11 @@ public class ArtemisActivity extends Activity implements
 
 	@Override
 	public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-		mCamera.stopPreview();
-		mCamera.release();
+		if (mCamera != null) {
+			mCamera.stopPreview();
+			mCamera.release();
+			mCamera = null;
+		}
 		return true;
 	}
 
