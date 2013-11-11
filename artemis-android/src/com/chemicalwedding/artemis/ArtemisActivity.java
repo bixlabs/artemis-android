@@ -206,7 +206,8 @@ public class ArtemisActivity extends Activity implements
 		// connect to the database and load some initial data
 		initDatabase();
 
-		initPreferences();
+		// setup the previous camera and lens selection
+		initCameraAndLensSelection();
 	}
 
 	@Override
@@ -265,6 +266,7 @@ public class ArtemisActivity extends Activity implements
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		_cameraPreview = new CameraPreview14(this, null);
 		mCameraContainer.addView(_cameraPreview, new ViewGroup.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,
@@ -279,6 +281,10 @@ public class ArtemisActivity extends Activity implements
 
 =======
 >>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
+=======
+		initPreferences();
+		
+>>>>>>> 71b640f (Fix resuming from settings and new changes not being applied)
 		initSensorManager();
 
 		initLocationManager();
@@ -812,45 +818,6 @@ public class ArtemisActivity extends Activity implements
 	private void initPreferences() {
 		SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
 				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
-		// Retrieve the previously selected camera and lenses
-		int selectedCameraRowId = artemisPrefs.getInt(
-				ArtemisPreferences.SELECTED_CAMERA_ROW, DEFAULT_CAMERA_ROW);
-		String lensMake = artemisPrefs.getString(
-				ArtemisPreferences.SELECTED_LENS_MAKE, DEFAULT_LENS_MAKE);
-		int selectedZoomLensPK = artemisPrefs.getInt(
-				getString(R.string.preference_key_selectedzoomlens), -1);
-
-		if (selectedCameraRowId > 0) {
-			// Id is above 0, this is a normal Camera from the Camera's table
-			setSelectedCamera(selectedCameraRowId, false, false);
-		} else {
-			// Set custom camera
-			CustomCamera selectedCustomCamera = _artemisDBHelper
-					.getCustomCameraDetailsForRowId(-selectedCameraRowId);
-
-			Log.v(TAG, String.format("Custom cam loaded on start: %s",
-					selectedCustomCamera));
-
-			_selectedCamera = new Camera(selectedCustomCamera);
-			tempSelectedCamera = _selectedCamera;
-			_artemisMath.setSelectedCamera(_selectedCamera);
-			lensMake = DEFAULT_LENS_MAKE;
-
-			_cameraDetailsText.setText(selectedCustomCamera.getName() + " "
-					+ _selectedCamera.getRatio());
-		}
-
-		if (selectedZoomLensPK < 0) {
-			setSelectedLensMake(lensMake, false, false);
-
-			String selectedLensesRowIds = artemisPrefs.getString(
-					ArtemisPreferences.SELECTED_LENS_ROW_CSV, DEFAULT_LENSES);
-			setSelectedLenses(selectedLensesRowIds, true, false);
-		} else {
-			setSelectedZoomLens(
-					_artemisDBHelper.getZoomLens(selectedZoomLensPK), false);
-		}
-
 		// check if gps is enabled
 		gpsEnabled = artemisPrefs.getBoolean(ArtemisPreferences.GPS_ENABLED,
 				true);
@@ -994,6 +961,51 @@ public class ArtemisActivity extends Activity implements
 			}
 
 		}
+	}
+	
+	private void initCameraAndLensSelection() {
+		SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
+				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
+		
+		// Retrieve the previously selected camera and lenses
+		int selectedCameraRowId = artemisPrefs.getInt(
+				ArtemisPreferences.SELECTED_CAMERA_ROW, DEFAULT_CAMERA_ROW);
+		String lensMake = artemisPrefs.getString(
+				ArtemisPreferences.SELECTED_LENS_MAKE, DEFAULT_LENS_MAKE);
+		int selectedZoomLensPK = artemisPrefs.getInt(
+				getString(R.string.preference_key_selectedzoomlens), -1);
+
+		if (selectedCameraRowId > 0) {
+			// Id is above 0, this is a normal Camera from the Camera's table
+			setSelectedCamera(selectedCameraRowId, false, false);
+		} else {
+			// Set custom camera
+			CustomCamera selectedCustomCamera = _artemisDBHelper
+					.getCustomCameraDetailsForRowId(-selectedCameraRowId);
+
+			Log.v(TAG, String.format("Custom cam loaded on start: %s",
+					selectedCustomCamera));
+
+			_selectedCamera = new Camera(selectedCustomCamera);
+			tempSelectedCamera = _selectedCamera;
+			_artemisMath.setSelectedCamera(_selectedCamera);
+			lensMake = DEFAULT_LENS_MAKE;
+
+			_cameraDetailsText.setText(selectedCustomCamera.getName() + " "
+					+ _selectedCamera.getRatio());
+		}
+
+		if (selectedZoomLensPK < 0) {
+			setSelectedLensMake(lensMake, false, false);
+
+			String selectedLensesRowIds = artemisPrefs.getString(
+					ArtemisPreferences.SELECTED_LENS_ROW_CSV, DEFAULT_LENSES);
+			setSelectedLenses(selectedLensesRowIds, true, false);
+		} else {
+			setSelectedZoomLens(
+					_artemisDBHelper.getZoomLens(selectedZoomLensPK), false);
+		}
+
 	}
 
 	@Override

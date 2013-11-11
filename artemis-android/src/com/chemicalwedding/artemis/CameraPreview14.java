@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -525,7 +524,9 @@ public class CameraPreview14 extends ViewGroup {
 			}
 
 			_artemisMath.calculateLargestLens();
+			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 			_artemisMath.selectFirstMeaningFullLens();
+			_artemisMath.resetTouchToCenter(); // now with green box
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 			this.calculateZoom(true);
 
