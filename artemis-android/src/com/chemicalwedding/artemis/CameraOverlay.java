@@ -19,19 +19,22 @@ public class CameraOverlay extends View {
 	private DashPathEffect _boxLineEffect = new DashPathEffect(new float[] {
 			10, 5, 5, 5 }, 2.0f);
 	private ArtemisMath _artemisMath = ArtemisMath.getInstance();
-//	private int screenWidth, screenHeight;
+	// private int screenWidth, screenHeight;
 	protected static boolean lockBoxEnabled = false;
-	
+
 	public CameraOverlay(Context context, AttributeSet attr) {
 		super(context, attr);
 
-//		screenWidth = context.getResources().getDisplayMetrics().widthPixels;
-//		screenHeight = context.getResources().getDisplayMetrics().heightPixels;
-//		if (screenHeight > screenWidth) {
-//			// swap!
-//			screenWidth = getContext().getResources().getDisplayMetrics().heightPixels;
-//			screenHeight = getContext().getResources().getDisplayMetrics().widthPixels;
-//		}
+		// screenWidth = context.getResources().getDisplayMetrics().widthPixels;
+		// screenHeight =
+		// context.getResources().getDisplayMetrics().heightPixels;
+		// if (screenHeight > screenWidth) {
+		// // swap!
+		// screenWidth =
+		// getContext().getResources().getDisplayMetrics().heightPixels;
+		// screenHeight =
+		// getContext().getResources().getDisplayMetrics().widthPixels;
+		// }
 
 		// _paint.setAntiAlias(true);
 		// _paint.setTypeface(Typeface.DEFAULT_BOLD);
@@ -64,7 +67,8 @@ public class CameraOverlay extends View {
 				}
 				_paint.setStyle(Style.FILL);
 				_paint.setColor(Color.RED);
-				if (lensRect.getFocalLengthString().length() > 2) {
+				if (lensRect.getFocalLengthString() != null
+						&& lensRect.getFocalLengthString().length() > 2) {
 					lensFocalLengthBox.set(lensRect.right - 34,
 							lensRect.bottom - 20, lensRect.right - 1,
 							lensRect.bottom - 1);
@@ -78,8 +82,11 @@ public class CameraOverlay extends View {
 							lensRect.bottom - 1);
 					canvas.drawRect(lensFocalLengthBox, _paint);
 					_paint.setColor(Color.WHITE);
-					canvas.drawText(lensRect.getFocalLengthString(),
-							lensRect.right - 13, lensRect.bottom - 5, _paint);
+					if (lensRect.getFocalLengthString() != null) {
+						canvas.drawText(lensRect.getFocalLengthString(),
+								lensRect.right - 13, lensRect.bottom - 5,
+								_paint);
+					}
 				}
 
 				_paint.setStyle(Style.STROKE);
@@ -103,7 +110,7 @@ public class CameraOverlay extends View {
 			_paint.setColor(_artemisMath.getCurrentGreenBox().getColor());
 			_paint.setPathEffect(_boxLineEffect);
 			canvas.drawRect(_artemisMath.getCurrentGreenBox(), _paint);
-			
+
 			if (!_artemisMath.isFullscreen()) {
 				_paint.setPathEffect(null);
 				_paint.setStyle(Style.FILL);

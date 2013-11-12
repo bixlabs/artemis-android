@@ -17,7 +17,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.TextureView;
 import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,11 +58,6 @@ public class CustomCameraCalibrationActivity extends Activity implements
 
 		customCameraPreview = (CustomCameraPreview) findViewById(R.id.customCameraPreview);
 
-		TextureView textureView = new TextureView(this);
-		textureView.setSurfaceTextureListener(this);
-		customCameraPreview.setTextureView(textureView);
-		customCameraPreview.addView(textureView);
-
 		aspectRatio = getIntent().getFloatExtra("ratio", 1.78f);
 		squeezeRatio = getIntent().getFloatExtra("squeeze", 1f);
 		focalLength = getIntent().getFloatExtra("focalLength", 50);
@@ -103,11 +97,16 @@ public class CustomCameraCalibrationActivity extends Activity implements
 		bindViewEvents();
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
+//	@Override
+//	protected void onPause() {
+//		super.onPause();
+//	}
+//
+//	@Override
+//	protected void onResume() {
+//		super.onResume();
+//	}
+	
 	private final Runnable prevRunnable = new Runnable() {
 		public void run() {
 			if (prevClick.isDown()) {

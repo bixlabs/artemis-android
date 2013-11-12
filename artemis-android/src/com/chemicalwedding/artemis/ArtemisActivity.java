@@ -264,6 +264,7 @@ public class ArtemisActivity extends Activity implements
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
+		currentViewId = R.id.artemisPreview;
 	}
 
 	@Override
