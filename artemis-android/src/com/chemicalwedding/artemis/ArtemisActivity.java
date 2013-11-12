@@ -194,7 +194,6 @@ public class ArtemisActivity extends Activity implements
 		Appirater.appLaunched(this);
 
 		startArtemis();
-
 	}
 
 	protected void startArtemis() {
@@ -230,11 +229,11 @@ public class ArtemisActivity extends Activity implements
 =======
 >>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
 
-//		if (mCamera != null) {
-//			mCamera.stopPreview();
-//			mCamera.release();
-//			mCamera = null;
-//		}
+		if (mCamera != null) {
+			mCamera.stopPreview();
+			mCamera.release();
+			mCamera = null;
+		}
 
 		if (gpsEnabled && locationManager != null)
 			locationManager.removeUpdates(locationListener);
@@ -264,7 +263,8 @@ public class ArtemisActivity extends Activity implements
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
-		currentViewId = R.id.artemisPreview;
+		
+		initDatabase();
 	}
 
 	@Override
