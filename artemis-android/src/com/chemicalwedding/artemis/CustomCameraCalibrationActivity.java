@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.TextureView;
 import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -102,10 +103,15 @@ public class CustomCameraCalibrationActivity extends Activity implements
 //		super.onPause();
 //	}
 //
-//	@Override
-//	protected void onResume() {
-//		super.onResume();
-//	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		TextureView textureView = new TextureView(this);
+		textureView.setSurfaceTextureListener(this);
+		customCameraPreview.setTextureView(textureView);
+		customCameraPreview.addView(textureView);
+	}
 	
 	private final Runnable prevRunnable = new Runnable() {
 		public void run() {
