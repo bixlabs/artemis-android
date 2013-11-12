@@ -98,6 +98,7 @@ public class ArtemisActivity extends Activity implements
 
 	private CameraPreview14 mCameraPreview;
 	private android.hardware.Camera mCamera;
+	private TextureView mTextureView;
 
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
@@ -251,7 +252,7 @@ public class ArtemisActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		Log.i(TAG, "Stopping Artemis");
-		
+
 		// Close the database connection
 		if (_artemisDBHelper != null) {
 			_artemisDBHelper.close();
@@ -263,7 +264,7 @@ public class ArtemisActivity extends Activity implements
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
-		
+
 		initDatabase();
 	}
 
@@ -296,10 +297,31 @@ public class ArtemisActivity extends Activity implements
 >>>>>>> 71b640f (Fix resuming from settings and new changes not being applied)
 =======
 
+<<<<<<< HEAD
 >>>>>>> 42f959f (Fix custom camera calibration activity on kitkat)
+=======
+		initCamera();
+
+>>>>>>> 4c8ce40 (Finally nailed it, reuse the texture view on resume)
 		initSensorManager();
 
 		initLocationManager();
+	}
+
+	private boolean isSurfaceAvailable = false;
+	
+	private void initCamera() {
+		if (mCamera == null && mTextureView != null && isSurfaceAvailable) {
+			mCamera = android.hardware.Camera.open();
+
+			try {
+				mCamera.setPreviewTexture(mTextureView.getSurfaceTexture());
+			} catch (IOException t) {
+			}
+
+			mCameraPreview.openCamera(mCamera);
+			this.reconfigureNextAndPreviousLensButtons();
+		}
 	}
 
 	private void initSensorManager() {
@@ -577,10 +599,10 @@ public class ArtemisActivity extends Activity implements
 
 	private void bindViewObjects() {
 		mCameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
-		TextureView textureView = new TextureView(this);
-		textureView.setSurfaceTextureListener(this);
-		mCameraPreview.setTextureView(textureView);
-		mCameraPreview.addView(textureView);
+		mTextureView = new TextureView(this);
+		mTextureView.setSurfaceTextureListener(this);
+		mCameraPreview.setTextureView(mTextureView);
+		mCameraPreview.addView(mTextureView);
 
 		mCameraOverlay = (CameraOverlay) findViewById(R.id.cameraOverlay);
 		mCameraAngleDetailView = (CameraAngleDetailView) findViewById(R.id.CameraAngleDetailView);
@@ -2921,10 +2943,9 @@ public class ArtemisActivity extends Activity implements
 			Options o = new Options();
 			o.inSampleSize = 2;
 			ArtemisActivity.arrowBackgroundImage = BitmapFactory
-					.decodeResource(getResources(), R.drawable.arrows,
-							o);
+					.decodeResource(getResources(), R.drawable.arrows, o);
 		}
-		
+
 		mCamera = android.hardware.Camera.open();
 
 		try {
@@ -2934,6 +2955,8 @@ public class ArtemisActivity extends Activity implements
 
 		mCameraPreview.openCamera(mCamera);
 		this.reconfigureNextAndPreviousLensButtons();
+		
+		isSurfaceAvailable = true;
 	}
 
 	@Override
