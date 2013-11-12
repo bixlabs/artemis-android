@@ -308,7 +308,7 @@ public class ArtemisMath {
 
 			boolean ignoreThisOne = true;
 
-			if (lensFocalLength > _largestViewableFocalLength) {
+			if (lensFocalLength-0.5 > _largestViewableFocalLength) {
 				validcount++;
 				ignoreThisOne = false;
 				if (firstMeaningfulLens == -1) {

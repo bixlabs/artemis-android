@@ -98,21 +98,28 @@ public class CustomCameraCalibrationActivity extends Activity implements
 		bindViewEvents();
 	}
 
-//	@Override
-//	protected void onPause() {
-//		super.onPause();
-//	}
-//
+	@Override
+	protected void onPause() {
+		super.onPause();
+
+		if (mCamera != null) {
+			mCamera.stopPreview();
+			mCamera.release();
+			mCamera = null;
+		}
+
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+
 		TextureView textureView = new TextureView(this);
 		textureView.setSurfaceTextureListener(this);
 		customCameraPreview.setTextureView(textureView);
 		customCameraPreview.addView(textureView);
 	}
-	
+
 	private final Runnable prevRunnable = new Runnable() {
 		public void run() {
 			if (prevClick.isDown()) {
@@ -413,10 +420,9 @@ public class CustomCameraCalibrationActivity extends Activity implements
 			Options o = new Options();
 			o.inSampleSize = 2;
 			ArtemisActivity.arrowBackgroundImage = BitmapFactory
-					.decodeResource(getResources(), R.drawable.arrows,
-							o);
+					.decodeResource(getResources(), R.drawable.arrows, o);
 		}
-		
+
 		mCamera = android.hardware.Camera.open();
 
 		try {
@@ -434,8 +440,11 @@ public class CustomCameraCalibrationActivity extends Activity implements
 
 	@Override
 	public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-		mCamera.stopPreview();
-		mCamera.release();
+		if (mCamera != null) {
+			mCamera.stopPreview();
+			mCamera.release();
+			mCamera = null;
+		}
 		return true;
 	}
 

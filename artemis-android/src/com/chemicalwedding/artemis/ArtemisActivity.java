@@ -36,6 +36,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -215,6 +216,12 @@ public class ArtemisActivity extends Activity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.i(TAG, "Destroying Artemis");
+
+		// Close the database connection
+		if (_artemisDBHelper != null) {
+			_artemisDBHelper.close();
+			_artemisDBHelper = null;
+		}
 	}
 
 	@Override
@@ -252,22 +259,12 @@ public class ArtemisActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		Log.i(TAG, "Stopping Artemis");
-
-		isSurfaceAvailable = false;
-
-		// Close the database connection
-		if (_artemisDBHelper != null) {
-			_artemisDBHelper.close();
-			_artemisDBHelper = null;
-		}
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
-
-		initDatabase();
 	}
 
 	@Override
@@ -290,6 +287,7 @@ public class ArtemisActivity extends Activity implements
 			// _artemisMath.calculateRectBoxesAndLabelsForLenses();
 		}
 
+<<<<<<< HEAD
 =======
 >>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
 =======
@@ -307,12 +305,17 @@ public class ArtemisActivity extends Activity implements
 =======
 		reinitCamera();
 >>>>>>> e819b9d (Make resume work better, fix resume from settings)
+=======
+		if (Build.VERSION.SDK_INT < 19) {
+			reinitCamera();
+		}
+>>>>>>> 7476643 (Fix bugs... don't show close lens to orange box, save and edit picture)
 
 >>>>>>> 4c8ce40 (Finally nailed it, reuse the texture view on resume)
 		initSensorManager();
 
 		initLocationManager();
-		
+
 		// Set the background
 		if (ArtemisActivity.arrowBackgroundImage == null) {
 			Options o = new Options();
@@ -1159,6 +1162,8 @@ public class ArtemisActivity extends Activity implements
 										public void onClick(
 												DialogInterface dialog,
 												int which) {
+											_artemisMath
+													.setInitializedFirstTime(false);
 											finish();
 										}
 									})
@@ -2278,14 +2283,14 @@ public class ArtemisActivity extends Activity implements
 						return "";
 					}
 
-					@Override
-					protected void onPostExecute(String result) {
-						toast.cancel();
-						sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
-								Uri.parse("file://"
-										+ Environment
-												.getExternalStorageDirectory())));
-					}
+//					@Override
+//					protected void onPostExecute(String result) {
+//						toast.cancel();
+//						sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+//								Uri.parse("file://"
+//										+ Environment
+//												.getExternalStorageDirectory())));
+//					}
 				}.execute(new String[] {});
 
 				mCameraPreview.restartPreview();
