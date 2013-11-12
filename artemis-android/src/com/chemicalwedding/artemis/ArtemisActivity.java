@@ -253,6 +253,8 @@ public class ArtemisActivity extends Activity implements
 		super.onStop();
 		Log.i(TAG, "Stopping Artemis");
 
+		isSurfaceAvailable = false;
+
 		// Close the database connection
 		if (_artemisDBHelper != null) {
 			_artemisDBHelper.close();
@@ -298,20 +300,33 @@ public class ArtemisActivity extends Activity implements
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 42f959f (Fix custom camera calibration activity on kitkat)
 =======
 		initCamera();
+=======
+		reinitCamera();
+>>>>>>> e819b9d (Make resume work better, fix resume from settings)
 
 >>>>>>> 4c8ce40 (Finally nailed it, reuse the texture view on resume)
 		initSensorManager();
 
 		initLocationManager();
+		
+		// Set the background
+		if (ArtemisActivity.arrowBackgroundImage == null) {
+			Options o = new Options();
+			o.inSampleSize = 2;
+			ArtemisActivity.arrowBackgroundImage = BitmapFactory
+					.decodeResource(getResources(), R.drawable.arrows, o);
+		}
 	}
 
 	private boolean isSurfaceAvailable = false;
-	
-	private void initCamera() {
+
+	private void reinitCamera() {
 		if (mCamera == null && mTextureView != null && isSurfaceAvailable) {
+
 			mCamera = android.hardware.Camera.open();
 
 			try {
@@ -319,7 +334,7 @@ public class ArtemisActivity extends Activity implements
 			} catch (IOException t) {
 			}
 
-			mCameraPreview.openCamera(mCamera);
+			mCameraPreview.openCamera(mCamera, false);
 			this.reconfigureNextAndPreviousLensButtons();
 		}
 	}
@@ -2946,16 +2961,18 @@ public class ArtemisActivity extends Activity implements
 					.decodeResource(getResources(), R.drawable.arrows, o);
 		}
 
-		mCamera = android.hardware.Camera.open();
+		if (mCamera == null) {
+			mCamera = android.hardware.Camera.open();
 
-		try {
-			mCamera.setPreviewTexture(surface);
-		} catch (IOException t) {
+			try {
+				mCamera.setPreviewTexture(surface);
+			} catch (IOException t) {
+			}
+
+			mCameraPreview.openCamera(mCamera, true);
+			this.reconfigureNextAndPreviousLensButtons();
 		}
 
-		mCameraPreview.openCamera(mCamera);
-		this.reconfigureNextAndPreviousLensButtons();
-		
 		isSurfaceAvailable = true;
 	}
 

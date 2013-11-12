@@ -357,7 +357,7 @@ public class CameraPreview14 extends ViewGroup {
 		mTextureView = textureView;
 	}
 
-	public void openCamera(Camera camera) {
+	public void openCamera(Camera camera, boolean resetLensAndTouch) {
 
 		mCamera = camera;
 
@@ -523,11 +523,13 @@ public class CameraPreview14 extends ViewGroup {
 				_artemisMath.setInitializedFirstTime(true);
 			}
 
-			_artemisMath.calculateLargestLens();
-			_artemisMath.calculateRectBoxesAndLabelsForLenses();
-			_artemisMath.selectFirstMeaningFullLens();
-			_artemisMath.resetTouchToCenter(); // now with green box
-			_artemisMath.calculateRectBoxesAndLabelsForLenses();
+			if (resetLensAndTouch) {
+				_artemisMath.calculateLargestLens();
+				_artemisMath.calculateRectBoxesAndLabelsForLenses();
+				_artemisMath.selectFirstMeaningFullLens();
+				_artemisMath.resetTouchToCenter(); // now with green box
+				_artemisMath.calculateRectBoxesAndLabelsForLenses();
+			}
 			this.calculateZoom(true);
 
 			// Set the focal length lens textview
