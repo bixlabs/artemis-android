@@ -5,7 +5,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1174:1180:public static java.lang.String getBucketId(java.lang.String)
+    1230:1236:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
@@ -38,6 +38,7 @@ com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String QUICKSHOT_ENABLED
     public static final java.lang.String LOCK_BOXES_ENABLED
     public static final java.lang.String PREVIEW_SELECTION
+    public static final java.lang.String SMOOTH_IMAGE_ENABLED
     public static final java.lang.String HEADING_DISPLAY
     public static final java.lang.String SAVE_PICTURE_SHOW_DESCRIPTION
     public static final java.lang.String SAVE_PICTURE_SHOW_NOTES
@@ -55,17 +56,20 @@ com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String CAMERA_LENS_V_ANGLE
     public static final java.lang.String AUTO_FOCUS_ON_PICTURE
     public static final java.lang.String SAVE_RAW_IMAGE
+    public static final java.lang.String SELECTED_FOCUS_MODE
+    public static final java.lang.String SELECTED_SCENE_MODE
 com.chemicalwedding.artemis.BuildConfig
 com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
-    543:548:public void releaseCamera()
-    892:892:public void clearFullScreenTempFrame()
-    898:901:public void resetDigitalZoomLevel()
+    555:560:public void releaseCamera()
+    904:904:public void clearFullScreenTempFrame()
+    910:913:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed
 com.chemicalwedding.artemis.CustomCameraPreview:
     private static final java.lang.String logTag
+    201:206:public void releaseCamera()
 com.chemicalwedding.artemis.MyServerManagedPolicy
 com.chemicalwedding.artemis.R
 com.chemicalwedding.artemis.R$anim
@@ -94,12 +98,12 @@ com.chemicalwedding.artemis.database.ArtemisDatabaseHelper:
 com.chemicalwedding.artemis.database.Camera:
     private java.lang.String formatorder
     private java.lang.String medium
-    45:45:public java.lang.String getFormat()
-    49:50:public void setFormat(java.lang.String)
-    101:101:public java.lang.String getFormatorder()
-    105:106:public void setFormatorder(java.lang.String)
-    109:109:public java.lang.String getMedium()
-    113:114:public void setMedium(java.lang.String)
+    44:44:public java.lang.String getFormat()
+    48:49:public void setFormat(java.lang.String)
+    100:100:public java.lang.String getFormatorder()
+    104:105:public void setFormatorder(java.lang.String)
+    108:108:public java.lang.String getMedium()
+    112:113:public void setMedium(java.lang.String)
 com.chemicalwedding.artemis.database.Lens:
     101:101:public float getSqueeze()
     109:109:public boolean isCustomLens()

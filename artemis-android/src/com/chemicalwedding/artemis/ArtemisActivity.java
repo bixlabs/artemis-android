@@ -293,6 +293,7 @@ public class ArtemisActivity extends Activity implements
 =======
 		initPreferences();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 >>>>>>> 71b640f (Fix resuming from settings and new changes not being applied)
 =======
@@ -310,6 +311,10 @@ public class ArtemisActivity extends Activity implements
 			reinitCamera();
 		}
 >>>>>>> 7476643 (Fix bugs... don't show close lens to orange box, save and edit picture)
+=======
+
+		reinitCamera();
+>>>>>>> a589c79 (Fix nexus 5 restart preview bug)
 
 >>>>>>> 4c8ce40 (Finally nailed it, reuse the texture view on resume)
 		initSensorManager();
@@ -338,7 +343,9 @@ public class ArtemisActivity extends Activity implements
 			}
 
 			mCameraPreview.openCamera(mCamera, false);
+			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 			this.reconfigureNextAndPreviousLensButtons();
+			
 		}
 	}
 
@@ -2283,14 +2290,14 @@ public class ArtemisActivity extends Activity implements
 						return "";
 					}
 
-//					@Override
-//					protected void onPostExecute(String result) {
-//						toast.cancel();
-//						sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
-//								Uri.parse("file://"
-//										+ Environment
-//												.getExternalStorageDirectory())));
-//					}
+					// @Override
+					// protected void onPostExecute(String result) {
+					// toast.cancel();
+					// sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+					// Uri.parse("file://"
+					// + Environment
+					// .getExternalStorageDirectory())));
+					// }
 				}.execute(new String[] {});
 
 				mCameraPreview.restartPreview();
@@ -2993,6 +3000,7 @@ public class ArtemisActivity extends Activity implements
 			mCamera.release();
 			mCamera = null;
 		}
+		isSurfaceAvailable = false;
 		return true;
 	}
 

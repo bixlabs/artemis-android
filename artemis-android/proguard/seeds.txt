@@ -26,6 +26,9 @@ com.chemicalwedding.artemis.CustomCameraCalibrationActivity
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity: CustomCameraCalibrationActivity()
 com.chemicalwedding.artemis.CustomCameraOverlay
 com.chemicalwedding.artemis.CustomCameraOverlay: CustomCameraOverlay(android.content.Context,android.util.AttributeSet)
+com.chemicalwedding.artemis.CustomCameraPreview
+com.chemicalwedding.artemis.CustomCameraPreview: CustomCameraPreview(android.content.Context,android.util.AttributeSet)
+com.chemicalwedding.artemis.CustomCameraPreview: void setTextureView(android.view.TextureView)
 com.chemicalwedding.artemis.CustomCameraPreview: void setArtemisMath(com.chemicalwedding.artemis.ArtemisMath)
 com.chemicalwedding.artemis.LongPressButton
 com.chemicalwedding.artemis.LongPressButton: LongPressButton(android.content.Context,android.util.AttributeSet,int)
@@ -173,6 +176,7 @@ com.chemicalwedding.artemis.R$id: int cancelLenses
 com.chemicalwedding.artemis.R$id: int chemical_wedding_logo
 com.chemicalwedding.artemis.R$id: int compass_heading_toggle
 com.chemicalwedding.artemis.R$id: int customCameraList
+com.chemicalwedding.artemis.R$id: int customCameraPreview
 com.chemicalwedding.artemis.R$id: int customCamera_active_sensor
 com.chemicalwedding.artemis.R$id: int customZoomLensList
 com.chemicalwedding.artemis.R$id: int custom_camera_active_sensor_name
@@ -289,6 +293,7 @@ com.chemicalwedding.artemis.R$string: int back_button_behaviour
 com.chemicalwedding.artemis.R$string: int backkey_default
 com.chemicalwedding.artemis.R$string: int backkey_summary
 com.chemicalwedding.artemis.R$string: int black_and_white_preview
+com.chemicalwedding.artemis.R$string: int bullet
 com.chemicalwedding.artemis.R$string: int buy_button
 com.chemicalwedding.artemis.R$string: int calibrate_chip_height
 com.chemicalwedding.artemis.R$string: int calibrate_chip_width
@@ -419,9 +424,11 @@ com.chemicalwedding.artemis.R$string: int preference_key_savedImageQuality
 com.chemicalwedding.artemis.R$string: int preference_key_savedImageScale
 com.chemicalwedding.artemis.R$string: int preference_key_selectedcamerarowid
 com.chemicalwedding.artemis.R$string: int preference_key_selectedexposurelevel
+com.chemicalwedding.artemis.R$string: int preference_key_selectedfocusmode
 com.chemicalwedding.artemis.R$string: int preference_key_selectedlanguage
 com.chemicalwedding.artemis.R$string: int preference_key_selectedlensescsvstring
 com.chemicalwedding.artemis.R$string: int preference_key_selectedlensmake
+com.chemicalwedding.artemis.R$string: int preference_key_selectedscenemode
 com.chemicalwedding.artemis.R$string: int preference_key_selectedwhitebalance
 com.chemicalwedding.artemis.R$string: int preference_key_selectedzoomlens
 com.chemicalwedding.artemis.R$string: int preference_key_showcameradetails
@@ -468,11 +475,17 @@ com.chemicalwedding.artemis.R$string: int screen_settings
 com.chemicalwedding.artemis.R$string: int select_image_quality
 com.chemicalwedding.artemis.R$string: int select_image_size
 com.chemicalwedding.artemis.R$string: int select_language_text
+com.chemicalwedding.artemis.R$string: int selectedFocus_default
 com.chemicalwedding.artemis.R$string: int set_exposure_text
 com.chemicalwedding.artemis.R$string: int set_flash_mode_text
+com.chemicalwedding.artemis.R$string: int set_focus_mode
+com.chemicalwedding.artemis.R$string: int set_scene_mode
 com.chemicalwedding.artemis.R$string: int set_white_balance_text
 com.chemicalwedding.artemis.R$string: int settings_reset_summary
 com.chemicalwedding.artemis.R$string: int settings_reset_title
+com.chemicalwedding.artemis.R$string: int smooth_filter_text
+com.chemicalwedding.artemis.R$string: int smooth_image_off
+com.chemicalwedding.artemis.R$string: int smooth_image_on
 com.chemicalwedding.artemis.R$string: int sure_you_want_to_exit
 com.chemicalwedding.artemis.R$string: int tilt_and_roll_text
 com.chemicalwedding.artemis.R$string: int tilt_down
