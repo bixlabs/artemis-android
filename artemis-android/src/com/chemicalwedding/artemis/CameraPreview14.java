@@ -1,5 +1,6 @@
 package com.chemicalwedding.artemis;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,7 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -19,19 +22,24 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
+import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.Size;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.TextureView;
@@ -71,6 +79,7 @@ public class CameraPreview14 extends ViewGroup {
 
 	static protected int previewHeight, previewWidth, requestedWidthDiff = 0;
 	protected Bitmap bitmapToSave;
+	private ArtemisApplication artemisApplication;
 
 	// private final float pixelDensity;
 	private final String degreeSymbolFromStringsXML;
@@ -79,7 +88,9 @@ public class CameraPreview14 extends ViewGroup {
 
 	public CameraPreview14(Context context, AttributeSet attr) {
 		super(context, attr);
-
+		 artemisApplication = ((ArtemisApplication) (((Activity) context)
+	                .getApplication()));
+	       
 		degreeSymbolFromStringsXML = context.getString(R.string.degree_symbol);
 	}
 
@@ -189,129 +200,129 @@ public class CameraPreview14 extends ViewGroup {
 		}
 	}
 
+//	private void capturePreviewFrameDelayed() {
+//		this.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				takePictureFrame();
+//			}
+//		}, 350);
+//	}
+
 	private void capturePreviewFrameDelayed() {
-		this.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				takePictureFrame();
-			}
-		}, 350);
-	}
+        artemisApplication.postDelayedOnWorkerThread(new Runnable() {
+            @Override
+            public void run() {
+                mCamera.setOneShotPreviewCallback(takePicturePreviewCallback);
+            }
+        }, 100);
+    }
 
-	// final PreviewCallback takePicturePreviewCallback = new PreviewCallback()
-	// {
-	// @Override
-	// public void onPreviewFrame(byte[] data, Camera camera) {
+    final PreviewCallback takePicturePreviewCallback = new PreviewCallback() {
+        @Override
+        public void onPreviewFrame(byte[] data, Camera camera) {
 
-	// Get the YuV image
-	// YuvImage yuv_image = new YuvImage(data, ImageFormat.NV21,
-	// previewWidth, previewHeight, null);
-	// // Convert YuV to Jpeg
-	// Rect rect = new Rect(0, 0, previewWidth, previewHeight);
-	// ByteArrayOutputStream output_stream = new ByteArrayOutputStream();
-	// yuv_image.compressToJpeg(rect, 100, output_stream);
-	// // Convert from Jpeg to Bitmap
-	// bitmapToSave = BitmapFactory.decodeByteArray(
-	// output_stream.toByteArray(), 0, output_stream.size());
-	// System.gc();
-	private void takePictureFrame() {
-		bitmapToSave = mTextureView.getBitmap();
+            // Get the YuV image
+            YuvImage yuv_image = new YuvImage(data, ImageFormat.NV21,
+                    previewWidth, previewHeight, null);
+            // Convert YuV to Jpeg
+            Rect rect = new Rect(0, 0, previewWidth, previewHeight);
+            ByteArrayOutputStream output_stream = new ByteArrayOutputStream();
+            yuv_image.compressToJpeg(rect, 100, output_stream);
+            // Convert from Jpeg to Bitmap
+            bitmapToSave = BitmapFactory.decodeByteArray(
+                    output_stream.toByteArray(), 0, output_stream.size());
+            System.gc();
 
-		Log.v(logTag,
-				String.format("New frame bitmap %d x %d",
-						bitmapToSave.getWidth(), bitmapToSave.getHeight()));
+            RectF selectedRect = _artemisMath.getSelectedLensBox();
+            RectF greenRect = _artemisMath.getCurrentGreenBox();
 
-		RectF selectedRect = _artemisMath.getSelectedLensBox();
-		RectF greenRect = _artemisMath.getCurrentGreenBox();
+            // bitmapToSave = Bitmap.createBitmap(tempFrameBitmap, previewWidth,
+            // previewHeight, Bitmap.Config.RGB_565);
 
-		// bitmapToSave = Bitmap.createBitmap(tempFrameBitmap, previewWidth,
-		// previewHeight, Bitmap.Config.RGB_565);
+            final int imageHeight = determineImageHeight(previewHeight);
 
-		final int imageHeight = determineImageHeight(previewHeight);
+            if (scaleFactor >= 1) {
 
-		if (scaleFactor >= 1) {
+                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
+                        ArtemisMath.scaledPreviewWidth,
+                        ArtemisMath.scaledPreviewHeight, smoothImagesEnabled);
 
-			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
-					ArtemisMath.scaledPreviewWidth,
-					ArtemisMath.scaledPreviewHeight, smoothImagesEnabled);
+                bitmapToSave = Bitmap.createBitmap(bitmapToSave,
+                        (int) (selectedRect.left), (int) (selectedRect.top),
+                        (int) (selectedRect.width()),
+                        (int) (selectedRect.height()));
 
-			bitmapToSave = Bitmap
-					.createBitmap(bitmapToSave, (int) (selectedRect.left),
-							(int) (selectedRect.top),
-							(int) (selectedRect.width()),
-							(int) (selectedRect.height()));
+                System.gc();
 
-			System.gc();
+                float ratio = selectedRect.width() / selectedRect.height();
+                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
+                        (int) (imageHeight * ratio), imageHeight,
+                        smoothImagesEnabled);
+            }
+            // We need to scale down
+            else {
+                Log.d(logTag, "Scale down on save");
+                float ratio = greenRect.width() / greenRect.height();
+                int newwidth = (int) (imageHeight * ratio);
+                Bitmap canvasBitmap = Bitmap.createBitmap(newwidth,
+                        imageHeight, Bitmap.Config.RGB_565);
+                Canvas c = new Canvas(canvasBitmap);
+                Paint p = new Paint();
 
-			float ratio = selectedRect.width() / selectedRect.height();
-			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
-					(int) (imageHeight * ratio), imageHeight,
-					smoothImagesEnabled);
-		}
-		// We need to scale down
-		else {
-			Log.d(logTag, "Scale down on save");
-			float ratio = greenRect.width() / greenRect.height();
-			int newwidth = (int) (imageHeight * ratio);
-			Bitmap canvasBitmap = Bitmap.createBitmap(newwidth, imageHeight,
-					Bitmap.Config.RGB_565);
-			Canvas c = new Canvas(canvasBitmap);
-			Paint p = new Paint();
+                float width = newwidth * ArtemisMath.horizViewAngle
+                        / _artemisMath.selectedLensAngleData[0]
+                        * totalScreenWidth / greenRect.width();
+                float previewRatio = (float) previewHeight / previewWidth;
+                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
+                        (int) (width), (int) (width * previewRatio),
+                        smoothImagesEnabled);
 
-			float width = newwidth * ArtemisMath.horizViewAngle
-					/ _artemisMath.selectedLensAngleData[0] * totalScreenWidth
-					/ greenRect.width();
-			float previewRatio = (float) previewHeight / previewWidth;
-			bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
-					(int) (width), (int) (width * previewRatio),
-					smoothImagesEnabled);
+                int xpos = (newwidth - bitmapToSave.getWidth()) / 2;
+                int ypos = (imageHeight - bitmapToSave.getHeight()) / 2;
 
-			int xpos = (newwidth - bitmapToSave.getWidth()) / 2;
-			int ypos = (imageHeight - bitmapToSave.getHeight()) / 2;
+                // draw background
+                c.drawBitmap(ArtemisActivity.arrowBackgroundImage, null,
+                        new Rect(0, 0, c.getWidth(), c.getHeight()), p);
 
-			// draw background
-			c.drawBitmap(ArtemisActivity.arrowBackgroundImage, null, new Rect(
-					0, 0, c.getWidth(), c.getHeight()), p);
+                c.drawBitmap(bitmapToSave, xpos, ypos, p);
 
-			c.drawBitmap(bitmapToSave, xpos, ypos, p);
+                bitmapToSave = canvasBitmap;
+            }
 
-			bitmapToSave = canvasBitmap;
-		}
+            if (!quickshotEnabled) {
+                ArtemisActivity.pictureSavePreview.setImageBitmap(bitmapToSave);
+                ArtemisActivity.viewFlipper.setInAnimation(null);
+                ArtemisActivity.viewFlipper.setDisplayedChild(3);
+                ArtemisActivity.currentViewId = R.id.savePictureViewFlipper;
+            } else {
+                final Toast toast = Toast.makeText(getContext(), getContext()
+                        .getString(R.string.image_saved_success),
+                        Toast.LENGTH_SHORT);
+                toast.show();
+                new AsyncTask<String, Void, String>() {
+                    @Override
+                    protected String doInBackground(String... params) {
+                        renderPictureDetailsAndSave();
+                        System.gc();
+                        return "";
+                    }
 
-		if (!quickshotEnabled) {
-			ArtemisActivity.pictureSavePreview.setImageBitmap(bitmapToSave);
-			ArtemisActivity.viewFlipper.setInAnimation(null);
-			ArtemisActivity.viewFlipper.setDisplayedChild(3);
-			ArtemisActivity.currentViewId = R.id.savePictureViewFlipper;
-		} else {
-			final Toast toast = Toast.makeText(getContext(), getContext()
-					.getString(R.string.image_saved_success),
-					Toast.LENGTH_SHORT);
-			toast.show();
-			new AsyncTask<String, Void, String>() {
-				@Override
-				protected String doInBackground(String... params) {
-					renderPictureDetailsAndSave();
-					System.gc();
-					return "";
-				}
-
-				// @Override
-				// protected void onPostExecute(String result) {
-				// toast.cancel();
-				// getContext()
-				// .sendBroadcast(
-				// new Intent(
-				// Intent.ACTION_MEDIA_MOUNTED,
-				// Uri.parse("file://"
-				// + Environment
-				// .getExternalStorageDirectory())));
-				// }
-			}.execute(new String[] {});
-		}
-		// }
-
-	}
+                    @Override
+                    protected void onPostExecute(String result) {
+                        toast.cancel();
+                        getContext()
+                                .sendBroadcast(
+                                        new Intent(
+                                                Intent.ACTION_MEDIA_MOUNTED,
+                                                Uri.parse("file://"
+                                                        + Environment
+                                                        .getExternalStorageDirectory())));
+                    }
+                }.execute(new String[]{});
+            }
+        }
+    };
 
 	private static int determineImageHeight(int startImageHeight) {
 		switch (CameraPreview14.savedImageSizeIndex) {
