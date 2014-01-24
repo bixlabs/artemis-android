@@ -361,6 +361,7 @@ com.chemicalwedding.artemis.ArtemisApplication -> com.chemicalwedding.artemis.Ar
     void onCreate() -> onCreate
     void initLanguage() -> a
     void onTerminate() -> onTerminate
+    void postDelayedOnWorkerThread$574944f(java.lang.Runnable) -> a
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
 com.chemicalwedding.artemis.ArtemisMath -> com.chemicalwedding.artemis.be:
     com.chemicalwedding.artemis.ArtemisMath instance -> n
@@ -515,12 +516,12 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     boolean autoFocusBeforePictureTake -> o
     android.hardware.Camera$Size previewSize -> p
     float exposureStep -> q
-    android.hardware.Camera mCamera -> A
-    android.view.TextureView mTextureView -> B
-    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> C
+    android.hardware.Camera mCamera -> B
+    android.view.TextureView mTextureView -> C
+    com.chemicalwedding.artemis.ArtemisMath _artemisMath -> D
     float scaleFactor -> r
-    int totalScreenHeight -> D
-    int totalScreenWidth -> E
+    int totalScreenHeight -> E
+    int totalScreenWidth -> F
     int savedImageJPEGQuality -> s
     int savedImageSizeIndex -> t
     boolean blackAndWhitePreview -> u
@@ -528,14 +529,16 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     int previewWidth -> w
     int requestedWidthDiff -> x
     android.graphics.Bitmap bitmapToSave -> y
-    java.lang.String degreeSymbolFromStringsXML -> F
+    com.chemicalwedding.artemis.ArtemisApplication artemisApplication -> G
+    java.lang.String degreeSymbolFromStringsXML -> H
     android.hardware.Camera$AutoFocusCallback autoFocusTakePictureCallback -> z
+    android.hardware.Camera$PreviewCallback takePicturePreviewCallback -> A
     void initCameraDetails() -> a
     android.hardware.Camera$Size getOptimalPreviewSize(java.util.List,int,int) -> a
     void takePicture() -> b
     void autofocusCamera(boolean) -> a
-    void capturePreviewFrameDelayed() -> f
-    android.hardware.Camera openFrontFacingCameraGingerbread() -> g
+    void capturePreviewFrameDelayed() -> g
+    android.hardware.Camera openFrontFacingCameraGingerbread() -> h
     void setTextureView(android.view.TextureView) -> setTextureView
     void openCamera(android.hardware.Camera,boolean) -> a
     void setArtemisMath(com.chemicalwedding.artemis.ArtemisMath) -> setArtemisMath
@@ -550,20 +553,29 @@ com.chemicalwedding.artemis.CameraPreview14 -> com.chemicalwedding.artemis.Camer
     void onLayout(boolean,int,int,int,int) -> onLayout
     void onMeasure(int,int) -> onMeasure
     void access$0(com.chemicalwedding.artemis.CameraPreview14) -> a
-    void access$1(com.chemicalwedding.artemis.CameraPreview14) -> b
+    com.chemicalwedding.artemis.ArtemisMath access$1(com.chemicalwedding.artemis.CameraPreview14) -> b
+    int access$2(int) -> a
+    int access$3() -> f
+    android.hardware.Camera access$4(com.chemicalwedding.artemis.CameraPreview14) -> c
 com.chemicalwedding.artemis.CameraPreview14$1 -> com.chemicalwedding.artemis.bg:
     com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
     void onAutoFocus(boolean,android.hardware.Camera) -> onAutoFocus
 com.chemicalwedding.artemis.CameraPreview14$2 -> com.chemicalwedding.artemis.bh:
     com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
-    void run() -> run
-com.chemicalwedding.artemis.CameraPreview14$3 -> com.chemicalwedding.artemis.bi:
-    com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
+    void onPreviewFrame(byte[],android.hardware.Camera) -> onPreviewFrame
+    com.chemicalwedding.artemis.CameraPreview14 access$0(com.chemicalwedding.artemis.CameraPreview14$2) -> a
+com.chemicalwedding.artemis.CameraPreview14$2$1 -> com.chemicalwedding.artemis.bi:
+    com.chemicalwedding.artemis.CameraPreview14$2 this$1 -> a
+    android.widget.Toast val$toast -> b
+    void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.chemicalwedding.artemis.CameraPreview14$4 -> com.chemicalwedding.artemis.bj:
+com.chemicalwedding.artemis.CameraPreview14$3 -> com.chemicalwedding.artemis.bj:
     com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.CameraPreview14$5 -> com.chemicalwedding.artemis.bk:
+com.chemicalwedding.artemis.CameraPreview14$4 -> com.chemicalwedding.artemis.bk:
+    com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
+    void run() -> run
+com.chemicalwedding.artemis.CameraPreview14$5 -> com.chemicalwedding.artemis.bl:
     com.chemicalwedding.artemis.CameraPreview14 this$0 -> a
     void run() -> run
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity -> com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
@@ -618,49 +630,49 @@ com.chemicalwedding.artemis.CustomCameraCalibrationActivity -> com.chemicalweddi
     java.lang.Runnable access$11(com.chemicalwedding.artemis.CustomCameraCalibrationActivity) -> l
     java.lang.Runnable access$12(com.chemicalwedding.artemis.CustomCameraCalibrationActivity) -> m
     java.lang.Runnable access$13(com.chemicalwedding.artemis.CustomCameraCalibrationActivity) -> n
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$1 -> com.chemicalwedding.artemis.bl:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$1 -> com.chemicalwedding.artemis.bm:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$10 -> com.chemicalwedding.artemis.bm:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$10 -> com.chemicalwedding.artemis.bn:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     boolean onLongClick(android.view.View) -> onLongClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$11 -> com.chemicalwedding.artemis.bn:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$11 -> com.chemicalwedding.artemis.bo:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$12 -> com.chemicalwedding.artemis.bo:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$12 -> com.chemicalwedding.artemis.bp:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     boolean onLongClick(android.view.View) -> onLongClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$13 -> com.chemicalwedding.artemis.bp:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$13 -> com.chemicalwedding.artemis.bq:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$14 -> com.chemicalwedding.artemis.bq:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$14 -> com.chemicalwedding.artemis.br:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     boolean onLongClick(android.view.View) -> onLongClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$15 -> com.chemicalwedding.artemis.br:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$15 -> com.chemicalwedding.artemis.bs:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$2 -> com.chemicalwedding.artemis.bs:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$2 -> com.chemicalwedding.artemis.bt:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$3 -> com.chemicalwedding.artemis.bt:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$3 -> com.chemicalwedding.artemis.bu:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$4 -> com.chemicalwedding.artemis.bu:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$4 -> com.chemicalwedding.artemis.bv:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$5 -> com.chemicalwedding.artemis.bv:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$5 -> com.chemicalwedding.artemis.bw:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$6 -> com.chemicalwedding.artemis.bw:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$6 -> com.chemicalwedding.artemis.bx:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$7 -> com.chemicalwedding.artemis.bx:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$7 -> com.chemicalwedding.artemis.by:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$8 -> com.chemicalwedding.artemis.by:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$8 -> com.chemicalwedding.artemis.bz:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     boolean onLongClick(android.view.View) -> onLongClick
-com.chemicalwedding.artemis.CustomCameraCalibrationActivity$9 -> com.chemicalwedding.artemis.bz:
+com.chemicalwedding.artemis.CustomCameraCalibrationActivity$9 -> com.chemicalwedding.artemis.ca:
     com.chemicalwedding.artemis.CustomCameraCalibrationActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.chemicalwedding.artemis.CustomCameraOverlay -> com.chemicalwedding.artemis.CustomCameraOverlay:
@@ -689,7 +701,7 @@ com.chemicalwedding.artemis.LongPressButton -> com.chemicalwedding.artemis.LongP
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
     void cancelLongpressIfRequired(android.view.MotionEvent) -> a
     void cancelLongpress() -> a
-com.chemicalwedding.artemis.LongPressButton$ClickBoolean -> com.chemicalwedding.artemis.ca:
+com.chemicalwedding.artemis.LongPressButton$ClickBoolean -> com.chemicalwedding.artemis.cb:
     boolean mDown -> a
     com.chemicalwedding.artemis.LongPressButton this$0 -> b
 com.chemicalwedding.artemis.SettingsActivity -> com.chemicalwedding.artemis.SettingsActivity:
@@ -703,44 +715,44 @@ com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment -> com.chemi
     void onPause() -> onPause
     void access$0(com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment,android.preference.Preference,java.lang.String) -> a
     void access$1(com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment,java.lang.String) -> a
-com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$1 -> com.chemicalwedding.artemis.cb:
+com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$1 -> com.chemicalwedding.artemis.cc:
     com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
-com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$2 -> com.chemicalwedding.artemis.cc:
+com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$2 -> com.chemicalwedding.artemis.cd:
     com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment this$1 -> a
     android.preference.EditTextPreference val$hanglePref -> b
     android.preference.EditTextPreference val$vanglePref -> c
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
-com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$3 -> com.chemicalwedding.artemis.cd:
+com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$3 -> com.chemicalwedding.artemis.ce:
     com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
-com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$4 -> com.chemicalwedding.artemis.ce:
+com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$4 -> com.chemicalwedding.artemis.cf:
     com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
-com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$5 -> com.chemicalwedding.artemis.cf:
+com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment$5 -> com.chemicalwedding.artemis.cg:
     com.chemicalwedding.artemis.SettingsActivity$CameraSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment -> com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment:
     void onCreate(android.os.Bundle) -> onCreate
     void onPause() -> onPause
-com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment$1 -> com.chemicalwedding.artemis.cg:
+com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment$1 -> com.chemicalwedding.artemis.ch:
     com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
-com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment$2 -> com.chemicalwedding.artemis.ch:
+com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment$2 -> com.chemicalwedding.artemis.ci:
     com.chemicalwedding.artemis.SettingsActivity$GeneralSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment -> com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment:
     void onCreate(android.os.Bundle) -> onCreate
-com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment$1 -> com.chemicalwedding.artemis.ci:
+com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment$1 -> com.chemicalwedding.artemis.cj:
     com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment$2 -> com.chemicalwedding.artemis.cj:
+com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment$2 -> com.chemicalwedding.artemis.ck:
     com.chemicalwedding.artemis.SettingsActivity$ResetDefaultSettingsFragment this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
 com.chemicalwedding.artemis.SettingsActivity$SavedImageSettingsFragment -> com.chemicalwedding.artemis.SettingsActivity$SavedImageSettingsFragment:
     void onCreate(android.os.Bundle) -> onCreate
     void onPause() -> onPause
-com.chemicalwedding.artemis.SettingsActivity$SavedImageSettingsFragment$1 -> com.chemicalwedding.artemis.ck:
+com.chemicalwedding.artemis.SettingsActivity$SavedImageSettingsFragment$1 -> com.chemicalwedding.artemis.cl:
     com.chemicalwedding.artemis.SettingsActivity$SavedImageSettingsFragment this$1 -> a
     boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
 com.chemicalwedding.artemis.SettingsActivity$SendFeedbackFragment -> com.chemicalwedding.artemis.SettingsActivity$SendFeedbackFragment:
@@ -763,39 +775,40 @@ com.chemicalwedding.artemis.SplashScreenActivity -> com.chemicalwedding.artemis.
     void access$4(com.chemicalwedding.artemis.SplashScreenActivity,android.app.AlertDialog) -> a
     android.app.AlertDialog access$5(com.chemicalwedding.artemis.SplashScreenActivity) -> d
     android.os.Handler access$6(com.chemicalwedding.artemis.SplashScreenActivity) -> e
-com.chemicalwedding.artemis.SplashScreenActivity$1 -> com.chemicalwedding.artemis.cl:
+com.chemicalwedding.artemis.SplashScreenActivity$1 -> com.chemicalwedding.artemis.cm:
     com.chemicalwedding.artemis.SplashScreenActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback -> com.chemicalwedding.artemis.cm:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback -> com.chemicalwedding.artemis.cn:
     com.chemicalwedding.artemis.SplashScreenActivity this$0 -> a
     void allow$13462e() -> a
     void dontAllow(int) -> a
     void applicationError(int) -> b
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$1 -> com.chemicalwedding.artemis.cn:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$1 -> com.chemicalwedding.artemis.co:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$2 -> com.chemicalwedding.artemis.co:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$2 -> com.chemicalwedding.artemis.cp:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$3 -> com.chemicalwedding.artemis.cp:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$3 -> com.chemicalwedding.artemis.cq:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$4 -> com.chemicalwedding.artemis.cq:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$4 -> com.chemicalwedding.artemis.cr:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$5 -> com.chemicalwedding.artemis.cr:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$5 -> com.chemicalwedding.artemis.cs:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void run() -> run
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$6 -> com.chemicalwedding.artemis.cs:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$6 -> com.chemicalwedding.artemis.ct:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$7 -> com.chemicalwedding.artemis.ct:
+com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback$7 -> com.chemicalwedding.artemis.cu:
     com.chemicalwedding.artemis.SplashScreenActivity$MyLicenseCheckerCallback this$1 -> a
     void run() -> run
-com.chemicalwedding.artemis.WorkerThread -> com.chemicalwedding.artemis.cu:
+com.chemicalwedding.artemis.WorkerThread -> com.chemicalwedding.artemis.cv:
     android.os.Handler mHandler -> a
     void run() -> run
     void stopThread() -> a
+    void postDelayed$574944f(java.lang.Runnable) -> a
 com.chemicalwedding.artemis.database.ArtemisDatabaseHelper -> com.chemicalwedding.artemis.a.a:
     android.database.sqlite.SQLiteDatabase _artemisDatabase -> a
     android.content.Context _context -> b
