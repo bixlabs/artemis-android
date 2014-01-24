@@ -17,7 +17,7 @@ import android.util.Pair;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
-	private static final int DB_VERSION = 8;
+	private static final int DB_VERSION = 9;
 
 	private SQLiteDatabase _artemisDatabase;
 
@@ -279,9 +279,6 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("drop table if exists zlenses");
 			db.execSQL("drop table if exists zlensobject");
 
-			if (newVersion == 7) {
-				db.execSQL("drop table if exists zcustomcamera");
-			}
 			executeDatabaseSQL(db);
 		}
 	}
@@ -289,7 +286,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 	private void executeDatabaseSQL(SQLiteDatabase db) {
 		try {
 			BufferedReader ios = new BufferedReader(new InputStreamReader(
-					_context.getResources().getAssets().open("artemisv3.sql")));
+					_context.getResources().getAssets().open("artemisv7.sql")));
 
 			String line = null;
 			while ((line = ios.readLine()) != null) {

@@ -344,7 +344,7 @@ public class ArtemisActivity extends Activity implements
 			mCameraPreview.openCamera(mCamera, false);
 			_artemisMath.calculateRectBoxesAndLabelsForLenses();
 			this.reconfigureNextAndPreviousLensButtons();
-			
+
 		}
 	}
 
@@ -2018,7 +2018,8 @@ public class ArtemisActivity extends Activity implements
 			}
 			++position;
 		}
-		lensIdList = lensIdList.substring(0, lensIdList.length() - 1);
+		if (lensIdList.length() > 0)
+			lensIdList = lensIdList.substring(0, lensIdList.length() - 1);
 
 		_lensListView = (ListView) findViewById(R.id.lensList);
 		ArrayAdapter<String> lensAdapter = new ArrayAdapter<String>(
