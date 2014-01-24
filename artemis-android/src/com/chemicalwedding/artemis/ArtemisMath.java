@@ -517,10 +517,12 @@ public class ArtemisMath {
 	public void selectFirstMeaningFullLens() {
 		if (firstMeaningfulLens > 0) {
 			_selectedLensIndex = firstMeaningfulLens;
-		} else {
+		} else if (_selectedLenses.size() > 0) {
 			_selectedLensIndex = _selectedLenses.size() - 1;
 		}
-		_selectedLens = _selectedLenses.get(_selectedLensIndex);
+		if (_selectedLenses.size() > 0) {
+			_selectedLens = _selectedLenses.get(_selectedLensIndex);
+		}
 	}
 
 	/**

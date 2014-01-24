@@ -63,6 +63,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -644,7 +645,7 @@ public class ArtemisActivity extends Activity implements
 		_lensFocalLengthText = (TextView) findViewById(R.id.lensFocalLengthText);
 		pictureSavePreview = (ImageView) findViewById(R.id.savePicturePreview);
 		savePictureViewFlipper = (ViewFlipper) findViewById(R.id.savePictureViewFlipper);
-
+		_lensListView = (ListView) findViewById(R.id.lensList);
 		addCustomLensLayout = (RelativeLayout) findViewById(R.id.addCustomLens);
 	}
 
@@ -689,9 +690,22 @@ public class ArtemisActivity extends Activity implements
 		Button cancelLensesButton = (Button) findViewById(R.id.cancelLenses);
 		cancelLensesButton
 				.setOnClickListener(new LenseSelectionCancelClickListener());
-		Button saveLensesButton = (Button) findViewById(R.id.saveLenses);
+		final Button saveLensesButton = (Button) findViewById(R.id.saveLenses);
 		saveLensesButton
 				.setOnClickListener(new LenseSelectionSaveClickListener());
+
+		// this prevents no lenses from being selected
+		_lensListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
+					long id) {
+				if (_lensListView.getCheckedItemCount() > 0) {
+					saveLensesButton.setEnabled(true);
+				} else {
+					saveLensesButton.setEnabled(false);
+				}
+			}
+		});
 
 		// next / prev lens
 		_nextLensButton.setOnClickListener(nextLensClickListener);
@@ -2021,7 +2035,6 @@ public class ArtemisActivity extends Activity implements
 		if (lensIdList.length() > 0)
 			lensIdList = lensIdList.substring(0, lensIdList.length() - 1);
 
-		_lensListView = (ListView) findViewById(R.id.lensList);
 		ArrayAdapter<String> lensAdapter = new ArrayAdapter<String>(
 				ArtemisActivity.this, R.layout.lens_list_item, focalLengths);
 		_lensListView.setAdapter(lensAdapter);
@@ -2032,6 +2045,10 @@ public class ArtemisActivity extends Activity implements
 		for (Integer pos : checked) {
 			_lensListView.setItemChecked(pos, true);
 		}
+		if (_lensListView.getCheckedItemCount() == 0) {
+			findViewById(R.id.saveLenses).setEnabled(false);
+		}
+
 		return lensIdList;
 	}
 
