@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,12 +26,20 @@ public class SplashScreenActivity extends Activity {
 	private static final String logTag = "SplashScreen";
 	private static boolean validLicenseFound = false;
 	private AlertDialog mDialog;
+	private boolean mDeviceHasNoCamera;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 
+		int numCameras = Camera.getNumberOfCameras();
+		if (numCameras == 0) {
+			mDeviceHasNoCamera = true;
+			showNoCameraError();
+			return;
+		}
+		
 		// check license (start main app when valid response comes back)
 		bindLicenseCheckingObjects();
 		
@@ -53,6 +62,11 @@ public class SplashScreenActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 
+		if (mDeviceHasNoCamera) {
+			// Do nothing if we have no camera
+			return;
+		}
+		
 		if (!validLicenseFound) {
 			// Check license any time the splash screen starts, rather than just
 			// onCreate (fix bug leo found)
@@ -90,7 +104,9 @@ public class SplashScreenActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		_checker.onDestroy();
+		if (_checker != null) {
+			_checker.onDestroy();
+		}
 		_licenseCheckerCallback = null;
 		_checker = null;
 	}
@@ -215,5 +231,33 @@ public class SplashScreenActivity extends Activity {
 				}
 			}, 10000);
 		}
+	}
+	
+	public void showNoCameraError() {
+		if (isFinishing()) {
+			// Don't update UI if Activity is finishing.
+			return;
+		}
+
+		mDialog = new AlertDialog.Builder(SplashScreenActivity.this)
+				.setTitle(R.string.no_camera_detected)
+				.setMessage(R.string.could_not_start)
+				.setPositiveButton(R.string.quit_button,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface mDialog,
+									int which) {
+								mDialog.dismiss();
+								mDialog = null;
+								finish();
+							}
+						}).create();
+		mDialog.show();
+
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				finish();
+			}
+		}, 10000);
 	}
 }

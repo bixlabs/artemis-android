@@ -298,5 +298,9 @@
     <!-- New below here 11-11-2013 -->
     <string name="set_scene_mode">Set Scene Mode</string>
     <string name="set_focus_mode">Set Focus Mode</string>
+    
+    <!-- New below here 02-04-2014 -->
+    <string name="could_not_start">Artemis could not start since no camera is detected for your device. This application requires a device with a camera.</string>
+    <string name="no_camera_detected">No Camera Detected</string>
 
 </resources>
