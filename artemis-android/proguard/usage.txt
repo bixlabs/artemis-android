@@ -5,7 +5,7 @@ com.chemicalwedding.artemis.ArtemisActivity:
     private static final int GALLERY_IMAGE_LOADER
     protected static final long lensRepeatSpeedCustomLens
     protected static final long lensRepeatSpeedNormal
-    1229:1235:public static java.lang.String getBucketId(java.lang.String)
+    1243:1249:public static java.lang.String getBucketId(java.lang.String)
 com.chemicalwedding.artemis.ArtemisActivity$1$FloatAverage:
     static final int SAMPLE
 com.chemicalwedding.artemis.ArtemisApplication:
@@ -24,7 +24,7 @@ com.chemicalwedding.artemis.ArtemisMath:
     430:431:public void set_maxTouchY(float)
     446:446:public int get_selectedLensIndex()
     450:451:public void set_selectedLensIndex(int)
-    582:582:public float getPixelDensity()
+    584:584:public float getPixelDensity()
 com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String GPS_ENABLED
     public static final java.lang.String SELECTED_LENS_MAKE
@@ -60,9 +60,9 @@ com.chemicalwedding.artemis.ArtemisPreferences:
 com.chemicalwedding.artemis.BuildConfig
 com.chemicalwedding.artemis.CameraPreview14:
     private static final java.lang.String logTag
-    566:571:public void releaseCamera()
-    915:915:public void clearFullScreenTempFrame()
-    921:924:public void resetDigitalZoomLevel()
+    569:574:public void releaseCamera()
+    923:923:public void clearFullScreenTempFrame()
+    929:932:public void resetDigitalZoomLevel()
 com.chemicalwedding.artemis.CustomCameraCalibrationActivity:
     private static final float WALL_DISTANCE
     protected static final long lensRepeatSpeed

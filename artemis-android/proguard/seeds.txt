@@ -307,6 +307,7 @@ com.chemicalwedding.artemis.R$string: int camera_settings_title
 com.chemicalwedding.artemis.R$string: int cancel
 com.chemicalwedding.artemis.R$string: int chemical_wedding_about_text
 com.chemicalwedding.artemis.R$string: int compass_heading_text
+com.chemicalwedding.artemis.R$string: int could_not_start
 com.chemicalwedding.artemis.R$string: int custom_camera_aspect_ratio
 com.chemicalwedding.artemis.R$string: int custom_camera_chip_height
 com.chemicalwedding.artemis.R$string: int custom_camera_chip_width
@@ -399,6 +400,7 @@ com.chemicalwedding.artemis.R$string: int menu_camera_settings
 com.chemicalwedding.artemis.R$string: int menu_lens_settings
 com.chemicalwedding.artemis.R$string: int min_focal_length
 com.chemicalwedding.artemis.R$string: int new_zoom_lens
+com.chemicalwedding.artemis.R$string: int no_camera_detected
 com.chemicalwedding.artemis.R$string: int not_torch_while_in_preview_mode
 com.chemicalwedding.artemis.R$string: int ok
 com.chemicalwedding.artemis.R$string: int picture_save_location
