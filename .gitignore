@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Android SDK
 *.iml
 .gradle
@@ -44,3 +45,8 @@ build/**
 artemis-android/*.apk
 artemis-android/manifest-merger-release-report.txt
 >>>>>>> c2fe9bb (commit ignore`)
+=======
+.idea
+build/
+.gradle
+>>>>>>> 4c304ee (Add modified files)

@@ -2132,6 +2132,7 @@
       <AnalysisUIOptions />
     </option>
   </component>
+<<<<<<< HEAD
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -2149,6 +2150,10 @@
     <option name="IGNORE_EXTERNALS" value="false" />
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
 >>>>>>> 48b25e2 (changes towards lollipop camera api support)
+=======
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration />
+>>>>>>> 4c304ee (Add modified files)
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -2179,8 +2184,16 @@
       <created>1416355267878</created>
       <updated>1416355267878</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="3" />
 >>>>>>> 2be3875 (add new files)
+=======
+    <task id="LOCAL-00003" summary="add new files">
+      <created>1416355277280</created>
+      <updated>1416355277280</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+>>>>>>> 4c304ee (Add modified files)
     <servers />
   </component>
 <<<<<<< HEAD
