@@ -38,6 +38,7 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="5336136e-4396-4ea7-814f-0db943098b84" name="Default" comment="">
 <<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_licensing.xml" />
@@ -78,6 +79,9 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/artemis-android/res/layout/fragment_camera2_basic.xml" />
 >>>>>>> 49a354b (add new files)
+=======
+    <list default="true" id="5336136e-4396-4ea7-814f-0db943098b84" name="Default" comment="">
+>>>>>>> 2be3875 (add new files)
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
 >>>>>>> 48b25e2 (changes towards lollipop camera api support)
     </list>
@@ -2167,8 +2171,16 @@
       <created>1416355208120</created>
       <updated>1416355208120</updated>
     </task>
+<<<<<<< HEAD
 >>>>>>> 49a354b (add new files)
     <option name="localTasksCounter" value="2" />
+=======
+    <task id="LOCAL-00002" summary="add new files">
+      <created>1416355267878</created>
+      <updated>1416355267878</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+>>>>>>> 2be3875 (add new files)
     <servers />
   </component>
 <<<<<<< HEAD
@@ -2234,9 +2246,13 @@
 >>>>>>> 4d6cf0e (upgrade to target lollipop)
   <component name="VcsManagerConfiguration">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <MESSAGE value=" * Gallery scrolling is smoother now.&#10; * Fixed a bug that randomly deleted files when selecting multiple files in gallery.&#10; * It is now easier to select items in the gallery.&#10; * Fixed an issue that caused the app to crash when taking photos on some devices.&#10; * Fixed an issue that caused a mirror image when captured with a front camera.&#10; * Removed various crashes that occur rarely and seemingly random on some devices." />
     <option name="LAST_COMMIT_MESSAGE" value=" * Gallery scrolling is smoother now.&#10; * Fixed a bug that randomly deleted files when selecting multiple files in gallery.&#10; * It is now easier to select items in the gallery.&#10; * Fixed an issue that caused the app to crash when taking photos on some devices.&#10; * Fixed an issue that caused a mirror image when captured with a front camera.&#10; * Removed various crashes that occur rarely and seemingly random on some devices." />
 =======
+=======
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+>>>>>>> 2be3875 (add new files)
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
