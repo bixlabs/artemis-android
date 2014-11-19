@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/home/jon/git/artemis-android/artemis-android/build/intermediates/pre-dexed/debug/play_licensing-a9732bde368b2544b7f9de16c07c523d22bc139a.jar"
+        jar="/home/jon/git/artemis-android/artemis-android/libs/play_licensing.jar"
+        jumboMode="false"
+        revision="21.1.0"
+        sha1="dd5840d39a68fac598cf54dd83f25cab8a501900"/>
+    <item
+        dex="/home/jon/git/artemis-android/artemis-android/build/intermediates/pre-dexed/debug/classes-6dfe1c1a77fa7271c7ef837ab9c802cf1bcd70cd.jar"
+        jar="/home/jon/git/artemis-android/artemis-android/build/intermediates/exploded-aar/artemis-android/appirater-android/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.0"
+        sha1="58740f47aeb50afed095a3700f3563ead0f82587"/>
+
+</pre-dex-items>
