@@ -6,8 +6,13 @@ dependencies {
 }
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
+=======
+    compileSdkVersion 21
+    buildToolsVersion "21.1"
+>>>>>>> 48b25e2 (changes towards lollipop camera api support)
 
     buildTypes {
         release {

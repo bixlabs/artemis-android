@@ -45,7 +45,7 @@ public class SplashScreenActivity extends Activity {
 		// check license (start main app when valid response comes back)
 		bindLicenseCheckingObjects();
 		
-		CameraPreview14.initCameraDetails();
+//		CameraPreview14.initCameraDetails();
 	}
 
 	private void bindLicenseCheckingObjects() {

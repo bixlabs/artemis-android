@@ -99,7 +99,7 @@ public class ArtemisActivity extends Activity implements
 
 	private CameraPreview14 mCameraPreview;
 	private android.hardware.Camera mCamera;
-	private TextureView mTextureView;
+//	private TextureView mTextureView;
 
 	private LongPressButton _nextLensButton;
 	private LongPressButton _prevLensButton;
@@ -194,6 +194,12 @@ public class ArtemisActivity extends Activity implements
 
 		// Appirator
 		Appirater.appLaunched(this);
+
+        if (null == savedInstanceState) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.cameraPreview, Camera2BasicFragment.newInstance())
+                    .commit();
+        }
 
 		startArtemis();
 	}
@@ -333,20 +339,20 @@ public class ArtemisActivity extends Activity implements
 	private boolean isSurfaceAvailable = false;
 
 	private void reinitCamera() {
-		if (mCamera == null && mTextureView != null && isSurfaceAvailable) {
-
-			mCamera = android.hardware.Camera.open();
-
-			try {
-				mCamera.setPreviewTexture(mTextureView.getSurfaceTexture());
-			} catch (IOException t) {
-			}
-
-			mCameraPreview.openCamera(mCamera, false);
-			_artemisMath.calculateRectBoxesAndLabelsForLenses();
-			this.reconfigureNextAndPreviousLensButtons();
-
-		}
+//		if (mCamera == null && mTextureView != null && isSurfaceAvailable) {
+//
+//			mCamera = android.hardware.Camera.open();
+//
+//			try {
+//				mCamera.setPreviewTexture(mTextureView.getSurfaceTexture());
+//			} catch (IOException t) {
+//			}
+//
+//			mCameraPreview.openCamera(mCamera, false);
+//			_artemisMath.calculateRectBoxesAndLabelsForLenses();
+//			this.reconfigureNextAndPreviousLensButtons();
+//
+//		}
 	}
 
 	private void initSensorManager() {
@@ -623,11 +629,12 @@ public class ArtemisActivity extends Activity implements
 	};
 
 	private void bindViewObjects() {
-		mCameraPreview = (CameraPreview14) findViewById(R.id.cameraPreview);
-		mTextureView = new TextureView(this);
-		mTextureView.setSurfaceTextureListener(this);
-		mCameraPreview.setTextureView(mTextureView);
-		mCameraPreview.addView(mTextureView);
+
+
+//		mTextureView = new TextureView(this);
+//		mTextureView.setSurfaceTextureListener(this);
+//		mCameraPreview.setTextureView(mTextureView);
+//		mCameraPreview.addView(mTextureView);
 
 		mCameraOverlay = (CameraOverlay) findViewById(R.id.cameraOverlay);
 		mCameraAngleDetailView = (CameraAngleDetailView) findViewById(R.id.CameraAngleDetailView);
@@ -1283,7 +1290,7 @@ public class ArtemisActivity extends Activity implements
 	private void toastNoImageFound() {
 		final Toast toast = Toast.makeText(ArtemisActivity.this,
 				getString(R.string.gallery_no_images_found), Toast.LENGTH_LONG);
-		toast.setDuration(2000);
+		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.show();
 	}
 
@@ -2142,7 +2149,6 @@ public class ArtemisActivity extends Activity implements
 		public void onClick(View v) {
 			final Toast toast = Toast.makeText(ArtemisActivity.this,
 					getString(R.string.image_saved_success), Toast.LENGTH_LONG);
-			toast.setDuration(2000);
 			toast.show();
 
 			new AsyncTask<String, Void, String>() {
@@ -2296,7 +2302,7 @@ public class ArtemisActivity extends Activity implements
 				final Toast toast = Toast.makeText(ArtemisActivity.this,
 						getString(R.string.image_saved_success),
 						Toast.LENGTH_LONG);
-				toast.setDuration(2500);
+//				toast.setDuration(2500);
 				toast.show();
 
 				new AsyncTask<String, Void, String>() {
