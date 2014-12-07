@@ -30,4 +30,8 @@ google-services.json
 =======
 # Created by .gitignore support plugin (hsz.mobi)
 .gradle/*
+<<<<<<< HEAD
 >>>>>>> ea90165 (add gradle to git ignore)
+=======
+.idea/**
+>>>>>>> 725efc9 (fixup .idea ignore)
