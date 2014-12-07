@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Android SDK
 *.iml
 .gradle
@@ -22,3 +23,6 @@ build/
 # Firebase / Google services
 google-services.json
 /app/keystore.properties
+=======
+# Created by .gitignore support plugin (hsz.mobi)
+>>>>>>> 3730db1 (commit all changes)

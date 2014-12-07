@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="72503f60-4c58-4c62-9d11-8e9f901c248f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_camera2_basic.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_camera2_basic.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="bug-fixes" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mwVF4PsXbLKNHzHi18batICudG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="google-pixel_4a-09051JEC206538" />
+    <property name="DEBUGGABLE_PROCESS" value="com.chemicalwedding.artemis.dev" />
+    <property name="DEBUGGER_ID" value="Auto" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="09051JEC206538" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-02-02T00:35:30.507Z" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1610488059286" />
+    <property name="recommended.upgrade.last.time.stamp" value="1611952443206" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="Artemis_Pro.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="true" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="true" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="72503f60-4c58-4c62-9d11-8e9f901c248f" name="Default Changelist" comment="" />
+      <created>1610404533860</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610404533860</updated>
+    </task>
+    <task id="LOCAL-00001" summary=" * Gallery scrolling is smoother now.&#10; * Fixed a bug that randomly deleted files when selecting multiple files in gallery.&#10; * It is now easier to select items in the gallery.&#10; * Fixed an issue that caused the app to crash when taking photos on some devices.&#10; * Fixed an issue that caused a mirror image when captured with a front camera.&#10; * Removed various crashes that occur rarely and seemingly random on some devices.">
+      <created>1612278125112</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612278125112</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" * Gallery scrolling is smoother now.&#10; * Fixed a bug that randomly deleted files when selecting multiple files in gallery.&#10; * It is now easier to select items in the gallery.&#10; * Fixed an issue that caused the app to crash when taking photos on some devices.&#10; * Fixed an issue that caused a mirror image when captured with a front camera.&#10; * Removed various crashes that occur rarely and seemingly random on some devices." />
+    <option name="LAST_COMMIT_MESSAGE" value=" * Gallery scrolling is smoother now.&#10; * Fixed a bug that randomly deleted files when selecting multiple files in gallery.&#10; * It is now easier to select items in the gallery.&#10; * Fixed an issue that caused the app to crash when taking photos on some devices.&#10; * Fixed an issue that caused a mirror image when captured with a front camera.&#10; * Removed various crashes that occur rarely and seemingly random on some devices." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="752" y="349" width="395" height="310" key="#Updates" timestamp="1611154029905">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="752" y="349" width="395" height="310" key="#Updates/0.27.1920.1053@0.27.1920.1053" timestamp="1611154029905" />
+    <state x="418" y="82" width="1084" height="795" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612200926480">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="418" y="82" width="1084" height="795" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1612200926480" />
+    <state x="688" y="301" width="534" height="437" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1612284991372">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="688" y="301" width="534" height="437" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1612284991372" />
+    <state x="768" y="132" width="837" height="701" key="#com.intellij.ide.util.MemberChooser" timestamp="1611953144378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="768" y="132" width="837" height="701" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1611953144378" />
+    <state x="660" y="162" width="590" height="716" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1611672105084">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="660" y="162" width="590" height="716" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1611672105084" />
+    <state x="693" y="173" width="524" height="619" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612286890500">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="693" y="173" width="524" height="619" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1612286890500" />
+    <state x="791" y="248" width="328" height="513" key="AndroidCreateXmlResourceDialog" timestamp="1611844252685">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="791" y="248" width="328" height="513" key="AndroidCreateXmlResourceDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1611844252685" />
+    <state x="743" y="246" width="433" height="547" key="AndroidProcessChooserDialog" timestamp="1612219317460">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="246" width="433" height="547" key="AndroidProcessChooserDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1612219317460" />
+    <state x="554" y="21" width="802" height="967" key="CommitChangelistDialog2" timestamp="1612278124983">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="554" y="21" width="802" height="967" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1612278124983" />
+    <state width="571" height="798" key="DebuggerActiveHint" timestamp="1612220446583">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="571" height="798" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1612220446583" />
+    <state x="100" y="90" width="1720" height="890" key="DiffContextDialog" timestamp="1611956405319">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="90" width="1720" height="890" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1611956405319" />
+    <state x="743" y="34" width="424" height="750" key="FileChooserDialogImpl" timestamp="1612218492064">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="34" width="424" height="750" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1612218492064" />
+    <state width="1878" height="439" key="GridCell.Tab.0.bottom" timestamp="1612307599516">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="439" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1612307599516" />
+    <state width="1878" height="439" key="GridCell.Tab.0.center" timestamp="1612307599516">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="439" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1612307599516" />
+    <state width="1878" height="439" key="GridCell.Tab.0.left" timestamp="1612307599516">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="439" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1612307599516" />
+    <state width="1878" height="439" key="GridCell.Tab.0.right" timestamp="1612307599516">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="439" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1612307599516" />
+    <state x="698" y="156" width="514" height="691" key="RollbackChangesDialog" timestamp="1611343903995">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="698" y="156" width="514" height="691" key="RollbackChangesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1611343903995" />
+    <state x="555" y="160" width="800" height="646" key="Vcs.Push.Dialog.v2" timestamp="1612296216089">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="160" width="800" height="646" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1612296216089" />
+    <state x="100" y="90" width="1720" height="890" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1612287793106">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="90" width="1720" height="890" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1612287793106" />
+    <state x="754" y="414" width="402" height="212" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612278156821">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="754" y="414" width="402" height="212" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1612278156821" />
+    <state x="693" y="260" width="524" height="519" key="extract.method.dialog" timestamp="1611938932841">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="693" y="260" width="524" height="519" key="extract.method.dialog/0.27.1920.1053@0.27.1920.1053" timestamp="1611938932841" />
+    <state x="669" y="279" width="970" height="512" key="find.popup" timestamp="1612276285549">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="669" y="279" width="970" height="512" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1612276285549" />
+    <state x="638" y="203" width="633" height="633" key="git4idea.branch.GitSmartOperationDialog" timestamp="1610404656873">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="638" y="203" width="633" height="633" key="git4idea.branch.GitSmartOperationDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1610404656873" />
+    <state x="624" y="243" key="run.anything.popup" timestamp="1611785557953">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="624" y="243" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1611785557953" />
+    <state x="623" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1612210521107">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="623" y="231" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1612210521107" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/Camera2BasicFragment.java</url>
+          <line>674</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/CameraPreview21.java</url>
+          <line>1115</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/CameraPreview21.java</url>
+          <line>1136</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/CameraPreview21.java</url>
+          <line>298</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/CameraPreview21.java</url>
+          <line>1820</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/CameraPreview21.java</url>
+          <line>1982</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java</url>
+          <line>2785</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/GalleryActivity.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/chemicalwedding/artemis/GalleryAdapter.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
