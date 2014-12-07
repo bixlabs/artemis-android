@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Android SDK
 *.iml
 .gradle
@@ -26,3 +27,7 @@ google-services.json
 =======
 # Created by .gitignore support plugin (hsz.mobi)
 >>>>>>> 3730db1 (commit all changes)
+=======
+# Created by .gitignore support plugin (hsz.mobi)
+.gradle/*
+>>>>>>> ea90165 (add gradle to git ignore)
