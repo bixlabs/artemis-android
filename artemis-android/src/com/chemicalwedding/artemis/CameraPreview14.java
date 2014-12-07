@@ -145,17 +145,24 @@ public class CameraPreview14 extends ViewGroup {
 
 		Size optimalSize = null;
 		int selectedWidth = 0;
-		for (Size size : sizes) {
-			double ratio = (double) size.width / size.height;
-			if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE)
-				continue;
+        for (Size size : sizes) {
+            if (!(Build.MODEL.equals("Nexus 7") && Build.DEVICE.equals("flo"))) {
+                double ratio = (double) size.width / size.height;
+                if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE)
+                    continue;
 
-			if (size.width > selectedWidth) {
-				optimalSize = size;
-				selectedWidth = size.width;
-			}
-		}
-		return optimalSize;
+                if (size.width > selectedWidth) {
+                    optimalSize = size;
+                    selectedWidth = size.width;
+                }
+            } else {
+                // Hack for nexus 7 borked preview -- gotta use 1024x768
+                if (size.width == 1024 && size.height == 768) {
+                    optimalSize = size;
+                }
+            }
+        }
+        return optimalSize;
 	}
 
 	// private Size getOptimalPictureSize(List<Size> sizes, int w, int h) {
