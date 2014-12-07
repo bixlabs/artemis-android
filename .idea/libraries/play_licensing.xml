@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="play_licensing">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/artemis-android/libs/play_licensing.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
