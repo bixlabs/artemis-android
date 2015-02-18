@@ -24,6 +24,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 	private final Context _context;
 	private final static String TAG = "ArtemisDatabaseHelper";
 	private final static String DB_NAME = "artemisdb";
+    private final static String CAMERA_TABLE = "zcamera";
 
 	public ArtemisDatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -47,7 +48,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
 	public ArrayList<String> getCameraFormats() {
 		// get distinct camera formats
-		Cursor cursor = _artemisDatabase.query(true, "zcameras",
+		Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
 				new String[] { "zformatname" }, null, null, null, null, null,
 				null);
 		ArrayList<String> cameraFormats = new ArrayList<String>();
@@ -87,7 +88,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
 	public ArrayList<String> getCameraSensorsForFormat(String format) {
 		// get distinct camera sensors for format
-		Cursor cursor = _artemisDatabase.query(true, "zcameras",
+		Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
 				new String[] { "zsensorname" }, "zformatname = ?",
 				new String[] { format }, null, null, null, null);
 		ArrayList<String> cameraSensors = new ArrayList<String>();
@@ -102,7 +103,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 			String sensor) {
 		// get distinct camera ratios for sensor, return each ratio paired with
 		// rowid
-		Cursor cursor = _artemisDatabase.query(true, "zcameras", new String[] {
+		Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE, new String[] {
 				"zrowid", "zaspectratio" }, "zsensorname = ?",
 				new String[] { sensor }, null, null, null, null);
 		ArrayList<Pair<Integer, String>> cameraRatios = new ArrayList<Pair<Integer, String>>();
@@ -117,7 +118,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
 	public Camera getCameraDetailsForRowId(Integer rowid) {
 		// get camera details for the camera rowid (index)
-		Cursor cursor = _artemisDatabase.query("zcameras", new String[] {
+		Cursor cursor = _artemisDatabase.query(CAMERA_TABLE, new String[] {
 				"zhorozontalsize", "zverticalsize", "zsqueezeratio",
 				"zsensorname", "zaspectratio", "zlenstype" }, "zrowid = ?",
 				new String[] { rowid.toString() }, null, null, null, null);
@@ -276,7 +277,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 		if (newVersion > oldVersion) {
 			Log.v(TAG, "Database version higher than old one.  Upgrading.");
 			db.execSQL("drop table if exists zcameras");
-			db.execSQL("drop table if exists zlenses");
+            db.execSQL("drop table if exists zcamera");
+            db.execSQL("drop table if exists zlenses");
 			db.execSQL("drop table if exists zlensobject");
 
 			executeDatabaseSQL(db);
@@ -302,7 +304,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 		// query cameras based on sensor
 		query = "%" + query + "%";
 		Cursor cursor = _artemisDatabase.query(
-				"zcameras",
+				CAMERA_TABLE,
 				new String[] {
 				// "zhorozontalsize", "zverticalsize", "zsqueezeratio",
 				// "zsensorname", "zaspectratio",
