@@ -3,7 +3,7 @@
     package="com.chemicalwedding.artemis"
     android:installLocation="auto"
     android:versionCode="38"
-    android:versionName="2.0.9" >
+    android:versionName="2.0.10 Beta" >
 
     <supports-screens
         android:anyDensity="true"
@@ -12,8 +12,7 @@
         android:smallScreens="true" />
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:minSdkVersion="14" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
