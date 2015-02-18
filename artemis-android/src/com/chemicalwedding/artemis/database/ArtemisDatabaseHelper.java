@@ -17,7 +17,7 @@ import android.util.Pair;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
-	private static final int DB_VERSION = 9;
+	private static final int DB_VERSION = 10;
 
 	private SQLiteDatabase _artemisDatabase;
 
@@ -286,7 +286,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 	private void executeDatabaseSQL(SQLiteDatabase db) {
 		try {
 			BufferedReader ios = new BufferedReader(new InputStreamReader(
-					_context.getResources().getAssets().open("artemisv7.sql")));
+					_context.getResources().getAssets().open("artemisv10.sql")));
 
 			String line = null;
 			while ((line = ios.readLine()) != null) {
