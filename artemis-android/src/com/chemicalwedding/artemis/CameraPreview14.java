@@ -557,7 +557,10 @@ public class CameraPreview14 extends ViewGroup {
 			ArtemisActivity._lensFocalLengthText.setText(_artemisMath
 					.get_selectedLensFocalLength());
 
-			mCamera.setParameters(parameters);
+            // Use a recording hint (we aren't taking still pics)
+            parameters.setRecordingHint(true);
+
+            mCamera.setParameters(parameters);
 
 			// Start the preview
 			mCamera.startPreview();
