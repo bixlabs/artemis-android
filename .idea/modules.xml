@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Artemis_Pro.iml" filepath="$PROJECT_DIR$/.idea/modules/Artemis_Pro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Artemis_Pro.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Artemis_Pro.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/appirater/Artemis_Pro.appirater.iml" filepath="$PROJECT_DIR$/.idea/modules/appirater/Artemis_Pro.appirater.iml" />
+    </modules>
+  </component>
+</project>
