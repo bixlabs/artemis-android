@@ -17,7 +17,7 @@ import android.util.Pair;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
-	private static final int DB_VERSION = 10;
+	private static final int DB_VERSION = 11;
 
 	private SQLiteDatabase _artemisDatabase;
 
@@ -288,7 +288,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 	private void executeDatabaseSQL(SQLiteDatabase db) {
 		try {
 			BufferedReader ios = new BufferedReader(new InputStreamReader(
-					_context.getResources().getAssets().open("artemisv10.sql")));
+					_context.getResources().getAssets().open("artemisv11.sql")));
 
 			String line = null;
 			while ((line = ios.readLine()) != null) {
@@ -310,7 +310,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 				// "zsensorname", "zaspectratio",
 				// "zlensobject", "zrowid"
 				"zsensorname" }, "zsensorname like ?", new String[] { query },
-				"zsensorname", null, null, null);
+				"zsensorname", null, "zsensorname", null);
 		ArrayList<String> matchedCameras = new ArrayList<String>();
 		while (cursor.moveToNext()) {
 			matchedCameras.add(cursor.getString(0));

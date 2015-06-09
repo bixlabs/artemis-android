@@ -2,8 +2,10 @@ package com.chemicalwedding.artemis;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
@@ -126,6 +128,11 @@ public class SplashScreenActivity extends Activity {
 			// Should allow user access.
 			validLicenseFound = true;
 
+            SharedPreferences.Editor editor = SplashScreenActivity.this.getSharedPreferences(
+                    ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE).edit();
+            editor.putBoolean("_l", true);
+            editor.apply();
+
 			startArtemis();
 		}
 
@@ -165,6 +172,11 @@ public class SplashScreenActivity extends Activity {
 				mDialog.show();
 
 			} else if (reason == Policy.NOT_LICENSED) {
+
+                SharedPreferences.Editor editor = SplashScreenActivity.this.getSharedPreferences(
+                        ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE).edit();
+                editor.putBoolean("_l", false);
+                editor.commit();
 
 				mDialog = new AlertDialog.Builder(SplashScreenActivity.this)
 						.setTitle(R.string.unlicensed_dialog_title)
@@ -208,20 +220,30 @@ public class SplashScreenActivity extends Activity {
 				// Don't update UI if Activity is finishing.
 				return;
 			}
-			Log.i(logTag, "Licensing Error: " + errorCode);
+
+            Log.i(logTag, "Licensing Error: " + errorCode);
+
+            SharedPreferences prefs = SplashScreenActivity.this.getSharedPreferences(
+                    ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
+
+			if  (prefs.getBoolean("_l", false))  {
+                Log.i(logTag, "custom license cached: starting artemis");
+                startArtemis();
+                return;
+            }
 
 			mDialog = new AlertDialog.Builder(SplashScreenActivity.this)
 					.setTitle(R.string.error_dialog_title)
 					.setMessage(R.string.error_dialog_body)
 					.setPositiveButton(R.string.quit_button,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface mDialog,
-										int which) {
-									mDialog.dismiss();
-									mDialog = null;
-									finish();
-								}
-							}).create();
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface mDialog,
+                                                    int which) {
+                                    mDialog.dismiss();
+                                    mDialog = null;
+                                    finish();
+                                }
+                            }).create();
 			mDialog.show();
 
 			mHandler.postDelayed(new Runnable() {

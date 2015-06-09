@@ -144,7 +144,7 @@ public class CameraPreview14 extends ViewGroup {
 		double targetRatio = (double) w / h;
 
 		Size optimalSize = null;
-		int selectedWidth = 0;
+		int selectedWidth = 0; boolean skip = true;
         for (Size size : sizes) {
             if (!(Build.MODEL.equals("Nexus 7") && Build.DEVICE.equals("flo"))) {
                 double ratio = (double) size.width / size.height;
@@ -152,8 +152,10 @@ public class CameraPreview14 extends ViewGroup {
                     continue;
 
                 if (size.width > selectedWidth) {
-                    optimalSize = size;
-                    selectedWidth = size.width;
+                    if (!skip) {
+                        optimalSize = size;
+                        selectedWidth = size.width;
+                    } else skip = false;
                 }
             } else {
                 // Hack for nexus 7 borked preview -- gotta use 1024x768
@@ -559,6 +561,7 @@ public class CameraPreview14 extends ViewGroup {
 
             // Use a recording hint (we aren't taking still pics)
             parameters.setRecordingHint(true);
+			parameters.setPreviewFormat(ImageFormat.NV21);
 
             mCamera.setParameters(parameters);
 
