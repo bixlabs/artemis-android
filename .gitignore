@@ -38,4 +38,9 @@ google-services.json
 >>>>>>> 725efc9 (fixup .idea ignore)
 =======
 build/**
+<<<<<<< HEAD
 >>>>>>> 5756f0d (add build to ignore)
+=======
+artemis-android/*.apk
+artemis-android/manifest-merger-release-report.txt
+>>>>>>> c2fe9bb (commit ignore`)
