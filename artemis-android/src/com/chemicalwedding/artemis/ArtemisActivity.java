@@ -97,7 +97,7 @@ public class ArtemisActivity extends Activity implements
 
 	private Handler mUiHandler = new Handler();
 
-	private CameraPreview14 mCameraPreview;
+	private CameraPreview21 mCameraPreview;
 	private android.hardware.Camera mCamera;
 //	private TextureView mTextureView;
 
@@ -196,8 +196,9 @@ public class ArtemisActivity extends Activity implements
 		Appirater.appLaunched(this);
 
         if (null == savedInstanceState) {
+            mCameraPreview = CameraPreview21.newInstance();
             getFragmentManager().beginTransaction()
-                    .replace(R.id.cameraPreview, Camera2BasicFragment.newInstance())
+                    .replace(R.id.cameraPreview, mCameraPreview)
                     .commit();
         }
 
@@ -215,7 +216,9 @@ public class ArtemisActivity extends Activity implements
 		initDatabase();
 
 		// setup the previous camera and lens selection
-		initCameraAndLensSelection();
+//		initCameraAndLensSelection();
+
+//		initPreferences();
 	}
 
 	@Override
@@ -898,7 +901,7 @@ public class ArtemisActivity extends Activity implements
 		// });
 	}
 
-	private void initPreferences() {
+	protected void initPreferences() {
 		SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
 				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
 		// check if gps is enabled
@@ -927,7 +930,7 @@ public class ArtemisActivity extends Activity implements
 
 		// setup the save files directory
 		savePictureFolder = Environment.getExternalStorageDirectory()
-				.getAbsolutePath().toString()
+				.getAbsolutePath()
 				+ "/";
 		savePictureFolder += artemisPrefs.getString(
 				ArtemisPreferences.SAVE_PICTURE_FOLDER,
@@ -1046,7 +1049,7 @@ public class ArtemisActivity extends Activity implements
 		}
 	}
 
-	private void initCameraAndLensSelection() {
+	protected void initCameraAndLensSelection() {
 		SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
 				ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
 
@@ -3004,7 +3007,7 @@ public class ArtemisActivity extends Activity implements
 			} catch (IOException t) {
 			}
 
-			mCameraPreview.openCamera(mCamera, true);
+			mCameraPreview.startArtemisPreview(true);
 			this.reconfigureNextAndPreviousLensButtons();
 		}
 

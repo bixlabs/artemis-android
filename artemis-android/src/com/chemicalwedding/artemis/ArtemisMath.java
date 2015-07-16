@@ -117,7 +117,7 @@ public class ArtemisMath {
 	/**
 	 * this function calculates what the widest lens that the phone COULD show
 	 * for this format. We use it to show a green box on the wireframe mode
-	 * 
+	 *
 	 * @return largest focal length
 	 */
 	public void calculateLargestLens() {
@@ -144,7 +144,7 @@ public class ArtemisMath {
 
 	/**
 	 * Used in calculating the view angle for a custom camera
-	 * 
+	 *
 	 * @param distance
 	 *            The distance from the wall
 	 * @param width
