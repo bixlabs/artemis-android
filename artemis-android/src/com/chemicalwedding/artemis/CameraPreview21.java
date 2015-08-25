@@ -353,78 +353,87 @@ public class CameraPreview21 extends Fragment {
 
     // private float buf[] = new float[9];
     // float prevScaleFactor = 1;
+    Matrix origin, inverse;
 
     public void calculateZoom(boolean shouldCalcScaleFactor) {
         // Calculate the zoom scale and translation
 
-		Matrix endTransform = new Matrix();
-		// prevScaleFactor = this.scaleFactor;
-		if (_artemisMath.isFullscreen() || !shouldCalcScaleFactor) {
-			if (shouldCalcScaleFactor) {
-				this.scaleFactor = _artemisMath.calculateFullscreenZoomRatio();
-			}
-			if (scaleFactor > 1f) {
-//				endTransform.setRectToRect(
-//						(RectF) _artemisMath.getSelectedLensBox(),
-//						(RectF) _artemisMath.getCurrentGreenBox(),
-//						Matrix.ScaleToFit.CENTER);
+//        Matrix endTransform = mTextureView.getTransform(null);
+        Matrix endTransform = new Matrix();
+
+        // prevScaleFactor = this.scaleFactor;
+//        if (inverse != null) { // && !_artemisMath.isFullscreen()) {
+//            endTransform.preConcat(inverse);
+//        }
+        int rotation = getActivity().getWindowManager().getDefaultDisplay().getRotation();
+
+        if (_artemisMath.isFullscreen() || !shouldCalcScaleFactor) {
+            if (shouldCalcScaleFactor) {
+                this.scaleFactor = _artemisMath.calculateFullscreenZoomRatio();
+            }
+            if (scaleFactor > 1f) {
+
+                RectF selectedMapped = new RectF(_artemisMath.getSelectedLensBox());
+//                RectF greenMapped = new RectF(_artemisMath.getCurrentGreenBox());
+                Rect greenMapped = new Rect();
+//                greenMapped.set(0, 0, totalScreenWidth, totalScreenHeight);
+//                mTextureView.getDrawingRect(greenMapped);
+
+//                origin.mapRect(selectedMapped);
+//                origin.mapRect(greenMapped);
+
+//                endTransform.preConcat(origin);
+//                endTransform.setRectToRect(
+//                        selectedMapped,
+//                        new RectF(_artemisMath.getCurrentGreenBox()),
+//                        Matrix.ScaleToFit.CENTER);
+                endTransform.preConcat(origin);
+
+                endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
+                        .getCurrentGreenBox().centerX(), _artemisMath
+                        .getCurrentGreenBox().centerY());
 //
-//                int rotation = getActivity().getWindowManager().getDefaultDisplay().getRotation();
-//                if (Surface.ROTATION_90 == rotation || Surface.ROTATION_270 == rotation) {
-//                    endTransform.postRotate(90 * (rotation - 2),  _artemisMath
-//                            .getCurrentGreenBox().centerX(), _artemisMath
-//                            .getCurrentGreenBox().centerY());
-//                }
-
 //                lockFocus();
-
-
 //                mPreviewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, );
-                Rect scaledRegion = new Rect(this.mDeviceActiveSensorSize);
-                scaledRegion.inset(2000, 0);
-
-                mPreviewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, scaledRegion);
-
+//                Rect scaledRegion = new Rect(this.mDeviceActiveSensorSize);
+//                scaledRegion.inset(2000, 0);
+//
+//                mPreviewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, scaledRegion);
+//
 //                unlockFocus();
 
             } else {
-//				endTransform
-//						.postTranslate(
-//								_artemisMath.getCurrentGreenBox().left
-//										- (ArtemisMath.scaledPreviewWidth - _artemisMath
-//												.getCurrentGreenBox().width())
-//										/ 2f,
-//								(_artemisMath.getCurrentGreenBox().top - (ArtemisMath.scaledPreviewHeight - _artemisMath
-//										.getCurrentGreenBox().height()) / 2f) - 5);
-//				endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
-//                        .getCurrentGreenBox().centerX(), _artemisMath
-//                        .getCurrentGreenBox().centerY());
+                endTransform.preConcat(origin);
+//                endTransform
+//                        .postTranslate(
+//                                _artemisMath.getCurrentGreenBox().left
+//                                        - (ArtemisMath.scaledPreviewWidth - _artemisMath
+//                                        .getCurrentGreenBox().width())
+//                                        / 2f,
+//                                (_artemisMath.getCurrentGreenBox().top - (ArtemisMath.scaledPreviewHeight - _artemisMath
+//                                        .getCurrentGreenBox().height()) / 2f) - 5);
+                endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
+                        .getCurrentGreenBox().centerX(), _artemisMath
+                        .getCurrentGreenBox().centerY());
+//                endTransform
+//                        .postTranslate(
+//
 
+            }
 
+            inverse = new Matrix();
+            endTransform.invert(inverse);
 
-			}
+        } else {
+            this.scaleFactor = 1f;
 
-
-		} else {
-			this.scaleFactor = 1f;
-
-            mPreviewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, this.mOriginalCropRegion);
-
+            endTransform = new Matrix(origin);
         }
 
-        mPreviewRequest = mPreviewRequestBuilder.build();
-        try {
-            mCaptureSession.stopRepeating();
-            mCaptureSession.setRepeatingRequest(mPreviewRequest,
-                    mCaptureCallback, mBackgroundHandler);
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
-        }
+        Log.v(logTag, "Zoom ScaleFactor: " + scaleFactor);
+        Log.v(logTag, "Selected Lens: " + _artemisMath.getSelectedLensBox());
 
-		Log.v(logTag, "Zoom ScaleFactor: " + scaleFactor);
-		Log.v(logTag, "Selected Lens: " + _artemisMath.getSelectedLensBox());
-
-//		mTextureView.setTransform(endTransform);
+        mTextureView.setTransform(endTransform);
     }
 
     public void savePicture(Bitmap bitmap, boolean writeEXIFlocationInfo) {
@@ -1157,7 +1166,7 @@ public class CameraPreview21 extends Fragment {
 
                 mDeviceFocalLengths = characteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS);
                 mDeviceActiveSensorSize = characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
-                mSensorRatio = (float)mDeviceActiveSensorSize.width() / mDeviceActiveSensorSize.height();
+                mSensorRatio = (float) mDeviceActiveSensorSize.width() / mDeviceActiveSensorSize.height();
                 mDevicePhysicalSensorSize = characteristics.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE);
                 mMaxDigitalZoom = characteristics.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
                 mCroppingType = characteristics.get(CameraCharacteristics.SCALER_CROPPING_TYPE);
@@ -1355,6 +1364,8 @@ public class CameraPreview21 extends Fragment {
             matrix.postScale(scale, scale, centerX, centerY);
             matrix.postRotate(90 * (rotation - 2), centerX, centerY);
         }
+        origin = new Matrix(matrix);
+//        matrix.invert(origin);
         mTextureView.setTransform(matrix);
     }
 

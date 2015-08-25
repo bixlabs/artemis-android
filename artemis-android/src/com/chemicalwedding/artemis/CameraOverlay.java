@@ -20,7 +20,7 @@ public class CameraOverlay extends View {
 			10, 5, 5, 5 }, 2.0f);
 	private ArtemisMath _artemisMath = ArtemisMath.getInstance();
 	// private int screenWidth, screenHeight;
-	protected static boolean lockBoxEnabled = false;
+	protected static boolean lockBoxEnabled = true;
 
 	public CameraOverlay(Context context, AttributeSet attr) {
 		super(context, attr);

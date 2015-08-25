@@ -23,11 +23,17 @@
         <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
         <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
         <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateDebugSources" />
         <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugTest" />
         <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugTestSources" />
+<<<<<<< HEAD
 >>>>>>> 4682dac (Latest scaling code using SCALER_CROP_REGION.  I don't know how to calculate the right scaled region value yet)
         <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateDebugTestSources" />
+=======
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+          <task>generateDebugTestSources</task>
+        </afterSyncTasks>
+>>>>>>> 9cc976d (latest working new preview)
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/res" />
       </configuration>
@@ -43,7 +49,7 @@
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
 =======
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
 >>>>>>> 4682dac (Latest scaling code using SCALER_CROP_REGION.  I don't know how to calculate the right scaled region value yet)

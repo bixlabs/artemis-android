@@ -908,9 +908,9 @@ public class ArtemisActivity extends Activity implements
 		gpsEnabled = artemisPrefs.getBoolean(ArtemisPreferences.GPS_ENABLED,
 				true);
 
-		// lock box setting
-		CameraOverlay.lockBoxEnabled = artemisPrefs.getBoolean(
-				ArtemisPreferences.LOCK_BOXES_ENABLED, false);
+//		// lock box setting
+//		CameraOverlay.lockBoxEnabled = artemisPrefs.getBoolean(
+//				ArtemisPreferences.LOCK_BOXES_ENABLED, false);
 
 		// quick shot save setting
 		CameraPreview14.quickshotEnabled = artemisPrefs.getBoolean(
