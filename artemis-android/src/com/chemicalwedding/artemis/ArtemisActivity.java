@@ -195,12 +195,12 @@ public class ArtemisActivity extends Activity implements
 		// Appirator
 		Appirater.appLaunched(this);
 
-        if (null == savedInstanceState) {
+//        if (null == savedInstanceState) {
             mCameraPreview = CameraPreview21.newInstance();
             getFragmentManager().beginTransaction()
                     .replace(R.id.cameraPreview, mCameraPreview)
                     .commit();
-        }
+//        }
 
 		startArtemis();
 	}

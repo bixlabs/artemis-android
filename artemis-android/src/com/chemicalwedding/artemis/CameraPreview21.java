@@ -1112,7 +1112,6 @@ public class CameraPreview21 extends Fragment {
     @Override
     public void onPause() {
         closeCamera();
-        stopBackgroundThread();
         super.onPause();
     }
 
@@ -1302,10 +1301,6 @@ public class CameraPreview21 extends Fragment {
                                 // Flash is automatically enabled when necessary.
                                 mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
                                         CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
-                                // Set first focal length
-//                                mPreviewRequestBuilder.set(CaptureRequest.LENS_FOCAL_LENGTH,
-//                                        mDeviceFocalLengths[0]);
-//                                Log.d(TAG, String.format("Setting lens focal length: %f", mDeviceFocalLengths[0]));
 
                                 mTextureView.post(new Runnable() {
                                     @Override
@@ -1484,7 +1479,7 @@ public class CameraPreview21 extends Fragment {
     /**
      * Saves a JPEG {@link android.media.Image} into the specified {@link java.io.File}.
      */
-    private static class ImageSaver implements Runnable {
+    private class ImageSaver implements Runnable {
 
         /**
          * The JPEG image
@@ -1505,24 +1500,28 @@ public class CameraPreview21 extends Fragment {
             ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
             byte[] bytes = new byte[buffer.remaining()];
             buffer.get(bytes);
-            FileOutputStream output = null;
-            try {
-                output = new FileOutputStream(mFile);
-                output.write(bytes);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                mImage.close();
-                if (null != output) {
-                    try {
-                        output.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+//            FileOutputStream output = null;
+//            try {
+//                output = new FileOutputStream(mFile);
+//                output.write(bytes);
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } finally {
+//                mImage.close();
+//                if (null != output) {
+//                    try {
+//                        output.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+
+            bitmapToSave = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            CameraPreview21.this.renderPictureDetailsAndSave();
+
         }
 
     }
