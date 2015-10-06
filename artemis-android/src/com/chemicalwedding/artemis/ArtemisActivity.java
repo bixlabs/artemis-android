@@ -2136,11 +2136,8 @@ public class ArtemisActivity extends Activity implements
 			} else {
 				// just previously took a picture
 				pictureSavePreview.setImageBitmap(null);
-				System.gc();
-
-				if (mCameraPreview != null)
-					mCameraPreview.restartPreview();
 			}
+
 			savePictureViewFlipper.setDisplayedChild(0); // reset to first view
 			openArtemisCameraPreviewView();
 		}
@@ -2172,7 +2169,6 @@ public class ArtemisActivity extends Activity implements
 				// }
 			}.execute(new String[] {});
 
-			mCameraPreview.restartPreview();
 			openArtemisCameraPreviewView();
 		}
 	}
@@ -2326,7 +2322,6 @@ public class ArtemisActivity extends Activity implements
 					// }
 				}.execute(new String[] {});
 
-				mCameraPreview.restartPreview();
 			}
 
 			savePictureViewFlipper.setDisplayedChild(0);

@@ -41,9 +41,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.graphics.Typeface;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
-import android.hardware.Camera.Size;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -63,6 +62,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
+import android.util.Size;
 import android.util.SizeF;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
@@ -78,7 +78,7 @@ public class CameraPreview21 extends Fragment {
     protected static List<Integer> supportedExposureLevels;
     protected static List<String> supportedWhiteBalance, supportedFlashModes,
             supportedFocusModes, supportedSceneModes;
-    protected static List<Size> supportedPreviewSizes;
+//    protected static List<Size> supportedPreviewSizes;
     protected static boolean lockBoxEnabled = false, quickshotEnabled = false,
             smoothImagesEnabled = false;
     protected static float deviceHAngle, effectiveHAngle, deviceVAngle,
@@ -86,7 +86,7 @@ public class CameraPreview21 extends Fragment {
 
     protected static boolean isAutoFocusSupported = false;
     protected static boolean autoFocusBeforePictureTake = false;
-    protected static Size previewSize;
+//    protected static Size previewSize;
     protected static float exposureStep;
 
     private Camera mCamera;
@@ -282,21 +282,6 @@ public class CameraPreview21 extends Fragment {
 //            CameraPreview21.effectiveVAngle = 32.0f;
         }
 
-        // handle auto focus setup
-
-//			Log.v(logTag,
-//					"Current preview format: " + parameters.getPreviewFormat());
-        // Get the supported zoom ratios
-        // CameraPreview14.supportedZoomRatios =
-        // parameters.getZoomRatios();
-        // if (CameraPreview14.supportedZoomRatios != null) {
-        // Log.v(logTag,
-        // "Zoom ratios supported: " + supportedZoomRatios.size());
-        // for (Integer zoomRatios : supportedZoomRatios) {
-        // Log.v(logTag, zoomRatios + "");
-        // }
-        // }
-
         ArtemisMath.orangeBoxColor = getResources().getColor(
                 R.color.orangeArtemisText);
 
@@ -344,30 +329,14 @@ public class CameraPreview21 extends Fragment {
             ArtemisActivity.arrowBackgroundImage = BitmapFactory
                     .decodeResource(getResources(), R.drawable.arrows, o);
         }
-//		}
     }
 
-
-    public void restartPreview() {
-//		if (mCamera != null)
-//			mCamera.startPreview();
-    }
-
-    // private float buf[] = new float[9];
-    // float prevScaleFactor = 1;
     Matrix origin, inverse;
 
     public void calculateZoom(boolean shouldCalcScaleFactor) {
         // Calculate the zoom scale and translation
 
-//        Matrix endTransform = mTextureView.getTransform(null);
         Matrix endTransform = new Matrix();
-
-        // prevScaleFactor = this.scaleFactor;
-//        if (inverse != null) { // && !_artemisMath.isFullscreen()) {
-//            endTransform.preConcat(inverse);
-//        }
-        int rotation = getActivity().getWindowManager().getDefaultDisplay().getRotation();
 
         if (_artemisMath.isFullscreen() || !shouldCalcScaleFactor) {
             if (shouldCalcScaleFactor) {
@@ -375,51 +344,16 @@ public class CameraPreview21 extends Fragment {
             }
             if (scaleFactor > 1f) {
 
-                RectF selectedMapped = new RectF(_artemisMath.getSelectedLensBox());
-//                RectF greenMapped = new RectF(_artemisMath.getCurrentGreenBox());
-                Rect greenMapped = new Rect();
-//                greenMapped.set(0, 0, totalScreenWidth, totalScreenHeight);
-//                mTextureView.getDrawingRect(greenMapped);
-
-//                origin.mapRect(selectedMapped);
-//                origin.mapRect(greenMapped);
-
-//                endTransform.preConcat(origin);
-//                endTransform.setRectToRect(
-//                        selectedMapped,
-//                        new RectF(_artemisMath.getCurrentGreenBox()),
-//                        Matrix.ScaleToFit.CENTER);
                 endTransform.preConcat(origin);
 
                 endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
                         .getCurrentGreenBox().centerX(), _artemisMath
                         .getCurrentGreenBox().centerY());
-//
-//                lockFocus();
-//                mPreviewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, );
-//                Rect scaledRegion = new Rect(this.mDeviceActiveSensorSize);
-//                scaledRegion.inset(2000, 0);
-//
-//                mPreviewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, scaledRegion);
-//
-//                unlockFocus();
-
             } else {
                 endTransform.preConcat(origin);
-//                endTransform
-//                        .postTranslate(
-//                                _artemisMath.getCurrentGreenBox().left
-//                                        - (ArtemisMath.scaledPreviewWidth - _artemisMath
-//                                        .getCurrentGreenBox().width())
-//                                        / 2f,
-//                                (_artemisMath.getCurrentGreenBox().top - (ArtemisMath.scaledPreviewHeight - _artemisMath
-//                                        .getCurrentGreenBox().height()) / 2f) - 5);
                 endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
                         .getCurrentGreenBox().centerX(), _artemisMath
                         .getCurrentGreenBox().centerY());
-//                endTransform
-//                        .postTranslate(
-//
 
             }
 
@@ -565,7 +499,7 @@ public class CameraPreview21 extends Fragment {
             blankBmp = Bitmap.createBitmap(
                     bitmapToSave.getWidth() + sideborder,
                     bitmapToSave.getHeight() + footerHeight,
-                    Bitmap.Config.RGB_565);
+                    Bitmap.Config.ARGB_8888);
             Paint paint = new Paint();
             Canvas canvas = new Canvas(blankBmp);
             canvas.drawColor(Color.WHITE);
@@ -1140,10 +1074,10 @@ public class CameraPreview21 extends Fragment {
 
                 // For still image captures, we use the largest available size.
                 android.util.Size largest = Collections.max(
-                        Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
+                        Arrays.asList(map.getOutputSizes(ImageFormat.YUV_420_888)),
                         new CompareSizesByArea());
                 mImageReader = ImageReader.newInstance(largest.getWidth(), largest.getHeight(),
-                        ImageFormat.JPEG, /*maxImages*/2);
+                        ImageFormat.YUV_420_888, /*maxImages*/2);
                 mImageReader.setOnImageAvailableListener(
                         mOnImageAvailableListener, mBackgroundHandler);
 
@@ -1495,35 +1429,14 @@ public class CameraPreview21 extends Fragment {
             mFile = file;
         }
 
+
         @Override
         public void run() {
             ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
             byte[] bytes = new byte[buffer.remaining()];
             buffer.get(bytes);
-//            FileOutputStream output = null;
-//            try {
-//                output = new FileOutputStream(mFile);
-//                output.write(bytes);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } finally {
-//                mImage.close();
-//                if (null != output) {
-//                    try {
-//                        output.close();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-
-            bitmapToSave = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            CameraPreview21.this.renderPictureDetailsAndSave();
 
         }
-
     }
 
     /**
