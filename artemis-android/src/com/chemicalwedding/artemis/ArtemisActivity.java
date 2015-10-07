@@ -52,8 +52,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.TextureView;
-import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -86,7 +84,7 @@ import com.chemicalwedding.artemis.database.ZoomLens;
 import com.sbstrm.appirater.Appirater;
 
 public class ArtemisActivity extends Activity implements
-		SurfaceTextureListener, LoaderCallbacks<Cursor> {
+		LoaderCallbacks<Cursor> {
 	private static final String TAG = ArtemisActivity.class.getSimpleName();
 
 	private static final String DEFAULT_LENS_MAKE = "Generic 35mm Lenses";
@@ -2983,50 +2981,4 @@ public class ArtemisActivity extends Activity implements
 		super.onConfigurationChanged(newConfig);
 	}
 
-	@Override
-	public void onSurfaceTextureAvailable(SurfaceTexture surface, int width,
-			int height) {
-		// Set the background
-		if (ArtemisActivity.arrowBackgroundImage == null) {
-			Options o = new Options();
-			o.inSampleSize = 2;
-			ArtemisActivity.arrowBackgroundImage = BitmapFactory
-					.decodeResource(getResources(), R.drawable.arrows, o);
-		}
-
-		if (mCamera == null) {
-			mCamera = android.hardware.Camera.open();
-
-			try {
-				mCamera.setPreviewTexture(surface);
-			} catch (IOException t) {
-			}
-
-			mCameraPreview.startArtemisPreview(true);
-			this.reconfigureNextAndPreviousLensButtons();
-		}
-
-		isSurfaceAvailable = true;
-	}
-
-	@Override
-	public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width,
-			int height) {
-	}
-
-	@Override
-	public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-		if (mCamera != null) {
-			mCamera.stopPreview();
-			mCamera.release();
-			mCamera = null;
-		}
-		isSurfaceAvailable = false;
-		return true;
-	}
-
-	@Override
-	public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-		// Invoked every time there's a new Camera preview frame
-	}
 }

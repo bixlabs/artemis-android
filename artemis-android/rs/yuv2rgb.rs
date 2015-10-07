@@ -17,7 +17,7 @@
 #pragma rs java_package_name(com.chemicalwedding.artemis)
 #pragma rs_fp_relaxed
 
-rs_allocation gCurrentFrame;
+rs_allocation gCurrentFrame, gPrevFrame;
 
 
 uchar4 __attribute__((kernel)) yuv2rgbFrames(uchar4 prevPixel, uint32_t x, uint32_t y) {

@@ -41,8 +41,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.graphics.Typeface;
-import android.graphics.YuvImage;
-import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -61,8 +59,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.renderscript.RenderScript;
 import android.util.Log;
-import android.util.Size;
 import android.util.SizeF;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
@@ -73,7 +71,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class CameraPreview21 extends Fragment {
+public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrameBitmap {
 
     protected static List<Integer> supportedExposureLevels;
     protected static List<String> supportedWhiteBalance, supportedFlashModes,
@@ -89,7 +87,6 @@ public class CameraPreview21 extends Fragment {
 //    protected static Size previewSize;
     protected static float exposureStep;
 
-    private Camera mCamera;
     private TextureView mTextureView;
     private static final String logTag = "CameraPreview";
 
@@ -112,6 +109,10 @@ public class CameraPreview21 extends Fragment {
     private Float mMaxDigitalZoom;
     private Integer mCroppingType;
     private Rect mOriginalCropRegion;
+    private RenderScript mRS;
+    private ImageProcessor mImageProcessor;
+    private Surface mInputSurface;
+    private Surface mOutputSurface;
 
 //    public static void initCameraDetails() {
 //
@@ -174,17 +175,12 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    public void setTextureView(TextureView textureView) {
-        mTextureView = textureView;
-    }
-
     public void startArtemisPreview(boolean resetLensAndTouch) {
 
-//		mCamera = camera;
+        if (getActivity() == null) {
+            return;
+        }
 
-//		if (mCamera != null) {
-
-//			Parameters parameters = mCamera.getParameters();
         SharedPreferences artemisPrefs = getActivity()
                 .getApplicationContext().getSharedPreferences(
                         ArtemisPreferences.class.getSimpleName(),
@@ -780,6 +776,7 @@ public class CameraPreview21 extends Fragment {
 
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture texture, int width, int height) {
+            mRS = RenderScript.create(getActivity());
             openCamera(width, height);
         }
 
@@ -1076,26 +1073,20 @@ public class CameraPreview21 extends Fragment {
                 android.util.Size largest = Collections.max(
                         Arrays.asList(map.getOutputSizes(ImageFormat.YUV_420_888)),
                         new CompareSizesByArea());
-                mImageReader = ImageReader.newInstance(largest.getWidth(), largest.getHeight(),
-                        ImageFormat.YUV_420_888, /*maxImages*/2);
-                mImageReader.setOnImageAvailableListener(
-                        mOnImageAvailableListener, mBackgroundHandler);
+
+                mImageProcessor = new ImageProcessor(mRS, largest, CameraPreview21.this);
+                mInputSurface = mImageProcessor.getInputNormalSurface();
+
+//                mImageReader = ImageReader.newInstance(largest.getWidth(), largest.getHeight(),
+//                        ImageFormat.YUV_420_888, /*maxImages*/2);
+//                mImageReader.setOnImageAvailableListener(
+//                        mOnImageAvailableListener, mBackgroundHandler);
 
                 // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
                 // garbage capture data.
                 mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
                         width, height, largest);
-
-                // We fit the aspect ratio of TextureView to the size of preview we picked.
-//                int orientation = getResources().getConfiguration().orientation;
-//                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    mTextureView.setAspectRatio(
-//                            mPreviewSize.getWidth(), mPreviewSize.getHeight());
-//                } else {
-//                    mTextureView.setAspectRatio(
-//                            mPreviewSize.getHeight(), mPreviewSize.getWidth());
-//                }
 
                 mCameraId = cameraId;
 
@@ -1209,6 +1200,7 @@ public class CameraPreview21 extends Fragment {
 
             // This is the output Surface we need to start preview.
             Surface surface = new Surface(texture);
+            mOutputSurface = surface;
 
             // We set up a CaptureRequest.Builder with the output Surface.
             mPreviewRequestBuilder
@@ -1216,7 +1208,7 @@ public class CameraPreview21 extends Fragment {
             mPreviewRequestBuilder.addTarget(surface);
 
             // Here, we create a CameraCaptureSession for camera preview.
-            mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface()),
+            mCameraDevice.createCaptureSession(Arrays.asList(surface, mInputSurface),
                     new CameraCaptureSession.StateCallback() {
 
                         @Override
@@ -1359,7 +1351,7 @@ public class CameraPreview21 extends Fragment {
             // This is the CaptureRequest.Builder that we use to take a picture.
             final CaptureRequest.Builder captureBuilder =
                     mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-            captureBuilder.addTarget(mImageReader.getSurface());
+            captureBuilder.addTarget(mImageProcessor.getInputNormalSurface());
 
             // Use the same AE and AF modes as the preview.
             captureBuilder.set(CaptureRequest.CONTROL_AF_MODE,
@@ -1382,12 +1374,32 @@ public class CameraPreview21 extends Fragment {
                 }
             };
 
+//            captureBuilder.addTarget(mInputSurface);
+//            mCameraDevice.createCaptureSession(Arrays.asList(mInputSurface), mCameraCaptureSessionStateCallback, null);
+
             mCaptureSession.stopRepeating();
+            mImageProcessor.setOutputSurface(mOutputSurface);
             mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
+
+    private CameraCaptureSession.StateCallback mCameraCaptureSessionStateCallback = new CameraCaptureSession.StateCallback() {
+
+        @Override
+        public void onConfigured(CameraCaptureSession session) {
+//            try {
+//                session.setRepeatingRequest(mBuilder.build(), mCameraCaptureSessionCaptureCallback, null);
+//            } catch (CameraAccessException e) {
+//                e.printStackTrace();
+//            }
+        }
+
+        @Override
+        public void onConfigureFailed(CameraCaptureSession session) {
+        }
+    };
 
     /**
      * Unlock the focus. This method should be called when still image capture sequence is finished.
@@ -1408,6 +1420,13 @@ public class CameraPreview21 extends Fragment {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void getBitmap(Bitmap bitmap) {
+        Log.d(TAG, String.format("getBitmap is %s null", bitmap!=null ? "not " : ""));
+        bitmapToSave = bitmap;
+        renderPictureDetailsAndSave();
     }
 
     /**
