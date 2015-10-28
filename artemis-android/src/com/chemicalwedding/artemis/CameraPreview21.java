@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,6 +28,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -36,7 +38,7 @@ import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -59,10 +61,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.renderscript.RenderScript;
 import android.util.Log;
+import android.util.Size;
 import android.util.SizeF;
 import android.util.SparseIntArray;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.TextureView;
@@ -71,12 +74,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrameBitmap {
+public class CameraPreview21 extends Fragment {
 
     protected static List<Integer> supportedExposureLevels;
     protected static List<String> supportedWhiteBalance, supportedFlashModes,
             supportedFocusModes, supportedSceneModes;
-//    protected static List<Size> supportedPreviewSizes;
+    //    protected static List<Size> supportedPreviewSizes;
     protected static boolean lockBoxEnabled = false, quickshotEnabled = false,
             smoothImagesEnabled = false;
     protected static float deviceHAngle, effectiveHAngle, deviceVAngle,
@@ -84,7 +87,7 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
 
     protected static boolean isAutoFocusSupported = false;
     protected static boolean autoFocusBeforePictureTake = false;
-//    protected static Size previewSize;
+    //    protected static Size previewSize;
     protected static float exposureStep;
 
     private TextureView mTextureView;
@@ -109,10 +112,10 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
     private Float mMaxDigitalZoom;
     private Integer mCroppingType;
     private Rect mOriginalCropRegion;
-    private RenderScript mRS;
-    private ImageProcessor mImageProcessor;
-    private Surface mInputSurface;
-    private Surface mOutputSurface;
+    private float previewRatio;
+    private Size mLargest;
+    private float mScale;
+    private Matrix noRotation;
 
 //    public static void initCameraDetails() {
 //
@@ -373,12 +376,12 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
                 Locale.getDefault());
         String title = sdf.format(Calendar.getInstance().getTime());
         String filePath = ArtemisActivity.savePictureFolder + "/" + title
-                + ".jpg";
+                + ".png";
         Log.v(logTag, "Saving file: " + filePath);
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(filePath);
-            bitmap.compress(CompressFormat.JPEG, savedImageJPEGQuality, fos);
+            bitmap.compress(CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {
@@ -565,16 +568,16 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
                 // blankBmp.getHeight() - 10, paint);
                 // }
                 if (showGpsLocationString && gpsDetailsAndLocation.length > 1) {
-                    paint.setTextAlign(Align.CENTER);
+                    paint.setTextAlign(Paint.Align.CENTER);
                     paint.setTextScaleX(0.87f);
                     canvas.drawText(gpsDetailsAndLocation[1], centerTextX,
                             blankBmp.getHeight() - 10, paint);
-                    paint.setTextAlign(Align.LEFT);
+                    paint.setTextAlign(Paint.Align.LEFT);
                     paint.setTextScaleX(1f);
                 }
             }
 
-            paint.setTextAlign(Align.CENTER);
+            paint.setTextAlign(Paint.Align.CENTER);
             if (showHeading && showTiltRoll) {
                 canvas.drawText(ArtemisActivity.pictureSaveHeadingTiltString,
                         centerTextX, blankBmp.getHeight() - 50, paint);
@@ -610,7 +613,7 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
                             centerTextX, blankBmp.getHeight() - 50, paint);
                 }
             }
-            paint.setTextAlign(Align.LEFT);
+            paint.setTextAlign(Paint.Align.LEFT);
 
             if (showLensViewAngles) {
                 NumberFormat nf = NumberFormat.getInstance();
@@ -656,7 +659,7 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
                     paint.setTextSize(10);
                     paint.setTextScaleX(0.9f);
                 }
-                paint.setTextAlign(Align.CENTER);
+                paint.setTextAlign(Paint.Align.CENTER);
                 canvas.drawText(lensMake, blankBmp.getWidth() - xRef + 72,
                         blankBmp.getHeight() - 56, paint);
 
@@ -776,7 +779,6 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
 
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture texture, int width, int height) {
-            mRS = RenderScript.create(getActivity());
             openCamera(width, height);
         }
 
@@ -813,11 +815,12 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
      */
 
     private CameraDevice mCameraDevice;
+
     /**
      * The {@link android.util.Size} of camera preview.
      */
 
-    private android.util.Size mPreviewSize;
+    static protected android.util.Size previewSize;
 
     /**
      * {@link android.hardware.camera2.CameraDevice.StateCallback} is called when {@link android.hardware.camera2.CameraDevice} changes its state.
@@ -1046,6 +1049,12 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
         super.onPause();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopBackgroundThread();
+    }
+
     /**
      * Sets up member variables related to camera.
      *
@@ -1070,23 +1079,26 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
                         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
                 // For still image captures, we use the largest available size.
-                android.util.Size largest = Collections.max(
-                        Arrays.asList(map.getOutputSizes(ImageFormat.YUV_420_888)),
+                mLargest = Collections.max(
+                        Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
                         new CompareSizesByArea());
+                mImageReader = ImageReader.newInstance(mLargest.getWidth(), mLargest.getHeight(),
+                        ImageFormat.JPEG, /*maxImages*/2);
+                mImageReader.setOnImageAvailableListener(
+                        mOnImageAvailableListener, mBackgroundHandler);
 
-                mImageProcessor = new ImageProcessor(mRS, largest, CameraPreview21.this);
-                mInputSurface = mImageProcessor.getInputNormalSurface();
+                Log.d(TAG, String.format("Total available screen size: %sw  %sh %sr", totalScreenWidth, totalScreenHeight, (float) totalScreenWidth / totalScreenHeight));
 
-//                mImageReader = ImageReader.newInstance(largest.getWidth(), largest.getHeight(),
-//                        ImageFormat.YUV_420_888, /*maxImages*/2);
-//                mImageReader.setOnImageAvailableListener(
-//                        mOnImageAvailableListener, mBackgroundHandler);
+                Log.d(TAG, String.format("Selected image reader size: %sw  %sh %sr", mLargest.getWidth(), mLargest.getHeight(), (float) mLargest.getWidth() / mLargest.getHeight()));
 
                 // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
                 // garbage capture data.
-                mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
-                        width, height, largest);
+                previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
+                        width, height, mLargest);
+                previewRatio = (float) previewSize.getWidth() / previewSize.getHeight();
+
+                Log.d(TAG, String.format("Selected preview size: %sw  %sh %sr", previewSize.getWidth(), previewSize.getHeight(), previewRatio));
 
                 mCameraId = cameraId;
 
@@ -1117,22 +1129,45 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
      * Opens the camera specified by {@link CameraPreview21#mCameraId}.
      */
     private void openCamera(int width, int height) {
-        totalScreenWidth = width;
-        totalScreenHeight = height;
+        totalScreenWidth = width > height ? width : height;
+        totalScreenHeight = width > height ? height : width;
 
-        setUpCameraOutputs(width, height);
-        configureTransform(width, height);
+        setUpCameraOutputs(totalScreenWidth, totalScreenHeight);
+        configureTransform(totalScreenWidth, totalScreenHeight);
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
             if (!mCameraOpenCloseLock.tryAcquire(5000, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
             }
+            if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for Activity#requestPermissions for more details.
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+
+                return;
+            }
             manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        CameraManager manager = (CameraManager) getActivity().getSystemService(Context.CAMERA_SERVICE);
+        try {
+            manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
         }
     }
 
@@ -1193,14 +1228,13 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
             assert texture != null;
 
             // We configure the size of default buffer to be the size of camera preview we want.
-            texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+            texture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
 
-            ArtemisMath.scaledPreviewWidth = mPreviewSize.getWidth();
-            ArtemisMath.scaledPreviewHeight = mPreviewSize.getHeight();
+            ArtemisMath.scaledPreviewWidth = previewSize.getWidth();
+            ArtemisMath.scaledPreviewHeight = previewSize.getHeight();
 
             // This is the output Surface we need to start preview.
             Surface surface = new Surface(texture);
-            mOutputSurface = surface;
 
             // We set up a CaptureRequest.Builder with the output Surface.
             mPreviewRequestBuilder
@@ -1208,7 +1242,7 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
             mPreviewRequestBuilder.addTarget(surface);
 
             // Here, we create a CameraCaptureSession for camera preview.
-            mCameraDevice.createCaptureSession(Arrays.asList(surface, mInputSurface),
+            mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface()),
                     new CameraCaptureSession.StateCallback() {
 
                         @Override
@@ -1269,22 +1303,25 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
      */
     private void configureTransform(int viewWidth, int viewHeight) {
         Activity activity = getActivity();
-        if (null == mTextureView || null == mPreviewSize || null == activity) {
+        if (null == mTextureView || null == previewSize || null == activity) {
             return;
         }
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         Matrix matrix = new Matrix();
         RectF viewRect = new RectF(0, 0, viewWidth, viewHeight);
-        RectF bufferRect = new RectF(0, 0, mPreviewSize.getHeight(), mPreviewSize.getWidth());
+        RectF bufferRect = new RectF(0, 0, previewSize.getHeight(), previewSize.getWidth());
         float centerX = viewRect.centerX();
         float centerY = viewRect.centerY();
         if (Surface.ROTATION_90 == rotation || Surface.ROTATION_270 == rotation) {
             bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
+            Log.d(TAG, String.format("Configure Transform: offset %f, %f", centerX - bufferRect.centerX(), centerY - bufferRect.centerY()));
             matrix.setRectToRect(viewRect, bufferRect, Matrix.ScaleToFit.FILL);
-            float scale = Math.max(
-                    (float) viewHeight / mPreviewSize.getHeight(),
-                    (float) viewWidth / mPreviewSize.getWidth());
-            matrix.postScale(scale, scale, centerX, centerY);
+            mScale = Math.max(
+                    (float) viewHeight / previewSize.getHeight(),
+                    (float) viewWidth / previewSize.getWidth());
+            Log.d(TAG, String.format("Configure Transform: scale %f", mScale));
+
+            matrix.postScale(mScale, mScale, centerX, centerY);
             matrix.postRotate(90 * (rotation - 2), centerX, centerY);
         }
         origin = new Matrix(matrix);
@@ -1350,8 +1387,8 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
             }
             // This is the CaptureRequest.Builder that we use to take a picture.
             final CaptureRequest.Builder captureBuilder =
-                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-            captureBuilder.addTarget(mImageProcessor.getInputNormalSurface());
+                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            captureBuilder.addTarget(mImageReader.getSurface());
 
             // Use the same AE and AF modes as the preview.
             captureBuilder.set(CaptureRequest.CONTROL_AF_MODE,
@@ -1369,7 +1406,7 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request,
                                                TotalCaptureResult result) {
-                    Toast.makeText(getActivity(), "Saved: " + mFile, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Saved: " + mFile, Toast.LENGTH_SHORT).show();
                     unlockFocus();
                 }
             };
@@ -1378,28 +1415,12 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
 //            mCameraDevice.createCaptureSession(Arrays.asList(mInputSurface), mCameraCaptureSessionStateCallback, null);
 
             mCaptureSession.stopRepeating();
-            mImageProcessor.setOutputSurface(mOutputSurface);
+//            mImageProcessor.setOutputSurface(mOutputSurface);
             mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
-
-    private CameraCaptureSession.StateCallback mCameraCaptureSessionStateCallback = new CameraCaptureSession.StateCallback() {
-
-        @Override
-        public void onConfigured(CameraCaptureSession session) {
-//            try {
-//                session.setRepeatingRequest(mBuilder.build(), mCameraCaptureSessionCaptureCallback, null);
-//            } catch (CameraAccessException e) {
-//                e.printStackTrace();
-//            }
-        }
-
-        @Override
-        public void onConfigureFailed(CameraCaptureSession session) {
-        }
-    };
 
     /**
      * Unlock the focus. This method should be called when still image capture sequence is finished.
@@ -1422,12 +1443,12 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
         }
     }
 
-    @Override
-    public void getBitmap(Bitmap bitmap) {
-        Log.d(TAG, String.format("getBitmap is %s null", bitmap!=null ? "not " : ""));
-        bitmapToSave = bitmap;
-        renderPictureDetailsAndSave();
-    }
+//    @Override
+//    public void getBitmap(Bitmap bitmap) {
+//        Log.d(TAG, String.format("getBitmap is %s null", bitmap!=null ? "not " : ""));
+//        bitmapToSave = bitmap;
+//        renderPictureDetailsAndSave();
+//    }
 
     /**
      * Saves a JPEG {@link android.media.Image} into the specified {@link java.io.File}.
@@ -1452,9 +1473,95 @@ public class CameraPreview21 extends Fragment implements ImageProcessor.GetFrame
         @Override
         public void run() {
             ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
+            buffer.rewind();
             byte[] bytes = new byte[buffer.remaining()];
             buffer.get(bytes);
 
+            bitmapToSave = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            mImage.close();
+
+            final RectF selectedRect = _artemisMath.getSelectedLensBox();
+            final RectF greenRect = _artemisMath.getCurrentGreenBox();
+            final RectF screenRect = new RectF(0, 0, mTextureView.getWidth(), mTextureView.getHeight());
+
+            final int imageWidth = bitmapToSave.getWidth();
+            final int imageHeight = bitmapToSave.getHeight();
+
+            final float screenWRatio = (float) mTextureView.getWidth() / mTextureView.getHeight();
+            final float screenHRatio = (float) 1 / screenWRatio;
+
+
+            int newHeight = (int) (imageWidth * screenHRatio);
+            int newWidth = (int) (imageWidth);
+            int widthDiff = (int) ((imageWidth - newWidth) / 2f);
+            int heightDiff = (int) ((imageHeight - newHeight) / 2f);
+
+
+            Log.d(TAG, String.format("screenWRatio %f", screenWRatio));
+
+            float scale = _artemisMath.calculateFullscreenZoomRatio();
+
+            if (scaleFactor >= 1) {
+
+
+                bitmapToSave = Bitmap.createBitmap(bitmapToSave, widthDiff, heightDiff, newWidth, newHeight, null, false);
+                float screenImageWRatio = bitmapToSave.getWidth() / screenRect.width();
+                bitmapToSave = Bitmap.createBitmap(bitmapToSave,
+                        (int) (greenRect.left * screenImageWRatio),
+                        (int) (greenRect.top * screenImageWRatio),
+                        (int) (greenRect.width() * screenImageWRatio),
+                        (int) (greenRect.height() * screenImageWRatio), null, true);
+                float greenToSelectedRatio =  bitmapToSave.getWidth() / greenRect.width();
+                bitmapToSave = Bitmap.createBitmap(bitmapToSave,
+                        (int) ((selectedRect.left-greenRect.left) * greenToSelectedRatio),
+                        (int) ((selectedRect.top-greenRect.top) * greenToSelectedRatio),
+                        (int) (selectedRect.width() * greenToSelectedRatio),
+                        (int) (selectedRect.height() * greenToSelectedRatio), null, false);
+
+            }
+            // We need to scale down
+            else {
+                Log.d(logTag, "Scale down on save");
+                float ratio = greenRect.width() / greenRect.height();
+                int newwidth = (int) (imageHeight * ratio);
+                Bitmap canvasBitmap = Bitmap.createBitmap(newwidth,
+                        imageHeight, Bitmap.Config.RGB_565);
+                Canvas c = new Canvas(canvasBitmap);
+                Paint p = new Paint();
+
+//                float width = newwidth * ArtemisMath.horizViewAngle
+//                        / _artemisMath.selectedLensAngleData[0]
+//                        * totalScreenWidth / greenRect.width();
+//                float previewRatio = (float) previewHeight / previewWidth;
+                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
+                        (int) (imageWidth*scale), (int) (imageHeight * scale),
+                        smoothImagesEnabled);
+
+                int xpos = (newwidth - bitmapToSave.getWidth()) / 2;
+                int ypos = (imageHeight - bitmapToSave.getHeight()) / 2;
+
+                // draw background
+                c.drawBitmap(ArtemisActivity.arrowBackgroundImage, null,
+                        new Rect(0, 0, c.getWidth(), c.getHeight()), p);
+
+                c.drawBitmap(bitmapToSave, xpos, ypos, p);
+
+                bitmapToSave = canvasBitmap;
+            }
+
+            if (!quickshotEnabled) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArtemisActivity.pictureSavePreview.setImageBitmap(bitmapToSave);
+                        ArtemisActivity.viewFlipper.setInAnimation(null);
+                        ArtemisActivity.viewFlipper.setDisplayedChild(3);
+                        ArtemisActivity.currentViewId = R.id.savePictureViewFlipper;
+                    }
+                });
+            } else {
+//                savePicture(bitmapToSave, save);
+            }
         }
     }
 

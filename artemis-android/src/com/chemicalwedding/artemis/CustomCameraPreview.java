@@ -67,29 +67,29 @@ public class CustomCameraPreview extends ViewGroup {
 			// init camera preferences for artemis settings
 			int min = parameters.getMinExposureCompensation();
 			int max = parameters.getMaxExposureCompensation();
-			CameraPreview14.exposureStep = parameters
+			CameraPreview21.exposureStep = parameters
 					.getExposureCompensationStep();
 			Log.v(logTag, "Camera Exposure min: " + min + " max: " + max);
-			CameraPreview14.supportedExposureLevels = new ArrayList<Integer>();
+			CameraPreview21.supportedExposureLevels = new ArrayList<Integer>();
 			int defaultExposure = 0;
 			for (int i = min; i <= max; i++) {
-				CameraPreview14.supportedExposureLevels.add(i);
+				CameraPreview21.supportedExposureLevels.add(i);
 			}
-			if (CameraPreview14.blackAndWhitePreview) {
+			if (CameraPreview21.blackAndWhitePreview) {
 				Log.i(logTag, "BLACK AND WHITE ON");
 				parameters.setColorEffect(Parameters.EFFECT_MONO);
 			} else {
 				parameters.setColorEffect(Parameters.EFFECT_NONE);
 			}
 
-			CameraPreview14.supportedWhiteBalance = parameters
+			CameraPreview21.supportedWhiteBalance = parameters
 					.getSupportedWhiteBalance();
-			CameraPreview14.supportedFlashModes = parameters
+			CameraPreview21.supportedFlashModes = parameters
 					.getSupportedFlashModes();
 
-			if (CameraPreview14.supportedFlashModes != null) {
+			if (CameraPreview21.supportedFlashModes != null) {
 				Log.v(logTag, "Supported Flash modes: ");
-				for (String flashMode : CameraPreview14.supportedFlashModes) {
+				for (String flashMode : CameraPreview21.supportedFlashModes) {
 					Log.v(logTag, flashMode);
 				}
 
@@ -116,77 +116,77 @@ public class CustomCameraPreview extends ViewGroup {
 				parameters.setWhiteBalance(whiteBalance);
 			}
 
-			CameraPreview14.supportedFocusModes = parameters
+			CameraPreview21.supportedFocusModes = parameters
 					.getSupportedFocusModes();
-			if (CameraPreview14.supportedFocusModes != null) {
+			if (CameraPreview21.supportedFocusModes != null) {
 				String focusMode = artemisPrefs.getString(
 						ArtemisPreferences.SELECTED_FOCUS_MODE, "");
 				if (focusMode.length() == 0
-						&& CameraPreview14.supportedFocusModes
+						&& CameraPreview21.supportedFocusModes
 								.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
 					parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
 				} else {
 					parameters.setFocusMode(focusMode);
 				}
 			}
-			CameraPreview14.autoFocusBeforePictureTake = artemisPrefs
+			CameraPreview21.autoFocusBeforePictureTake = artemisPrefs
 					.getBoolean(ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false);
 
-			CameraPreview14.supportedSceneModes = parameters
+			CameraPreview21.supportedSceneModes = parameters
 					.getSupportedSceneModes();
-			if (CameraPreview14.supportedSceneModes != null) {
+			if (CameraPreview21.supportedSceneModes != null) {
 				parameters.setSceneMode(artemisPrefs.getString(
 						ArtemisPreferences.SELECTED_SCENE_MODE, "auto"));
 			}
 
-			parameters.setPreviewSize(CameraPreview14.previewSize.width,
-					CameraPreview14.previewSize.height);
+			parameters.setPreviewSize(CameraPreview21.previewSize.getWidth(),
+                    CameraPreview21.previewSize.getHeight());
 			// parameters.setPictureSize(pictureSize.width, pictureSize.height);
 
 			try {
-				CameraPreview14.deviceHAngle = parameters
+				CameraPreview21.deviceHAngle = parameters
 						.getHorizontalViewAngle();
 			} catch (Exception e) {
-				CameraPreview14.deviceHAngle = 51.2f;// workaround for
+				CameraPreview21.deviceHAngle = 51.2f;// workaround for
 				// bug
 				// in certain
 				// Android
 				// devices that crash on getting
 				// angle
 			} finally {
-				if (CameraPreview14.deviceHAngle < 1f) {
-					CameraPreview14.deviceHAngle = 51.2f;
+				if (CameraPreview21.deviceHAngle < 1f) {
+					CameraPreview21.deviceHAngle = 51.2f;
 				}
 			}
 
 			try {
-				CameraPreview14.deviceVAngle = parameters
+				CameraPreview21.deviceVAngle = parameters
 						.getVerticalViewAngle();
 			} catch (Exception e) {
-				CameraPreview14.deviceVAngle = 39.4f; // workaround for
+				CameraPreview21.deviceVAngle = 39.4f; // workaround for
 				// bug
 				// in certain
 				// Android
 				// devices that crash on getting
 				// angle
 			} finally {
-				if (CameraPreview14.deviceVAngle < 1f) {
-					CameraPreview14.deviceVAngle = 39.4f;
+				if (CameraPreview21.deviceVAngle < 1f) {
+					CameraPreview21.deviceVAngle = 39.4f;
 				}
 			}
 
 			if (!artemisPrefs.getBoolean(
 					getContext().getString(
 							R.string.preference_key_automaticlensangles), true)) {
-				CameraPreview14.effectiveHAngle = artemisPrefs.getFloat(
+				CameraPreview21.effectiveHAngle = artemisPrefs.getFloat(
 						ArtemisPreferences.CAMERA_LENS_H_ANGLE,
-						CameraPreview14.deviceHAngle);
-				CameraPreview14.effectiveVAngle = artemisPrefs.getFloat(
+						CameraPreview21.deviceHAngle);
+				CameraPreview21.effectiveVAngle = artemisPrefs.getFloat(
 						ArtemisPreferences.CAMERA_LENS_V_ANGLE,
-						CameraPreview14.deviceVAngle);
+						CameraPreview21.deviceVAngle);
 			} else {
-				CameraPreview14.effectiveHAngle = CameraPreview14.deviceHAngle;
-				CameraPreview14.effectiveVAngle = CameraPreview14.deviceVAngle;
+				CameraPreview21.effectiveHAngle = CameraPreview21.deviceHAngle;
+				CameraPreview21.effectiveVAngle = CameraPreview21.deviceVAngle;
 			}
 
 			mCamera.setParameters(parameters);
@@ -216,8 +216,8 @@ public class CustomCameraPreview extends ViewGroup {
 
 			final View child = getChildAt(0);
 
-			final int previewWidth = CameraPreview14.previewSize.width;
-			final int previewHeight = CameraPreview14.previewSize.height;
+			final int previewWidth = CameraPreview21.previewSize.getWidth();
+			final int previewHeight = CameraPreview21.previewSize.getHeight();
 
 			Log.v(logTag, "Preview width: " + previewWidth + " height:"
 					+ previewHeight);

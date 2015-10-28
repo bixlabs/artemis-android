@@ -911,19 +911,19 @@ public class ArtemisActivity extends Activity implements
 //				ArtemisPreferences.LOCK_BOXES_ENABLED, false);
 
 		// quick shot save setting
-		CameraPreview14.quickshotEnabled = artemisPrefs.getBoolean(
+		CameraPreview21.quickshotEnabled = artemisPrefs.getBoolean(
 				ArtemisPreferences.QUICKSHOT_ENABLED, false);
 
 		// smooth image filter
-		CameraPreview14.smoothImagesEnabled = artemisPrefs.getBoolean(
+		CameraPreview21.smoothImagesEnabled = artemisPrefs.getBoolean(
 				ArtemisPreferences.SMOOTH_IMAGE_ENABLED, true);
 
 		// autofocus camera before picture
-		CameraPreview14.autoFocusBeforePictureTake = artemisPrefs.getBoolean(
+		CameraPreview21.autoFocusBeforePictureTake = artemisPrefs.getBoolean(
 				ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false);
 
 		// black and white camera preview
-		CameraPreview14.blackAndWhitePreview = artemisPrefs.getBoolean(
+		CameraPreview21.blackAndWhitePreview = artemisPrefs.getBoolean(
 				getString(R.string.preference_key_previewblackwhite), false);
 
 		// setup the save files directory
@@ -946,7 +946,7 @@ public class ArtemisActivity extends Activity implements
 		isHapticFeedbackEnabled = artemisPrefs.getBoolean(
 				getString(R.string.preference_key_hapticfeedback), true);
 
-		CameraPreview14.savedImageJPEGQuality = Integer.parseInt(artemisPrefs
+		CameraPreview21.savedImageJPEGQuality = Integer.parseInt(artemisPrefs
 				.getString(
 						getString(R.string.preference_key_savedImageQuality),
 						getString(R.string.image_quality_default)));
@@ -954,12 +954,12 @@ public class ArtemisActivity extends Activity implements
 				getString(R.string.preference_key_savedImageScale),
 				getString(R.string.image_size_default));
 		if ("default".equals(savedImageSize)) {
-			CameraPreview14.savedImageSizeIndex = 0;
+			CameraPreview21.savedImageSizeIndex = 0;
 		} else if ("large".equals(savedImageSize)) {
-			CameraPreview14.savedImageSizeIndex = 1;
+			CameraPreview21.savedImageSizeIndex = 1;
 		} else {
 			// small
-			CameraPreview14.savedImageSizeIndex = 2;
+			CameraPreview21.savedImageSizeIndex = 2;
 		}
 
 		backPressedMode = artemisPrefs.getString(
@@ -974,7 +974,7 @@ public class ArtemisActivity extends Activity implements
 		takePictureAfterAutoFocusAndLongClickShutter = false;
 		takePictureAfterReleaseLongClickShutter = false;
 
-		if (!CameraPreview14.autoFocusBeforePictureTake) {
+		if (!CameraPreview21.autoFocusBeforePictureTake) {
 			if ("autofocusAndCapture".equals(longPressShutterMode)) {
 				Log.v(TAG, "init long press autofocus and capture");
 				autoFocusAfterLongClickShutter = true;
@@ -1021,7 +1021,7 @@ public class ArtemisActivity extends Activity implements
 			String volumeUpMode = artemisPrefs
 					.getString(
 							getString(R.string.preference_key_volumeUpAction),
-							CameraPreview14.isAutoFocusSupported ? getString(R.string.volumeUpAction_default)
+							CameraPreview21.isAutoFocusSupported ? getString(R.string.volumeUpAction_default)
 									: getString(R.string.volumeUpAction_noautofocus_default));
 
 			if ("autofocusAndCapture".equals(volumeUpMode)) {
@@ -2109,7 +2109,7 @@ public class ArtemisActivity extends Activity implements
 
 		pictureSaveHeadingTiltString = headingTiltText.getText().toString();
 
-		if (CameraPreview14.quickshotEnabled) {
+		if (CameraPreview21.quickshotEnabled) {
 			mCameraPreview.takePicture();
 			return;
 		}

@@ -427,10 +427,10 @@ public class Camera2BasicFragment extends Fragment {
 //                int orientation = getResources().getConfiguration().orientation;
 //                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //                    mTextureView.setAspectRatio(
-//                            mPreviewSize.getWidth(), mPreviewSize.getHeight());
+//                            previewSize.getWidth(), previewSize.getHeight());
 //                } else {
 //                    mTextureView.setAspectRatio(
-//                            mPreviewSize.getHeight(), mPreviewSize.getWidth());
+//                            previewSize.getHeight(), previewSize.getWidth());
 //                }
 
                 mCameraId = cameraId;

@@ -112,7 +112,7 @@ public class SettingsActivity extends PreferenceActivity {
 						}
 					});
 
-			if (!CameraPreview14.isAutoFocusSupported) {
+			if (!CameraPreview21.isAutoFocusSupported) {
 				ListPreference volUp = ((ListPreference) findPreference(getString(R.string.preference_key_volumeUpAction)));
 				volUp.setEntries(R.array.volumeAction_entries_noautofocus);
 				volUp.setEntryValues(R.array.volumeAction_values_noautofocus);
@@ -190,15 +190,15 @@ public class SettingsActivity extends PreferenceActivity {
 			if (getSharedPreferences().getBoolean(
 					getString(R.string.preference_key_automaticlensangles),
 					true)) {
-				hAngleVal = CameraPreview14.deviceHAngle;
-				vAngleVal = CameraPreview14.deviceVAngle;
+				hAngleVal = CameraPreview21.deviceHAngle;
+				vAngleVal = CameraPreview21.deviceVAngle;
 			} else {
 				hAngleVal = getSharedPreferences().getFloat(
 						getString(R.string.preference_key_cameralenshangle),
-						CameraPreview14.deviceHAngle);
+						CameraPreview21.deviceHAngle);
 				vAngleVal = getSharedPreferences().getFloat(
 						getString(R.string.preference_key_cameralensvangle),
-						CameraPreview14.deviceVAngle);
+						CameraPreview21.deviceVAngle);
 			}
 
 			final EditTextPreference hanglePref = (EditTextPreference) findPreference(getString(R.string.preference_key_cameralenshangle));
@@ -229,33 +229,33 @@ public class SettingsActivity extends PreferenceActivity {
 										hanglePref,
 										NumberFormat
 												.getNumberInstance()
-												.format(CameraPreview14.deviceHAngle));
+												.format(CameraPreview21.deviceHAngle));
 								setAnglePreferenceTitle(
 										vanglePref,
 										NumberFormat
 												.getNumberInstance()
-												.format(CameraPreview14.deviceVAngle));
-								CameraPreview14.effectiveHAngle = CameraPreview14.deviceHAngle;
-								CameraPreview14.effectiveVAngle = CameraPreview14.deviceVAngle;
+												.format(CameraPreview21.deviceVAngle));
+								CameraPreview21.effectiveHAngle = CameraPreview21.deviceHAngle;
+								CameraPreview21.effectiveVAngle = CameraPreview21.deviceVAngle;
 							} else {
-								CameraPreview14.effectiveHAngle = getSharedPreferences()
+								CameraPreview21.effectiveHAngle = getSharedPreferences()
 										.getFloat(
 												getString(R.string.preference_key_cameralenshangle),
-												CameraPreview14.deviceHAngle);
-								CameraPreview14.effectiveVAngle = getSharedPreferences()
+												CameraPreview21.deviceHAngle);
+								CameraPreview21.effectiveVAngle = getSharedPreferences()
 										.getFloat(
 												getString(R.string.preference_key_cameralensvangle),
-												CameraPreview14.deviceVAngle);
+												CameraPreview21.deviceVAngle);
 								setAnglePreferenceTitle(
 										hanglePref,
 										NumberFormat
 												.getNumberInstance()
-												.format(CameraPreview14.effectiveHAngle));
+												.format(CameraPreview21.effectiveHAngle));
 								setAnglePreferenceTitle(
 										vanglePref,
 										NumberFormat
 												.getNumberInstance()
-												.format(CameraPreview14.effectiveVAngle));
+												.format(CameraPreview21.effectiveVAngle));
 							}
 							return true;
 						}
@@ -263,11 +263,11 @@ public class SettingsActivity extends PreferenceActivity {
 
 			// Camera white balance
 			ListPreference whiteBalancePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedwhitebalance));
-			if (CameraPreview14.supportedWhiteBalance != null) {
-				CharSequence[] values = new CharSequence[CameraPreview14.supportedWhiteBalance
+			if (CameraPreview21.supportedWhiteBalance != null) {
+				CharSequence[] values = new CharSequence[CameraPreview21.supportedWhiteBalance
 						.size()];
 				for (int i = 0; i < values.length; i++) {
-					values[i] = CameraPreview14.supportedWhiteBalance.get(i);
+					values[i] = CameraPreview21.supportedWhiteBalance.get(i);
 				}
 				whiteBalancePref.setEntries(values);
 				whiteBalancePref.setEntryValues(values);
@@ -288,10 +288,10 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 
 			ListPreference exposurePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedexposurelevel));
-			if (CameraPreview14.supportedExposureLevels != null) {
-				CharSequence[] exposureValues = new CharSequence[CameraPreview14.supportedExposureLevels
+			if (CameraPreview21.supportedExposureLevels != null) {
+				CharSequence[] exposureValues = new CharSequence[CameraPreview21.supportedExposureLevels
 						.size()];
-				CharSequence[] exposureLabels = new CharSequence[CameraPreview14.supportedExposureLevels
+				CharSequence[] exposureLabels = new CharSequence[CameraPreview21.supportedExposureLevels
 						.size()];
 				NumberFormat numberFormat = NumberFormat.getNumberInstance();
 				numberFormat.setMinimumFractionDigits(2);
@@ -301,15 +301,15 @@ public class SettingsActivity extends PreferenceActivity {
 								0);
 				CharSequence selectedValue = null;
 				for (int i = 0; i < exposureValues.length; i++) {
-					exposureValues[i] = CameraPreview14.supportedExposureLevels
+					exposureValues[i] = CameraPreview21.supportedExposureLevels
 							.get(i).toString();
-					if (CameraPreview14.supportedExposureLevels.get(i) == exposureLevel) {
+					if (CameraPreview21.supportedExposureLevels.get(i) == exposureLevel) {
 						selectedValue = exposureValues[i];
 
 					}
 					exposureLabels[i] = numberFormat
-							.format(CameraPreview14.supportedExposureLevels
-									.get(i) * CameraPreview14.exposureStep)
+							.format(CameraPreview21.supportedExposureLevels
+									.get(i) * CameraPreview21.exposureStep)
 							+ " EV";
 				}
 				exposurePref.setEntries(exposureLabels);
@@ -337,11 +337,11 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 
 			ListPreference focusPref = (ListPreference) findPreference(getString(R.string.preference_key_selectedfocusmode));
-			if (CameraPreview14.supportedFocusModes != null) {
-				CharSequence[] values = new CharSequence[CameraPreview14.supportedFocusModes
+			if (CameraPreview21.supportedFocusModes != null) {
+				CharSequence[] values = new CharSequence[CameraPreview21.supportedFocusModes
 						.size()];
 				for (int i = 0; i < values.length; i++) {
-					values[i] = CameraPreview14.supportedFocusModes.get(i);
+					values[i] = CameraPreview21.supportedFocusModes.get(i);
 				}
 				focusPref.setEntries(values);
 				focusPref.setEntryValues(values);
@@ -362,12 +362,12 @@ public class SettingsActivity extends PreferenceActivity {
 			setAutoFocusOptionsState(focusPref.getValue());
 
 			ListPreference sceneModePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedscenemode));
-			if (CameraPreview14.supportedSceneModes != null
-					&& CameraPreview14.supportedSceneModes.size() > 0) {
-				CharSequence[] values = new CharSequence[CameraPreview14.supportedSceneModes
+			if (CameraPreview21.supportedSceneModes != null
+					&& CameraPreview21.supportedSceneModes.size() > 0) {
+				CharSequence[] values = new CharSequence[CameraPreview21.supportedSceneModes
 						.size()];
 				for (int i = 0; i < values.length; i++) {
-					values[i] = CameraPreview14.supportedSceneModes.get(i);
+					values[i] = CameraPreview21.supportedSceneModes.get(i);
 				}
 				sceneModePref.setEntries(values);
 				sceneModePref.setEntryValues(values);
@@ -402,22 +402,22 @@ public class SettingsActivity extends PreferenceActivity {
 					getString(R.string.preference_key_automaticlensangles),
 					true)) {
 
-				CameraPreview14.effectiveHAngle = getSharedPreferences()
+				CameraPreview21.effectiveHAngle = getSharedPreferences()
 						.getFloat(
 								getString(R.string.preference_key_cameralenshangle),
-								CameraPreview14.deviceHAngle);
-				CameraPreview14.effectiveVAngle = getSharedPreferences()
+								CameraPreview21.deviceHAngle);
+				CameraPreview21.effectiveVAngle = getSharedPreferences()
 						.getFloat(
 								getString(R.string.preference_key_cameralensvangle),
-								CameraPreview14.deviceVAngle);
+								CameraPreview21.deviceVAngle);
 
 				ArtemisMath.getInstance().setCustomViewAngle(
-						CameraPreview14.effectiveHAngle,
-						CameraPreview14.effectiveVAngle);
+						CameraPreview21.effectiveHAngle,
+						CameraPreview21.effectiveVAngle);
 			} else {
 				ArtemisMath.getInstance().setCustomViewAngle(
-						CameraPreview14.deviceHAngle,
-						CameraPreview14.deviceVAngle);
+						CameraPreview21.deviceHAngle,
+						CameraPreview21.deviceVAngle);
 			}
 		}
 	}

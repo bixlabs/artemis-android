@@ -94,7 +94,7 @@ public class CameraAngleDetailView extends View {
 					_paint);
 			canvas.drawCircle(circleCenterX, circleCenterY, whiteCircleRadius,
 					_paint);
-			canvas.restore();
+//			canvas.restore();
 		}
 	}
 
