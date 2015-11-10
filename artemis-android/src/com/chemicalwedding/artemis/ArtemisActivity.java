@@ -196,7 +196,7 @@ public class ArtemisActivity extends Activity implements
 //        if (null == savedInstanceState) {
             mCameraPreview = CameraPreview21.newInstance();
             getFragmentManager().beginTransaction()
-                    .replace(R.id.cameraPreview, mCameraPreview)
+                    .add(R.id.cameraContainer, mCameraPreview)
                     .commit();
 //        }
 

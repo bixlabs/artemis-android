@@ -1,5 +1,14 @@
 -keep class * extends android.preference.PreferenceFragment
 
+# Required for Parse
+-keepattributes SourceFile,LineNumberTable
+-keepnames class com.parse.** { *; }
+-keepattributes *Annotation*
+-keepattributes Signature
+-dontwarn com.squareup.**
+-dontwarn okio.**
+
+# remove logging
 -assumenosideeffects class android.util.Log {
     public static boolean isLoggable(java.lang.String, int);
     public static int v(...);
