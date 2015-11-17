@@ -1056,11 +1056,6 @@ public class CameraPreview21 extends Fragment {
     public void onPause() {
         super.onPause();
         closeCamera();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         stopBackgroundThread();
     }
 
