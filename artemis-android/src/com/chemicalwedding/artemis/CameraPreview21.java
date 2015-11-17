@@ -183,7 +183,7 @@ public class CameraPreview21 extends Fragment {
 
     public void startArtemisPreview(boolean resetLensAndTouch) {
 
-        if (getActivity() == null) {
+        if (getActivity() == null || !(getActivity() instanceof ArtemisActivity)) {
             return;
         }
 
@@ -1054,8 +1054,8 @@ public class CameraPreview21 extends Fragment {
 
     @Override
     public void onPause() {
-        closeCamera();
         super.onPause();
+        closeCamera();
     }
 
     @Override

@@ -9,10 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.chemicalwedding.artemis.CustomCameraPreview
-            android:id="@+id/customCameraPreview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </com.chemicalwedding.artemis.CameraContainerView>
 
     <com.chemicalwedding.artemis.CustomCameraOverlay

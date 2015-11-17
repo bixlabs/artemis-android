@@ -96,7 +96,6 @@ public class ArtemisActivity extends Activity implements
 	private Handler mUiHandler = new Handler();
 
 	private CameraPreview21 mCameraPreview;
-	private android.hardware.Camera mCamera;
 //	private TextureView mTextureView;
 
 	private LongPressButton _nextLensButton;
@@ -243,12 +242,6 @@ public class ArtemisActivity extends Activity implements
 >>>>>>> f0bf7d9 (Revert back galaxy nexus changes)
 =======
 >>>>>>> fde0e9e (Changes to make the preview start properly on the nexus 5)
-
-		if (mCamera != null) {
-			mCamera.stopPreview();
-			mCamera.release();
-			mCamera = null;
-		}
 
 		if (gpsEnabled && locationManager != null)
 			locationManager.removeUpdates(locationListener);
