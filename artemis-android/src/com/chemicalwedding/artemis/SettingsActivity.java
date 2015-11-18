@@ -455,7 +455,21 @@ public class SettingsActivity extends PreferenceActivity {
 									return true;
 								}
 							});
-		}
+
+            ListPreference savedImageSizePref = (ListPreference) findPreference(getString(R.string.preference_key_savedImageSize));
+            if (CameraPreview21.availablePictureSizes != null) {
+                CharSequence[] entries = new CharSequence[CameraPreview21.availablePictureSizes
+                        .length];
+                CharSequence[] values = new CharSequence[CameraPreview21.availablePictureSizes
+                        .length];
+                for (int i = 0; i < entries.length; i++) {
+                    entries[i] = CameraPreview21.availablePictureSizes[i].toString();
+                    values[i] = i+"";
+                }
+                savedImageSizePref.setEntries(entries);
+                savedImageSizePref.setEntryValues(values);
+            }
+        }
 
 		@Override
 		public void onPause() {

@@ -115,10 +115,11 @@ public class CameraPreview21 extends Fragment {
     private Integer mCroppingType;
     private Rect mOriginalCropRegion;
     private float previewRatio;
-    private Size mLargest;
     private float mScale;
     private Matrix noRotation;
     private Integer mSensorOrientation;
+    public static Size[] availablePictureSizes;
+    private Size mSelectedPictureSize;
 
 //    public static void initCameraDetails() {
 //
@@ -191,84 +192,6 @@ public class CameraPreview21 extends Fragment {
                 .getApplicationContext().getSharedPreferences(
                         ArtemisPreferences.class.getSimpleName(),
                         Context.MODE_PRIVATE);
-
-        // init camera preferences for artemis settings
-//			int min = parameters.getMinExposureCompensation();
-//			int max = parameters.getMaxExposureCompensation();
-//			CameraPreview21.exposureStep = parameters
-//					.getExposureCompensationStep();
-//			Log.v(logTag, "Camera Exposure min: " + min + " max: " + max);
-//			CameraPreview21.supportedExposureLevels = new ArrayList<Integer>();
-//			int defaultExposure = 0;
-//			for (int i = min; i <= max; i++) {
-//				CameraPreview21.supportedExposureLevels.add(i);
-//			}
-//			if (blackAndWhitePreview) {
-//				Log.i(logTag, "BLACK AND WHITE ON");
-//				parameters.setColorEffect(Parameters.EFFECT_MONO);
-//			} else {
-//				parameters.setColorEffect(Parameters.EFFECT_NONE);
-//			}
-
-//			CameraPreview21.supportedWhiteBalance = parameters
-//					.getSupportedWhiteBalance();
-//			CameraPreview21.supportedFlashModes = parameters
-//					.getSupportedFlashModes();
-
-//			if (CameraPreview21.supportedFlashModes != null) {
-//				Log.v(logTag, "Supported Flash modes: ");
-//				for (String flashMode : CameraPreview21.supportedFlashModes) {
-//					Log.v(logTag, flashMode);
-//				}
-//
-//				boolean flashEnabled = artemisPrefs.getBoolean(
-//						ArtemisPreferences.FLASH_ENABLED, false);
-//				if (flashEnabled) {
-//					parameters.setFlashMode("torch");
-//				} else
-//					parameters.setFlashMode("off");
-//
-//			}
-//
-//			int exposureLevelIndex = artemisPrefs
-//					.getInt(ArtemisPreferences.SELECTED_EXPOSURE_LEVEL,
-//							defaultExposure);
-//			Log.v(logTag, String.format(
-//					"Selected exposure compensation index: %d",
-//					exposureLevelIndex));
-//			parameters.setExposureCompensation(exposureLevelIndex);
-//
-//			String whiteBalance = artemisPrefs.getString(
-//					ArtemisPreferences.SELECTED_WHITE_BALANCE, "");
-//			if (whiteBalance.length() > 0) {
-//				parameters.setWhiteBalance(whiteBalance);
-//			}
-//
-//			CameraPreview21.supportedFocusModes = parameters
-//					.getSupportedFocusModes();
-//			if (CameraPreview21.supportedFocusModes != null) {
-//				String focusMode = artemisPrefs.getString(
-//						ArtemisPreferences.SELECTED_FOCUS_MODE, "");
-//				if (focusMode.length() == 0
-//						&& CameraPreview21.supportedFocusModes
-//								.contains(Parameters.FOCUS_MODE_AUTO)) {
-//					parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
-//				} else {
-//					parameters.setFocusMode(focusMode);
-//				}
-//			}
-//			CameraPreview21.autoFocusBeforePictureTake = artemisPrefs
-//					.getBoolean(ArtemisPreferences.AUTO_FOCUS_ON_PICTURE, false);
-//
-//			CameraPreview21.supportedSceneModes = parameters
-//					.getSupportedSceneModes();
-//			if (CameraPreview21.supportedSceneModes != null) {
-//				parameters.setSceneMode(artemisPrefs.getString(
-//						ArtemisPreferences.SELECTED_SCENE_MODE, "auto"));
-//			}
-//
-////			parameters.setPreviewSize(previewSize.width, previewSize.height);
-//			// parameters.setPictureSize(pictureSize.width, pictureSize.height);
 
         if (!artemisPrefs.getBoolean(
                 getActivity().getString(
@@ -379,7 +302,7 @@ public class CameraPreview21 extends Fragment {
                 Locale.getDefault());
         String title = sdf.format(Calendar.getInstance().getTime());
         String filePath = ArtemisActivity.savePictureFolder + "/" + title
-                + ".png";
+                + ".jpg";
         Log.v(logTag, "Saving file: " + filePath);
         FileOutputStream fos = null;
         try {
@@ -1012,6 +935,27 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
+    private static android.util.Size[] findMatchingSizesByRatio(android.util.Size[] choices, android.util.Size aspectRatio, int minWidth) {
+        // Collect the supported resolutions that are at least as big as the preview Surface
+        List<android.util.Size> matches = new ArrayList<android.util.Size>();
+        int w = aspectRatio.getWidth();
+        int h = aspectRatio.getHeight();
+        for (android.util.Size option : choices) {
+            if (option.getHeight() == option.getWidth() * h / w
+                    && option.getWidth() >= minWidth) {
+                matches.add(option);
+            }
+        }
+
+        // Pick the smallest of those, assuming we found any
+        if (matches.size() > 0) {
+            return matches.toArray(new Size[matches.size()]);
+        } else {
+            Log.e(TAG, "Couldn't find any suitable ratio matches");
+            return new Size[0];
+        }
+    }
+
     public static CameraPreview21 newInstance() {
         CameraPreview21 fragment = new CameraPreview21();
         fragment.setRetainInstance(true);
@@ -1041,10 +985,6 @@ public class CameraPreview21 extends Fragment {
         super.onResume();
         startBackgroundThread();
 
-        // When the screen is turned off and turned back on, the SurfaceTexture is already
-        // available, and "onSurfaceTextureAvailable" will not be called. In that case, we can open
-        // a camera and start preview from here (otherwise, we wait until the surface is ready in
-        // the SurfaceTextureListener).
         if (mTextureView.isAvailable()) {
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
@@ -1056,6 +996,11 @@ public class CameraPreview21 extends Fragment {
     public void onPause() {
         super.onPause();
         closeCamera();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         stopBackgroundThread();
     }
 
@@ -1083,38 +1028,44 @@ public class CameraPreview21 extends Fragment {
                         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
                 // For still image captures, we use the largest available size.
-                mLargest = Collections.max(
+                Size largest = Collections.max(
                         Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
                         new CompareSizesByArea());
-                mImageReader = ImageReader.newInstance(mLargest.getWidth(), mLargest.getHeight(),
+
+                previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
+                        width, height, largest);
+                previewRatio = (float) previewSize.getWidth() / previewSize.getHeight();
+
+                Log.d(TAG, String.format("Selected preview size: %sw  %sh ratio: %s", previewSize.getWidth(), previewSize.getHeight(), previewRatio));
+
+                availablePictureSizes = CameraPreview21.findMatchingSizesByRatio(map.getOutputSizes(ImageFormat.JPEG), previewSize, 1000);
+
+                if (CameraPreview21.savedImageSizeIndex > 0) {
+                    mSelectedPictureSize = availablePictureSizes[CameraPreview21.savedImageSizeIndex];
+                } else {
+                    // Uninitialized. Initialize to largest picture size
+                    SharedPreferences prefs = getActivity()
+                            .getApplicationContext().getSharedPreferences(
+                                    ArtemisPreferences.class.getSimpleName(),
+                                    Context.MODE_PRIVATE);
+                    mSelectedPictureSize = largest;
+                    List<Size> sizeList = Arrays.asList(availablePictureSizes);
+                    int index = sizeList.indexOf(largest);
+                    prefs.edit().putString(getString(R.string.preference_key_savedImageSize), "" + index).apply();
+                }
+
+                mImageReader = ImageReader.newInstance(mSelectedPictureSize.getWidth(), mSelectedPictureSize.getHeight(),
                         ImageFormat.JPEG, /*maxImages*/1);
                 mImageReader.setOnImageAvailableListener(
                         mOnImageAvailableListener, mBackgroundHandler);
 
                 Log.d(TAG, String.format("Total available screen size: %sw  %sh ratio: %s", totalScreenWidth, totalScreenHeight, (float) totalScreenWidth / totalScreenHeight));
 
-                Log.d(TAG, String.format("Selected image reader size: %sw  %sh ratio: %s", mLargest.getWidth(), mLargest.getHeight(), (float) mLargest.getWidth() / mLargest.getHeight()));
-
-                // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
-                // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
-                // garbage capture data.
-                previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
-                        width, height, mLargest);
-                previewRatio = (float) previewSize.getWidth() / previewSize.getHeight();
-
-                Log.d(TAG, String.format("Selected preview size: %sw  %sh ratio: %s", previewSize.getWidth(), previewSize.getHeight(), previewRatio));
-
-
-//                 We fit the aspect ratio of TextureView to the size of preview we picked.
-//                int orientation = getResources().getConfiguration().orientation;
-//                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    mTextureView.setAspectRatio(
-//                            mPreviewSize.getWidth(), mPreviewSize.getHeight());
-//                } else {
-//                    mTextureView.setAspectRatio(
-//                            mPreviewSize.getHeight(), mPreviewSize.getWidth());
-//                }
-
+                Log.d(TAG, String.format(
+                        "Selected image reader size: %sw  %sh ratio: %s",
+                        mSelectedPictureSize.getWidth(),
+                        mSelectedPictureSize.getHeight(),
+                        (float) mSelectedPictureSize.getWidth() / mSelectedPictureSize.getHeight()));
 
                 mCameraId = cameraId;
 

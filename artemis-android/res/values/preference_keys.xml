@@ -29,6 +29,7 @@
     <string name="preference_key_cameralenshangle">cameraLensHAngle</string>
     <string name="preference_key_cameralensvangle">cameraLensVAngle</string>
     <string name="preference_key_savedImageScale">savedImageScale</string>
+    <string name="preference_key_savedImageSize">savedImageSize</string>
     <string name="preference_key_savedImageQuality">savedImageQuality</string>
     <string name="preference_key_backkeyOption">backKeyOption</string>
     <string name="preference_key_keepscreenon">keepScreenOn</string>

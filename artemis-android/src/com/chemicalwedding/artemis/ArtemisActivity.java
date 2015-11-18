@@ -934,26 +934,18 @@ public class ArtemisActivity extends Activity implements
 		}
 
 		ArtemisActivity.headingDisplaySelection = artemisPrefs.getInt(
-				ArtemisPreferences.HEADING_DISPLAY, 2);
+                ArtemisPreferences.HEADING_DISPLAY, 2);
 
 		isHapticFeedbackEnabled = artemisPrefs.getBoolean(
-				getString(R.string.preference_key_hapticfeedback), true);
+                getString(R.string.preference_key_hapticfeedback), true);
 
 		CameraPreview21.savedImageJPEGQuality = Integer.parseInt(artemisPrefs
 				.getString(
 						getString(R.string.preference_key_savedImageQuality),
 						getString(R.string.image_quality_default)));
 		String savedImageSize = artemisPrefs.getString(
-				getString(R.string.preference_key_savedImageScale),
-				getString(R.string.image_size_default));
-		if ("default".equals(savedImageSize)) {
-			CameraPreview21.savedImageSizeIndex = 0;
-		} else if ("large".equals(savedImageSize)) {
-			CameraPreview21.savedImageSizeIndex = 1;
-		} else {
-			// small
-			CameraPreview21.savedImageSizeIndex = 2;
-		}
+				getString(R.string.preference_key_savedImageSize), "-1");
+			CameraPreview21.savedImageSizeIndex = Integer.parseInt(savedImageSize);
 
 		backPressedMode = artemisPrefs.getString(
 				getString(R.string.preference_key_backkeyOption),

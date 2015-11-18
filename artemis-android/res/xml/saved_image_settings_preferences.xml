@@ -12,9 +12,7 @@
     <ListPreference
         android:defaultValue="@string/image_size_default"
         android:dialogTitle="@string/select_image_size"
-        android:entries="@array/image_size_prefs"
-        android:entryValues="@array/image_size_prefs_values"
-        android:key="@string/preference_key_savedImageScale"
+        android:key="@string/preference_key_savedImageSize"
         android:summary="@string/image_size_summary"
         android:title="@string/saved_image_size" />
 
