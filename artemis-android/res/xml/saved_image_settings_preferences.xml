@@ -10,7 +10,6 @@
         android:title="@string/picture_save_location" />
 
     <ListPreference
-        android:defaultValue="@string/image_size_default"
         android:dialogTitle="@string/select_image_size"
         android:key="@string/preference_key_savedImageSize"
         android:summary="@string/image_size_summary"

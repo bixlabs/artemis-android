@@ -15,10 +15,11 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,7 +30,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -80,9 +80,9 @@ public class CameraPreview21 extends Fragment {
 
     protected static List<Integer> supportedExposureLevels;
     protected static List<String> supportedWhiteBalance, supportedFlashModes,
-            supportedFocusModes, supportedSceneModes;
+            supportedFocusModes;
     //    protected static List<Size> supportedPreviewSizes;
-    protected static boolean lockBoxEnabled = false, quickshotEnabled = false,
+    protected static boolean lockBoxEnabled = true, quickshotEnabled = false,
             smoothImagesEnabled = false;
     protected static float deviceHAngle, effectiveHAngle, deviceVAngle,
             effectiveVAngle;
@@ -120,48 +120,14 @@ public class CameraPreview21 extends Fragment {
     private Integer mSensorOrientation;
     public static Size[] availablePictureSizes;
     private Size mSelectedPictureSize;
-
-//    public static void initCameraDetails() {
-//
-//		if (CameraPreview21.previewSize == null) {
-////			Camera camera = CameraPreview21.openFrontFacingCameraGingerbread();
-////			Parameters parameters = camera.getParameters();
-//
-////			supportedPreviewSizes = parameters.getSupportedPreviewSizes();
-//			// supportedPictureSizes = parameters.getSupportedPictureSizes();
-//
-//			Log.v(logTag, "Preview sizes supported: "
-//					+ CameraPreview21.supportedPreviewSizes.size());
-//			for (Size size : CameraPreview21.supportedPreviewSizes) {
-//				Log.v(logTag, size.width + "x" + size.height);
-//			}
-////			CameraPreview21.previewSize = getOptimalPreviewSize(
-////					CameraPreview21.supportedPreviewSizes, totalScreenWidth,
-////					totalScreenHeight);
-//
-//			Log.v(logTag, "Preview size selected: " + previewSize.width + "x"
-//					+ previewSize.height);
-//			// parameters.setPreviewSize(previewSize.width, previewSize.height);
-//			previewWidth = previewSize.width;
-//			previewHeight = previewSize.height;
-//
-//			isAutoFocusSupported = parameters.getSupportedFocusModes()
-//					.contains(Parameters.FOCUS_MODE_AUTO);
-//			// pictureSize = getOptimalPictureSize(supportedPictureSizes,
-//			// totalScreenWidth, totalScreenHeight);
-//			// // parameters.setPictureSize(pictureSize.width,
-//			// pictureSize.height);
-//			// Log.v(logTag,
-//			// "Picture sizes supported: " + supportedPictureSizes.size());
-//			// for (Size size : supportedPictureSizes) {
-//			// Log.v(logTag, size.width + "x" + size.height);
-//			// }
-//			// Log.v(logTag, "Picture size selected: " + pictureSize.width + "x"
-//			// + pictureSize.height);
-//
-//			camera.release();
-//		}
-//	}
+    static public int[] availableAutoFocusModes;
+    static public int[] availableEffects;
+    static public int[] availableWhiteBalanceModes;
+    static public SortedSet<Integer> availableSceneModes;
+    private int selectedSceneModeInt;
+    private int selectedEffectInt;
+    private int selectedFocusInt;
+    private int selectedWhiteBalanceInt;
 
     private static int determineImageHeight(int startImageHeight) {
         switch (CameraPreview21.savedImageSizeIndex) {
@@ -599,56 +565,6 @@ public class CameraPreview21 extends Fragment {
         savePicture(blankBmp, showGpsDetails);
     }
 
-
-//	@Override
-//	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//		if (getChildCount() > 0 && changed
-//				&& CameraPreview21.previewSize != null) {
-//			Log.v(logTag, "** Laying out Camera Preview");
-//
-//			final View child = getChildAt(0);
-//
-//			// final int width = r - l;
-//			// final int height = b - t;
-//
-//			final int previewWidth = CameraPreview21.previewSize.width;
-//			final int previewHeight = CameraPreview21.previewSize.height;
-//
-//			Log.v(logTag, "Preview width: " + previewWidth + " height:"
-//					+ previewHeight);
-//
-//			final float REQUESTED_WIDTH_RATIO = 1f;
-//			int requestedWidth = (int) (totalScreenWidth * REQUESTED_WIDTH_RATIO);
-//			ArtemisMath.scaledPreviewWidth = requestedWidth;
-//
-//			// final float pictureRatio = (float) pictureSize.width
-//			// / pictureSize.height;
-//			final float previewRatio = (float) previewWidth / previewHeight;
-//
-//			ArtemisMath.scaledPreviewHeight = Math.round(requestedWidth
-//					/ previewRatio);
-//
-//			Log.v(logTag, "Scaled preview width: "
-//					+ ArtemisMath.scaledPreviewWidth + " scaled height:"
-//					+ ArtemisMath.scaledPreviewHeight);
-//
-//			child.layout(0, 5, ArtemisMath.scaledPreviewWidth,
-//					ArtemisMath.scaledPreviewHeight + 5);
-//
-//			Log.v(logTag, "** Finished layout of Camera Preview");
-//		}
-//	}
-
-//	@Override
-//	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//		totalScreenWidth = MeasureSpec.getSize(widthMeasureSpec);
-//		totalScreenHeight = MeasureSpec.getSize(heightMeasureSpec);
-//		Log.v(logTag, "CameraPreview onMeasure screenWidth: "
-//				+ totalScreenWidth + " screenHeight: " + totalScreenHeight);
-//		// setMeasuredDimension(totalScreenWidth, totalScreenHeight);
-//	}
-
     /**
      *
      * NEW API
@@ -682,19 +598,22 @@ public class CameraPreview21 extends Fragment {
     /**
      * Camera state: Waiting for the focus to be locked.
      */
-    private static final int STATE_WAITING_LOCK = 1;
+    private static final int STATE_WAITING_LOCK_FOCUS_BEFORE_PICTURE = 1;
+
+    private static final int STATE_WAITING_LOCK_FOCUS = 2;
+
     /**
      * Camera state: Waiting for the exposure to be precapture state.
      */
-    private static final int STATE_WAITING_PRECAPTURE = 2;
+    private static final int STATE_WAITING_PRECAPTURE = 3;
     /**
      * Camera state: Waiting for the exposure state to be something other than precapture.
      */
-    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
+    private static final int STATE_WAITING_NON_PRECAPTURE = 4;
     /**
      * Camera state: Picture was taken.
      */
-    private static final int STATE_PICTURE_TAKEN = 4;
+    private static final int STATE_PICTURE_TAKEN = 5;
 
     /**
      * {@link android.view.TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -849,7 +768,7 @@ public class CameraPreview21 extends Fragment {
                     // We have nothing to do when the camera preview is working normally.
                     break;
                 }
-                case STATE_WAITING_LOCK: {
+                case STATE_WAITING_LOCK_FOCUS_BEFORE_PICTURE: {
                     Integer afState = result.get(CaptureResult.CONTROL_AF_STATE);
                     if (afState == null) {
                         captureStillPicture();
@@ -865,6 +784,24 @@ public class CameraPreview21 extends Fragment {
                             runPrecaptureSequence();
                         }
                     }
+                    break;
+                }
+                case STATE_WAITING_LOCK_FOCUS: {
+                    Integer afState = result.get(CaptureResult.CONTROL_AF_STATE);
+//                    if (afState == null) {
+//                        captureStillPicture();
+//                    } else if (CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED == afState ||
+//                            CaptureResult.CONTROL_AF_STATE_NOT_FOCUSED_LOCKED == afState) {
+//                        // CONTROL_AE_STATE can be null on some devices
+//                        Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
+//                        if (aeState == null ||
+//                                aeState == CaptureResult.CONTROL_AE_STATE_CONVERGED) {
+                    mState = STATE_PREVIEW;
+//                            captureStillPicture();
+//                        } else {
+//                            runPrecaptureSequence();
+//                        }
+//                    }
                     break;
                 }
                 case STATE_WAITING_PRECAPTURE: {
@@ -981,8 +918,8 @@ public class CameraPreview21 extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         startBackgroundThread();
 
         if (mTextureView.isAvailable()) {
@@ -995,13 +932,19 @@ public class CameraPreview21 extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        closeCamera();
+        if (mCaptureSession != null) {
+            try {
+                mCaptureSession.abortCaptures();
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        stopBackgroundThread();
+        closeCamera();
     }
 
     /**
@@ -1069,6 +1012,9 @@ public class CameraPreview21 extends Fragment {
 
                 mCameraId = cameraId;
 
+                SharedPreferences artemisPrefs = getActivity().getSharedPreferences(
+                        ArtemisPreferences.class.getSimpleName(), Activity.MODE_PRIVATE);
+
                 mDeviceFocalLengths = characteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS);
                 mDeviceActiveSensorSize = characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
                 mActiveSensorRatio = (float) mDeviceActiveSensorSize.width() / mDeviceActiveSensorSize.height();
@@ -1076,6 +1022,44 @@ public class CameraPreview21 extends Fragment {
                 mMaxDigitalZoom = characteristics.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
                 mCroppingType = characteristics.get(CameraCharacteristics.SCALER_CROPPING_TYPE);
                 mSensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+                availableWhiteBalanceModes = characteristics.get(CameraCharacteristics.CONTROL_AWB_AVAILABLE_MODES);
+                availableAutoFocusModes = characteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES);
+                availableEffects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
+                int[] sceneModes = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_SCENE_MODES);
+                if (sceneModes != null) {
+                    availableSceneModes = new TreeSet<>();
+                    availableSceneModes.add(0);
+                    for(int mode: sceneModes) {
+                        availableSceneModes.add(mode);
+                    }
+                    String selectedSceneMode = artemisPrefs.getString(
+                            getString(R.string.preference_key_selectedscenemode), "0");
+                    this.selectedSceneModeInt = Integer.parseInt(selectedSceneMode);
+                }
+                if (availableEffects != null) {
+                    Arrays.sort(availableAutoFocusModes);
+                    String selectedEffect = artemisPrefs.getString(
+                            getString(R.string.preference_key_selectedCameraEffect), "0");
+                    this.selectedEffectInt = Integer.parseInt(selectedEffect);
+                }
+
+                if (availableAutoFocusModes != null) {
+//                    Arrays.sort(availableAutoFocusModes);
+                    String selectedAutoFocus = artemisPrefs.getString(
+                            getString(R.string.preference_key_selectedfocusmode), "4");
+                    this.selectedFocusInt = Integer.parseInt(selectedAutoFocus);
+                }
+
+                if (availableWhiteBalanceModes != null) {
+//                    Arrays.sort(availableWhiteBalanceModes);
+                    String selectedWB = artemisPrefs.getString(
+                            getString(R.string.preference_key_selectedwhitebalance), "0");
+                    this.selectedWhiteBalanceInt = Integer.parseInt(selectedWB);
+                }
+
+                if (!(availableAutoFocusModes.length == 1 && availableAutoFocusModes[0] == CameraCharacteristics.CONTROL_AF_MODE_OFF)) {
+                    isAutoFocusSupported = true;
+                }
 
                 double r = 360 / Math.PI;
                 effectiveHAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getWidth() / (2 * mDeviceFocalLengths[0])));
@@ -1245,6 +1229,28 @@ public class CameraPreview21 extends Fragment {
                                 mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
                                         CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
 
+                                if (selectedSceneModeInt > 0) {
+                                    mPreviewRequestBuilder.set(CaptureRequest.CONTROL_SCENE_MODE,
+                                            selectedSceneModeInt);
+                                    mPreviewRequestBuilder.set(CaptureRequest.CONTROL_MODE,
+                                            CaptureRequest.CONTROL_MODE_USE_SCENE_MODE);
+                                } else {
+                                    mPreviewRequestBuilder.set(CaptureRequest.CONTROL_MODE,
+                                            CaptureRequest.CONTROL_MODE_AUTO);
+                                }
+                                if (selectedEffectInt > 0) {
+                                    mPreviewRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE,
+                                            selectedEffectInt);
+                                }
+                                if (selectedFocusInt > 0) {
+                                    mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
+                                            selectedFocusInt);
+                                }
+                                if (selectedWhiteBalanceInt > 0) {
+                                    mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AWB_MODE,
+                                            selectedWhiteBalanceInt);
+                                }
+
                                 mTextureView.post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -1319,23 +1325,23 @@ public class CameraPreview21 extends Fragment {
      * Initiate a still image capture.
      */
     protected void takePicture() {
-        lockFocus();
+        lockFocus(true);
     }
 
     protected void autofocusCamera(boolean takePic) {
-
+        lockFocus(takePic);
     }
 
     /**
      * Lock the focus as the first step for a still image capture.
      */
-    private void lockFocus() {
+    private void lockFocus(boolean takePicture) {
         try {
             // This is how to tell the camera to lock focus.
             mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
                     CameraMetadata.CONTROL_AF_TRIGGER_START);
             // Tell #mCaptureCallback to wait for the lock.
-            mState = STATE_WAITING_LOCK;
+            mState = takePicture ? STATE_WAITING_LOCK_FOCUS_BEFORE_PICTURE : STATE_WAITING_LOCK_FOCUS;
             mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(), mCaptureCallback,
                     mBackgroundHandler);
         } catch (CameraAccessException e) {

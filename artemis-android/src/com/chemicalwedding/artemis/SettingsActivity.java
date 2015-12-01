@@ -261,31 +261,6 @@ public class SettingsActivity extends PreferenceActivity {
 						}
 					});
 
-			// Camera white balance
-			ListPreference whiteBalancePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedwhitebalance));
-			if (CameraPreview21.supportedWhiteBalance != null) {
-				CharSequence[] values = new CharSequence[CameraPreview21.supportedWhiteBalance
-						.size()];
-				for (int i = 0; i < values.length; i++) {
-					values[i] = CameraPreview21.supportedWhiteBalance.get(i);
-				}
-				whiteBalancePref.setEntries(values);
-				whiteBalancePref.setEntryValues(values);
-				whiteBalancePref
-						.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-							@Override
-							public boolean onPreferenceChange(
-									Preference preference, Object newValue) {
-								String newValueString = (String) newValue;
-								getSharedPreferences()
-										.edit()
-										.putString(
-												getString(R.string.preference_key_selectedwhitebalance),
-												newValueString);
-								return true;
-							}
-						});
-			}
 
 			ListPreference exposurePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedexposurelevel));
 			if (CameraPreview21.supportedExposureLevels != null) {
@@ -337,44 +312,85 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 
 			ListPreference focusPref = (ListPreference) findPreference(getString(R.string.preference_key_selectedfocusmode));
-			if (CameraPreview21.supportedFocusModes != null) {
-				CharSequence[] values = new CharSequence[CameraPreview21.supportedFocusModes
-						.size()];
+			if (CameraPreview21.availableAutoFocusModes != null) {
+                String[] labelArray = getActivity().getResources().getStringArray(R.array.set_auto_focus_entries);
+				CharSequence[] values = new CharSequence[CameraPreview21.availableAutoFocusModes
+						.length];
+                CharSequence[] entries = new CharSequence[CameraPreview21.availableAutoFocusModes
+                        .length];
 				for (int i = 0; i < values.length; i++) {
-					values[i] = CameraPreview21.supportedFocusModes.get(i);
+					values[i] = CameraPreview21.availableAutoFocusModes[i]+"";
+                    entries[i] = labelArray[Integer.parseInt(""+values[i])];
 				}
-				focusPref.setEntries(values);
+				focusPref.setEntries(entries);
 				focusPref.setEntryValues(values);
 
-				focusPref
-						.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-							@Override
-							public boolean onPreferenceChange(
-									Preference preference, Object newValue) {
-								setAutoFocusOptionsState((String) newValue);
-								return true;
-							}
-						});
+//				focusPref
+//						.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+//							@Override
+//							public boolean onPreferenceChange(
+//									Preference preference, Object newValue) {
+////								setAutoFocusOptionsState((String) newValue);
+//								return true;
+//							}
+//						});
 			} else {
 				focusPref.setEnabled(false);
 			}
 
-			setAutoFocusOptionsState(focusPref.getValue());
+            setAutoFocusOptionsState(focusPref.getValue());
+
+            ListPreference whiteBalancePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedwhitebalance));
+            if (CameraPreview21.availableWhiteBalanceModes != null) {
+                String[] labelArray = getActivity().getResources().getStringArray(R.array.set_white_balance_entries);
+                CharSequence[] values = new CharSequence[CameraPreview21.availableWhiteBalanceModes.length];
+                CharSequence[] entries = new CharSequence[CameraPreview21.availableWhiteBalanceModes.length];
+                for (int i = 0; i < values.length; i++) {
+                    values[i] = CameraPreview21.availableWhiteBalanceModes[i]+"";
+                    entries[i] = labelArray[Integer.parseInt(""+values[i])];
+                }
+                whiteBalancePref.setEntries(entries);
+                whiteBalancePref.setEntryValues(values);
+
+            } else {
+				whiteBalancePref.setEnabled(false);
+            }
 
 			ListPreference sceneModePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedscenemode));
-			if (CameraPreview21.supportedSceneModes != null
-					&& CameraPreview21.supportedSceneModes.size() > 0) {
-				CharSequence[] values = new CharSequence[CameraPreview21.supportedSceneModes
-						.size()];
-				for (int i = 0; i < values.length; i++) {
-					values[i] = CameraPreview21.supportedSceneModes.get(i);
+			if (CameraPreview21.availableSceneModes != null
+					&& CameraPreview21.availableSceneModes.size() > 0) {
+                String[] labelArray = getActivity().getResources().getStringArray(R.array.set_scene_mode_entries);
+				CharSequence[] values = new CharSequence[CameraPreview21.availableSceneModes.size()];
+                CharSequence[] entries = new CharSequence[CameraPreview21.availableSceneModes.size()];
+                int index = 0;
+				for (Integer mode: CameraPreview21.availableSceneModes) {
+					values[index] =  mode+"";
+                    entries[index] = labelArray[Integer.parseInt(""+values[index])];
+                    ++index;
 				}
-				sceneModePref.setEntries(values);
+				sceneModePref.setEntries(entries);
 				sceneModePref.setEntryValues(values);
 
 			} else {
 				sceneModePref.setEnabled(false);
 			}
+
+            ListPreference cameraEffectModePref = (ListPreference) findPreference(getString(R.string.preference_key_selectedCameraEffect));
+            if (CameraPreview21.availableEffects != null
+                    && CameraPreview21.availableEffects.length > 0) {
+                String[] labelArray = getActivity().getResources().getStringArray(R.array.set_camera_effect_entries);
+                CharSequence[] values = new CharSequence[CameraPreview21.availableEffects.length];
+                CharSequence[] entries = new CharSequence[CameraPreview21.availableEffects.length];
+                for (int i = 0; i < values.length; i++) {
+                    values[i] = CameraPreview21.availableEffects[i] + "";
+                    entries[i] = labelArray[Integer.parseInt(""+values[i])];
+                }
+                cameraEffectModePref.setEntries(entries);
+                cameraEffectModePref.setEntryValues(values);
+
+            } else {
+                cameraEffectModePref.setEnabled(false);
+            }
 		}
 
 		private void setAutoFocusOptionsState(String val) {
@@ -387,11 +403,11 @@ public class SettingsActivity extends PreferenceActivity {
 					|| Camera.Parameters.FOCUS_MODE_MACRO.equals(val)) {
 				enabled = true;
 			}
-			findPreference(getString(R.string.preference_key_longpressshutter))
-					.setEnabled(enabled);
-			findPreference(
-					getString(R.string.preference_key_autofocusonpicture))
-					.setEnabled(enabled);
+//			findPreference(getString(R.string.preference_key_longpressshutter))
+//					.setEnabled(enabled);
+//			findPreference(
+//					getString(R.string.preference_key_autofocusonpicture))
+//					.setEnabled(enabled);
 
 		}
 

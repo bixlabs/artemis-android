@@ -8,7 +8,7 @@
     <string name="preference_key_artemissavefolder">artemisSaveFolder</string>
     <string name="preference_key_selectedcamerarowid">selectedCameraRowId</string>
     <string name="preference_key_selectedexposurelevel">selectedExposureLevel1</string>
-    <string name="preference_key_selectedwhitebalance">selectedWhiteBalance</string>
+    <string name="preference_key_selectedwhitebalance">selectedWhiteBalance2</string>
     <string name="preference_key_flashenabled">flashEnabled</string>
     <string name="preference_key_quickshotenabled">quickshotEnabled</string>
     <string name="preference_key_lockboxesenabled">lockBoxesEnabled</string>
@@ -41,12 +41,12 @@
     <string name="preference_key_previewblackwhite">previewBlackWhite</string>
     <string name="preference_key_saveRawImage">saveRawImage</string>
     <string name="preference_key_mapVolumeKeys">mapVolumeKeys</string>
-	<string name="preference_key_selectedfocusmode">selectedFocusMode</string>
-    <string name="preference_key_selectedscenemode">selectedSceneMode</string>
-    
+    <string name="preference_key_selectedfocusmode">selectedFocusMode1</string>
+    <string name="preference_key_selectedscenemode">selectedSceneMode1</string>
+    <string name="preference_key_selectedCameraEffect">selectedCameraEffect</string>
+
     <!-- values and defaults -->
     <string name="artemis_save_location_default">DCIM/ARTEMIS</string>
-    <string name="image_size_default">default</string>
 
     <string-array name="image_size_prefs_values">
         <item>small</item>
@@ -165,7 +165,7 @@
     </string-array>
 
     <string name="selectedFocus_default">auto</string>
-    
+
     <!-- Symbols -->
     <string name="lensFocalLengthMM">mm</string>
     <string name="left_roll">↶</string>
@@ -176,5 +176,61 @@
     <string name="tilt_level">↕</string>
     <string name="degree_symbol">°</string>
     <string name="bullet">•</string>
+
+
+    <string-array name="set_scene_mode_entries">
+        <item>off</item>
+        <item>face priority</item>
+        <item>action</item>
+        <item>portrait</item>
+        <item>landscape</item>
+        <item>night</item>
+        <item>night portrait</item>
+        <item>theatre</item>
+        <item>beach</item>
+        <item>snow</item>
+        <item>sunset</item>
+        <item>steady photo</item>
+        <item>fireworks</item>
+        <item>sports</item>
+        <item>party</item>
+        <item>candle light</item>
+        <item>barcode</item>
+        <item>high-speed video</item>
+        <item>HDR</item>
+    </string-array>
+
+    <string-array name="set_camera_effect_entries">
+        <item>off</item>
+        <item>monocolor</item>
+        <item>photo-negative</item>
+        <item>solarisation</item>
+        <item>sepia</item>
+        <item>posterization</item>
+        <item>whiteboard</item>
+        <item>blackboard</item>
+        <item>aqua</item>
+    </string-array>
+
+    <string-array name="set_auto_focus_entries">
+        <item>off</item>
+        <item>auto</item>
+        <item>macro</item>
+        <item>continuous video</item>
+        <item>continuous picture</item>
+        <item>EDOF</item>
+    </string-array>
+
+    <string-array name="set_white_balance_entries">
+        <item>off</item>
+        <item>auto</item>
+        <item>incandescent</item>
+        <item>fluorescent</item>
+        <item>warm fluorescent</item>
+        <item>daylight</item>
+        <item>cloudy daylight</item>
+        <item>twilight</item>
+        <item>shade</item>
+    </string-array>
 
 </resources>

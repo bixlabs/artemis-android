@@ -900,8 +900,8 @@ public class ArtemisActivity extends Activity implements
 				true);
 
 //		// lock box setting
-//		CameraOverlay.lockBoxEnabled = artemisPrefs.getBoolean(
-//				ArtemisPreferences.LOCK_BOXES_ENABLED, false);
+		CameraOverlay.lockBoxEnabled = artemisPrefs.getBoolean(
+				ArtemisPreferences.LOCK_BOXES_ENABLED, true);
 
 		// quick shot save setting
 		CameraPreview21.quickshotEnabled = artemisPrefs.getBoolean(

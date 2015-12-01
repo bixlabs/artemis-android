@@ -12,12 +12,12 @@
             android:summary="@string/heading_summary"
             android:title="@string/heading_tilt_roll_text" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="@string/preference_key_lockboxesenabled"
-            android:persistent="true"
-            android:summary="@string/lockboxes_summary"
-            android:title="@string/lock_lens_boxes" />
+        <!--<CheckBoxPreference-->
+            <!--android:defaultValue="false"-->
+            <!--android:key="@string/preference_key_lockboxesenabled"-->
+            <!--android:persistent="true"-->
+            <!--android:summary="@string/lockboxes_summary"-->
+            <!--android:title="@string/lock_lens_boxes" />-->
 
         <ListPreference
             android:defaultValue="@string/backkey_default"
