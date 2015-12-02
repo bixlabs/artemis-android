@@ -145,6 +145,8 @@
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
 >>>>>>> e1c2f29 (halejlujah it fucking works!  Real pics (zoom in only for now))
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="bolts-tasks-1.3.0" level="project" />
+    <orderEntry type="library" exported="" name="parse-android-1.11.0" level="project" />
     <orderEntry type="module" module-name="appirater-android" exported="" />
     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-23" level="project" />
   </component>

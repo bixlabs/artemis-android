@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.util.Log;
 
+import com.parse.Parse;
+
 //import com.parse.Parse;
 
 public class ArtemisApplication extends Application {
@@ -28,9 +30,8 @@ public class ArtemisApplication extends Application {
 
         // Parse init:
         // Enable Local Datastore.
-//        Parse.enableLocalDatastore(this);
-
-//        Parse.initialize(this, "nJzNVY9gYvczqx4z0zCB8tMtYDsqh7ylO66laSRm", "5IeDNB0a4XDJDqotdrS0EPP0LdEGOKc95jcqZMu2");
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "ez9BXRSkZpILFZIue7cg7peT4ZdsJ9LdODQD741L", "kK6HYoIwSAySCqxgJQfUIhu0Kc0JyMrK315EZvBi");
 	}
 
 	protected void initLanguage() {

@@ -274,15 +274,15 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.v(TAG, "DB onUpgrade called.");
-		if (newVersion > oldVersion) {
-			Log.v(TAG, "Database version higher than old one.  Upgrading.");
-			db.execSQL("drop table if exists zcameras");
-            db.execSQL("drop table if exists zcamera");
-            db.execSQL("drop table if exists zlenses");
-			db.execSQL("drop table if exists zlensobject");
-
-			executeDatabaseSQL(db);
-		}
+//		if (newVersion > oldVersion) {
+//			Log.v(TAG, "Database version higher than old one.  Upgrading.");
+//			db.execSQL("drop table if exists zcameras");
+//            db.execSQL("drop table if exists zcamera");
+//            db.execSQL("drop table if exists zlenses");
+//			db.execSQL("drop table if exists zlensobject");
+//
+//			executeDatabaseSQL(db);
+//		}
 	}
 
 	private void executeDatabaseSQL(SQLiteDatabase db) {

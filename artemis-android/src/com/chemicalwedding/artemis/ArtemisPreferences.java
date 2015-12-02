@@ -32,4 +32,5 @@ public class ArtemisPreferences {
 	public static final String SAVE_RAW_IMAGE = "saveRawImage";
 	public static final String SELECTED_FOCUS_MODE = "selectedFocusMode";
 	public static final String SELECTED_SCENE_MODE = "selectedSceneMode";
+    public static final String DB_LAST_UPDATE_CHECK = "cloudDBLastUpdateCheck";
 }
