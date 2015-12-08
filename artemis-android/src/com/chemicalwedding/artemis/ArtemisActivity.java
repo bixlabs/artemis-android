@@ -87,10 +87,8 @@ public class ArtemisActivity extends Activity implements
 		LoaderCallbacks<Cursor> {
 	private static final String TAG = ArtemisActivity.class.getSimpleName();
 
-	private static final String DEFAULT_LENS_MAKE = "Generic 35mm Lenses";
-	private static final String DEFAULT_LENSES = "77,80,84,88,92,96,100";
-	private static final int DEFAULT_CAMERA_ROW = 10;
-
+    private static final int DEFAULT_CAMERA_ID = 435;
+    private static final String DEFAULT_LENS_MAKE = "Generic 35mm Lenses";
 	private static final int GALLERY_IMAGE_LOADER = 1;
 
 	private Handler mUiHandler = new Handler();
@@ -355,8 +353,8 @@ public class ArtemisActivity extends Activity implements
 				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_UI);
 		sensorManager.registerListener(sensorEventListener,
-				sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
-				SensorManager.SENSOR_DELAY_UI);
+                sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+                SensorManager.SENSOR_DELAY_UI);
 		sensorEnabled = true;
 	}
 
@@ -1038,11 +1036,15 @@ public class ArtemisActivity extends Activity implements
 
 		// Retrieve the previously selected camera and lenses
 		int selectedCameraRowId = artemisPrefs.getInt(
-				ArtemisPreferences.SELECTED_CAMERA_ROW, DEFAULT_CAMERA_ROW);
+				ArtemisPreferences.SELECTED_CAMERA_ROW, Integer.MAX_VALUE);
 		String lensMake = artemisPrefs.getString(
 				ArtemisPreferences.SELECTED_LENS_MAKE, DEFAULT_LENS_MAKE);
 		int selectedZoomLensPK = artemisPrefs.getInt(
 				getString(R.string.preference_key_selectedzoomlens), -1);
+
+        if (selectedCameraRowId == Integer.MAX_VALUE) {
+            selectedCameraRowId = _artemisDBHelper.findDefaultCameraID();
+        }
 
 		if (selectedCameraRowId > 0) {
 			// Id is above 0, this is a normal Camera from the Camera's table
@@ -1068,7 +1070,19 @@ public class ArtemisActivity extends Activity implements
 			setSelectedLensMake(lensMake, false, false);
 
 			String selectedLensesRowIds = artemisPrefs.getString(
-					ArtemisPreferences.SELECTED_LENS_ROW_CSV, DEFAULT_LENSES);
+					ArtemisPreferences.SELECTED_LENS_ROW_CSV, null);
+            if (selectedLensesRowIds == null) {
+                selectedLensesRowIds = "";
+                for (Lens lens: tempLensesForMake) {
+                    if ("1".equals(lens.getLensSet())) {
+                        selectedLensesRowIds += lens.getPk() + ",";
+                    }
+                }
+                if (selectedLensesRowIds.length() > 0) {
+                    selectedLensesRowIds = selectedLensesRowIds.substring(0, selectedLensesRowIds.length()-1);
+                }
+            }
+            Log.d(TAG, "Setting selected lens rowids: "+selectedLensesRowIds);
 			setSelectedLenses(selectedLensesRowIds, true, false);
 		} else {
 			setSelectedZoomLens(

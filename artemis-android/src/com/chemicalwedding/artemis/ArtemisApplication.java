@@ -29,8 +29,6 @@ public class ArtemisApplication extends Application {
 		initLanguage();
 
         // Parse init:
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
         Parse.initialize(this, "ez9BXRSkZpILFZIue7cg7peT4ZdsJ9LdODQD741L", "kK6HYoIwSAySCqxgJQfUIhu0Kc0JyMrK315EZvBi");
 	}
 
