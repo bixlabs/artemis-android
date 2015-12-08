@@ -1,5 +1,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="ArtemisMain" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+    <style name="ArtemisMain" parent="@android:style/Theme.Material.NoActionBar.Fullscreen" />
     
 </resources>
