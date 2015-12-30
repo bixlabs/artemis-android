@@ -307,7 +307,7 @@ com.chemicalwedding.artemis.ArtemisActivity$8 -> com.chemicalwedding.artemis.an:
 com.chemicalwedding.artemis.ArtemisActivity$9 -> com.chemicalwedding.artemis.ao:
     com.chemicalwedding.artemis.ArtemisActivity this$0 -> a
     void run() -> run
-com.chemicalwedding.artemis.ArtemisActivity$CameraFormatItemClickedListener -> com.chemicalwedding.artemis.ap:
+com.chemicalwedding.artemis.ArtemisActivity$CameraGenreItemClickedListener -> com.chemicalwedding.artemis.ap:
     com.chemicalwedding.artemis.ArtemisActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.chemicalwedding.artemis.ArtemisActivity$CameraRatioItemClickedListener -> com.chemicalwedding.artemis.aq:

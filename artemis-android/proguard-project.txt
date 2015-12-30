@@ -1,17 +1,22 @@
 -keep class * extends android.preference.PreferenceFragment
 
+#-keepattributes SourceFile,LineNumberTable
+
 # Required for Parse
--keepattributes SourceFile,LineNumberTable
 -keepnames class com.parse.** { *; }
 -keepattributes *Annotation*
 -keepattributes Signature
+-dontwarn android.net.SSLCertificateSocketFactory
+-dontwarn android.app.Notification
 -dontwarn com.squareup.**
 -dontwarn okio.**
+-dontwarn android.net.SSLCertificateSocketFactory
 
 # remove logging
--assumenosideeffects class android.util.Log {
-    public static boolean isLoggable(java.lang.String, int);
-    public static int v(...);
-    public static int i(...);
-    public static int d(...);
-}
+#-assumenosideeffects class android.util.Log {
+#    public static boolean isLoggable(java.lang.String, int);
+#    public static int v(...);
+#    public static int i(...);
+#    public static int d(...);
+#}
+

@@ -1,5 +1,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="ArtemisMain" parent="@android:style/Theme.Material.NoActionBar.Fullscreen" />
-    
+    <style name="ArtemisMain" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
+
 </resources>
