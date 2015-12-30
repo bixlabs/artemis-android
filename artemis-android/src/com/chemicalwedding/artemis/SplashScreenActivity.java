@@ -3,6 +3,7 @@ package com.chemicalwedding.artemis;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -448,15 +449,11 @@ public class SplashScreenActivity extends Activity {
 
             if (msg.what == SHOW_CLOUD_UPDATE_FIRST_TIME) {
                 if (mDialog == null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                    builder.setCancelable(false).setTitle("Downloading cameras and lenses...");
-                    mDialog = builder.setMessage("Please wait while the cameras and lenses are downloaded for the first time").create();
-                    mDialog.show();
+                    mDialog = ProgressDialog.show(mContext, "Downloading Cameras & Lenses", "Please wait while the latest cameras and lenses are downloaded for the first time", true, false);
                 }
             } else if (msg.what == SHOW_CLOUD_UPDATE_DIALOG) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setCancelable(false).setTitle("Updating cameras and lenses...");
-                mDialog = builder.setMessage("Please wait while the cameras and lenses are updated from the cloud").create();
+                mDialog = ProgressDialog.show(mContext, "Updating Cameras & Lenses", "Please wait while the most recent cameras and lenses are updated from the cloud", true, false);
+                mDialog.show();
             } else if (msg.what == CLOUD_UPDATE_COMPLETE) {
                 if (mDialog != null) {
                     mDialog.dismiss();

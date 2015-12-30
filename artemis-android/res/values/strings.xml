@@ -303,5 +303,6 @@
     <string name="could_not_start">Artemis could not start since no camera is detected for your device. This application requires a device with a camera.</string>
     <string name="no_camera_detected">No Camera Detected</string>
     <string name="set_camera_effect">Camera Effect Mode</string>
+    <string name="request_permission">Artemis requires camera permission</string>
 
 </resources>

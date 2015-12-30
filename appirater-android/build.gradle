@@ -5,12 +5,17 @@ dependencies {
 }
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 21
 <<<<<<< HEAD
     buildToolsVersion "21.1.1"
 =======
     buildToolsVersion "21.1"
 >>>>>>> 48b25e2 (changes towards lollipop camera api support)
+=======
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+>>>>>>> 6adede1 (new splash screen and configs, launcher)
 
     sourceSets {
         main {
