@@ -45,6 +45,8 @@
     <string name="preference_key_selectedscenemode">selectedSceneMode1</string>
     <string name="preference_key_selectedCameraEffect">selectedCameraEffect</string>
 
+    <string name="preference_visual_calib_btn">selectVisualCalibration</string>
+
     <!-- values and defaults -->
     <string name="artemis_save_location_default">DCIM/ARTEMIS</string>
 

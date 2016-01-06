@@ -19,9 +19,9 @@ public class CameraContainerView extends LinearLayout {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		if (ArtemisActivity.arrowBackgroundImage != null) {
-			if (ArtemisMath.getInstance().getCurrentGreenBox() != null) {
+			if (ArtemisMath.getInstance().getOutsideBox() != null) {
 				canvas.drawBitmap(ArtemisActivity.arrowBackgroundImage, null,
-						ArtemisMath.getInstance().getCurrentGreenBox(), null);
+						ArtemisMath.getInstance().getOutsideBox(), null);
 			} else {
 				bgRect.right = canvas.getWidth();
 				bgRect.bottom = canvas.getHeight();

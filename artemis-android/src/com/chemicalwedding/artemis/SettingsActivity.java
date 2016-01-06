@@ -2,6 +2,7 @@ package com.chemicalwedding.artemis;
 
 import java.io.File;
 import java.text.NumberFormat;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -161,7 +162,7 @@ public class SettingsActivity extends PreferenceActivity {
 					return true;
 				}
 				// Set the title for the preference
-				setAnglePreferenceTitle(preference, newValueString);
+				setAnglePreferenceTitle((EditTextPreference)preference, newValueString);
 
 				// persist the value
 				getSharedPreferences().edit()
@@ -169,8 +170,12 @@ public class SettingsActivity extends PreferenceActivity {
 				return true;
 			}
 		};
+        private NumberFormat mAngleFormat = NumberFormat
+                .getNumberInstance();
+        private EditTextPreference mHAnglePref;
+        private EditTextPreference mVAnglePref;
 
-		private void setAnglePreferenceTitle(Preference preference,
+        private void setAnglePreferenceTitle(EditTextPreference preference,
 				String newAngleString) {
 			String currentTitle = preference.getTitle().toString();
 			preference.setTitle(currentTitle.subSequence(0,
@@ -178,6 +183,7 @@ public class SettingsActivity extends PreferenceActivity {
 					+ " - "
 					+ newAngleString
 					+ getString(R.string.degree_symbol));
+            preference.setText(newAngleString);
 
 		}
 
@@ -185,6 +191,8 @@ public class SettingsActivity extends PreferenceActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.camera_settings_preferences);
+            mAngleFormat.setMaximumIntegerDigits(3);
+            mAngleFormat.setMaximumFractionDigits(1);
 
 			Float hAngleVal, vAngleVal;
 			if (getSharedPreferences().getBoolean(
@@ -201,21 +209,21 @@ public class SettingsActivity extends PreferenceActivity {
 						CameraPreview21.deviceVAngle);
 			}
 
-			final EditTextPreference hanglePref = (EditTextPreference) findPreference(getString(R.string.preference_key_cameralenshangle));
-			hanglePref
+			mHAnglePref = (EditTextPreference) findPreference(getString(R.string.preference_key_cameralenshangle));
+			mHAnglePref
 					.setOnPreferenceChangeListener(anglePreferenceChangeListener);
-			String hangle = NumberFormat.getNumberInstance().format(hAngleVal);
-			hanglePref.setText("" + hangle);
-			hanglePref.setTitle(getString(R.string.horizontal_lens_angle)
-					+ " - " + hangle + getString(R.string.degree_symbol));
+			String hangle = mAngleFormat.format(hAngleVal);
+			mHAnglePref.setText("" + hangle);
+			mHAnglePref.setTitle(getString(R.string.horizontal_lens_angle)
+                    + " - " + hangle + getString(R.string.degree_symbol));
 
-			final EditTextPreference vanglePref = (EditTextPreference) findPreference(getString(R.string.preference_key_cameralensvangle));
-			vanglePref
+			mVAnglePref = (EditTextPreference) findPreference(getString(R.string.preference_key_cameralensvangle));
+			mVAnglePref
 					.setOnPreferenceChangeListener(anglePreferenceChangeListener);
-			String vangle = NumberFormat.getNumberInstance().format(vAngleVal);
-			vanglePref.setText("" + vangle);
-			vanglePref.setTitle(getString(R.string.vertical_lens_angle) + " - "
-					+ vangle + getString(R.string.degree_symbol));
+			String vangle = mAngleFormat.format(vAngleVal);
+			mVAnglePref.setText("" + vangle);
+			mVAnglePref.setTitle(getString(R.string.vertical_lens_angle) + " - "
+                    + vangle + getString(R.string.degree_symbol));
 
 			CheckBoxPreference autoAnglesPref = (CheckBoxPreference) findPreference(getString(R.string.preference_key_automaticlensangles));
 			autoAnglesPref
@@ -226,15 +234,13 @@ public class SettingsActivity extends PreferenceActivity {
 							Boolean autoAngles = (Boolean) newValue;
 							if (autoAngles) {
 								setAnglePreferenceTitle(
-										hanglePref,
-										NumberFormat
-												.getNumberInstance()
+										mHAnglePref,
+										mAngleFormat
 												.format(CameraPreview21.deviceHAngle));
 								setAnglePreferenceTitle(
-										vanglePref,
-										NumberFormat
-												.getNumberInstance()
-												.format(CameraPreview21.deviceVAngle));
+                                        mVAnglePref,
+                                        mAngleFormat
+                                                .format(CameraPreview21.deviceVAngle));
 								CameraPreview21.effectiveHAngle = CameraPreview21.deviceHAngle;
 								CameraPreview21.effectiveVAngle = CameraPreview21.deviceVAngle;
 							} else {
@@ -247,15 +253,13 @@ public class SettingsActivity extends PreferenceActivity {
 												getString(R.string.preference_key_cameralensvangle),
 												CameraPreview21.deviceVAngle);
 								setAnglePreferenceTitle(
-										hanglePref,
-										NumberFormat
-												.getNumberInstance()
-												.format(CameraPreview21.effectiveHAngle));
+                                        mHAnglePref,
+                                        mAngleFormat
+                                                .format(CameraPreview21.effectiveHAngle));
 								setAnglePreferenceTitle(
-										vanglePref,
-										NumberFormat
-												.getNumberInstance()
-												.format(CameraPreview21.effectiveVAngle));
+                                        mVAnglePref,
+                                        mAngleFormat
+                                                .format(CameraPreview21.effectiveVAngle));
 							}
 							return true;
 						}
@@ -391,7 +395,20 @@ public class SettingsActivity extends PreferenceActivity {
             } else {
                 cameraEffectModePref.setEnabled(false);
             }
-		}
+
+
+            Preference calibrateDeviceAnglesPref = (Preference) findPreference(getString(R.string.preference_visual_calib_btn));
+            calibrateDeviceAnglesPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent calibIntent = new Intent(getActivity(), CustomCameraCalibrationActivity.class);
+                    calibIntent.putExtra(CustomCameraCalibrationActivity.LENS_ANGLE_CALIBRATION_EXTRA, true);
+                    startActivity(calibIntent);
+                    return true;
+                }
+            });
+
+        }
 
 		private void setAutoFocusOptionsState(String val) {
 			boolean enabled = false;
@@ -436,7 +453,22 @@ public class SettingsActivity extends PreferenceActivity {
 						CameraPreview21.deviceVAngle);
 			}
 		}
-	}
+
+        @Override
+        public void onResume() {
+            super.onResume();
+
+            setAnglePreferenceTitle(
+                    mHAnglePref,
+                    mAngleFormat
+                            .format(CameraPreview21.effectiveHAngle));
+
+            setAnglePreferenceTitle(
+                    mVAnglePref,
+                    mAngleFormat
+                            .format(CameraPreview21.effectiveVAngle));
+        }
+    }
 
 	public static class SavedImageSettingsFragment extends
 			ArtemisPreferenceFragment {

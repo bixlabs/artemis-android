@@ -1,410 +1,554 @@
 package com.chemicalwedding.artemis;
 
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.TextureView;
-import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
+import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
+import com.chemicalwedding.artemis.database.Lens;
+import com.parse.ParseObject;
 
 public class CustomCameraCalibrationActivity extends Activity {
-	private static final float WALL_DISTANCE = 1000f;
+    private static final float WALL_DISTANCE = 1000f;
+    public static final String LENS_ANGLE_CALIBRATION_EXTRA = "lensViewAngles";
+    private static final float NORMAL_AMOUNT = 1.0f;
+    private static final float FINE_AMOUNT = 0.2f;
+    private static final float LENS_FINE_AMOUNT = 0.1f;
 
-	private float chipWidth;
-	private float chipHeight;
-	private float aspectRatio, squeezeRatio, focalLength;
-	private float largestViewableFocalLength;
-	private String cameraName;
-	private TextView chipWidthView, chipHeightView;
+    private float chipWidth;
+    private float chipHeight;
+    private float aspectRatio, squeezeRatio, focalLength;
+    private String cameraName;
+    private TextView chipWidthView, chipHeightView;
 
-	private NumberFormat chipSizeFormat;
-//	private CustomCameraPreview customCameraPreview;
+    private NumberFormat chipSizeFormat;
 
-	private ArtemisDatabaseHelper mDBHelper;
-	private Handler mUiHandler = new Handler();
-	private ClickBoolean nextClick, nextFineClick, prevClick, prevFineClick;
-	protected static final long lensRepeatSpeed = 35;
+    private ArtemisDatabaseHelper mDBHelper;
+    private Handler mUiHandler = new Handler();
+    private ClickBoolean nextClick, nextFineClick, prevClick, prevFineClick;
+    protected static final long lensRepeatSpeed = 35;
     private CameraPreview21 mCameraPreview;
+    private boolean mIsLensAngleCalibrationSetting;
+    private float mVertAngle, mHorizAngle;
+    private ArtemisMath artemisMath_ = ArtemisMath.getInstance();
+    private float deviceHorizontalWidth, deviceVerticalWidth;
+    private NumberFormat viewAngleFormat;
+    private Button mCancelButton, mResetButton;
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mIsLensAngleCalibrationSetting = getIntent().getBooleanExtra(LENS_ANGLE_CALIBRATION_EXTRA, false);
 
-		setContentView(R.layout.calibrate_custom_camera);
+        setContentView(R.layout.calibrate_custom_camera);
 
-		mDBHelper = new ArtemisDatabaseHelper(this);
+        mDBHelper = new ArtemisDatabaseHelper(this);
 
-//		customCameraPreview = (CustomCameraPreview) findViewById(R.id.customCameraPreview);
+        chipWidthView = (TextView) findViewById(R.id.actualChipWidth);
+        chipHeightView = (TextView) findViewById(R.id.actualChipHeight);
 
-		aspectRatio = getIntent().getFloatExtra("ratio", 1.78f);
-		squeezeRatio = getIntent().getFloatExtra("squeeze", 1f);
-		focalLength = getIntent().getFloatExtra("focalLength", 50);
-		cameraName = getIntent().getStringExtra("name");
-		if (cameraName == null || cameraName.length() == 0) {
-			cameraName = getString(R.string.untitle_custom_cam);
-		}
+        if (!mIsLensAngleCalibrationSetting) {
 
-		NumberFormat flFormat = NumberFormat.getInstance();
-		flFormat.setMaximumIntegerDigits(4);
-		flFormat.setMaximumFractionDigits(1);
-		((Button) findViewById(R.id.calibrateFocalLength)).setText(flFormat
-                .format(focalLength) + "mm");
+            aspectRatio = getIntent().getFloatExtra("ratio", 1.78f);
+            squeezeRatio = getIntent().getFloatExtra("squeeze", 1f);
+            focalLength = getIntent().getFloatExtra("focalLength", 50);
+            cameraName = getIntent().getStringExtra("name");
+            if (cameraName == null || cameraName.length() == 0) {
+                cameraName = getString(R.string.untitle_custom_cam);
+            }
 
-		chipSizeFormat = NumberFormat.getInstance();
-		chipSizeFormat.setMaximumFractionDigits(6);
-		chipSizeFormat.setMinimumFractionDigits(2);
+            deviceHorizontalWidth = ArtemisMath.deviceHorizontalWidth;
+            deviceVerticalWidth = ArtemisMath.deviceVerticalWidth;
 
-		chipWidthView = (TextView) findViewById(R.id.actualChipWidth);
-		chipHeightView = (TextView) findViewById(R.id.actualChipHeight);
+            chipSizeFormat = NumberFormat.getInstance();
+            chipSizeFormat.setMaximumFractionDigits(6);
+            chipSizeFormat.setMinimumFractionDigits(2);
 
-		chipWidth = 24.96f;
-		calculateChipDimensions();
-		createOrangeBox();
+            chipWidth = 24.96f;
+            calculateChipDimensions();
+            // Custom calibration requires changing the default orange(green originally) box
+            createOrangeBox();
+            Log.v("CustomCameraCalibration", String.format(
+                    "Initial chip width: %f Height: %f", chipWidth,
+                    chipHeight));
 
-		Log.v("CustomCameraCalibration", String.format(
-                "Initial chip width: %f Height: %f LargestMM: %f", chipWidth,
-                chipHeight, largestViewableFocalLength));
+        } else {
+            mHorizAngle = CameraPreview21.effectiveHAngle;
+            mVertAngle = CameraPreview21.effectiveVAngle;
 
-		mUiHandler.postDelayed(new Runnable() {
+            viewAngleFormat = NumberFormat.getInstance();
+            viewAngleFormat.setMaximumIntegerDigits(3);
+            viewAngleFormat.setMaximumFractionDigits(1);
+
+            TextView horizLabel = (TextView) findViewById(R.id.calibrateChipWidth);
+            TextView vertLabel = (TextView) findViewById(R.id.calibrateChipHeight);
+
+            mCancelButton = (Button) findViewById(R.id.calibrateCancelButton);
+            mCancelButton.setVisibility(View.VISIBLE);
+            mResetButton = (Button) findViewById(R.id.calibrateResetButton);
+            mResetButton.setVisibility(View.VISIBLE);
+
+            horizLabel.setText(R.string.horizontal_angle);
+            vertLabel.setText(R.string.vertical_angle);
+
+            Camera selectedCamera = artemisMath_.getSelectedCamera();
+            Lens selectedLens = artemisMath_.getSelectedLenses().get(artemisMath_.get_selectedLensIndex());
+            ArtemisRectF orangeBox = artemisMath_.getOutsideBox();
+            for (Iterator<ArtemisRectF> it = artemisMath_.get_currentLensBoxes().iterator(); it.hasNext(); ) {
+                ArtemisRectF box = it.next();
+                if (box.getColor() != Color.BLACK) {
+                    it.remove();
+                }
+            }
+
+            calculateDeviceSizeForViewAngles();
+            updateViewAngleUI();
+
+            focalLength = selectedLens.getFL();
+            aspectRatio = selectedCamera.getHoriz() / selectedCamera.getVertical();
+            squeezeRatio = selectedCamera.getSqz();
+            chipWidth = selectedCamera.getHoriz();
+            chipHeight = chipWidth / aspectRatio;
+        }
+        this.setFocalLengthUI();
+
+        mUiHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 scalePreview();
             }
         }, 300);
 
-		bindViewEvents();
+        bindViewEvents();
 
         mCameraPreview = CameraPreview21.newInstance();
         getFragmentManager().beginTransaction()
                 .add(R.id.cameraContainer, mCameraPreview)
                 .commit();
-	}
+    }
 
-	@Override
-	protected void onPause() {
-		super.onPause();
+    private void calculateDeviceSizeForViewAngles() {
+        deviceHorizontalWidth = (float) (2 * (Math.tan(Math
+                .toRadians(mHorizAngle / 2)) * WALL_DISTANCE));
+        deviceVerticalWidth = (float) (2 * (Math.tan(Math
+                .toRadians(mVertAngle / 2)) * WALL_DISTANCE));
+    }
+
+    private void updateViewAngleUI() {
+        chipWidthView.setText(viewAngleFormat.format(mHorizAngle));
+        chipHeightView.setText(viewAngleFormat.format(mVertAngle));
+    }
+
+    private void setFocalLengthUI() {
+        NumberFormat flFormat = NumberFormat.getInstance();
+        flFormat.setMaximumIntegerDigits(4);
+        flFormat.setMaximumFractionDigits(1);
+        ((Button) findViewById(R.id.calibrateFocalLength)).setText(flFormat
+                .format(focalLength) + "mm");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
 
 
-	}
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
 
-	}
+    }
 
-	private final Runnable prevRunnable = new Runnable() {
-		public void run() {
-			if (prevClick.isDown()) {
-				previous();
-				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-						+ lensRepeatSpeed);
+    private final Runnable prevRunnable = new Runnable() {
+        public void run() {
+            if (prevClick.isDown()) {
+                previous();
+                mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+                        + lensRepeatSpeed);
 
-			}
-		}
-	};
+            }
+        }
+    };
 
-	private final Runnable prevFineRunnable = new Runnable() {
-		public void run() {
-			if (prevFineClick.isDown()) {
-				previousFine();
-				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-						+ lensRepeatSpeed);
+    private final Runnable prevFineRunnable = new Runnable() {
+        public void run() {
+            if (prevFineClick.isDown()) {
+                previousFine();
+                mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+                        + lensRepeatSpeed);
 
-			}
-		}
-	};
+            }
+        }
+    };
 
-	private final Runnable nextRunnable = new Runnable() {
-		public void run() {
-			if (nextClick.isDown()) {
-				next();
-				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-						+ lensRepeatSpeed);
-			}
-		}
-	};
+    private final Runnable nextRunnable = new Runnable() {
+        public void run() {
+            if (nextClick.isDown()) {
+                next();
+                mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+                        + lensRepeatSpeed);
+            }
+        }
+    };
 
-	private final Runnable nextFineRunnable = new Runnable() {
-		public void run() {
-			if (nextFineClick.isDown()) {
-				nextFine();
-				mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
-						+ lensRepeatSpeed);
+    private final Runnable nextFineRunnable = new Runnable() {
+        public void run() {
+            if (nextFineClick.isDown()) {
+                nextFine();
+                mUiHandler.postAtTime(this, SystemClock.uptimeMillis()
+                        + lensRepeatSpeed);
 
-			}
-		}
-	};
+            }
+        }
+    };
 
-	protected void previous() {
-		chipWidth += 1.0f;
-		calculateChipDimensions();
-		scalePreview();
-	}
+    protected void previous() {
+        if (!mIsLensAngleCalibrationSetting) {
+            chipWidth += NORMAL_AMOUNT;
+            calculateChipDimensions();
+        } else {
+            lensAngleAdjust(-NORMAL_AMOUNT);
+        }
+        scalePreview();
+    }
 
-	protected void previousFine() {
-		chipWidth += 0.2f;
-		calculateChipDimensions();
-		scalePreview();
-	}
+    protected void previousFine() {
+        if (!mIsLensAngleCalibrationSetting) {
+            chipWidth += FINE_AMOUNT;
+            calculateChipDimensions();
+        } else {
+            lensAngleAdjust(-LENS_FINE_AMOUNT);
+        }
+        scalePreview();
+    }
 
-	protected void next() {
-		chipWidth -= 1.0f;
-		calculateChipDimensions();
-		scalePreview();
-	}
+    protected void next() {
+        if (!mIsLensAngleCalibrationSetting) {
+            chipWidth -= NORMAL_AMOUNT;
+            calculateChipDimensions();
+        } else {
+            lensAngleAdjust(NORMAL_AMOUNT);
+        }
+        scalePreview();
+    }
 
-	protected void nextFine() {
-		chipWidth -= 0.2f;
-		calculateChipDimensions();
-		scalePreview();
-	}
+    protected void nextFine() {
+        if (!mIsLensAngleCalibrationSetting) {
+            chipWidth -= FINE_AMOUNT;
+        } else {
+            lensAngleAdjust(LENS_FINE_AMOUNT);
+        }
+        scalePreview();
+    }
 
-	private void bindViewEvents() {
-		LongPressButton prevButton = (LongPressButton) findViewById(R.id.prevButton);
-		prevButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				previous();
-			}
-		});
-		prevButton.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				prevClick.setDown(true);
-				mUiHandler.post(prevRunnable);
-				// if (isHapticFeedbackEnabled) {
-				// buzz(_lensFocalLengthText);
-				// }
-				return true;
-			}
-		});
 
-		LongPressButton finePrevButton = (LongPressButton) findViewById(R.id.finePrevButton);
-		finePrevButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				previousFine();
-			}
-		});
-		finePrevButton.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				prevFineClick.setDown(true);
-				mUiHandler.post(prevFineRunnable);
-				// if (isHapticFeedbackEnabled) {
-				// buzz(_lensFocalLengthText);
-				// }
-				return true;
-			}
-		});
+    private void lensAngleAdjust(float amount) {
+        float ratio = mVertAngle / mHorizAngle;
+        mHorizAngle += amount;
+        if (mHorizAngle < 1.0) {
+            mHorizAngle = 1.0f;
+        }
+        mVertAngle = mHorizAngle * ratio;
+        calculateDeviceSizeForViewAngles();
+        updateViewAngleUI();
+    }
 
-		LongPressButton nextButton = (LongPressButton) findViewById(R.id.nextButton);
-		nextButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				next();
-			}
-		});
-		nextButton.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				nextClick.setDown(true);
-				mUiHandler.post(nextRunnable);
-				// if (isHapticFeedbackEnabled) {
-				// buzz(_lensFocalLengthText);
-				// }
-				return true;
-			}
-		});
+    private void bindViewEvents() {
+        LongPressButton prevButton = (LongPressButton) findViewById(R.id.prevButton);
+        prevButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                previous();
+            }
+        });
+        prevButton.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                prevClick.setDown(true);
+                mUiHandler.post(prevRunnable);
+                return true;
+            }
+        });
 
-		LongPressButton fineNextButton = (LongPressButton) findViewById(R.id.fineNextButton);
-		fineNextButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				nextFine();
-			}
-		});
-		fineNextButton.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				nextFineClick.setDown(true);
-				mUiHandler.post(nextFineRunnable);
-				// if (isHapticFeedbackEnabled) {
-				// buzz(_lensFocalLengthText);
-				// }
-				return true;
-			}
-		});
+        LongPressButton finePrevButton = (LongPressButton) findViewById(R.id.finePrevButton);
+        finePrevButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                previousFine();
+            }
+        });
+        finePrevButton.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                prevFineClick.setDown(true);
+                mUiHandler.post(prevFineRunnable);
+                return true;
+            }
+        });
 
-		nextClick = nextButton.getClickBoolean();
-		prevClick = prevButton.getClickBoolean();
-		nextFineClick = fineNextButton.getClickBoolean();
-		prevFineClick = finePrevButton.getClickBoolean();
+        LongPressButton nextButton = (LongPressButton) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                next();
+            }
+        });
+        nextButton.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                nextClick.setDown(true);
+                mUiHandler.post(nextRunnable);
+                return true;
+            }
+        });
 
-		findViewById(R.id.calibrateSaveButton).setOnClickListener(
-				addCustomCameraClickListener);
+        LongPressButton fineNextButton = (LongPressButton) findViewById(R.id.fineNextButton);
+        fineNextButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextFine();
+            }
+        });
+        fineNextButton.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                nextFineClick.setDown(true);
+                mUiHandler.post(nextFineRunnable);
+                return true;
+            }
+        });
 
-		findViewById(R.id.calibrateFocalLength).setOnClickListener(
-				new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						onBackPressed();
-					}
-				});
-	}
+        nextClick = nextButton.getClickBoolean();
+        prevClick = prevButton.getClickBoolean();
+        nextFineClick = fineNextButton.getClickBoolean();
+        prevFineClick = finePrevButton.getClickBoolean();
 
-	public float[] calculateViewingAngle(float lensFocalLength) {
-		float Hfraction = (chipWidth * squeezeRatio) / (2 * lensFocalLength);
-		float Vfraction = (chipHeight * 1) / (2 * lensFocalLength);
-		float HviewingAngle = (float) (2 * (Math
-				.toDegrees(Math.atan(Hfraction))));
-		float VviewingAngle = (float) (2 * (Math
-				.toDegrees(Math.atan(Vfraction))));
-		float HStandard = calculateWidthAndHeightLens(HviewingAngle);
-		float VStandard = calculateWidthAndHeightLens(VviewingAngle);
-		float hprop = (HStandard / ArtemisMath.deviceHorizontalWidth);
-		float vprop = (VStandard / ArtemisMath.deviceVerticalWidth);
-		float[] angles = { HviewingAngle, VviewingAngle, HStandard, VStandard,
-				hprop, vprop };
-		return angles;
-	}
+        findViewById(R.id.calibrateSaveButton).setOnClickListener(
+                saveClickListener);
 
-	protected void scalePreview() {
+        findViewById(R.id.calibrateFocalLength).setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CustomCameraCalibrationActivity.this);
+                        builder.setTitle("Lens Focal Length (mm)");
 
-		float[] angles = calculateViewingAngle(focalLength);
+                        final EditText input = new EditText(CustomCameraCalibrationActivity.this);
+                        input.setText(viewAngleFormat.format(focalLength));
+                        input.setSelection(0, input.length());
+                        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        builder.setView(input);
 
-		float hprop = angles[4];
-		// float vprop = angles[5];
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                focalLength = Float.parseFloat(input.getText().toString());
+                                setFocalLengthUI();
+                                scalePreview();
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
 
-		float hWidth = angles[2];
-		// float vHeight = angles[3];
-		// float myprop = hWidth / vHeight;
+                        builder.show();
+                    }
+                });
 
-		// float hwidth = (ArtemisMath.scaledPreviewWidth * angles[0] /
-		// ArtemisMath.horizViewAngle);
-		// ArtemisRectF currentGreenBox = ArtemisMath.getInstance()
-		// .getCurrentGreenBox();
-		// if (myprop < 1.4f) {
-		// hwidth *= currentGreenBox.width() / ArtemisMath.scaledPreviewWidth;
-		// }
+        // settings view angle calibration related
+        if (mCancelButton != null) {
+            mCancelButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+        if (mResetButton != null) {
+            mResetButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(CustomCameraCalibrationActivity.this)
+                            .setTitle("Reset Device Angles")
+                            .setMessage("Are you sure you want to reset the angles to the automatically detect angles for your device?")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    mHorizAngle = CameraPreview21.deviceHAngle;
+                                    mVertAngle = CameraPreview21.deviceVAngle;
+                                    calculateDeviceSizeForViewAngles();
+                                    updateViewAngleUI();
+                                    scalePreview();
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            }).show();
+                }
+            });
+        }
+    }
 
-		mCameraPreview.scaleFactor = 1 / hprop;
+    public float[] calculateViewingAngle(float lensFocalLength) {
+        float Hfraction = (chipWidth * squeezeRatio) / (2 * lensFocalLength);
+        float Vfraction = (chipHeight * 1) / (2 * lensFocalLength);
+        float HviewingAngle = (float) (2 * (Math
+                .toDegrees(Math.atan(Hfraction))));
+        float VviewingAngle = (float) (2 * (Math
+                .toDegrees(Math.atan(Vfraction))));
+        float HStandard = calculateWidthAndHeightLens(HviewingAngle);
+        float VStandard = calculateWidthAndHeightLens(VviewingAngle);
+        float hprop = (HStandard / deviceHorizontalWidth);
+        float vprop = (VStandard / deviceVerticalWidth);
+        return new float[]{HviewingAngle, VviewingAngle, HStandard, VStandard,
+                hprop, vprop};
+    }
 
-		Log.v("CustomCameraCalibration", String.format(
+    float[] viewAngles;
+
+    protected void scalePreview() {
+
+        viewAngles = calculateViewingAngle(focalLength);
+
+        float hprop = viewAngles[4];
+        float hWidth = viewAngles[2];
+
+        mCameraPreview.scaleFactor = 1 / hprop;
+
+        Log.v("CustomCameraCalibration", String.format(
                 "CustomCam %f hWidth: %f hangle: %f",
-                mCameraPreview.scaleFactor, hWidth, angles[0]));
-		mCameraPreview.calculateZoom(false);
-	}
+                mCameraPreview.scaleFactor, hWidth, viewAngles[0]));
+        mCameraPreview.calculateZoom(false);
+    }
 
-	private void createOrangeBox() {
-		DisplayMetrics metrics = CustomCameraCalibrationActivity.this
-				.getResources().getDisplayMetrics();
-		int screenWidth = metrics.widthPixels;
-		int screenHeight = metrics.heightPixels;
+    private void createOrangeBox() {
+        DisplayMetrics metrics = CustomCameraCalibrationActivity.this
+                .getResources().getDisplayMetrics();
+        int screenWidth = metrics.widthPixels;
+        int screenHeight = metrics.heightPixels;
 
-		int lowerMargin = (int) (screenHeight * 0.885f);
-		int topMargin = (int) (screenHeight * 0.05f);
+        int lowerMargin = (int) (screenHeight * 0.885f);
+        int topMargin = (int) (screenHeight * 0.05f);
 
-		float myprop = aspectRatio;
-		int maximumWidth = (int) ((lowerMargin - topMargin) * myprop);
+        float myprop = aspectRatio;
+        int maximumWidth = (int) ((lowerMargin - topMargin) * myprop);
 
-		// center 4:3 view
-		int xmin = (screenWidth - maximumWidth) / 2;
-		int xmax = xmin + maximumWidth;
-		ArtemisRectF greenBox = new ArtemisRectF("", xmin, topMargin, xmax,
-				lowerMargin);
-		greenBox.setColor(ArtemisMath.orangeBoxColor);
+        // center 4:3 view
+        int xmin = (screenWidth - maximumWidth) / 2;
+        int xmax = xmin + maximumWidth;
+        ArtemisRectF greenBox = new ArtemisRectF("", xmin, topMargin, xmax,
+                lowerMargin);
+        greenBox.setColor(ArtemisMath.orangeBoxColor);
 
-		ArrayList<ArtemisRectF> boxes = ArtemisMath.getInstance()
-				.get_currentLensBoxes();
-		boxes.clear();
-		ArtemisMath.getInstance().setCurrentGreenBox(greenBox);
+        ArrayList<ArtemisRectF> boxes = artemisMath_
+                .get_currentLensBoxes();
+        boxes.clear();
+        artemisMath_.setOutsideBox(greenBox);
 
-		ArtemisRectF blackBox1 = new ArtemisRectF(null, 0, 0, xmin,
-				screenHeight);
-		ArtemisRectF blackBox2 = new ArtemisRectF(null, xmax, 0, screenWidth,
-				screenHeight);
+        ArtemisRectF blackBox1 = new ArtemisRectF(null, 0, 0, xmin,
+                screenHeight);
+        ArtemisRectF blackBox2 = new ArtemisRectF(null, xmax, 0, screenWidth,
+                screenHeight);
 
-		ArtemisRectF blackBox3 = new ArtemisRectF(null, 0, 0, screenWidth,
-				topMargin);
-		blackBox3.setColor(Color.BLACK);
+        ArtemisRectF blackBox3 = new ArtemisRectF(null, 0, 0, screenWidth,
+                topMargin);
+        blackBox3.setColor(Color.BLACK);
 
-		ArtemisRectF blackBox4 = new ArtemisRectF(null, 0, lowerMargin,
-				screenWidth, screenHeight);
-		blackBox4.setColor(Color.BLACK);
+        ArtemisRectF blackBox4 = new ArtemisRectF(null, 0, lowerMargin,
+                screenWidth, screenHeight);
+        blackBox4.setColor(Color.BLACK);
 
-		boxes.add(blackBox1);
-		boxes.add(blackBox2);
-		boxes.add(blackBox3);
-		boxes.add(blackBox4);
+        boxes.add(blackBox1);
+        boxes.add(blackBox2);
+        boxes.add(blackBox3);
+        boxes.add(blackBox4);
 
-	}
+    }
 
-	private static float calculateWidthAndHeightLens(float angle) {
-		float updown = (float) (WALL_DISTANCE * 2 * (Math.tan(Math
-				.toRadians(angle / 2))));
-		return updown;
-	}
+    private static float calculateWidthAndHeightLens(float angle) {
+        return (float) (WALL_DISTANCE * 2 * (Math.tan(Math
+                .toRadians(angle / 2))));
+    }
 
-	protected void calculateChipDimensions() {
-		chipHeight = chipWidth / aspectRatio;
-		updateChipTextViews();
-	}
+    protected void calculateChipDimensions() {
+        chipHeight = chipWidth / aspectRatio;
+        updateChipTextViews();
+    }
 
-	private void updateChipTextViews() {
-		chipWidthView.setText(chipSizeFormat.format(chipWidth));
-		chipHeightView.setText(chipSizeFormat.format(chipHeight));
-	}
+    private void updateChipTextViews() {
+        chipWidthView.setText(chipSizeFormat.format(chipWidth));
+        chipHeightView.setText(chipSizeFormat.format(chipHeight));
+    }
 
-	private final OnClickListener addCustomCameraClickListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			try {
-				// insert the new camera
-				CustomCamera customCam = new CustomCamera();
-				customCam.setSensorheight(chipHeight);
-				customCam.setSensorwidth(chipWidth);
-				customCam.setName(cameraName);
-				customCam.setSqueeze(squeezeRatio);
-				mDBHelper.insertCustomCamera(customCam);
-				Intent intent = new Intent();
-				intent.putExtra("newcustomcam", true);
-				setResult(Activity.RESULT_OK, intent);
-				finish();
-			} catch (Exception e) {
-				e.printStackTrace();
-				AlertDialog errorDialog = new AlertDialog.Builder(
-						CustomCameraCalibrationActivity.this)
-						.setTitle(R.string.custom_camera_error)
-						.setMessage(R.string.custom_camera_error_message)
-						.setNegativeButton(R.string.ok, null).create();
-				errorDialog.show();
-			}
-		}
+    private final OnClickListener saveClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (!mIsLensAngleCalibrationSetting) {
+                try {
+                    // insert the new camera
+                    CustomCamera customCam = new CustomCamera();
+                    customCam.setSensorheight(chipHeight);
+                    customCam.setSensorwidth(chipWidth);
+                    customCam.setName(cameraName);
+                    customCam.setSqueeze(squeezeRatio);
+                    mDBHelper.insertCustomCamera(customCam);
+                    Intent intent = new Intent();
+                    intent.putExtra("newcustomcam", true);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AlertDialog errorDialog = new AlertDialog.Builder(
+                            CustomCameraCalibrationActivity.this)
+                            .setTitle(R.string.custom_camera_error)
+                            .setMessage(R.string.custom_camera_error_message)
+                            .setNegativeButton(R.string.ok, null).create();
+                    errorDialog.show();
+                }
+            } else {
+                // Put in effect, save lens hardware angles to preferences, clean up, and finish
+                CameraPreview21.effectiveHAngle = mHorizAngle;
+                CameraPreview21.effectiveVAngle = mVertAngle;
 
-	};
+                SharedPreferences artemisPrefs = CustomCameraCalibrationActivity.this.getApplicationContext()
+                        .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
+                                Context.MODE_PRIVATE);
+                artemisPrefs.edit()
+                        .putFloat(ArtemisPreferences.CAMERA_LENS_H_ANGLE, mHorizAngle)
+                        .putFloat(ArtemisPreferences.CAMERA_LENS_V_ANGLE, mVertAngle).commit();
+                finish();
+            }
+        }
+    };
 }

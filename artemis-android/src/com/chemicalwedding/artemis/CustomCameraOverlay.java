@@ -36,16 +36,16 @@ public class CustomCameraOverlay extends View {
 			_paint.setColor(Color.BLACK);
 			canvas.drawRect(lensRect, _paint);
 		}
-		ArtemisRectF currentGreenBox = _artemisMath.getCurrentGreenBox();
+		ArtemisRectF currentGreenBox = _artemisMath.getOutsideBox();
 		if (currentGreenBox != null) {
 			_paint.setStrokeWidth(2f);
 			_paint.setStyle(Style.STROKE);
 			_paint.setColor(Color.BLACK);
 			_paint.setPathEffect(null);
 			canvas.drawRect(currentGreenBox, _paint);
-			_paint.setColor(_artemisMath.getCurrentGreenBox().getColor());
+			_paint.setColor(_artemisMath.getOutsideBox().getColor());
 			_paint.setPathEffect(_boxLineEffect);
-			canvas.drawRect(_artemisMath.getCurrentGreenBox(), _paint);
+			canvas.drawRect(_artemisMath.getOutsideBox(), _paint);
 		}
 	}
 }

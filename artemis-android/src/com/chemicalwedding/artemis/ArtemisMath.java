@@ -128,12 +128,22 @@ public class ArtemisMath {
 		float vva = (float) (2 * Math.toDegrees(Math.atan(deviceVerticalWidth
 				/ (WALL_DISTANCE * 2))));
 		float vfraction = (float) Math.tan(Math.toRadians(vva / 2));
-		float lensb = ((_selectedCamera.getVertical() * (scaledPreviewWidth / scaledPreviewHeight)) / vfraction) / 2;
+		float lensb = ((_selectedCamera.getVertical() * (this.screenWidth / this.screenHeight)) / vfraction) / 2;
 		if (lensa < lensb) {
 			_largestViewableFocalLength = lensb;
 		} else {
 			_largestViewableFocalLength = lensa;
 		}
+        if (this._selectedLenses != null && !this._selectedLenses.isEmpty()) {
+            int index = 0;
+            for (Lens lens: this._selectedLenses) {
+                if (lens.getFL()-0.5 > _largestViewableFocalLength) {
+                    firstMeaningfulLens = index;
+                    break;
+                }
+                ++index;
+            }
+        }
 	}
 
 	private static float calculateWidthAndHeightLens(float angle) {
@@ -145,10 +155,8 @@ public class ArtemisMath {
 	/**
 	 * Used in calculating the view angle for a custom camera
 	 *
-	 * @param distance
-	 *            The distance from the wall
-	 * @param width
-	 *            The width the camera can see
+	 * @param widthOrHeight
+	 *            The width or height the camera can see
 	 * @return The calculated viewing angle
 	 */
 	public static float calculateAngleForCustomCamera(float widthOrHeight) {
@@ -299,9 +307,9 @@ public class ArtemisMath {
 			angleData = calculateViewingAngle(lensFocalLength);
 			float myprop = currentGreenBox.height() / currentGreenBox.width();
 
-			int hwidth = (int) (scaledPreviewWidth * angleData[0] / horizViewAngle);
+			int hwidth = (int) (this.screenWidth * angleData[0] / horizViewAngle);
 			if (myprop < 1.4f) {
-				hwidth *= currentGreenBox.width() / scaledPreviewWidth;
+				hwidth *= currentGreenBox.width() / this.screenWidth;
 			}
 
 			int vheight = (int) (hwidth * myprop);
@@ -515,7 +523,7 @@ public class ArtemisMath {
 	}
 
 	public void selectFirstMeaningFullLens() {
-		if (firstMeaningfulLens > 0) {
+		if (firstMeaningfulLens > -1) {
 			_selectedLensIndex = firstMeaningfulLens;
 		} else if (_selectedLenses.size() > 0) {
 			_selectedLensIndex = _selectedLenses.size() - 1;
@@ -564,11 +572,11 @@ public class ArtemisMath {
 		return selectedLensBox;
 	}
 
-	public ArtemisRectF getCurrentGreenBox() {
+	public ArtemisRectF getOutsideBox() {
 		return currentGreenBox;
 	}
 
-	public void setCurrentGreenBox(ArtemisRectF rect) {
+	public void setOutsideBox(ArtemisRectF rect) {
 		currentGreenBox = rect;
 	}
 

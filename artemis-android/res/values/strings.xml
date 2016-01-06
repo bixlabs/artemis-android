@@ -233,7 +233,9 @@
          (ie Hawk V-lite 1.3\'s). </string>
     <string name="custom_camera_chip_width">CHIP WIDTH (mm)</string>
     <string name="custom_camera_chip_height">CHIP HEIGHT (mm)</string>
-    <string name="custom_camera_save_button">SAVE</string>
+    <string name="custom_camera_save_button">Save</string>
+    <string name="custom_camera_cancel_button">Cancel</string>
+    <string name="custom_camera_reset_button">Reset</string>
 
     <!-- Calibrate Custom Camera Strings -->
     <string name="calibrate_chip_width">Chip Width:</string>
@@ -304,5 +306,7 @@
     <string name="no_camera_detected">No Camera Detected</string>
     <string name="set_camera_effect">Camera Effect Mode</string>
     <string name="request_permission">Artemis requires camera permission</string>
+    <string name="vertical_angle">Vertical Angle:</string>
+    <string name="horizontal_angle">Horizontal Angle:</string>
 
 </resources>

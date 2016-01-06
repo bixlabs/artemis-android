@@ -23,7 +23,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
-import android.graphics.SurfaceTexture;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -61,7 +60,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -117,7 +115,7 @@ public class ArtemisActivity extends Activity implements
 	protected static int currentViewId;
 	// camera related
 	private Camera _selectedCamera, tempSelectedCamera;
-	private ArrayList<String> _allCameraFormats;
+	private ArrayList<String> _allCameraGenres;
 	// camera rowid paired with ratio
 	private ArrayList<Pair<Integer, String>> _ratiosListForCamera;
 
@@ -164,8 +162,9 @@ public class ArtemisActivity extends Activity implements
 
 	protected static final long lensRepeatSpeedCustomLens = 35;
 	protected static final long lensRepeatSpeedNormal = 200;
+    private String mSelectedGenre;
 
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(TAG, "Creating Artemis Activity");
 		super.onCreate(savedInstanceState);
@@ -883,8 +882,8 @@ public class ArtemisActivity extends Activity implements
 			// .postOnWorkerThread(new Runnable() {
 			// @Override
 			// public void run() {
-			_allCameraFormats = _artemisDBHelper.getCameraFormats();
-			_allCameraFormats.add(getString(R.string.custom_cameras));
+			_allCameraGenres = _artemisDBHelper.getCameraGenres();
+			_allCameraGenres.add(getString(R.string.custom_cameras));
 		}
 		// }
 		// });
@@ -1234,12 +1233,12 @@ public class ArtemisActivity extends Activity implements
 
 		ListView cameraFormatList = (ListView) findViewById(R.id.cameraFormatList);
 		ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
-				R.layout.text_list_item, _allCameraFormats);
+				R.layout.text_list_item, _allCameraGenres);
 		cameraFormatList.setAdapter(formatAdapter);
 		cameraFormatList.setTextFilterEnabled(true);
 
 		cameraFormatList
-				.setOnItemClickListener(new CameraFormatItemClickedListener());
+				.setOnItemClickListener(new CameraGenreItemClickedListener());
 		cameraFormatList.requestFocus();
 	}
 
@@ -1305,13 +1304,13 @@ public class ArtemisActivity extends Activity implements
 		return bucketId;
 	}
 
-	final class CameraFormatItemClickedListener implements OnItemClickListener {
+	final class CameraGenreItemClickedListener implements OnItemClickListener {
 
 		@Override
 		public void onItemClick(AdapterView<?> adapterView, View selectedItem,
 				int index, long arg3) {
 			TextView selectedTextView = (TextView) selectedItem;
-			String selectedFormat = selectedTextView.getText().toString();
+			mSelectedGenre = selectedTextView.getText().toString();
 
 			if (index == adapterView.getCount() - 1) {
 				// Custom cameras was selected...
@@ -1339,10 +1338,10 @@ public class ArtemisActivity extends Activity implements
 				return;
 			}
 
-			Log.i(TAG, "Camera format selected: " + selectedFormat);
+			Log.i(TAG, "Camera genre selected: " + mSelectedGenre);
 			// _currentCameraFormat = selectedFormat;
 			ArrayList<String> sensorListForCamera = _artemisDBHelper
-					.getCameraSensorsForFormat(selectedFormat);
+					.getCameraSensorsForGenre(mSelectedGenre);
 			Log.i(TAG, "Sensors available: " + sensorListForCamera.size());
 
 			ListView cameraSensorList = (ListView) findViewById(R.id.cameraSensorList);
@@ -1568,7 +1567,7 @@ public class ArtemisActivity extends Activity implements
 			Log.i(TAG, "Camera sensor selected: " + selectedSensor);
 			// _currentCameraSensor = selectedSensor;
 			_ratiosListForCamera = _artemisDBHelper
-					.getCameraRatiosForSensor(selectedSensor);
+					.getCameraRatiosForSensor(mSelectedGenre, selectedSensor);
 			Log.i(TAG, "Ratios available: " + _ratiosListForCamera.size());
 
 			// Add the ratio names to a list and bind to the list view

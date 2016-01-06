@@ -20,6 +20,7 @@ import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -30,6 +31,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -39,6 +41,7 @@ import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -64,6 +67,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.support.annotation.NonNull;
+import android.support.v13.app.FragmentCompat;
 import android.util.Log;
 import android.util.Size;
 import android.util.SizeF;
@@ -94,6 +99,9 @@ public class CameraPreview21 extends Fragment {
 
     private TextureView mTextureView;
     private static final String logTag = "CameraPreview";
+
+    private static final int REQUEST_CAMERA_PERMISSION = 1;
+    private static final String FRAGMENT_DIALOG = "dialog";
 
     private ArtemisMath _artemisMath = ArtemisMath.getInstance();
 
@@ -152,25 +160,6 @@ public class CameraPreview21 extends Fragment {
 
         if (getActivity() == null || !(getActivity() instanceof ArtemisActivity)) {
             return;
-        }
-
-        SharedPreferences artemisPrefs = getActivity()
-                .getApplicationContext().getSharedPreferences(
-                        ArtemisPreferences.class.getSimpleName(),
-                        Context.MODE_PRIVATE);
-
-        if (!artemisPrefs.getBoolean(
-                getActivity().getString(
-                        R.string.preference_key_automaticlensangles), true)) {
-            CameraPreview21.effectiveHAngle = artemisPrefs.getFloat(
-                    ArtemisPreferences.CAMERA_LENS_H_ANGLE,
-                    CameraPreview21.deviceHAngle);
-            CameraPreview21.effectiveVAngle = artemisPrefs.getFloat(
-                    ArtemisPreferences.CAMERA_LENS_V_ANGLE,
-                    CameraPreview21.deviceVAngle);
-        } else {
-//            CameraPreview21.effectiveHAngle = 48.0f;
-//            CameraPreview21.effectiveVAngle = 32.0f;
         }
 
         ArtemisMath.orangeBoxColor = getResources().getColor(
@@ -238,13 +227,13 @@ public class CameraPreview21 extends Fragment {
                 endTransform.preConcat(origin);
 
                 endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
-                        .getCurrentGreenBox().centerX(), _artemisMath
-                        .getCurrentGreenBox().centerY());
+                        .getOutsideBox().centerX(), _artemisMath
+                        .getOutsideBox().centerY());
             } else {
                 endTransform.preConcat(origin);
                 endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
-                        .getCurrentGreenBox().centerX(), _artemisMath
-                        .getCurrentGreenBox().centerY());
+                        .getOutsideBox().centerX(), _artemisMath
+                        .getOutsideBox().centerY());
 
             }
 
@@ -572,6 +561,15 @@ public class CameraPreview21 extends Fragment {
      *
      */
 
+    /**
+     * Max preview width that is guaranteed by Camera2 API
+     */
+    private static final int MAX_PREVIEW_WIDTH = 1920;
+
+    /**
+     * Max preview height that is guaranteed by Camera2 API
+     */
+    private static final int MAX_PREVIEW_HEIGHT = 1080;
 
     /**
      * Conversion from screen rotation to JPEG orientation.
@@ -841,31 +839,48 @@ public class CameraPreview21 extends Fragment {
     };
 
     /**
-     * Given {@code choices} of {@code Size}s supported by a camera, chooses the smallest one whose
-     * width and height are at least as large as the respective requested values, and whose aspect
-     * ratio matches with the specified value.
+     * Given {@code choices} of {@code Size}s supported by a camera, choose the smallest one that
+     * is at least as large as the respective texture view size, and that is at most as large as the
+     * respective max size, and whose aspect ratio matches with the specified value. If such size
+     * doesn't exist, choose the largest one that is at most as large as the respective max size,
+     * and whose aspect ratio matches with the specified value.
      *
-     * @param choices     The list of sizes that the camera supports for the intended output class
-     * @param width       The minimum desired width
-     * @param height      The minimum desired height
-     * @param aspectRatio The aspect ratio
+     * @param choices           The list of sizes that the camera supports for the intended output
+     *                          class
+     * @param textureViewWidth  The width of the texture view relative to sensor coordinate
+     * @param textureViewHeight The height of the texture view relative to sensor coordinate
+     * @param maxWidth          The maximum width that can be chosen
+     * @param maxHeight         The maximum height that can be chosen
+     * @param aspectRatio       The aspect ratio
      * @return The optimal {@code Size}, or an arbitrary one if none were big enough
      */
-    private static android.util.Size chooseOptimalSize(android.util.Size[] choices, int width, int height, android.util.Size aspectRatio) {
+    private static Size chooseOptimalSize(Size[] choices, int textureViewWidth,
+                                          int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
+
         // Collect the supported resolutions that are at least as big as the preview Surface
-        List<android.util.Size> bigEnough = new ArrayList<android.util.Size>();
+        List<Size> bigEnough = new ArrayList<>();
+        // Collect the supported resolutions that are smaller than the preview Surface
+        List<Size> notBigEnough = new ArrayList<>();
         int w = aspectRatio.getWidth();
         int h = aspectRatio.getHeight();
-        for (android.util.Size option : choices) {
-            if (option.getHeight() == option.getWidth() * h / w &&
-                    option.getWidth() >= width && option.getHeight() >= height) {
-                bigEnough.add(option);
+        for (Size option : choices) {
+            if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight &&
+                    option.getHeight() == option.getWidth() * h / w) {
+                if (option.getWidth() >= textureViewWidth &&
+                        option.getHeight() >= textureViewHeight) {
+                    bigEnough.add(option);
+                } else {
+                    notBigEnough.add(option);
+                }
             }
         }
 
-        // Pick the smallest of those, assuming we found any
+        // Pick the smallest of those big enough. If there is no one big enough, pick the
+        // largest of those not big enough.
         if (bigEnough.size() > 0) {
             return Collections.min(bigEnough, new CompareSizesByArea());
+        } else if (notBigEnough.size() > 0) {
+            return Collections.max(notBigEnough, new CompareSizesByArea());
         } else {
             Log.e(TAG, "Couldn't find any suitable preview size");
             return choices[0];
@@ -918,8 +933,8 @@ public class CameraPreview21 extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         startBackgroundThread();
 
         if (mTextureView.isAvailable()) {
@@ -931,20 +946,9 @@ public class CameraPreview21 extends Fragment {
 
     @Override
     public void onPause() {
-        super.onPause();
-        if (mCaptureSession != null) {
-            try {
-                mCaptureSession.abortCaptures();
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
         closeCamera();
+        stopBackgroundThread();
+        super.onPause();
     }
 
     /**
@@ -961,22 +965,71 @@ public class CameraPreview21 extends Fragment {
                 CameraCharacteristics characteristics
                         = manager.getCameraCharacteristics(cameraId);
 
-                // We don't use a front facing camera in this sample.
-                if (characteristics.get(CameraCharacteristics.LENS_FACING)
-                        == CameraCharacteristics.LENS_FACING_FRONT) {
+                Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
                     continue;
                 }
 
                 StreamConfigurationMap map = characteristics.get(
                         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+                if (map == null) {
+                    continue;
+                }
 
                 // For still image captures, we use the largest available size.
                 Size largest = Collections.max(
                         Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
                         new CompareSizesByArea());
 
+                // Find out if we need to swap dimension to get the preview size relative to sensor
+                // coordinate.
+                int displayRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+                int sensorOrientation =
+                        characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+                boolean swappedDimensions = false;
+                switch (displayRotation) {
+                    case Surface.ROTATION_0:
+                    case Surface.ROTATION_180:
+                        if (sensorOrientation == 90 || sensorOrientation == 270) {
+                            swappedDimensions = true;
+                        }
+                        break;
+                    case Surface.ROTATION_90:
+                    case Surface.ROTATION_270:
+                        if (sensorOrientation == 0 || sensorOrientation == 180) {
+                            swappedDimensions = true;
+                        }
+                        break;
+                    default:
+                        Log.e(TAG, "Display rotation is invalid: " + displayRotation);
+                }
+
+                Point displaySize = new Point();
+                activity.getWindowManager().getDefaultDisplay().getSize(displaySize);
+                int rotatedPreviewWidth = width;
+                int rotatedPreviewHeight = height;
+                int maxPreviewWidth = displaySize.x;
+                int maxPreviewHeight = displaySize.y;
+
+                if (swappedDimensions) {
+                    rotatedPreviewWidth = height;
+                    rotatedPreviewHeight = width;
+                    maxPreviewWidth = displaySize.y;
+                    maxPreviewHeight = displaySize.x;
+                }
+
+                if (maxPreviewWidth > MAX_PREVIEW_WIDTH) {
+                    maxPreviewWidth = MAX_PREVIEW_WIDTH;
+                }
+
+                if (maxPreviewHeight > MAX_PREVIEW_HEIGHT) {
+                    maxPreviewHeight = MAX_PREVIEW_HEIGHT;
+                }
+
                 previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
-                        width, height, largest);
+                        rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
+                        maxPreviewHeight, largest);
+
                 previewRatio = (float) previewSize.getWidth() / previewSize.getHeight();
 
                 Log.d(TAG, String.format("Selected preview size: %sw  %sh ratio: %s", previewSize.getWidth(), previewSize.getHeight(), previewRatio));
@@ -998,7 +1051,7 @@ public class CameraPreview21 extends Fragment {
                 }
 
                 mImageReader = ImageReader.newInstance(mSelectedPictureSize.getWidth(), mSelectedPictureSize.getHeight(),
-                        ImageFormat.JPEG, /*maxImages*/1);
+                        ImageFormat.JPEG, /*maxImages*/2);
                 mImageReader.setOnImageAvailableListener(
                         mOnImageAvailableListener, mBackgroundHandler);
 
@@ -1062,11 +1115,21 @@ public class CameraPreview21 extends Fragment {
                 }
 
                 double r = 360 / Math.PI;
-                effectiveHAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getWidth() / (2 * mDeviceFocalLengths[0])));
-                effectiveVAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getHeight() /
+                deviceHAngle = effectiveHAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getWidth() / (2 * mDeviceFocalLengths[0])));
+                deviceVAngle = effectiveVAngle  = (float) (r * Math.atan(mDevicePhysicalSensorSize.getHeight() /
                         (2 * mDeviceFocalLengths[0])));
 
-                String focalLengths = "";
+                if (!artemisPrefs.getBoolean(
+                        getActivity().getString(
+                                R.string.preference_key_automaticlensangles), true)) {
+                    CameraPreview21.effectiveHAngle = artemisPrefs.getFloat(
+                            ArtemisPreferences.CAMERA_LENS_H_ANGLE,
+                            CameraPreview21.deviceHAngle);
+                    CameraPreview21.effectiveVAngle = artemisPrefs.getFloat(
+                            ArtemisPreferences.CAMERA_LENS_V_ANGLE,
+                            CameraPreview21.deviceVAngle);
+                }
+
                 boolean first = true;
                 for (float fl : mDeviceFocalLengths) {
                     if (!first) {
@@ -1079,7 +1142,8 @@ public class CameraPreview21 extends Fragment {
                 Log.d(TAG, String.format("Device physical sensor size: %s  ratio: %f", mDevicePhysicalSensorSize.toString(), (float) mDevicePhysicalSensorSize.getWidth() / mDevicePhysicalSensorSize.getHeight()));
                 Log.d(TAG, String.format("Device active sensor size: %s  ratio: %f", mDeviceActiveSensorSize.toString(), mActiveSensorRatio));
                 Log.d(TAG, String.format("Device sensor orientation angle: %d", mSensorOrientation));
-                Log.d(TAG, String.format("Calculated view angles: %f horiz x %f vert", effectiveHAngle, effectiveVAngle));
+                Log.d(TAG, String.format("Calculated device view angles: %f horiz x %f vert", deviceHAngle, deviceVAngle));
+                Log.d(TAG, String.format("Effective view angles: %f horiz x %f vert", effectiveHAngle, effectiveVAngle));
 
                 return;
             }
@@ -1099,26 +1163,19 @@ public class CameraPreview21 extends Fragment {
         totalScreenWidth = width > height ? width : height;
         totalScreenHeight = width > height ? height : width;
 
-        setUpCameraOutputs(totalScreenWidth, totalScreenHeight);
-        configureTransform(totalScreenWidth, totalScreenHeight);
+//        if (getActivity().checkSelfPermission(Manifest.permission.CAMERA)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            requestCameraPermission();
+//            return;
+//        }
+        setUpCameraOutputs(width, height);
+        configureTransform(width, height);
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
-            if (!mCameraOpenCloseLock.tryAcquire(5000, TimeUnit.MILLISECONDS)) {
+            if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
             }
-//            if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                // TODO: Consider calling
-//                //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
-//                // here to request the missing permissions, and then overriding
-//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                //                                          int[] grantResults)
-//                // to handle the case where the user grants the permission. See the documentation
-//                // for Activity#requestPermissions for more details.
-//                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
-//
-//                return;
-//            }
             manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -1127,16 +1184,28 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        CameraManager manager = (CameraManager) getActivity().getSystemService(Context.CAMERA_SERVICE);
-        try {
-            manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
+    private void requestCameraPermission() {
+        if (FragmentCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            new ConfirmationDialog().show(getChildFragmentManager(), FRAGMENT_DIALOG);
+        } else {
+            FragmentCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
+                    REQUEST_CAMERA_PERMISSION);
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults.length != 1 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                ErrorDialog.newInstance(getString(R.string.request_permission))
+                        .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
 
     /**
      * Closes the current {@link android.hardware.camera2.CameraDevice}.
@@ -1349,10 +1418,6 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    /**
-     * Run the precapture sequence for capturing a still image. This method should be called when we
-     * get a response in {@link #mCaptureCallback} from {@link #lockFocus()}.
-     */
     private void runPrecaptureSequence() {
         try {
             // This is how to tell the camera to trigger.
@@ -1367,10 +1432,6 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    /**
-     * Capture a still picture. This method should be called when we get a response in
-     * {@link #mCaptureCallback} from both {@link #lockFocus()}.
-     */
     private void captureStillPicture() {
         try {
             final Activity activity = getActivity();
@@ -1473,7 +1534,7 @@ public class CameraPreview21 extends Fragment {
             mImage.close();
 
             final RectF selectedRect = _artemisMath.getSelectedLensBox();
-            final RectF greenRect = _artemisMath.getCurrentGreenBox();
+            final RectF greenRect = _artemisMath.getOutsideBox();
             final RectF screenRect = new RectF(0, 0, mTextureView.getWidth(), mTextureView.getHeight());
 
             final int imageWidth = bitmapToSave.getWidth();
@@ -1597,13 +1658,26 @@ public class CameraPreview21 extends Fragment {
 
     }
 
+    /**
+     * Shows an error message dialog.
+     */
     public static class ErrorDialog extends DialogFragment {
+
+        private static final String ARG_MESSAGE = "message";
+
+        public static ErrorDialog newInstance(String message) {
+            ErrorDialog dialog = new ErrorDialog();
+            Bundle args = new Bundle();
+            args.putString(ARG_MESSAGE, message);
+            dialog.setArguments(args);
+            return dialog;
+        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Activity activity = getActivity();
             return new AlertDialog.Builder(activity)
-                    .setMessage("This device doesn't support Camera2 API.")
+                    .setMessage(getArguments().getString(ARG_MESSAGE))
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -1613,6 +1687,38 @@ public class CameraPreview21 extends Fragment {
                     .create();
         }
 
+    }
+
+    /**
+     * Shows OK/Cancel confirmation dialog about camera permission.
+     */
+    public static class ConfirmationDialog extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Fragment parent = getParentFragment();
+            return new AlertDialog.Builder(getActivity())
+                    .setMessage(R.string.request_permission)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            FragmentCompat.requestPermissions(parent,
+                                    new String[]{Manifest.permission.CAMERA},
+                                    REQUEST_CAMERA_PERMISSION);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Activity activity = parent.getActivity();
+                                    if (activity != null) {
+                                        activity.finish();
+                                    }
+                                }
+                            })
+                    .create();
+        }
     }
 
 

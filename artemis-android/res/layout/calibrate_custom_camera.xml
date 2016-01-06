@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainFrame"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<FrameLayout android:id="@+id/mainFrame"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
 
     <com.chemicalwedding.artemis.CameraContainerView
         android:id="@+id/cameraContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
     </com.chemicalwedding.artemis.CameraContainerView>
 
@@ -16,12 +16,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@null"
-        android:visibility="visible" />
+        android:visibility="visible"/>
 
     <RelativeLayout
         android:id="@+id/overlay"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent">
 
         <ImageView
             android:layout_width="fill_parent"
@@ -29,18 +29,18 @@
             android:background="@null"
             android:scaleType="fitXY"
             android:src="@drawable/cameraoverlay"
-            android:visibility="visible" />
+            android:visibility="visible"/>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="left|top" >
+        android:gravity="left|top">
 
         <LinearLayout
             android:id="@+id/calibrateChipWidthView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/calibrateChipWidth"
@@ -53,7 +53,7 @@
                 android:text="@string/calibrate_chip_width"
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
-                android:typeface="sans" />
+                android:typeface="sans"/>
 
             <TextView
                 android:id="@+id/actualChipWidth"
@@ -63,20 +63,20 @@
                 android:lines="1"
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
-                android:typeface="sans" />
+                android:typeface="sans"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="right|top" >
+        android:gravity="right|top">
 
         <LinearLayout
             android:id="@+id/calibrateChipHeightView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right" >
+            android:gravity="right">
 
             <TextView
                 android:id="@+id/calibrateChipHeight"
@@ -87,7 +87,7 @@
                 android:text="@string/calibrate_chip_height"
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
-                android:typeface="sans" />
+                android:typeface="sans"/>
 
             <TextView
                 android:id="@+id/actualChipHeight"
@@ -98,14 +98,14 @@
                 android:layout_marginTop="-1dip"
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
-                android:typeface="sans" />
+                android:typeface="sans"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="left|bottom" >
+        android:gravity="left|bottom">
 
         <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/prevButton"
@@ -114,53 +114,71 @@
             android:layout_marginLeft="5dp"
             android:clickable="true"
             android:src="@drawable/prevbutton"
-            android:visibility="visible" />
+            android:visibility="visible"/>
 
         <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/finePrevButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
             android:clickable="true"
-            android:src="@drawable/fineminusbutton" />
+            android:src="@drawable/fineminusbutton"/>
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center" >
+        android:layout_gravity="bottom|center">
 
         <Button
             android:id="@+id/calibrateSaveButton"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:text="@string/custom_camera_save_button"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/calibrateCancelButton"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="@string/custom_camera_cancel_button"
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/calibrateFocalLength"
             android:layout_width="75dp"
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/calibrateResetButton"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="@string/custom_camera_reset_button"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="right|bottom" >
+        android:gravity="right|bottom">
 
         <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/fineNextButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
-            android:src="@drawable/fineplusbutton" />
+            android:src="@drawable/fineplusbutton"/>
 
         <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/nextButton"
             android:layout_width="45dp"
             android:layout_height="35dp"
             android:layout_marginRight="5dp"
-            android:src="@drawable/nextbutton" />
+            android:src="@drawable/nextbutton"/>
     </LinearLayout>
 
 </FrameLayout>

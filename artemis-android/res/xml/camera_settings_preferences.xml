@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:persistent="true" >
+                  android:persistent="true">
 
-    <PreferenceCategory android:title="@string/device_camera_behaviour" >
+    <PreferenceCategory android:title="@string/device_camera_behaviour">
         <ListPreference
             android:defaultValue="0"
             android:key="@string/preference_key_selectedscenemode"
-            android:title="@string/set_scene_mode" />
+            android:title="@string/set_scene_mode"/>
         <ListPreference
             android:defaultValue="0"
             android:key="@string/preference_key_selectedCameraEffect"
-            android:title="@string/set_camera_effect" />
+            android:title="@string/set_camera_effect"/>
         <ListPreference
             android:defaultValue="4"
             android:key="@string/preference_key_selectedfocusmode"
-            android:title="@string/set_focus_mode" />
+            android:title="@string/set_focus_mode"/>
 
         <!--<ListPreference-->
-            <!--android:defaultValue="@string/longPressShutter_default"-->
-            <!--android:dependency="@string/preference_key_autofocusonpicture"-->
-            <!--android:enabled="false"-->
-            <!--android:entries="@array/longPressShutter_entries"-->
-            <!--android:entryValues="@array/longPressShutter_values"-->
-            <!--android:key="@string/preference_key_longpressshutter"-->
-            <!--android:summary="@string/auto_focus_behaviour_when_long_pressing"-->
-            <!--android:title="@string/long_press_shutter_button_focus_behaviour" />-->
+        <!--android:defaultValue="@string/longPressShutter_default"-->
+        <!--android:dependency="@string/preference_key_autofocusonpicture"-->
+        <!--android:enabled="false"-->
+        <!--android:entries="@array/longPressShutter_entries"-->
+        <!--android:entryValues="@array/longPressShutter_values"-->
+        <!--android:key="@string/preference_key_longpressshutter"-->
+        <!--android:summary="@string/auto_focus_behaviour_when_long_pressing"-->
+        <!--android:title="@string/long_press_shutter_button_focus_behaviour" />-->
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/device_camera_sensor" >
+    <PreferenceCategory android:title="@string/device_camera_sensor">
         <ListPreference
             android:defaultValue="0"
             android:key="@string/preference_key_selectedwhitebalance"
-            android:title="@string/set_white_balance_text" />
+            android:title="@string/set_white_balance_text"/>
         <ListPreference
             android:key="@string/preference_key_selectedexposurelevel"
             android:persistent="false"
-            android:title="@string/set_exposure_text" />
+            android:title="@string/set_exposure_text"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/device_camera_angles" >
+    <PreferenceCategory android:title="@string/device_camera_angles">
         <CheckBoxPreference
             android:defaultValue="true"
             android:disableDependentsState="true"
             android:key="@string/preference_key_automaticlensangles"
             android:summaryOff="@string/use_the_custom_camera_angles"
             android:summaryOn="@string/use_detected_device_angles"
-            android:title="@string/detect_device_camera_angles_automatically" />
+            android:title="@string/detect_device_camera_angles_automatically"/>
 
         <EditTextPreference
             android:dependency="@string/preference_key_automaticlensangles"
@@ -52,14 +52,21 @@
             android:key="@string/preference_key_cameralenshangle"
             android:persistent="false"
             android:selectAllOnFocus="true"
-            android:title="@string/horizontal_lens_angle" />
+            android:title="@string/horizontal_lens_angle"/>
         <EditTextPreference
             android:dependency="@string/preference_key_automaticlensangles"
             android:inputType="numberDecimal"
             android:key="@string/preference_key_cameralensvangle"
             android:persistent="false"
             android:selectAllOnFocus="true"
-            android:title="@string/vertical_lens_angle" />
+            android:title="@string/vertical_lens_angle"/>
+
+        <Preference
+            android:dependency="@string/preference_key_automaticlensangles"
+            android:key="@string/preference_visual_calib_btn"
+            android:summary="Allows you to adjust the angles through view-finder adjustments"
+            android:title="Visual Calibration"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

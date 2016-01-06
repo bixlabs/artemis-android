@@ -17,7 +17,7 @@ import android.util.Pair;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DB_VERSION = 11;
+    private static final int DB_VERSION = 12;
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -88,11 +88,24 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         return cameras;
     }
 
-    public ArrayList<String> getCameraSensorsForFormat(String format) {
+    public ArrayList<String> getCameraGenres() {
         // get distinct camera sensors for format
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
-                new String[]{"zsensorname"}, "zformatname = ?",
-                new String[]{format}, null, null, null, null);
+                new String[]{"zcameragenre"}, null,
+                null, null, null, "zorder", null);
+        ArrayList<String> cameraSensors = new ArrayList<String>();
+        while (cursor.moveToNext()) {
+            cameraSensors.add(cursor.getString(0));
+        }
+        cursor.close();
+        return cameraSensors;
+    }
+
+    public ArrayList<String> getCameraSensorsForGenre(String genre) {
+        // get distinct camera sensors for format
+        Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
+                new String[]{"zsensorname"}, "zcameragenre = ?",
+                new String[]{genre}, null, null, null, null);
         ArrayList<String> cameraSensors = new ArrayList<String>();
         while (cursor.moveToNext()) {
             cameraSensors.add(cursor.getString(0));
@@ -102,12 +115,12 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Pair<Integer, String>> getCameraRatiosForSensor(
-            String sensor) {
+            String genre, String sensor) {
         // get distinct camera ratios for sensor, return each ratio paired with
         // rowid
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE, new String[]{
-                        "zrowid", "zaspectratio"}, "zsensorname = ?",
-                new String[]{sensor}, null, null, null, null);
+                        "zrowid","zaspectratio"}, "zsensorname = ? and zcameragenre = ?",
+                new String[]{sensor, genre}, null, null, null, null);
         ArrayList<Pair<Integer, String>> cameraRatios = new ArrayList<Pair<Integer, String>>();
         while (cursor.moveToNext()) {
             Pair<Integer, String> data = new Pair<Integer, String>(
