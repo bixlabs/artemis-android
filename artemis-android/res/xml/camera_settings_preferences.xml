@@ -65,7 +65,7 @@
             android:dependency="@string/preference_key_automaticlensangles"
             android:key="@string/preference_visual_calib_btn"
             android:summary="Allows you to adjust the angles through view-finder adjustments"
-            android:title="Visual Calibration"/>
+            android:title="@string/visual_lens_angle_calibration"/>
 
     </PreferenceCategory>
 

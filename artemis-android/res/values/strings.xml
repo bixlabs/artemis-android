@@ -308,5 +308,6 @@
     <string name="request_permission">Artemis requires camera permission</string>
     <string name="vertical_angle">Vertical Angle:</string>
     <string name="horizontal_angle">Horizontal Angle:</string>
+    <string name="visual_lens_angle_calibration">Visual Lens Angle Calibration</string>
 
 </resources>

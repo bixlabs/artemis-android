@@ -263,10 +263,13 @@ public class ArtemisMath {
 
 			ArtemisRectF blackBox1 = new ArtemisRectF(null, 0, 0, xmin,
 					screenHeight);
+            blackBox1.setColor(Color.BLACK);
 			blackBox1.setSolid(true);
-			ArtemisRectF blackBox2 = new ArtemisRectF(null, xmax, 0,
+
+            ArtemisRectF blackBox2 = new ArtemisRectF(null, xmax, 0,
 					screenWidth, screenHeight);
-			blackBox2.setSolid(true);
+            blackBox2.setColor(Color.BLACK);
+            blackBox2.setSolid(true);
 
 			ArtemisRectF blackBox3 = new ArtemisRectF(null, 0, 0, screenWidth,
 					topMargin);

@@ -3,7 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android"
           android:installLocation="auto"
           android:versionCode="40"
-          android:versionName="3.0-beta-20151230">
+          android:versionName="3.0-beta-20160106">
 
     <supports-screens
         android:anyDensity="true"

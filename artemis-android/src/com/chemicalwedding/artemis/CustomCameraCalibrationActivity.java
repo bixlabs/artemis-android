@@ -29,7 +29,6 @@ import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
-import com.parse.ParseObject;
 
 public class CustomCameraCalibrationActivity extends Activity {
     private static final float WALL_DISTANCE = 1000f;
@@ -178,10 +177,24 @@ public class CustomCameraCalibrationActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
-
+        new AlertDialog.Builder(this).setTitle(R.string.visual_lens_angle_calibration)
+                .setMessage("Please have the correct camera you want to calibrate selected prior to starting calibration")
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Return to Select Camera", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setResult(SettingsActivity.RESULT_CONFIGURE_CAMERA_MAIN_ACTIVITY);
+                        finish();
+                    }
+                }).show();
     }
 
     private final Runnable prevRunnable = new Runnable() {
@@ -398,7 +411,7 @@ public class CustomCameraCalibrationActivity extends Activity {
                 public void onClick(View v) {
                     new AlertDialog.Builder(CustomCameraCalibrationActivity.this)
                             .setTitle("Reset Device Angles")
-                            .setMessage("Are you sure you want to reset the angles to the automatically detect angles for your device?")
+                            .setMessage("Are you sure you want to reset to the automatically detected angles for your device?")
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
