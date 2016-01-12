@@ -136,6 +136,7 @@ public class CameraPreview21 extends Fragment {
     private int selectedEffectInt;
     private int selectedFocusInt;
     private int selectedWhiteBalanceInt;
+    private int mCenterX, mCenterY;
 
     private static int determineImageHeight(int startImageHeight) {
         switch (CameraPreview21.savedImageSizeIndex) {
@@ -234,11 +235,13 @@ public class CameraPreview21 extends Fragment {
                 endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
                         .getOutsideBox().centerX(), _artemisMath
                         .getOutsideBox().centerY());
+                endTransform.postTranslate((_artemisMath.getOutsideBox().centerX() - mCenterX) / 2,
+                        (_artemisMath.getOutsideBox().centerY() - mCenterY) / 2);
 
             }
 
-            inverse = new Matrix();
-            endTransform.invert(inverse);
+//            inverse = new Matrix();
+//            endTransform.invert(inverse);
 
         } else {
             this.scaleFactor = 1f;
@@ -976,6 +979,13 @@ public class CameraPreview21 extends Fragment {
                     continue;
                 }
 
+                if (mTextureView != null) {
+                    Rect r = new Rect();
+                    mTextureView.getGlobalVisibleRect(r);
+                    mCenterX = r.centerX();
+                    mCenterY = r.centerY();
+                }
+
                 // For still image captures, we use the largest available size.
                 Size largest = Collections.max(
                         Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
@@ -1082,7 +1092,7 @@ public class CameraPreview21 extends Fragment {
                 if (sceneModes != null) {
                     availableSceneModes = new TreeSet<>();
                     availableSceneModes.add(0);
-                    for(int mode: sceneModes) {
+                    for (int mode : sceneModes) {
                         availableSceneModes.add(mode);
                     }
                     String selectedSceneMode = artemisPrefs.getString(
@@ -1116,7 +1126,7 @@ public class CameraPreview21 extends Fragment {
 
                 double r = 360 / Math.PI;
                 deviceHAngle = effectiveHAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getWidth() / (2 * mDeviceFocalLengths[0])));
-                deviceVAngle = effectiveVAngle  = (float) (r * Math.atan(mDevicePhysicalSensorSize.getHeight() /
+                deviceVAngle = effectiveVAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getHeight() /
                         (2 * mDeviceFocalLengths[0])));
 
                 if (!artemisPrefs.getBoolean(
