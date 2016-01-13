@@ -1469,16 +1469,10 @@ public class CameraPreview21 extends Fragment {
                 @Override
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request,
                                                @NonNull TotalCaptureResult result) {
-//                    Toast.makeText(getActivity(), "Saved: " + mFile, Toast.LENGTH_SHORT).show();
                     unlockFocus();
                 }
             };
-
-//            captureBuilder.addTarget(mInputSurface);
-//            mCameraDevice.createCaptureSession(Arrays.asList(mInputSurface), mCameraCaptureSessionStateCallback, null);
-
             mCaptureSession.stopRepeating();
-//            mImageProcessor.setOutputSurface(mOutputSurface);
             mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -1559,11 +1553,13 @@ public class CameraPreview21 extends Fragment {
             int widthDiff = (int) ((imageWidth - newWidth) / 2f);
             int heightDiff = (int) ((imageHeight - newHeight) / 2f);
 
+            float hratio = greenRect.height() / greenRect.width();
 
             Log.d(TAG, String.format("screenWRatio %f", screenWRatio));
 
             if (scaleFactor >= 1) {
 
+                int orig_width = bitmapToSave.getWidth();
 
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave, widthDiff, heightDiff, newWidth, newHeight, null, false);
                 float screenImageWRatio = bitmapToSave.getWidth() / screenRect.width();
@@ -1571,31 +1567,22 @@ public class CameraPreview21 extends Fragment {
                         (int) (greenRect.left * screenImageWRatio),
                         (int) (greenRect.top * screenImageWRatio),
                         (int) (greenRect.width() * screenImageWRatio),
-                        (int) (greenRect.height() * screenImageWRatio), null, true);
+                        (int) (greenRect.height() * screenImageWRatio), null, false);
                 float greenToSelectedRatio = bitmapToSave.getWidth() / greenRect.width();
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave,
                         (int) ((selectedRect.left - greenRect.left) * greenToSelectedRatio),
                         (int) ((selectedRect.top - greenRect.top) * greenToSelectedRatio),
                         (int) (selectedRect.width() * greenToSelectedRatio),
                         (int) (selectedRect.height() * greenToSelectedRatio), null, false);
-
-            }
-            // We need to scale down
-            else {
+                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave, orig_width, (int)(orig_width * hratio), smoothImagesEnabled);
+            } else {
+                // Zoomed out, we need to scale the image down
                 Log.d(logTag, "Scale down on save");
-                float hratio = greenRect.height() / greenRect.width();
                 Bitmap canvasBitmap = Bitmap.createBitmap(imageWidth,
                         (int) (imageWidth * hratio), Bitmap.Config.ARGB_8888);
                 Canvas c = new Canvas(canvasBitmap);
                 Paint p = new Paint();
-
-//                float width = newwidth * ArtemisMath.horizViewAngle
-//                        / _artemisMath.selectedLensAngleData[0]
-//                        * totalScreenWidth / greenRect.width();
-//                float previewRatio = (float) previewHeight / previewWidth;
-
                 float scale = _artemisMath.calculateFullscreenZoomRatio() * (totalScreenWidth / greenRect.width());
-
 
                 bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
                         (int) (imageWidth * scale), (int) (imageHeight * scale),
