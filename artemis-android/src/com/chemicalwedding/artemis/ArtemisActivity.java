@@ -2163,7 +2163,7 @@ public class ArtemisActivity extends Activity implements
 				// Uri.parse("file:/"
 				// + Environment.getExternalStorageDirectory())));
 				// }
-			}.execute(new String[] {});
+			}.execute();
 
 			openArtemisCameraPreviewView();
 		}

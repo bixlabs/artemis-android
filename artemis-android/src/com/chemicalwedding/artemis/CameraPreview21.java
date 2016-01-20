@@ -374,11 +374,18 @@ public class CameraPreview21 extends Fragment {
 
         if (!artemisPrefs.getBoolean(ArtemisPreferences.SAVE_RAW_IMAGE, false)) {
 
-            int sideborder = 10, footerHeight = 75;
+            int footerHeight = (int) (bitmapToSave.getHeight() * 0.065f);
+
+            int sideborder = 10;
             // add a larger border in 4:3
             if ((float) bitmapToSave.getWidth() / bitmapToSave.getHeight() < 1.4) {
                 sideborder = 259; // to match 16:9 for 4:3
             }
+
+            float widthRatio = bitmapToSave.getWidth()/13006f;
+
+            float baseFontSize = footerHeight/2.94f;
+
             blankBmp = Bitmap.createBitmap(
                     bitmapToSave.getWidth() + sideborder,
                     bitmapToSave.getHeight() + footerHeight,
@@ -399,11 +406,11 @@ public class CameraPreview21 extends Fragment {
             float fl = Float.parseFloat(fltext);
             int xRef = 0;
             if (fltext.length() < 3) {
-                xRef = 160;
+                xRef = (int)(1000f*widthRatio);
             } else if (fltext.length() >= 3 && fl < 100) {
-                xRef = 170;
+                xRef = (int)(1200f*widthRatio);
             } else if (fltext.length() >= 3 && fl >= 100) {
-                xRef = 220;
+                xRef = (int)(1500f*widthRatio);
             }
 
             String description = artemisPrefs.getString(
@@ -427,15 +434,15 @@ public class CameraPreview21 extends Fragment {
             boolean showTiltRoll = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
 
-            paint.setTextSize(18);
+            paint.setTextSize(baseFontSize-2);
             if (description.length() > 0) {
-                canvas.drawText(description, 10, blankBmp.getHeight() - 50,
+                canvas.drawText(description, 10, blankBmp.getHeight() - (baseFontSize*2),
                         paint);
             }
-            paint.setTextSize(14);
+            paint.setTextSize(baseFontSize-4);
             if (showCameraDetails) {
                 canvas.drawText(ArtemisActivity._cameraDetailsText.getText()
-                        .toString(), 10, blankBmp.getHeight() - 30, paint);
+                        .toString(), 10, blankBmp.getHeight() - (baseFontSize), paint);
             }
             paint.setTypeface(null);
 
@@ -464,13 +471,13 @@ public class CameraPreview21 extends Fragment {
             paint.setTextAlign(Paint.Align.CENTER);
             if (showHeading && showTiltRoll) {
                 canvas.drawText(ArtemisActivity.pictureSaveHeadingTiltString,
-                        centerTextX, blankBmp.getHeight() - 50, paint);
+                        centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
             } else if (showHeading) {
 
                 if (ArtemisActivity.headingDisplaySelection == 1) {
                     canvas.drawText(
                             ArtemisActivity.pictureSaveHeadingTiltString,
-                            centerTextX, blankBmp.getHeight() - 50, paint);
+                            centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
                 } else if (ArtemisActivity.headingDisplaySelection == 2) {
                     if (ArtemisActivity.pictureSaveHeadingTiltString
                             .contains("|")) {
@@ -480,7 +487,7 @@ public class CameraPreview21 extends Fragment {
                                                 0,
                                                 ArtemisActivity.pictureSaveHeadingTiltString
                                                         .indexOf('|')),
-                                centerTextX, blankBmp.getHeight() - 50, paint);
+                                centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
                     }
                 }
             } else if (showTiltRoll) {
@@ -494,7 +501,7 @@ public class CameraPreview21 extends Fragment {
                                                     .indexOf('|'),
                                             ArtemisActivity.pictureSaveHeadingTiltString
                                                     .length() - 1),
-                            centerTextX, blankBmp.getHeight() - 50, paint);
+                            centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
                 }
             }
             paint.setTextAlign(Paint.Align.LEFT);
@@ -503,7 +510,7 @@ public class CameraPreview21 extends Fragment {
                 NumberFormat nf = NumberFormat.getInstance();
                 nf.setMaximumFractionDigits(1);
                 paint.setTypeface(Typeface.DEFAULT_BOLD);
-                paint.setTextSize(18f);
+                paint.setTextSize(baseFontSize-2);
                 String hAngle = getResources().getString(R.string.hangle_text)
                         + " "
                         + nf.format(_artemisMath.selectedLensAngleData[0])
@@ -512,45 +519,45 @@ public class CameraPreview21 extends Fragment {
                         + " "
                         + nf.format(_artemisMath.selectedLensAngleData[1])
                         + getString(R.string.degree_symbol);
-                int xadjustHAngle = hAngle.length() < 14 ? 140 : 150;
-                int xadjustVAngle = vAngle.length() < 14 ? 140 : 150;
+                int xadjustHAngle = hAngle.length() < 14 ?  (int)(1080*widthRatio) : (int)(1200f*widthRatio);
+                int xadjustVAngle = vAngle.length() < 14 ? (int)(1080*widthRatio) : (int)(1200f*widthRatio);
                 int xadjust = xadjustHAngle >= xadjustVAngle ? xadjustHAngle
                         : xadjustVAngle;
                 canvas.drawText(hAngle, blankBmp.getWidth() - xRef - xadjust,
-                        blankBmp.getHeight() - 32, paint);
+                        blankBmp.getHeight() - baseFontSize, paint);
                 canvas.drawText(vAngle, blankBmp.getWidth() - xRef - xadjust,
                         blankBmp.getHeight() - 10, paint);
             }
 
             if (showDateTime) {
                 paint.setTypeface(Typeface.DEFAULT_BOLD);
-                paint.setTextSize(10.5f);
+                paint.setTextSize(baseFontSize*0.6f);
                 SimpleDateFormat sdf = new SimpleDateFormat(
-                        "hh:mm aa | MM/dd/yyyy", Locale.getDefault());
+                        "h:mm aa | MM/dd/yyyy", Locale.getDefault());
                 canvas.drawText(sdf.format(new Date()), blankBmp.getWidth()
-                        - xRef - 140, blankBmp.getHeight() - 56, paint);
+                        - xRef - (int)(widthRatio*1080) , blankBmp.getHeight() - baseFontSize*2, paint);
             }
 
             if (showLensDetails) {
                 String lensMake = ArtemisActivity._lensMakeText.getText()
                         .toString();
-                paint.setTextSize(50);
+                paint.setTextSize(baseFontSize*2.0f);
                 canvas.drawText(fltext + "mm", blankBmp.getWidth() - xRef,
                         blankBmp.getHeight() - 10, paint);
 
-                paint.setTextSize(12);
+                paint.setTextSize(baseFontSize*0.6f);
                 if (lensMake.length() > 28) {
-                    paint.setTextSize(10);
+                    paint.setTextSize(baseFontSize*0.5f);
                     paint.setTextScaleX(0.9f);
                 }
                 paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + 72,
-                        blankBmp.getHeight() - 56, paint);
+                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int)(widthRatio*500),
+                        blankBmp.getHeight() - baseFontSize*2, paint);
 
-                paint.setStrokeWidth(4);
+                paint.setStrokeWidth(baseFontSize*0.1f);
                 canvas.drawLine(blankBmp.getWidth() - xRef - 13,
-                        blankBmp.getHeight() - 68, blankBmp.getWidth() - xRef
-                                - 13, blankBmp.getHeight() - 3, paint);
+                        blankBmp.getHeight() - footerHeight + 10, blankBmp.getWidth() - xRef
+                                - 13, blankBmp.getHeight() - 10, paint);
             }
         }
 
