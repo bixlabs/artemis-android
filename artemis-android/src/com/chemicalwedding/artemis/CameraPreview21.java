@@ -157,7 +157,7 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    public void startArtemisPreview(boolean resetLensAndTouch) {
+    public void startArtemisPreview() {
 
         if (getActivity() == null || !(getActivity() instanceof ArtemisActivity)) {
             return;
@@ -185,10 +185,10 @@ public class CameraPreview21 extends Fragment {
             _artemisMath.selectFirstMeaningFullLens();
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
             _artemisMath.setInitializedFirstTime(true);
-        } else if (resetLensAndTouch) {
+        } else {
             _artemisMath.calculateLargestLens();
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
-            _artemisMath.selectFirstMeaningFullLens();
+//            _artemisMath.selectFirstMeaningFullLens();
             _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
 
@@ -602,26 +602,22 @@ public class CameraPreview21 extends Fragment {
      * Camera state: Showing camera preview.
      */
     private static final int STATE_PREVIEW = 0;
-
     /**
      * Camera state: Waiting for the focus to be locked.
      */
-    private static final int STATE_WAITING_LOCK_FOCUS_BEFORE_PICTURE = 1;
-
-    private static final int STATE_WAITING_LOCK_FOCUS = 2;
-
+    private static final int STATE_WAITING_LOCK = 1;
     /**
      * Camera state: Waiting for the exposure to be precapture state.
      */
-    private static final int STATE_WAITING_PRECAPTURE = 3;
+    private static final int STATE_WAITING_PRECAPTURE = 2;
     /**
      * Camera state: Waiting for the exposure state to be something other than precapture.
      */
-    private static final int STATE_WAITING_NON_PRECAPTURE = 4;
+    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
     /**
      * Camera state: Picture was taken.
      */
-    private static final int STATE_PICTURE_TAKEN = 5;
+    private static final int STATE_PICTURE_TAKEN = 4;
 
     /**
      * {@link android.view.TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -776,7 +772,7 @@ public class CameraPreview21 extends Fragment {
                     // We have nothing to do when the camera preview is working normally.
                     break;
                 }
-                case STATE_WAITING_LOCK_FOCUS_BEFORE_PICTURE: {
+                case STATE_WAITING_LOCK: {
                     Integer afState = result.get(CaptureResult.CONTROL_AF_STATE);
                     if (afState == null) {
                         captureStillPicture();
@@ -792,26 +788,7 @@ public class CameraPreview21 extends Fragment {
                             runPrecaptureSequence();
                         }
                     }
-                    break;
-                }
-                case STATE_WAITING_LOCK_FOCUS: {
-                    Integer afState = result.get(CaptureResult.CONTROL_AF_STATE);
-//                    if (afState == null) {
-//                        captureStillPicture();
-//                    } else if (CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED == afState ||
-//                            CaptureResult.CONTROL_AF_STATE_NOT_FOCUSED_LOCKED == afState) {
-//                        // CONTROL_AE_STATE can be null on some devices
-//                        Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
-//                        if (aeState == null ||
-//                                aeState == CaptureResult.CONTROL_AE_STATE_CONVERGED) {
-                    mState = STATE_PREVIEW;
-//                            captureStillPicture();
-//                        } else {
-//                            runPrecaptureSequence();
-//                        }
-//                    }
-                    break;
-                }
+                    break;                }
                 case STATE_WAITING_PRECAPTURE: {
                     // CONTROL_AE_STATE can be null on some devices
                     Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
@@ -1340,7 +1317,7 @@ public class CameraPreview21 extends Fragment {
                                 mTextureView.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        startArtemisPreview(true);
+                                        startArtemisPreview();
                                     }
                                 });
 
@@ -1411,23 +1388,23 @@ public class CameraPreview21 extends Fragment {
      * Initiate a still image capture.
      */
     protected void takePicture() {
-        lockFocus(true);
+        lockFocus();
     }
 
     protected void autofocusCamera(boolean takePic) {
-        lockFocus(takePic);
+        lockFocus();
     }
 
     /**
      * Lock the focus as the first step for a still image capture.
      */
-    private void lockFocus(boolean takePicture) {
+    private void lockFocus() {
         try {
             // This is how to tell the camera to lock focus.
             mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
                     CameraMetadata.CONTROL_AF_TRIGGER_START);
             // Tell #mCaptureCallback to wait for the lock.
-            mState = takePicture ? STATE_WAITING_LOCK_FOCUS_BEFORE_PICTURE : STATE_WAITING_LOCK_FOCUS;
+            mState = STATE_WAITING_LOCK;
             mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(), mCaptureCallback,
                     mBackgroundHandler);
         } catch (CameraAccessException e) {
