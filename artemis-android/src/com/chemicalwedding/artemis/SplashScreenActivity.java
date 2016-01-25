@@ -30,6 +30,7 @@ import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class SplashScreenActivity extends Activity {
 
@@ -157,9 +158,9 @@ public class SplashScreenActivity extends Activity {
                 }
                 String sqlInsertOrUpdate;
                 if (!exists) {
-                    sqlInsertOrUpdate = "INSERT INTO `ZCAMERA` (ZHOROZONTALSIZE, ZSQUEEZERATIO, ZVERTICALSIZE, ZASPECTRATIO, ZCAMERAGENRE, ZCAPTUREMEDIUM, ZFORMATNAME, ZLENSTYPE, ZORDER, ZSENSORNAME, ZOBJECTID) VALUES (%f,%f,%f,'%s','%s','%s','%s','%s',%d,'%s','%s')";
+                    sqlInsertOrUpdate = "INSERT INTO `ZCAMERA` (ZHOROZONTALSIZE, ZSQUEEZERATIO, ZVERTICALSIZE, ZASPECTRATIO, ZCAMERAGENRE, ZCAPTUREMEDIUM, ZFORMATNAME, ZLENSTYPE, ZORDER, ZSENSORNAME, ZOBJECTID) VALUES ('%f','%f','%f','%s','%s','%s','%s','%s','%d','%s','%s')";
                 } else {
-                    sqlInsertOrUpdate = "UPDATE `ZCAMERA` SET ZHOROZONTALSIZE = %f, ZSQUEEZERATIO = %f, ZVERTICALSIZE = %f, ZASPECTRATIO = '%s', ZCAMERAGENRE = '%s', ZCAPTUREMEDIUM = '%s', ZFORMATNAME = '%s', ZLENSTYPE = '%s', ZORDER = %d, ZSENSORNAME = '%s' WHERE ZOBJECTID = '%s'";
+                    sqlInsertOrUpdate = "UPDATE `ZCAMERA` SET ZHOROZONTALSIZE = '%f', ZSQUEEZERATIO = '%f', ZVERTICALSIZE = '%f', ZASPECTRATIO = '%s', ZCAMERAGENRE = '%s', ZCAPTUREMEDIUM = '%s', ZFORMATNAME = '%s', ZLENSTYPE = '%s', ZORDER = '%d', ZSENSORNAME = '%s' WHERE ZOBJECTID = '%s'";
                 }
                 String sql = String.format(
                         sqlInsertOrUpdate,
@@ -213,9 +214,9 @@ public class SplashScreenActivity extends Activity {
                 }
                 String sqlInsertOrUpdate;
                 if (!exists) {
-                    sqlInsertOrUpdate = "INSERT INTO `ZLENSOBJECT` (ZLENSMM, ZLENSSET, ZSQUEEZERATIO, ZFORMATNAME, ZLENSCODE, ZLENSMAKE, ZOBJECTID) VALUES (%f,%d,%f,'%s','%s','%s', '%s')";
+                    sqlInsertOrUpdate = "INSERT INTO `ZLENSOBJECT` (ZLENSMM, ZLENSSET, ZSQUEEZERATIO, ZFORMATNAME, ZLENSCODE, ZLENSMAKE, ZOBJECTID) VALUES ('%f','%d','%f','%s','%s','%s', '%s')";
                 } else {
-                    sqlInsertOrUpdate = "UPDATE `ZLENSOBJECT` SET ZLENSMM = %f, ZLENSSET = %d, ZSQUEEZERATIO = %f, ZFORMATNAME = '%s', ZLENSCODE = '%s', ZLENSMAKE = '%s' WHERE ZOBJECTID = '%s'";
+                    sqlInsertOrUpdate = "UPDATE `ZLENSOBJECT` SET ZLENSMM = '%f', ZLENSSET = '%d', ZSQUEEZERATIO = '%f', ZFORMATNAME = '%s', ZLENSCODE = '%s', ZLENSMAKE = '%s' WHERE ZOBJECTID = '%s'";
                 }
                 String sql = String.format(
                         sqlInsertOrUpdate,
