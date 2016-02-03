@@ -158,11 +158,12 @@ public class SplashScreenActivity extends Activity {
                 }
                 String sqlInsertOrUpdate;
                 if (!exists) {
-                    sqlInsertOrUpdate = "INSERT INTO `ZCAMERA` (ZHOROZONTALSIZE, ZSQUEEZERATIO, ZVERTICALSIZE, ZASPECTRATIO, ZCAMERAGENRE, ZCAPTUREMEDIUM, ZFORMATNAME, ZLENSTYPE, ZORDER, ZSENSORNAME, ZOBJECTID) VALUES ('%f','%f','%f','%s','%s','%s','%s','%s','%d','%s','%s')";
+                    sqlInsertOrUpdate = "INSERT INTO `ZCAMERA` (ZHOROZONTALSIZE, ZSQUEEZERATIO, ZVERTICALSIZE, ZASPECTRATIO, ZCAMERAGENRE, ZCAPTUREMEDIUM, ZFORMATNAME, ZLENSTYPE, ZORDER, ZSENSORNAME, ZOBJECTID) VALUES (%f,%f,%f,'%s','%s','%s','%s','%s',%d,'%s','%s')";
                 } else {
-                    sqlInsertOrUpdate = "UPDATE `ZCAMERA` SET ZHOROZONTALSIZE = '%f', ZSQUEEZERATIO = '%f', ZVERTICALSIZE = '%f', ZASPECTRATIO = '%s', ZCAMERAGENRE = '%s', ZCAPTUREMEDIUM = '%s', ZFORMATNAME = '%s', ZLENSTYPE = '%s', ZORDER = '%d', ZSENSORNAME = '%s' WHERE ZOBJECTID = '%s'";
+                    sqlInsertOrUpdate = "UPDATE `ZCAMERA` SET ZHOROZONTALSIZE = %f, ZSQUEEZERATIO = %f, ZVERTICALSIZE = %f, ZASPECTRATIO = '%s', ZCAMERAGENRE = '%s', ZCAPTUREMEDIUM = '%s', ZFORMATNAME = '%s', ZLENSTYPE = '%s', ZORDER = %d, ZSENSORNAME = '%s' WHERE ZOBJECTID = '%s'";
                 }
                 String sql = String.format(
+                        Locale.US,
                         sqlInsertOrUpdate,
                         camera.getDouble("horozontalSize"),
                         camera.getDouble("squeezeRatio"),
@@ -214,11 +215,12 @@ public class SplashScreenActivity extends Activity {
                 }
                 String sqlInsertOrUpdate;
                 if (!exists) {
-                    sqlInsertOrUpdate = "INSERT INTO `ZLENSOBJECT` (ZLENSMM, ZLENSSET, ZSQUEEZERATIO, ZFORMATNAME, ZLENSCODE, ZLENSMAKE, ZOBJECTID) VALUES ('%f','%d','%f','%s','%s','%s', '%s')";
+                    sqlInsertOrUpdate = "INSERT INTO `ZLENSOBJECT` (ZLENSMM, ZLENSSET, ZSQUEEZERATIO, ZFORMATNAME, ZLENSCODE, ZLENSMAKE, ZOBJECTID) VALUES (%f,%d,%f,'%s','%s','%s', '%s')";
                 } else {
-                    sqlInsertOrUpdate = "UPDATE `ZLENSOBJECT` SET ZLENSMM = '%f', ZLENSSET = '%d', ZSQUEEZERATIO = '%f', ZFORMATNAME = '%s', ZLENSCODE = '%s', ZLENSMAKE = '%s' WHERE ZOBJECTID = '%s'";
+                    sqlInsertOrUpdate = "UPDATE `ZLENSOBJECT` SET ZLENSMM = %f, ZLENSSET = %d, ZSQUEEZERATIO = %f, ZFORMATNAME = '%s', ZLENSCODE = '%s', ZLENSMAKE = '%s' WHERE ZOBJECTID = '%s'";
                 }
                 String sql = String.format(
+                        Locale.US,
                         sqlInsertOrUpdate,
                         lens.getDouble("FL"),
                         lens.getInt("lensSet"),

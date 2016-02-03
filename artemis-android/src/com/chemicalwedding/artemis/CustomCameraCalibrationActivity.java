@@ -180,21 +180,23 @@ public class CustomCameraCalibrationActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        new AlertDialog.Builder(this).setTitle(R.string.visual_lens_angle_calibration)
-                .setMessage("Please have the correct camera you want to calibrate selected prior to starting calibration")
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .setNegativeButton("Return to Select Camera", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        setResult(SettingsActivity.RESULT_CONFIGURE_CAMERA_MAIN_ACTIVITY);
-                        finish();
-                    }
-                }).show();
+        if (mIsLensAngleCalibrationSetting) {
+            new AlertDialog.Builder(this).setTitle(R.string.visual_lens_angle_calibration)
+                    .setMessage("Please have the correct camera you want to calibrate selected prior to starting calibration")
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("Return to Select Camera", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            setResult(SettingsActivity.RESULT_CONFIGURE_CAMERA_MAIN_ACTIVITY);
+                            finish();
+                        }
+                    }).show();
+        }
     }
 
     private final Runnable prevRunnable = new Runnable() {

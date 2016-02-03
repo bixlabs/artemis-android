@@ -137,6 +137,7 @@ public class CameraPreview21 extends Fragment {
     private int selectedFocusInt;
     private int selectedWhiteBalanceInt;
     private int mCenterX, mCenterY;
+    private boolean mFlashSupported = false;
 
     private static int determineImageHeight(int startImageHeight) {
         switch (CameraPreview21.savedImageSizeIndex) {
@@ -1059,6 +1060,12 @@ public class CameraPreview21 extends Fragment {
 
                 mCameraId = cameraId;
 
+
+                // Check if the flash is supported.
+                Boolean available = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                mFlashSupported = available == null ? false : available;
+
+
                 SharedPreferences artemisPrefs = getActivity().getSharedPreferences(
                         ArtemisPreferences.class.getSimpleName(), Activity.MODE_PRIVATE);
 
@@ -1289,8 +1296,7 @@ public class CameraPreview21 extends Fragment {
                                 mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
                                         CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
                                 // Flash is automatically enabled when necessary.
-                                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
-                                        CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
+                                setAutoFlash(mPreviewRequestBuilder);
 
                                 if (selectedSceneModeInt > 0) {
                                     mPreviewRequestBuilder.set(CaptureRequest.CONTROL_SCENE_MODE,
@@ -1440,8 +1446,17 @@ public class CameraPreview21 extends Fragment {
             // Use the same AE and AF modes as the preview.
             captureBuilder.set(CaptureRequest.CONTROL_AF_MODE,
                     CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
-            captureBuilder.set(CaptureRequest.CONTROL_AE_MODE,
-                    CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
+
+            setAutoFlash(captureBuilder);
+
+            if (selectedEffectInt > 0) {
+                captureBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE,
+                        selectedEffectInt);
+            }
+            if (selectedWhiteBalanceInt > 0) {
+                captureBuilder.set(CaptureRequest.CONTROL_AWB_MODE,
+                        selectedWhiteBalanceInt);
+            }
 
             // Orientation
             int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
@@ -1471,8 +1486,11 @@ public class CameraPreview21 extends Fragment {
             // Reset the autofucos trigger
             mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
                     CameraMetadata.CONTROL_AF_TRIGGER_CANCEL);
-            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
-                    CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
+            if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER,
+                        CameraMetadata.CONTROL_AE_PRECAPTURE_TRIGGER_CANCEL);
+            }
+            setAutoFlash(mPreviewRequestBuilder);
             mCaptureSession.capture(mPreviewRequestBuilder.build(), mCaptureCallback,
                     mBackgroundHandler);
             // After this, the camera will go back to the normal state of preview.
@@ -1481,6 +1499,13 @@ public class CameraPreview21 extends Fragment {
                     mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setAutoFlash(CaptureRequest.Builder requestBuilder) {
+        if (mFlashSupported) {
+            requestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
+                    CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
         }
     }
 
