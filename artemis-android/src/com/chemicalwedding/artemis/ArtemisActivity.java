@@ -79,6 +79,8 @@ import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
 import com.chemicalwedding.artemis.database.ZoomLens;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.sbstrm.appirater.Appirater;
 
 public class ArtemisActivity extends Activity implements
@@ -262,7 +264,11 @@ public class ArtemisActivity extends Activity implements
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "Starting Artemis");
-	}
+
+        Tracker tracker = ((ArtemisApplication) getApplication()).getTracker();
+        tracker.setScreenName("ArtemisActivity");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
 	@Override
 	protected void onResume() {

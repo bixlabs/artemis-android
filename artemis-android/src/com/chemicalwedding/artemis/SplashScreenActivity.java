@@ -19,6 +19,8 @@ import android.provider.Settings.Secure;
 import android.util.Log;
 
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.vending.licensing.AESObfuscator;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
@@ -73,6 +75,15 @@ public class SplashScreenActivity extends Activity {
         _checker = new LicenseChecker(this, new ServerManagedPolicy(this,
                 new AESObfuscator(SALT, getPackageName(), deviceId)),
                 BASE64_PUBLIC_KEY);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Tracker tracker = ((ArtemisApplication) getApplication()).getTracker();
+        tracker.setScreenName("SplashScreenActivity");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

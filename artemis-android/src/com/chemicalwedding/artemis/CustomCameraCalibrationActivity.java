@@ -29,6 +29,8 @@ import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 public class CustomCameraCalibrationActivity extends Activity {
     private static final float WALL_DISTANCE = 1000f;
@@ -179,6 +181,10 @@ public class CustomCameraCalibrationActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        Tracker tracker = ((ArtemisApplication) getApplication()).getTracker();
+        tracker.setScreenName(mIsLensAngleCalibrationSetting ? "LensAngleCalibration" : "CustomCameraCalibrationActivity");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         if (mIsLensAngleCalibrationSetting) {
             new AlertDialog.Builder(this).setTitle(R.string.visual_lens_angle_calibration)

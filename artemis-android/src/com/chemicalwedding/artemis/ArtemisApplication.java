@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.util.Log;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.parse.Parse;
 
 //import com.parse.Parse;
@@ -16,8 +18,11 @@ public class ArtemisApplication extends Application {
 
 	private final static String logTag = "ArtemisApplication";
 	private WorkerThread worker;
+    private Tracker mTracker;
 
-	@Override
+    private static final String PROPERTY_ID = "UA-10781805-6";
+
+    @Override
 	public void onCreate() {
 		Log.i(logTag, "Starting Artemis Application");
 
@@ -79,4 +84,11 @@ public class ArtemisApplication extends Application {
 		}
 	}
 
+    synchronized Tracker getTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            mTracker = analytics.newTracker(PROPERTY_ID);
+        }
+        return mTracker;
+    }
 }

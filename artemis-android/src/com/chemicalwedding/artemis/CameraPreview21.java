@@ -375,7 +375,7 @@ public class CameraPreview21 extends Fragment {
 
         if (!artemisPrefs.getBoolean(ArtemisPreferences.SAVE_RAW_IMAGE, false)) {
 
-            int footerHeight = (int) (bitmapToSave.getHeight() * 0.065f);
+            int footerHeight = (int) (bitmapToSave.getHeight() * 0.1f);
 
             int sideborder = 10;
             // add a larger border in 4:3
@@ -407,11 +407,11 @@ public class CameraPreview21 extends Fragment {
             float fl = Float.parseFloat(fltext);
             int xRef = 0;
             if (fltext.length() < 3) {
-                xRef = (int)(1000f*widthRatio);
+                xRef = (int)(1450f*widthRatio);
             } else if (fltext.length() >= 3 && fl < 100) {
-                xRef = (int)(1200f*widthRatio);
+                xRef = (int)(1550f*widthRatio);
             } else if (fltext.length() >= 3 && fl >= 100) {
-                xRef = (int)(1500f*widthRatio);
+                xRef = (int)(1600f*widthRatio);
             }
 
             String description = artemisPrefs.getString(
@@ -452,6 +452,7 @@ public class CameraPreview21 extends Fragment {
             }
 
             final int centerTextX = blankBmp.getWidth() / 2 - 30;
+            paint.setTextSize(baseFontSize*0.75f);
             if (showGpsDetails || showGpsLocationString) {
                 String[] gpsDetailsAndLocation = ArtemisActivity
                         .getGPSLocationDetailStrings(getActivity());
@@ -520,8 +521,8 @@ public class CameraPreview21 extends Fragment {
                         + " "
                         + nf.format(_artemisMath.selectedLensAngleData[1])
                         + getString(R.string.degree_symbol);
-                int xadjustHAngle = hAngle.length() < 14 ?  (int)(1080*widthRatio) : (int)(1200f*widthRatio);
-                int xadjustVAngle = vAngle.length() < 14 ? (int)(1080*widthRatio) : (int)(1200f*widthRatio);
+                int xadjustHAngle = hAngle.length() < 14 ?  (int)(1550*widthRatio) : (int)(1700f*widthRatio);
+                int xadjustVAngle = vAngle.length() < 14 ? (int)(1550*widthRatio) : (int)(1700f*widthRatio);
                 int xadjust = xadjustHAngle >= xadjustVAngle ? xadjustHAngle
                         : xadjustVAngle;
                 canvas.drawText(hAngle, blankBmp.getWidth() - xRef - xadjust,
@@ -536,7 +537,7 @@ public class CameraPreview21 extends Fragment {
                 SimpleDateFormat sdf = new SimpleDateFormat(
                         "h:mm aa | MM/dd/yyyy", Locale.getDefault());
                 canvas.drawText(sdf.format(new Date()), blankBmp.getWidth()
-                        - xRef - (int)(widthRatio*1080) , blankBmp.getHeight() - baseFontSize*2, paint);
+                        - xRef - (int)(widthRatio*1640) , blankBmp.getHeight() - baseFontSize*2, paint);
             }
 
             if (showLensDetails) {
@@ -547,12 +548,13 @@ public class CameraPreview21 extends Fragment {
                         blankBmp.getHeight() - 10, paint);
 
                 paint.setTextSize(baseFontSize*0.6f);
+                paint.setTextScaleX(0.8f);
                 if (lensMake.length() > 28) {
                     paint.setTextSize(baseFontSize*0.5f);
-                    paint.setTextScaleX(0.9f);
+                    paint.setTextScaleX(0.7f);
                 }
                 paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int)(widthRatio*500),
+                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int)(widthRatio*700),
                         blankBmp.getHeight() - baseFontSize*2, paint);
 
                 paint.setStrokeWidth(baseFontSize*0.1f);

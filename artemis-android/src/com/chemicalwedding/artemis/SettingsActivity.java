@@ -22,6 +22,9 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 public class SettingsActivity extends PreferenceActivity {
 
     public static final int REQUEST_CONFIGURE_VIEW_ANGLES = 1;
@@ -58,6 +61,14 @@ public class SettingsActivity extends PreferenceActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Tracker tracker = ((ArtemisApplication) getApplication()).getTracker();
+        tracker.setScreenName("SettingsActivity");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
