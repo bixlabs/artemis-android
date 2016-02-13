@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings.Secure;
 import android.util.Log;
+import android.view.View;
 
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.google.android.gms.analytics.HitBuilders;
@@ -61,6 +62,14 @@ public class SplashScreenActivity extends Activity {
             return;
         }
 
+        // Hide the system ui on create so it doesn't show for a split second
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE);
+
         // check license (start main app when valid response comes back)
         bindLicenseCheckingObjects();
     }
@@ -84,6 +93,19 @@ public class SplashScreenActivity extends Activity {
         Tracker tracker = ((ArtemisApplication) getApplication()).getTracker();
         tracker.setScreenName("SplashScreenActivity");
         tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     }
 
     @Override
