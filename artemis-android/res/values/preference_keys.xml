@@ -48,7 +48,7 @@
     <string name="preference_visual_calib_btn">selectVisualCalibration</string>
 
     <!-- values and defaults -->
-    <string name="artemis_save_location_default">DCIM/Artemis/Project-1</string>
+    <string name="artemis_save_location_default">Artemis</string>
 
     <string-array name="image_size_prefs_values">
         <item>small</item>

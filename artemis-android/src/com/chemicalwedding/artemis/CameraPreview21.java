@@ -180,7 +180,6 @@ public class CameraPreview21 extends Fragment {
             _artemisMath.setDeviceSpecificDetails(totalScreenWidth,
                     totalScreenHeight, pixelDensityScale, effectiveHAngle,
                     effectiveVAngle);
-            _artemisMath.calculateRectBoxesAndLabelsForLenses();
             _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateLargestLens();
             _artemisMath.selectFirstMeaningFullLens();
@@ -188,11 +187,8 @@ public class CameraPreview21 extends Fragment {
             _artemisMath.setInitializedFirstTime(true);
         } else {
             _artemisMath.calculateLargestLens();
-            _artemisMath.calculateRectBoxesAndLabelsForLenses();
-//            _artemisMath.selectFirstMeaningFullLens();
             _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
-
         }
         this.calculateZoom(true);
         ((ArtemisActivity) getActivity()).reconfigureNextAndPreviousLensButtons();
