@@ -2,8 +2,8 @@
 <manifest package="com.chemicalwedding.artemis"
           xmlns:android="http://schemas.android.com/apk/res/android"
           android:installLocation="auto"
-          android:versionCode="43"
-          android:versionName="3.0.0-20160213">
+          android:versionCode="44"
+          android:versionName="3.0.0-20160214">
 
     <supports-screens
         android:anyDensity="true"

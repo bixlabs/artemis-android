@@ -180,9 +180,10 @@ public class CameraPreview21 extends Fragment {
             _artemisMath.setDeviceSpecificDetails(totalScreenWidth,
                     totalScreenHeight, pixelDensityScale, effectiveHAngle,
                     effectiveVAngle);
-            _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateLargestLens();
             _artemisMath.selectFirstMeaningFullLens();
+            _artemisMath.calculateRectBoxesAndLabelsForLenses();
+            _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
             _artemisMath.setInitializedFirstTime(true);
         } else {
@@ -325,6 +326,19 @@ public class CameraPreview21 extends Fragment {
                         ArtemisActivity._lensMakeText.getText().toString());
                 ex.setAttribute(ExifInterface.TAG_MAKE,
                         ArtemisActivity._cameraDetailsText.getText().toString());
+
+                NumberFormat numFormat = NumberFormat.getInstance();
+                if (this.lastPictureISOValue_ != null) {
+                    ex.setAttribute(ExifInterface.TAG_ISO, this.lastPictureISOValue_.toString());
+                }
+                if (this.lastPictureExposureTime_ != null) {
+                    String exposureSeconds = numFormat.format(this.lastPictureExposureTime_ / 1000000000f);
+                    ex.setAttribute(ExifInterface.TAG_EXPOSURE_TIME, exposureSeconds);
+                }
+                if (this.lastPictureLensAperture_ != null) {
+                    ex.setAttribute(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
+                }
+
                 ex.saveAttributes();
 
             } catch (IOException ioe) {
@@ -379,9 +393,9 @@ public class CameraPreview21 extends Fragment {
                 sideborder = 259; // to match 16:9 for 4:3
             }
 
-            float widthRatio = bitmapToSave.getWidth()/13006f;
+            float widthRatio = bitmapToSave.getWidth() / 13006f;
 
-            float baseFontSize = footerHeight/2.94f;
+            float baseFontSize = footerHeight / 2.94f;
 
             blankBmp = Bitmap.createBitmap(
                     bitmapToSave.getWidth() + sideborder,
@@ -403,11 +417,11 @@ public class CameraPreview21 extends Fragment {
             float fl = Float.parseFloat(fltext);
             int xRef = 0;
             if (fltext.length() < 3) {
-                xRef = (int)(1450f*widthRatio);
+                xRef = (int) (1450f * widthRatio);
             } else if (fltext.length() >= 3 && fl < 100) {
-                xRef = (int)(1550f*widthRatio);
+                xRef = (int) (1550f * widthRatio);
             } else if (fltext.length() >= 3 && fl >= 100) {
-                xRef = (int)(1600f*widthRatio);
+                xRef = (int) (1600f * widthRatio);
             }
 
             String description = artemisPrefs.getString(
@@ -431,12 +445,12 @@ public class CameraPreview21 extends Fragment {
             boolean showTiltRoll = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
 
-            paint.setTextSize(baseFontSize-2);
+            paint.setTextSize(baseFontSize - 2);
             if (description.length() > 0) {
-                canvas.drawText(description, 10, blankBmp.getHeight() - (baseFontSize*2),
+                canvas.drawText(description, 10, blankBmp.getHeight() - (baseFontSize * 2),
                         paint);
             }
-            paint.setTextSize(baseFontSize-4);
+            paint.setTextSize(baseFontSize - 4);
             if (showCameraDetails) {
                 canvas.drawText(ArtemisActivity._cameraDetailsText.getText()
                         .toString(), 10, blankBmp.getHeight() - (baseFontSize), paint);
@@ -448,7 +462,7 @@ public class CameraPreview21 extends Fragment {
             }
 
             final int centerTextX = blankBmp.getWidth() / 2 - 30;
-            paint.setTextSize(baseFontSize*0.75f);
+            paint.setTextSize(baseFontSize * 0.75f);
             if (showGpsDetails || showGpsLocationString) {
                 String[] gpsDetailsAndLocation = ArtemisActivity
                         .getGPSLocationDetailStrings(getActivity());
@@ -469,13 +483,13 @@ public class CameraPreview21 extends Fragment {
             paint.setTextAlign(Paint.Align.CENTER);
             if (showHeading && showTiltRoll) {
                 canvas.drawText(ArtemisActivity.pictureSaveHeadingTiltString,
-                        centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
+                        centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
             } else if (showHeading) {
 
                 if (ArtemisActivity.headingDisplaySelection == 1) {
                     canvas.drawText(
                             ArtemisActivity.pictureSaveHeadingTiltString,
-                            centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
+                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
                 } else if (ArtemisActivity.headingDisplaySelection == 2) {
                     if (ArtemisActivity.pictureSaveHeadingTiltString
                             .contains("|")) {
@@ -485,7 +499,7 @@ public class CameraPreview21 extends Fragment {
                                                 0,
                                                 ArtemisActivity.pictureSaveHeadingTiltString
                                                         .indexOf('|')),
-                                centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
+                                centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
                     }
                 }
             } else if (showTiltRoll) {
@@ -499,7 +513,7 @@ public class CameraPreview21 extends Fragment {
                                                     .indexOf('|'),
                                             ArtemisActivity.pictureSaveHeadingTiltString
                                                     .length() - 1),
-                            centerTextX, blankBmp.getHeight() - (baseFontSize*2), paint);
+                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
                 }
             }
             paint.setTextAlign(Paint.Align.LEFT);
@@ -508,7 +522,7 @@ public class CameraPreview21 extends Fragment {
                 NumberFormat nf = NumberFormat.getInstance();
                 nf.setMaximumFractionDigits(1);
                 paint.setTypeface(Typeface.DEFAULT_BOLD);
-                paint.setTextSize(baseFontSize-2);
+                paint.setTextSize(baseFontSize - 2);
                 String hAngle = getResources().getString(R.string.hangle_text)
                         + " "
                         + nf.format(_artemisMath.selectedLensAngleData[0])
@@ -517,8 +531,8 @@ public class CameraPreview21 extends Fragment {
                         + " "
                         + nf.format(_artemisMath.selectedLensAngleData[1])
                         + getString(R.string.degree_symbol);
-                int xadjustHAngle = hAngle.length() < 14 ?  (int)(1550*widthRatio) : (int)(1700f*widthRatio);
-                int xadjustVAngle = vAngle.length() < 14 ? (int)(1550*widthRatio) : (int)(1700f*widthRatio);
+                int xadjustHAngle = hAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
+                int xadjustVAngle = vAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
                 int xadjust = xadjustHAngle >= xadjustVAngle ? xadjustHAngle
                         : xadjustVAngle;
                 canvas.drawText(hAngle, blankBmp.getWidth() - xRef - xadjust,
@@ -529,31 +543,31 @@ public class CameraPreview21 extends Fragment {
 
             if (showDateTime) {
                 paint.setTypeface(Typeface.DEFAULT_BOLD);
-                paint.setTextSize(baseFontSize*0.6f);
+                paint.setTextSize(baseFontSize * 0.6f);
                 SimpleDateFormat sdf = new SimpleDateFormat(
                         "h:mm aa | MM/dd/yyyy", Locale.getDefault());
                 canvas.drawText(sdf.format(new Date()), blankBmp.getWidth()
-                        - xRef - (int)(widthRatio*1640) , blankBmp.getHeight() - baseFontSize*2, paint);
+                        - xRef - (int) (widthRatio * 1640), blankBmp.getHeight() - baseFontSize * 2, paint);
             }
 
             if (showLensDetails) {
                 String lensMake = ArtemisActivity._lensMakeText.getText()
                         .toString();
-                paint.setTextSize(baseFontSize*2.0f);
+                paint.setTextSize(baseFontSize * 2.0f);
                 canvas.drawText(fltext + "mm", blankBmp.getWidth() - xRef,
                         blankBmp.getHeight() - 10, paint);
 
-                paint.setTextSize(baseFontSize*0.6f);
+                paint.setTextSize(baseFontSize * 0.6f);
                 paint.setTextScaleX(0.8f);
                 if (lensMake.length() > 28) {
-                    paint.setTextSize(baseFontSize*0.5f);
+                    paint.setTextSize(baseFontSize * 0.5f);
                     paint.setTextScaleX(0.7f);
                 }
                 paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int)(widthRatio*700),
-                        blankBmp.getHeight() - baseFontSize*2, paint);
+                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int) (widthRatio * 700),
+                        blankBmp.getHeight() - baseFontSize * 2, paint);
 
-                paint.setStrokeWidth(baseFontSize*0.1f);
+                paint.setStrokeWidth(baseFontSize * 0.1f);
                 canvas.drawLine(blankBmp.getWidth() - xRef - 13,
                         blankBmp.getHeight() - footerHeight + 10, blankBmp.getWidth() - xRef
                                 - 13, blankBmp.getHeight() - 10, paint);
@@ -759,6 +773,12 @@ public class CameraPreview21 extends Fragment {
      */
     private Semaphore mCameraOpenCloseLock = new Semaphore(1);
 
+    private Integer lastPictureISOValue_;
+
+    private Long lastPictureExposureTime_;
+
+    private Float lastPictureLensAperture_;
+
     /**
      * A {@link android.hardware.camera2.CameraCaptureSession.CaptureCallback} that handles events related to JPEG capture.
      */
@@ -787,7 +807,8 @@ public class CameraPreview21 extends Fragment {
                             runPrecaptureSequence();
                         }
                     }
-                    break;                }
+                    break;
+                }
                 case STATE_WAITING_PRECAPTURE: {
                     // CONTROL_AE_STATE can be null on some devices
                     Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
@@ -819,6 +840,9 @@ public class CameraPreview21 extends Fragment {
         @Override
         public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request,
                                        @NonNull TotalCaptureResult result) {
+            CameraPreview21.this.lastPictureISOValue_ = result.get(CaptureResult.SENSOR_SENSITIVITY);
+            CameraPreview21.this.lastPictureExposureTime_ = result.get(CaptureResult.SENSOR_EXPOSURE_TIME);
+            CameraPreview21.this.lastPictureLensAperture_ = result.get(CaptureResult.LENS_APERTURE);
             process(result);
         }
 
@@ -1172,7 +1196,7 @@ public class CameraPreview21 extends Fragment {
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
-            if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
+            if (!mCameraOpenCloseLock.tryAcquire(6000, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
             }
             manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
@@ -1581,7 +1605,7 @@ public class CameraPreview21 extends Fragment {
                         (int) ((selectedRect.top - greenRect.top) * greenToSelectedRatio),
                         (int) (selectedRect.width() * greenToSelectedRatio),
                         (int) (selectedRect.height() * greenToSelectedRatio), null, false);
-                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave, orig_width, (int)(orig_width * hratio), smoothImagesEnabled);
+                bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave, orig_width, (int) (orig_width * hratio), smoothImagesEnabled);
             } else {
                 // Zoomed out, we need to scale the image down
                 Log.d(logTag, "Scale down on save");

@@ -214,6 +214,7 @@ public class SplashScreenActivity extends Activity {
             }
         } catch (ParseException e) {
             // Query failed
+            e.printStackTrace();
             failed = true;
         }
 

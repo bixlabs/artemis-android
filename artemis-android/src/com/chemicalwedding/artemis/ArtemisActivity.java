@@ -1139,7 +1139,6 @@ public class ArtemisActivity extends Activity implements
             setSelectedZoomLens(
                     _artemisDBHelper.getZoomLens(selectedZoomLensPK), false);
         }
-
     }
 
     @Override
