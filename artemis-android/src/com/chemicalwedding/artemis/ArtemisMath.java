@@ -180,8 +180,8 @@ public class ArtemisMath {
 
 	public void calculateRectBoxesAndLabelsForLenses() {
 
-		int lowerMargin = (int) (screenHeight * 0.885f);
-		int topMargin = (int) (screenHeight * 0.05f);
+		int lowerMargin = (int) (screenHeight * 0.899f);
+		int topMargin = (int) (screenHeight * 0.037f);
 
 		_currentLensBoxes.clear();
 
@@ -198,7 +198,7 @@ public class ArtemisMath {
 			float myprop = angleData[3] / angleData[2];
 
 			// Hack to give tablets more width
-			final float REQUESTED_WIDTH_RATIO = 0.99f;
+			final float REQUESTED_WIDTH_RATIO = 0.999f;
 			int hwidth = (int) (screenWidth * REQUESTED_WIDTH_RATIO * hprop);
 			int vheight = (int) (hwidth * myprop);
 

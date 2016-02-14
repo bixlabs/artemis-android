@@ -26,14 +26,14 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="right|top"
+            android:gravity="end|top"
             android:paddingTop="12dip" >
         </LinearLayout>
 
         <ImageView
             android:id="@+id/cameraOverlayTop"
             android:layout_width="fill_parent"
-            android:layout_height="30dp"
+            android:layout_height="28.5dp"
             android:scaleType="fitXY"
             android:src="@drawable/cameraoverlay_top" />
     </RelativeLayout>
@@ -41,7 +41,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="left|top" >
+        android:gravity="start|top" >
 
         <LinearLayout
             android:id="@+id/cameraDetailsView"
@@ -52,7 +52,7 @@
                 android:id="@+id/cameraDetailsText"
                 android:layout_width="200dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="-1dip"
                 android:lines="1"
                 android:text="@string/menu_camera_settings"
@@ -84,19 +84,19 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="right|top" >
+        android:gravity="end|top" >
 
         <LinearLayout
             android:id="@+id/lensMakeView"
             android:layout_width="wrap_content"
             android:layout_height="40dip"
-            android:gravity="right" >
+            android:gravity="end" >
 
             <TextView
                 android:id="@+id/lensMakeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="-1dip"
                 android:text="@string/menu_lens_settings"
                 android:textColor="@color/previewTextColor"
@@ -107,7 +107,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="77dp"
         android:layout_gravity="bottom|center"
         android:background="@drawable/cameraoverlay_bottom"
         android:gravity="center_horizontal" >
