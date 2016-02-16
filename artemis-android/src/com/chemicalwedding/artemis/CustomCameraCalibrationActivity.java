@@ -187,6 +187,16 @@ public class CustomCameraCalibrationActivity extends Activity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (this.artemisMath_ != null) {
+            this.artemisMath_.calculateRectBoxesAndLabelsForLenses();
+            this.artemisMath_.resetTouchToCenter();
+        }
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -495,13 +505,11 @@ public class CustomCameraCalibrationActivity extends Activity {
     }
 
     private void createOrangeBox() {
-        DisplayMetrics metrics = CustomCameraCalibrationActivity.this
-                .getResources().getDisplayMetrics();
-        int screenWidth = metrics.widthPixels;
-        int screenHeight = metrics.heightPixels;
+        int screenWidth = artemisMath_.screenWidth;
+        int screenHeight = artemisMath_.screenHeight;
 
-        int lowerMargin = (int) (screenHeight * 0.885f);
-        int topMargin = (int) (screenHeight * 0.05f);
+        int lowerMargin = (int) (screenHeight * 0.899f);
+        int topMargin = (int) (screenHeight * 0.037f);
 
         float myprop = aspectRatio;
         int maximumWidth = (int) ((lowerMargin - topMargin) * myprop);

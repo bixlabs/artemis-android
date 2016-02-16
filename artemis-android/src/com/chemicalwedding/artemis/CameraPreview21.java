@@ -1300,6 +1300,15 @@ public class CameraPreview21 extends Fragment {
                     = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewRequestBuilder.addTarget(surface);
 
+            try {
+                // Abort all pending captures.
+                if (mCaptureSession != null) {
+                    mCaptureSession.abortCaptures();
+                }
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+
             // Here, we create a CameraCaptureSession for camera preview.
             mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface()),
                     new CameraCaptureSession.StateCallback() {
