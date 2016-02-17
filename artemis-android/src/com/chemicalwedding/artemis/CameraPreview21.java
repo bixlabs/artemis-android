@@ -1137,10 +1137,17 @@ public class CameraPreview21 extends Fragment {
                     isAutoFocusSupported = true;
                 }
 
-                double r = 360 / Math.PI;
-                deviceHAngle = effectiveHAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getWidth() / (2 * mDeviceFocalLengths[0])));
-                deviceVAngle = effectiveVAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getHeight() /
-                        (2 * mDeviceFocalLengths[0])));
+
+                if (mDevicePhysicalSensorSize.getWidth() < 100000 && mDevicePhysicalSensorSize.getHeight() < 100000) {
+                    double r = 360 / Math.PI;
+                    deviceHAngle = effectiveHAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getWidth() / (2 * mDeviceFocalLengths[0])));
+                    deviceVAngle = effectiveVAngle = (float) (r * Math.atan(mDevicePhysicalSensorSize.getHeight() /
+                            (2 * mDeviceFocalLengths[0])));
+                } else {
+                    Log.i(TAG, "WARNING: Could not detect mobile device camera view angles.  Using fail-safe angles since sensor size is inaccurate.");
+                    deviceHAngle = effectiveHAngle = 68.2f;
+                    deviceVAngle = effectiveVAngle = 45.4f;
+                }
 
                 if (!artemisPrefs.getBoolean(
                         getActivity().getString(
