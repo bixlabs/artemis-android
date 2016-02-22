@@ -105,7 +105,8 @@ public class SplashScreenActivity extends Activity {
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
 
     @Override
@@ -490,7 +491,6 @@ public class SplashScreenActivity extends Activity {
                 }
             } else if (msg.what == SHOW_CLOUD_UPDATE_DIALOG) {
                 mDialog = ProgressDialog.show(mContext, "Updating Cameras & Lenses", "Please wait while the most recent cameras and lenses are updated from the cloud", true, false);
-                mDialog.show();
             } else if (msg.what == CLOUD_UPDATE_COMPLETE) {
                 if (mDialog != null) {
                     mDialog.dismiss();

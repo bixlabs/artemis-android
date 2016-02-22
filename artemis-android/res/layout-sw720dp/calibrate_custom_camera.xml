@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/mainFrame"
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/mainFrame"
              xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="fill_parent"
-             android:layout_height="fill_parent">
+             android:layout_height="fill_parent"
+             tools:context=".CustomCameraCalibrationActivity">
 
     <com.chemicalwedding.artemis.CameraContainerView
         android:id="@+id/cameraContainer"
@@ -20,7 +22,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="28.5dp"
         android:background="@drawable/cameraoverlay_top"
         android:baselineAligned="false"
         android:gravity="left|top">
