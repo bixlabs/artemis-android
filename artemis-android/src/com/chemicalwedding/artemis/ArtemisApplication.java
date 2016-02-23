@@ -88,6 +88,8 @@ public class ArtemisApplication extends Application {
         if (mTracker == null) {
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
             mTracker = analytics.newTracker(PROPERTY_ID);
+            // Enable Display Features.
+            mTracker.enableAdvertisingIdCollection(true);
         }
         return mTracker;
     }
