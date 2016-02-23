@@ -12,12 +12,9 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.parse.Parse;
 
-//import com.parse.Parse;
-
 public class ArtemisApplication extends Application {
 
 	private final static String logTag = "ArtemisApplication";
-	private WorkerThread worker;
     private Tracker mTracker;
 
     private static final String PROPERTY_ID = "UA-10781805-6";
@@ -27,9 +24,6 @@ public class ArtemisApplication extends Application {
 		Log.i(logTag, "Starting Artemis Application");
 
 		super.onCreate();
-
-		worker = new WorkerThread();
-		worker.start();
 
 		initLanguage();
 
@@ -60,15 +54,6 @@ public class ArtemisApplication extends Application {
 	@Override
 	public void onTerminate() {
 		super.onTerminate();
-		worker.stopThread();
-	}
-
-	public void postOnWorkerThread(Runnable r) {
-		worker.post(r);
-	}
-
-	public void postDelayedOnWorkerThread(Runnable r, long ms) {
-		worker.postDelayed(r, ms);
 	}
 
 	private Locale locale = null;
