@@ -401,6 +401,7 @@ public class CameraPreview21 extends Fragment {
                     bitmapToSave.getWidth() + sideborder,
                     bitmapToSave.getHeight() + footerHeight,
                     Bitmap.Config.ARGB_8888);
+            System.gc();
             Paint paint = new Paint();
             Canvas canvas = new Canvas(blankBmp);
             canvas.drawColor(Color.WHITE);
@@ -1547,13 +1548,6 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-//    @Override
-//    public void getBitmap(Bitmap bitmap) {
-//        Log.d(TAG, String.format("getBitmap is %s null", bitmap!=null ? "not " : ""));
-//        bitmapToSave = bitmap;
-//        renderPictureDetailsAndSave();
-//    }
-
     /**
      * Saves a JPEG {@link android.media.Image} into the specified {@link java.io.File}.
      */
@@ -1610,18 +1604,24 @@ public class CameraPreview21 extends Fragment {
 
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave, widthDiff, heightDiff, newWidth, newHeight, null, false);
                 float screenImageWRatio = bitmapToSave.getWidth() / screenRect.width();
+                System.gc();
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave,
                         (int) (greenRect.left * screenImageWRatio),
                         (int) (greenRect.top * screenImageWRatio),
                         (int) (greenRect.width() * screenImageWRatio),
                         (int) (greenRect.height() * screenImageWRatio), null, false);
                 float greenToSelectedRatio = bitmapToSave.getWidth() / greenRect.width();
+
+                System.gc();
+
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave,
                         (int) ((selectedRect.left - greenRect.left) * greenToSelectedRatio),
                         (int) ((selectedRect.top - greenRect.top) * greenToSelectedRatio),
                         (int) (selectedRect.width() * greenToSelectedRatio),
                         (int) (selectedRect.height() * greenToSelectedRatio), null, false);
+                System.gc();
                 bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave, orig_width, (int) (orig_width * hratio), smoothImagesEnabled);
+                System.gc();
             } else {
                 // Zoomed out, we need to scale the image down
                 Log.d(logTag, "Scale down on save");
@@ -1630,11 +1630,11 @@ public class CameraPreview21 extends Fragment {
                 Canvas c = new Canvas(canvasBitmap);
                 Paint p = new Paint();
                 float scale = _artemisMath.calculateFullscreenZoomRatio() * (totalScreenWidth / greenRect.width());
-
+                System.gc();
                 bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave,
                         (int) (imageWidth * scale), (int) (imageHeight * scale),
                         smoothImagesEnabled);
-
+                System.gc();
                 int xpos = (canvasBitmap.getWidth() - bitmapToSave.getWidth()) / 2;
                 int ypos = (canvasBitmap.getHeight() - bitmapToSave.getHeight()) / 2;
 

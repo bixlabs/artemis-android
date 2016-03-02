@@ -13,11 +13,7 @@ public class WorkerThread extends Thread {
 
         Looper.loop();
     }
-    
-    public void stopThread() {
-    	Looper.getMainLooper().quit();
-    }
-     
+
     public void post(Runnable r) {
     	mHandler.post(r);
     }

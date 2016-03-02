@@ -53,7 +53,7 @@ public class SplashScreenActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        mHandler = new MyHandler(this);
+        mHandler = new Handler();
 
         int numCameras = Camera.getNumberOfCameras();
         if (numCameras == 0) {
@@ -138,148 +138,16 @@ public class SplashScreenActivity extends Activity {
     private void startArtemis() {
         // First check for database updates
         if (isNetworkAvailable()) {
-            checkForCloudDBUpdates();
+            Intent i = new Intent(SplashScreenActivity.this, CloudDataUpdateActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(i);
+            finish();
+        } else {
+            Intent i = new Intent(SplashScreenActivity.this, ArtemisActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(i);
+            finish();
         }
-
-        Intent i = new Intent(SplashScreenActivity.this, ArtemisActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(i);
-        finish();
-    }
-
-    private void checkForCloudDBUpdates() {
-        boolean failed = false;
-        final SharedPreferences artemisPrefs = this
-                .getApplicationContext().getSharedPreferences(
-                        ArtemisPreferences.class.getSimpleName(),
-                        Context.MODE_PRIVATE);
-        final long lastUpdateCheck = artemisPrefs.getLong(ArtemisPreferences.DB_LAST_UPDATE_CHECK, -1);
-        boolean isFirstInitialization = lastUpdateCheck == -1;
-        Date lastUpdateDate = null;
-        if (lastUpdateCheck > 0) {
-            lastUpdateDate = new Date(lastUpdateCheck);
-        }
-
-        ParseQuery<ParseObject> cameraQuery = ParseQuery.getQuery("cameras");
-        cameraQuery.orderByAscending("cameraGenre");
-        cameraQuery.addAscendingOrder("formatName");
-        cameraQuery.addAscendingOrder("sensorName");
-        cameraQuery.whereEqualTo("live", true);
-        cameraQuery.setLimit(1000);
-        if (lastUpdateDate != null) {
-            cameraQuery.whereGreaterThanOrEqualTo("updatedAt", lastUpdateDate);
-        }
-
-        final ArtemisDatabaseHelper db = new ArtemisDatabaseHelper(SplashScreenActivity.this);
-
-        try {
-            List<ParseObject> cameraList = null;
-            cameraList = cameraQuery.find();
-            if (!cameraList.isEmpty() && isFirstInitialization) {
-                // First time download -- drop bundled data only if we have query data
-                db.dropTablesAndCreate(null, false);
-            }
-
-            Log.d(TAG, String.format("Updating %d cameras", cameraList.size()));
-
-            if (!cameraList.isEmpty()) {
-                mHandler.sendEmptyMessage(isFirstInitialization ? SHOW_CLOUD_UPDATE_FIRST_TIME : SHOW_CLOUD_UPDATE_DIALOG);
-            }
-            for (ParseObject camera : cameraList) {
-                boolean exists = false;
-                if (!isFirstInitialization) {
-                    exists = db.checkCameraByRemoteObjectID(camera.getObjectId());
-                }
-                String sqlInsertOrUpdate;
-                if (!exists) {
-                    sqlInsertOrUpdate = "INSERT INTO `ZCAMERA` (ZHOROZONTALSIZE, ZSQUEEZERATIO, ZVERTICALSIZE, ZASPECTRATIO, ZCAMERAGENRE, ZCAPTUREMEDIUM, ZFORMATNAME, ZLENSTYPE, ZORDER, ZSENSORNAME, ZOBJECTID) VALUES (%f,%f,%f,'%s','%s','%s','%s','%s',%d,'%s','%s')";
-                } else {
-                    sqlInsertOrUpdate = "UPDATE `ZCAMERA` SET ZHOROZONTALSIZE = %f, ZSQUEEZERATIO = %f, ZVERTICALSIZE = %f, ZASPECTRATIO = '%s', ZCAMERAGENRE = '%s', ZCAPTUREMEDIUM = '%s', ZFORMATNAME = '%s', ZLENSTYPE = '%s', ZORDER = %d, ZSENSORNAME = '%s' WHERE ZOBJECTID = '%s'";
-                }
-                String sql = String.format(
-                        Locale.US,
-                        sqlInsertOrUpdate,
-                        camera.getDouble("horozontalSize"),
-                        camera.getDouble("squeezeRatio"),
-                        camera.getDouble("verticalSize"),
-                        camera.getString("aspectRatio").replaceAll("\'", "\'\'"),
-                        camera.getString("cameraGenre").replaceAll("\'", "\'\'"),
-                        camera.getString("captureMedium").replaceAll("\'", "\'\'"),
-                        camera.getString("formatName").replaceAll("\'", "\'\'"),
-                        camera.getString("lensType").replaceAll("\'", "\'\'"),
-                        camera.getInt("order"),
-                        camera.getString("sensorName").replaceAll("\'", "\'\'"),
-                        camera.getObjectId()
-                );
-                db.executeSQL(sql);
-            }
-        } catch (ParseException e) {
-            // Query failed
-            e.printStackTrace();
-            failed = true;
-        }
-
-        if (failed) {
-            Log.e(TAG, "parseexception on cameras");
-            return;
-        }
-
-        // Now update the lenses too
-        ParseQuery<ParseObject> lensQuery = ParseQuery.getQuery("lenses");
-        lensQuery.orderByAscending("Format");
-        lensQuery.addAscendingOrder("LensMake");
-        lensQuery.addAscendingOrder("FL");
-        lensQuery.whereEqualTo("live", true);
-        lensQuery.setLimit(3000);
-        if (lastUpdateDate != null) {
-            lensQuery.whereGreaterThanOrEqualTo("updatedAt", lastUpdateDate);
-        }
-
-        try {
-            List<ParseObject> lensList = lensQuery.find();
-
-            Log.d(TAG, String.format("Updating %d lenses", lensList.size()));
-
-            if (!lensList.isEmpty()) {
-                mHandler.sendEmptyMessage(isFirstInitialization ? SHOW_CLOUD_UPDATE_FIRST_TIME : SHOW_CLOUD_UPDATE_DIALOG);
-            }
-            for (ParseObject lens : lensList) {
-                boolean exists = false;
-                if (!isFirstInitialization) {
-                    exists = db.checkLensByRemoteObjectID(lens.getObjectId());
-                }
-                String sqlInsertOrUpdate;
-                if (!exists) {
-                    sqlInsertOrUpdate = "INSERT INTO `ZLENSOBJECT` (ZLENSMM, ZLENSSET, ZSQUEEZERATIO, ZFORMATNAME, ZLENSCODE, ZLENSMAKE, ZOBJECTID) VALUES (%f,%d,%f,'%s','%s','%s', '%s')";
-                } else {
-                    sqlInsertOrUpdate = "UPDATE `ZLENSOBJECT` SET ZLENSMM = %f, ZLENSSET = %d, ZSQUEEZERATIO = %f, ZFORMATNAME = '%s', ZLENSCODE = '%s', ZLENSMAKE = '%s' WHERE ZOBJECTID = '%s'";
-                }
-                String sql = String.format(
-                        Locale.US,
-                        sqlInsertOrUpdate,
-                        lens.getDouble("FL"),
-                        lens.getInt("lensSet"),
-                        lens.getDouble("Squeeze"),
-                        lens.getString("Format").replaceAll("\'", "\'\'"),
-                        lens.getString("LensCode").replaceAll("\'", "\'\'"),
-                        lens.getString("LensMake").replaceAll("\'", "\'\'"),
-                        lens.getObjectId()
-                );
-                db.executeSQL(sql);
-            }
-        } catch (ParseException e) {
-            // Query failed
-            failed = true;
-        }
-
-        if (failed) {
-            Log.e(TAG, "parseexception on lenses");
-            return;
-        }
-
-        mHandler.sendEmptyMessage(CLOUD_UPDATE_COMPLETE);
-
-        artemisPrefs.edit().putLong(ArtemisPreferences.DB_LAST_UPDATE_CHECK, new Date().getTime()).apply();
     }
 
     @Override
@@ -470,34 +338,6 @@ public class SplashScreenActivity extends Activity {
                 finish();
             }
         }, 10000);
-    }
-
-
-    static class MyHandler extends Handler {
-        private Dialog mDialog;
-        private Context mContext;
-
-        public MyHandler(Context context) {
-            mContext = context;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            if (msg.what == SHOW_CLOUD_UPDATE_FIRST_TIME) {
-                if (mDialog == null) {
-                    mDialog = ProgressDialog.show(mContext, "Downloading Cameras & Lenses", "Please wait while the latest cameras and lenses are downloaded for the first time", true, false);
-                }
-            } else if (msg.what == SHOW_CLOUD_UPDATE_DIALOG) {
-                mDialog = ProgressDialog.show(mContext, "Updating Cameras & Lenses", "Please wait while the most recent cameras and lenses are updated from the cloud", true, false);
-            } else if (msg.what == CLOUD_UPDATE_COMPLETE) {
-                if (mDialog != null) {
-                    mDialog.dismiss();
-                    mDialog = null;
-                }
-            }
-        }
     }
 
     private boolean isNetworkAvailable() {

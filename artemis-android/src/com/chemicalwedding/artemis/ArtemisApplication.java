@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.util.Log;
 
+import com.google.android.gms.analytics.ExceptionReporter;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.parse.Parse;
@@ -16,6 +17,7 @@ public class ArtemisApplication extends Application {
 
 	private final static String logTag = "ArtemisApplication";
     private Tracker mTracker;
+    private WorkerThread worker;
 
     private static final String PROPERTY_ID = "UA-10781805-6";
 
@@ -24,6 +26,9 @@ public class ArtemisApplication extends Application {
 		Log.i(logTag, "Starting Artemis Application");
 
 		super.onCreate();
+
+		worker = new WorkerThread();
+		worker.start();
 
 		initLanguage();
 
@@ -51,9 +56,12 @@ public class ArtemisApplication extends Application {
 
 	}
 
-	@Override
-	public void onTerminate() {
-		super.onTerminate();
+	public void postOnWorkerThread(Runnable r) {
+		worker.post(r);
+	}
+
+	public void postDelayedOnWorkerThread(Runnable r, long ms) {
+		worker.postDelayed(r, ms);
 	}
 
 	private Locale locale = null;
@@ -75,6 +83,14 @@ public class ArtemisApplication extends Application {
             mTracker = analytics.newTracker(PROPERTY_ID);
             // Enable Display Features.
             mTracker.enableAdvertisingIdCollection(true);
+
+            Thread.UncaughtExceptionHandler myHandler = new ExceptionReporter(
+                    mTracker,                                        // Currently used Tracker.
+                    Thread.getDefaultUncaughtExceptionHandler(),      // Current default uncaught exception handler.
+                    getApplicationContext());                                         // Context of the application.
+
+            // Make myHandler the new default uncaught exception handler.
+            Thread.setDefaultUncaughtExceptionHandler(myHandler);
         }
         return mTracker;
     }

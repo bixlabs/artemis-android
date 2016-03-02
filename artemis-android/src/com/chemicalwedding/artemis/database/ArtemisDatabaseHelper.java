@@ -15,6 +15,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.util.Pair;
 
+import com.parse.ParseObject;
+
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 12;
@@ -119,7 +121,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         // get distinct camera ratios for sensor, return each ratio paired with
         // rowid
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE, new String[]{
-                        "zrowid","zaspectratio"}, "zsensorname = ? and zcameragenre = ?",
+                        "zrowid", "zaspectratio"}, "zsensorname = ? and zcameragenre = ?",
                 new String[]{sensor, genre}, null, null, null, null);
         ArrayList<Pair<Integer, String>> cameraRatios = new ArrayList<Pair<Integer, String>>();
         while (cursor.moveToNext()) {
@@ -474,5 +476,56 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
             return false;
         }
+    }
+
+    public boolean addUpdateCloudCamera(ParseObject camera, boolean isUpdate) {
+        ContentValues vals = new ContentValues();
+        vals.put("ZHOROZONTALSIZE", camera.getDouble("horozontalSize"));
+        vals.put("ZSQUEEZERATIO", camera.getDouble("squeezeRatio"));
+        vals.put("ZVERTICALSIZE", camera.getDouble("verticalSize"));
+        vals.put("ZASPECTRATIO", camera.getString("aspectRatio"));
+        vals.put("ZCAMERAGENRE", camera.getString("cameraGenre"));
+        vals.put("ZCAPTUREMEDIUM", camera.getString("captureMedium"));
+        vals.put("ZFORMATNAME", camera.getString("formatName"));
+        vals.put("ZLENSTYPE", camera.getString("lensType"));
+        vals.put("ZORDER", camera.getInt("order"));
+        vals.put("ZSENSORNAME", camera.getString("sensorName"));
+        if (!isUpdate)
+            vals.put("ZOBJECTID", camera.getObjectId());
+
+        if (!isUpdate) {
+            if (this._artemisDatabase.insert(CAMERA_TABLE, null, vals) > -1) {
+                return true;
+            }
+        } else {
+            if (this._artemisDatabase.update(CAMERA_TABLE, vals, "ZOBJECTID = ?", new String[]{camera.getObjectId()}) > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public boolean addUpdateCloudLens(ParseObject lens, boolean isUpdate) {
+        ContentValues vals = new ContentValues();
+        vals.put("ZLENSMM", lens.getDouble("FL"));
+        vals.put("ZLENSSET", lens.getInt("lensSet"));
+        vals.put("ZSQUEEZERATIO", lens.getDouble("Squeeze"));
+        vals.put("ZFORMATNAME", lens.getString("Format"));
+        vals.put("ZLENSCODE", lens.getString("LensCode"));
+        vals.put("ZLENSMAKE", lens.getString("LensMake"));
+        if (!isUpdate)
+            vals.put("ZOBJECTID", lens.getObjectId());
+
+        if (!isUpdate) {
+            if (this._artemisDatabase.insert(LENS_TABLE, null, vals) > -1) {
+                return true;
+            }
+        } else {
+            if (this._artemisDatabase.update(LENS_TABLE, vals, "ZOBJECTID = ?", new String[]{lens.getObjectId()}) > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
