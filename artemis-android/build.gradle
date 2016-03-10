@@ -33,7 +33,7 @@ android {
 >>>>>>> 6adede1 (new splash screen and configs, launcher)
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion 21
     }
 
