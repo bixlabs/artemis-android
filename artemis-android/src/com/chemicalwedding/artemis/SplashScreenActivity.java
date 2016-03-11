@@ -45,7 +45,6 @@ public class SplashScreenActivity extends Activity {
     private static boolean validLicenseFound = false;
     private AlertDialog mDialog;
 
-    private static final int SHOW_CLOUD_UPDATE_FIRST_TIME = 0, SHOW_CLOUD_UPDATE_DIALOG = 1, CLOUD_UPDATE_COMPLETE = 2;
     private boolean mDeviceHasNoCamera;
 
     @Override
