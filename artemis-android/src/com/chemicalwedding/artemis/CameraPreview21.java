@@ -1054,7 +1054,7 @@ public class CameraPreview21 extends Fragment {
 
                 availablePictureSizes = CameraPreview21.findMatchingSizesByRatio(map.getOutputSizes(ImageFormat.JPEG), previewSize, 1000);
 
-                if (CameraPreview21.savedImageSizeIndex > 0) {
+                if (CameraPreview21.savedImageSizeIndex > -1) {
                     mSelectedPictureSize = availablePictureSizes[CameraPreview21.savedImageSizeIndex];
                 } else {
                     // Uninitialized. Initialize to largest picture size
@@ -1064,7 +1064,14 @@ public class CameraPreview21 extends Fragment {
                                     Context.MODE_PRIVATE);
                     mSelectedPictureSize = largest;
                     List<Size> sizeList = Arrays.asList(availablePictureSizes);
-                    int index = sizeList.indexOf(largest);
+                    int index = 0, lastWidth = 0;
+                    for (int i=0; i<sizeList.size(); i++) {
+                        Size s = sizeList.get(i);
+                        if (s.getWidth() < 1300 && s.getWidth() > lastWidth) {
+                            index = i;
+                            lastWidth = s.getWidth();
+                        }
+                    }
                     prefs.edit().putString(getString(R.string.preference_key_savedImageSize), "" + index).apply();
                 }
 

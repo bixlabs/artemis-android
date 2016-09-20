@@ -26,11 +26,15 @@ android {
 =======
     compileSdkVersion 23
 <<<<<<< HEAD
+<<<<<<< HEAD
     buildToolsVersion "23.0.1"
 >>>>>>> e1c2f29 (halejlujah it fucking works!  Real pics (zoom in only for now))
 =======
     buildToolsVersion "23.0.2"
 >>>>>>> 6adede1 (new splash screen and configs, launcher)
+=======
+    buildToolsVersion "23.0.3"
+>>>>>>> e149867 (Commit 3.0.2 submitted to the playstore)
 
     defaultConfig {
         minSdkVersion 22
