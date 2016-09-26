@@ -3,8 +3,8 @@
     package="com.chemicalwedding.artemis"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-    android:versionCode="49"
-    android:versionName="3.0.2">
+    android:versionCode="50"
+    android:versionName="3.0.3">
 
     <supports-screens
         android:anyDensity="true"
@@ -38,6 +38,8 @@
 >>>>>>> e1c2f29 (halejlujah it fucking works!  Real pics (zoom in only for now))
 
     <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera2"/>
+    <uses-feature android:name="android.hardware.location.gps"/>
 
     <application
         android:name="ArtemisApplication"

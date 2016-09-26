@@ -1,5 +1,6 @@
 package com.chemicalwedding.artemis;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,6 +20,7 @@ import android.os.Message;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.google.android.gms.analytics.HitBuilders;
@@ -31,13 +34,17 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class SplashScreenActivity extends Activity {
 
     private static final String TAG = "SplashScreen";
+    private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 9999;
     // License checking
     private LicenseCheckerCallback _licenseCheckerCallback;
     private LicenseChecker _checker;
@@ -46,6 +53,44 @@ public class SplashScreenActivity extends Activity {
     private AlertDialog mDialog;
 
     private boolean mDeviceHasNoCamera;
+
+    private boolean addPermission(List<String> permissionsList, String permission) {
+        if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            permissionsList.add(permission);
+            // Check for Rationale Option
+            if (!shouldShowRequestPermissionRationale(permission))
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS:
+            {
+                Map<String, Integer> perms = new HashMap<String, Integer>();
+                // Initial
+                perms.put(Manifest.permission.CAMERA, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                // Fill with results
+                for (int i = 0; i < permissions.length; i++)
+                    perms.put(permissions[i], grantResults[i]);
+                if (perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    // All Required Permissions Granted. Start the app normally
+                    checkLicenseAndStart();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(this, "A required permission is denied.  Artemis needs access to the camera and writing external files to function.", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+            break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,6 +162,29 @@ public class SplashScreenActivity extends Activity {
             return;
         }
 
+        final List<String> permissionsList = new ArrayList<String>();
+        addPermission(permissionsList, Manifest.permission.CAMERA);
+        addPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionsList.size() > 0) {
+            requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                    REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            return;
+        } else {
+            checkLicenseAndStart();
+        }
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    private void checkLicenseAndStart() {
         if (!validLicenseFound) {
             // Check license any time the splash screen starts, rather than just
             // onCreate (fix bug leo found)
