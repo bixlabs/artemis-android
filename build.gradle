@@ -8,6 +8,7 @@ buildscript {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:1.0.1'
 =======
         classpath 'com.android.tools.build:gradle:0.13.2'
@@ -21,5 +22,8 @@ buildscript {
 =======
         classpath 'com.android.tools.build:gradle:2.2.0'
 >>>>>>> 8f74665 (Added permission checking ala android 6 and made that the required version.  Added camera2 requirement and gps uses feature)
+=======
+        classpath 'com.android.tools.build:gradle:2.2.2'
+>>>>>>> 3e7da68 (Latest move to Android SDK 25, fix picture taking.. single only.  Permissions checking at startup min sdk 23)
     }
 }

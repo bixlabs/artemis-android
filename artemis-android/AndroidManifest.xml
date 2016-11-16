@@ -3,7 +3,7 @@
     package="com.chemicalwedding.artemis"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-    android:versionCode="50"
+    android:versionCode="51"
     android:versionName="3.0.3">
 
     <supports-screens
