@@ -33,7 +33,12 @@ public class ArtemisApplication extends Application {
 		initLanguage();
 
         // Parse init:
-        Parse.initialize(this, "ez9BXRSkZpILFZIue7cg7peT4ZdsJ9LdODQD741L", "kK6HYoIwSAySCqxgJQfUIhu0Kc0JyMrK315EZvBi");
+		Parse.Configuration config = new Parse.Configuration.Builder(this)
+				.server("https://thawing-basin-57979.herokuapp.com/parse")
+				.applicationId("ez9BXRSkZpILFZIue7cg7peT4ZdsJ9LdODQD741L")
+				.clientKey("kK6HYoIwSAySCqxgJQfUIhu0Kc0JyMrK315EZvBi")
+				.build();
+        Parse.initialize(config);
 	}
 
 	protected void initLanguage() {

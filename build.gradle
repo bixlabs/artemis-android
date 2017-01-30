@@ -9,6 +9,7 @@ buildscript {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:1.0.1'
 =======
         classpath 'com.android.tools.build:gradle:0.13.2'
@@ -25,5 +26,8 @@ buildscript {
 =======
         classpath 'com.android.tools.build:gradle:2.2.2'
 >>>>>>> 3e7da68 (Latest move to Android SDK 25, fix picture taking.. single only.  Permissions checking at startup min sdk 23)
+=======
+        classpath 'com.android.tools.build:gradle:2.2.3'
+>>>>>>> 6d3c52d (Latest fix for parse.  3.0.3 released to play store)
     }
 }

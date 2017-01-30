@@ -10,6 +10,7 @@
 -dontwarn android.app.Notification
 -dontwarn com.squareup.**
 -dontwarn okio.**
+-dontwarn okhttp3.**
 -dontwarn android.net.SSLCertificateSocketFactory
 
 # remove logging
