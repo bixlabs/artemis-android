@@ -296,7 +296,6 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         if (newVersion > oldVersion) {
             Log.v(TAG, "Database version higher than old one.  Upgrading.");
             dropTablesAndCreate(db, false);
-            executeDatabaseSQL(db);
         }
     }
 

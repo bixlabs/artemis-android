@@ -44,11 +44,15 @@ android {
 =======
     compileSdkVersion 25
 <<<<<<< HEAD
+<<<<<<< HEAD
     buildToolsVersion "25.0.0"
 >>>>>>> 3e7da68 (Latest move to Android SDK 25, fix picture taking.. single only.  Permissions checking at startup min sdk 23)
 =======
     buildToolsVersion "25.0.2"
 >>>>>>> 6d3c52d (Latest fix for parse.  3.0.3 released to play store)
+=======
+    buildToolsVersion "25.0.3"
+>>>>>>> 715978c (3.0.4 v56 final3.0.4 v56 final3.0.4 v56 final)
 
     defaultConfig {
         minSdkVersion 23
