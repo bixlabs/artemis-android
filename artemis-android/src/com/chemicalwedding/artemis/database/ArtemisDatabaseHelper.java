@@ -19,7 +19,7 @@ import com.parse.ParseObject;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DB_VERSION = 12;
+    private static final int DB_VERSION = 13;
 
     private SQLiteDatabase _artemisDatabase;
 
