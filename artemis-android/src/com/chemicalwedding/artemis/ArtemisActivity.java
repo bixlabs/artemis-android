@@ -87,8 +87,7 @@ public class ArtemisActivity extends Activity implements
         LoaderCallbacks<Cursor> {
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
-    private static final int DEFAULT_CAMERA_ID = 435;
-    private static final String DEFAULT_LENS_MAKE = "Generic 35mm Lenses";
+    private static final String DEFAULT_LENS_MAKE = "All Generic 35mm Lenses";
     private static final int GALLERY_IMAGE_LOADER = 1;
 
     private Handler mUiHandler = new Handler();

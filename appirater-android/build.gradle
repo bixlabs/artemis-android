@@ -14,8 +14,12 @@ android {
 >>>>>>> 48b25e2 (changes towards lollipop camera api support)
 =======
     compileSdkVersion 23
+<<<<<<< HEAD
     buildToolsVersion "23.0.2"
 >>>>>>> 6adede1 (new splash screen and configs, launcher)
+=======
+    buildToolsVersion '25.0.0'
+>>>>>>> 57eee6d (3.0.4 release)
 
     sourceSets {
         main {

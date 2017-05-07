@@ -93,8 +93,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getCameraGenres() {
         // get distinct camera sensors for format
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
-                new String[]{"zcameragenre"}, null,
-                null, null, null, "zorder", null);
+                new String[]{"zcameramanufacturer"}, null,
+                null, null, null, "zsensororder", null);
         ArrayList<String> cameraSensors = new ArrayList<String>();
         while (cursor.moveToNext()) {
             cameraSensors.add(cursor.getString(0));
@@ -106,7 +106,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getCameraSensorsForGenre(String genre) {
         // get distinct camera sensors for format
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
-                new String[]{"zsensorname"}, "zcameragenre = ?",
+                new String[]{"zsensorname"}, "zcameramanufacturer = ?",
                 new String[]{genre}, null, null, null, null);
         ArrayList<String> cameraSensors = new ArrayList<String>();
         while (cursor.moveToNext()) {
@@ -121,7 +121,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         // get distinct camera ratios for sensor, return each ratio paired with
         // rowid
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE, new String[]{
-                        "zrowid", "zaspectratio"}, "zsensorname = ? and zcameragenre = ?",
+                        "zrowid", "zaspectratio"}, "zsensorname = ? and zcameramanufacturer = ?",
                 new String[]{sensor, genre}, null, null, null, null);
         ArrayList<Pair<Integer, String>> cameraRatios = new ArrayList<Pair<Integer, String>>();
         while (cursor.moveToNext()) {
@@ -158,15 +158,17 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 new String[]{"zsensorheight", "zsensorwidth", "zcameraname",
                         "zsqueezeratio"}, "z_pk = ?",
                 new String[]{rowid.toString()}, null, null, null, null);
-        cursor.moveToFirst();
-        CustomCamera camera = new CustomCamera();
-        camera.setSensorheight(cursor.getFloat(0));
-        camera.setSensorwidth(cursor.getFloat(1));
-        camera.setName(cursor.getString(2));
-        camera.setSqueeze(cursor.getFloat(3));
-        camera.setPk(rowid);
-        cursor.close();
-        return camera;
+        if (cursor.moveToFirst()) {
+            CustomCamera camera = new CustomCamera();
+            camera.setSensorheight(cursor.getFloat(0));
+            camera.setSensorwidth(cursor.getFloat(1));
+            camera.setName(cursor.getString(2));
+            camera.setSqueeze(cursor.getFloat(3));
+            camera.setPk(rowid);
+            cursor.close();
+            return camera;
+        }
+        return null;
     }
 
 	/*
@@ -294,6 +296,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         if (newVersion > oldVersion) {
             Log.v(TAG, "Database version higher than old one.  Upgrading.");
             dropTablesAndCreate(db, false);
+            executeDatabaseSQL(db);
         }
     }
 
@@ -319,17 +322,33 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop index if exists 'ZCAMERA-ZFORMATNAME'");
         db.execSQL("drop index if exists 'ZLENSOBJECT-ZOBJECTID'");
 
-        db.execSQL("CREATE TABLE ZLENSOBJECT ( Z_PK INTEGER, Z_ENT INTEGER, Z_OPT INTEGER, ZCUSTOMLENS INTEGER, ZROWID INTEGER PRIMARY KEY AUTOINCREMENT, ZZOOM INTEGER, ZLENSMM FLOAT, ZLENSSET FLOAT, ZSQUEEZERATIO FLOAT, ZFORMATNAME VARCHAR, ZLENSCODE VARCHAR, ZLENSMAKE VARCHAR, ZZOOMRANGE VARCHAR, ZOBJECTID VARCHAR );");
-        db.execSQL("CREATE UNIQUE INDEX 'ZLENSOBJECT-ZOBJECTID' ON ZLENSOBJECT (ZOBJECTID)");
+        db.execSQL("CREATE TABLE ZLENSOBJECT ( Z_PK INTEGER, Z_ENT INTEGER, Z_OPT INTEGER, ZCUSTOMLENS INTEGER, ZROWID INTEGER PRIMARY KEY AUTOINCREMENT, ZZOOM INTEGER, ZLENSBAG INTEGER, ZLENSMM FLOAT, ZLENSSET INTEGER, ZASPECTRATIO FLOAT, ZFORMATNAME VARCHAR, ZMANUFACTURER VARCHAR, ZLENSMAKE VARCHAR, ZZOOMRANGE VARCHAR, ZUUID VARCHAR, ZLIVE VARCHAR );");
 
-        db.execSQL("CREATE TABLE ZCAMERA ( Z_PK INTEGER, Z_ENT INTEGER, Z_OPT INTEGER, ZROWID INTEGER PRIMARY KEY AUTOINCREMENT, ZHOROZONTALSIZE FLOAT, ZSQUEEZERATIO FLOAT, ZVERTICALSIZE FLOAT, ZASPECTRATIO VARCHAR, ZCAMERAGENRE VARCHAR, ZCAPTUREMEDIUM VARCHAR, ZFORMATNAME VARCHAR, ZLENSTYPE VARCHAR, ZORDER VARCHAR, ZSENSORNAME VARCHAR , ZOBJECTID VARCHAR);");
+        db.execSQL("CREATE TABLE ZCAMERA ( Z_PK INTEGER, Z_ENT INTEGER, Z_OPT INTEGER, ZROWID INTEGER PRIMARY KEY AUTOINCREMENT, ZHOROZONTALSIZE FLOAT, ZSQUEEZERATIO FLOAT, ZVERTICALSIZE FLOAT, ZASPECTRATIO VARCHAR, ZCAMERAMANUFACTURER VARCHAR, ZLENSFORMAT INTEGER, ZFORMATNAME VARCHAR, ZLENSTYPE VARCHAR, ZSENSORORDER INTEGER, ZSENSORNAME VARCHAR , ZUUID VARCHAR, ZDEFAULTCAMERA INTEGER, ZFORMATORDER INTEGER, ZLASTUSED INTEGER, ZLASTLENSMANUFACTURER );");
         db.execSQL("CREATE INDEX 'ZCAMERA-ZSENSORNAME' ON ZCAMERA (ZSENSORNAME)");
         db.execSQL("CREATE INDEX 'ZCAMERA-ZFORMATNAME' ON ZCAMERA (ZFORMATNAME)");
-        db.execSQL("CREATE UNIQUE INDEX 'ZCAMERA-ZOBJECTID' ON ZCAMERA (ZOBJECTID)");
 
         if (createCustomTables) {
             db.execSQL("CREATE TABLE ZCUSTOMCAMERA ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZSENSORWIDTH FLOAT, ZSENSORHEIGHT FLOAT, ZSQUEEZERATIO FLOAT, ZCAMERANAME VARCHAR );");
             db.execSQL("CREATE TABLE ZCUSTOMZOOMLENS ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZNAME VARCHAR, ZMINFL FLOAT, ZMAXFL FLOAT );");
+        }
+
+        executeDatabaseSQL(db);
+    }
+
+
+    private void executeDatabaseSQL(SQLiteDatabase db) {
+        try {
+            BufferedReader ios = new BufferedReader(new InputStreamReader(
+                    _context.getResources().getAssets().open("artemisv12.sql")));
+
+            String line = null;
+            while ((line = ios.readLine()) != null) {
+                Log.v(TAG, line);
+                db.execSQL(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -444,7 +463,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int findDefaultCameraID() {
-        Cursor cursor = this._artemisDatabase.query(true, CAMERA_TABLE, new String[]{"zrowid"}, "zformatname = ? and zaspectratio = ?", new String[]{"35mm Film", "1.78:1 (16:9)"}, null, null, null, "1");
+        Cursor cursor = this._artemisDatabase.query(true, CAMERA_TABLE, new String[]{"zrowid"}, "zdefaultcamera = 1", null, null, null, null, "1");
 
         if (cursor.moveToNext()) {
             int defaultID = cursor.getInt(0);

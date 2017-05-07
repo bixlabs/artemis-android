@@ -204,17 +204,17 @@ public class SplashScreenActivity extends Activity {
 
     private void startArtemis() {
         // First check for database updates
-        if (isNetworkAvailable()) {
-            Intent i = new Intent(SplashScreenActivity.this, CloudDataUpdateActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(i);
-            finish();
-        } else {
+//        if (isNetworkAvailable()) {
+//            Intent i = new Intent(SplashScreenActivity.this, CloudDataUpdateActivity.class);
+//            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            startActivity(i);
+//            finish();
+//        } else {
             Intent i = new Intent(SplashScreenActivity.this, ArtemisActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(i);
             finish();
-        }
+//        }
     }
 
     @Override
