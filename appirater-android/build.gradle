@@ -15,11 +15,15 @@ android {
 =======
     compileSdkVersion 23
 <<<<<<< HEAD
+<<<<<<< HEAD
     buildToolsVersion "23.0.2"
 >>>>>>> 6adede1 (new splash screen and configs, launcher)
 =======
     buildToolsVersion '25.0.0'
 >>>>>>> 57eee6d (3.0.4 release)
+=======
+    buildToolsVersion '26.0.2'
+>>>>>>> ed8670f (fix db add custom lens and latest build files)
 
     sourceSets {
         main {

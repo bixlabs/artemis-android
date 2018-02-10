@@ -11,6 +11,7 @@ buildscript {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:1.0.1'
 =======
         classpath 'com.android.tools.build:gradle:0.13.2'
@@ -33,5 +34,8 @@ buildscript {
 =======
         classpath 'com.android.tools.build:gradle:2.3.1'
 >>>>>>> 57eee6d (3.0.4 release)
+=======
+        classpath 'com.android.tools.build:gradle:3.0.1'
+>>>>>>> ed8670f (fix db add custom lens and latest build files)
     }
 }

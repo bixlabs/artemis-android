@@ -194,20 +194,19 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
     public Lens getLensByRowId(int id) {
         Cursor cursor = _artemisDatabase.query(LENS_TABLE, new String[]{
-                        "zlensSet", "zlensmm", "zlensCode", "zlensMake", "zzoom",
-                        "zzoomrange", "zformatname", "zsqueezeratio",}, "zrowid = ?",
+                        "zlensSet", "zlensmm", "zlensMake", "zzoom",
+                        "zzoomrange", "zformatname"}, "zrowid = ?",
                 new String[]{"" + id}, null, null, null);
         cursor.moveToNext();
         Lens lens = new Lens();
         lens.setLensSet(cursor.getString(0));
         lens.setFL(cursor.getFloat(1));
         lens.setPk(id);
-        lens.setLensCode(cursor.getString(2));
-        lens.setLensMake(cursor.getString(3));
-        lens.setZoom(cursor.getString(4));
-        lens.setZoomRange(cursor.getString(5));
-        lens.setFormat(cursor.getString(6));
-        lens.setSqueeze(cursor.getFloat(7));
+        lens.setLensMake(cursor.getString(2));
+        lens.setZoom(cursor.getString(3));
+        lens.setZoomRange(cursor.getString(4));
+        lens.setFormat(cursor.getString(5));
+//        lens.setSqueeze(cursor.getFloat(6));
         cursor.close();
         return lens;
     }
@@ -382,7 +381,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         initialValues.put("zcustomlens", true);
         initialValues.put("zlensmm", customLens.getFL());
         initialValues.put("zformatname", customLens.getFormat());
-        initialValues.put("zlenscode", customLens.getLensCode());
+//        initialValues.put("zlenscode", customLens.getLensCode());
         initialValues.put("zlensmake", customLens.getLensMake());
         initialValues.put("zlensset", customLens.getLensSet());
         initialValues.put("zzoom", customLens.getZoom());
