@@ -1,11 +1,19 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Android SDK
 *.iml
 .gradle
 /local.properties
 /.idea/**
+=======
+# Recommended ignore files
+
+*.iml
+.gradle
+/local.properties
+>>>>>>> be4769f (upgrade gradle and project to android 28)
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -13,6 +21,7 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
+<<<<<<< HEAD
 build/
 /captures
 .externalNativeBuild
@@ -29,6 +38,14 @@ google-services.json
 # Created by .gitignore support plugin (hsz.mobi)
 >>>>>>> 3730db1 (commit all changes)
 =======
+=======
+/build
+/captures
+.externalNativeBuild
+
+fabric.properties
+
+>>>>>>> be4769f (upgrade gradle and project to android 28)
 # Created by .gitignore support plugin (hsz.mobi)
 .gradle/*
 <<<<<<< HEAD
@@ -43,6 +60,7 @@ build/**
 >>>>>>> 5756f0d (add build to ignore)
 =======
 artemis-android/*.apk
+<<<<<<< HEAD
 artemis-android/manifest-merger-release-report.txt
 >>>>>>> c2fe9bb (commit ignore`)
 =======
@@ -50,3 +68,6 @@ artemis-android/manifest-merger-release-report.txt
 build/
 .gradle
 >>>>>>> 4c304ee (Add modified files)
+=======
+artemis-android/manifest-merger-release-report.txt
+>>>>>>> be4769f (upgrade gradle and project to android 28)

@@ -1,20 +1,24 @@
 apply plugin: 'com.android.application'
 
-repositories { mavenCentral() }
+repositories {
+    google()
+    jcenter()
+}
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':appirater-android')
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation project(':appirater-android')
 
-    compile 'com.parse.bolts:bolts-tasks:1.4.0'
-    compile 'com.parse:parse-android:1.13.1'
-    compile "com.android.support:appcompat-v7:25.1.1"
-    compile "com.android.support:support-v4:25.1.1"
-    compile "com.android.support:support-v13:25.1.1"
-    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+    implementation 'com.parse.bolts:bolts-tasks:1.4.0'
+    implementation 'com.parse:parse-android:1.13.1'
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:support-v4:28.0.0"
+    implementation "com.android.support:support-v13:28.0.0"
+    implementation 'com.google.android.gms:play-services-analytics:8.4.0'
 }
 
 android {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,10 +61,14 @@ android {
 =======
     buildToolsVersion "26.0.2"
 >>>>>>> ed8670f (fix db add custom lens and latest build files)
+=======
+    compileSdkVersion 28
+    buildToolsVersion "26.0.3"
+>>>>>>> be4769f (upgrade gradle and project to android 28)
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 24
+        targetSdkVersion 28
     }
 
     useLibrary 'org.apache.http.legacy'
@@ -85,7 +93,7 @@ android {
         }
 
         // Move the tests to tests/java, tests/res, etc...
-        instrumentTest.setRoot('tests')
+        //instrumentTest.setRoot('tests')
 
         // Move the build types to build-types/<type>
         // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
