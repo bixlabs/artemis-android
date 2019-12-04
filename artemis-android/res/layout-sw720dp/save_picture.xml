@@ -87,6 +87,15 @@
                 android:ems="10"
                 android:hint="@string/image_note_hint" />
 
+            <EditText
+                android:id="@+id/imageContactName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip"
+                android:ems="10"
+                android:hint="@string/image_contact_name_hint" />
+
             <ScrollView
                 android:id="@+id/ScrollView_save_image"
                 android:layout_width="wrap_content"

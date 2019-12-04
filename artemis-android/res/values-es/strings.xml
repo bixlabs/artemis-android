@@ -54,7 +54,7 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="camera_information">Información sobre la cámara</string>
     <string name="lens_information">Información de la lente</string>
     <string name="cancel">Cancelar</string>
-    <string name="image_description_hint">Añadir una descripción</string>
+    <string name="image_description_hint">Titulo de la imagen</string>
 
     <!-- //Add Custom Camera Page -->
 
@@ -156,7 +156,7 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
     <string name="prefs_image_settings_description">"Ajustes para el control de las propiedades de las imágenes guardadas en el almacenamiento utilizando Artemis"</string>
 
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
-    <string name="image_note_hint">"Agregar una nota"</string>
+    <string name="image_note_hint">"Notas adicionales"</string>
     <string name="add_custom_lens">"Añadir lente personalizada"</string>
     <string name="input_focal_length">"Introduzca la longitud focal del objetivo en milímetros:"</string>
     <string name="custom_lens_error">"Lente de error de entrada personalizada"</string>
@@ -300,6 +300,7 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 	<string name="zoom_lens_delete">Eliminar Zoom</string>
 	<string name="edit_zoom_lens">Editar Zoom</string>
 	<string name="add_new_zoom_lens">Añadir nuevo objetivo zoom</string>
-    
-    
+    <string name="image_contact_name_hint">Your contact name</string>
+
+
 </resources>

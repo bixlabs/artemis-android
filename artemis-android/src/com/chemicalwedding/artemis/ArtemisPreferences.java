@@ -16,6 +16,7 @@ public class ArtemisPreferences {
 	public static final String HEADING_DISPLAY = "headingDisplay";
 	public static final String SAVE_PICTURE_SHOW_DESCRIPTION = "showDescription";
 	public static final String SAVE_PICTURE_SHOW_NOTES = "showNotes";
+	public static final String SAVE_PICTURE_SHOW_CONTACT_NAME = "showContactName";
 	public static final String SAVE_PICTURE_SHOW_CAMERA_DETAILS = "showCameraDetails";
 	public static final String SAVE_PICTURE_SHOW_LENS_DETAILS = "showLensDetails";
 	public static final String SAVE_PICTURE_SHOW_GPS_DETAILS = "showGpsDetails";

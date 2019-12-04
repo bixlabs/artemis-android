@@ -46,6 +46,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -67,7 +68,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v13.app.FragmentCompat;
 import android.util.Log;
 import android.util.Size;
@@ -78,6 +81,8 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -378,204 +383,229 @@ public class CameraPreview21 extends Fragment {
                 .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
                         Context.MODE_PRIVATE);
 
-        boolean showGpsDetails = artemisPrefs.getBoolean(
+//        boolean showGpsDetails = artemisPrefs.getBoolean(
+//                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS, true);
+//
+//        Bitmap blankBmp = bitmapToSave;
+//
+//        if (!artemisPrefs.getBoolean(ArtemisPreferences.SAVE_RAW_IMAGE, false)) {
+//
+//            int footerHeight = (int) (bitmapToSave.getHeight() * 0.1f);
+//
+//            int sideborder = 10;
+//            // add a larger border in 4:3
+//            if ((float) bitmapToSave.getWidth() / bitmapToSave.getHeight() < 1.4) {
+//                sideborder = 259; // to match 16:9 for 4:3
+//            }
+//
+//            float widthRatio = bitmapToSave.getWidth() / 13006f;
+//
+//            float baseFontSize = footerHeight / 2.94f;
+//
+//            blankBmp = Bitmap.createBitmap(
+//                    bitmapToSave.getWidth() + sideborder,
+//                    bitmapToSave.getHeight() + footerHeight,
+//                    Bitmap.Config.ARGB_8888);
+//            System.gc();
+//            Paint paint = new Paint();
+//            Canvas canvas = new Canvas(blankBmp);
+//            canvas.drawColor(Color.WHITE);
+//            int xcord = (blankBmp.getWidth() - bitmapToSave.getWidth()) / 2;
+//            canvas.drawBitmap(bitmapToSave, xcord, 5, paint);
+//
+//            paint.setColor(Color.BLACK);
+//            paint.setAntiAlias(true);
+//            paint.setSubpixelText(true);
+//            paint.setTypeface(Typeface.DEFAULT_BOLD);
+//
+//            String fltext = ArtemisActivity._lensFocalLengthText.getText()
+//                    .toString();
+//            float fl = Float.parseFloat(fltext);
+//            int xRef = 0;
+//            if (fltext.length() < 3) {
+//                xRef = (int) (1450f * widthRatio);
+//            } else if (fltext.length() >= 3 && fl < 100) {
+//                xRef = (int) (1550f * widthRatio);
+//            } else if (fltext.length() >= 3 && fl >= 100) {
+//                xRef = (int) (1600f * widthRatio);
+//            }
+//
+//            String description = artemisPrefs.getString(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, "");
+//            String notes = artemisPrefs.getString(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
+//            String contactName = artemisPrefs.getString(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
+//            boolean showCameraDetails = artemisPrefs.getBoolean(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
+//            boolean showLensDetails = artemisPrefs.getBoolean(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
+//            boolean showGpsLocationString = artemisPrefs.getBoolean(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
+//            boolean showLensViewAngles = artemisPrefs
+//                    .getBoolean(
+//                            ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
+//                            true);
+//            boolean showDateTime = artemisPrefs.getBoolean(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true);
+//            boolean showHeading = artemisPrefs.getBoolean(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING, true);
+//            boolean showTiltRoll = artemisPrefs.getBoolean(
+//                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
+//
+//            paint.setTextSize(baseFontSize - 2);
+//            if (description.length() > 0) {
+//                canvas.drawText(description, 10, blankBmp.getHeight() - (baseFontSize * 2),
+//                        paint);
+//            }
+//            paint.setTextSize(baseFontSize - 4);
+//            if (showCameraDetails) {
+//                canvas.drawText(ArtemisActivity._cameraDetailsText.getText()
+//                        .toString(), 10, blankBmp.getHeight() - (baseFontSize), paint);
+//            }
+//            paint.setTypeface(null);
+//
+//            if (notes.length() > 0) {
+//                canvas.drawText(notes, 10, blankBmp.getHeight() - 10, paint);
+//            }
+//
+//            if (contactName.length() > 0) {
+//                canvas.drawText(contactName, 10, blankBmp.getHeight() - 10, paint);
+//            }
+//
+//            final int centerTextX = blankBmp.getWidth() / 2 - 30;
+//            paint.setTextSize(baseFontSize * 0.75f);
+//            if (showGpsDetails || showGpsLocationString) {
+//                String[] gpsDetailsAndLocation = ArtemisActivity
+//                        .getGPSLocationDetailStrings(getActivity());
+//                // if (showGpsDetails && gpsDetailsAndLocation.length > 0) {
+//                // canvas.drawText(gpsDetailsAndLocation[0], 10,
+//                // blankBmp.getHeight() - 10, paint);
+//                // }
+//                if (showGpsLocationString && gpsDetailsAndLocation.length > 1) {
+//                    paint.setTextAlign(Paint.Align.CENTER);
+//                    paint.setTextScaleX(0.87f);
+//                    canvas.drawText(gpsDetailsAndLocation[1], centerTextX,
+//                            blankBmp.getHeight() - 10, paint);
+//                    paint.setTextAlign(Paint.Align.LEFT);
+//                    paint.setTextScaleX(1f);
+//                }
+//            }
+//
+//            paint.setTextAlign(Paint.Align.CENTER);
+//            if (showHeading && showTiltRoll) {
+//                canvas.drawText(ArtemisActivity.pictureSaveHeadingTiltString,
+//                        centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
+//            } else if (showHeading) {
+//
+//                if (ArtemisActivity.headingDisplaySelection == 1) {
+//                    canvas.drawText(
+//                            ArtemisActivity.pictureSaveHeadingTiltString,
+//                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
+//                } else if (ArtemisActivity.headingDisplaySelection == 2) {
+//                    if (ArtemisActivity.pictureSaveHeadingTiltString
+//                            .contains("|")) {
+//                        canvas.drawText(
+//                                ArtemisActivity.pictureSaveHeadingTiltString
+//                                        .substring(
+//                                                0,
+//                                                ArtemisActivity.pictureSaveHeadingTiltString
+//                                                        .indexOf('|')),
+//                                centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
+//                    }
+//                }
+//            } else if (showTiltRoll) {
+//                if (ArtemisActivity.headingDisplaySelection == 2
+//                        && ArtemisActivity.pictureSaveHeadingTiltString
+//                        .contains("|")) {
+//                    canvas.drawText(
+//                            ArtemisActivity.pictureSaveHeadingTiltString
+//                                    .substring(
+//                                            ArtemisActivity.pictureSaveHeadingTiltString
+//                                                    .indexOf('|'),
+//                                            ArtemisActivity.pictureSaveHeadingTiltString
+//                                                    .length() - 1),
+//                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
+//                }
+//            }
+//            paint.setTextAlign(Paint.Align.LEFT);
+//
+//            if (showLensViewAngles) {
+//                NumberFormat nf = NumberFormat.getInstance();
+//                nf.setMaximumFractionDigits(1);
+//                paint.setTypeface(Typeface.DEFAULT_BOLD);
+//                paint.setTextSize(baseFontSize - 2);
+//                String hAngle = getResources().getString(R.string.hangle_text)
+//                        + " "
+//                        + nf.format(_artemisMath.selectedLensAngleData[0])
+//                        + getString(R.string.degree_symbol);
+//                String vAngle = getResources().getString(R.string.vangle_text)
+//                        + " "
+//                        + nf.format(_artemisMath.selectedLensAngleData[1])
+//                        + getString(R.string.degree_symbol);
+//                int xadjustHAngle = hAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
+//                int xadjustVAngle = vAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
+//                int xadjust = xadjustHAngle >= xadjustVAngle ? xadjustHAngle
+//                        : xadjustVAngle;
+//                canvas.drawText(hAngle, blankBmp.getWidth() - xRef - xadjust,
+//                        blankBmp.getHeight() - baseFontSize, paint);
+//                canvas.drawText(vAngle, blankBmp.getWidth() - xRef - xadjust,
+//                        blankBmp.getHeight() - 10, paint);
+//            }
+//
+//            if (showDateTime) {
+//                paint.setTypeface(Typeface.DEFAULT_BOLD);
+//                paint.setTextSize(baseFontSize * 0.6f);
+//                SimpleDateFormat sdf = new SimpleDateFormat(
+//                        "h:mm aa | MM/dd/yyyy", Locale.getDefault());
+//                canvas.drawText(sdf.format(new Date()), blankBmp.getWidth()
+//                        - xRef - (int) (widthRatio * 1640), blankBmp.getHeight() - baseFontSize * 2, paint);
+//            }
+//
+//            if (showLensDetails) {
+//                String lensMake = ArtemisActivity._lensMakeText.getText()
+//                        .toString();
+//                paint.setTextSize(baseFontSize * 2.0f);
+//                canvas.drawText(fltext + "mm", blankBmp.getWidth() - xRef,
+//                        blankBmp.getHeight() - 10, paint);
+//
+//                paint.setTextSize(baseFontSize * 0.6f);
+//                paint.setTextScaleX(0.8f);
+//                if (lensMake.length() > 28) {
+//                    paint.setTextSize(baseFontSize * 0.5f);
+//                    paint.setTextScaleX(0.7f);
+//                }
+//                paint.setTextAlign(Paint.Align.CENTER);
+//                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int) (widthRatio * 700),
+//                        blankBmp.getHeight() - baseFontSize * 2, paint);
+//
+//                paint.setStrokeWidth(baseFontSize * 0.1f);
+//                canvas.drawLine(blankBmp.getWidth() - xRef - 13,
+//                        blankBmp.getHeight() - footerHeight + 10, blankBmp.getWidth() - xRef
+//                                - 13, blankBmp.getHeight() - 10, paint);
+//            }
+//        }
+
+        final boolean showGpsDetails = artemisPrefs.getBoolean(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS, true);
 
-        Bitmap blankBmp = bitmapToSave;
-
-        if (!artemisPrefs.getBoolean(ArtemisPreferences.SAVE_RAW_IMAGE, false)) {
-
-            int footerHeight = (int) (bitmapToSave.getHeight() * 0.1f);
-
-            int sideborder = 10;
-            // add a larger border in 4:3
-            if ((float) bitmapToSave.getWidth() / bitmapToSave.getHeight() < 1.4) {
-                sideborder = 259; // to match 16:9 for 4:3
-            }
-
-            float widthRatio = bitmapToSave.getWidth() / 13006f;
-
-            float baseFontSize = footerHeight / 2.94f;
-
-            blankBmp = Bitmap.createBitmap(
-                    bitmapToSave.getWidth() + sideborder,
-                    bitmapToSave.getHeight() + footerHeight,
-                    Bitmap.Config.ARGB_8888);
-            System.gc();
-            Paint paint = new Paint();
-            Canvas canvas = new Canvas(blankBmp);
-            canvas.drawColor(Color.WHITE);
-            int xcord = (blankBmp.getWidth() - bitmapToSave.getWidth()) / 2;
-            canvas.drawBitmap(bitmapToSave, xcord, 5, paint);
-
-            paint.setColor(Color.BLACK);
-            paint.setAntiAlias(true);
-            paint.setSubpixelText(true);
-            paint.setTypeface(Typeface.DEFAULT_BOLD);
-
-            String fltext = ArtemisActivity._lensFocalLengthText.getText()
-                    .toString();
-            float fl = Float.parseFloat(fltext);
-            int xRef = 0;
-            if (fltext.length() < 3) {
-                xRef = (int) (1450f * widthRatio);
-            } else if (fltext.length() >= 3 && fl < 100) {
-                xRef = (int) (1550f * widthRatio);
-            } else if (fltext.length() >= 3 && fl >= 100) {
-                xRef = (int) (1600f * widthRatio);
-            }
-
-            String description = artemisPrefs.getString(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, "");
-            String notes = artemisPrefs.getString(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
-            boolean showCameraDetails = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
-            boolean showLensDetails = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
-            boolean showGpsLocationString = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
-            boolean showLensViewAngles = artemisPrefs
-                    .getBoolean(
-                            ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
-                            true);
-            boolean showDateTime = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true);
-            boolean showHeading = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING, true);
-            boolean showTiltRoll = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
-
-            paint.setTextSize(baseFontSize - 2);
-            if (description.length() > 0) {
-                canvas.drawText(description, 10, blankBmp.getHeight() - (baseFontSize * 2),
-                        paint);
-            }
-            paint.setTextSize(baseFontSize - 4);
-            if (showCameraDetails) {
-                canvas.drawText(ArtemisActivity._cameraDetailsText.getText()
-                        .toString(), 10, blankBmp.getHeight() - (baseFontSize), paint);
-            }
-            paint.setTypeface(null);
-
-            if (notes.length() > 0) {
-                canvas.drawText(notes, 10, blankBmp.getHeight() - 10, paint);
-            }
-
-            final int centerTextX = blankBmp.getWidth() / 2 - 30;
-            paint.setTextSize(baseFontSize * 0.75f);
-            if (showGpsDetails || showGpsLocationString) {
-                String[] gpsDetailsAndLocation = ArtemisActivity
-                        .getGPSLocationDetailStrings(getActivity());
-                // if (showGpsDetails && gpsDetailsAndLocation.length > 0) {
-                // canvas.drawText(gpsDetailsAndLocation[0], 10,
-                // blankBmp.getHeight() - 10, paint);
-                // }
-                if (showGpsLocationString && gpsDetailsAndLocation.length > 1) {
-                    paint.setTextAlign(Paint.Align.CENTER);
-                    paint.setTextScaleX(0.87f);
-                    canvas.drawText(gpsDetailsAndLocation[1], centerTextX,
-                            blankBmp.getHeight() - 10, paint);
-                    paint.setTextAlign(Paint.Align.LEFT);
-                    paint.setTextScaleX(1f);
-                }
-            }
-
-            paint.setTextAlign(Paint.Align.CENTER);
-            if (showHeading && showTiltRoll) {
-                canvas.drawText(ArtemisActivity.pictureSaveHeadingTiltString,
-                        centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-            } else if (showHeading) {
-
-                if (ArtemisActivity.headingDisplaySelection == 1) {
-                    canvas.drawText(
-                            ArtemisActivity.pictureSaveHeadingTiltString,
-                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-                } else if (ArtemisActivity.headingDisplaySelection == 2) {
-                    if (ArtemisActivity.pictureSaveHeadingTiltString
-                            .contains("|")) {
-                        canvas.drawText(
-                                ArtemisActivity.pictureSaveHeadingTiltString
-                                        .substring(
-                                                0,
-                                                ArtemisActivity.pictureSaveHeadingTiltString
-                                                        .indexOf('|')),
-                                centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-                    }
-                }
-            } else if (showTiltRoll) {
-                if (ArtemisActivity.headingDisplaySelection == 2
-                        && ArtemisActivity.pictureSaveHeadingTiltString
-                        .contains("|")) {
-                    canvas.drawText(
-                            ArtemisActivity.pictureSaveHeadingTiltString
-                                    .substring(
-                                            ArtemisActivity.pictureSaveHeadingTiltString
-                                                    .indexOf('|'),
-                                            ArtemisActivity.pictureSaveHeadingTiltString
-                                                    .length() - 1),
-                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-                }
-            }
-            paint.setTextAlign(Paint.Align.LEFT);
-
-            if (showLensViewAngles) {
-                NumberFormat nf = NumberFormat.getInstance();
-                nf.setMaximumFractionDigits(1);
-                paint.setTypeface(Typeface.DEFAULT_BOLD);
-                paint.setTextSize(baseFontSize - 2);
-                String hAngle = getResources().getString(R.string.hangle_text)
-                        + " "
-                        + nf.format(_artemisMath.selectedLensAngleData[0])
-                        + getString(R.string.degree_symbol);
-                String vAngle = getResources().getString(R.string.vangle_text)
-                        + " "
-                        + nf.format(_artemisMath.selectedLensAngleData[1])
-                        + getString(R.string.degree_symbol);
-                int xadjustHAngle = hAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
-                int xadjustVAngle = vAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
-                int xadjust = xadjustHAngle >= xadjustVAngle ? xadjustHAngle
-                        : xadjustVAngle;
-                canvas.drawText(hAngle, blankBmp.getWidth() - xRef - xadjust,
-                        blankBmp.getHeight() - baseFontSize, paint);
-                canvas.drawText(vAngle, blankBmp.getWidth() - xRef - xadjust,
-                        blankBmp.getHeight() - 10, paint);
-            }
-
-            if (showDateTime) {
-                paint.setTypeface(Typeface.DEFAULT_BOLD);
-                paint.setTextSize(baseFontSize * 0.6f);
-                SimpleDateFormat sdf = new SimpleDateFormat(
-                        "h:mm aa | MM/dd/yyyy", Locale.getDefault());
-                canvas.drawText(sdf.format(new Date()), blankBmp.getWidth()
-                        - xRef - (int) (widthRatio * 1640), blankBmp.getHeight() - baseFontSize * 2, paint);
-            }
-
-            if (showLensDetails) {
-                String lensMake = ArtemisActivity._lensMakeText.getText()
-                        .toString();
-                paint.setTextSize(baseFontSize * 2.0f);
-                canvas.drawText(fltext + "mm", blankBmp.getWidth() - xRef,
-                        blankBmp.getHeight() - 10, paint);
-
-                paint.setTextSize(baseFontSize * 0.6f);
-                paint.setTextScaleX(0.8f);
-                if (lensMake.length() > 28) {
-                    paint.setTextSize(baseFontSize * 0.5f);
-                    paint.setTextScaleX(0.7f);
-                }
-                paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int) (widthRatio * 700),
-                        blankBmp.getHeight() - baseFontSize * 2, paint);
-
-                paint.setStrokeWidth(baseFontSize * 0.1f);
-                canvas.drawLine(blankBmp.getWidth() - xRef - 13,
-                        blankBmp.getHeight() - footerHeight + 10, blankBmp.getWidth() - xRef
-                                - 13, blankBmp.getHeight() - 10, paint);
-            }
-        }
-
+        View pictureMetadataView = getActivity().findViewById(R.id.pictureWithMetadata);
+        Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
+        Log.i("MetadataView width", String.valueOf(pictureMetadataView.getWidth()));
+        Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
         savePicture(blankBmp, showGpsDetails);
+    }
+
+    public Bitmap getBitmapFromView(View view) {
+        Bitmap returnedBitmap = Bitmap.createBitmap(getView().getWidth(), getView().getHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnedBitmap);
+        Drawable bgDrawable =view.getBackground();
+        if (bgDrawable!=null)
+            bgDrawable.draw(canvas);
+        else
+            canvas.drawColor(Color.WHITE);
+        view.draw(canvas);
+        return returnedBitmap;
     }
 
     /**

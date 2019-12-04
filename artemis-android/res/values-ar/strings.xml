@@ -271,5 +271,6 @@
 	<string name="zoom_lens_delete">حذف عدسة تكبير</string>
 	<string name="edit_zoom_lens">تعديل عدسة تكبير</string>
 	<string name="add_new_zoom_lens">إضافة جديد عدسة تكبير</string>
+    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>

@@ -276,5 +276,6 @@
 	<string name="zoom_lens_delete">ज़ूम लेंस हटाएँ</string>
 	<string name="edit_zoom_lens">ज़ूम लेंस संपादित करें</string>
 	<string name="add_new_zoom_lens">नई ज़ूम लेंस जोड़ें</string>
-    
+    <string name="image_contact_name_hint">Your contact name</string>
+
 </resources>

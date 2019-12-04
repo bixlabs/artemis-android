@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <module external.linked.project.id="artemis-android" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
 =======
 <module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
 >>>>>>> 48b25e2 (changes towards lollipop camera api support)
+=======
+<module external.linked.project.id="Artemis-Android" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+>>>>>>> 6a12d65 (Create a metadata template example)
   <component name="FacetManager">
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>

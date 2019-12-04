@@ -27,8 +27,11 @@ android {
 >>>>>>> ed8670f (fix db add custom lens and latest build files)
 =======
     compileSdkVersion 28
+<<<<<<< HEAD
     buildToolsVersion '26.0.3'
 >>>>>>> be4769f (upgrade gradle and project to android 28)
+=======
+>>>>>>> 6a12d65 (Create a metadata template example)
 
     sourceSets {
         main {

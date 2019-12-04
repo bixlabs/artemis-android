@@ -292,5 +292,6 @@
 	<string name="zoom_lens_delete">Supprimer Zoom Lens</string>
 	<string name="edit_zoom_lens">Modifier Zoom Lens</string>
 	<string name="add_new_zoom_lens">Ajouter un nouvel objectif zoom</string>
-    
+    <string name="image_contact_name_hint">Your contact name</string>
+
 </resources>

@@ -2250,6 +2250,8 @@ public class ArtemisActivity extends Activity implements
                         ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, ""));
         ((EditText) findViewById(R.id.imageNotes)).setText(artemisPrefs
                 .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, ""));
+        ((EditText) findViewById(R.id.imageContactName)).setText(artemisPrefs
+                .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, ""));
         ((ToggleButton) findViewById(R.id.cameraDetailsToggle))
                 .setChecked(artemisPrefs.getBoolean(
                         ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS,
@@ -2308,6 +2310,9 @@ public class ArtemisActivity extends Activity implements
                             .toString());
             editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES,
                     ((EditText) findViewById(R.id.imageNotes)).getText()
+                            .toString());
+            editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME,
+                    ((EditText) findViewById(R.id.imageContactName)).getText()
                             .toString());
             editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS,
                     ((ToggleButton) findViewById(R.id.gpsDetailsToggle))

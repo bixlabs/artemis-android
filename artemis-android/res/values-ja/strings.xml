@@ -301,5 +301,6 @@
 	<string name="zoom_lens_delete">ズームレンズを削除する</string>
 	<string name="edit_zoom_lens">ズームレンズを編集</string>
 	<string name="add_new_zoom_lens">新しいズームレンズを追加</string>
-    
+    <string name="image_contact_name_hint">Your contact name</string>
+
 </resources>

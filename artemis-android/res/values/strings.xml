@@ -88,7 +88,7 @@
     <string name="camera_information">Camera Information</string>
     <string name="lens_information">Lens Information</string>
     <string name="cancel">Cancel</string>
-    <string name="image_description_hint">Add a description</string>
+    <string name="image_description_hint">Image title</string>
     <string name="date_and_time_text">Date and Time</string>
     <string name="h_and_v_angle_text">H and V Angle</string>
     <string name="vangle_text">V Angle</string>
@@ -250,7 +250,7 @@
     <string name="prefs_image_settings_description">Adjustments for controlling properties of images saved to storage using Artemis</string>
 
     <!-- NEW STRING NEEDS TO BE TRANSLATED -->
-    <string name="image_note_hint">Add a note</string>
+    <string name="image_note_hint">Additional notes</string>
     <string name="add_custom_lens">Add Custom Lens</string>
     <string name="input_focal_length">Enter the lens focal length in millimeters:</string>
     <string name="custom_lens_error">Custom Lens Input Error</string>
@@ -309,5 +309,6 @@
     <string name="vertical_angle">Vertical Angle:</string>
     <string name="horizontal_angle">Horizontal Angle:</string>
     <string name="visual_lens_angle_calibration">Visual Lens Angle Calibration</string>
+    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>

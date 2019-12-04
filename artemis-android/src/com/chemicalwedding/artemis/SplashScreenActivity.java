@@ -79,7 +79,8 @@ public class SplashScreenActivity extends Activity {
                 if (perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                         && perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     // All Required Permissions Granted. Start the app normally
-                    checkLicenseAndStart();
+                    //checkLicenseAndStart();
+                    startArtemis();
                 } else {
                     // Permission Denied
                     Toast.makeText(this, "A required permission is denied.  Artemis needs access to the camera and writing external files to function.", Toast.LENGTH_SHORT)
@@ -171,7 +172,8 @@ public class SplashScreenActivity extends Activity {
                     REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
             return;
         } else {
-            checkLicenseAndStart();
+            //checkLicenseAndStart();
+            startArtemis();
         }
     }
 

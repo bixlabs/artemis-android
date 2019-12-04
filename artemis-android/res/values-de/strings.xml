@@ -236,5 +236,6 @@
 	<string name="zoom_lens_delete">Löschen Zoomobjektiv</string>
 	<string name="edit_zoom_lens">Bearbeiten Zoom-Objektiv</string>
 	<string name="add_new_zoom_lens">In New Zoomobjektiv</string>
-    
+    <string name="image_contact_name_hint">Your contact name</string>
+
 </resources>

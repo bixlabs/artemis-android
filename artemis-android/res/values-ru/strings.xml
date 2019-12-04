@@ -129,7 +129,8 @@ Canon 5D и 7D
     <string name="unlicensed_dialog_body">Это заявление не имеет лицензии. Пожалуйста,
 		приобретайте Android рынка.</string>
     <string name="error_dialog_body">Существовал ошибка проверки заявлений на получение
-		лицензии. Если проблема не устраняется, обратитесь в службу поддержки.</string>
+		лицензии. Если проблема не устраняется, обратитесь в службу поддержки.
+</string>
     <string name="buy_button">Купить приложение</string>
     <string name="quit_button">Выход</string>
 
@@ -312,5 +313,6 @@ Canon 5D и 7D
 	<string name="zoom_lens_delete">Удалить зум-объективом</string>
 	<string name="edit_zoom_lens">Редактировать зум-объективом</string>
 	<string name="add_new_zoom_lens">Добавить зум-объективом</string>
-    
+    <string name="image_contact_name_hint">Your contact name</string>
+
 </resources>

@@ -306,4 +306,5 @@
 	<string name="zoom_lens_delete">줌 렌즈를 삭제</string>
 	<string name="edit_zoom_lens">줌 렌즈를 편집</string>
 	<string name="add_new_zoom_lens">새로운 줌 렌즈 추가</string>
+    <string name="image_contact_name_hint">Your contact name</string>
 </resources>
