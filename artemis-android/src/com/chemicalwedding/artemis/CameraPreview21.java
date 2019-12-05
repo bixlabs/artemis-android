@@ -82,7 +82,9 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -588,6 +590,42 @@ public class CameraPreview21 extends Fragment {
 
         final boolean showGpsDetails = artemisPrefs.getBoolean(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS, true);
+
+        ImageView pictureView = getActivity().findViewById(R.id.pictureViewForMetadata);
+        pictureView.setImageBitmap(bitmapToSave);
+
+        String description = artemisPrefs.getString(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, "");
+        String notes = artemisPrefs.getString(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
+        String contactName = artemisPrefs.getString(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
+        boolean showCameraDetails = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
+        boolean showLensDetails = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
+        boolean showGpsLocationString = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
+        boolean showLensViewAngles = artemisPrefs
+                    .getBoolean(
+                            ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
+                            true);
+        boolean showDateTime = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true);
+        boolean showHeading = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING, true);
+        boolean showTiltRoll = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
+
+
+        if (showCameraDetails) {
+            TextView cameraInfoTextView = getActivity().findViewById(R.id.cameraInformationMetadata);
+            cameraInfoTextView.setText(ArtemisActivity._cameraDetailsText.getText());
+            cameraInfoTextView.requestLayout();
+        }
+
+        TextView contactInfoTextView = getActivity().findViewById(R.id.cameraInformationMetadata);
+        contactInfoTextView.setText(contactName);
 
         View pictureMetadataView = getActivity().findViewById(R.id.pictureWithMetadata);
         Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
