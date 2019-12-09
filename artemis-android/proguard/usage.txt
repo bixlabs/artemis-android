@@ -39,15 +39,16 @@ com.chemicalwedding.artemis.ArtemisPreferences:
     public static final java.lang.String PREVIEW_SELECTION
     public static final java.lang.String SMOOTH_IMAGE_ENABLED
     public static final java.lang.String HEADING_DISPLAY
-    public static final java.lang.String SAVE_PICTURE_SHOW_DESCRIPTION
+    public static final java.lang.String SAVE_PICTURE_SHOW_TITLE
     public static final java.lang.String SAVE_PICTURE_SHOW_NOTES
     public static final java.lang.String SAVE_PICTURE_SHOW_CAMERA_DETAILS
     public static final java.lang.String SAVE_PICTURE_SHOW_LENS_DETAILS
-    public static final java.lang.String SAVE_PICTURE_SHOW_GPS_DETAILS
+    public static final java.lang.String SAVE_PICTURE_SHOW_GPS_ADDRESS
     public static final java.lang.String SAVE_PICTURE_SHOW_GPS_LOCATION
     public static final java.lang.String SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES
     public static final java.lang.String SAVE_PICTURE_SHOW_DATE_TIME
-    public static final java.lang.String SAVE_PICTURE_SHOW_HEADING
+    public static final java.lang.String SAVE_PICTURE_SHOW_TILT_AND_DIRECTION
+    public static final java.lang.String SAVE_PICTURE_SHOW_EXPOSURE
     public static final java.lang.String SAVE_PICTURE_SHOW_TILT_ROLL
     public static final java.lang.String SELECTED_LANGUAGE
     public static final java.lang.String AUTOMATIC_LENS_ANGLES

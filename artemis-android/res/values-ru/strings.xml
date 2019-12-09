@@ -110,9 +110,8 @@ Canon 5D и 7D
     <string name="hangle_text">H угол</string>
     <string name="vangle_text">V угол</string>
     <string name="h_and_v_angle_text">H и V угол</string>
-    <string name="compass_heading_text">компасу (N, S, E, W)</string>
-    <string name="tilt_and_roll_text">наклон-н-ролл</string>
-    <string name="gps_location">GPS расположение</string>
+    <string name="tilt_and_direction_text">компасу (N, S, E, W)</string>
+    <string name="gps_address">GPS расположение</string>
     <string name="date_and_time_text">Дата и время</string>
 
     <!-- //Add Custom Camera Page -->
@@ -181,7 +180,7 @@ Canon 5D и 7D
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"Сохранить рисунок Подробнее"</string>
+    <string name="metadata_description">"Сохранить рисунок Подробнее"</string>
     <string name="save">"Сохранить"</string>
     <string name="settings_reset_summary">"Сброс к настройкам по умолчанию Артемиды. Вы не потеряете ни сохраненные снимки."</string>
     <string name="settings_reset_title">"Настройки по умолчанию"</string>
@@ -313,6 +312,5 @@ Canon 5D и 7D
 	<string name="zoom_lens_delete">Удалить зум-объективом</string>
 	<string name="edit_zoom_lens">Редактировать зум-объективом</string>
 	<string name="add_new_zoom_lens">Добавить зум-объективом</string>
-    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>

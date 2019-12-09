@@ -113,9 +113,8 @@
     <string name="hangle_text">H角</string>
     <string name="vangle_text">V角</string>
     <string name="h_and_v_angle_text">H和V角</string>
-    <string name="compass_heading_text">罗盘航向（氮，硫，英，西）</string>
-    <string name="tilt_and_roll_text">倾斜和轧辊</string>
-    <string name="gps_location">GPS定位详情</string>
+    <string name="tilt_and_direction_text">罗盘航向（氮，硫，英，西）</string>
+    <string name="gps_address">GPS定位详情</string>
     <string name="date_and_time_text">日期和时间</string>
 
     <!-- //Add Custom Camera Page -->
@@ -182,7 +181,7 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"保存图片详细信息"</string>
+    <string name="metadata_description">"保存图片详细信息"</string>
     <string name="save">"保存"</string>
     <string name="settings_reset_summary">"复位阿耳忒弥斯的默认设置。你不会失去任何保存的图片。"</string>
     <string name="settings_reset_title">"重置为默认设置"</string>
@@ -313,6 +312,5 @@
 	<string name="zoom_lens_delete">删除变焦镜头</string>
 	<string name="edit_zoom_lens">编辑变焦镜头</string>
 	<string name="add_new_zoom_lens">添加新变焦镜头</string>
-    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>

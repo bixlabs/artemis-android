@@ -83,8 +83,8 @@
     <string name="image_saved_success">Saving image…</string>
     <string name="save_and_edit">Save and Edit Details</string>
     <string name="save_picture">Save Picture</string>
-    <string name="gps_coordinates">GPS Coordinates</string>
-    <string name="gps_location">GPS Location Details</string>
+    <string name="gps_coordinates">GPS Location</string>
+    <string name="gps_address">Address (instead of GPS)</string>
     <string name="camera_information">Camera Information</string>
     <string name="lens_information">Lens Information</string>
     <string name="cancel">Cancel</string>
@@ -93,8 +93,8 @@
     <string name="h_and_v_angle_text">H and V Angle</string>
     <string name="vangle_text">V Angle</string>
     <string name="hangle_text">H Angle</string>
-    <string name="tilt_and_roll_text">Tilt and Roll</string>
-    <string name="compass_heading_text">Compass Heading (N,S,E,W)</string>
+    <string name="tilt_and_direction_text">Tilt and Direction</string>
+    <string name="exposure_text">Exposure</string>
 
     <!-- //Add Custom Camera Page -->
 
@@ -264,7 +264,7 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">Save Picture Details</string>
+    <string name="metadata_description">Metadata and Description</string>
     <string name="save">Save</string>
     <string name="settings_reset_summary">Reset to Artemis default settings.  You will not lose any saved pictures.</string>
     <string name="settings_reset_title">Reset to Default Settings</string>
@@ -309,6 +309,10 @@
     <string name="vertical_angle">Vertical Angle:</string>
     <string name="horizontal_angle">Horizontal Angle:</string>
     <string name="visual_lens_angle_calibration">Visual Lens Angle Calibration</string>
+
+    <!-- New below here 12-01-20149 -->
     <string name="image_contact_name_hint">Your contact name</string>
+    <string name="image_contact_email_hint">Your email address</string>
+
 
 </resources>

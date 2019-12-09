@@ -109,9 +109,8 @@
     <string name="vangle_text">수직 각도</string>
     <string name="hangle_text">수평 각도</string>
     <string name="h_and_v_angle_text">수평 및 수직 각도</string>
-    <string name="compass_heading_text">나침반 제목 (없음, 에스, 전자, 승)</string>
-    <string name="tilt_and_roll_text">틸트 및 롤</string>
-    <string name="gps_location">GPS 위치 세부 정보</string>
+    <string name="tilt_and_direction_text">나침반 제목 (없음, 에스, 전자, 승)</string>
+    <string name="gps_address">GPS 위치 세부 정보</string>
     <string name="date_and_time_text">날짜 및 시간</string>
 
     <!-- //Add Custom Camera Page -->
@@ -175,7 +174,7 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"사진 정보 저장"</string>
+    <string name="metadata_description">"사진 정보 저장"</string>
     <string name="save">"저장"</string>
     <string name="settings_reset_summary">"아르테미스 기본 설정으로 재설정합니다. 당신은 어떤 저장된 사진을 잃지 않을 것이다."</string>
     <string name="settings_reset_title">"기본 설정으로 재설정"</string>
@@ -306,5 +305,5 @@
 	<string name="zoom_lens_delete">줌 렌즈를 삭제</string>
 	<string name="edit_zoom_lens">줌 렌즈를 편집</string>
 	<string name="add_new_zoom_lens">새로운 줌 렌즈 추가</string>
-    <string name="image_contact_name_hint">Your contact name</string>
+
 </resources>

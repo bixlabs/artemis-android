@@ -2237,7 +2237,7 @@ public class ArtemisActivity extends Activity implements
 
     private void loadPictureDetailsSettings() {
         if (!gpsEnabled) {
-            ToggleButton gpsDetails = (ToggleButton) findViewById(R.id.gpsDetailsToggle);
+            ToggleButton gpsDetails = (ToggleButton) findViewById(R.id.gpsCoordinatesToggle);
             gpsDetails.setEnabled(false);
             gpsDetails.setChecked(false);
         }
@@ -2245,13 +2245,15 @@ public class ArtemisActivity extends Activity implements
         SharedPreferences artemisPrefs = getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
 
-        ((EditText) findViewById(R.id.imageDescription))
+        ((EditText) findViewById(R.id.imageTitle))
                 .setText(artemisPrefs.getString(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, ""));
+                        ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, ""));
         ((EditText) findViewById(R.id.imageNotes)).setText(artemisPrefs
                 .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, ""));
         ((EditText) findViewById(R.id.imageContactName)).setText(artemisPrefs
                 .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, ""));
+        ((EditText) findViewById(R.id.imageContactEmail)).setText(artemisPrefs
+                .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, ""));
         ((ToggleButton) findViewById(R.id.cameraDetailsToggle))
                 .setChecked(artemisPrefs.getBoolean(
                         ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS,
@@ -2261,13 +2263,13 @@ public class ArtemisActivity extends Activity implements
                         .getBoolean(
                                 ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS,
                                 true));
-        ((ToggleButton) findViewById(R.id.gpsDetailsToggle))
+        ((ToggleButton) findViewById(R.id.gpsCoordinatesToggle))
                 .setChecked(artemisPrefs.getBoolean(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS, true));
-        ((ToggleButton) findViewById(R.id.gpsLocationToggle))
+                        ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true));
+        ((ToggleButton) findViewById(R.id.gpsAddressToggle))
                 .setChecked(artemisPrefs
                         .getBoolean(
-                                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION,
+                                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS,
                                 true));
         ((ToggleButton) findViewById(R.id.h_and_v_angle_toggle))
                 .setChecked(artemisPrefs.getBoolean(
@@ -2276,20 +2278,16 @@ public class ArtemisActivity extends Activity implements
         ((ToggleButton) findViewById(R.id.date_and_time_toggle))
                 .setChecked(artemisPrefs.getBoolean(
                         ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true));
-        ToggleButton headingToggle = (ToggleButton) findViewById(R.id.compass_heading_toggle);
-        headingToggle.setChecked(artemisPrefs.getBoolean(
-                ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING, true));
+        ToggleButton tiltAndDirectionToggle = (ToggleButton) findViewById(R.id.tilt_and_direction_toggle);
+        tiltAndDirectionToggle.setChecked(artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true));
         if (ArtemisActivity.headingDisplaySelection == 0) {
-            headingToggle.setEnabled(false);
+            tiltAndDirectionToggle.setEnabled(false);
         }
+        ((ToggleButton) findViewById(R.id.exposure_toggle))
+                .setChecked(artemisPrefs.getBoolean(
+                        ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, true));
 
-        ToggleButton tiltRollToggle = (ToggleButton) findViewById(R.id.tilt_and_roll_toggle);
-        tiltRollToggle.setChecked(artemisPrefs.getBoolean(
-                ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true));
-        if (ArtemisActivity.headingDisplaySelection == 0
-                || ArtemisActivity.headingDisplaySelection == 1) {
-            tiltRollToggle.setEnabled(false);
-        }
         ((ToggleButton) findViewById(R.id.save_raw_image_toggle))
                 .setChecked(artemisPrefs.getBoolean(
                         getString(R.string.preference_key_saveRawImage), false));
@@ -2305,8 +2303,8 @@ public class ArtemisActivity extends Activity implements
                     ArtemisPreferences.class.getSimpleName(),
                     Context.MODE_PRIVATE).edit();
 
-            editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION,
-                    ((EditText) findViewById(R.id.imageDescription)).getText()
+            editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE,
+                    ((EditText) findViewById(R.id.imageTitle)).getText()
                             .toString());
             editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES,
                     ((EditText) findViewById(R.id.imageNotes)).getText()
@@ -2314,12 +2312,15 @@ public class ArtemisActivity extends Activity implements
             editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME,
                     ((EditText) findViewById(R.id.imageContactName)).getText()
                             .toString());
-            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS,
-                    ((ToggleButton) findViewById(R.id.gpsDetailsToggle))
+            editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL,
+                    ((EditText) findViewById(R.id.imageContactEmail)).getText()
+                            .toString());
+            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION,
+                    ((ToggleButton) findViewById(R.id.gpsCoordinatesToggle))
                             .isChecked());
             editor.putBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION,
-                    ((ToggleButton) findViewById(R.id.gpsLocationToggle))
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS,
+                    ((ToggleButton) findViewById(R.id.gpsAddressToggle))
                             .isChecked());
             editor.putBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS,
@@ -2336,11 +2337,11 @@ public class ArtemisActivity extends Activity implements
             editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME,
                     ((ToggleButton) findViewById(R.id.date_and_time_toggle))
                             .isChecked());
-            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL,
-                    ((ToggleButton) findViewById(R.id.tilt_and_roll_toggle))
+            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION,
+                    ((ToggleButton) findViewById(R.id.tilt_and_direction_toggle))
                             .isChecked());
-            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING,
-                    ((ToggleButton) findViewById(R.id.compass_heading_toggle))
+            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE,
+                    ((ToggleButton) findViewById(R.id.exposure_toggle))
                             .isChecked());
             editor.putBoolean(getString(R.string.preference_key_saveRawImage),
                     ((ToggleButton) findViewById(R.id.save_raw_image_toggle))

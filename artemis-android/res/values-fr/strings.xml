@@ -94,9 +94,8 @@
     <string name="hangle_text">H Angle</string>
     <string name="vangle_text">V Angle</string>
     <string name="h_and_v_angle_text">H et V Angle</string>
-    <string name="compass_heading_text">Cap compas (N, S, E, W)</string>
-    <string name="tilt_and_roll_text">Inclinaison et Rouleau</string>
-    <string name="gps_location">Détails Site GPS</string>
+    <string name="tilt_and_direction_text">Cap compas (N, S, E, W)</string>
+    <string name="gps_address">Détails Site GPS</string>
     <string name="date_and_time_text">Date et heure</string>
 
     <!-- //Add Custom Camera Page -->
@@ -162,7 +161,7 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"Enregistrer les détails de l'image"</string>
+    <string name="metadata_description">"Enregistrer les détails de l'image"</string>
     <string name="save">"Enreg."</string>
     <string name="settings_reset_summary">"Rétablir les paramètres par défaut Artemis. Vous ne perdrez pas les images enregistrées."</string>
     <string name="settings_reset_title">"Rétablir les paramètres par défaut"</string>
@@ -292,6 +291,5 @@
 	<string name="zoom_lens_delete">Supprimer Zoom Lens</string>
 	<string name="edit_zoom_lens">Modifier Zoom Lens</string>
 	<string name="add_new_zoom_lens">Ajouter un nouvel objectif zoom</string>
-    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>

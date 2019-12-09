@@ -489,7 +489,6 @@ com.chemicalwedding.artemis.R$string: int smooth_filter_text
 com.chemicalwedding.artemis.R$string: int smooth_image_off
 com.chemicalwedding.artemis.R$string: int smooth_image_on
 com.chemicalwedding.artemis.R$string: int sure_you_want_to_exit
-com.chemicalwedding.artemis.R$string: int tilt_and_roll_text
 com.chemicalwedding.artemis.R$string: int tilt_down
 com.chemicalwedding.artemis.R$string: int tilt_level
 com.chemicalwedding.artemis.R$string: int tilt_up

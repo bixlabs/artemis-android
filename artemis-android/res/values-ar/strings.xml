@@ -71,7 +71,7 @@
     <string name="save_and_edit">"حفظ وتعديل التفاصيل"</string>
     <string name="save_picture">"حفظ الصورة"</string>
     <string name="gps_coordinates">"الإحداثيات"</string>
-    <string name="gps_location">"الاحداثيات تفاصيل"</string>
+    <string name="gps_address">"الاحداثيات تفاصيل"</string>
     <string name="camera_information">"معلومات الكاميرا"</string>
     <string name="lens_information">"معلومات عدسة"</string>
     <string name="cancel">"إلغاء"</string>
@@ -80,8 +80,7 @@
     <string name="h_and_v_angle_text">"H و V زاوية"</string>
     <string name="vangle_text">"V زاوية"</string>
     <string name="hangle_text">"H زاوية"</string>
-    <string name="tilt_and_roll_text">"إمالة ولفة"</string>
-    <string name="compass_heading_text">"بوصلة عنوان (N، S، E، W)"</string>
+    <string name="tilt_and_direction_text">"بوصلة عنوان (N، S، E، W)"</string>
 
     <!-- //Add Custom Camera Page -->
 
@@ -142,7 +141,7 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"حفظ تفاصيل الصورة"</string>
+    <string name="metadata_description">"حفظ تفاصيل الصورة"</string>
     <string name="save">"حفظ"</string>
     <string name="settings_reset_summary">"إعادة تعيين إلى الإعدادات الافتراضية أرتميس. أنك لن تخسر أي الصور المحفوظة."</string>
     <string name="settings_reset_title">"إعادة تعيين إلى الإعدادات الافتراضية"</string>
@@ -271,6 +270,5 @@
 	<string name="zoom_lens_delete">حذف عدسة تكبير</string>
 	<string name="edit_zoom_lens">تعديل عدسة تكبير</string>
 	<string name="add_new_zoom_lens">إضافة جديد عدسة تكبير</string>
-    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>

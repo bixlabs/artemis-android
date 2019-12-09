@@ -72,6 +72,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v13.app.FragmentCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Size;
 import android.util.SizeF;
@@ -588,50 +589,108 @@ public class CameraPreview21 extends Fragment {
 //            }
 //        }
 
-        final boolean showGpsDetails = artemisPrefs.getBoolean(
-                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS, true);
 
         ImageView pictureView = getActivity().findViewById(R.id.pictureViewForMetadata);
         pictureView.setImageBitmap(bitmapToSave);
 
-        String description = artemisPrefs.getString(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, "");
+        String title = artemisPrefs.getString(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, "");
         String notes = artemisPrefs.getString(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
         String contactName = artemisPrefs.getString(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
+        String contactEmail = artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, "");
+
+        boolean showGpsCoordinates = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
+        boolean showGpsAddress = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS, true);
+
+
         boolean showCameraDetails = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
         boolean showLensDetails = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
-        boolean showGpsLocationString = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
         boolean showLensViewAngles = artemisPrefs
                     .getBoolean(
                             ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
                             true);
         boolean showDateTime = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true);
-        boolean showHeading = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING, true);
-        boolean showTiltRoll = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
+        boolean showTiltAndDirection = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true);
+        boolean showExposure = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, true);
+
 
 
         if (showCameraDetails) {
+            Log.i("camera info", ArtemisActivity._cameraDetailsText.getText().toString());
             TextView cameraInfoTextView = getActivity().findViewById(R.id.cameraInformationMetadata);
-            cameraInfoTextView.setText(ArtemisActivity._cameraDetailsText.getText());
-            cameraInfoTextView.requestLayout();
+            cameraInfoTextView.setText(ArtemisActivity._cameraDetailsText.getText().toString());
         }
 
-        TextView contactInfoTextView = getActivity().findViewById(R.id.cameraInformationMetadata);
-        contactInfoTextView.setText(contactName);
+        ArrayList<String> takenByArrayList = new ArrayList<>();
+        takenByArrayList.add(contactName);
+        takenByArrayList.add(contactEmail);
+        if (showDateTime) {
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm aa", Locale.getDefault());
+            takenByArrayList.add(sdf.format(new Date()));
+        }
+        String takenByString = TextUtils.join(" / ", takenByArrayList);
+        TextView contactInfoTextView = getActivity().findViewById(R.id.takenByMetadata);
+        contactInfoTextView.setText(takenByString);
+
+        if (showGpsCoordinates || showGpsAddress) {
+            String[] gpsDetailsAndLocation = ArtemisActivity.getGPSLocationDetailStrings(getActivity());
+            TextView locationTextView = getActivity().findViewById(R.id.locationMetadata);
+            if (showGpsCoordinates) {
+                locationTextView.setText(gpsDetailsAndLocation[0]);
+            }
+            if (showGpsAddress) {
+                locationTextView.setText(gpsDetailsAndLocation[1]);
+            }
+        }
+
+        if (showTiltAndDirection) {
+            TextView tiltTextView = getActivity().findViewById(R.id.tiltMetadata);
+            tiltTextView.setText(ArtemisActivity.pictureSaveHeadingTiltString);
+        }
+
+        if (showExposure) {
+            if (this.lastPictureExposureTime_ != null) {
+                String exposureSeconds = "Exposure time: " + NumberFormat.getInstance().format(this.lastPictureExposureTime_ / 1000000000f);
+                TextView exposureTextView = getActivity().findViewById(R.id.exposureMetadata);
+                exposureTextView.setText(exposureSeconds);
+            }
+        }
+
+        TextView sunriseAndSunsetTextView = getActivity().findViewById(R.id.sunriseAndSunsetMetadata);
+        sunriseAndSunsetTextView.setText("No date chosen yet");
+
+        TextView notesTextView = getActivity().findViewById(R.id.notesMetadata);
+        if (notes.length() > 0) {
+            notesTextView.setText(notes);
+        }
+
+        if (showLensDetails) {
+            String fltext = ArtemisActivity._lensFocalLengthText.getText()
+                    .toString() + "mm";
+            TextView lensFocalLengthMetadataTextView = getActivity().findViewById(R.id.lensFocalLengthMetadata);
+            lensFocalLengthMetadataTextView.setText(fltext);
+
+            String lensMake = ArtemisActivity._lensMakeText.getText()
+                    .toString();
+            TextView lensMakeMetadataTextView = getActivity().findViewById(R.id.lensMakeMetadata);
+            lensMakeMetadataTextView.setText(lensMake);
+        }
 
         View pictureMetadataView = getActivity().findViewById(R.id.pictureWithMetadata);
         Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
         Log.i("MetadataView width", String.valueOf(pictureMetadataView.getWidth()));
         Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
-        savePicture(blankBmp, showGpsDetails);
+        savePicture(blankBmp, showGpsCoordinates || showGpsAddress);
     }
 
     public Bitmap getBitmapFromView(View view) {

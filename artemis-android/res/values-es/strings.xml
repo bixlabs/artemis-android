@@ -50,7 +50,7 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
     <string name="save_and_edit">Guardar y editar detalles</string>
     <string name="save_picture">Guardar imagen</string>
-    <string name="gps_coordinates">Coordenadas GPS</string>
+    <string name="gps_coordinates">Ubicación GPS</string>
     <string name="camera_information">Información sobre la cámara</string>
     <string name="lens_information">Información de la lente</string>
     <string name="cancel">Cancelar</string>
@@ -103,11 +103,10 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
     <string name="hangle_text">H ÁNGULO</string>
     <string name="vangle_text">V ÁNGULO</string>
-    <string name="compass_heading_text">Rumbo del Compás (N, S, E, W)</string>
+    <string name="tilt_and_direction_text">Inclinación y dirección</string>
     <string name="h_and_v_angle_text">H y V ángulo</string>
-    <string name="tilt_and_roll_text">En Altura y en Rollo</string>
     <string name="date_and_time_text">Fecha y hora</string>
-    <string name="gps_location">Detalles Ubicación GPS</string>
+    <string name="gps_address">Dirección (en lugar de coordenadas)</string>
 
     <!-- //Add Custom Camera Page -->
 
@@ -170,7 +169,7 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"Guardar Detalles de la imagen"</string>
+    <string name="metadata_description">"Guardar Detalles de la imagen"</string>
     <string name="save">"Guardar"</string>
     <string name="settings_reset_summary">"Restablecer la configuración predeterminada de Artemis. Usted no perderá ninguna de las imágenes guardadas."</string>
     <string name="settings_reset_title">"Restablecer los ajustes predeterminados"</string>
@@ -300,7 +299,5 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 	<string name="zoom_lens_delete">Eliminar Zoom</string>
 	<string name="edit_zoom_lens">Editar Zoom</string>
 	<string name="add_new_zoom_lens">Añadir nuevo objetivo zoom</string>
-    <string name="image_contact_name_hint">Your contact name</string>
-
 
 </resources>

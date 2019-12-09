@@ -73,7 +73,7 @@
     <string name="save_and_edit">"विवरण सहेजें और संपादित करें"</string>
     <string name="save_picture">"चित्र सहेजें"</string>
     <string name="gps_coordinates">"जीपीएस निर्देशांक"</string>
-    <string name="gps_location">"जीपीएस स्थान के विवरण"</string>
+    <string name="gps_address">"जीपीएस स्थान के विवरण"</string>
     <string name="camera_information">"कैमरा सूचना"</string>
     <string name="lens_information">"लेंस जानकारी"</string>
     <string name="cancel">"ठीक है"</string>
@@ -82,8 +82,7 @@
     <string name="h_and_v_angle_text">"एच और वी कोण"</string>
     <string name="vangle_text">"वी कोण"</string>
     <string name="hangle_text">"एच कोण"</string>
-    <string name="tilt_and_roll_text">"झुकाव और रोल"</string>
-    <string name="compass_heading_text">"कम्पास (एन, एस, ई, डब्ल्यू) शीर्षक"</string>
+    <string name="tilt_and_direction_text">"कम्पास (एन, एस, ई, डब्ल्यू) शीर्षक"</string>
 
     <!-- //Add Custom Camera Page -->
 
@@ -146,7 +145,7 @@
 
     <!-- //Save Picture Page -->
 
-    <string name="save_picture_details">"चित्र विवरण सहेजें"</string>
+    <string name="metadata_description">"चित्र विवरण सहेजें"</string>
     <string name="save">"सुरक्षित कीजिये"</string>
     <string name="settings_reset_summary">"आर्टेमिस डिफ़ॉल्ट सेटिंग्स को रीसेट. आप किसी भी बचाया चित्रों को खोना नहीं होगा."</string>
     <string name="settings_reset_title">"डिफ़ॉल्ट सेटिंग्स को रीसेट"</string>
@@ -276,6 +275,5 @@
 	<string name="zoom_lens_delete">ज़ूम लेंस हटाएँ</string>
 	<string name="edit_zoom_lens">ज़ूम लेंस संपादित करें</string>
 	<string name="add_new_zoom_lens">नई ज़ूम लेंस जोड़ें</string>
-    <string name="image_contact_name_hint">Your contact name</string>
 
 </resources>
