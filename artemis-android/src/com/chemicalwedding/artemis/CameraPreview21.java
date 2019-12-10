@@ -601,6 +601,8 @@ public class CameraPreview21 extends Fragment {
                     ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
         String contactEmail = artemisPrefs.getString(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, "");
+        String sunriseAndSunsetDate = artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, "");
 
         boolean showGpsCoordinates = artemisPrefs.getBoolean(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
@@ -612,12 +614,8 @@ public class CameraPreview21 extends Fragment {
                     ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
         boolean showLensDetails = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
-        boolean showLensViewAngles = artemisPrefs
-                    .getBoolean(
-                            ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
-                            true);
-        boolean showDateTime = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true);
+        boolean showSunriseAndSunset = artemisPrefs.getBoolean(
+                    ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET, true);
         boolean showTiltAndDirection = artemisPrefs.getBoolean(
                     ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true);
         boolean showExposure = artemisPrefs.getBoolean(
@@ -634,10 +632,9 @@ public class CameraPreview21 extends Fragment {
         ArrayList<String> takenByArrayList = new ArrayList<>();
         takenByArrayList.add(contactName);
         takenByArrayList.add(contactEmail);
-        if (showDateTime) {
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm aa", Locale.getDefault());
-            takenByArrayList.add(sdf.format(new Date()));
-        }
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm aa", Locale.getDefault());
+        takenByArrayList.add(sdf.format(new Date()));
+
         String takenByString = TextUtils.join(" / ", takenByArrayList);
         TextView contactInfoTextView = getActivity().findViewById(R.id.takenByMetadata);
         contactInfoTextView.setText(takenByString);
@@ -668,6 +665,9 @@ public class CameraPreview21 extends Fragment {
 
         TextView sunriseAndSunsetTextView = getActivity().findViewById(R.id.sunriseAndSunsetMetadata);
         sunriseAndSunsetTextView.setText("No date chosen yet");
+        if (showSunriseAndSunset && sunriseAndSunsetDate.length() > 0) {
+            sunriseAndSunsetTextView.setText(sunriseAndSunsetDate);
+        }
 
         TextView notesTextView = getActivity().findViewById(R.id.notesMetadata);
         if (notes.length() > 0) {

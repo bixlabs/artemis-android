@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
@@ -62,6 +64,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -81,6 +84,7 @@ import com.chemicalwedding.artemis.database.Lens;
 import com.chemicalwedding.artemis.database.ZoomLens;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.sbstrm.appirater.Appirater;
 
 public class ArtemisActivity extends Activity implements
@@ -2271,13 +2275,43 @@ public class ArtemisActivity extends Activity implements
                         .getBoolean(
                                 ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS,
                                 true));
-        ((ToggleButton) findViewById(R.id.h_and_v_angle_toggle))
+        ((ToggleButton) findViewById(R.id.sunrise_and_sunset_toggle))
                 .setChecked(artemisPrefs.getBoolean(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
-                        true));
-        ((ToggleButton) findViewById(R.id.date_and_time_toggle))
-                .setChecked(artemisPrefs.getBoolean(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true));
+                        ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET, true));
+        final EditText sunriseAndSunsetEditText = findViewById(R.id.sunrise_and_sunset);
+        sunriseAndSunsetEditText.setText(artemisPrefs.getString(
+                        ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, ""));
+        sunriseAndSunsetEditText.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.sunrise_and_sunset:
+                        final Calendar c = Calendar.getInstance();
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(ArtemisActivity.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                final int actualMonth = month + 1;
+                                String formattedDay = (dayOfMonth < 10) ? "0" + dayOfMonth : String.valueOf(dayOfMonth);
+                                String formattedMonth = (actualMonth < 10) ? "0" + actualMonth : String.valueOf(actualMonth);
+                                Calendar dateSelected = Calendar.getInstance();
+                                dateSelected.set(year, month, dayOfMonth);
+
+                                com.luckycatlabs.sunrisesunset.dto.Location location = new com.luckycatlabs.sunrisesunset.dto.Location(ArtemisActivity.pictureSaveLocation
+                                        .getLatitude(),ArtemisActivity.pictureSaveLocation
+                                        .getLongitude());
+                                SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, Calendar.getInstance().getTimeZone());
+
+                                String sunriseAndSunsetString = "Date " +  year + "-" + formattedMonth + "-" + formattedDay +
+                                        ": Sunrise " + calculator.getOfficialSunriseForDate(dateSelected) +
+                                        " Sunset " + calculator.getOfficialSunsetForDate(dateSelected);
+                                sunriseAndSunsetEditText.setText(sunriseAndSunsetString);
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                        datePickerDialog.show();
+                        break;
+                }
+            }
+        });
         ToggleButton tiltAndDirectionToggle = (ToggleButton) findViewById(R.id.tilt_and_direction_toggle);
         tiltAndDirectionToggle.setChecked(artemisPrefs.getBoolean(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true));
@@ -2287,10 +2321,6 @@ public class ArtemisActivity extends Activity implements
         ((ToggleButton) findViewById(R.id.exposure_toggle))
                 .setChecked(artemisPrefs.getBoolean(
                         ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, true));
-
-        ((ToggleButton) findViewById(R.id.save_raw_image_toggle))
-                .setChecked(artemisPrefs.getBoolean(
-                        getString(R.string.preference_key_saveRawImage), false));
 
     }
 
@@ -2330,21 +2360,17 @@ public class ArtemisActivity extends Activity implements
                     ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS,
                     ((ToggleButton) findViewById(R.id.lensDetailsToggle))
                             .isChecked());
-            editor.putBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
-                    ((ToggleButton) findViewById(R.id.h_and_v_angle_toggle))
+            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET,
+                    ((ToggleButton) findViewById(R.id.sunrise_and_sunset_toggle))
                             .isChecked());
-            editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME,
-                    ((ToggleButton) findViewById(R.id.date_and_time_toggle))
-                            .isChecked());
+            editor.putString(ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET,
+                    ((EditText) findViewById(R.id.sunrise_and_sunset)).getText()
+                            .toString());
             editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION,
                     ((ToggleButton) findViewById(R.id.tilt_and_direction_toggle))
                             .isChecked());
             editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE,
                     ((ToggleButton) findViewById(R.id.exposure_toggle))
-                            .isChecked());
-            editor.putBoolean(getString(R.string.preference_key_saveRawImage),
-                    ((ToggleButton) findViewById(R.id.save_raw_image_toggle))
                             .isChecked());
             editor.commit();
 

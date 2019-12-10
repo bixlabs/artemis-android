@@ -107,7 +107,7 @@
     <string name="h_and_v_angle_text">HおよびVアングル</string>
     <string name="tilt_and_direction_text">コンパス見出し (がN、Sメールは、W)</string>
     <string name="gps_address">GPSによる位置情報の詳細</string>
-    <string name="date_and_time_text">日付と時刻</string>
+    <string name="sunrise_and_sunset_date_text">日付と時刻</string>
 
     <!-- //Add Custom Camera Page -->
 

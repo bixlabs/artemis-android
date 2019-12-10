@@ -206,57 +206,39 @@
                             android:checked="false" />
                     </TableRow>
 
-                    <TableRow android:paddingBottom="10dip" >
+                    <TableLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="0,1" >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/date_and_time_text" />
+                        <TableRow android:paddingBottom="10dip" >
 
-                        <EditText
-                            android:id="@+id/date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="DD/MM/YYYY"
-                            android:inputType="date"
-                            android:focusable="false"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sunrise_and_sunset_date_text" />
 
-                        <ToggleButton
-                            android:id="@+id/date_and_time_toggle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true" />
-                    </TableRow>
+                            <EditText
+                                android:id="@+id/sunrise_and_sunset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:hint="@string/image_sunrise_and_sunset_hint"
+                                android:inputType="date"
+                                android:focusable="false"
+                                android:cursorVisible="false"/>
 
-                    <TableRow android:paddingBottom="10dip" >
+                            <ToggleButton
+                                android:id="@+id/sunrise_and_sunset_toggle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true" />
+                        </TableRow>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/h_and_v_angle_text" />
+                    </TableLayout>
 
-                        <ToggleButton
-                            android:id="@+id/h_and_v_angle_toggle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="false" />
-                    </TableRow>
-
-                    <TableRow android:paddingBottom="10dip" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/save_raw_image_text" />
-
-                        <ToggleButton
-                            android:id="@+id/save_raw_image_toggle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="false" />
-                    </TableRow>
                 </TableLayout>
+
             </ScrollView>
 
             <LinearLayout

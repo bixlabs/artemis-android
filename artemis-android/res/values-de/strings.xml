@@ -52,7 +52,7 @@
     <string name="h_and_v_angle_text">H und V-Winkel</string>
     <string name="tilt_and_direction_text">Kompass Position (N, S, E, W)</string>
     <string name="gps_address">GPS Standort Details</string>
-    <string name="date_and_time_text">Datum und Uhrzeit</string>
+    <string name="sunrise_and_sunset_date_text">Datum und Uhrzeit</string>
     <string name="custom_camera_options">benutzerdefinierte Kamera Optionen</string>
     <string name="custom_camera_edit_camera">Kamera bearbeiten</string>
     <string name="custom_camera_delete_camera">Kamera löschen</string>

@@ -89,7 +89,7 @@
     <string name="lens_information">Lens Information</string>
     <string name="cancel">Cancel</string>
     <string name="image_description_hint">Image title</string>
-    <string name="date_and_time_text">Date and Time</string>
+    <string name="sunrise_and_sunset_date_text">Sunrise and Sunset for location</string>
     <string name="h_and_v_angle_text">H and V Angle</string>
     <string name="vangle_text">V Angle</string>
     <string name="hangle_text">H Angle</string>
@@ -313,6 +313,6 @@
     <!-- New below here 12-01-20149 -->
     <string name="image_contact_name_hint">Your contact name</string>
     <string name="image_contact_email_hint">Your email address</string>
-
+    <string name="image_sunrise_and_sunset_hint">No date chosen yet</string>
 
 </resources>

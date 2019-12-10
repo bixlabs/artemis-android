@@ -39,7 +39,6 @@
     <string name="preference_key_volumeUpAction">volumeUpAction</string>
     <string name="preference_key_selectedzoomlens">selectedZoomLens</string>
     <string name="preference_key_previewblackwhite">previewBlackWhite</string>
-    <string name="preference_key_saveRawImage">saveRawImage</string>
     <string name="preference_key_mapVolumeKeys">mapVolumeKeys</string>
     <string name="preference_key_selectedfocusmode">selectedFocusMode1</string>
     <string name="preference_key_selectedscenemode">selectedSceneMode1</string>

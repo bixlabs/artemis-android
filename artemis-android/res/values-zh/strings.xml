@@ -115,7 +115,7 @@
     <string name="h_and_v_angle_text">H和V角</string>
     <string name="tilt_and_direction_text">罗盘航向（氮，硫，英，西）</string>
     <string name="gps_address">GPS定位详情</string>
-    <string name="date_and_time_text">日期和时间</string>
+    <string name="sunrise_and_sunset_date_text">日期和时间</string>
 
     <!-- //Add Custom Camera Page -->
 

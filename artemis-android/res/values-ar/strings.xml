@@ -76,7 +76,7 @@
     <string name="lens_information">"معلومات عدسة"</string>
     <string name="cancel">"إلغاء"</string>
     <string name="image_description_hint">"إضافة وصف"</string>
-    <string name="date_and_time_text">"التاريخ والوقت"</string>
+    <string name="sunrise_and_sunset_date_text">"التاريخ والوقت"</string>
     <string name="h_and_v_angle_text">"H و V زاوية"</string>
     <string name="vangle_text">"V زاوية"</string>
     <string name="hangle_text">"H زاوية"</string>

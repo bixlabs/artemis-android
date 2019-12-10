@@ -111,7 +111,7 @@
     <string name="h_and_v_angle_text">수평 및 수직 각도</string>
     <string name="tilt_and_direction_text">나침반 제목 (없음, 에스, 전자, 승)</string>
     <string name="gps_address">GPS 위치 세부 정보</string>
-    <string name="date_and_time_text">날짜 및 시간</string>
+    <string name="sunrise_and_sunset_date_text">날짜 및 시간</string>
 
     <!-- //Add Custom Camera Page -->
 

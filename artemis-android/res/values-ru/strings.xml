@@ -112,7 +112,7 @@ Canon 5D и 7D
     <string name="h_and_v_angle_text">H и V угол</string>
     <string name="tilt_and_direction_text">компасу (N, S, E, W)</string>
     <string name="gps_address">GPS расположение</string>
-    <string name="date_and_time_text">Дата и время</string>
+    <string name="sunrise_and_sunset_date_text">Дата и время</string>
 
     <!-- //Add Custom Camera Page -->
 

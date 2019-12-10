@@ -22,8 +22,8 @@ public class ArtemisPreferences {
 	public static final String SAVE_PICTURE_SHOW_LENS_DETAILS = "showLensDetails";
 	public static final String SAVE_PICTURE_SHOW_GPS_ADDRESS = "showGpsAddress";
 	public static final String SAVE_PICTURE_SHOW_GPS_LOCATION = "showGpsLocation";
-	public static final String SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES = "showViewAngles";
-	public static final String SAVE_PICTURE_SHOW_DATE_TIME = "showDateTime";
+	public static final String SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET = "showSunriseAndSunset";
+	public static final String SAVE_PICTURE_SUNRISE_AND_SUNSET = "sunriseAndSunset";
 	public static final String SAVE_PICTURE_SHOW_TILT_AND_DIRECTION = "showTiltAndDirecion";
 	public static final String SAVE_PICTURE_SHOW_EXPOSURE = "showExposure";
 	public static final String SELECTED_LANGUAGE = "selectedLanguage";

@@ -109,7 +109,7 @@
     <string name="h_and_v_angle_text">H e V angolo</string>
     <string name="tilt_and_direction_text">Prora bussola (N, S, E, W)</string>
     <string name="gps_address">GPS Location Dettagli</string>
-    <string name="date_and_time_text">Data e ora</string>
+    <string name="sunrise_and_sunset_date_text">Data e ora</string>
 
     <!-- //Add Custom Camera Page -->
 

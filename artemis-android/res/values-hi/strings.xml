@@ -78,7 +78,7 @@
     <string name="lens_information">"लेंस जानकारी"</string>
     <string name="cancel">"ठीक है"</string>
     <string name="image_description_hint">"एक वर्णन जोड़ें"</string>
-    <string name="date_and_time_text">"दिनांक और समय"</string>
+    <string name="sunrise_and_sunset_date_text">"दिनांक और समय"</string>
     <string name="h_and_v_angle_text">"एच और वी कोण"</string>
     <string name="vangle_text">"वी कोण"</string>
     <string name="hangle_text">"एच कोण"</string>

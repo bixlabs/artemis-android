@@ -96,7 +96,7 @@
     <string name="h_and_v_angle_text">H et V Angle</string>
     <string name="tilt_and_direction_text">Cap compas (N, S, E, W)</string>
     <string name="gps_address">Détails Site GPS</string>
-    <string name="date_and_time_text">Date et heure</string>
+    <string name="sunrise_and_sunset_date_text">Date et heure</string>
 
     <!-- //Add Custom Camera Page -->
 
