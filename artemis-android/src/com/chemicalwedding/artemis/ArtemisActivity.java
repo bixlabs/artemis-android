@@ -2969,24 +2969,27 @@ public class ArtemisActivity extends Activity implements
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case GALLERY_IMAGE_LOADER:
-                SharedPreferences artemisPrefs = getApplication()
-                        .getSharedPreferences(
-                                ArtemisPreferences.class.getSimpleName(),
-                                MODE_PRIVATE);
-                String prefix = Environment.getExternalStorageDirectory()
-                        .getAbsolutePath().toString();
-                String folder = prefix
-                        + "/"
-                        + artemisPrefs.getString(
-                        ArtemisPreferences.SAVE_PICTURE_FOLDER,
-                        getString(R.string.artemis_save_location_default));
-                String[] projection = {MediaStore.Images.Media._ID};
-                // Create the cursor pointing to the SDCard
+//                SharedPreferences artemisPrefs = getApplication()
+//                        .getSharedPreferences(
+//                                ArtemisPreferences.class.getSimpleName(),
+//                                MODE_PRIVATE);
+//                String prefix = Environment.getExternalStorageDirectory()
+//                        .getAbsolutePath().toString();
+//                String folder = prefix
+//                        + "/"
+//                        + artemisPrefs.getString(
+//                        ArtemisPreferences.SAVE_PICTURE_FOLDER,
+//                        getString(R.string.artemis_save_location_default));
+//                String[] projection = {MediaStore.Images.Media._ID};
+//                // Create the cursor pointing to the SDCard
+//                return new CursorLoader(ArtemisActivity.this,
+//                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
+//                        MediaStore.Images.Media.DATA + " like ? ",
+//                        new String[]{"%" + folder + "%"}, null);
 
-                return new CursorLoader(ArtemisActivity.this,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
-                        MediaStore.Images.Media.DATA + " like ? ",
-                        new String[]{"%" + folder + "%"}, null);
+                // New gallery here
+                Intent galleryIntent = new Intent(getBaseContext(), GalleryActivity.class);
+                startActivity(galleryIntent);
             default:
                 return null;
         }
