@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import com.chemicalwedding.artemis.database.Photo;
@@ -26,9 +26,10 @@ public class GalleryActivity extends Activity {
         recyclerView = findViewById(R.id.gallery_recycler_view);
 
         mAdapter = new GalleryAdapter(photoList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 4);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new GalleryGridSpacingItemDecoration(4, 50, true));
         recyclerView.setAdapter(mAdapter);
 
         loadGalleryData();

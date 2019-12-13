@@ -33,7 +33,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
     @Override
     public void onBindViewHolder(PhotoViewHolder holder, int position) {
         holder.name.setText(photoList.get(position).getName());
-        holder.path.setText(photoList.get(position).getPath());
 
         File imgFile = new  File(photoList.get(position).getPath());
         if(imgFile.exists()){
@@ -49,13 +48,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public TextView path;
         public ImageView imageView;
 
         public PhotoViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.photo_row_name);
-            path = view.findViewById(R.id.photo_row_path);
             imageView = view.findViewById(R.id.photo_row_imageView);
         }
     }
