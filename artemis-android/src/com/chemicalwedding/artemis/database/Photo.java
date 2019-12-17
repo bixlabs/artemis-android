@@ -1,13 +1,17 @@
 package com.chemicalwedding.artemis.database;
 
+import java.util.Date;
+
 public class Photo {
 
     private String name;
     private String path;
+    private Date date;
 
-    public Photo(String name, String path) {
+    public Photo(String name, String path, Date date) {
         this.name = name;
         this.path = path;
+        this.date = date;
     }
 
     public String getName() {
@@ -24,6 +28,14 @@ public class Photo {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(String path) {
+        this.date = date;
     }
 }
 

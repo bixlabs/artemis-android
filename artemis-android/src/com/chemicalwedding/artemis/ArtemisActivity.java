@@ -2210,7 +2210,12 @@ public class ArtemisActivity extends Activity implements
             new AsyncTask<String, Void, String>() {
                 @Override
                 protected String doInBackground(String... params) {
-                    mCameraPreview.renderPictureDetailsAndSave();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mCameraPreview.renderPictureDetailsAndSave();
+                        }
+                    });
                     System.gc();
                     return "";
                 }
@@ -2391,7 +2396,12 @@ public class ArtemisActivity extends Activity implements
                 new AsyncTask<String, Void, String>() {
                     @Override
                     protected String doInBackground(String... params) {
-                        mCameraPreview.renderPictureDetailsAndSave();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mCameraPreview.renderPictureDetailsAndSave();
+                            }
+                        });
                         System.gc();
                         return "";
                     }

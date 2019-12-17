@@ -15,7 +15,10 @@ import com.chemicalwedding.artemis.database.Photo;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoViewHolder>{
 
@@ -42,9 +45,17 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
             holder.imageView.setImageBitmap(myBitmap);
 
             try {
+                // Test retrieving exif data
+                // We can also get TAG_FOCAL_LENGTH but as Rational (x/y)
                 ExifInterface ex = new ExifInterface(imgPath);
-                String fltext = ex.getAttribute(ExifInterface.TAG_FOCAL_LENGTH) + "mm";
-                holder.name.setText(fltext);
+                String userMessage = ex.getAttribute(ExifInterface.TAG_USER_COMMENT);
+                if (userMessage != null) {
+                    Log.i("bixlabs", userMessage);
+                }
+
+                Date date = photoList.get(position).getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm aa", Locale.getDefault());
+                holder.name.setText(sdf.format(date));
             }catch (IOException ioe) {
                 Log.e("GalleryAdapter", "Could not open image for reading EXIF data");
             }

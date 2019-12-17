@@ -14,6 +14,9 @@ import android.view.View;
 import com.chemicalwedding.artemis.database.Photo;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class GalleryActivity extends Activity {
@@ -73,9 +76,15 @@ public class GalleryActivity extends Activity {
                 for (int i = 0; i < files.length; i++)
                 {
                     Log.d("bixlabs", "FileName:" + files[i].getAbsolutePath());
-                    Photo photo = new Photo(files[i].getName(), files[i].getAbsolutePath());
+                    Photo photo = new Photo(files[i].getName(), files[i].getAbsolutePath(), new Date(files[i].lastModified()));
                     photoList.add(photo);
                 }
+                Collections.sort(photoList, new Comparator<Photo>() {
+                    @Override
+                    public int compare(Photo photo, Photo t1) {
+                        return t1.getDate().compareTo(photo.getDate());
+                    }
+                });
                 mAdapter.notifyDataSetChanged();
     }
 

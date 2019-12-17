@@ -45,7 +45,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -68,12 +67,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v13.app.FragmentCompat;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Rational;
 import android.util.Size;
 import android.util.SizeF;
 import android.util.SparseIntArray;
@@ -82,9 +80,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -327,8 +323,9 @@ public class CameraPreview21 extends Fragment {
                         longRefString);
             }
 
-            ex.setAttribute(ExifInterface.TAG_FOCAL_LENGTH,
-                    _artemisMath.get_selectedLensFocalLength());
+
+            Rational flRational = Rational.parseRational(_artemisMath.get_selectedLensFocalLength() + "/1");
+            ex.setAttribute(ExifInterface.TAG_FOCAL_LENGTH, flRational.toString());
             ex.setAttribute(ExifInterface.TAG_MODEL,
                     ArtemisActivity._lensMakeText.getText().toString());
             ex.setAttribute(ExifInterface.TAG_MAKE,
@@ -346,7 +343,7 @@ public class CameraPreview21 extends Fragment {
                 ex.setAttribute(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
             }
 
-            ex.setAttribute(ExifInterface.TAG_ARTIST, "testing value here");
+            ex.setAttribute(ExifInterface.TAG_USER_COMMENT, "testing value here");
 
             ex.saveAttributes();
 
@@ -1792,10 +1789,16 @@ public class CameraPreview21 extends Fragment {
                                 .getString(R.string.image_saved_success),
                         Toast.LENGTH_SHORT);
                 toast.show();
+
                 new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... params) {
-                        renderPictureDetailsAndSave();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                renderPictureDetailsAndSave();
+                            }
+                        });
                         System.gc();
                         return null;
                     }
