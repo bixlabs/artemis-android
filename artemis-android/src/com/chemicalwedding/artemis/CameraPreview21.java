@@ -306,52 +306,52 @@ public class CameraPreview21 extends Fragment {
         }
         bitmap.recycle();
 
-        if (writeEXIFlocationInfo) {
-            try {
-                ExifInterface ex = new ExifInterface(filePath);
+        try {
+            ExifInterface ex = new ExifInterface(filePath);
 
-                if (ArtemisActivity.pictureSaveLocation != null) {
-                    String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-                            .getLatitude());
-                    String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
-                            .getLatitude());
-                    String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-                            .getLongitude());
-                    String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
-                            .getLongitude());
+            if (writeEXIFlocationInfo && ArtemisActivity.pictureSaveLocation != null) {
+                String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+                        .getLatitude());
+                String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
+                        .getLatitude());
+                String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+                        .getLongitude());
+                String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
+                        .getLongitude());
 
-                    ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE, latString);
-                    ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,
-                            latRefString);
-                    ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, longString);
-                    ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF,
-                            longRefString);
-                }
-
-                ex.setAttribute(ExifInterface.TAG_FOCAL_LENGTH,
-                        _artemisMath.get_selectedLensFocalLength());
-                ex.setAttribute(ExifInterface.TAG_MODEL,
-                        ArtemisActivity._lensMakeText.getText().toString());
-                ex.setAttribute(ExifInterface.TAG_MAKE,
-                        ArtemisActivity._cameraDetailsText.getText().toString());
-
-                NumberFormat numFormat = NumberFormat.getInstance();
-                if (this.lastPictureISOValue_ != null) {
-                    ex.setAttribute(ExifInterface.TAG_ISO, this.lastPictureISOValue_.toString());
-                }
-                if (this.lastPictureExposureTime_ != null) {
-                    String exposureSeconds = numFormat.format(this.lastPictureExposureTime_ / 1000000000f);
-                    ex.setAttribute(ExifInterface.TAG_EXPOSURE_TIME, exposureSeconds);
-                }
-                if (this.lastPictureLensAperture_ != null) {
-                    ex.setAttribute(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
-                }
-
-                ex.saveAttributes();
-
-            } catch (IOException ioe) {
-                Log.e(logTag, "Could not open image for writing EXIF data");
+                ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE, latString);
+                ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,
+                        latRefString);
+                ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, longString);
+                ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF,
+                        longRefString);
             }
+
+            ex.setAttribute(ExifInterface.TAG_FOCAL_LENGTH,
+                    _artemisMath.get_selectedLensFocalLength());
+            ex.setAttribute(ExifInterface.TAG_MODEL,
+                    ArtemisActivity._lensMakeText.getText().toString());
+            ex.setAttribute(ExifInterface.TAG_MAKE,
+                    ArtemisActivity._cameraDetailsText.getText().toString());
+
+            NumberFormat numFormat = NumberFormat.getInstance();
+            if (this.lastPictureISOValue_ != null) {
+                ex.setAttribute(ExifInterface.TAG_ISO, this.lastPictureISOValue_.toString());
+            }
+            if (this.lastPictureExposureTime_ != null) {
+                String exposureSeconds = numFormat.format(this.lastPictureExposureTime_ / 1000000000f);
+                ex.setAttribute(ExifInterface.TAG_EXPOSURE_TIME, exposureSeconds);
+            }
+            if (this.lastPictureLensAperture_ != null) {
+                ex.setAttribute(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
+            }
+
+            ex.setAttribute(ExifInterface.TAG_ARTIST, "testing value here");
+
+            ex.saveAttributes();
+
+        } catch (IOException ioe) {
+            Log.e(logTag, "Could not open image for writing EXIF data");
         }
 
         MediaScannerConnection.scanFile(getActivity(),

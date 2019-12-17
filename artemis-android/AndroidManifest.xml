@@ -10,8 +10,9 @@
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
-        android:smallScreens="true"/>
+        android:smallScreens="true" />
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <uses-sdk
@@ -37,81 +38,94 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 >>>>>>> e1c2f29 (halejlujah it fucking works!  Real pics (zoom in only for now))
+=======
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+>>>>>>> fc469ca (Add a screen to show gallery images on full screen)
 
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.location.gps"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.location.gps" />
 
     <application
-        android:name="ArtemisApplication"
+        android:name=".ArtemisApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name">
+
         <activity
-            android:name="SplashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/ArtemisFullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="ArtemisActivity"
+            android:name=".ArtemisActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen">
-        </activity>
+            android:theme="@style/ArtemisFullscreen"></activity>
         <activity
-            android:name="SettingsActivity"
+            android:name=".SettingsActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/ArtemisSysBar"/>
+            android:theme="@style/ArtemisSysBar" />
         <activity
-            android:name="AboutActivity"
+            android:name=".AboutActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/ArtemisSysBar"/>
+            android:theme="@style/ArtemisSysBar" />
         <activity
-            android:name="CustomCameraCalibrationActivity"
+            android:name=".CustomCameraCalibrationActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen"/>
-
+            android:theme="@style/ArtemisFullscreen" />
         <activity
-            android:name="CloudDataUpdateActivity"
+            android:name=".CloudDataUpdateActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/ArtemisFullscreen">
-        </activity>
-
+            android:theme="@style/ArtemisFullscreen"></activity>
         <activity
-            android:name="GalleryActivity"
+            android:name=".GalleryActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen">
-        </activity>
+            android:theme="@style/ArtemisFullscreen"></activity>
+
+        <activity
+            android:name=".PictureFullScreenActivity"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/ArtemisFullscreen"></activity>
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
             android:enabled="true">
             <intent-filter>
-                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
             </intent-filter>
         </receiver>
+
         <service
             android:name="com.google.android.gms.analytics.AnalyticsService"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

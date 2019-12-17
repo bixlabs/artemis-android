@@ -2,7 +2,9 @@ package com.chemicalwedding.artemis;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.chemicalwedding.artemis.database.Photo;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoViewHolder>{
@@ -32,12 +35,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
 
     @Override
     public void onBindViewHolder(PhotoViewHolder holder, int position) {
-        holder.name.setText(photoList.get(position).getName());
-
-        File imgFile = new  File(photoList.get(position).getPath());
+        String imgPath = photoList.get(position).getPath();
+        File imgFile = new File(imgPath);
         if(imgFile.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             holder.imageView.setImageBitmap(myBitmap);
+
+            try {
+                ExifInterface ex = new ExifInterface(imgPath);
+                String fltext = ex.getAttribute(ExifInterface.TAG_FOCAL_LENGTH) + "mm";
+                holder.name.setText(fltext);
+            }catch (IOException ioe) {
+                Log.e("GalleryAdapter", "Could not open image for reading EXIF data");
+            }
         }
     }
 
