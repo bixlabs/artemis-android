@@ -57,6 +57,14 @@ public class GalleryActivity extends Activity {
         mAdapter.setOnGalleryCheckboxItemListener(new GalleryPhotoCheckboxClickListener() {
             @Override
             public void onCheckboxClick(Integer position) {
+                final ImageButton deletePhotosButton = findViewById(R.id.delete_photos_galleryselector);
+                if (mAdapter.selectedPhotos.size() > 0) {
+                    deletePhotosButton.setAlpha(1.0f);
+                    deletePhotosButton.setEnabled(true);
+                } else {
+                    deletePhotosButton.setAlpha(0.5f);
+                    deletePhotosButton.setEnabled(false);
+                }
                 updateSelectedPhotosCounter();
             }
         });
@@ -80,7 +88,7 @@ public class GalleryActivity extends Activity {
         deletePhotosButton.setEnabled(false);
         counterTextView.setAlpha(0.5f);
         counterTextView.setEnabled(false);
-        
+
         selectImagesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,12 +97,14 @@ public class GalleryActivity extends Activity {
                 if (selectImagesButton.isSelected()) {
                     selectAllButton.setAlpha(1.0f);
                     selectNoneButton.setAlpha(1.0f);
-                    deletePhotosButton.setAlpha(1.0f);
                     counterTextView.setAlpha(1.0f);
                     selectAllButton.setEnabled(true);
                     selectNoneButton.setEnabled(true);
-                    deletePhotosButton.setEnabled(true);
                     counterTextView.setEnabled(true);
+                    if (mAdapter.selectedPhotos.size() > 0) {
+                        deletePhotosButton.setAlpha(1.0f);
+                        deletePhotosButton.setEnabled(true);
+                    }
                     mAdapter.canSelectPhotos = true;
                 }else {
                     selectAllButton.setAlpha(0.5f);

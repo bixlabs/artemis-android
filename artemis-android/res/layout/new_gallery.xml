@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9A9A9" >
+    android:background="#2B2B2B" >
 
     <LinearLayout
         android:id="@+id/photoSelectorGalleryLayout"
