@@ -8,17 +8,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.chemicalwedding.artemis.database.Photo;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+
+interface GalleryPhotoCheckboxClickListener {
+    void onCheckboxClick(Integer position);
+}
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoViewHolder>{
 
@@ -26,6 +32,18 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
 
     public GalleryAdapter(List<Photo> photoList) {
         this.photoList = photoList;
+    }
+    public Boolean canSelectPhotos = false;
+    public RecyclerItemClickListener mOnRecyclerItemListener;
+    public GalleryPhotoCheckboxClickListener mOnGalleryCheckboxItemListener;
+    public Set<Integer> selectedPhotos = new HashSet<>();
+
+    public void setRecyclerItemListener(RecyclerItemClickListener listener) {
+        mOnRecyclerItemListener = listener;
+    }
+
+    public void setOnGalleryCheckboxItemListener(GalleryPhotoCheckboxClickListener listener) {
+        mOnGalleryCheckboxItemListener = listener;
     }
 
     @Override
@@ -37,7 +55,34 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
     }
 
     @Override
-    public void onBindViewHolder(PhotoViewHolder holder, int position) {
+    public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
+        if (canSelectPhotos) {
+            holder.checkBox.setVisibility(View.VISIBLE);
+        } else {
+            holder.checkBox.setVisibility(View.INVISIBLE);
+        }
+
+        holder.checkBox.setChecked(selectedPhotos.contains(position));
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    selectedPhotos.add(position);
+                }else {
+                    selectedPhotos.remove(position);
+                }
+                mOnGalleryCheckboxItemListener.onCheckboxClick(position);
+                Log.i("bixlabs", "Selected photos: " + selectedPhotos.toString());
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnRecyclerItemListener.onItemClick(position);
+            }
+        });
+
         String imgPath = photoList.get(position).getPath();
         File imgFile = new File(imgPath);
         if(imgFile.exists()){
@@ -70,11 +115,13 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
     public class PhotoViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public ImageView imageView;
+        public CheckBox checkBox;
 
         public PhotoViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.photo_row_name);
             imageView = view.findViewById(R.id.photo_row_imageView);
+            checkBox = view.findViewById(R.id.photo_row_radioCheckBox);
         }
     }
 }

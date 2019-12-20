@@ -16,6 +16,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/empty_placeholder" />
 
+    <CheckBox
+        android:id="@+id/photo_row_radioCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="#ffd500"
+        android:checked="false"
+        app:layout_constraintEnd_toEndOf="@+id/photo_row_imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/photo_row_name"
         android:layout_width="wrap_content"
