@@ -71,11 +71,16 @@ public class GalleryActivity extends Activity {
         final Button selectAllButton = findViewById(R.id.select_all_galleryselector);
         final Button selectNoneButton = findViewById(R.id.select_none_galleryselector);
         final ImageButton deletePhotosButton = findViewById(R.id.delete_photos_galleryselector);
+        final TextView counterTextView = findViewById(R.id.counter_galleryselector);
         selectAllButton.setAlpha(0.5f);
         selectAllButton.setEnabled(false);
         selectNoneButton.setAlpha(0.5f);
         selectNoneButton.setEnabled(false);
-
+        deletePhotosButton.setAlpha(0.5f);
+        deletePhotosButton.setEnabled(false);
+        counterTextView.setAlpha(0.5f);
+        counterTextView.setEnabled(false);
+        
         selectImagesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,14 +89,22 @@ public class GalleryActivity extends Activity {
                 if (selectImagesButton.isSelected()) {
                     selectAllButton.setAlpha(1.0f);
                     selectNoneButton.setAlpha(1.0f);
+                    deletePhotosButton.setAlpha(1.0f);
+                    counterTextView.setAlpha(1.0f);
                     selectAllButton.setEnabled(true);
                     selectNoneButton.setEnabled(true);
+                    deletePhotosButton.setEnabled(true);
+                    counterTextView.setEnabled(true);
                     mAdapter.canSelectPhotos = true;
                 }else {
                     selectAllButton.setAlpha(0.5f);
                     selectNoneButton.setAlpha(0.5f);
+                    deletePhotosButton.setAlpha(0.5f);
+                    counterTextView.setAlpha(0.5f);
                     selectAllButton.setEnabled(false);
                     selectNoneButton.setEnabled(false);
+                    deletePhotosButton.setEnabled(false);
+                    counterTextView.setEnabled(false);
                     mAdapter.canSelectPhotos = false;
                 }
                 mAdapter.notifyDataSetChanged();
