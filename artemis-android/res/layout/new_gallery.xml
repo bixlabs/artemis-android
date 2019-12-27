@@ -25,7 +25,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/galleryselector_button"
-            android:text="SELECT IMAGES"
+            android:text="SELECT FILES"
             android:textColor="@color/galleryselector_button_text"
             android:textSize="12sp" />
 

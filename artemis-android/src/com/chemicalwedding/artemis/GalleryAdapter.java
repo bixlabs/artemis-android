@@ -3,6 +3,9 @@ package com.chemicalwedding.artemis;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
+import android.media.ThumbnailUtils;
+import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +15,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.chemicalwedding.artemis.database.Photo;
+
+import com.chemicalwedding.artemis.database.MediaFile;
+import com.chemicalwedding.artemis.database.MediaType;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,15 +34,15 @@ interface GalleryPhotoCheckboxClickListener {
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoViewHolder>{
 
-    private List<Photo> photoList;
+    private List<MediaFile> fileList;
 
-    public GalleryAdapter(List<Photo> photoList) {
-        this.photoList = photoList;
+    public GalleryAdapter(List<MediaFile> fileList) {
+        this.fileList = fileList;
     }
-    public Boolean canSelectPhotos = false;
+    public Boolean canSelectFiles = false;
     public RecyclerItemClickListener mOnRecyclerItemListener;
     public GalleryPhotoCheckboxClickListener mOnGalleryCheckboxItemListener;
-    public Set<Integer> selectedPhotos = new HashSet<>();
+    public Set<Integer> selectedFiles = new HashSet<>();
 
     public void setRecyclerItemListener(RecyclerItemClickListener listener) {
         mOnRecyclerItemListener = listener;
@@ -56,23 +62,23 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
 
     @Override
     public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
-        if (canSelectPhotos) {
+        if (canSelectFiles) {
             holder.checkBox.setVisibility(View.VISIBLE);
         } else {
             holder.checkBox.setVisibility(View.INVISIBLE);
         }
 
-        holder.checkBox.setChecked(selectedPhotos.contains(position));
+        holder.checkBox.setChecked(selectedFiles.contains(position));
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    selectedPhotos.add(position);
+                    selectedFiles.add(position);
                 }else {
-                    selectedPhotos.remove(position);
+                    selectedFiles.remove(position);
                 }
                 mOnGalleryCheckboxItemListener.onCheckboxClick(position);
-                Log.i("bixlabs", "Selected photos: " + selectedPhotos.toString());
+                Log.i("bixlabs", "Selected files: " + selectedFiles.toString());
             }
         });
 
@@ -83,22 +89,29 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
             }
         });
 
-        String imgPath = photoList.get(position).getPath();
-        File imgFile = new File(imgPath);
-        if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            holder.imageView.setImageBitmap(myBitmap);
+        MediaFile media = fileList.get(position);
+        File mediaFile = new File(media.getPath());
+        if(mediaFile.exists()){
+            if (media.getMediaType() == MediaType.PHOTO) {
+                Bitmap imageBitmap = BitmapFactory.decodeFile(mediaFile.getAbsolutePath());
+                holder.imageView.setImageBitmap(imageBitmap);
+                holder.movieIconContainer.setVisibility(View.INVISIBLE);
+            } else {
+                Bitmap videoPreviewBitmap = ThumbnailUtils.createVideoThumbnail(mediaFile.getAbsolutePath(), MediaStore.Video.Thumbnails.MICRO_KIND);
+                holder.imageView.setImageBitmap(videoPreviewBitmap);
+                holder.movieIconContainer.setVisibility(View.VISIBLE);
+            }
 
             try {
                 // Test retrieving exif data
                 // We can also get TAG_FOCAL_LENGTH but as Rational (x/y)
-                ExifInterface ex = new ExifInterface(imgPath);
+                ExifInterface ex = new ExifInterface(media.getPath());
                 String userMessage = ex.getAttribute(ExifInterface.TAG_USER_COMMENT);
                 if (userMessage != null) {
                     Log.i("bixlabs", userMessage);
                 }
 
-                Date date = photoList.get(position).getDate();
+                Date date = fileList.get(position).getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm aa", Locale.getDefault());
                 holder.name.setText(sdf.format(date));
             }catch (IOException ioe) {
@@ -109,12 +122,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
 
     @Override
     public int getItemCount() {
-        return photoList.size();
+        return fileList.size();
     }
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public ImageView imageView;
+        public ImageView movieIcon;
+        public ConstraintLayout movieIconContainer;
         public CheckBox checkBox;
 
         public PhotoViewHolder(View view) {
@@ -122,6 +137,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
             name = view.findViewById(R.id.photo_row_name);
             imageView = view.findViewById(R.id.photo_row_imageView);
             checkBox = view.findViewById(R.id.photo_row_radioCheckBox);
+            movieIcon = view.findViewById(R.id.photo_row_movie_icon);
+            movieIconContainer = view.findViewById(R.id.photo_row_movie_icon_container);
         }
     }
 }

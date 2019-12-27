@@ -16,6 +16,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/empty_placeholder" />
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/photo_row_movie_icon_container"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/photo_row_movie_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/movie_icon"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout >
+
     <CheckBox
         android:id="@+id/photo_row_radioCheckBox"
         android:layout_width="wrap_content"

@@ -458,6 +458,7 @@ public class CameraPreview21 extends Fragment {
         takenByArrayList.add(contactEmail);
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm aa", Locale.getDefault());
         takenByArrayList.add(sdf.format(new Date()));
+        takenByArrayList.removeAll(Collections.singleton(""));
 
         String takenByString = TextUtils.join(" / ", takenByArrayList);
         TextView contactInfoTextView = getActivity().findViewById(R.id.takenByMetadata);

@@ -16,8 +16,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.chemicalwedding.artemis.database.Photo;
+import com.chemicalwedding.artemis.database.MediaFile;
+import com.chemicalwedding.artemis.database.MediaType;
+
 import java.io.File;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,7 +29,7 @@ import java.util.List;
 
 public class GalleryActivity extends Activity {
 
-    private List<Photo> photoList = new ArrayList<>();
+    private List<MediaFile> mediaList = new ArrayList<>();
     private RecyclerView recyclerView;
     private GalleryAdapter mAdapter;
 
@@ -37,7 +40,7 @@ public class GalleryActivity extends Activity {
 
         recyclerView = findViewById(R.id.gallery_recycler_view);
 
-        mAdapter = new GalleryAdapter(photoList);
+        mAdapter = new GalleryAdapter(mediaList);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 4);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -45,12 +48,14 @@ public class GalleryActivity extends Activity {
         mAdapter.setRecyclerItemListener(new RecyclerItemClickListener() {
             @Override
             public void onItemClick(Integer position) {
-                Intent pictureFulllScreenIntent = new Intent(GalleryActivity.this, PictureFullScreenActivity.class);
-                pictureFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                Intent mediaFulllScreenIntent = new Intent(GalleryActivity.this, MediaFullScreenActivity.class);
+                mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 Bundle bundle = new Bundle();
-                bundle.putString("fullScreenPhotoPath", photoList.get(position).getPath());
-                pictureFulllScreenIntent.putExtras(bundle);
-                startActivity(pictureFulllScreenIntent);
+                bundle.putString("fullScreenMediaPath", mediaList.get(position).getPath());
+                bundle.putString("fullScreenMediaType", mediaList.get(position).getMediaType().toString());
+
+                mediaFulllScreenIntent.putExtras(bundle);
+                startActivity(mediaFulllScreenIntent);
                 recyclerView.setAdapter(mAdapter);
             }
         });
@@ -58,7 +63,7 @@ public class GalleryActivity extends Activity {
             @Override
             public void onCheckboxClick(Integer position) {
                 final ImageButton deletePhotosButton = findViewById(R.id.delete_photos_galleryselector);
-                if (mAdapter.selectedPhotos.size() > 0) {
+                if (mAdapter.selectedFiles.size() > 0) {
                     deletePhotosButton.setAlpha(1.0f);
                     deletePhotosButton.setEnabled(true);
                 } else {
@@ -101,11 +106,11 @@ public class GalleryActivity extends Activity {
                     selectAllButton.setEnabled(true);
                     selectNoneButton.setEnabled(true);
                     counterTextView.setEnabled(true);
-                    if (mAdapter.selectedPhotos.size() > 0) {
+                    if (mAdapter.selectedFiles.size() > 0) {
                         deletePhotosButton.setAlpha(1.0f);
                         deletePhotosButton.setEnabled(true);
                     }
-                    mAdapter.canSelectPhotos = true;
+                    mAdapter.canSelectFiles = true;
                 }else {
                     selectAllButton.setAlpha(0.5f);
                     selectNoneButton.setAlpha(0.5f);
@@ -115,7 +120,7 @@ public class GalleryActivity extends Activity {
                     selectNoneButton.setEnabled(false);
                     deletePhotosButton.setEnabled(false);
                     counterTextView.setEnabled(false);
-                    mAdapter.canSelectPhotos = false;
+                    mAdapter.canSelectFiles = false;
                 }
                 mAdapter.notifyDataSetChanged();
             }
@@ -124,11 +129,11 @@ public class GalleryActivity extends Activity {
         selectAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAdapter.selectedPhotos.clear();
-                for(int i=0; i<=photoList.size() - 1; i++){
-                    mAdapter.selectedPhotos.add(i);
+                mAdapter.selectedFiles.clear();
+                for(int i = 0; i<= mediaList.size() - 1; i++){
+                    mAdapter.selectedFiles.add(i);
                 }
-                Log.i("bixlabs", "All pressed: " + mAdapter.selectedPhotos.toString());
+                Log.i("bixlabs", "All pressed: " + mAdapter.selectedFiles.toString());
                 mAdapter.notifyDataSetChanged();
                 updateSelectedPhotosCounter();
             }
@@ -137,8 +142,8 @@ public class GalleryActivity extends Activity {
         selectNoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAdapter.selectedPhotos.clear();
-                Log.i("bixlabs", "None pressed: " + mAdapter.selectedPhotos.toString());
+                mAdapter.selectedFiles.clear();
+                Log.i("bixlabs", "None pressed: " + mAdapter.selectedFiles.toString());
                 mAdapter.notifyDataSetChanged();
                 updateSelectedPhotosCounter();
             }
@@ -149,16 +154,16 @@ public class GalleryActivity extends Activity {
             public void onClick(View v) {
                 new AlertDialog.Builder(GalleryActivity.this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Delete photos")
-                        .setMessage("Are you sure you want to delete selected photos?")
+                        .setTitle("Delete files")
+                        .setMessage("Are you sure you want to delete selected files?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                for(int i=0; i<=mAdapter.selectedPhotos.size() - 1; i++){
-                                    File fileToDetele = new File(photoList.get(i).getPath());
+                                for(int i = 0; i<=mAdapter.selectedFiles.size() - 1; i++){
+                                    File fileToDetele = new File(mediaList.get(i).getPath());
                                     fileToDetele.delete();
                                 }
-                                mAdapter.selectedPhotos.clear();
+                                mAdapter.selectedFiles.clear();
                                 updateSelectedPhotosCounter();
                                 loadGalleryData();
                             }
@@ -172,7 +177,7 @@ public class GalleryActivity extends Activity {
 
     private void updateSelectedPhotosCounter() {
         final TextView selectedPhotosCounter = findViewById(R.id.counter_galleryselector);
-        selectedPhotosCounter.setText(String.valueOf(mAdapter.selectedPhotos.size()));
+        selectedPhotosCounter.setText(String.valueOf(mAdapter.selectedFiles.size()));
     }
 
     private void loadGalleryData() {
@@ -187,20 +192,25 @@ public class GalleryActivity extends Activity {
                         ArtemisPreferences.SAVE_PICTURE_FOLDER,
                         getString(R.string.artemis_save_location_default));
 
-                photoList.clear();
+                mediaList.clear();
                 File directory = new File(folder);
                 File[] files = directory.listFiles();
                 Log.d("bixlabs", "Folder size: "+ files.length);
                 for (int i = 0; i < files.length; i++)
                 {
                     Log.d("bixlabs", "File name: "  + files[i].getAbsolutePath());
-                    Photo photo = new Photo(files[i].getName(), files[i].getAbsolutePath(), new Date(files[i].lastModified()));
-                    photoList.add(photo);
+                    MediaType type = MediaType.PHOTO;
+                    String mimeType = URLConnection.guessContentTypeFromName(files[i].getAbsolutePath());
+                    if (mimeType != null && mimeType.startsWith("video")) {
+                        type = MediaType.VIDEO;
+                    }
+                    MediaFile mediaFile = new MediaFile(files[i].getName(), files[i].getAbsolutePath(), new Date(files[i].lastModified()), type);
+                    mediaList.add(mediaFile);
                 }
-                Collections.sort(photoList, new Comparator<Photo>() {
+                Collections.sort(mediaList, new Comparator<MediaFile>() {
                     @Override
-                    public int compare(Photo photo, Photo t1) {
-                        return t1.getDate().compareTo(photo.getDate());
+                    public int compare(MediaFile mediaFile, MediaFile t1) {
+                        return t1.getDate().compareTo(mediaFile.getDate());
                     }
                 });
                 mAdapter.notifyDataSetChanged();

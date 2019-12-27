@@ -2,16 +2,18 @@ package com.chemicalwedding.artemis.database;
 
 import java.util.Date;
 
-public class Photo {
+public class MediaFile {
 
     private String name;
     private String path;
     private Date date;
+    private MediaType type;
 
-    public Photo(String name, String path, Date date) {
+    public MediaFile(String name, String path, Date date, MediaType type) {
         this.name = name;
         this.path = path;
         this.date = date;
+        this.type = type;
     }
 
     public String getName() {
@@ -37,5 +39,12 @@ public class Photo {
     public void setDate(String path) {
         this.date = date;
     }
-}
 
+    public MediaType getMediaType() {
+        return type;
+    }
+
+    public void setMediaType(MediaType type) {
+        this.type = type;
+    }
+}
