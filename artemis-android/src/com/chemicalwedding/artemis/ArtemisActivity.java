@@ -3,8 +3,10 @@ package com.chemicalwedding.artemis;
 import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -88,11 +90,13 @@ import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.sbstrm.appirater.Appirater;
 
 public class ArtemisActivity extends Activity implements
+        CameraPreview21.RecordingCallback,
         LoaderCallbacks<Cursor> {
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
     private static final String DEFAULT_LENS_MAKE = "All Generic 35mm Lenses";
     private static final int GALLERY_IMAGE_LOADER = 1;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT = 100;
 
     private Handler mUiHandler = new Handler();
 
@@ -169,6 +173,11 @@ public class ArtemisActivity extends Activity implements
     protected static final long lensRepeatSpeedNormal = 200;
     private String mSelectedGenre;
 
+    protected ImageView recordVideoButton;
+    protected boolean isRecordingVideo;
+    protected File videoFolder;
+    protected String videoFileName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "Creating Artemis Activity");
@@ -203,7 +212,7 @@ public class ArtemisActivity extends Activity implements
         Appirater.appLaunched(this);
 
 //        if (null == savedInstanceState) {
-        mCameraPreview = CameraPreview21.newInstance();
+        mCameraPreview = CameraPreview21.newInstance(ArtemisActivity.this);
         getFragmentManager().beginTransaction()
                 .add(R.id.cameraContainer, mCameraPreview)
                 .commit();
@@ -703,6 +712,18 @@ public class ArtemisActivity extends Activity implements
     }
 
     private void bindViewEvents() {
+        recordVideoButton = ((ImageView) findViewById(R.id.recordVideo));
+
+                recordVideoButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isRecordingVideo){
+                            mCameraPreview.stopRecording();
+                        } else {
+                            mCameraPreview.startRecording();
+                        }
+                    }
+                });
 
         // Setup help button and help overlay touch events
         ((View) findViewById(R.id.helpButtonView))
@@ -984,6 +1005,8 @@ public class ArtemisActivity extends Activity implements
         if (!saveFolder.isDirectory()) {
             saveFolder.mkdirs();
         }
+
+        createVideoFolder();
 
         ArtemisActivity.headingDisplaySelection = artemisPrefs.getInt(
                 ArtemisPreferences.HEADING_DISPLAY, 2);
@@ -1362,6 +1385,18 @@ public class ArtemisActivity extends Activity implements
         String bucketId = Integer.toString(bucketName.hashCode());
         Log.i(TAG, "Gallery Intent Bucket ID: " + bucketId);
         return bucketId;
+    }
+
+    @Override
+    public void recordingStarted() {
+        isRecordingVideo = true; // stop recording
+        recordVideoButton.setImageResource(R.drawable.cameraon);
+    }
+
+    @Override
+    public void recordingStopped(){
+        isRecordingVideo = false; // stop recording
+        recordVideoButton.setImageResource(R.drawable.cameraoff);
     }
 
     final class CameraGenreItemClickedListener implements OnItemClickListener {
@@ -3078,4 +3113,24 @@ public class ArtemisActivity extends Activity implements
         super.onConfigurationChanged(newConfig);
     }
 
+    private void createVideoFolder(){
+        videoFolder = new File(
+                Environment.getExternalStorageDirectory()
+                    .getAbsolutePath()
+                    + "/",
+            "ArtemisVideo");
+
+        if(!videoFolder.exists()){
+            videoFolder.mkdirs();
+        }
+    }
+
+    private File createVideoFile() throws IOException {
+        // TODO - en que folder se crea el archivo?
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String prepend = "VIDEO_" + timestamp + "_";
+        File videoFile = File.createTempFile(prepend, ".mp4");
+        videoFileName = videoFile.getAbsolutePath();
+        return videoFile;
+    }
 }

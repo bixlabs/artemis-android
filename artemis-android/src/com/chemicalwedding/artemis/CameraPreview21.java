@@ -59,6 +59,7 @@ import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
+import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -105,6 +106,7 @@ public class CameraPreview21 extends Fragment {
     private static final String logTag = "CameraPreview";
 
     private static final int REQUEST_CAMERA_PERMISSION = 1;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT = 2;
     private static final String FRAGMENT_DIALOG = "dialog";
 
     private ArtemisMath _artemisMath = ArtemisMath.getInstance();
@@ -143,23 +145,55 @@ public class CameraPreview21 extends Fragment {
     private int mCenterX, mCenterY;
     private boolean mFlashSupported = false;
 
-    private static int determineImageHeight(int startImageHeight) {
-        switch (CameraPreview21.savedImageSizeIndex) {
-            case 1:
-                startImageHeight = (int) Math.round(startImageHeight * 1.25);
-                break;
-            case 2:
-                startImageHeight = (int) Math.round(startImageHeight * 0.75);
-                break;
-            default:
-                break;
+    protected ImageView recordVideoButton;
+    protected boolean isRecordingVideo;
+    protected File videoFolder;
+    protected String videoFileName;
+    protected MediaRecorder mediaRecorder;
+    protected CaptureRequest.Builder captureRequestBuilder;
+    protected RecordingCallback recordingCallback;
+
+    public void startRecord(){
+        if(getActivity() == null || !(getActivity() instanceof ArtemisActivity)){
+            return;
         }
 
-        if (startImageHeight < 420) {
-            return 420;
-        } else {
-            return startImageHeight;
+        try {
+            setupMediaRecorder();
+            SurfaceTexture surfaceTexture = mTextureView.getSurfaceTexture();
+            surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
+            Surface previewSurface = new Surface(surfaceTexture);
+            Surface recordSurface = mediaRecorder.getSurface();
+                captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            captureRequestBuilder.addTarget(previewSurface);
+            captureRequestBuilder.addTarget(recordSurface);
+
+            mCameraDevice.createCaptureSession(Arrays.asList(previewSurface, recordSurface),
+                    new CameraCaptureSession.StateCallback() {
+                        @Override
+                        public void onConfigured(@NonNull CameraCaptureSession session) {
+                            try {
+                                session.setRepeatingRequest(
+                                        captureRequestBuilder.build(),
+                                        mCaptureCallback, // TODO - video shows this as null
+                                        mBackgroundHandler);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onConfigureFailed(@NonNull CameraCaptureSession session) {
+
+                        }
+                    }, null); // TODO - null = handler
+
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void startArtemisPreview() {
@@ -214,7 +248,7 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    Matrix origin, inverse;
+    Matrix origin;
 
     public void calculateZoom(boolean shouldCalcScaleFactor) {
         // Calculate the zoom scale and translation
@@ -241,9 +275,6 @@ public class CameraPreview21 extends Fragment {
                         (_artemisMath.getOutsideBox().centerY() - mCenterY) / 2);
 
             }
-
-//            inverse = new Matrix();
-//            endTransform.invert(inverse);
 
         } else {
             this.scaleFactor = 1f;
@@ -382,210 +413,6 @@ public class CameraPreview21 extends Fragment {
         SharedPreferences artemisPrefs = getActivity().getApplicationContext()
                 .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
                         Context.MODE_PRIVATE);
-
-//        boolean showGpsDetails = artemisPrefs.getBoolean(
-//                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_DETAILS, true);
-//
-//        Bitmap blankBmp = bitmapToSave;
-//
-//        if (!artemisPrefs.getBoolean(ArtemisPreferences.SAVE_RAW_IMAGE, false)) {
-//
-//            int footerHeight = (int) (bitmapToSave.getHeight() * 0.1f);
-//
-//            int sideborder = 10;
-//            // add a larger border in 4:3
-//            if ((float) bitmapToSave.getWidth() / bitmapToSave.getHeight() < 1.4) {
-//                sideborder = 259; // to match 16:9 for 4:3
-//            }
-//
-//            float widthRatio = bitmapToSave.getWidth() / 13006f;
-//
-//            float baseFontSize = footerHeight / 2.94f;
-//
-//            blankBmp = Bitmap.createBitmap(
-//                    bitmapToSave.getWidth() + sideborder,
-//                    bitmapToSave.getHeight() + footerHeight,
-//                    Bitmap.Config.ARGB_8888);
-//            System.gc();
-//            Paint paint = new Paint();
-//            Canvas canvas = new Canvas(blankBmp);
-//            canvas.drawColor(Color.WHITE);
-//            int xcord = (blankBmp.getWidth() - bitmapToSave.getWidth()) / 2;
-//            canvas.drawBitmap(bitmapToSave, xcord, 5, paint);
-//
-//            paint.setColor(Color.BLACK);
-//            paint.setAntiAlias(true);
-//            paint.setSubpixelText(true);
-//            paint.setTypeface(Typeface.DEFAULT_BOLD);
-//
-//            String fltext = ArtemisActivity._lensFocalLengthText.getText()
-//                    .toString();
-//            float fl = Float.parseFloat(fltext);
-//            int xRef = 0;
-//            if (fltext.length() < 3) {
-//                xRef = (int) (1450f * widthRatio);
-//            } else if (fltext.length() >= 3 && fl < 100) {
-//                xRef = (int) (1550f * widthRatio);
-//            } else if (fltext.length() >= 3 && fl >= 100) {
-//                xRef = (int) (1600f * widthRatio);
-//            }
-//
-//            String description = artemisPrefs.getString(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_DESCRIPTION, "");
-//            String notes = artemisPrefs.getString(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
-//            String contactName = artemisPrefs.getString(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
-//            boolean showCameraDetails = artemisPrefs.getBoolean(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
-//            boolean showLensDetails = artemisPrefs.getBoolean(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
-//            boolean showGpsLocationString = artemisPrefs.getBoolean(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
-//            boolean showLensViewAngles = artemisPrefs
-//                    .getBoolean(
-//                            ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_VIEW_ANGLES,
-//                            true);
-//            boolean showDateTime = artemisPrefs.getBoolean(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_DATE_TIME, true);
-//            boolean showHeading = artemisPrefs.getBoolean(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_HEADING, true);
-//            boolean showTiltRoll = artemisPrefs.getBoolean(
-//                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_ROLL, true);
-//
-//            paint.setTextSize(baseFontSize - 2);
-//            if (description.length() > 0) {
-//                canvas.drawText(description, 10, blankBmp.getHeight() - (baseFontSize * 2),
-//                        paint);
-//            }
-//            paint.setTextSize(baseFontSize - 4);
-//            if (showCameraDetails) {
-//                canvas.drawText(ArtemisActivity._cameraDetailsText.getText()
-//                        .toString(), 10, blankBmp.getHeight() - (baseFontSize), paint);
-//            }
-//            paint.setTypeface(null);
-//
-//            if (notes.length() > 0) {
-//                canvas.drawText(notes, 10, blankBmp.getHeight() - 10, paint);
-//            }
-//
-//            if (contactName.length() > 0) {
-//                canvas.drawText(contactName, 10, blankBmp.getHeight() - 10, paint);
-//            }
-//
-//            final int centerTextX = blankBmp.getWidth() / 2 - 30;
-//            paint.setTextSize(baseFontSize * 0.75f);
-//            if (showGpsDetails || showGpsLocationString) {
-//                String[] gpsDetailsAndLocation = ArtemisActivity
-//                        .getGPSLocationDetailStrings(getActivity());
-//                // if (showGpsDetails && gpsDetailsAndLocation.length > 0) {
-//                // canvas.drawText(gpsDetailsAndLocation[0], 10,
-//                // blankBmp.getHeight() - 10, paint);
-//                // }
-//                if (showGpsLocationString && gpsDetailsAndLocation.length > 1) {
-//                    paint.setTextAlign(Paint.Align.CENTER);
-//                    paint.setTextScaleX(0.87f);
-//                    canvas.drawText(gpsDetailsAndLocation[1], centerTextX,
-//                            blankBmp.getHeight() - 10, paint);
-//                    paint.setTextAlign(Paint.Align.LEFT);
-//                    paint.setTextScaleX(1f);
-//                }
-//            }
-//
-//            paint.setTextAlign(Paint.Align.CENTER);
-//            if (showHeading && showTiltRoll) {
-//                canvas.drawText(ArtemisActivity.pictureSaveHeadingTiltString,
-//                        centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-//            } else if (showHeading) {
-//
-//                if (ArtemisActivity.headingDisplaySelection == 1) {
-//                    canvas.drawText(
-//                            ArtemisActivity.pictureSaveHeadingTiltString,
-//                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-//                } else if (ArtemisActivity.headingDisplaySelection == 2) {
-//                    if (ArtemisActivity.pictureSaveHeadingTiltString
-//                            .contains("|")) {
-//                        canvas.drawText(
-//                                ArtemisActivity.pictureSaveHeadingTiltString
-//                                        .substring(
-//                                                0,
-//                                                ArtemisActivity.pictureSaveHeadingTiltString
-//                                                        .indexOf('|')),
-//                                centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-//                    }
-//                }
-//            } else if (showTiltRoll) {
-//                if (ArtemisActivity.headingDisplaySelection == 2
-//                        && ArtemisActivity.pictureSaveHeadingTiltString
-//                        .contains("|")) {
-//                    canvas.drawText(
-//                            ArtemisActivity.pictureSaveHeadingTiltString
-//                                    .substring(
-//                                            ArtemisActivity.pictureSaveHeadingTiltString
-//                                                    .indexOf('|'),
-//                                            ArtemisActivity.pictureSaveHeadingTiltString
-//                                                    .length() - 1),
-//                            centerTextX, blankBmp.getHeight() - (baseFontSize * 2), paint);
-//                }
-//            }
-//            paint.setTextAlign(Paint.Align.LEFT);
-//
-//            if (showLensViewAngles) {
-//                NumberFormat nf = NumberFormat.getInstance();
-//                nf.setMaximumFractionDigits(1);
-//                paint.setTypeface(Typeface.DEFAULT_BOLD);
-//                paint.setTextSize(baseFontSize - 2);
-//                String hAngle = getResources().getString(R.string.hangle_text)
-//                        + " "
-//                        + nf.format(_artemisMath.selectedLensAngleData[0])
-//                        + getString(R.string.degree_symbol);
-//                String vAngle = getResources().getString(R.string.vangle_text)
-//                        + " "
-//                        + nf.format(_artemisMath.selectedLensAngleData[1])
-//                        + getString(R.string.degree_symbol);
-//                int xadjustHAngle = hAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
-//                int xadjustVAngle = vAngle.length() < 14 ? (int) (1550 * widthRatio) : (int) (1700f * widthRatio);
-//                int xadjust = xadjustHAngle >= xadjustVAngle ? xadjustHAngle
-//                        : xadjustVAngle;
-//                canvas.drawText(hAngle, blankBmp.getWidth() - xRef - xadjust,
-//                        blankBmp.getHeight() - baseFontSize, paint);
-//                canvas.drawText(vAngle, blankBmp.getWidth() - xRef - xadjust,
-//                        blankBmp.getHeight() - 10, paint);
-//            }
-//
-//            if (showDateTime) {
-//                paint.setTypeface(Typeface.DEFAULT_BOLD);
-//                paint.setTextSize(baseFontSize * 0.6f);
-//                SimpleDateFormat sdf = new SimpleDateFormat(
-//                        "h:mm aa | MM/dd/yyyy", Locale.getDefault());
-//                canvas.drawText(sdf.format(new Date()), blankBmp.getWidth()
-//                        - xRef - (int) (widthRatio * 1640), blankBmp.getHeight() - baseFontSize * 2, paint);
-//            }
-//
-//            if (showLensDetails) {
-//                String lensMake = ArtemisActivity._lensMakeText.getText()
-//                        .toString();
-//                paint.setTextSize(baseFontSize * 2.0f);
-//                canvas.drawText(fltext + "mm", blankBmp.getWidth() - xRef,
-//                        blankBmp.getHeight() - 10, paint);
-//
-//                paint.setTextSize(baseFontSize * 0.6f);
-//                paint.setTextScaleX(0.8f);
-//                if (lensMake.length() > 28) {
-//                    paint.setTextSize(baseFontSize * 0.5f);
-//                    paint.setTextScaleX(0.7f);
-//                }
-//                paint.setTextAlign(Paint.Align.CENTER);
-//                canvas.drawText(lensMake, blankBmp.getWidth() - xRef + (int) (widthRatio * 700),
-//                        blankBmp.getHeight() - baseFontSize * 2, paint);
-//
-//                paint.setStrokeWidth(baseFontSize * 0.1f);
-//                canvas.drawLine(blankBmp.getWidth() - xRef - 13,
-//                        blankBmp.getHeight() - footerHeight + 10, blankBmp.getWidth() - xRef
-//                                - 13, blankBmp.getHeight() - 10, paint);
-//            }
-//        }
-
 
         ImageView pictureView = getActivity().findViewById(R.id.pictureViewForMetadata);
         pictureView.setImageBitmap(bitmapToSave);
@@ -731,6 +558,8 @@ public class CameraPreview21 extends Fragment {
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
+    private static int totalRotation;
+
     /**
      * Tag for the {@link android.util.Log}.
      */
@@ -756,6 +585,8 @@ public class CameraPreview21 extends Fragment {
      * Camera state: Picture was taken.
      */
     private static final int STATE_PICTURE_TAKEN = 4;
+
+    private static final int STATE_RECORDING_VIDEO = 5;
 
     /**
      * {@link android.view.TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -808,6 +639,7 @@ public class CameraPreview21 extends Fragment {
      */
 
     static protected android.util.Size previewSize;
+    protected Size videoSize;
 
     /**
      * {@link android.hardware.camera2.CameraDevice.StateCallback} is called when {@link android.hardware.camera2.CameraDevice} changes its state.
@@ -819,7 +651,18 @@ public class CameraPreview21 extends Fragment {
             // This method is called when the camera is opened.  We start camera preview here.
             mCameraOpenCloseLock.release();
             mCameraDevice = cameraDevice;
-            createCameraPreviewSession();
+
+            if (isRecordingVideo) {
+                try {
+                    createVideoFileName();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                startRecord();
+                mediaRecorder.start();
+            } else {
+                createCameraPreviewSession();
+            }
         }
 
         @Override
@@ -1043,6 +886,18 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
+    public void setRecordingCallback(RecordingCallback recordingCallback){
+        this.recordingCallback = recordingCallback;
+    }
+
+    public static CameraPreview21 newInstance(RecordingCallback recordingCallback) {
+        CameraPreview21 fragment = new CameraPreview21();
+        fragment.setRetainInstance(true);
+        fragment.setRecordingCallback(recordingCallback);
+
+        return fragment;
+    }
+
     public static CameraPreview21 newInstance() {
         CameraPreview21 fragment = new CameraPreview21();
         fragment.setRetainInstance(true);
@@ -1065,6 +920,8 @@ public class CameraPreview21 extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mFile = new File(getActivity().getExternalFilesDir(null), "pic.jpg");
+        createVideoFolder();
+        mediaRecorder = new MediaRecorder();
     }
 
     @Override
@@ -1167,6 +1024,10 @@ public class CameraPreview21 extends Fragment {
                 if (maxPreviewHeight > MAX_PREVIEW_HEIGHT) {
                     maxPreviewHeight = MAX_PREVIEW_HEIGHT;
                 }
+
+                videoSize = chooseOptimalSize(map.getOutputSizes(MediaRecorder.class),
+                        width, height, maxPreviewWidth, maxPreviewHeight, largest
+                        );
 
                 previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
                         rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
@@ -1366,6 +1227,26 @@ public class CameraPreview21 extends Fragment {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        if(requestCode == REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                recordingCallback.recordingStarted();
+                try {
+                    createVideoFileName();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+                startRecord();
+                mediaRecorder.start();
+                Toast.makeText(this.getContext(),
+                        "Permission successfuly granted!", // TODO - change message for resource string
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this.getContext(),
+                        "App needs to save video to run", // TODO - change message for string resource
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
@@ -1501,7 +1382,7 @@ public class CameraPreview21 extends Fragment {
                                 mPreviewRequest = mPreviewRequestBuilder.build();
                                 mOriginalCropRegion = mPreviewRequest.get(CaptureRequest.SCALER_CROP_REGION);
                                 mCaptureSession.setRepeatingRequest(mPreviewRequest,
-                                        mCaptureCallback, mBackgroundHandler);
+                                        null, mBackgroundHandler);
                             } catch (CameraAccessException e) {
                                 e.printStackTrace();
                             }
@@ -1898,5 +1779,89 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
+    private void createVideoFolder(){
+        videoFolder = new File(
+                Environment.getExternalStorageDirectory()
+                        .getAbsolutePath()
+                        + "/" );
 
+        if(!videoFolder.exists()){
+            videoFolder.mkdirs();
+        }
+    }
+
+    private File createVideoFileName() throws IOException {
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String prepend = "VIDEO_" + timestamp + "_";
+        File videoFile = File.createTempFile(prepend, ".mp4", videoFolder);
+        videoFileName = videoFile.getAbsolutePath();
+        return videoFile;
+    }
+
+
+    private void setupMediaRecorder() throws IOException {
+        mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        mediaRecorder.setOutputFile(videoFileName);
+        mediaRecorder.setVideoEncodingBitRate(1000000);
+        mediaRecorder.setVideoFrameRate(30);
+        mediaRecorder.setVideoSize(videoSize.getWidth(), videoSize.getHeight());
+        mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+//        mediaRecorder.setOrientationHint(totalRotation); // TODO - set total rotation
+        mediaRecorder.prepare();
+    }
+
+    public void startRecording(){
+        checkWriteStoragePermission();
+    }
+
+    public void stopRecording(){
+        mediaRecorder.stop();
+        mediaRecorder.reset();
+        startArtemisPreview();
+        recordingCallback.recordingStopped();
+    }
+
+    private void checkWriteStoragePermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED){
+                recordingCallback.recordingStarted();
+                try {
+                    createVideoFileName();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+
+                startRecord();
+                mediaRecorder.start();
+            } else {
+                if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                    Toast.makeText(this.getContext(),
+                            "App needs to be able to save videos", // TODO - change this hardcoded string for resource
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
+
+                requestPermissions(new String [] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT
+                );
+            }
+        } else {
+            recordingCallback.recordingStarted();
+            try {
+                createVideoFileName();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+
+            startRecord();
+            mediaRecorder.start();
+        }
+    }
+
+    public interface RecordingCallback {
+        void recordingStarted();
+        void recordingStopped();
+    }
 }
