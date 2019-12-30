@@ -268,7 +268,9 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/cameraoff" />
+            android:src="@drawable/video_icon"
+            android:padding="7dp"
+            />
 
         <ImageView
             android:layout_width="2dp"

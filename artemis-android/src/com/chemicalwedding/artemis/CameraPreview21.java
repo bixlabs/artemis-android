@@ -85,6 +85,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.content.Context.MODE_PRIVATE;
+
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CameraPreview21 extends Fragment {
 
@@ -412,7 +414,7 @@ public class CameraPreview21 extends Fragment {
 
         SharedPreferences artemisPrefs = getActivity().getApplicationContext()
                 .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
-                        Context.MODE_PRIVATE);
+                        MODE_PRIVATE);
 
         ImageView pictureView = getActivity().findViewById(R.id.pictureViewForMetadata);
         pictureView.setImageBitmap(bitmapToSave);
@@ -587,7 +589,7 @@ public class CameraPreview21 extends Fragment {
      */
     private static final int STATE_PICTURE_TAKEN = 4;
 
-    private static final int STATE_RECORDING_VIDEO = 5;
+    private static final int STATE_RECORDING_VIDEO = 5; // TODO - ver si es necesario o si es posible retirarlo o usarlo en los callbacks
 
     /**
      * {@link android.view.TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -1047,7 +1049,7 @@ public class CameraPreview21 extends Fragment {
                     SharedPreferences prefs = getActivity()
                             .getApplicationContext().getSharedPreferences(
                                     ArtemisPreferences.class.getSimpleName(),
-                                    Context.MODE_PRIVATE);
+                                    MODE_PRIVATE);
                     mSelectedPictureSize = largest;
                     List<Size> sizeList = Arrays.asList(availablePictureSizes);
                     int index = 0, lastWidth = 0;
@@ -1083,7 +1085,7 @@ public class CameraPreview21 extends Fragment {
 
 
                 SharedPreferences artemisPrefs = getActivity().getSharedPreferences(
-                        ArtemisPreferences.class.getSimpleName(), Activity.MODE_PRIVATE);
+                        ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
 
                 mDeviceFocalLengths = characteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS);
                 mDeviceActiveSensorSize = characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
@@ -1781,10 +1783,21 @@ public class CameraPreview21 extends Fragment {
     }
 
     private void createVideoFolder(){
-        videoFolder = new File(
-                Environment.getExternalStorageDirectory()
-                        .getAbsolutePath()
-                        + "/" );
+        SharedPreferences artemisPrefs = getActivity().getApplication()
+                .getSharedPreferences(
+                        ArtemisPreferences.class.getSimpleName(),
+                        MODE_PRIVATE);
+
+        String prefix = Environment.getExternalStorageDirectory()
+                .getAbsolutePath();
+
+        String folder = prefix
+                + "/"
+                + artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_FOLDER,
+                getString(R.string.artemis_save_location_default));
+
+        videoFolder = new File(folder);
 
         if(!videoFolder.exists()){
             videoFolder.mkdirs();
@@ -1819,7 +1832,8 @@ public class CameraPreview21 extends Fragment {
     public void stopRecording(){
         mediaRecorder.stop();
         mediaRecorder.reset();
-        startArtemisPreview();
+        onPause();
+        onResume();
         recordingCallback.recordingStopped();
     }
 

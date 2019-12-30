@@ -173,6 +173,8 @@ public class ArtemisActivity extends Activity implements
     protected static final long lensRepeatSpeedNormal = 200;
     private String mSelectedGenre;
 
+
+    protected ImageView takePictureButton;
     protected ImageView recordVideoButton;
     protected boolean isRecordingVideo;
     protected File videoFolder;
@@ -1006,8 +1008,6 @@ public class ArtemisActivity extends Activity implements
             saveFolder.mkdirs();
         }
 
-        createVideoFolder();
-
         ArtemisActivity.headingDisplaySelection = artemisPrefs.getInt(
                 ArtemisPreferences.HEADING_DISPLAY, 2);
 
@@ -1054,26 +1054,8 @@ public class ArtemisActivity extends Activity implements
             }
         }
 
-        // shutter release (take picture) button
-        ImageView takePictureButton = (ImageView) findViewById(R.id.shutterButton);
-        takePictureButton.setOnClickListener(takePictureClickListener);
-        if (autoFocusAfterLongClickShutter) {
-            takePictureButton.setOnLongClickListener(new OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    pictureSaveHeadingTiltString = headingTiltText.getText()
-                            .toString();
-
-                    mCameraPreview
-                            .autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
-                    if (autoFocusAfterLongClickShutter
-                            && !takePictureAfterReleaseLongClickShutter) {
-                        return true;
-                    }
-                    return false;
-                }
-            });
-        }
+        takePictureButton = (ImageView) findViewById(R.id.shutterButton);
+        reconfigureShutterButton();
 
         if (artemisPrefs.getBoolean(
                 getString(R.string.preference_key_mapVolumeKeys), true)) {
@@ -1389,15 +1371,47 @@ public class ArtemisActivity extends Activity implements
 
     @Override
     public void recordingStarted() {
-        isRecordingVideo = true; // stop recording
-        recordVideoButton.setImageResource(R.drawable.cameraon);
+        isRecordingVideo = true;
+        recordVideoButton.setImageResource(R.drawable.recording_video);
+        deconfigureShutterButton();
+    }
+
+    public void deconfigureShutterButton(){
+        takePictureButton.setImageResource(R.drawable.camera_icon);
+        takePictureButton.setOnClickListener(null);
+        takePictureButton.setOnLongClickListener(null);
+    }
+
+    public void reconfigureShutterButton(){
+        // shutter release (take picture) button
+        takePictureButton.setImageResource(R.drawable.camerabutton);
+        takePictureButton.setOnClickListener(takePictureClickListener);
+        if (autoFocusAfterLongClickShutter) {
+            takePictureButton.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    pictureSaveHeadingTiltString = headingTiltText.getText()
+                            .toString();
+
+                    mCameraPreview
+                            .autofocusCamera(takePictureAfterAutoFocusAndLongClickShutter);
+                    if (autoFocusAfterLongClickShutter
+                            && !takePictureAfterReleaseLongClickShutter) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+
     }
 
     @Override
     public void recordingStopped(){
-        isRecordingVideo = false; // stop recording
-        recordVideoButton.setImageResource(R.drawable.cameraoff);
+        isRecordingVideo = false;
+        recordVideoButton.setImageResource(R.drawable.video_icon);
     }
+
 
     final class CameraGenreItemClickedListener implements OnItemClickListener {
 
@@ -3111,26 +3125,5 @@ public class ArtemisActivity extends Activity implements
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-    }
-
-    private void createVideoFolder(){
-        videoFolder = new File(
-                Environment.getExternalStorageDirectory()
-                    .getAbsolutePath()
-                    + "/",
-            "ArtemisVideo");
-
-        if(!videoFolder.exists()){
-            videoFolder.mkdirs();
-        }
-    }
-
-    private File createVideoFile() throws IOException {
-        // TODO - en que folder se crea el archivo?
-        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String prepend = "VIDEO_" + timestamp + "_";
-        File videoFile = File.createTempFile(prepend, ".mp4");
-        videoFileName = videoFile.getAbsolutePath();
-        return videoFile;
     }
 }
