@@ -177,7 +177,7 @@ public class CameraPreview21 extends Fragment {
                             try {
                                 session.setRepeatingRequest(
                                         captureRequestBuilder.build(),
-                                        mCaptureCallback, // TODO - video shows this as null
+                                        mCaptureCallback,
                                         mBackgroundHandler);
                             } catch (CameraAccessException e) {
                                 e.printStackTrace();
@@ -188,7 +188,7 @@ public class CameraPreview21 extends Fragment {
                         public void onConfigureFailed(@NonNull CameraCaptureSession session) {
 
                         }
-                    }, null); // TODO - null = handler
+                    }, null);
 
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -588,8 +588,6 @@ public class CameraPreview21 extends Fragment {
      * Camera state: Picture was taken.
      */
     private static final int STATE_PICTURE_TAKEN = 4;
-
-    private static final int STATE_RECORDING_VIDEO = 5; // TODO - ver si es necesario o si es posible retirarlo o usarlo en los callbacks
 
     /**
      * {@link android.view.TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -1242,11 +1240,11 @@ public class CameraPreview21 extends Fragment {
                 startRecord();
                 mediaRecorder.start();
                 Toast.makeText(this.getContext(),
-                        "Permission successfuly granted!", // TODO - change message for resource string
+                        "Permission successfuly granted!",
                         Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this.getContext(),
-                        "App needs to save video to run", // TODO - change message for string resource
+                        "App needs to save video to run",
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -1821,7 +1819,7 @@ public class CameraPreview21 extends Fragment {
         mediaRecorder.setVideoFrameRate(30);
         mediaRecorder.setVideoSize(videoSize.getWidth(), videoSize.getHeight());
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-//        mediaRecorder.setOrientationHint(totalRotation); // TODO - set total rotation
+//        mediaRecorder.setOrientationHint(totalRotation);
         mediaRecorder.prepare();
     }
 
@@ -1853,7 +1851,7 @@ public class CameraPreview21 extends Fragment {
             } else {
                 if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                     Toast.makeText(this.getContext(),
-                            "App needs to be able to save videos", // TODO - change this hardcoded string for resource
+                            "App needs to be able to save videos",
                             Toast.LENGTH_SHORT)
                             .show();
                 }
