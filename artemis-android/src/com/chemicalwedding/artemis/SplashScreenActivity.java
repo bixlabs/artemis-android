@@ -73,11 +73,13 @@ public class SplashScreenActivity extends Activity {
                 // Initial
                 perms.put(Manifest.permission.CAMERA, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.RECORD_AUDIO, PackageManager.PERMISSION_GRANTED);
                 // Fill with results
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
                 if (perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-                        && perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        && perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                     // All Required Permissions Granted. Start the app normally
                     //checkLicenseAndStart();
                     startArtemis();
@@ -167,6 +169,7 @@ public class SplashScreenActivity extends Activity {
         addPermission(permissionsList, Manifest.permission.CAMERA);
         addPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION);
+        addPermission(permissionsList, Manifest.permission.RECORD_AUDIO);
         if (permissionsList.size() > 0) {
             requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
                     REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);

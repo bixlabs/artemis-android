@@ -151,6 +151,22 @@
             android:src="@drawable/icon_spacer" />
 
         <ImageView
+            android:id="@+id/recordVideo"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/video_icon"
+            android:padding="7dp"
+            />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
             android:id="@+id/fullscreenButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -274,21 +290,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <ImageView
-            android:id="@+id/recordVideo"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/video_icon"
-            android:padding="7dp"
-            />
-
-        <ImageView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_spacer" />
         <ImageView
             android:id="@+id/helpButtonView"
             android:layout_width="93dp"

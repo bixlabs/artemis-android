@@ -96,6 +96,8 @@
     <string name="tilt_and_direction_text">Tilt and Direction</string>
     <string name="exposure_text">Exposure</string>
 
+    <string name="save_video">Save</string>
+
     <!-- //Add Custom Camera Page -->
 
     <string name="custom_camera_name">CUSTOM CAMERA NAME</string>

@@ -46,7 +46,11 @@
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<<<<<<< HEAD
 >>>>>>> fc469ca (Add a screen to show gallery images on full screen)
+=======
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+>>>>>>> 818c4aa (Video preview is shown after recording it. User is asked if he wants to save or discard the video)
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.location.gps" />
@@ -109,6 +113,13 @@
 
         <activity
             android:name=".MediaFullScreenActivity"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/ArtemisFullscreen"></activity>
+
+        <activity
+            android:name=".SaveVideoActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"

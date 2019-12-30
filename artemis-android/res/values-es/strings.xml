@@ -299,5 +299,6 @@ Si usted encuentra un formato que es importante para usted le falta, háganoslo 
 	<string name="zoom_lens_delete">Eliminar Zoom</string>
 	<string name="edit_zoom_lens">Editar Zoom</string>
 	<string name="add_new_zoom_lens">Añadir nuevo objetivo zoom</string>
+    <string name="save_video">Guardar</string>
 
 </resources>

@@ -83,6 +83,8 @@ import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
+import com.chemicalwedding.artemis.database.MediaFile;
+import com.chemicalwedding.artemis.database.MediaType;
 import com.chemicalwedding.artemis.database.ZoomLens;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -96,12 +98,10 @@ public class ArtemisActivity extends Activity implements
 
     private static final String DEFAULT_LENS_MAKE = "All Generic 35mm Lenses";
     private static final int GALLERY_IMAGE_LOADER = 1;
-    private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT = 100;
 
     private Handler mUiHandler = new Handler();
 
     private CameraPreview21 mCameraPreview;
-//	private TextureView mTextureView;
 
     private LongPressButton _nextLensButton;
     private LongPressButton _prevLensButton;
@@ -1376,6 +1376,24 @@ public class ArtemisActivity extends Activity implements
         deconfigureShutterButton();
     }
 
+    @Override
+    public void recordingStopped(String filePath){
+        isRecordingVideo = false;
+        recordVideoButton.setImageResource(R.drawable.video_icon);
+        MediaType mediaType = MediaType.VIDEO;
+        File file = new File(filePath);
+        MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+
+        Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
+        mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        Bundle bundle = new Bundle();
+        bundle.putString("fullScreenMediaPath", mediaFile.getPath());
+        bundle.putString("fullScreenMediaType", mediaFile.getMediaType().toString());
+
+        mediaFulllScreenIntent.putExtras(bundle);
+        startActivity(mediaFulllScreenIntent);
+    }
+
     public void deconfigureShutterButton(){
         takePictureButton.setImageResource(R.drawable.camera_icon);
         takePictureButton.setOnClickListener(null);
@@ -1405,13 +1423,6 @@ public class ArtemisActivity extends Activity implements
         }
 
     }
-
-    @Override
-    public void recordingStopped(){
-        isRecordingVideo = false;
-        recordVideoButton.setImageResource(R.drawable.video_icon);
-    }
-
 
     final class CameraGenreItemClickedListener implements OnItemClickListener {
 

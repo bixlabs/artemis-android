@@ -4,25 +4,25 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-<!--    <com.chemicalwedding.artemis.CameraContainerView-->
-<!--        android:id="@+id/cameraContainer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" >-->
+    <com.chemicalwedding.artemis.CameraContainerView
+        android:id="@+id/cameraContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
 
-<!--    </com.chemicalwedding.artemis.CameraContainerView>-->
+    </com.chemicalwedding.artemis.CameraContainerView>
 
     <RelativeLayout
         android:id="@+id/overlay"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
-<!--        <com.chemicalwedding.artemis.CameraOverlay-->
-<!--            android:id="@+id/cameraOverlay"-->
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="fill_parent"-->
-<!--            android:background="@null"-->
-<!--            android:visibility="visible" />-->
+        <com.chemicalwedding.artemis.CameraOverlay
+            android:id="@+id/cameraOverlay"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/cameraOverlayTop"
@@ -154,6 +154,22 @@
             android:src="@drawable/icon_spacer" />
 
         <ImageView
+            android:id="@+id/recordVideo"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/video_icon"
+            android:padding="7dp"
+            />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
+        <ImageView
             android:id="@+id/fullscreenButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
@@ -265,22 +281,6 @@
             android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:src="@drawable/settingsbutton" />
-
-        <ImageView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_spacer" />
-
-        <ImageView
-            android:id="@+id/recordVideo"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/video_icon"
-            android:padding="7dp"
-            />
 
         <ImageView
             android:layout_width="2dp"

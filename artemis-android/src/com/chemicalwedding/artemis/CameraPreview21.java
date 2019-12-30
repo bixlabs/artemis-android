@@ -1813,13 +1813,17 @@ public class CameraPreview21 extends Fragment {
 
     private void setupMediaRecorder() throws IOException {
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         mediaRecorder.setOutputFile(videoFileName);
         mediaRecorder.setVideoEncodingBitRate(1000000);
         mediaRecorder.setVideoFrameRate(30);
         mediaRecorder.setVideoSize(videoSize.getWidth(), videoSize.getHeight());
+        mediaRecorder.setAudioChannels(2);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-//        mediaRecorder.setOrientationHint(totalRotation);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+
         mediaRecorder.prepare();
     }
 
@@ -1832,7 +1836,7 @@ public class CameraPreview21 extends Fragment {
         mediaRecorder.reset();
         onPause();
         onResume();
-        recordingCallback.recordingStopped();
+        recordingCallback.recordingStopped(videoFileName);
     }
 
     private void checkWriteStoragePermission(){
@@ -1856,7 +1860,7 @@ public class CameraPreview21 extends Fragment {
                             .show();
                 }
 
-                requestPermissions(new String [] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                requestPermissions(new String [] {Manifest.permission.WRITE_EXTERNAL_STORAGE },
                         REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT
                 );
             }
@@ -1875,6 +1879,6 @@ public class CameraPreview21 extends Fragment {
 
     public interface RecordingCallback {
         void recordingStarted();
-        void recordingStopped();
+        void recordingStopped(String filePath);
     }
 }
