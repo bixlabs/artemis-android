@@ -3,6 +3,7 @@ package com.chemicalwedding.artemis;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -79,7 +80,14 @@ public class SaveVideoActivity extends Activity {
                 }
             });
 
-            // TODO - configure editAndSaveButton to open video metadata activity
+            editAndSaveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent videoMetadataIntent = new Intent(SaveVideoActivity.this, SaveVideoMetadataActivity.class);
+                    videoMetadataIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(videoMetadataIntent);
+                }
+            });
         }
 
     }

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SaveVideoMetadataActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginEnd="15dip"
+            android:singleLine="true"
+            android:text="@string/metadata_description" />
+
+        <EditText
+            android:id="@+id/videoTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dip"
+            android:layout_marginEnd="15dip"
+            android:hint="@string/image_description_hint" />
+
+        <EditText
+            android:id="@+id/videoNotes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dip"
+            android:layout_marginEnd="15dip"
+            android:ems="10"
+            android:hint="@string/image_note_hint" />
+
+        <EditText
+            android:id="@+id/videoContactName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dip"
+            android:layout_marginEnd="15dip"
+            android:ems="10"
+            android:hint="@string/image_contact_name_hint" />
+
+        <EditText
+            android:id="@+id/videoContactEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dip"
+            android:layout_marginEnd="15dip"
+            android:layout_marginBottom="10dip"
+            android:ems="10"
+            android:hint="@string/image_contact_email_hint" />
+
+        <ScrollView
+            android:id="@+id/ScrollView_save_video"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight=".9"
+            android:layout_marginBottom="60dip">
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip"
+                android:stretchColumns="0">
+
+                <TableRow android:paddingBottom="10dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/camera_information" />
+
+                    <ToggleButton
+                        android:id="@+id/cameraDetailsToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </TableRow>
+
+                <TableRow android:paddingBottom="10dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lens_information" />
+
+                    <ToggleButton
+                        android:id="@+id/lensDetailsToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </TableRow>
+
+                <TableRow android:paddingBottom="10dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gps_coordinates" />
+
+                    <ToggleButton
+                        android:id="@+id/gpsCoordinatesToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </TableRow>
+
+                <TableRow android:paddingBottom="10dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gps_address" />
+
+                    <ToggleButton
+                        android:id="@+id/gpsAddressToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </TableRow>
+
+                <TableRow android:paddingBottom="10dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tilt_and_direction_text" />
+
+                    <ToggleButton
+                        android:id="@+id/tilt_and_direction_toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false" />
+                </TableRow>
+
+                <TableRow android:paddingBottom="10dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exposure_text" />
+
+                    <ToggleButton
+                        android:id="@+id/exposure_toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false" />
+                </TableRow>
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,1">
+
+                    <TableRow android:paddingBottom="10dip">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sunrise_and_sunset_date_text" />
+
+                        <EditText
+                            android:id="@+id/sunrise_and_sunset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:hint="@string/image_sunrise_and_sunset_hint"
+                            android:inputType="date" />
+
+                        <ToggleButton
+                            android:id="@+id/sunrise_and_sunset_toggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </TableLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginTop="-50dip"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelVideoMetadata"
+                android:layout_width="wrap_content"
+                android:layout_height="50dip"
+                android:text="@string/cancel" />
+
+            <View
+                android:layout_width="50dip"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/saveVideoMetadata"
+                android:layout_width="wrap_content"
+                android:layout_height="50dip"
+                android:layout_gravity="center"
+                android:text="@string/save" />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

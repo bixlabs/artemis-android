@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chemicalwedding.artemis"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
     android:versionCode="56"
     android:versionName="3.0.5 BETA">
@@ -61,7 +60,6 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name">
-
         <activity
             android:name=".SplashScreenActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
@@ -79,7 +77,7 @@
             android:configChanges="locale|layoutDirection|keyboardHidden|screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen"></activity>
+            android:theme="@style/ArtemisFullscreen" />
         <activity
             android:name=".SettingsActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation"
@@ -103,27 +101,31 @@
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/ArtemisFullscreen"></activity>
+            android:theme="@style/ArtemisFullscreen" />
         <activity
             android:name=".GalleryActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen"></activity>
-
+            android:theme="@style/ArtemisFullscreen" />
         <activity
             android:name=".MediaFullScreenActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen"></activity>
-
+            android:theme="@style/ArtemisFullscreen" />
         <activity
             android:name=".SaveVideoActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/ArtemisFullscreen"></activity>
+            android:theme="@style/ArtemisFullscreen" />
+        <activity
+            android:name=".SaveVideoMetadataActivity"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/ArtemisFullscreen" />
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
