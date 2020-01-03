@@ -13,8 +13,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
@@ -59,8 +61,10 @@ import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
+import android.media.MediaMetadata;
 import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
+import android.media.RemoteController;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -70,6 +74,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v13.app.FragmentCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Rational;
@@ -84,6 +89,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jcodec.containers.mp4.boxes.MetaValue;
+import org.jcodec.movtool.MetadataEditor;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -338,45 +346,11 @@ public class CameraPreview21 extends Fragment {
         try {
             ExifInterface ex = new ExifInterface(filePath);
 
-            if (writeEXIFlocationInfo && ArtemisActivity.pictureSaveLocation != null) {
-                String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-                        .getLatitude());
-                String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
-                        .getLatitude());
-                String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-                        .getLongitude());
-                String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
-                        .getLongitude());
+            Map<String, String> meta = buildMetadataAttributes();
 
-                ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE, latString);
-                ex.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,
-                        latRefString);
-                ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, longString);
-                ex.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF,
-                        longRefString);
+            for(String key: meta.keySet()) {
+                ex.setAttribute(key, meta.get(key));
             }
-
-
-            Rational flRational = Rational.parseRational(_artemisMath.get_selectedLensFocalLength() + "/1");
-            ex.setAttribute(ExifInterface.TAG_FOCAL_LENGTH, flRational.toString());
-            ex.setAttribute(ExifInterface.TAG_MODEL,
-                    ArtemisActivity._lensMakeText.getText().toString());
-            ex.setAttribute(ExifInterface.TAG_MAKE,
-                    ArtemisActivity._cameraDetailsText.getText().toString());
-
-            NumberFormat numFormat = NumberFormat.getInstance();
-            if (this.lastPictureISOValue_ != null) {
-                ex.setAttribute(ExifInterface.TAG_ISO, this.lastPictureISOValue_.toString());
-            }
-            if (this.lastPictureExposureTime_ != null) {
-                String exposureSeconds = numFormat.format(this.lastPictureExposureTime_ / 1000000000f);
-                ex.setAttribute(ExifInterface.TAG_EXPOSURE_TIME, exposureSeconds);
-            }
-            if (this.lastPictureLensAperture_ != null) {
-                ex.setAttribute(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
-            }
-
-            ex.setAttribute(ExifInterface.TAG_USER_COMMENT, "testing value here");
 
             ex.saveAttributes();
 
@@ -1834,9 +1808,83 @@ public class CameraPreview21 extends Fragment {
     public void stopRecording(){
         mediaRecorder.stop();
         mediaRecorder.reset();
+
+        try {
+            MetadataEditor editor = MetadataEditor.createFrom(new File(videoFileName));
+            Map<String, MetaValue> meta = editor.getKeyedMeta();
+
+            Map<String, String> cameraMeta = buildMetadataAttributes();
+
+            for(String key: cameraMeta.keySet()) {
+                meta.put(key, MetaValue.createString(cameraMeta.get(key)));
+            }
+
+            editor.save(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         onPause();
         onResume();
         recordingCallback.recordingStopped(videoFileName);
+    }
+
+    private Map<String, String> buildMetadataAttributes() {
+
+        SharedPreferences artemisPrefs = getActivity().getApplicationContext()
+                .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
+                        MODE_PRIVATE);
+
+        boolean showGpsCoordinates = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
+        boolean showGpsAddress = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS, true);
+
+        boolean showGps = showGpsCoordinates || showGpsAddress;
+
+        Map<String, String> metadata = new HashMap<>();
+
+        if (showGps && ArtemisActivity.pictureSaveLocation != null) {
+            String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+                    .getLatitude());
+            String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
+                    .getLatitude());
+            String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+                    .getLongitude());
+            String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
+                    .getLongitude());
+
+            metadata.put(ExifInterface.TAG_GPS_LATITUDE, latString);
+            metadata.put(ExifInterface.TAG_GPS_LATITUDE_REF, latRefString);
+            metadata.put(ExifInterface.TAG_GPS_LONGITUDE, longString);
+            metadata.put(ExifInterface.TAG_GPS_LONGITUDE_REF, longRefString);
+        }
+
+        metadata.put("title", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, ""));
+        metadata.put("author", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, ""));
+        metadata.put("contact", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, ""));
+        metadata.put("notes", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, ""));
+        metadata.put("sunrise and sunset", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, ""));
+
+        String focalLength = Rational
+                .parseRational(_artemisMath.get_selectedLensFocalLength() + "/1")
+                .toString();
+        metadata.put(ExifInterface.TAG_FOCAL_LENGTH, focalLength);
+        metadata.put(ExifInterface.TAG_MODEL, ArtemisActivity._lensMakeText.getText().toString());
+        metadata.put(ExifInterface.TAG_MAKE, ArtemisActivity._cameraDetailsText.getText().toString());
+
+        NumberFormat numFormat = NumberFormat.getInstance();
+        if (this.lastPictureISOValue_ != null) {
+            metadata.put(ExifInterface.TAG_ISO, this.lastPictureISOValue_.toString());
+        }
+        if (this.lastPictureExposureTime_ != null) {
+            String exposureSeconds = numFormat.format(this.lastPictureExposureTime_ / 1000000000f);
+            metadata.put(ExifInterface.TAG_EXPOSURE_TIME, exposureSeconds);
+        }
+        if (this.lastPictureLensAperture_ != null) {
+            metadata.put(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
+        }
+
+        return metadata;
     }
 
     private void checkWriteStoragePermission(){

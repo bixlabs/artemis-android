@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -722,6 +723,8 @@ public class ArtemisActivity extends Activity implements
                         if(isRecordingVideo){
                             mCameraPreview.stopRecording();
                         } else {
+                            if (lastKnownLocation != null)
+                                pictureSaveLocation = lastKnownLocation;
                             mCameraPreview.startRecording();
                         }
                     }
@@ -1384,6 +1387,8 @@ public class ArtemisActivity extends Activity implements
         File file = new File(filePath);
         MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
 
+        writeVideoMetadata();
+
         Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
         mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         Bundle bundle = new Bundle();
@@ -1392,6 +1397,10 @@ public class ArtemisActivity extends Activity implements
 
         mediaFulllScreenIntent.putExtras(bundle);
         startActivity(mediaFulllScreenIntent);
+    }
+
+    private void writeVideoMetadata() {
+
     }
 
     public void deconfigureShutterButton(){
@@ -2488,13 +2497,13 @@ public class ArtemisActivity extends Activity implements
         String gpsDetails = "";
         String gpsLocationString = "";
 
+        String latitude = "";
+        String longitude = "";
+
         if (pictureSaveLocation != null && gpsEnabled) {
-            gpsDetails = "Lat: "
-                    + Location.convert(pictureSaveLocation.getLatitude(),
-                    Location.FORMAT_DEGREES)
-                    + ", Long: "
-                    + Location.convert(pictureSaveLocation.getLongitude(),
-                    Location.FORMAT_DEGREES);
+            latitude = Location.convert(pictureSaveLocation.getLatitude(), Location.FORMAT_DEGREES);
+            longitude = Location.convert(pictureSaveLocation.getLongitude(), Location.FORMAT_DEGREES);
+            gpsDetails = "Lat: " + latitude + ", Long: " + longitude;
             Geocoder geocoder = new Geocoder(context);
             try {
                 List<Address> addressList = geocoder.getFromLocation(
@@ -2540,7 +2549,7 @@ public class ArtemisActivity extends Activity implements
                 Log.e(TAG, "Error retrieving geocoder location data");
             }
         }
-        return new String[]{gpsDetails, gpsLocationString};
+        return new String[]{gpsDetails, gpsLocationString, latitude, longitude};
     }
 
     final class CustomCameraClickListener implements OnItemClickListener {
