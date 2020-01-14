@@ -44,7 +44,15 @@ public class SaveVideoActivity extends Activity {
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mediaController.show(0);
+                    //mediaController.show(0);
+                    videoView.start();
+                }
+            });
+
+            videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    return false;
                 }
             });
 

@@ -783,7 +783,7 @@ public class CameraPreview21 extends Fragment {
         @Override
         public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request,
                                        @NonNull TotalCaptureResult result) {
-            CameraPreview21.this.lastPictureISOValue_ = result.get(CaptureResult.SENSOR_SENSITIVITY);
+            CameraPreview21.this.lastPictureISOValue_ = result.get(CaptureResult.SENSOR_SENSITIVITY); // TODO - Add params to callback
             CameraPreview21.this.lastPictureExposureTime_ = result.get(CaptureResult.SENSOR_EXPOSURE_TIME);
             CameraPreview21.this.lastPictureLensAperture_ = result.get(CaptureResult.LENS_APERTURE);
             process(result);

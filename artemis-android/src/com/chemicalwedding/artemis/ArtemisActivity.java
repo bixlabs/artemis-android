@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -38,6 +40,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,6 +51,7 @@ import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
+import android.util.Rational;
 import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -91,6 +95,9 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.sbstrm.appirater.Appirater;
+
+import org.jcodec.containers.mp4.boxes.MetaValue;
+import org.jcodec.movtool.MetadataEditor;
 
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
@@ -1387,6 +1394,7 @@ public class ArtemisActivity extends Activity implements
         File file = new File(filePath);
         MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
 
+        videoFileName = mediaFile.getPath();
         writeVideoMetadata();
 
         Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
@@ -1400,7 +1408,6 @@ public class ArtemisActivity extends Activity implements
     }
 
     private void writeVideoMetadata() {
-
     }
 
     public void deconfigureShutterButton(){
@@ -3146,4 +3153,5 @@ public class ArtemisActivity extends Activity implements
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
+
 }
