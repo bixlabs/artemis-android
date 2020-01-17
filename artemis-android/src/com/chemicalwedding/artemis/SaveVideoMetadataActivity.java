@@ -1,39 +1,59 @@
 package com.chemicalwedding.artemis;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.ExifInterface;
 import android.os.Bundle;
-import android.util.Rational;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ToggleButton;
 
-import java.text.NumberFormat;
+import com.chemicalwedding.artemis.database.MediaType;
+import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
+
+import org.jcodec.containers.mp4.boxes.MetaValue;
+import org.jcodec.movtool.MetadataEditor;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SaveVideoMetadataActivity extends Activity {
 
+    protected static boolean gpsEnabled = false, sensorEnabled = false;
 
-    private Integer lastPictureISOValue_;
-
-    private Long lastPictureExposureTime_;
-
-    private Float lastPictureLensAperture_;
-
-    private static ArtemisMath _artemisMath = ArtemisMath.getInstance();
+    String mediaTypeString;
+    String mediaPath;
+    HashMap<String, String> metadata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.save_video_metadata);
 
+        Bundle bundle = this.getIntent().getExtras();
+        mediaPath = bundle.getString("fullScreenMediaPath");
+        mediaTypeString = bundle.getString("fullScreenMediaType");
+        metadata = (HashMap) bundle.getSerializable("metadata");
+
         Button cancelButton = findViewById(R.id.cancelVideoMetadata);
         Button saveButton = findViewById(R.id.saveVideoMetadata);
+
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                File mediaFile = new File(mediaPath);
+                if(mediaFile.exists()) {
+                    mediaFile.delete();
+                }
+
                 finish();
             }
         });
@@ -41,103 +61,62 @@ public class SaveVideoMetadataActivity extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Save video metadata here
-//        try {
-//            MetadataEditor editor = MetadataEditor.createFrom(new File(videoFileName));
-//            Map<String, MetaValue> meta = editor.getKeyedMeta();
-//
-//            Map<String, String> cameraMeta = buildMetadataAttributes();
-//
-//            for(String key: cameraMeta.keySet()) {
-//                meta.put(key, MetaValue.createString(cameraMeta.get(key)));
-//            }
-//
-//            editor.save(false);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+                saveVideoMetadata();
+                finish();
             }
         });
     }
-    private Map<String, String> buildMetadataAttributes() {
 
-        SharedPreferences artemisPrefs = getApplicationContext()
-                .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
-                        MODE_PRIVATE);
+    private void saveVideoMetadata(){
+        HashMap<String, String> newMeta = new HashMap<>();
 
-        boolean showGpsCoordinates = artemisPrefs.getBoolean(
-                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
-        boolean showGpsAddress = artemisPrefs.getBoolean(
-                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS, true);
+        String videoTitle = ((EditText) findViewById(R.id.videoTitle)).getText().toString();
+        String videoNotes = ((EditText) findViewById(R.id.videoNotes)).getText().toString();
+        String videoContactName = ((EditText) findViewById(R.id.videoContactName)).getText().toString();
+        String videoContactEmail = ((EditText) findViewById(R.id.videoContactEmail)).getText().toString();
 
-        boolean showGps = showGpsCoordinates || showGpsAddress;
+        newMeta.put(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, videoTitle);
+        newMeta.put(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, videoNotes);
+        newMeta.put(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, videoContactName);
+        newMeta.put(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, videoContactEmail);
 
-        Map<String, String> metadata = new HashMap<>();
 
-        if (showGps && ArtemisActivity.pictureSaveLocation != null) {
-            String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-                    .getLatitude());
-            String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
-                    .getLatitude());
-            String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
-                    .getLongitude());
-            String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
-                    .getLongitude());
-
-            metadata.put(ExifInterface.TAG_GPS_LATITUDE, latString);
-            metadata.put(ExifInterface.TAG_GPS_LATITUDE_REF, latRefString);
-            metadata.put(ExifInterface.TAG_GPS_LONGITUDE, longString);
-            metadata.put(ExifInterface.TAG_GPS_LONGITUDE_REF, longRefString);
+        boolean shouldSaveCameraInformation = ((ToggleButton) findViewById(R.id.cameraDetailsToggle)).isChecked();
+        if(shouldSaveCameraInformation){
+            newMeta.put(ExifInterface.TAG_MAKE, metadata.get(ExifInterface.TAG_MAKE) );
+            newMeta.put(ExifInterface.TAG_MODEL, metadata.get(ExifInterface.TAG_MODEL));
         }
 
-        metadata.put("title", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, ""));
-        metadata.put("author", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, ""));
-        metadata.put("contact", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, ""));
-        metadata.put("notes", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, ""));
-        metadata.put("sunrise and sunset", artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, ""));
-
-        String focalLength = Rational
-                .parseRational(_artemisMath.get_selectedLensFocalLength() + "/1")
-                .toString();
-        metadata.put(ExifInterface.TAG_FOCAL_LENGTH, focalLength);
-        metadata.put(ExifInterface.TAG_MODEL, ArtemisActivity._lensMakeText.getText().toString());
-        metadata.put(ExifInterface.TAG_MAKE, ArtemisActivity._cameraDetailsText.getText().toString());
-
-        NumberFormat numFormat = NumberFormat.getInstance();
-        if (this.lastPictureISOValue_ != null) {
-            metadata.put(ExifInterface.TAG_ISO, this.lastPictureISOValue_.toString());
-        }
-        if (this.lastPictureExposureTime_ != null) {
-            String exposureSeconds = numFormat.format(this.lastPictureExposureTime_ / 1000000000f);
-            metadata.put(ExifInterface.TAG_EXPOSURE_TIME, exposureSeconds);
-        }
-        if (this.lastPictureLensAperture_ != null) {
-            metadata.put(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
+        boolean shouldSaveLensInfo = ((ToggleButton) findViewById(R.id.lensDetailsToggle)).isChecked();
+        if(shouldSaveLensInfo){
+            newMeta.put(ExifInterface.TAG_FOCAL_LENGTH, metadata.get(ExifInterface.TAG_FOCAL_LENGTH));
+            newMeta.put(ExifInterface.TAG_APERTURE, metadata.get(ExifInterface.TAG_APERTURE));
         }
 
-        return metadata;
-    }
+        boolean shouldSaveGpsInformation = ((ToggleButton) findViewById(R.id.gpsCoordinatesToggle)).isChecked();
+        if(shouldSaveGpsInformation){
+            metadata.put(ExifInterface.TAG_GPS_LATITUDE, metadata.get(ExifInterface.TAG_GPS_LATITUDE));
+            metadata.put(ExifInterface.TAG_GPS_LATITUDE_REF, metadata.get(ExifInterface.TAG_GPS_LATITUDE_REF));
+            metadata.put(ExifInterface.TAG_GPS_LONGITUDE, metadata.get(ExifInterface.TAG_GPS_LONGITUDE));
+            metadata.put(ExifInterface.TAG_GPS_LONGITUDE_REF, metadata.get(ExifInterface.TAG_GPS_LONGITUDE_REF));
+        }
 
-    public static String makeLatLongString(double d) {
-        d = Math.abs(d);
+        boolean shouldSaveExposureTime = ((ToggleButton) findViewById(R.id.exposure_toggle)).isChecked();
+        if(shouldSaveExposureTime){
+            newMeta.put(ExifInterface.TAG_EXPOSURE_TIME, metadata.get(ExifInterface.TAG_EXPOSURE_TIME));
+        }
 
-        int degrees = (int) d;
+        try {
+            MetadataEditor editor = MetadataEditor.createFrom(new File(mediaPath));
+            Map<String, MetaValue> meta = editor.getKeyedMeta();
 
-        double remainder = d - degrees;
-        int minutes = (int) (remainder * 60D);
-        // really seconds * 1000
-        int seconds = (int) (((remainder * 60D) - minutes) * 60D * 1000D);
+            for(String key: newMeta.keySet()) {
+                meta.put(key, MetaValue.createString(newMeta.get(key)));
+            }
 
-        String retVal = degrees + "/1," + minutes + "/1," + seconds + "/1000";
-        return retVal;
-    }
-
-    public static String makeLatStringRef(double lat) {
-        return lat >= 0D ? "N" : "S";
-    }
-
-    public static String makeLonStringRef(double lon) {
-        return lon >= 0D ? "E" : "W";
+            editor.save(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

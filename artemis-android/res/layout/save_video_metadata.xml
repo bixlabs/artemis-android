@@ -121,34 +121,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/gps_address" />
-
-                    <ToggleButton
-                        android:id="@+id/gpsAddressToggle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true" />
-                </TableRow>
-
-                <TableRow android:paddingBottom="10dip">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tilt_and_direction_text" />
-
-                    <ToggleButton
-                        android:id="@+id/tilt_and_direction_toggle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false" />
-                </TableRow>
-
-                <TableRow android:paddingBottom="10dip">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="@string/exposure_text" />
 
                     <ToggleButton
@@ -157,37 +129,6 @@
                         android:layout_height="wrap_content"
                         android:checked="false" />
                 </TableRow>
-
-                <TableLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="0,1">
-
-                    <TableRow android:paddingBottom="10dip">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sunrise_and_sunset_date_text" />
-
-                        <EditText
-                            android:id="@+id/sunrise_and_sunset"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="2"
-                            android:cursorVisible="false"
-                            android:focusable="false"
-                            android:hint="@string/image_sunrise_and_sunset_hint"
-                            android:inputType="date" />
-
-                        <ToggleButton
-                            android:id="@+id/sunrise_and_sunset_toggle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true" />
-                    </TableRow>
-
-                </TableLayout>
 
             </TableLayout>
 

@@ -1808,27 +1808,13 @@ public class CameraPreview21 extends Fragment {
     public void stopRecording(){
         mediaRecorder.stop();
         mediaRecorder.reset();
-
-        try {
-            MetadataEditor editor = MetadataEditor.createFrom(new File(videoFileName));
-            Map<String, MetaValue> meta = editor.getKeyedMeta();
-
-            Map<String, String> cameraMeta = buildMetadataAttributes();
-
-            for(String key: cameraMeta.keySet()) {
-                meta.put(key, MetaValue.createString(cameraMeta.get(key)));
-            }
-
-            editor.save(false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        HashMap<String, String> cameraMeta = buildMetadataAttributes();
         onPause();
         onResume();
-        recordingCallback.recordingStopped(videoFileName);
+        recordingCallback.recordingStopped(videoFileName, cameraMeta);
     }
 
-    private Map<String, String> buildMetadataAttributes() {
+    private HashMap<String, String> buildMetadataAttributes() {
 
         SharedPreferences artemisPrefs = getActivity().getApplicationContext()
                 .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
@@ -1841,7 +1827,7 @@ public class CameraPreview21 extends Fragment {
 
         boolean showGps = showGpsCoordinates || showGpsAddress;
 
-        Map<String, String> metadata = new HashMap<>();
+        HashMap<String, String> metadata = new HashMap<>();
 
         if (showGps && ArtemisActivity.pictureSaveLocation != null) {
             String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
@@ -1883,6 +1869,7 @@ public class CameraPreview21 extends Fragment {
         if (this.lastPictureLensAperture_ != null) {
             metadata.put(ExifInterface.TAG_APERTURE, numFormat.format(this.lastPictureLensAperture_));
         }
+        metadata.put("testmetadata", "test value for metadata");
 
         return metadata;
     }
@@ -1927,6 +1914,6 @@ public class CameraPreview21 extends Fragment {
 
     public interface RecordingCallback {
         void recordingStarted();
-        void recordingStopped(String filePath);
+        void recordingStopped(String filePath, HashMap<String, String> cameraMetadata);
     }
 }

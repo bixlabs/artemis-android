@@ -1,23 +1,11 @@
 package com.chemicalwedding.artemis;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -40,7 +28,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -51,7 +38,6 @@ import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
-import android.util.Rational;
 import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -96,8 +82,14 @@ import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.sbstrm.appirater.Appirater;
 
-import org.jcodec.containers.mp4.boxes.MetaValue;
-import org.jcodec.movtool.MetadataEditor;
+import java.io.File;
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
@@ -1387,7 +1379,7 @@ public class ArtemisActivity extends Activity implements
     }
 
     @Override
-    public void recordingStopped(String filePath){
+    public void recordingStopped(String filePath, HashMap<String, String> cameraMetadata){
         isRecordingVideo = false;
         recordVideoButton.setImageResource(R.drawable.video_icon);
         MediaType mediaType = MediaType.VIDEO;
@@ -1395,19 +1387,16 @@ public class ArtemisActivity extends Activity implements
         MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
 
         videoFileName = mediaFile.getPath();
-        writeVideoMetadata();
 
         Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
         mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         Bundle bundle = new Bundle();
         bundle.putString("fullScreenMediaPath", mediaFile.getPath());
         bundle.putString("fullScreenMediaType", mediaFile.getMediaType().toString());
+        bundle.putSerializable("metadata", cameraMetadata);
 
         mediaFulllScreenIntent.putExtras(bundle);
         startActivity(mediaFulllScreenIntent);
-    }
-
-    private void writeVideoMetadata() {
     }
 
     public void deconfigureShutterButton(){
