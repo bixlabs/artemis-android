@@ -1396,6 +1396,7 @@ public class ArtemisActivity extends Activity implements
         bundle.putSerializable("metadata", cameraMetadata);
 
         mediaFulllScreenIntent.putExtras(bundle);
+        reconfigureShutterButton();
         startActivity(mediaFulllScreenIntent);
     }
 
