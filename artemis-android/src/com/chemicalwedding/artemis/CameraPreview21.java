@@ -224,7 +224,7 @@ public class CameraPreview21 extends Fragment {
                     totalScreenHeight, pixelDensityScale, effectiveHAngle,
                     effectiveVAngle);
             _artemisMath.calculateLargestLens();
-            _artemisMath.selectFirstMeaningFullLens();
+//            _artemisMath.selectFirstMeaningFullLens();
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
             _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
@@ -1432,7 +1432,7 @@ public class CameraPreview21 extends Fragment {
                     CameraMetadata.CONTROL_AF_TRIGGER_START);
             // Tell #mCaptureCallback to wait for the lock.
             mState = STATE_WAITING_LOCK;
-            mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(), mCaptureCallback,
+            mCaptureSession.capture(mPreviewRequestBuilder.build(), mCaptureCallback,
                     mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();

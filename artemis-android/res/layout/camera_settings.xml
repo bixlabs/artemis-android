@@ -61,6 +61,12 @@
         </ListView>
 
         <ListView
+            android:id="@+id/cameraManufacturerList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+
+        <ListView
             android:id="@+id/cameraSensorList"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >

@@ -1,7 +1,17 @@
 package com.chemicalwedding.artemis;
 
+<<<<<<< HEAD
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+=======
+import java.io.File;
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.Manifest;
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +25,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -37,10 +48,14 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+<<<<<<< HEAD
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+=======
+import android.support.v4.content.ContextCompat;
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
@@ -123,8 +138,9 @@ public class ArtemisActivity extends Activity implements
 {
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
-    private static final String DEFAULT_LENS_MAKE = "All Generic 35mm Lenses";
+    private static final String DEFAULT_LENS_MAKE = "Generic Spherical Lenses";
     private static final int GALLERY_IMAGE_LOADER = 1;
+    private static final int NUM_CAMERA_PAGES = 4;
 
     private Handler mUiHandler = new Handler();
 
@@ -151,7 +167,7 @@ public class ArtemisActivity extends Activity implements
     protected static int currentViewId;
     // camera related
     private Camera _selectedCamera, tempSelectedCamera;
-    private ArrayList<String> _allCameraGenres;
+    private ArrayList<String> _allCameraFormats;
     // camera rowid paired with ratio
     private ArrayList<Pair<Integer, String>> _ratiosListForCamera;
 
@@ -198,7 +214,7 @@ public class ArtemisActivity extends Activity implements
 
     protected static final long lensRepeatSpeedCustomLens = 35;
     protected static final long lensRepeatSpeedNormal = 200;
-    private String mSelectedGenre;
+    private String mSelectedFormat;
 
 
     protected ImageView takePictureButton;
@@ -697,7 +713,8 @@ public class ArtemisActivity extends Activity implements
             criteria.setPowerRequirement(Criteria.POWER_LOW);
 
             locationProvider = locationManager.getBestProvider(criteria, true);
-            if (locationProvider != null) {
+            if (locationProvider != null
+                    && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
                 lastKnownLocation = locationManager
                         .getLastKnownLocation(locationProvider);
                 Log.d(TAG, "Last known location is "
@@ -984,7 +1001,7 @@ public class ArtemisActivity extends Activity implements
                     public void onClick(View v) {
                         int displayed = _lensSettingsFlipper
                                 .getDisplayedChild();
-                        if (displayed > 0 && displayed < 2
+                        if (displayed > 0 && displayed < 3
                                 && !wasFocalLengthButtonPressed) {
                             _lensSettingsFlipper.setInAnimation(
                                     ArtemisActivity.this, R.anim.slide_in_left);
@@ -998,7 +1015,7 @@ public class ArtemisActivity extends Activity implements
                                 || wasFocalLengthButtonPressed) {
                             wasFocalLengthButtonPressed = false;
                             openArtemisCameraPreviewView();
-                        } else if (displayed == 2) {
+                        } else if (displayed == 3) {
                             // Custom zoom lens, return to first page
                             wasFocalLengthButtonPressed = false;
                             _lensSettingsFlipper.setInAnimation(
@@ -1175,8 +1192,9 @@ public class ArtemisActivity extends Activity implements
             // .postOnWorkerThread(new Runnable() {
             // @Override
             // public void run() {
-            _allCameraGenres = _artemisDBHelper.getCameraGenres();
-            _allCameraGenres.add(getString(R.string.custom_cameras));
+            _allCameraFormats = _artemisDBHelper.getCameraFormats();
+//            _allCameraGenres = _artemisDBHelper.getCameraGenres();
+            _allCameraFormats.add(getString(R.string.custom_cameras));
         }
         // }
         // });
@@ -1313,6 +1331,7 @@ public class ArtemisActivity extends Activity implements
                 ArtemisPreferences.SELECTED_CAMERA_ROW, Integer.MAX_VALUE);
         String lensMake = artemisPrefs.getString(
                 ArtemisPreferences.SELECTED_LENS_MAKE, DEFAULT_LENS_MAKE);
+        int selectedLensIndex = artemisPrefs.getInt(ArtemisPreferences.SELECTED_LENS_INDEX, -1);
         int selectedZoomLensPK = artemisPrefs.getInt(
                 getString(R.string.preference_key_selectedzoomlens), -1);
 
@@ -1334,8 +1353,7 @@ public class ArtemisActivity extends Activity implements
             _selectedCamera = new Camera(selectedCustomCamera);
             tempSelectedCamera = _selectedCamera;
             _artemisMath.setSelectedCamera(_selectedCamera);
-            lensMake = DEFAULT_LENS_MAKE;
-
+//            lensMake = DEFAULT_LENS_MAKE;
             _cameraDetailsText.setText(selectedCustomCamera.getName() + " "
                     + _selectedCamera.getRatio());
         }
@@ -1358,6 +1376,10 @@ public class ArtemisActivity extends Activity implements
             }
             Log.d(TAG, "Setting selected lens rowids: " + selectedLensesRowIds);
             setSelectedLenses(selectedLensesRowIds, true, false);
+            _artemisMath.selectFirstMeaningFullLens();
+            if (selectedLensIndex >= 0 && selectedLensIndex < _selectedLenses.size()) {
+                setSelectedLensIndex(selectedLensIndex);
+            }
         } else {
             setSelectedZoomLens(
                     _artemisDBHelper.getZoomLens(selectedZoomLensPK), false);
@@ -1386,7 +1408,7 @@ public class ArtemisActivity extends Activity implements
             case R.id.cameraSettings:
                 int currentDisplayedChild = _cameraSettingsFlipper
                         .getDisplayedChild();
-                if (currentDisplayedChild > 0 && currentDisplayedChild != 3) {
+                if (currentDisplayedChild > 0 && currentDisplayedChild != NUM_CAMERA_PAGES) {
                     // If we aren't at the first page (or third), go back to the
                     // previous page
                     _cameraSettingsFlipper.setInAnimation(this,
@@ -1395,7 +1417,7 @@ public class ArtemisActivity extends Activity implements
                             R.anim.slide_out_right);
                     _cameraSettingsFlipper
                             .setDisplayedChild(currentDisplayedChild - 1);
-                } else if (currentDisplayedChild == 3) {
+                } else if (currentDisplayedChild == NUM_CAMERA_PAGES) {
                     // Custom camera page, go back to the first page
                     _cameraSettingsFlipper.setInAnimation(this,
                             R.anim.slide_in_left);
@@ -1510,12 +1532,12 @@ public class ArtemisActivity extends Activity implements
 
         ListView cameraFormatList = (ListView) findViewById(R.id.cameraFormatList);
         ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
-                R.layout.text_list_item, _allCameraGenres);
+                R.layout.text_list_item, _allCameraFormats);
         cameraFormatList.setAdapter(formatAdapter);
         cameraFormatList.setTextFilterEnabled(true);
 
         cameraFormatList
-                .setOnItemClickListener(new CameraGenreItemClickedListener());
+                .setOnItemClickListener(new CameraFormatItemClickedListener());
         cameraFormatList.requestFocus();
     }
 
@@ -1527,30 +1549,29 @@ public class ArtemisActivity extends Activity implements
         currentViewId = R.id.lensSettings;
         addCustomLensLayout.setVisibility(View.INVISIBLE);
 
-        ArrayList<String> lensMakes = null;
-        if (tempSelectedCamera != null && tempSelectedCamera.getRowid() != null
-                && tempSelectedCamera.getRowid() == -1) {
-            // This is a custom camera
-            lensMakes = new ArrayList<String>();
-            lensMakes.add(DEFAULT_LENS_MAKE);
-        } else {
-            // Regular db camera
-            String[] lensFormatsForCamera = tempSelectedCamera.getLenses()
-                    .split(",");
-            lensMakes = _artemisDBHelper
-                    .getLensMakeForLensFormat(lensFormatsForCamera);
-        }
-        lensMakes.add(getString(R.string.custom_zoom_lens));
-        Log.i(TAG, "Lens makers available: " + lensMakes.size());
+        ArrayList<String> lensManufacturers = _artemisDBHelper
+                .getLensManufacturers();
+//        if (tempSelectedCamera != null && tempSelectedCamera.getRowid() != null
+//                && tempSelectedCamera.getRowid() == -1) {
+//            // This is a custom camera
+//            lensManufacturers = new ArrayList<String>();
+//            lensManufacturers.add(DEFAULT_LENS_MAKE);
+//        } else {
+//            // Regular db camera
+//            lensManufacturers = _artemisDBHelper
+//                    .getLensManufacturers();
+//        }
+        lensManufacturers.add(getString(R.string.custom_zoom_lens));
+        Log.i(TAG, "Lens manufacturers available: " + lensManufacturers.size());
 
-        ListView lensMakerList = (ListView) findViewById(R.id.lensMakerList);
+        ListView lensManufacturerList = (ListView) findViewById(R.id.lensManufacturerList);
         ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
-                R.layout.text_list_item, lensMakes);
-        lensMakerList.setAdapter(formatAdapter);
-        lensMakerList.setTextFilterEnabled(true);
+                R.layout.text_list_item, lensManufacturers);
+        lensManufacturerList.setAdapter(formatAdapter);
+        lensManufacturerList.setTextFilterEnabled(true);
 
-        lensMakerList
-                .setOnItemClickListener(new LensMakerItemClickedListener());
+        lensManufacturerList
+                .setOnItemClickListener(new LensManufacturerItemClickedListener());
     }
 
     private void openArtemisCameraPreviewView() {
@@ -1584,6 +1605,7 @@ public class ArtemisActivity extends Activity implements
         return bucketId;
     }
 
+<<<<<<< HEAD
     @Override
     public void recordingStarted() {
         recordVideoChronometerContainer.setVisibility(View.VISIBLE);
@@ -1789,12 +1811,15 @@ public class ArtemisActivity extends Activity implements
     }
 
     final class CameraGenreItemClickedListener implements OnItemClickListener {
+=======
+    final class CameraFormatItemClickedListener implements OnItemClickListener {
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View selectedItem,
                                 int index, long arg3) {
             TextView selectedTextView = (TextView) selectedItem;
-            mSelectedGenre = selectedTextView.getText().toString();
+            mSelectedFormat = selectedTextView.getText().toString();
 
             if (index == adapterView.getCount() - 1) {
                 // Custom cameras was selected...
@@ -1818,24 +1843,24 @@ public class ArtemisActivity extends Activity implements
                         R.anim.slide_in_right);
                 _cameraSettingsFlipper.setOutAnimation(ArtemisActivity.this,
                         R.anim.slide_out_left);
-                _cameraSettingsFlipper.setDisplayedChild(3);
+                // set the displayed child to the last page ( == num pages)
+                _cameraSettingsFlipper.setDisplayedChild(NUM_CAMERA_PAGES);
                 return;
             }
 
-            Log.i(TAG, "Camera genre selected: " + mSelectedGenre);
-            // _currentCameraFormat = selectedFormat;
-            ArrayList<String> sensorListForCamera = _artemisDBHelper
-                    .getCameraSensorsForGenre(mSelectedGenre);
-            Log.i(TAG, "Sensors available: " + sensorListForCamera.size());
+            Log.i(TAG, "Camera format selected: " + mSelectedFormat);
+            ArrayList<String> manufacturerListForCameraFormat = _artemisDBHelper
+                    .getCameraManufacturersForFormat(mSelectedFormat);
+            Log.i(TAG, "Manufacturers available: " + manufacturerListForCameraFormat.size());
 
-            ListView cameraSensorList = (ListView) findViewById(R.id.cameraSensorList);
+            ListView cameraManufacturersList = (ListView) findViewById(R.id.cameraManufacturerList);
             ArrayAdapter<String> sensorAdapter = new ArrayAdapter<String>(
                     ArtemisActivity.this, R.layout.text_list_item,
-                    sensorListForCamera);
-            cameraSensorList.setAdapter(sensorAdapter);
-            cameraSensorList.setTextFilterEnabled(true);
-            cameraSensorList
-                    .setOnItemClickListener(new CameraSensorItemClickedListener());
+                    manufacturerListForCameraFormat);
+            cameraManufacturersList.setAdapter(sensorAdapter);
+            cameraManufacturersList.setTextFilterEnabled(true);
+            cameraManufacturersList
+                    .setOnItemClickListener(new CameraManufacturerItemClickedListener());
             _cameraSettingsFlipper.setInAnimation(ArtemisActivity.this,
                     R.anim.slide_in_right);
             _cameraSettingsFlipper.setOutAnimation(ArtemisActivity.this,
@@ -1870,14 +1895,14 @@ public class ArtemisActivity extends Activity implements
 
             }
 
-            String squeeze = ((EditText) findViewById(R.id.custom_camera_squeezeratio))
-                    .getText().toString();
-            try {
-                float squeezeFloat = Float.parseFloat(squeeze);
-                customCam.putExtra("squeeze", squeezeFloat);
-            } catch (NumberFormatException p) {
-
-            }
+//            String squeeze = ((EditText) findViewById(R.id.custom_camera_squeezeratio))
+//                    .getText().toString();
+//            try {
+//                float squeezeFloat = Float.parseFloat(squeeze);
+//                customCam.putExtra("squeeze", squeezeFloat);
+//            } catch (NumberFormatException p) {
+//
+//            }
 
             CharSequence name = ((EditText) findViewById(R.id.custom_camera_name))
                     .getText().toString();
@@ -2020,11 +2045,10 @@ public class ArtemisActivity extends Activity implements
 
         ((TextView) findViewById(R.id.lensMakeText))
                 .setText(_artemisMath.selectedZoomLens.toString());
-        _artemisMath.resetTouchToCenter();
         _artemisMath.calculateZoomLenses();
-
         _artemisMath.calculateRectBoxesAndLabelsForLenses();
         _artemisMath.selectFirstMeaningFullLens();
+        _artemisMath.resetTouchToCenter();
         _artemisMath.onFullscreenOffSelectLens();
         mCameraPreview.calculateZoom(true);
         reconfigureNextAndPreviousLensButtons();
@@ -2041,6 +2065,40 @@ public class ArtemisActivity extends Activity implements
 
     }
 
+    final class CameraManufacturerItemClickedListener implements OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> arg0, View selectedItem,
+                                int arg2, long arg3) {
+            TextView selectedTextView = (TextView) selectedItem;
+            String selectedManufacturer = selectedTextView.getText().toString();
+            Log.i(TAG, "Camera manufacturer selected: " + selectedManufacturer);
+            List<String> cameraSensors = _artemisDBHelper
+                    .getCameraSensorsForManufacturer(selectedManufacturer);
+            Log.i(TAG, "sensors available: " + cameraSensors.size());
+
+            ListView cameraSensorList = (ListView) findViewById(R.id.cameraSensorList);
+            ArrayAdapter<String> sensorAdaptor = new ArrayAdapter<String>(
+                    ArtemisActivity.this, R.layout.text_list_item, cameraSensors);
+            cameraSensorList.setAdapter(sensorAdaptor);
+            cameraSensorList.setTextFilterEnabled(true);
+            cameraSensorList
+                    .setOnItemClickListener(new CameraSensorItemClickedListener());
+
+            _cameraSettingsFlipper.setInAnimation(ArtemisActivity.this,
+                    R.anim.slide_in_right);
+            _cameraSettingsFlipper.setOutAnimation(ArtemisActivity.this,
+                    R.anim.slide_out_left);
+
+            _cameraSettingsFlipper.showNext();
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(
+                    _cameraSettingsFlipper.getWindowToken(), 0);
+            _cameraSettingsFlipper.requestFocus();
+        }
+    }
+
     final class CameraSensorItemClickedListener implements OnItemClickListener {
 
         @Override
@@ -2048,10 +2106,10 @@ public class ArtemisActivity extends Activity implements
                                 int arg2, long arg3) {
             TextView selectedTextView = (TextView) selectedItem;
             String selectedSensor = selectedTextView.getText().toString();
-            Log.i(TAG, "Camera sensor selected: " + selectedSensor);
+            Log.i(TAG, String.format("Camera sensor selected: %s  format %s ", selectedSensor, mSelectedFormat));
             // _currentCameraSensor = selectedSensor;
             _ratiosListForCamera = _artemisDBHelper
-                    .getCameraRatiosForSensor(mSelectedGenre, selectedSensor);
+                    .getCameraRatiosForSensor(mSelectedFormat, selectedSensor);
             Log.i(TAG, "Ratios available: " + _ratiosListForCamera.size());
 
             // Add the ratio names to a list and bind to the list view
@@ -2155,27 +2213,46 @@ public class ArtemisActivity extends Activity implements
 
     }
 
-    final class LensMakerItemClickedListener implements OnItemClickListener {
+    final class LensManufacturerItemClickedListener implements OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View selectedItem,
                                 int index, long id) {
-            if (index < adapterView.getCount() - 1) {
-                TextView selectedTextView = (TextView) selectedItem;
-                tempSelectedLensMake = selectedTextView.getText().toString();
-                // Log.i(_logTag, "Lens make selected: " + selectedLensMake);
-                setSelectedLensMake(tempSelectedLensMake, false, true);
-                // Log.i(_logTag, "Lenses available: " + _lensesForMake.size());
 
-                loadLensesForLensMake();
+            if (index < adapterView.getCount() - 1) {
+
+                TextView selectedTextView = (TextView) selectedItem;
+                String selectedManufacturer = selectedTextView.getText().toString();
+
+
+                ArrayList<String> lensMakes = _artemisDBHelper.getLensMakeForLensManufacturer(selectedManufacturer);
+
+//            if (tempSelectedCamera != null && tempSelectedCamera.getRowid() != null
+//                    && tempSelectedCamera.getRowid() == -1) {
+//                // This is a custom camera
+//                lensMakes = new ArrayList<String>();
+//                lensMakes.add(DEFAULT_LENS_MAKE);
+//            } else {
+//                // Regular db camera
+//                lensMakes = _artemisDBHelper.getLensMakeForLensManufacturer(selectedManufacturer);
+//            }
+
+//                lensMakes.add(getString(R.string.custom_zoom_lens));
+                Log.i(TAG, "Lens makers available: " + lensMakes.size());
+
+                ListView lensMakerList = (ListView) findViewById(R.id.lensMakerList);
+                ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(ArtemisActivity.this,
+                        R.layout.text_list_item, lensMakes);
+                lensMakerList.setAdapter(formatAdapter);
+                lensMakerList.setTextFilterEnabled(true);
+
+                lensMakerList
+                        .setOnItemClickListener(new LensMakerItemClickedListener());
 
                 _lensSettingsFlipper.setInAnimation(ArtemisActivity.this,
                         R.anim.slide_in_right);
                 _lensSettingsFlipper.setOutAnimation(ArtemisActivity.this,
                         R.anim.slide_out_left);
-
-                addCustomLensLayout.setVisibility(View.VISIBLE);
-
                 _lensSettingsFlipper.showNext();
             } else {
                 // Display the zoom lens list (w/ add zoom lens button)
@@ -2199,8 +2276,33 @@ public class ArtemisActivity extends Activity implements
                         R.anim.slide_in_right);
                 _lensSettingsFlipper.setOutAnimation(ArtemisActivity.this,
                         R.anim.slide_out_left);
-                _lensSettingsFlipper.setDisplayedChild(2);
+                _lensSettingsFlipper.setDisplayedChild(3);
             }
+        }
+    }
+
+    final class LensMakerItemClickedListener implements OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View selectedItem,
+                                int index, long id) {
+
+            TextView selectedTextView = (TextView) selectedItem;
+            tempSelectedLensMake = selectedTextView.getText().toString();
+            // Log.i(_logTag, "Lens make selected: " + selectedLensMake);
+            setSelectedLensMake(tempSelectedLensMake, false, true);
+            // Log.i(_logTag, "Lenses available: " + _lensesForMake.size());
+
+            loadLensesForLensMake();
+
+            _lensSettingsFlipper.setInAnimation(ArtemisActivity.this,
+                    R.anim.slide_in_right);
+            _lensSettingsFlipper.setOutAnimation(ArtemisActivity.this,
+                    R.anim.slide_out_left);
+
+            addCustomLensLayout.setVisibility(View.VISIBLE);
+
+            _lensSettingsFlipper.showNext();
         }
     }
 
@@ -2279,7 +2381,7 @@ public class ArtemisActivity extends Activity implements
             Editor appPrefsEditor = getApplication().getSharedPreferences(
                     ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE)
                     .edit();
-            appPrefsEditor.putInt("selectedCameraRowId", cameraRowId);
+            appPrefsEditor.putInt(ArtemisPreferences.SELECTED_CAMERA_ROW, cameraRowId);
             appPrefsEditor.commit();
         }
     }
@@ -2300,7 +2402,7 @@ public class ArtemisActivity extends Activity implements
             Editor appPrefsEditor = getApplication().getSharedPreferences(
                     ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE)
                     .edit();
-            appPrefsEditor.putString("selectedLensMake", lensMake);
+            appPrefsEditor.putString(ArtemisPreferences.SELECTED_LENS_MAKE, lensMake);
             appPrefsEditor.commit();
         }
     }
@@ -2325,11 +2427,16 @@ public class ArtemisActivity extends Activity implements
             Editor appPrefsEditor = getApplication().getSharedPreferences(
                     ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE)
                     .edit();
-            appPrefsEditor.putString("selectedLensesCSVString", lensCSVString);
+            appPrefsEditor.putString(ArtemisPreferences.SELECTED_LENS_ROW_CSV, lensCSVString);
             appPrefsEditor
                     .remove(getString(R.string.preference_key_selectedzoomlens));
             appPrefsEditor.commit();
         }
+    }
+
+    private void setSelectedLensIndex(int selectedLensIndex) {
+        _artemisMath.set_selectedLensIndex(selectedLensIndex);
+        _artemisMath.setSelectedLens(_selectedLenses.get(selectedLensIndex));
     }
 
     private final OnClickListener nextLensClickListener = new android.view.View.OnClickListener() {
@@ -2373,6 +2480,7 @@ public class ArtemisActivity extends Activity implements
             if (_artemisMath.hasPreviousLens()) {
                 _prevLensButton.setVisibility(View.VISIBLE);
             }
+            saveLensSelectionIndex();
         } else if (_artemisMath.isFullscreen()
                 && _artemisMath.selectedZoomLens != null) {
             _artemisMath.incrementFullscreenZoomLens();
@@ -2388,6 +2496,16 @@ public class ArtemisActivity extends Activity implements
             }
         }
         mCameraAngleDetailView.postInvalidate();
+    }
+
+
+    private void saveLensSelectionIndex() {
+        Editor appPrefsEditor = getApplication().getSharedPreferences(
+                ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE)
+                .edit();
+        appPrefsEditor.putInt(ArtemisPreferences.SELECTED_LENS_INDEX,
+                _artemisMath.get_selectedLensIndex());
+        appPrefsEditor.apply();
     }
 
     protected void reconfigureNextAndPreviousLensButtons() {
@@ -2458,6 +2576,7 @@ public class ArtemisActivity extends Activity implements
             if (_artemisMath.hasNextLens()) {
                 _nextLensButton.setVisibility(View.VISIBLE);
             }
+            saveLensSelectionIndex();
         } else if (_artemisMath.isFullscreen()
                 && _artemisMath.selectedZoomLens != null) {
             _artemisMath.decrementFullscreenZoomLens();
@@ -2489,7 +2608,7 @@ public class ArtemisActivity extends Activity implements
             if (_artemisMath.selectedZoomLens == null) {
                 // Go to the final lens setting page
                 loadLensesForLensMake();
-                _lensSettingsFlipper.setDisplayedChild(1);
+                _lensSettingsFlipper.setDisplayedChild(2);
 
                 currentViewId = R.id.lensSettings;
                 viewFlipper.setDisplayedChild(2);
@@ -2942,7 +3061,7 @@ public class ArtemisActivity extends Activity implements
                         R.anim.slide_in_right);
                 _cameraSettingsFlipper.setOutAnimation(ArtemisActivity.this,
                         R.anim.slide_out_left);
-                _cameraSettingsFlipper.setDisplayedChild(4);
+                _cameraSettingsFlipper.setDisplayedChild(5);
                 return;
             } else if (customCameras != null && customCameras.size() > 0) {
                 CustomCamera selectedCustomCamera = customCameras
@@ -2969,9 +3088,10 @@ public class ArtemisActivity extends Activity implements
                         -selectedCustomCamera.getPk());
                 appPrefsEditor.commit();
 
-                setSelectedLensMake(DEFAULT_LENS_MAKE, false, false);
-
+//                setSelectedLensMake(DEFAULT_LENS_MAKE, false, false);
                 setSelectedLenses(loadLensesForLensMake(), true, true);
+
+
                 _cameraDetailsText.setText(selectedCustomCamera.getName() + " "
                         + _selectedCamera.getRatio());
                 //
@@ -3001,10 +3121,10 @@ public class ArtemisActivity extends Activity implements
             if (cameraName.length() == 0) {
                 cameraName = getString(R.string.untitle_custom_cam);
             }
-            EditText squeezeText = (EditText) findViewById(R.id.custom_camera_squeezeratio_as);
-            if (squeezeText.getText().toString().length() == 0) {
-                squeezeText.setText("1");
-            }
+//            EditText squeezeText = (EditText) findViewById(R.id.custom_camera_squeezeratio_as);
+//            if (squeezeText.getText().toString().length() == 0) {
+//                squeezeText.setText("1");
+//            }
             EditText widthText = (EditText) findViewById(R.id.custom_camera_width);
             EditText heightText = (EditText) findViewById(R.id.custom_camera_height);
 
@@ -3013,8 +3133,7 @@ public class ArtemisActivity extends Activity implements
                         .toString());
                 float cameraHeight = Float.parseFloat(heightText.getText()
                         .toString());
-                float squeeze = Float.parseFloat(squeezeText.getText()
-                        .toString());
+                float squeeze = 1;
 
                 // insert the new camera
                 CustomCamera customCam = new CustomCamera();
@@ -3029,7 +3148,7 @@ public class ArtemisActivity extends Activity implements
 
                 // clear the text off on success
                 nameText.setText("");
-                squeezeText.setText("");
+//                squeezeText.setText("");
                 widthText.setText("");
                 heightText.setText("");
 
@@ -3038,7 +3157,8 @@ public class ArtemisActivity extends Activity implements
                         R.anim.slide_in_left);
                 _cameraSettingsFlipper.setOutAnimation(ArtemisActivity.this,
                         R.anim.slide_out_right);
-                _cameraSettingsFlipper.setDisplayedChild(3);
+                // set the displayed child to the last page ( == num pages)
+                _cameraSettingsFlipper.setDisplayedChild(NUM_CAMERA_PAGES);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3122,10 +3242,10 @@ public class ArtemisActivity extends Activity implements
 
             ((EditText) findViewById(R.id.custom_camera_active_sensor_name))
                     .setText(editCamera.getName());
-            EditText squeezeText = (EditText) findViewById(R.id.custom_camera_squeezeratio_as);
-            if (squeezeText.getText().toString().length() == 0) {
-                squeezeText.setText("1");
-            }
+//            EditText squeezeText = (EditText) findViewById(R.id.custom_camera_squeezeratio_as);
+//            if (squeezeText.getText().toString().length() == 0) {
+//                squeezeText.setText("1");
+//            }
 
             ((EditText) findViewById(R.id.custom_camera_width))
                     .setText(editCamera.getSensorwidth() + "");
@@ -3264,7 +3384,7 @@ public class ArtemisActivity extends Activity implements
         public void onClick(View v) {
             EditText nameText = (EditText) findViewById(R.id.custom_camera_active_sensor_name);
             String cameraName = nameText.getText().toString();
-            EditText squeezeText = (EditText) findViewById(R.id.custom_camera_squeezeratio_as);
+//            EditText squeezeText = (EditText) findViewById(R.id.custom_camera_squeezeratio_as);
             EditText widthText = (EditText) findViewById(R.id.custom_camera_width);
             EditText heightText = (EditText) findViewById(R.id.custom_camera_height);
 
@@ -3273,11 +3393,10 @@ public class ArtemisActivity extends Activity implements
                         .toString());
                 float cameraHeight = Float.parseFloat(heightText.getText()
                         .toString());
-                if (squeezeText.getText().toString().length() == 0) {
-                    squeezeText.setText("1");
-                }
-                float squeeze = Float.parseFloat(squeezeText.getText()
-                        .toString());
+//                if (squeezeText.getText().toString().length() == 0) {
+//                    squeezeText.setText("1");
+//                }
+                float squeeze = 1;
 
                 // // update the new camera
                 updateCamera.setName(cameraName);
@@ -3295,14 +3414,15 @@ public class ArtemisActivity extends Activity implements
                 nameText.setText("");
                 widthText.setText("");
                 heightText.setText("");
-                squeezeText.setText("");
+//                squeezeText.setText("");
 
                 // flip back to the previous custom camera selection page
                 _cameraSettingsFlipper.setInAnimation(ArtemisActivity.this,
                         R.anim.slide_in_left);
                 _cameraSettingsFlipper.setOutAnimation(ArtemisActivity.this,
                         R.anim.slide_out_right);
-                _cameraSettingsFlipper.setDisplayedChild(3);
+                // set the displayed child to the last page ( == num pages)
+                _cameraSettingsFlipper.setDisplayedChild(NUM_CAMERA_PAGES);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3349,6 +3469,7 @@ public class ArtemisActivity extends Activity implements
                                                     .getPk()));
                                     customLens.setCustomLens(true);
                                     customLens.setFL(focalLength);
+                                    customLens.setSqueeze(1);
                                     customLens
                                             .setLensMake(tempSelectedLensMake);
                                     customLens.setLensSet("1");

@@ -60,6 +60,11 @@
         android:inAnimation="@anim/slide_in_right" >
 
         <ListView
+            android:id="@+id/lensManufacturerList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <ListView
             android:id="@+id/lensMakerList"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />

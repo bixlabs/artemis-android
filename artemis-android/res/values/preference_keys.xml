@@ -3,10 +3,10 @@
 
     <string name="preference_key_autofocusonpicture">autoFocusOnPicture</string>
     <string name="preference_key_gpsenabled">gpsEnabled</string>
-    <string name="preference_key_selectedlensmake">selectedLensMake</string>
-    <string name="preference_key_selectedlensescsvstring">selectedLensesCSVString</string>
+    <string name="preference_key_selectedlensmake">selectedLensMake0</string>
+    <string name="preference_key_selectedlensescsvstring">selectedLensesCSVString0</string>
     <string name="preference_key_artemissavefolder">artemisSaveFolder</string>
-    <string name="preference_key_selectedcamerarowid">selectedCameraRowId</string>
+    <string name="preference_key_selectedcamerarowid">selectedCameraRowId0</string>
     <string name="preference_key_selectedexposurelevel">selectedExposureLevel1</string>
     <string name="preference_key_selectedwhitebalance">selectedWhiteBalance2</string>
     <string name="preference_key_flashenabled">flashEnabled</string>

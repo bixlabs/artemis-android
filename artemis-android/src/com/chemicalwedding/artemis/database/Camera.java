@@ -14,7 +14,7 @@ public class Camera {
 	private String ratio;
 	private Float horiz;
 	private Float vertical;
-	private Float sqz;
+	private Float sqz = 1.0f;
 	private String lenses;
 	private String formatorder;
 	private String medium;

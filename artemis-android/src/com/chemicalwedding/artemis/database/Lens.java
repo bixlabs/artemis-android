@@ -10,6 +10,7 @@ public class Lens {
 	private Integer pk;
 	private String format;
 	private String zoom, zoomRange;
+	private String lensManufacturer;
 	private String lensMake;
 	private String lensCode;
 	private String lensSet;
@@ -31,6 +32,7 @@ public class Lens {
 		zoomRange = l.zoomRange;
 		squeeze = l.squeeze;
 		isCustomLens = l.isCustomLens;
+		lensManufacturer = l.lensManufacturer;
 	}
 
 	public Integer getPk() {
@@ -63,6 +65,10 @@ public class Lens {
 
 	public void setZoomRange(String zoomRange) {
 		this.zoomRange = zoomRange;
+	}
+
+	public String getLensManufacturer() {
+		return lensManufacturer;
 	}
 
 	public String getLensMake() {

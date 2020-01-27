@@ -2,10 +2,11 @@ package com.chemicalwedding.artemis;
 
 public class ArtemisPreferences {
 	public static final String GPS_ENABLED = "gpsEnabled";
-	public static final String SELECTED_LENS_MAKE = "selectedLensMake";
-	public static final String SELECTED_LENS_ROW_CSV = "selectedLensesCSVString";
+	public static final String SELECTED_LENS_MAKE = "selectedLensMake0";
+	public static final String SELECTED_LENS_ROW_CSV = "selectedLensesCSVString0";
+	public static final String SELECTED_LENS_INDEX = "selectedLensIndex";
 	public static final String SAVE_PICTURE_FOLDER = "artemisSaveFolder";
-	public static final String SELECTED_CAMERA_ROW = "selectedCameraRowId";
+	public static final String SELECTED_CAMERA_ROW = "selectedCameraRowId0";
 	public static final String SELECTED_EXPOSURE_LEVEL = "selectedExposureLevel1";
 	public static final String SELECTED_WHITE_BALANCE = "selectedWhiteBalance";
 	public static final String FLASH_ENABLED = "flashEnabled";

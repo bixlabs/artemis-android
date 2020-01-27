@@ -1,8 +1,14 @@
 apply plugin: 'com.android.application'
 
 repositories {
+<<<<<<< HEAD
     google()
     jcenter()
+=======
+    mavenCentral()
+    jcenter()
+    google()
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
 }
 
 dependencies {
@@ -11,6 +17,7 @@ dependencies {
 
     implementation 'com.parse.bolts:bolts-tasks:1.4.0'
     implementation 'com.parse:parse-android:1.13.1'
+<<<<<<< HEAD
     implementation ('com.android.support:appcompat-v7:28.0.0') {
         force = true
     }
@@ -77,6 +84,16 @@ android {
 >>>>>>> be4769f (upgrade gradle and project to android 28)
 =======
 >>>>>>> 6a12d65 (Create a metadata template example)
+=======
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:support-v4:28.0.0"
+    implementation "com.android.support:support-v13:28.0.0"
+    implementation 'com.google.android.gms:play-services-analytics:8.4.0'
+}
+
+android {
+    compileSdkVersion 28
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
 
     defaultConfig {
         minSdkVersion 23
@@ -105,7 +122,11 @@ android {
         }
 
         // Move the tests to tests/java, tests/res, etc...
+<<<<<<< HEAD
         //instrumentTest.setRoot('tests')
+=======
+//        instrumentTest.setRoot('tests')
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
 
         // Move the build types to build-types/<type>
         // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...

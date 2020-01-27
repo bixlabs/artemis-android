@@ -97,8 +97,11 @@ public class ArtemisMath {
 	}
 
 	public float[] calculateViewingAngle(float lensFocalLength) {
-		float Hfraction = (_selectedCamera.getHoriz() * _selectedCamera
-				.getSqz()) / (2 * lensFocalLength);
+		float squeeze = 1;
+		if (selectedZoomLens == null && _selectedLens != null) {
+			squeeze = _selectedLens.getSqueeze();
+		}
+		float Hfraction = (_selectedCamera.getHoriz() * squeeze) / (2 * lensFocalLength);
 		float Vfraction = (_selectedCamera.getVertical() * 1)
 				/ (2 * lensFocalLength);
 		float HviewingAngle = (float) (2 * (Math
@@ -124,7 +127,11 @@ public class ArtemisMath {
 		float hva = (float) (2 * Math.toDegrees(Math.atan(deviceHorizontalWidth
 				/ (WALL_DISTANCE * 2))));
 		float hfraction = (float) Math.tan(Math.toRadians(hva / 2));
-		float lensa = ((_selectedCamera.getHoriz() * _selectedCamera.getSqz()) / hfraction) / 2;
+		float squeeze = 1;
+		if (selectedZoomLens == null && _selectedLens != null) {
+			squeeze = _selectedLens.getSqueeze();
+		}
+		float lensa = ((_selectedCamera.getHoriz() * squeeze) / hfraction) / 2;
 		float vva = (float) (2 * Math.toDegrees(Math.atan(deviceVerticalWidth
 				/ (WALL_DISTANCE * 2))));
 		float vfraction = (float) Math.tan(Math.toRadians(vva / 2));

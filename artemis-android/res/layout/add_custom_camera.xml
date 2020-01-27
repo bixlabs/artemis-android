@@ -27,18 +27,18 @@
 	<LinearLayout android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:orientation="horizontal">
 
-		<EditText
-		    android:id="@+id/custom_camera_squeezeratio"
-		    android:layout_width="150dip"
-		    android:layout_height="wrap_content"
-		    android:completionHint="@string/custom_camera_width"
-		    android:gravity="center"
-		    android:hint="@string/custom_camera_squeeze_ratio"
-		    android:inputType="numberDecimal"
-		    android:maxLines="1"
-		    android:nextFocusDown="@+id/custom_camera_focallength"
-		    android:textSize="6pt"
-		    android:width="100dip" />
+<!--		<EditText-->
+<!--		    android:id="@+id/custom_camera_squeezeratio"-->
+<!--		    android:layout_width="150dip"-->
+<!--		    android:layout_height="wrap_content"-->
+<!--		    android:completionHint="@string/custom_camera_width"-->
+<!--		    android:gravity="center"-->
+<!--		    android:hint="@string/custom_camera_squeeze_ratio"-->
+<!--		    android:inputType="numberDecimal"-->
+<!--		    android:maxLines="1"-->
+<!--		    android:nextFocusDown="@+id/custom_camera_focallength"-->
+<!--		    android:textSize="6pt"-->
+<!--		    android:width="100dip" />-->
 
 		<EditText
 		    android:id="@+id/custom_camera_focallength"
@@ -74,18 +74,18 @@
 	    android:layout_marginBottom="55dp"
 	    android:layout_marginTop="5dp" >
 
-		<TableLayout android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:gravity="center_horizontal"
-			android:layout_gravity="center">
+<!--		<TableLayout android:layout_height="wrap_content"-->
+<!--			android:layout_width="wrap_content" android:gravity="center_horizontal"-->
+<!--			android:layout_gravity="center">-->
 
-			<TextView
-			    android:id="@+id/add_custom_camera_directions"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="@string/add_custom_camera_directions"
-			    android:width="510dip" >
-</TextView>
-		</TableLayout>
+<!--			<TextView-->
+<!--			    android:id="@+id/add_custom_camera_directions"-->
+<!--			    android:layout_width="wrap_content"-->
+<!--			    android:layout_height="wrap_content"-->
+<!--			    android:text="@string/add_custom_camera_directions"-->
+<!--			    android:width="510dip" >-->
+<!--</TextView>-->
+<!--		</TableLayout>-->
 	</ScrollView>
 
 	<RelativeLayout android:layout_marginTop="-50dip"

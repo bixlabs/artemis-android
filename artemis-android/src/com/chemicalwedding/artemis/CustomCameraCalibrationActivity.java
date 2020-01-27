@@ -138,7 +138,7 @@ public class CustomCameraCalibrationActivity extends Activity {
 
             focalLength = selectedLens.getFL();
             aspectRatio = selectedCamera.getHoriz() / selectedCamera.getVertical();
-            squeezeRatio = selectedCamera.getSqz();
+            squeezeRatio = selectedLens.getSqueeze();
             chipWidth = selectedCamera.getHoriz();
             chipHeight = chipWidth / aspectRatio;
         }

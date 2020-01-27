@@ -10,7 +10,7 @@ public class CustomCamera {
 	private Integer pk;
 	private String name;
 	private float sensorwidth, sensorheight;
-	private float squeeze;
+	private float squeeze = 1;
 
 	public Integer getPk() {
 		return pk;

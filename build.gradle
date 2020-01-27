@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+<<<<<<< HEAD
         google()
         jcenter()
     }
@@ -46,6 +47,14 @@ buildscript {
 =======
         classpath 'com.android.tools.build:gradle:3.5.3'
 >>>>>>> 7341dfe (Se graba video, falta reiniciar la preview al terminar la grabación)
+=======
+        jcenter()
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+>>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
     }
 }
 
