@@ -402,7 +402,7 @@ public class SettingsActivity extends PreferenceActivity {
                 int index = 0;
                 for (Integer mode : CameraPreview21.availableSceneModes) {
                     values[index] = mode + "";
-                    entries[index] = labelArray[Integer.parseInt("" + values[index])];
+                    entries[index] = labelArray[index];
                     ++index;
                 }
                 sceneModePref.setEntries(entries);

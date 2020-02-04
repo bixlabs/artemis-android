@@ -237,7 +237,6 @@
     <orderEntry type="module" module-name="appirater-android" />
     <orderEntry type="library" name="Gradle: org.apache.http.legacy-android-28" level="project" />
     <orderEntry type="module" module-name="appirater-android" />
-    <orderEntry type="module" module-name="appirater-android" />
   </component>
 </module>
 >>>>>>> 4682dac (Latest scaling code using SCALER_CROP_REGION.  I don't know how to calculate the right scaled region value yet)

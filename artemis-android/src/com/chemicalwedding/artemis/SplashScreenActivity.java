@@ -49,7 +49,7 @@ public class SplashScreenActivity extends Activity {
     private LicenseCheckerCallback _licenseCheckerCallback;
     private LicenseChecker _checker;
     private Handler mHandler;
-    private static boolean validLicenseFound = false;
+    private static boolean validLicenseFound = true;
     private AlertDialog mDialog;
 
     private boolean mDeviceHasNoCamera;

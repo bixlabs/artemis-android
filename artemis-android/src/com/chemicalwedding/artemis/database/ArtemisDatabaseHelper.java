@@ -182,7 +182,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getLensManufacturers() {
         // Get all the lenses for the specified make
         Cursor cursor = _artemisDatabase.query(true, LENS_TABLE,
-                new String[]{"zmanufacturer"}, null, null, null,
+                new String[]{"zmanufacturer"}, "zmanufacturer is not null", null, null,
                 null, null, null);
         ArrayList<String> lenses = new ArrayList<String>();
         while (cursor.moveToNext()) {

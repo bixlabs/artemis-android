@@ -2045,10 +2045,10 @@ public class ArtemisActivity extends Activity implements
 
         ((TextView) findViewById(R.id.lensMakeText))
                 .setText(_artemisMath.selectedZoomLens.toString());
+        _artemisMath.resetTouchToCenter();
         _artemisMath.calculateZoomLenses();
         _artemisMath.calculateRectBoxesAndLabelsForLenses();
         _artemisMath.selectFirstMeaningFullLens();
-        _artemisMath.resetTouchToCenter();
         _artemisMath.onFullscreenOffSelectLens();
         mCameraPreview.calculateZoom(true);
         reconfigureNextAndPreviousLensButtons();
@@ -2348,11 +2348,11 @@ public class ArtemisActivity extends Activity implements
             setSelectedLenses(selectedLensString, true, true);
             updateLensesInDB();
             _artemisMath.setFullscreen(false);
+            _artemisMath.selectFirstMeaningFullLens();
             _artemisMath.calculateLargestLens();
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
-            _artemisMath.selectFirstMeaningFullLens();
+            _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.onFullscreenOffSelectLens();
-            _artemisMath.resetTouchToCenter();
             mCameraPreview.calculateZoom(true);
             mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
             mCameraAngleDetailView.postInvalidate();
