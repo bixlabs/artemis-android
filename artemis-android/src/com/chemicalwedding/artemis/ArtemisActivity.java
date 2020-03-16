@@ -715,9 +715,24 @@ public class ArtemisActivity extends Activity implements
         savePictureViewFlipper = (ViewFlipper) findViewById(R.id.savePictureViewFlipper);
         _lensListView = (ListView) findViewById(R.id.lensList);
         addCustomLensLayout = (RelativeLayout) findViewById(R.id.addCustomLens);
+
+        recordVideoChronometerContainer = findViewById(R.id.videoChronometerContainer);
+        recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
+
+        recordVideoChronometer = findViewById(R.id.videoChronometer);
     }
 
     private void bindViewEvents() {
+        mCameraOverlay.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("bixlabs", "preview tapped");
+                if(isRecordingVideo){
+                    mCameraPreview.stopRecording();
+                }
+            }
+        });
+
         recordVideoButton = ((ImageView) findViewById(R.id.recordVideo));
 
                 recordVideoButton.setOnClickListener(new OnClickListener() {
@@ -733,10 +748,6 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
-        recordVideoChronometerContainer = findViewById(R.id.videoChronometerContainer);
-        recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
-
-        recordVideoChronometer = findViewById(R.id.videoChronometer);
         recordVideoChronometer.setOnChronometerTickListener(chronometer -> {
             long time = SystemClock.elapsedRealtime() - chronometer.getBase();
             int h   = (int)(time /3600000);
