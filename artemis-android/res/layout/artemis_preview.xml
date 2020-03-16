@@ -106,6 +106,38 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+
+        <LinearLayout
+            android:id="@+id/videoChronometerContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/black">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="3dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/red_circle"/>
+
+            <Chronometer
+                android:id="@+id/videoChronometer"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:textColor="@android:color/white"
+                android:format="MM:SS"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_gravity="bottom|center"

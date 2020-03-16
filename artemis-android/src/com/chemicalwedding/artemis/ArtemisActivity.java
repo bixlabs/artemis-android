@@ -57,9 +57,11 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -176,6 +178,8 @@ public class ArtemisActivity extends Activity implements
 
     protected ImageView takePictureButton;
     protected ImageView recordVideoButton;
+    protected Chronometer recordVideoChronometer;
+    protected LinearLayout recordVideoChronometerContainer;
     protected boolean isRecordingVideo;
     protected File videoFolder;
     protected String videoFileName;
@@ -728,6 +732,22 @@ public class ArtemisActivity extends Activity implements
                         }
                     }
                 });
+
+        recordVideoChronometerContainer = findViewById(R.id.videoChronometerContainer);
+        recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
+
+        recordVideoChronometer = findViewById(R.id.videoChronometer);
+        recordVideoChronometer.setOnChronometerTickListener(chronometer -> {
+            long time = SystemClock.elapsedRealtime() - chronometer.getBase();
+            int h   = (int)(time /3600000);
+            int m = (int)(time - h*3600000)/60000;
+            int s= (int)(time - h*3600000- m*60000)/1000 ;
+            // (h < 10 ? "0"+h: h)+":"
+            String t = (m < 10 ? "0"+m: m)+":"+ (s < 10 ? "0"+s: s);
+            chronometer.setText(t);
+        });
+        recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
+        recordVideoChronometer.setText("00:00");
 
         // Setup help button and help overlay touch events
         ((View) findViewById(R.id.helpButtonView))
@@ -1373,6 +1393,10 @@ public class ArtemisActivity extends Activity implements
 
     @Override
     public void recordingStarted() {
+        recordVideoChronometerContainer.setVisibility(View.VISIBLE);
+        recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
+        recordVideoChronometer.start();
+
         isRecordingVideo = true;
         recordVideoButton.setImageResource(R.drawable.recording_video);
         deconfigureShutterButton();
@@ -1380,6 +1404,10 @@ public class ArtemisActivity extends Activity implements
 
     @Override
     public void recordingStopped(String filePath, HashMap<String, String> cameraMetadata){
+        recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
+        recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
+        recordVideoChronometer.stop();
+
         isRecordingVideo = false;
         recordVideoButton.setImageResource(R.drawable.video_icon);
         MediaType mediaType = MediaType.VIDEO;
