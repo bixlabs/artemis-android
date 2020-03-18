@@ -43,6 +43,7 @@
     <string name="preference_key_selectedfocusmode">selectedFocusMode1</string>
     <string name="preference_key_selectedscenemode">selectedSceneMode1</string>
     <string name="preference_key_selectedCameraEffect">selectedCameraEffect</string>
+    <string name="preference_key_saveMetadataToMovies">saveMetadataToMovies</string>
 
     <string name="preference_visual_calib_btn">selectVisualCalibration</string>
 
@@ -232,6 +233,12 @@
         <item>cloudy daylight</item>
         <item>twilight</item>
         <item>shade</item>
+    </string-array>
+    
+    <string-array name="save_metadata_to_movies_entries">
+        <item>ASK</item>
+        <item>NEVER</item>
+        <item>ALWAYS</item>
     </string-array>
 
 </resources>

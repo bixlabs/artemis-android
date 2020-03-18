@@ -78,11 +78,15 @@ import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
+import com.chemicalwedding.artemis.database.SaveMetadataToMoviesOptions;
 import com.chemicalwedding.artemis.database.ZoomLens;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.sbstrm.appirater.Appirater;
+
+import org.jcodec.containers.mp4.boxes.MetaValue;
+import org.jcodec.movtool.MetadataEditor;
 
 import java.io.File;
 import java.io.IOException;
@@ -92,6 +96,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
@@ -1427,16 +1432,48 @@ public class ArtemisActivity extends Activity implements
 
         videoFileName = mediaFile.getPath();
 
-        Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
-        mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        Bundle bundle = new Bundle();
-        bundle.putString("fullScreenMediaPath", mediaFile.getPath());
-        bundle.putString("fullScreenMediaType", mediaFile.getMediaType().toString());
-        bundle.putSerializable("metadata", cameraMetadata);
+        SharedPreferences artemisPrefs = getSharedPreferences(
+                ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
+        String selectedSaveMetadataToMoviesString = artemisPrefs.getString(
+                getString(R.string.preference_key_saveMetadataToMovies), "0");
+        Log.i("bixlabs", selectedSaveMetadataToMoviesString);
+        SaveMetadataToMoviesOptions saveMetadataToMoviesOptions = SaveMetadataToMoviesOptions.valueOf(selectedSaveMetadataToMoviesString);
 
-        mediaFulllScreenIntent.putExtras(bundle);
-        reconfigureShutterButton();
-        startActivity(mediaFulllScreenIntent);
+        if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.NEVER) {
+            try {
+                MetadataEditor editor = MetadataEditor.createFrom(new File(mediaFile.getPath()));
+                Map<String, MetaValue> meta = editor.getKeyedMeta();
+
+                for(String key: cameraMetadata.keySet()) {
+                    meta.put(key, MetaValue.createString(cameraMetadata.get(key)));
+                }
+
+                editor.save(false);
+                Toast.makeText(this, "Video saved!",
+                        Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putString("fullScreenMediaPath", mediaFile.getPath());
+            bundle.putString("fullScreenMediaType", mediaFile.getMediaType().toString());
+            bundle.putSerializable("metadata", cameraMetadata);
+
+            if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ASK) {
+                Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
+                mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                mediaFulllScreenIntent.putExtras(bundle);
+                reconfigureShutterButton();
+                startActivity(mediaFulllScreenIntent);
+            } else if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ALWAYS) {
+                Intent videoMetadataIntent = new Intent(ArtemisActivity.this, SaveVideoMetadataActivity.class);
+                videoMetadataIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                videoMetadataIntent.putExtras(bundle);
+                startActivity(videoMetadataIntent);
+            }
+        }
     }
 
     public void deconfigureShutterButton(){

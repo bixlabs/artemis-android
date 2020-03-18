@@ -2,6 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   android:persistent="true">
 
+    <PreferenceCategory android:title="@string/metadata">
+        <ListPreference
+            android:defaultValue="ASK"
+            android:entryValues="@array/save_metadata_to_movies_entries"
+            android:key="@string/preference_key_saveMetadataToMovies"
+            android:title="@string/save_metadata_to_movies"/>
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/device_camera_behaviour">
         <ListPreference
             android:defaultValue="0"

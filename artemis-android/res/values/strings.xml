@@ -212,6 +212,7 @@
     <string name="smooth_image_on">A filter will be applied to make the images appear smoother when scaling is required.</string>
     <string name="quick_picture_off">An image preview will be shown after pictures are saved.</string>
     <string name="quick_picture_on">Quick pictures are enabled. An image preview will NOT be shown after pictures are saved.</string>
+    <string name="metadata">Metadata</string>
 
     <!-- New strings for 2.0 taken from new_strings.xml -->
     <!-- //New English Strings -->
@@ -312,9 +313,12 @@
     <string name="horizontal_angle">Horizontal Angle:</string>
     <string name="visual_lens_angle_calibration">Visual Lens Angle Calibration</string>
 
-    <!-- New below here 12-01-20149 -->
+    <!-- New below here 12-01-2014 -->
     <string name="image_contact_name_hint">Your contact name</string>
     <string name="image_contact_email_hint">Your email address</string>
     <string name="image_sunrise_and_sunset_hint">No date chosen yet</string>
+
+    <!-- New below here 03-17-2020 -->
+    <string name="save_metadata_to_movies">Save metadata to movies</string>
 
 </resources>

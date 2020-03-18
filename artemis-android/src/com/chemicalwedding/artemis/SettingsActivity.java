@@ -219,6 +219,11 @@ public class SettingsActivity extends PreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.camera_settings_preferences);
+
+            ListPreference saveMetadataToMoviesPref = (ListPreference) findPreference(getString(R.string.preference_key_saveMetadataToMovies));
+            String[] saveMetadataToMoviesArray = getActivity().getResources().getStringArray(R.array.save_metadata_to_movies_entries);
+            saveMetadataToMoviesPref.setEntries(saveMetadataToMoviesArray);
+
             mAngleFormat.setMaximumIntegerDigits(3);
             mAngleFormat.setMaximumFractionDigits(1);
 
