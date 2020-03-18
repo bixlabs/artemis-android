@@ -1435,7 +1435,7 @@ public class ArtemisActivity extends Activity implements
         SharedPreferences artemisPrefs = getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
         String selectedSaveMetadataToMoviesString = artemisPrefs.getString(
-                getString(R.string.preference_key_saveMetadataToMovies), "0");
+                getString(R.string.preference_key_saveMetadataToMovies), "ASK");
         Log.i("bixlabs", selectedSaveMetadataToMoviesString);
         SaveMetadataToMoviesOptions saveMetadataToMoviesOptions = SaveMetadataToMoviesOptions.valueOf(selectedSaveMetadataToMoviesString);
 
