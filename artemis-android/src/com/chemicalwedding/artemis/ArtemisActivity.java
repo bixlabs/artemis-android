@@ -71,6 +71,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
+import com.arthenica.mobileffmpeg.Config;
+import com.arthenica.mobileffmpeg.FFmpeg;
 import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Camera;
@@ -90,6 +92,10 @@ import org.jcodec.movtool.MetadataEditor;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +103,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_CANCEL;
+import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
+
 
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
@@ -1431,6 +1441,31 @@ public class ArtemisActivity extends Activity implements
         MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
 
         videoFileName = mediaFile.getPath();
+        String videoFileNameCropped = videoFileName.substring(0, videoFileName.lastIndexOf("."));
+        String formatString = videoFileName.substring(videoFileName.lastIndexOf("."));
+        videoFileNameCropped = videoFileNameCropped + "_preview" + formatString;
+
+        ArtemisRectF selectedLensBox = _artemisMath.getSelectedLensBox();
+        String cropWidth = String.valueOf(selectedLensBox.width());
+        String cropHeight = String.valueOf(selectedLensBox.height());
+        String crop_x = String.valueOf(selectedLensBox.left);
+        String crop_y = String.valueOf(selectedLensBox.top);
+
+        String[] cmd = {"-y", "-i", videoFileName, "-filter:v", "crop=" + cropWidth + ":" + cropHeight + ":" + crop_x + ":" + crop_y, "-c:a", "copy", videoFileNameCropped};
+        int rc = FFmpeg.execute(cmd);
+
+        if (rc == RETURN_CODE_SUCCESS) {
+            Log.i(Config.TAG, "Command execution completed successfully.");
+            if (file.delete()) {
+                file = new File(videoFileNameCropped);
+                mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+            }
+        } else if (rc == RETURN_CODE_CANCEL) {
+            Log.i(Config.TAG, "Command execution cancelled by user.");
+        } else {
+            Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
+            Config.printLastCommandOutput(Log.INFO);
+        }
 
         SharedPreferences artemisPrefs = getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
