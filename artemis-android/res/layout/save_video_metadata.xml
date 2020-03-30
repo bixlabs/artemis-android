@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".SaveVideoMetadataActivity">
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:id="@+id/videoMetadataIntro"
+        layout="@layout/video_metadata_intro"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dip"
             android:layout_marginEnd="15dip"
-            android:hint="@string/image_description_hint" />
+            android:hint="@string/video_description_hint" />
 
         <EditText
             android:id="@+id/videoNotes"

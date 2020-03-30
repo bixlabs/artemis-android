@@ -92,10 +92,6 @@ import org.jcodec.movtool.MetadataEditor;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1451,7 +1447,8 @@ public class ArtemisActivity extends Activity implements
         String crop_x = String.valueOf(selectedLensBox.left);
         String crop_y = String.valueOf(selectedLensBox.top);
 
-        String[] cmd = {"-y", "-i", videoFileName, "-filter:v", "crop=" + cropWidth + ":" + cropHeight + ":" + crop_x + ":" + crop_y, "-c:a", "copy", videoFileNameCropped};
+        String[] cmd = {"-y", "-i", videoFileName, "-filter:v", "crop=" + cropWidth + ":" + cropHeight + ":" + crop_x + ":" + crop_y + ",fps=fps=25",
+                "-c:a", "copy", videoFileNameCropped};
         int rc = FFmpeg.execute(cmd);
 
         if (rc == RETURN_CODE_SUCCESS) {

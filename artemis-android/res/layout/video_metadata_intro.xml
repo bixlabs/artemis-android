@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/titleLayoutVideoMetadata"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity = "center_vertical|start"
+            android:layout_marginStart="8dp"
+            android:textSize="30dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/dividerVideoMetadata"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title"/>
+
+        <View
+            android:id="@+id/dividerVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/white"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleVideoMetadata" />
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/leftLayoutVideoMetadata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rightLayoutVideoMetadata"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLayoutVideoMetadata">
+
+        <TextView
+            android:id="@+id/cameraInformationVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            tools:text="ANSI Super 35mm Film 1.78:1 Full Frame (24.9 x 14.4mm)" />
+
+        <TextView
+            android:id="@+id/takenByVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+            tools:text="Taken By Marcos / marcos.morales@outlook.com / Dec 4, 2019 at 16:42" />
+
+        <TextView
+            android:id="@+id/locationVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray"
+            tools:text="Lat: -34.9096 Long: -56.1526..." />
+
+        <TextView
+            android:id="@+id/exposureVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray"
+            tools:text="AUTO EXPOSURE" />
+
+        <TextView
+            android:id="@+id/notesVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray"
+            tools:text="Notes" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rightLayoutVideoMetadata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leftLayoutVideoMetadata"
+        app:layout_constraintTop_toBottomOf="@+id/titleLayoutVideoMetadata"
+        app:layout_constraintWidth_percent="0.2">
+
+        <TextView
+            android:id="@+id/lensFocalLengthVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            tools:text="32mm" />
+
+        <TextView
+            android:id="@+id/lensMakeVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:maxLines="10"
+            android:textColor="@android:color/white"
+            tools:text="Astro-Berlin" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

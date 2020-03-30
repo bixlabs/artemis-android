@@ -713,7 +713,7 @@ public class CameraPreview21 extends Fragment {
 
     private Integer lastPictureISOValue_;
 
-    private Long lastPictureExposureTime_;
+    public Long lastPictureExposureTime_;
 
     private Float lastPictureLensAperture_;
 

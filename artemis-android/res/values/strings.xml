@@ -97,6 +97,7 @@
     <string name="exposure_text">Exposure</string>
 
     <string name="save_video">Save</string>
+    <string name="video_description_hint">Video title</string>
 
     <!-- //Add Custom Camera Page -->
 
