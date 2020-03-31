@@ -89,6 +89,22 @@
             tools:text="AUTO EXPOSURE" />
 
         <TextView
+            tools:text="Tilt: -39"
+            android:id="@+id/tiltVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            tools:text="No date chosen yet"
+            android:id="@+id/sunriseAndSunsetVideoMetadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
             android:id="@+id/notesVideoMetadata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

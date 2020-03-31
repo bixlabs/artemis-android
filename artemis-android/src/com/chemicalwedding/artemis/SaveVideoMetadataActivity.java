@@ -14,9 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.FFmpeg;
@@ -60,10 +58,30 @@ public class SaveVideoMetadataActivity extends Activity {
         mediaTypeString = bundle.getString("fullScreenMediaType");
         metadata = (HashMap) bundle.getSerializable("metadata");
 
-        loadVideoDetailsSettings();
-
+        SharedPreferences artemisPrefs = getSharedPreferences(
+                ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
         Button cancelButton = findViewById(R.id.cancelVideoMetadata);
         Button saveButton = findViewById(R.id.saveVideoMetadata);
+        Button saveTitleButton = findViewById(R.id.saveVideoTitleMetadata);
+        TextView videoTitleTextView = findViewById(R.id.videoTitle);
+        videoTitleTextView.setText(artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, ""));
+
+        saveTitleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveVideoMetadata(artemisPrefs, true, videoTitleTextView.getText().toString());
+                finish();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveVideoMetadata(artemisPrefs, false, videoTitleTextView.getText().toString());
+                finish();
+            }
+        });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,52 +95,16 @@ public class SaveVideoMetadataActivity extends Activity {
             }
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveVideoMetadata();
-                finish();
-            }
-        });
     }
 
-    private void loadVideoDetailsSettings() {
-        SharedPreferences artemisPrefs = getSharedPreferences(
-                ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
-
-        ((EditText) findViewById(R.id.videoTitle))
-                .setText(artemisPrefs.getString(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, ""));
-        ((EditText) findViewById(R.id.videoNotes)).setText(artemisPrefs
-                .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, ""));
-        ((EditText) findViewById(R.id.videoContactName)).setText(artemisPrefs
-                .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, ""));
-        ((EditText) findViewById(R.id.videoContactEmail)).setText(artemisPrefs
-                .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, ""));
-        ((ToggleButton) findViewById(R.id.cameraDetailsToggle))
-                .setChecked(artemisPrefs.getBoolean(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS,
-                        true));
-        ((ToggleButton) findViewById(R.id.lensDetailsToggle))
-                .setChecked(artemisPrefs
-                        .getBoolean(
-                                ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS,
-                                true));
-        ((ToggleButton) findViewById(R.id.gpsCoordinatesToggle))
-                .setChecked(artemisPrefs.getBoolean(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true));
-        ((ToggleButton) findViewById(R.id.exposure_toggle))
-                .setChecked(artemisPrefs.getBoolean(
-                        ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, true));
-    }
-
-    private void saveVideoMetadata(){
+    private void saveVideoMetadata(SharedPreferences artemisPrefs, Boolean withIntro, String videoTitle){
         HashMap<String, String> newMeta = new HashMap<>();
 
-        String videoTitle = ((EditText) findViewById(R.id.videoTitle)).getText().toString();
-        String videoNotes = ((EditText) findViewById(R.id.videoNotes)).getText().toString();
-        String videoContactName = ((EditText) findViewById(R.id.videoContactName)).getText().toString();
-        String videoContactEmail = ((EditText) findViewById(R.id.videoContactEmail)).getText().toString();
+        String videoNotes = artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
+        String videoContactName = artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
+        String videoContactEmail = artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, "");
+        String sunriseAndSunsetDate = artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, "");
 
         // Metadata
         newMeta.put(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, videoTitle);
@@ -131,8 +113,8 @@ public class SaveVideoMetadataActivity extends Activity {
         newMeta.put(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, videoContactEmail);
 
         // Video intro
-        TextView videoTitleTextView = findViewById(R.id.titleVideoMetadata);
-        videoTitleTextView.setText(videoTitle);
+        TextView titleTextView = findViewById(R.id.titleVideoMetadata);
+        titleTextView.setText(videoTitle.equals("") ? "Untitled" : videoTitle);
 
         ArrayList<String> takenByArrayList = new ArrayList<>();
         takenByArrayList.add(videoContactName);
@@ -150,7 +132,7 @@ public class SaveVideoMetadataActivity extends Activity {
             notesTextView.setText(videoNotes);
         }
 
-        boolean shouldSaveCameraInformation = ((ToggleButton) findViewById(R.id.cameraDetailsToggle)).isChecked();
+        boolean shouldSaveCameraInformation = artemisPrefs.getBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
         if(shouldSaveCameraInformation){
             // Metadata
             newMeta.put(ExifInterface.TAG_MAKE, metadata.get(ExifInterface.TAG_MAKE) );
@@ -161,7 +143,7 @@ public class SaveVideoMetadataActivity extends Activity {
             cameraInfoTextView.setText(ArtemisActivity._cameraDetailsText.getText().toString());
         }
 
-        boolean shouldSaveLensInfo = ((ToggleButton) findViewById(R.id.lensDetailsToggle)).isChecked();
+        boolean shouldSaveLensInfo = artemisPrefs.getBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
         if(shouldSaveLensInfo){
             // Metadata
             newMeta.put(ExifInterface.TAG_FOCAL_LENGTH, metadata.get(ExifInterface.TAG_FOCAL_LENGTH));
@@ -179,8 +161,11 @@ public class SaveVideoMetadataActivity extends Activity {
             lensMakeMetadataTextView.setText(lensMake);
         }
 
-        boolean shouldSaveGpsInformation = ((ToggleButton) findViewById(R.id.gpsCoordinatesToggle)).isChecked();
-        if(shouldSaveGpsInformation){
+        boolean showGpsCoordinates = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, true);
+        boolean showGpsAddress = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_ADDRESS, true);
+        if(showGpsCoordinates || showGpsAddress){
             // Metadata
             metadata.put(ExifInterface.TAG_GPS_LATITUDE, metadata.get(ExifInterface.TAG_GPS_LATITUDE));
             metadata.put(ExifInterface.TAG_GPS_LATITUDE_REF, metadata.get(ExifInterface.TAG_GPS_LATITUDE_REF));
@@ -190,21 +175,45 @@ public class SaveVideoMetadataActivity extends Activity {
             // Video intro
             String[] gpsDetailsAndLocation = ArtemisActivity.getGPSLocationDetailStrings(this);
             TextView locationTextView = findViewById(R.id.locationVideoMetadata);
-            locationTextView.setText(gpsDetailsAndLocation[0]);
+            if (showGpsCoordinates) {
+                locationTextView.setText(gpsDetailsAndLocation[0]);
+            }
+            if (showGpsAddress) {
+                locationTextView.setText(gpsDetailsAndLocation[1]);
+            }
         }
 
-        boolean shouldSaveExposureTime = ((ToggleButton) findViewById(R.id.exposure_toggle)).isChecked();
+        boolean shouldSaveExposureTime = artemisPrefs.getBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, true);
         if(shouldSaveExposureTime){
             // Metadata
             newMeta.put(ExifInterface.TAG_EXPOSURE_TIME, metadata.get(ExifInterface.TAG_EXPOSURE_TIME));
 
             // Video intro
-            String exposureSeconds = "Exposure time: " + metadata.get(ExifInterface.TAG_EXPOSURE_TIME);
+            String exposureSeconds = metadata.containsKey(ExifInterface.TAG_EXPOSURE_TIME) ? "Exposure time: " + metadata.get(ExifInterface.TAG_EXPOSURE_TIME) : "AUTO EXPOSURE";
             TextView exposureTextView = findViewById(R.id.exposureVideoMetadata);
             exposureTextView.setText(exposureSeconds);
         }
 
-        if (!videoTitleTextView.getText().equals("")) {
+        boolean showTiltAndDirection = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true);
+        if (showTiltAndDirection) {
+            TextView tiltTextView = findViewById(R.id.tiltVideoMetadata);
+            tiltTextView.setText(ArtemisActivity.pictureSaveHeadingTiltString);
+        }
+
+        TextView sunriseAndSunsetTextView = findViewById(R.id.sunriseAndSunsetVideoMetadata);
+        sunriseAndSunsetTextView.setText("No date chosen yet");
+        boolean showSunriseAndSunset = artemisPrefs.getBoolean(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET, true);
+        if (showSunriseAndSunset && sunriseAndSunsetDate.length() > 0) {
+            // Metadata
+            newMeta.put("sunrise and sunset", sunriseAndSunsetDate);
+
+            // Video intro
+            sunriseAndSunsetTextView.setText(sunriseAndSunsetDate);
+        }
+
+        if (withIntro) {
             // Add 2 secs clip with metadata info
             View pictureMetadataView = findViewById(R.id.videoMetadataIntro);
             Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
@@ -224,17 +233,8 @@ public class SaveVideoMetadataActivity extends Activity {
         }
 
         // Save preferences
-        SharedPreferences.Editor editor = getApplication().getSharedPreferences(
-                ArtemisPreferences.class.getSimpleName(),
-                Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = artemisPrefs.edit();
         editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, videoTitle);
-        editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, videoNotes);
-        editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, videoContactName);
-        editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, videoContactEmail);
-        editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, shouldSaveCameraInformation);
-        editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, shouldSaveLensInfo);
-        editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_GPS_LOCATION, shouldSaveGpsInformation);
-        editor.putBoolean(ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, shouldSaveExposureTime);
         editor.commit();
 
         // Save metadata
