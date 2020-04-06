@@ -1442,12 +1442,28 @@ public class ArtemisActivity extends Activity implements
         videoFileNameCropped = videoFileNameCropped + "_preview" + formatString;
 
         ArtemisRectF selectedLensBox = _artemisMath.getSelectedLensBox();
-        String cropWidth = String.valueOf(selectedLensBox.width());
-        String cropHeight = String.valueOf(selectedLensBox.height());
-        String crop_x = String.valueOf(selectedLensBox.left);
-        String crop_y = String.valueOf(selectedLensBox.top);
 
-        String[] cmd = {"-y", "-i", videoFileName, "-filter:v", "crop=" + cropWidth + ":" + cropHeight + ":" + crop_x + ":" + crop_y + ",fps=fps=25",
+        final int videoWidth = mCameraPreview.videoSize.getWidth();
+        final int videoHeight = mCameraPreview.videoSize.getHeight();
+
+        final float screenWRatio = (float)  _artemisMath.screenWidth / _artemisMath.screenHeight;
+        final float screenHRatio = (float) 1 / screenWRatio;
+
+        int newVideoHeight = (int) (videoWidth * screenHRatio);
+        int newVideoWidth = (int) (videoWidth);
+        int newVideoWidthDiff = (int) ((videoWidth - newVideoWidth) / 2f);
+        int newVideoHeightDiff = (int) ((videoHeight - newVideoHeight) / 2f);
+
+        String cropVideoInputToScreen = newVideoWidth + ":" + newVideoHeight + ":" + newVideoWidthDiff + ":" + newVideoHeightDiff;
+        String scaleScreenSize = mCameraOverlay.getWidth() + ":" + mCameraOverlay.getHeight();
+        String cropVideoToSelectedBox = selectedLensBox.width() + ":" + selectedLensBox.height() + ":" + selectedLensBox.left + ":" + selectedLensBox.top;
+
+        String[] cmd = {"-y", "-i", videoFileName,
+                "-filter:v",
+                "crop=" + cropVideoInputToScreen +
+                ",scale=" + scaleScreenSize +
+                ",crop=" + cropVideoToSelectedBox +
+                ",setsar=1:1, fps=fps=25",
                 "-c:a", "copy", videoFileNameCropped};
         int rc = FFmpeg.execute(cmd);
 

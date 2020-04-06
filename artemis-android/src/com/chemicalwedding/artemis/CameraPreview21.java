@@ -609,7 +609,7 @@ public class CameraPreview21 extends Fragment {
      */
 
     static protected android.util.Size previewSize;
-    protected Size videoSize;
+    public Size videoSize;
 
     /**
      * {@link android.hardware.camera2.CameraDevice.StateCallback} is called when {@link android.hardware.camera2.CameraDevice} changes its state.
