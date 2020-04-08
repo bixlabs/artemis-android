@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainFrame"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal_guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.037" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal_guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.899" />
 
     <com.chemicalwedding.artemis.CameraContainerView
         android:id="@+id/cameraContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
-
     </com.chemicalwedding.artemis.CameraContainerView>
 
-    <RelativeLayout
-        android:id="@+id/overlay"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+    <com.chemicalwedding.artemis.CameraOverlay
+        android:id="@+id/cameraOverlay"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <com.chemicalwedding.artemis.CameraOverlay
-            android:id="@+id/cameraOverlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cameraOverlayTop"
-            android:layout_above="@id/cameraOverlayBottom"
-            android:background="@null"
-            android:visibility="visible" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="right|top"
-            android:paddingTop="12dip"></LinearLayout>
-
-        <ImageView
-            android:id="@+id/cameraOverlayTop"
-            android:layout_width="wrap_content"
-            android:layout_height="12dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/cameraoverlay_top" />
-
-        <ImageView
-            android:id="@+id/cameraOverlayBottom"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/cameraoverlay_bottom" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="left|top" >
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/cameraoverlay_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_top">
 
         <LinearLayout
             android:id="@+id/cameraDetailsView"
             android:layout_width="wrap_content"
-            android:layout_height="40dip" >
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
 
             <TextView
                 android:id="@+id/cameraDetailsText"
-                android:layout_width="200dip"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="-1dip"
@@ -71,42 +66,31 @@
                 android:textSize="12sp"
                 android:typeface="sans" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="1dip"
-        android:layout_marginRight="1dip"
-        android:gravity="center|top" >
 
         <TextView
+            android:layout_gravity="center"
             android:id="@+id/headingTiltText"
+            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
             android:textColor="@color/previewTextColor"
             android:textIsSelectable="true"
             android:textSize="12sp"
+            android:tooltipText="Tilt"
             android:typeface="monospace" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="right|top" >
 
         <LinearLayout
             android:id="@+id/lensMakeView"
             android:layout_width="wrap_content"
-            android:layout_height="40dip"
-            android:gravity="right" >
+            android:layout_height="match_parent"
+            android:layout_gravity="right" >
 
             <TextView
                 android:id="@+id/lensMakeText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="-1dip"
                 android:text="@string/menu_lens_settings"
@@ -114,13 +98,16 @@
                 android:textSize="12sp"
                 android:typeface="sans" />
         </LinearLayout>
-    </LinearLayout>
+    </GridLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginTop="17dp"
         android:layout_width="match_parent"
-        android:layout_height="20dp">
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_top">
 
         <LinearLayout
             android:id="@+id/videoChronometerContainer"
@@ -130,44 +117,46 @@
             android:background="@android:color/black">
 
             <ImageView
-                android:layout_width="11dp"
-                android:layout_height="11dp"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
                 android:layout_gravity="center"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/red_circle"/>
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/red_circle" />
 
             <Chronometer
                 android:id="@+id/videoChronometer"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="5dp"
-                android:textColor="@android:color/white"
                 android:format="MM:SS"
-                android:textSize="14dp"/>
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="0dp"
         android:layout_gravity="bottom|center"
         android:background="@drawable/cameraoverlay_bottom"
-        android:gravity="center_horizontal" >
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
         <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/prevButton"
-            android:layout_width="40dp"
+            android:layout_width="48dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:paddingBottom="2dip"
             android:src="@drawable/prevbutton"
@@ -178,7 +167,6 @@
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
@@ -186,14 +174,12 @@
             android:id="@+id/shutterButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:src="@drawable/camerabutton" />
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
@@ -202,9 +188,8 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/video_icon"
             android:padding="7dp"
-            />
+            android:src="@drawable/video_icon" />
 
         <ImageView
             android:layout_width="2dp"
@@ -217,14 +202,12 @@
             android:id="@+id/fullscreenButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:paddingBottom="2dip"
             android:src="@drawable/fullscreenbutton" />
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
@@ -232,26 +215,26 @@
             android:id="@+id/galleryButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:src="@drawable/gallerybutton" />
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
         <FrameLayout
-            android:layout_width="133dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center" >
+            android:layout_gravity="bottom|center">
 
             <ImageView
                 android:id="@+id/focalLengthLensButton"
-                android:layout_width="133dp"
+                android:layout_width="175dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_marginBottom="3dp"
                 android:clickable="true"
                 android:paddingTop="1dip"
@@ -259,39 +242,36 @@
                 android:src="@drawable/lensbutton" />
 
             <LinearLayout
-                android:layout_width="125dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center" >
+                android:layout_gravity="bottom|center">
 
                 <TextView
                     android:id="@+id/lensFocalLengthText"
-                    android:layout_width="35dp"
+                    android:layout_width="55dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="1dp"
                     android:layout_marginRight="1dip"
                     android:gravity="right"
+                    android:paddingBottom="2dip"
                     android:text=""
                     android:textColor="@color/focalLengthHUD"
-                    android:textSize="20sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/lensFocalLengthMM"
-                    android:layout_width="25dp"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="1dp"
+                    android:paddingTop="8dip"
                     android:text="@string/lensFocalLengthMM"
                     android:textColor="@color/focalLengthHUD"
-                    android:textSize="13sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <com.chemicalwedding.artemis.CameraAngleDetailView
                     android:id="@+id/CameraAngleDetailView"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_width="85dp"
+                    android:layout_height="35dp"
                     android:clickable="true" />
             </LinearLayout>
         </FrameLayout>
@@ -299,7 +279,6 @@
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
@@ -307,14 +286,12 @@
             android:id="@+id/editMetaDataButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:src="@drawable/editmeta" />
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
@@ -322,14 +299,12 @@
             android:id="@+id/settingsButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:src="@drawable/settingsbutton" />
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
@@ -337,21 +312,18 @@
             android:id="@+id/helpButtonView"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:src="@drawable/helpbutton" />
 
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
         <com.chemicalwedding.artemis.LongPressButton
             android:id="@+id/nextButton"
-            android:layout_width="40dp"
+            android:layout_width="48dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:paddingBottom="2dip"
             android:src="@drawable/nextbutton" />
@@ -359,9 +331,7 @@
         <ImageView
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
     </LinearLayout>
-
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>
