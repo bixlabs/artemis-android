@@ -23,6 +23,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -169,19 +170,17 @@ public class CameraPreview21 extends Fragment {
             surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
             Surface previewSurface = new Surface(surfaceTexture);
             Surface recordSurface = mediaRecorder.getSurface();
-                captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
-            captureRequestBuilder.addTarget(previewSurface);
-            captureRequestBuilder.addTarget(recordSurface);
+            mPreviewRequestBuilder.addTarget(recordSurface);
+
+            mPreviewRequest = mPreviewRequestBuilder.build();
+            mOriginalCropRegion = mPreviewRequest.get(CaptureRequest.SCALER_CROP_REGION);
 
             mCameraDevice.createCaptureSession(Arrays.asList(previewSurface, recordSurface),
                     new CameraCaptureSession.StateCallback() {
                         @Override
                         public void onConfigured(@NonNull CameraCaptureSession session) {
                             try {
-                                session.setRepeatingRequest(
-                                        captureRequestBuilder.build(),
-                                        mCaptureCallback,
-                                        mBackgroundHandler);
+                                session.setRepeatingRequest(mPreviewRequest, mCaptureCallback, mBackgroundHandler);
                             } catch (CameraAccessException e) {
                                 e.printStackTrace();
                             }
@@ -1152,6 +1151,7 @@ public class CameraPreview21 extends Fragment {
     /**
      * Opens the camera specified by {@link CameraPreview21#mCameraId}.
      */
+    @SuppressLint("MissingPermission")
     private void openCamera(int width, int height) {
         totalScreenWidth = width > height ? width : height;
         totalScreenHeight = width > height ? height : width;
@@ -1287,7 +1287,7 @@ public class CameraPreview21 extends Fragment {
 
             // We set up a CaptureRequest.Builder with the output Surface.
             mPreviewRequestBuilder
-                    = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+                    = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
             mPreviewRequestBuilder.addTarget(surface);
 
             try {
@@ -1340,6 +1340,9 @@ public class CameraPreview21 extends Fragment {
                                     mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AWB_MODE,
                                             selectedWhiteBalanceInt);
                                 }
+
+                                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE,
+                                        CameraMetadata.CONTROL_VIDEO_STABILIZATION_MODE_OFF);
 
                                 mTextureView.post(new Runnable() {
                                     @Override
