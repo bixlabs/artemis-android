@@ -1,5 +1,7 @@
 package com.chemicalwedding.artemis;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,6 +37,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.Guideline;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
@@ -43,6 +49,7 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -60,6 +67,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -73,11 +81,13 @@ import android.widget.ViewFlipper;
 
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.FFmpeg;
+import com.bumptech.glide.Glide;
 import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
+import com.chemicalwedding.artemis.database.LensAdapter;
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
 import com.chemicalwedding.artemis.database.SaveMetadataToMoviesOptions;
@@ -99,6 +109,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_CANCEL;
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
@@ -106,7 +118,9 @@ import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
 
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
-        LoaderCallbacks<Cursor> {
+        LoaderCallbacks<Cursor>,
+        LensAdaptersAdapter.SelectedLensAdapterCallback
+{
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
     private static final String DEFAULT_LENS_MAKE = "All Generic 35mm Lenses";
@@ -194,6 +208,21 @@ public class ArtemisActivity extends Activity implements
     protected boolean isRecordingVideo;
     protected File videoFolder;
     protected String videoFileName;
+
+    private ImageView addLensAdapterButton;
+    private LinearLayout addLensAdapterView;
+    private LinearLayout mainMenu;
+    private TextView addCustomlensAdapterButton;
+    private Guideline horizontalGuidelineBottom;
+    private TextView selectedLensAdapter;
+    private TextView removeLensAdapterButton;
+    private ImageView loadingIndicator;
+    private RelativeLayout loadingIndicatorContainer;
+    private AnimatorSet frontAnim;
+    private AnimatorSet backAnim;
+    private boolean isFront;
+    private LinearLayout selectedLensAdapterMilis;
+    private Timer time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -731,6 +760,53 @@ public class ArtemisActivity extends Activity implements
         recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
 
         recordVideoChronometer = findViewById(R.id.videoChronometer);
+
+        addLensAdapterButton = findViewById(R.id.addLensAdapterButton);
+        addCustomlensAdapterButton = findViewById(R.id.addCustomLensAdapterButton);
+        addLensAdapterView = findViewById(R.id.addLensAdapterView);
+        mainMenu = findViewById(R.id.mainMenu);
+        horizontalGuidelineBottom = findViewById(R.id.horizontal_guideline_bottom);
+        selectedLensAdapter = findViewById(R.id.selectedLensAdapter);
+        removeLensAdapterButton = findViewById(R.id.removeLensAdapterButton);
+        loadingIndicator = findViewById(R.id.loadingIndicator);
+        loadingIndicatorContainer = findViewById(R.id.loadingIndicatorContainer);
+        selectedLensAdapterMilis = findViewById(R.id.selectedLensAdapterMilis);
+
+        float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+        selectedLensAdapterMilis.setCameraDistance( 8000 * scale );
+        mCameraAngleDetailView.setCameraDistance(8000 * scale);
+
+        frontAnim = (AnimatorSet) AnimatorInflater.loadAnimator(ArtemisActivity.this.getApplicationContext(), R.animator.front_animator);
+        backAnim = (AnimatorSet) AnimatorInflater.loadAnimator(ArtemisActivity.this.getApplicationContext(), R.animator.back_animator);
+
+        time = new Timer();
+        time.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArtemisActivity.this.runAnimation();
+                    }
+                });
+            }
+        }, 0, 1550);
+    }
+
+    public void runAnimation() {
+        if(isFront) {
+            frontAnim.setTarget(selectedLensAdapterMilis);
+            backAnim.setTarget(mCameraAngleDetailView);
+            frontAnim.start();
+            backAnim.start();
+            isFront = false;
+        } else {
+            frontAnim.setTarget(mCameraAngleDetailView);
+            backAnim.setTarget(selectedLensAdapterMilis);
+            frontAnim.start();
+            backAnim.start();
+            isFront = true;
+        }
     }
 
     private void bindViewEvents() {
@@ -740,6 +816,8 @@ public class ArtemisActivity extends Activity implements
                 Log.i("bixlabs", "preview tapped");
                 if(isRecordingVideo){
                     mCameraPreview.stopRecording();
+                } else if(addLensAdapterView.getVisibility() == View.VISIBLE) {
+                    hideLensAdapterViewAndShowMainMenu();
                 }
             }
         });
@@ -749,7 +827,12 @@ public class ArtemisActivity extends Activity implements
                 recordVideoButton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if(loadingIndicatorContainer.getVisibility() == View.VISIBLE) {
+                            return;
+                        }
                         if(isRecordingVideo){
+                            loadingIndicatorContainer.setVisibility(View.VISIBLE);
+                            System.out.println("container is visible");
                             mCameraPreview.stopRecording();
                         } else {
                             if (lastKnownLocation != null)
@@ -807,10 +890,10 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
-        Button cancelLensesButton = (Button) findViewById(R.id.cancelLenses);
+        TextView cancelLensesButton = (TextView) findViewById(R.id.cancelLenses);
         cancelLensesButton
                 .setOnClickListener(new LenseSelectionCancelClickListener());
-        final Button saveLensesButton = (Button) findViewById(R.id.saveLenses);
+        final TextView saveLensesButton = (TextView) findViewById(R.id.saveLenses);
         saveLensesButton
                 .setOnClickListener(new LenseSelectionSaveClickListener());
 
@@ -819,6 +902,7 @@ public class ArtemisActivity extends Activity implements
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
                                     long id) {
+                System.out.println("checked Item count: " + _lensListView.getCheckedItemCount());
                 if (_lensListView.getCheckedItemCount() > 0) {
                     saveLensesButton.setEnabled(true);
                 } else {
@@ -854,7 +938,7 @@ public class ArtemisActivity extends Activity implements
         });
 
         // view under the focal length label in the preview
-        ((ImageView) findViewById(R.id.focalLengthLensButton))
+        ((ConstraintLayout) findViewById(R.id.focalLengthLensButton))
                 .setOnClickListener(new focalLengthLensButtonViewClickListener());
 
         // fullscreen button
@@ -986,6 +1070,93 @@ public class ArtemisActivity extends Activity implements
                         }
                     }
                 });
+
+        addLensAdapterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addLensAdapterView.setVisibility(View.VISIBLE);
+                mainMenu.setVisibility(View.GONE);
+                horizontalGuidelineBottom.setGuidelinePercent(0.85f);
+
+                List<LensAdapter> adapters = _artemisDBHelper.getLensAdapters();
+
+                RecyclerView recyclerView = findViewById(R.id.adaptersRecyclerView);
+
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ArtemisActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(layoutManager);
+                RecyclerView.Adapter recyclerViewAdapter = new LensAdaptersAdapter(adapters, ArtemisActivity.this, ArtemisActivity.this);
+                recyclerView.setAdapter(recyclerViewAdapter);
+            }
+        });
+
+        addCustomlensAdapterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddCustomLensAdapterDialog();
+            }
+        });
+
+        removeLensAdapterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArtemisActivity.this.selectedLensAdapter(null);
+            }
+        });
+
+        Glide.with(this)
+                .load(R.raw.loading)
+                .into(loadingIndicator);
+    }
+
+    private void showAddCustomLensAdapterDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
+        builder.setTitle("Add custom lens adapter");
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                double factor = Double.parseDouble(input.getText().toString());
+                addCustomAdapterToDatabase(factor);
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void addCustomAdapterToDatabase(double adapterFactor) {
+        LensAdapter adapter = new LensAdapter();
+        adapter.setMagnificationFactor(adapterFactor);
+        adapter.setCustomAdapter(true);
+        _artemisDBHelper.insertLensAdapters(adapter);
+        refreshLensAdapters();
+    }
+
+    private void refreshLensAdapters() {
+        List<LensAdapter> adapters = _artemisDBHelper.getLensAdapters();
+
+        RecyclerView recyclerView = findViewById(R.id.adaptersRecyclerView);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ArtemisActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.Adapter recyclerViewAdapter = new LensAdaptersAdapter(adapters, ArtemisActivity.this, ArtemisActivity.this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+    }
+
+    private void hideLensAdapterViewAndShowMainMenu() {
+        addLensAdapterView.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.VISIBLE);
+        horizontalGuidelineBottom.setGuidelinePercent(0.899f);
     }
 
     protected void buzz(View v) {
@@ -1426,101 +1597,128 @@ public class ArtemisActivity extends Activity implements
 
     @Override
     public void recordingStopped(String filePath, HashMap<String, String> cameraMetadata){
-        recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
-        recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
-        recordVideoChronometer.stop();
+        CropVideoOptions options = new CropVideoOptions();
+        options.filePath = filePath;
+        options.cameraMetadata = cameraMetadata;
 
-        isRecordingVideo = false;
-        recordVideoButton.setImageResource(R.drawable.video_icon);
-        MediaType mediaType = MediaType.VIDEO;
-        File file = new File(filePath);
-        MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+        new CropVideoFileTask().execute(options);
+    }
 
-        videoFileName = mediaFile.getPath();
-        String videoFileNameCropped = videoFileName.substring(0, videoFileName.lastIndexOf("."));
-        String formatString = videoFileName.substring(videoFileName.lastIndexOf("."));
-        videoFileNameCropped = videoFileNameCropped + "_preview" + formatString;
+    private class CropVideoOptions {
+        String filePath;
+        HashMap<String, String> cameraMetadata;
+    }
 
-        ArtemisRectF selectedLensBox = _artemisMath.getSelectedLensBox();
+    private class CropVideoFileTask extends AsyncTask<CropVideoOptions, Void, Void> {
 
-        final int videoWidth = mCameraPreview.videoSize.getWidth();
-        final int videoHeight = mCameraPreview.videoSize.getHeight();
+        @Override
+        protected Void doInBackground(CropVideoOptions... cropVideoOptions) {
+            String filePath = cropVideoOptions[0].filePath;
+            HashMap<String, String> cameraMetadata = cropVideoOptions[0].cameraMetadata;
+            recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
+            recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
+            recordVideoChronometer.stop();
 
-        final float screenWRatio = (float)  _artemisMath.screenWidth / _artemisMath.screenHeight;
-        final float screenHRatio = (float) 1 / screenWRatio;
+            isRecordingVideo = false;
+            recordVideoButton.setImageResource(R.drawable.video_icon);
+            MediaType mediaType = MediaType.VIDEO;
+            File file = new File(filePath);
+            MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
 
-        int newVideoHeight = (int) (videoWidth * screenHRatio);
-        int newVideoWidth = (int) (videoWidth);
-        int newVideoWidthDiff = (int) ((videoWidth - newVideoWidth) / 2f);
-        int newVideoHeightDiff = (int) ((videoHeight - newVideoHeight) / 2f);
+            videoFileName = mediaFile.getPath();
+            String videoFileNameCropped = videoFileName.substring(0, videoFileName.lastIndexOf("."));
+            String formatString = videoFileName.substring(videoFileName.lastIndexOf("."));
+            videoFileNameCropped = videoFileNameCropped + "_preview" + formatString;
 
-        String cropVideoInputToScreen = newVideoWidth + ":" + newVideoHeight + ":" + newVideoWidthDiff + ":" + newVideoHeightDiff;
-        String scaleScreenSize = mCameraOverlay.getWidth() + ":" + mCameraOverlay.getHeight();
-        String cropVideoToSelectedBox = selectedLensBox.width() + ":" + selectedLensBox.height() + ":" + selectedLensBox.left + ":" + selectedLensBox.top;
+            ArtemisRectF selectedLensBox = _artemisMath.getSelectedLensBox();
 
-        String[] cmd = {"-y", "-i", videoFileName,
-                "-filter:v",
-                "crop=" + cropVideoInputToScreen +
-                ",scale=" + scaleScreenSize +
-                ",crop=" + cropVideoToSelectedBox +
-                ",setsar=1:1, fps=fps=25",
-                "-c:a", "copy", videoFileNameCropped};
-        int rc = FFmpeg.execute(cmd);
+            final int videoWidth = mCameraPreview.videoSize.getWidth();
+            final int videoHeight = mCameraPreview.videoSize.getHeight();
 
-        if (rc == RETURN_CODE_SUCCESS) {
-            Log.i(Config.TAG, "Command execution completed successfully.");
-            if (file.delete()) {
-                file = new File(videoFileNameCropped);
-                mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+            final float screenWRatio = (float)  _artemisMath.screenWidth / _artemisMath.screenHeight;
+            final float screenHRatio = (float) 1 / screenWRatio;
+
+            int newVideoHeight = (int) (videoWidth * screenHRatio);
+            int newVideoWidth = (int) (videoWidth);
+            int newVideoWidthDiff = (int) ((videoWidth - newVideoWidth) / 2f);
+            int newVideoHeightDiff = (int) ((videoHeight - newVideoHeight) / 2f);
+
+            String cropVideoInputToScreen = newVideoWidth + ":" + newVideoHeight + ":" + newVideoWidthDiff + ":" + newVideoHeightDiff;
+            String scaleScreenSize = mCameraOverlay.getWidth() + ":" + mCameraOverlay.getHeight();
+            String cropVideoToSelectedBox = selectedLensBox.width() + ":" + selectedLensBox.height() + ":" + selectedLensBox.left + ":" + selectedLensBox.top;
+
+            String[] cmd = {"-y", "-i", videoFileName,
+                    "-filter:v",
+                    "crop=" + cropVideoInputToScreen +
+                            ",scale=" + scaleScreenSize +
+                            ",crop=" + cropVideoToSelectedBox +
+                            ",setsar=1:1, fps=fps=25",
+                    "-c:a", "copy", videoFileNameCropped};
+            int rc = FFmpeg.execute(cmd);
+
+            if (rc == RETURN_CODE_SUCCESS) {
+                Log.i(Config.TAG, "Command execution completed successfully.");
+                if (file.delete()) {
+                    file = new File(videoFileNameCropped);
+                    mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+                }
+            } else if (rc == RETURN_CODE_CANCEL) {
+                Log.i(Config.TAG, "Command execution cancelled by user.");
+            } else {
+                Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
+                Config.printLastCommandOutput(Log.INFO);
             }
-        } else if (rc == RETURN_CODE_CANCEL) {
-            Log.i(Config.TAG, "Command execution cancelled by user.");
-        } else {
-            Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
-            Config.printLastCommandOutput(Log.INFO);
+
+            SharedPreferences artemisPrefs = getSharedPreferences(
+                    ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
+            String selectedSaveMetadataToMoviesString = artemisPrefs.getString(
+                    getString(R.string.preference_key_saveMetadataToMovies), "ASK");
+            Log.i("bixlabs", selectedSaveMetadataToMoviesString);
+            SaveMetadataToMoviesOptions saveMetadataToMoviesOptions = SaveMetadataToMoviesOptions.valueOf(selectedSaveMetadataToMoviesString);
+
+            if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.NEVER) {
+                try {
+                    MetadataEditor editor = MetadataEditor.createFrom(new File(mediaFile.getPath()));
+                    Map<String, MetaValue> meta = editor.getKeyedMeta();
+
+                    for(String key: cameraMetadata.keySet()) {
+                        meta.put(key, MetaValue.createString(cameraMetadata.get(key)));
+                    }
+
+                    editor.save(false);
+                    Toast.makeText(ArtemisActivity.this, "Video saved!",
+                            Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putString("fullScreenMediaPath", mediaFile.getPath());
+                bundle.putString("fullScreenMediaType", mediaFile.getMediaType().toString());
+                bundle.putSerializable("metadata", cameraMetadata);
+
+                if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ASK) {
+                    Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
+                    mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    mediaFulllScreenIntent.putExtras(bundle);
+                    reconfigureShutterButton();
+                    startActivity(mediaFulllScreenIntent);
+                } else if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ALWAYS) {
+                    Intent videoMetadataIntent = new Intent(ArtemisActivity.this, SaveVideoMetadataActivity.class);
+                    videoMetadataIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                    videoMetadataIntent.putExtras(bundle);
+                    startActivity(videoMetadataIntent);
+                }
+            }
+
+            return null;
         }
 
-        SharedPreferences artemisPrefs = getSharedPreferences(
-                ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
-        String selectedSaveMetadataToMoviesString = artemisPrefs.getString(
-                getString(R.string.preference_key_saveMetadataToMovies), "ASK");
-        Log.i("bixlabs", selectedSaveMetadataToMoviesString);
-        SaveMetadataToMoviesOptions saveMetadataToMoviesOptions = SaveMetadataToMoviesOptions.valueOf(selectedSaveMetadataToMoviesString);
-
-        if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.NEVER) {
-            try {
-                MetadataEditor editor = MetadataEditor.createFrom(new File(mediaFile.getPath()));
-                Map<String, MetaValue> meta = editor.getKeyedMeta();
-
-                for(String key: cameraMetadata.keySet()) {
-                    meta.put(key, MetaValue.createString(cameraMetadata.get(key)));
-                }
-
-                editor.save(false);
-                Toast.makeText(this, "Video saved!",
-                        Toast.LENGTH_LONG).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putString("fullScreenMediaPath", mediaFile.getPath());
-            bundle.putString("fullScreenMediaType", mediaFile.getMediaType().toString());
-            bundle.putSerializable("metadata", cameraMetadata);
-
-            if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ASK) {
-                Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
-                mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                mediaFulllScreenIntent.putExtras(bundle);
-                reconfigureShutterButton();
-                startActivity(mediaFulllScreenIntent);
-            } else if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ALWAYS) {
-                Intent videoMetadataIntent = new Intent(ArtemisActivity.this, SaveVideoMetadataActivity.class);
-                videoMetadataIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-                videoMetadataIntent.putExtras(bundle);
-                startActivity(videoMetadataIntent);
-            }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            loadingIndicatorContainer.setVisibility(View.GONE);
         }
     }
 
@@ -1552,6 +1750,42 @@ public class ArtemisActivity extends Activity implements
             });
         }
 
+    }
+
+    @Override
+    public void selectedLensAdapter(LensAdapter adapter) {
+        if(adapter == null) {
+            selectedLensAdapter.setVisibility(View.GONE);
+        } else {
+            selectedLensAdapter.setText("x" + adapter.getMagnificationFactor());
+            selectedLensAdapter.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void deleteLensAdapter(LensAdapter adapter) {
+        if(adapter.isCustomAdapter()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
+            builder.setTitle("Delete custom adapter");
+            builder.setMessage("Are you sure you want to delete the custom lens adapter?");
+
+            builder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    _artemisDBHelper.deleteLensAdapterById(adapter.getPk());
+                    refreshLensAdapters();
+                }
+            });
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+
+            builder.show();
+        }
     }
 
     final class CameraGenreItemClickedListener implements OnItemClickListener {
@@ -2291,11 +2525,31 @@ public class ArtemisActivity extends Activity implements
         if (lensIdList.length() > 0)
             lensIdList = lensIdList.substring(0, lensIdList.length() - 1);
 
-        ArrayAdapter<String> lensAdapter = new ArrayAdapter<String>(
-                ArtemisActivity.this, R.layout.lens_list_item, focalLengths);
-        _lensListView.setAdapter(lensAdapter);
-        _lensListView.setTextFilterEnabled(true);
+        LensArrayAdapter lensArrayAdapter = new LensArrayAdapter(this, tempLensesForMake, _lensListView);
+
+        _lensListView.setAdapter(lensArrayAdapter);
+//        _lensListView.setTextFilterEnabled(true);
         _lensListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        final TextView saveLensesButton = (TextView) findViewById(R.id.saveLenses);
+        saveLensesButton
+                .setOnClickListener(new LenseSelectionSaveClickListener());
+
+        _lensListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
+                                    long id) {
+                System.out.println("checked Item count: " + _lensListView.getCheckedItemPositions());
+                if (_lensListView.getCheckedItemCount() > 0) {
+                    saveLensesButton.setEnabled(true);
+                } else {
+                    saveLensesButton.setEnabled(false);
+                }
+                _lensListView.invalidate();
+                lensArrayAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         // set the checked items
         for (Integer pos : checked) {
@@ -3267,5 +3521,7 @@ public class ArtemisActivity extends Activity implements
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
+
+
 
 }

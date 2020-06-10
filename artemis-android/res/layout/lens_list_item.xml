@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@android:id/text1" android:layout_width="fill_parent"
-	android:layout_height="50dip"
-	android:gravity="center_vertical" android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-	android:paddingLeft="30dip" android:paddingRight="6dip" android:textSize="15sp"/>
+<!--<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--	android:id="@android:id/text1" android:layout_width="fill_parent"-->
+<!--	android:layout_height="50dip"-->
+<!--	android:gravity="center_vertical" android:checkMark="?android:attr/listChoiceIndicatorMultiple"-->
+<!--	android:paddingLeft="30dip" android:paddingRight="6dip" android:textSize="15sp"/>-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="60dip"
+    android:layout_width="match_parent"
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:paddingLeft="30dip"
+    android:paddingRight="6dip"
+    android:background="#151515"
+    android:descendantFocusability="blocksDescendants"
+>
+    <TextView
+        android:id="@+id/millis"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:text="30 mm"
+        android:layout_marginTop="20dp"
+    ></TextView>
+
+    <com.chemicalwedding.artemis.AngleView
+        android:id="@+id/angle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/millis"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+    ></com.chemicalwedding.artemis.AngleView>
+
+    <TextView
+        android:id="@+id/angleText"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/angle"
+        android:textColor="#767676"
+        android:text="129"
+        android:gravity="right"
+    ></TextView>
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentEnd="true"
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+    ></CheckBox>
+</RelativeLayout>
+

@@ -4,4 +4,6 @@
 	<color name="focalLengthHUD">#000000</color>
 	<color name="orangeArtemisText">#f2a700</color>
 	<color name="transparent_artemis_view">#00000000</color>
+	<color name="gray">#D3D3D3</color>
+	<color name="transparent_alpha">#000000</color>
 </resources>

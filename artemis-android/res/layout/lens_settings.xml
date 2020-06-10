@@ -76,31 +76,42 @@
                 android:layout_weight="0.85"
                 android:gravity="top" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.15"
-                android:gravity="bottom|center_horizontal"
-                android:padding="2dip" >
-                
-                 <Button
+                android:padding="5dp"
+            >
+                 <TextView
                     android:id="@+id/cancelLenses"
                     android:layout_width="140dip"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:layout_weight=".3"
-                    android:layout_marginRight="50dip"
+                    android:layout_marginRight="15dip"
+                     android:layout_marginBottom="2dp"
+                    android:background="@drawable/add_adapter_button"
+                    android:textColor="@color/orangeArtemisText"
+                    android:layout_toLeftOf="@id/saveLenses"
+                     android:gravity="center"
+                    android:layout_marginEnd="10dp"
                     android:text="@string/cancel" />
 
-                <Button
+                <TextView
                     android:id="@+id/saveLenses"
                     android:layout_width="140dip"
-                    android:layout_height="wrap_content"
-                    
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/add_adapter_button"
+                    android:textColor="@color/orangeArtemisText"
                     android:layout_weight=".3"
-                    android:text="@string/save_lenses" />
+                    android:text="@string/save_lenses"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    />
 
                
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <ListView

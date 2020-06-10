@@ -556,7 +556,7 @@ public class ArtemisMath {
 			hwidth *= currentGreenBox.width() / scaledPreviewWidth;
 		}
 
-		return currentGreenBox.width() / hwidth;
+		return (currentGreenBox.width() / hwidth);
 	}
 
 	public void setHAngleMode(boolean isHAngleMode) {

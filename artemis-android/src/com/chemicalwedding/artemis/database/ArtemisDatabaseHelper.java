@@ -19,7 +19,7 @@ import com.parse.ParseObject;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DB_VERSION = 13;
+    private static final int DB_VERSION = 15;
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -28,6 +28,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     private final static String DB_NAME = "artemisdb";
     private final static String CAMERA_TABLE = "zcamera";
     private final static String LENS_TABLE = "zlensobject";
+    private final static String LENS_ADAPTERS_TABLE = "zcustomlensadapters";
 
 
     public ArtemisDatabaseHelper(Context context) {
@@ -313,6 +314,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         if (createCustomTables) {
             db.execSQL("drop table if exists zcustomcamera");
             db.execSQL("drop table if exists zcustomzoomlens");
+            db.execSQL("drop table if exists zcustomlensapdaters");
         }
 
         db.execSQL("drop index if exists 'ZCAMERA-ZOBJECTID'");
@@ -329,9 +331,11 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         if (createCustomTables) {
             db.execSQL("CREATE TABLE ZCUSTOMCAMERA ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZSENSORWIDTH FLOAT, ZSENSORHEIGHT FLOAT, ZSQUEEZERATIO FLOAT, ZCAMERANAME VARCHAR );");
             db.execSQL("CREATE TABLE ZCUSTOMZOOMLENS ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZNAME VARCHAR, ZMINFL FLOAT, ZMAXFL FLOAT );");
+            db.execSQL("CREATE TABLE ZCUSTOMLENSADAPTERS (z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZFACTOR FLOAT, ZISCUSTOM INTEGER DEFAULT 1);");
         }
 
         executeDatabaseSQL(db);
+        addPredefinedLensAdapters(db);
     }
 
 
@@ -348,6 +352,25 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addPredefinedLensAdapters(SQLiteDatabase db) {
+        _artemisDatabase = db;
+        LensAdapter adapter1 = new LensAdapter();
+        adapter1.setMagnificationFactor(0.45);
+        adapter1.setCustomAdapter(false);
+
+        LensAdapter adapter2 = new LensAdapter();
+        adapter2.setMagnificationFactor(0.55);
+        adapter2.setCustomAdapter(false);
+
+        LensAdapter adapter3 = new LensAdapter();
+        adapter3.setMagnificationFactor(0.65);
+        adapter3.setCustomAdapter(false);
+
+        insertLensAdapters(adapter1);
+        insertLensAdapters(adapter2);
+        insertLensAdapters(adapter3);
     }
 
     public ArrayList<String> findSensorsForQuery(String query) {
@@ -395,6 +418,41 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         _artemisDatabase.setTransactionSuccessful();
         _artemisDatabase.endTransaction();
         c.close();
+    }
+
+    public ArrayList<LensAdapter> getLensAdapters() {
+        Cursor cursor = _artemisDatabase.query("zcustomlensadapters", new String[] {
+                "z_pk", "zfactor", "ziscustom" },
+                null, null, null, null, "ziscustom asc, zfactor asc") ;
+        ArrayList<LensAdapter> lensAdapters = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            LensAdapter adapter = new LensAdapter();
+            adapter.setPk(cursor.getInt(0));
+            adapter.setMagnificationFactor(cursor.getDouble(1));
+            adapter.setCustomAdapter(cursor.getInt(2) != 0);
+            lensAdapters.add(adapter);
+        }
+
+        cursor.close();
+        return lensAdapters;
+    }
+
+    public void insertLensAdapters(LensAdapter lensAdapter) {
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("ZFACTOR", lensAdapter.getMagnificationFactor());
+        initialValues.put("ZISCUSTOM", lensAdapter.isCustomAdapter());
+
+        _artemisDatabase.insert("ZCUSTOMLENSADAPTERS", null, initialValues);
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    public void deleteLensAdapterById(int lensAdapterId) {
+        _artemisDatabase.beginTransaction();
+        _artemisDatabase.delete("ZCUSTOMLENSADAPTERS", "z_pk = ?", new String[] { "" + lensAdapterId });
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
     }
 
     public ArrayList<ZoomLens> getZoomLenses() {

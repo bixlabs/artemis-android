@@ -56,7 +56,7 @@ public class CameraAngleDetailView extends View {
 		_paint.setTypeface(Typeface.DEFAULT_BOLD);
 		_paint.setStyle(Style.FILL_AND_STROKE);
 		_paint.setTextAlign(Align.CENTER);
-		_paint.setColor(Color.BLACK);
+		_paint.setColor(getResources().getColor(R.color.orangeArtemisText));
 		setWillNotDraw(false);
 		setClickable(true);
 
@@ -90,10 +90,13 @@ public class CameraAngleDetailView extends View {
 			} else {
 				canvas.translate(vertCircleOffsetX, vertCircleOffsetY);
 			}
+
+			_paint.setColor(getResources().getColor(R.color.gray));
 			canvas.drawArc(redCircleArcRect, -HVAngleVal / 2, HVAngleVal, true,
 					_paint);
 			canvas.drawCircle(circleCenterX, circleCenterY, whiteCircleRadius,
 					_paint);
+			_paint.setColor(getResources().getColor(R.color.orangeArtemisText));
 //			canvas.restore();
 		}
 	}
@@ -105,16 +108,16 @@ public class CameraAngleDetailView extends View {
 		mHeight = h;
 
 		redAngleCircleRadius = 0.55f * mHeight;
-		circleCenterX = 0.8f * mWidth;
+		circleCenterX = 0.7f * mWidth;
 		circleCenterY = 0.7f * mHeight;
 		vertCircleOffsetX = -0.1f * mWidth;
 		vertCircleOffsetY = -0.2f * mHeight;
 
 		whiteCircleRadius = 0.07f * mHeight;
-		angleValStringX = 0.35f * mWidth;
+		angleValStringX = 0.40f * mWidth;
 		angleValStringY = 0.45f * mHeight;
 		angleValTextSize = 0.45f * mHeight;
-		HVangleX = 0.35f * mWidth;
+		HVangleX = 0.40f * mWidth;
 		HVangleY = 0.78f * mHeight;
 		HVAngleTextSize = 0.3f * mHeight;
 

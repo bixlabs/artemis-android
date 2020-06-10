@@ -23,6 +23,7 @@
         <include
             android:id="@+id/savePicture"
             layout="@layout/save_picture" />
+
     </com.chemicalwedding.artemis.ArtemisViewFlipper>
 
 </FrameLayout>
