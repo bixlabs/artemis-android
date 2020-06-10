@@ -11,8 +11,13 @@
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"
     android:paddingLeft="30dip"
     android:paddingRight="6dip"
+<<<<<<< HEAD
     android:descendantFocusability="blocksDescendants"
     android:background="@drawable/custom_ripple"
+=======
+    android:background="#151515"
+    android:descendantFocusability="blocksDescendants"
+>>>>>>> ed0b9bd (Look and feel changes)
 >
     <TextView
         android:id="@+id/millis"
@@ -50,7 +55,10 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:layout_alignParentEnd="true"
+<<<<<<< HEAD
         android:buttonTint="@color/orangeArtemisText"
+=======
+>>>>>>> ed0b9bd (Look and feel changes)
         android:focusable="false"
         android:clickable="false"
         android:focusableInTouchMode="false"

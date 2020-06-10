@@ -1,6 +1,7 @@
 package com.chemicalwedding.artemis;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 =======
@@ -12,6 +13,10 @@ import java.util.List;
 
 import android.Manifest;
 >>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
+=======
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+>>>>>>> ed0b9bd (Look and feel changes)
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -51,16 +56,22 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import android.support.annotation.Nullable;
 >>>>>>> 28c22f9 (milestone 2 Look and Feel changes to main view and menu)
+=======
+>>>>>>> ed0b9bd (Look and feel changes)
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
 =======
 import android.support.v4.content.ContextCompat;
 >>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
+=======
+>>>>>>> ed0b9bd (Look and feel changes)
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
@@ -247,10 +258,13 @@ public class ArtemisActivity extends Activity implements
     private boolean isFront;
     private LinearLayout selectedLensAdapterMilis;
     private Timer time;
+<<<<<<< HEAD
     private LinearLayout lensMakeTextContainer;
     private TextView lensFocalLengthMM;
     private ImageView menuButton;
     private ImageView heliosImage;
+=======
+>>>>>>> ed0b9bd (Look and feel changes)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -790,6 +804,10 @@ public class ArtemisActivity extends Activity implements
 
         recordVideoChronometer = findViewById(R.id.videoChronometer);
 
+<<<<<<< HEAD
+=======
+        addLensAdapterButton = findViewById(R.id.addLensAdapterButton);
+>>>>>>> ed0b9bd (Look and feel changes)
         addCustomlensAdapterButton = findViewById(R.id.addCustomLensAdapterButton);
         addLensAdapterView = findViewById(R.id.addLensAdapterView);
         mainMenu = findViewById(R.id.mainMenu);
@@ -819,6 +837,7 @@ public class ArtemisActivity extends Activity implements
                 });
             }
         }, 0, 1550);
+<<<<<<< HEAD
 
         lensMakeTextContainer = findViewById(R.id.lensMakeTextContainer);
         lensFocalLengthMM = findViewById(R.id.lensFocalLengthMM);
@@ -826,6 +845,8 @@ public class ArtemisActivity extends Activity implements
         heliosImage = findViewById(R.id.heliosImageView);
         setHeliosImageRotation();
         setLensMakeTextAnimation();
+=======
+>>>>>>> ed0b9bd (Look and feel changes)
     }
 
     public void runAnimation() {
@@ -1106,6 +1127,7 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
+<<<<<<< HEAD
         addCustomlensAdapterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1148,10 +1170,19 @@ public class ArtemisActivity extends Activity implements
                 mainMenu.setVisibility(View.GONE);
                 horizontalGuidelineBottom.setGuidelinePercent(0.85f);
 
+=======
+        addLensAdapterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addLensAdapterView.setVisibility(View.VISIBLE);
+                mainMenu.setVisibility(View.GONE);
+                horizontalGuidelineBottom.setGuidelinePercent(0.85f);
+>>>>>>> ed0b9bd (Look and feel changes)
                 refreshLensAdapters();
             }
         });
 
+<<<<<<< HEAD
         ((LinearLayout) findViewById(R.id.menuVideoMode)).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1178,14 +1209,37 @@ public class ArtemisActivity extends Activity implements
                 openMenu();
             }
         });
+=======
+        addCustomlensAdapterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddCustomLensAdapterDialog();
+            }
+        });
+
+        removeLensAdapterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArtemisActivity.this.selectedLensAdapter(null);
+            }
+        });
+
+        Glide.with(this)
+                .load(R.raw.loading)
+                .into(loadingIndicator);
+>>>>>>> ed0b9bd (Look and feel changes)
     }
 
     private void showAddCustomLensAdapterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
         builder.setTitle("Add custom lens adapter");
         final EditText input = new EditText(this);
+<<<<<<< HEAD
         input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         input.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+=======
+        input.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+>>>>>>> ed0b9bd (Look and feel changes)
         builder.setView(input);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1702,6 +1756,7 @@ public class ArtemisActivity extends Activity implements
         String filePath;
         HashMap<String, String> cameraMetadata;
     }
+<<<<<<< HEAD
 
     private class CropVideoFileTask extends AsyncTask<CropVideoOptions, Void, Void> {
 
@@ -1720,6 +1775,21 @@ public class ArtemisActivity extends Activity implements
             });
 
             isRecordingVideo = false;
+=======
+
+    private class CropVideoFileTask extends AsyncTask<CropVideoOptions, Void, Void> {
+
+        @Override
+        protected Void doInBackground(CropVideoOptions... cropVideoOptions) {
+            String filePath = cropVideoOptions[0].filePath;
+            HashMap<String, String> cameraMetadata = cropVideoOptions[0].cameraMetadata;
+            recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
+            recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
+            recordVideoChronometer.stop();
+
+            isRecordingVideo = false;
+            recordVideoButton.setImageResource(R.drawable.video_icon);
+>>>>>>> ed0b9bd (Look and feel changes)
             MediaType mediaType = MediaType.VIDEO;
             File file = new File(filePath);
             MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
@@ -1774,12 +1844,21 @@ public class ArtemisActivity extends Activity implements
                     getString(R.string.preference_key_saveMetadataToMovies), "ASK");
             Log.i("bixlabs", selectedSaveMetadataToMoviesString);
             SaveMetadataToMoviesOptions saveMetadataToMoviesOptions = SaveMetadataToMoviesOptions.valueOf(selectedSaveMetadataToMoviesString);
+<<<<<<< HEAD
 
             if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.NEVER) {
                 try {
                     MetadataEditor editor = MetadataEditor.createFrom(new File(mediaFile.getPath()));
                     Map<String, MetaValue> meta = editor.getKeyedMeta();
 
+=======
+
+            if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.NEVER) {
+                try {
+                    MetadataEditor editor = MetadataEditor.createFrom(new File(mediaFile.getPath()));
+                    Map<String, MetaValue> meta = editor.getKeyedMeta();
+
+>>>>>>> ed0b9bd (Look and feel changes)
                     for(String key: cameraMetadata.keySet()) {
                         meta.put(key, MetaValue.createString(cameraMetadata.get(key)));
                     }
@@ -1855,6 +1934,7 @@ public class ArtemisActivity extends Activity implements
     public void selectedLensAdapter(LensAdapter adapter) {
         if(adapter == null) {
             selectedLensAdapter.setVisibility(View.GONE);
+<<<<<<< HEAD
             ArtemisMath.lensAdapterFactor = 1;
             mCameraPreview.calculateZoom(true);
             mCameraAngleDetailView.postInvalidate();
@@ -1868,6 +1948,11 @@ public class ArtemisActivity extends Activity implements
             mCameraAngleDetailView.postInvalidate();
             _lensFocalLengthText.setTextColor(Color.RED);
             lensFocalLengthMM.setTextColor(Color.RED);
+=======
+        } else {
+            selectedLensAdapter.setText("x" + adapter.getMagnificationFactor());
+            selectedLensAdapter.setVisibility(View.VISIBLE);
+>>>>>>> ed0b9bd (Look and feel changes)
         }
     }
 
@@ -1875,8 +1960,15 @@ public class ArtemisActivity extends Activity implements
     public void deleteLensAdapter(LensAdapter adapter) {
         if(adapter.isCustomAdapter()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
+<<<<<<< HEAD
             builder.setTitle("Delete custom adapter");
             builder.setMessage("Are you sure you want to delete the custom lens adapter?");
+=======
+            String title = getString(R.string.delete_custom_adapter_title);
+            String message = getString(R.string.delete_custom_adapter_message);
+            builder.setTitle(title);
+            builder.setMessage(message);
+>>>>>>> ed0b9bd (Look and feel changes)
 
             builder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                 @Override

@@ -20,10 +20,14 @@ import com.parse.ParseObject;
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final int DB_VERSION = 15;
 =======
     private static final int DB_VERSION = 14;
 >>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
+=======
+    private static final int DB_VERSION = 15;
+>>>>>>> ed0b9bd (Look and feel changes)
 
     private SQLiteDatabase _artemisDatabase;
 

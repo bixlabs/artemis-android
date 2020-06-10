@@ -24,10 +24,13 @@
             android:id="@+id/savePicture"
             layout="@layout/save_picture" />
 
+<<<<<<< HEAD
         <include android:id="@+id/artemisMenu"
             layout="@layout/menu" />
 
 
+=======
+>>>>>>> ed0b9bd (Look and feel changes)
     </com.chemicalwedding.artemis.ArtemisViewFlipper>
 
 </FrameLayout>

@@ -94,12 +94,20 @@ public class CameraAngleDetailView extends View {
 				canvas.translate(vertCircleOffsetX, vertCircleOffsetY);
 			}
 
+<<<<<<< HEAD
 			_paint.setColor(getContext().getColor(R.color.gray));
+=======
+			_paint.setColor(getResources().getColor(R.color.gray));
+>>>>>>> ed0b9bd (Look and feel changes)
 			canvas.drawArc(redCircleArcRect, -HVAngleVal / 2, HVAngleVal, true,
 					_paint);
 			canvas.drawCircle(circleCenterX, circleCenterY, whiteCircleRadius,
 					_paint);
+<<<<<<< HEAD
 			_paint.setColor(getContext().getColor(R.color.orangeArtemisText));
+=======
+			_paint.setColor(getResources().getColor(R.color.orangeArtemisText));
+>>>>>>> ed0b9bd (Look and feel changes)
 //			canvas.restore();
 		}
 	}

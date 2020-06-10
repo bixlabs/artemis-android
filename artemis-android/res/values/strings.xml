@@ -323,7 +323,12 @@
 
     <!-- New below here 03-17-2020 -->
     <string name="save_metadata_to_movies">Save metadata to movies</string>
+<<<<<<< HEAD
     <string name="stills_mode">Stills mode</string>
     <string name="video_mode">Video mode</string>
+=======
+    <string name="delete_custom_adapter_title">Delete custom adapter.</string>
+    <string name="delete_custom_adapter_message">Are you sure you want to delete the custom lens adapter?</string>
+>>>>>>> ed0b9bd (Look and feel changes)
 
 </resources>

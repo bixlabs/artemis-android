@@ -43,6 +43,7 @@ public class LensArrayAdapter extends BaseAdapter {
             listItem = LayoutInflater.from(mContext).inflate(R.layout.lens_list_item, parent, false);
         }
 
+<<<<<<< HEAD
             Lens lens = lenses.get(position);
 
             TextView millis = listItem.findViewById(R.id.millis);
@@ -81,6 +82,28 @@ public class LensArrayAdapter extends BaseAdapter {
         checkBox.setChecked(isChecked);
 
          return listItem;
+=======
+        Lens lens = lenses.get(position);
+
+        TextView millis = listItem.findViewById(R.id.millis);
+        NumberFormat nf = NumberFormat.getInstance();
+        String millisText = nf.format(lens.getFL()) + " mm";
+        millis.setText(millisText);
+
+        AngleView angle = listItem.findViewById(R.id.angle);
+        angle.angle = ArtemisMath.getInstance().calculateViewingAngle(lens.getFL())[0];
+        angle.invalidate();
+
+        TextView angleText = listItem.findViewById(R.id.angleText);
+        NumberFormat format = new DecimalFormat("###.#");
+        angleText.setText(format.format(angle.angle) + "º");
+
+        final CheckBox checkBox = listItem.findViewById(R.id.checkbox);
+        boolean isChecked = listView.isItemChecked(position);
+        checkBox.setChecked(isChecked);
+
+        return listItem;
+>>>>>>> ed0b9bd (Look and feel changes)
     }
 
     public int getCount(){
