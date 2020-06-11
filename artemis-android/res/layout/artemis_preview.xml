@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.037" />
+        app:layout_constraintGuide_percent="0.070" />
 
     <android.support.constraint.Guideline
         android:id="@+id/horizontal_guideline_bottom"
@@ -57,7 +57,7 @@
             ></ImageView>
     </RelativeLayout>
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
@@ -66,12 +66,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_top">
-
+        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_top"
+    >
         <LinearLayout
             android:id="@+id/cameraDetailsView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_gravity="start">
 
             <TextView
@@ -79,19 +80,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="-1dip"
-                android:lines="1"
+                android:layout_marginTop="3dip"
                 android:text="@string/menu_camera_settings"
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="none"
                 android:typeface="sans" />
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
         <TextView
-            android:layout_gravity="center"
             android:id="@+id/headingTiltText"
+            android:layout_gravity="center"
             android:layout_columnWeight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
@@ -101,24 +109,110 @@
             android:tooltipText="Tilt"
             android:typeface="monospace" />
 
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_spacer" />
+
         <LinearLayout
             android:id="@+id/lensMakeView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_gravity="right" >
 
             <TextView
                 android:id="@+id/lensMakeText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="-1dip"
+                android:layout_marginTop="3dip"
                 android:text="@string/menu_lens_settings"
                 android:textColor="@color/previewTextColor"
                 android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="none"
                 android:typeface="sans" />
+
+            <ImageView
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_spacer" />
+
+            <ImageView
+                android:id="@+id/helpButtonView"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/helpbutton" />
         </LinearLayout>
-    </GridLayout>
+
+    </LinearLayout>
+
+<!--    <GridLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:background="@drawable/cameraoverlay_bottom"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_top">-->
+
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/cameraDetailsView"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="start">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/cameraDetailsText"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="3dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginTop="-1dip"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:lines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="@string/menu_camera_settings"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/previewTextColor"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:typeface="sans" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/headingTiltText"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_columnWeight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginLeft="1dip"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginRight="1dip"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textColor="@color/previewTextColor"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textIsSelectable="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:tooltipText="Tilt"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:typeface="monospace" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/lensMakeView"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="right" >&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/lensMakeText"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginRight="3dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginTop="-1dip"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="@string/menu_lens_settings"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/previewTextColor"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:typeface="sans" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--    </GridLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -367,11 +461,11 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <ImageView
-            android:id="@+id/helpButtonView"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/helpbutton" />
+<!--        <ImageView-->
+<!--            android:id="@+id/helpButtonView"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/helpbutton" />-->
 
         <ImageView
             android:layout_width="2dp"
