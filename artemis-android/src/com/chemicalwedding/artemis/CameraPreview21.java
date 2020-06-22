@@ -268,12 +268,12 @@ public class CameraPreview21 extends Fragment {
 
                 endTransform.preConcat(origin);
 
-                endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
+                endTransform.postScale(scaleFactor * ArtemisMath.lensAdapterFactor, scaleFactor * ArtemisMath.lensAdapterFactor, _artemisMath
                         .getOutsideBox().centerX(), _artemisMath
                         .getOutsideBox().centerY());
             } else {
                 endTransform.preConcat(origin);
-                endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
+                endTransform.postScale(scaleFactor * ArtemisMath.lensAdapterFactor, scaleFactor * ArtemisMath.lensAdapterFactor, _artemisMath
                         .getOutsideBox().centerX(), _artemisMath
                         .getOutsideBox().centerY());
                 endTransform.postTranslate((_artemisMath.getOutsideBox().centerX() - mCenterX) / 2,

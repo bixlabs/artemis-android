@@ -47,6 +47,7 @@ public class ArtemisMath {
 	private static final int SPACING = 9;
 
 	protected float zoomLensFullScreenFL;
+	public static float lensAdapterFactor = 1;
 
 	// private double androidScale;
 
@@ -537,6 +538,9 @@ public class ArtemisMath {
 			_selectedLensIndex = firstMeaningfulLens;
 		} else if (_selectedLenses.size() > 0) {
 			_selectedLensIndex = _selectedLenses.size() - 1;
+		}
+		if(_selectedLenses.size() < _selectedLensIndex) {
+			_selectedLensIndex = 0;
 		}
 		if (_selectedLenses.size() > 0) {
 			_selectedLens = _selectedLenses.get(_selectedLensIndex);

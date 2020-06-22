@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".15"
+    ></android.support.constraint.Guideline>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineRigth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".85"
+    ></android.support.constraint.Guideline>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineFirstColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".325"
+        ></android.support.constraint.Guideline>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSencodColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".50"
+        ></android.support.constraint.Guideline>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineThirdColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".675"
+        ></android.support.constraint.Guideline>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineFirstRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".33"
+        ></android.support.constraint.Guideline>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSecondRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".66"
+        ></android.support.constraint.Guideline>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guidelineLeft"
+        app:layout_constraintLeft_toLeftOf="parent"
+    ></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineRigth"
+        android:lines="2"
+    ></RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
+    >
+        <ImageView
+            android:id="@+id/menu_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cross"
+        ></ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuVideoMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineFirstRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toStartOf="@id/guidelineFirstColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+    >
+        <ImageView
+            android:id="@+id/imgVideoMode"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/videomode"
+        ></ImageView>
+
+        <TextView
+            android:id="@+id/txtVideoMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Movie Mode"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+        ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineFirstRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineFirstColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineSencodColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/framelines"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Framelines"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineFirstRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineSencodColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineThirdColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/virtualstandsins"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Virtual Stand-Ins"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineFirstRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineThirdColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineRigth"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/looks"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Looks"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuLensAdapters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineFirstRow"
+        app:layout_constraintBottom_toTopOf="@id/guidelineSecondRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toStartOf="@id/guidelineFirstColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/lensadapters"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lens Adapters"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuMetadata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineFirstRow"
+        app:layout_constraintBottom_toTopOf="@id/guidelineSecondRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineFirstColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineSencodColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/metadata"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Metadata"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineFirstRow"
+        app:layout_constraintBottom_toTopOf="@id/guidelineSecondRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineSencodColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineThirdColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/settings"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineFirstRow"
+        app:layout_constraintBottom_toTopOf="@id/guidelineSecondRow"
+        app:layout_constraintStart_toStartOf="@id/guidelineThirdColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineRigth"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/resetall"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reset all"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineSecondRow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toStartOf="@id/guidelineFirstColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/globalartemis"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Global Artemis"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineSecondRow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineFirstColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineSencodColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/review"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Review Artemis"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineSecondRow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineSencodColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineThirdColumn"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/heliosImageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/helios"></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="discover helios pro"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guidelineSecondRow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineThirdColumn"
+        app:layout_constraintEnd_toStartOf="@id/guidelineRigth"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/reportbug"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="report bug"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="2"
+            android:textSize="12dp"
+            ></TextView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

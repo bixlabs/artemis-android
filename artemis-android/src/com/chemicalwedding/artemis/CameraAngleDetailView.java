@@ -79,6 +79,9 @@ public class CameraAngleDetailView extends View {
 			angleString = numberFormat.format(HVAngleVal) + degreeSymbol;
 
 			_paint.setTextSize(angleValTextSize);
+			int orangeArtemis = getContext().getColor(R.color.orangeArtemisText);
+			int red = Color.RED;
+			_paint.setColor(ArtemisMath.lensAdapterFactor == 1 ? orangeArtemis : red);
 			canvas.drawText(angleString, angleValStringX, angleValStringY,
 					_paint);
 
@@ -91,12 +94,12 @@ public class CameraAngleDetailView extends View {
 				canvas.translate(vertCircleOffsetX, vertCircleOffsetY);
 			}
 
-			_paint.setColor(getResources().getColor(R.color.gray));
+			_paint.setColor(getContext().getColor(R.color.gray));
 			canvas.drawArc(redCircleArcRect, -HVAngleVal / 2, HVAngleVal, true,
 					_paint);
 			canvas.drawCircle(circleCenterX, circleCenterY, whiteCircleRadius,
 					_paint);
-			_paint.setColor(getResources().getColor(R.color.orangeArtemisText));
+			_paint.setColor(getContext().getColor(R.color.orangeArtemisText));
 //			canvas.restore();
 		}
 	}

@@ -11,8 +11,8 @@
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"
     android:paddingLeft="30dip"
     android:paddingRight="6dip"
-    android:background="#151515"
     android:descendantFocusability="blocksDescendants"
+    android:background="@drawable/custom_ripple"
 >
     <TextView
         android:id="@+id/millis"
@@ -50,6 +50,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:layout_alignParentEnd="true"
+        android:buttonTint="@color/orangeArtemisText"
         android:focusable="false"
         android:clickable="false"
         android:focusableInTouchMode="false"

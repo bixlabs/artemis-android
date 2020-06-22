@@ -31,6 +31,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -49,6 +50,10 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import android.support.annotation.Nullable;
+>>>>>>> 28c22f9 (milestone 2 Look and Feel changes to main view and menu)
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,6 +77,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -239,6 +247,10 @@ public class ArtemisActivity extends Activity implements
     private boolean isFront;
     private LinearLayout selectedLensAdapterMilis;
     private Timer time;
+    private LinearLayout lensMakeTextContainer;
+    private TextView lensFocalLengthMM;
+    private ImageView menuButton;
+    private ImageView heliosImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -778,7 +790,6 @@ public class ArtemisActivity extends Activity implements
 
         recordVideoChronometer = findViewById(R.id.videoChronometer);
 
-        addLensAdapterButton = findViewById(R.id.addLensAdapterButton);
         addCustomlensAdapterButton = findViewById(R.id.addCustomLensAdapterButton);
         addLensAdapterView = findViewById(R.id.addLensAdapterView);
         mainMenu = findViewById(R.id.mainMenu);
@@ -808,6 +819,13 @@ public class ArtemisActivity extends Activity implements
                 });
             }
         }, 0, 1550);
+
+        lensMakeTextContainer = findViewById(R.id.lensMakeTextContainer);
+        lensFocalLengthMM = findViewById(R.id.lensFocalLengthMM);
+        menuButton = findViewById(R.id.menuButton);
+        heliosImage = findViewById(R.id.heliosImageView);
+        setHeliosImageRotation();
+        setLensMakeTextAnimation();
     }
 
     public void runAnimation() {
@@ -1028,7 +1046,7 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
-        findViewById(R.id.settingsButton).setOnClickListener(
+        findViewById(R.id.menuSettings).setOnClickListener(
                 new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -1069,7 +1087,7 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
-        findViewById(R.id.editMetaDataButton).setOnClickListener(
+        findViewById(R.id.menuMetadata).setOnClickListener(
                 new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -1088,24 +1106,6 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
-        addLensAdapterButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addLensAdapterView.setVisibility(View.VISIBLE);
-                mainMenu.setVisibility(View.GONE);
-                horizontalGuidelineBottom.setGuidelinePercent(0.85f);
-
-                List<LensAdapter> adapters = _artemisDBHelper.getLensAdapters();
-
-                RecyclerView recyclerView = findViewById(R.id.adaptersRecyclerView);
-
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ArtemisActivity.this, LinearLayoutManager.HORIZONTAL, false);
-                recyclerView.setLayoutManager(layoutManager);
-                RecyclerView.Adapter recyclerViewAdapter = new LensAdaptersAdapter(adapters, ArtemisActivity.this, ArtemisActivity.this);
-                recyclerView.setAdapter(recyclerViewAdapter);
-            }
-        });
-
         addCustomlensAdapterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1123,13 +1123,69 @@ public class ArtemisActivity extends Activity implements
         Glide.with(this)
                 .load(R.raw.loading)
                 .into(loadingIndicator);
+
+        _lensMakeText.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                setLensMakeTextAnimation();
+            }
+        });
+
+        ((ImageView) findViewById(R.id.menu_back))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        onBackPressed();
+                    }
+                });
+
+        ((LinearLayout) findViewById(R.id.menuLensAdapters)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                addLensAdapterView.setVisibility(View.VISIBLE);
+                mainMenu.setVisibility(View.GONE);
+                horizontalGuidelineBottom.setGuidelinePercent(0.85f);
+
+                refreshLensAdapters();
+            }
+        });
+
+        ((LinearLayout) findViewById(R.id.menuVideoMode)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                if(recordVideoButton.getVisibility() == View.GONE) {
+                    recordVideoButton.setVisibility(View.VISIBLE);
+                    ((ImageView) findViewById(R.id.shutterButton)).setVisibility(View.GONE);
+                    recordVideoChronometerContainer.setVisibility(View.VISIBLE);
+                    ((ImageView) findViewById(R.id.imgVideoMode)).setImageDrawable(getDrawable(R.drawable.stillsmode));
+                    ((TextView) findViewById(R.id.txtVideoMode)) .setText(getString(R.string.stills_mode));
+                } else {
+                    recordVideoButton.setVisibility(View.GONE);
+                    ((ImageView) findViewById(R.id.shutterButton)).setVisibility(View.VISIBLE);
+                    recordVideoChronometerContainer.setVisibility(View.GONE);
+                    ((ImageView) findViewById(R.id.imgVideoMode)).setImageDrawable(getDrawable(R.drawable.videomode));
+                    ((TextView) findViewById(R.id.txtVideoMode)) .setText(getString(R.string.video_mode));
+                }
+            }
+        });
+
+        menuButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenu();
+            }
+        });
     }
 
     private void showAddCustomLensAdapterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
         builder.setTitle("Add custom lens adapter");
         final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        input.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         builder.setView(input);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1356,6 +1412,8 @@ public class ArtemisActivity extends Activity implements
 //            lensMake = DEFAULT_LENS_MAKE;
             _cameraDetailsText.setText(selectedCustomCamera.getName() + " "
                     + _selectedCamera.getRatio());
+            String text = selectedCustomCamera.getName() + " " + _selectedCamera.getRatio();
+            setCameraDetailsTextAnimation();
         }
 
         if (selectedZoomLensPK < 0) {
@@ -1470,6 +1528,9 @@ public class ArtemisActivity extends Activity implements
             case R.id.savePictureViewFlipper:
                 openArtemisCameraPreviewView();
                 break;
+            case R.id.artemisMenu:
+                openArtemisCameraPreviewView();
+                break;
             case R.id.artemisPreview:
             default:
                 if (!isEditingPictureDetailsOnly) {
@@ -1515,6 +1576,18 @@ public class ArtemisActivity extends Activity implements
         }
     }
 
+    private void openMenu() {
+        if (_cameraSettingsFlipper == null)
+            _cameraSettingsFlipper = (ViewFlipper) findViewById(R.id.camera_settings_flipper);
+
+        _cameraSettingsFlipper.setInAnimation(null);
+        _cameraSettingsFlipper.setOutAnimation(null);
+        _cameraSettingsFlipper.setDisplayedChild(0);
+
+        viewFlipper.setDisplayedChild(4);
+        currentViewId = R.id.artemisMenu;
+    }
+
     private void openCameraSettingsView() {
         if (_cameraSettingsFlipper == null)
             _cameraSettingsFlipper = (ViewFlipper) findViewById(R.id.camera_settings_flipper);
@@ -1531,9 +1604,10 @@ public class ArtemisActivity extends Activity implements
         currentViewId = R.id.cameraSettings;
 
         ListView cameraFormatList = (ListView) findViewById(R.id.cameraFormatList);
-        ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
-                R.layout.text_list_item, _allCameraFormats);
-        cameraFormatList.setAdapter(formatAdapter);
+//        ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
+//                R.layout.text_list_item, _allCameraFormats);
+        StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(ArtemisActivity.this, _allCameraFormats, cameraFormatList);
+        cameraFormatList.setAdapter(adapter);
         cameraFormatList.setTextFilterEnabled(true);
 
         cameraFormatList
@@ -1565,10 +1639,9 @@ public class ArtemisActivity extends Activity implements
         Log.i(TAG, "Lens manufacturers available: " + lensManufacturers.size());
 
         ListView lensManufacturerList = (ListView) findViewById(R.id.lensManufacturerList);
-        ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(this,
-                R.layout.text_list_item, lensManufacturers);
-        lensManufacturerList.setAdapter(formatAdapter);
-        lensManufacturerList.setTextFilterEnabled(true);
+        StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(this, lensManufacturers, lensManufacturerList);
+        lensManufacturerList.setAdapter(adapter);
+//        lensManufacturerList.setTextFilterEnabled(true);
 
         lensManufacturerList
                 .setOnItemClickListener(new LensManufacturerItemClickedListener());
@@ -1608,7 +1681,6 @@ public class ArtemisActivity extends Activity implements
 <<<<<<< HEAD
     @Override
     public void recordingStarted() {
-        recordVideoChronometerContainer.setVisibility(View.VISIBLE);
         recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
         recordVideoChronometer.start();
 
@@ -1637,12 +1709,17 @@ public class ArtemisActivity extends Activity implements
         protected Void doInBackground(CropVideoOptions... cropVideoOptions) {
             String filePath = cropVideoOptions[0].filePath;
             HashMap<String, String> cameraMetadata = cropVideoOptions[0].cameraMetadata;
-            recordVideoChronometerContainer.setVisibility(View.INVISIBLE);
-            recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
-            recordVideoChronometer.stop();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
+                    recordVideoChronometer.stop();
+                    recordVideoChronometer.setText("00:00");
+                    recordVideoButton.setImageResource(R.drawable.video_icon);
+                }
+            });
 
             isRecordingVideo = false;
-            recordVideoButton.setImageResource(R.drawable.video_icon);
             MediaType mediaType = MediaType.VIDEO;
             File file = new File(filePath);
             MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
@@ -1778,9 +1855,19 @@ public class ArtemisActivity extends Activity implements
     public void selectedLensAdapter(LensAdapter adapter) {
         if(adapter == null) {
             selectedLensAdapter.setVisibility(View.GONE);
+            ArtemisMath.lensAdapterFactor = 1;
+            mCameraPreview.calculateZoom(true);
+            mCameraAngleDetailView.postInvalidate();
+            _lensFocalLengthText.setTextColor(getColor(R.color.orangeArtemisText));
+            lensFocalLengthMM.setTextColor(getColor(R.color.orangeArtemisText));
         } else {
             selectedLensAdapter.setText("x" + adapter.getMagnificationFactor());
+            ArtemisMath.lensAdapterFactor =  adapter.getMagnificationFactor().floatValue();
             selectedLensAdapter.setVisibility(View.VISIBLE);
+            mCameraPreview.calculateZoom(true);
+            mCameraAngleDetailView.postInvalidate();
+            _lensFocalLengthText.setTextColor(Color.RED);
+            lensFocalLengthMM.setTextColor(Color.RED);
         }
     }
 
@@ -1818,7 +1905,7 @@ public class ArtemisActivity extends Activity implements
         @Override
         public void onItemClick(AdapterView<?> adapterView, View selectedItem,
                                 int index, long arg3) {
-            TextView selectedTextView = (TextView) selectedItem;
+            TextView selectedTextView = ((RelativeLayout) selectedItem).findViewById(R.id.text);
             mSelectedFormat = selectedTextView.getText().toString();
 
             if (index == adapterView.getCount() - 1) {
@@ -1829,9 +1916,10 @@ public class ArtemisActivity extends Activity implements
                     addnew.setName(getString(R.string.custom_camera_new_camera));
                     customCameras.add(addnew);
                     ListView customCameraList = (ListView) findViewById(R.id.customCameraList);
-                    ArrayAdapter<CustomCamera> adapter = new ArrayAdapter<CustomCamera>(
-                            ArtemisActivity.this, R.layout.text_list_item,
-                            customCameras);
+//                    ArrayAdapter<CustomCamera> adapter = new ArrayAdapter<CustomCamera>(
+//                            ArtemisActivity.this, R.layout.text_list_item,
+//                            customCameras);
+                    CustomCameraAdapter adapter = new CustomCameraAdapter(ArtemisActivity.this, customCameras, customCameraList);
                     customCameraList.setAdapter(adapter);
                     customCameraList
                             .setOnItemClickListener(new CustomCameraClickListener());
@@ -1854,10 +1942,11 @@ public class ArtemisActivity extends Activity implements
             Log.i(TAG, "Manufacturers available: " + manufacturerListForCameraFormat.size());
 
             ListView cameraManufacturersList = (ListView) findViewById(R.id.cameraManufacturerList);
-            ArrayAdapter<String> sensorAdapter = new ArrayAdapter<String>(
-                    ArtemisActivity.this, R.layout.text_list_item,
-                    manufacturerListForCameraFormat);
-            cameraManufacturersList.setAdapter(sensorAdapter);
+//            ArrayAdapter<String> sensorAdapter = new ArrayAdapter<String>(
+//                    ArtemisActivity.this, R.layout.text_list_item,
+//                    manufacturerListForCameraFormat);
+            StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(ArtemisActivity.this, manufacturerListForCameraFormat, cameraManufacturersList);
+            cameraManufacturersList.setAdapter(adapter);
             cameraManufacturersList.setTextFilterEnabled(true);
             cameraManufacturersList
                     .setOnItemClickListener(new CameraManufacturerItemClickedListener());
@@ -2045,6 +2134,7 @@ public class ArtemisActivity extends Activity implements
 
         ((TextView) findViewById(R.id.lensMakeText))
                 .setText(_artemisMath.selectedZoomLens.toString());
+        setLensMakeTextAnimation();
         _artemisMath.resetTouchToCenter();
         _artemisMath.calculateZoomLenses();
         _artemisMath.calculateRectBoxesAndLabelsForLenses();
@@ -2070,7 +2160,7 @@ public class ArtemisActivity extends Activity implements
         @Override
         public void onItemClick(AdapterView<?> arg0, View selectedItem,
                                 int arg2, long arg3) {
-            TextView selectedTextView = (TextView) selectedItem;
+            TextView selectedTextView = ((RelativeLayout) selectedItem).findViewById(R.id.text);
             String selectedManufacturer = selectedTextView.getText().toString();
             Log.i(TAG, "Camera manufacturer selected: " + selectedManufacturer);
             List<String> cameraSensors = _artemisDBHelper
@@ -2078,9 +2168,10 @@ public class ArtemisActivity extends Activity implements
             Log.i(TAG, "sensors available: " + cameraSensors.size());
 
             ListView cameraSensorList = (ListView) findViewById(R.id.cameraSensorList);
-            ArrayAdapter<String> sensorAdaptor = new ArrayAdapter<String>(
-                    ArtemisActivity.this, R.layout.text_list_item, cameraSensors);
-            cameraSensorList.setAdapter(sensorAdaptor);
+//            ArrayAdapter<String> sensorAdaptor = new ArrayAdapter<String>(
+//                    ArtemisActivity.this, R.layout.text_list_item, cameraSensors);
+            StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(ArtemisActivity.this, cameraSensors, cameraSensorList);
+            cameraSensorList.setAdapter(adapter);
             cameraSensorList.setTextFilterEnabled(true);
             cameraSensorList
                     .setOnItemClickListener(new CameraSensorItemClickedListener());
@@ -2104,7 +2195,7 @@ public class ArtemisActivity extends Activity implements
         @Override
         public void onItemClick(AdapterView<?> arg0, View selectedItem,
                                 int arg2, long arg3) {
-            TextView selectedTextView = (TextView) selectedItem;
+            TextView selectedTextView = ((RelativeLayout) selectedItem).findViewById(R.id.text);
             String selectedSensor = selectedTextView.getText().toString();
             Log.i(TAG, String.format("Camera sensor selected: %s  format %s ", selectedSensor, mSelectedFormat));
             // _currentCameraSensor = selectedSensor;
@@ -2118,9 +2209,10 @@ public class ArtemisActivity extends Activity implements
                 ratioNames.add(pair.second);
             }
             ListView cameraRatioList = (ListView) findViewById(R.id.cameraRatiosList);
-            ArrayAdapter<String> ratioAdapter = new ArrayAdapter<String>(
-                    ArtemisActivity.this, R.layout.text_list_item, ratioNames);
-            cameraRatioList.setAdapter(ratioAdapter);
+//            ArrayAdapter<String> ratioAdapter = new ArrayAdapter<String>(
+//                    ArtemisActivity.this, R.layout.text_list_item, ratioNames);
+            StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(ArtemisActivity.this, ratioNames, cameraRatioList);
+            cameraRatioList.setAdapter(adapter);
             cameraRatioList.setTextFilterEnabled(true);
             cameraRatioList
                     .setOnItemClickListener(new CameraRatioItemClickedListener());
@@ -2179,10 +2271,11 @@ public class ArtemisActivity extends Activity implements
                     .findSensorsForQuery(newText);
 
             ListView cameraSensorList = (ListView) findViewById(R.id.cameraSensorList);
-            ArrayAdapter<String> sensorAdapter = new ArrayAdapter<String>(
-                    ArtemisActivity.this, R.layout.text_list_item,
-                    sensorListForCamera);
-            cameraSensorList.setAdapter(sensorAdapter);
+//            ArrayAdapter<String> sensorAdapter = new ArrayAdapter<String>(
+//                    ArtemisActivity.this, R.layout.text_list_item,
+//                    sensorListForCamera);
+            StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(ArtemisActivity.this, sensorListForCamera, cameraSensorList);
+            cameraSensorList.setAdapter(adapter);
             cameraSensorList.setTextFilterEnabled(true);
             cameraSensorList
                     .setOnItemClickListener(new CameraSensorItemClickedListener());
@@ -2221,7 +2314,7 @@ public class ArtemisActivity extends Activity implements
 
             if (index < adapterView.getCount() - 1) {
 
-                TextView selectedTextView = (TextView) selectedItem;
+                TextView selectedTextView = (TextView) ((RelativeLayout) selectedItem).findViewById(R.id.text);
                 String selectedManufacturer = selectedTextView.getText().toString();
 
 
@@ -2241,10 +2334,11 @@ public class ArtemisActivity extends Activity implements
                 Log.i(TAG, "Lens makers available: " + lensMakes.size());
 
                 ListView lensMakerList = (ListView) findViewById(R.id.lensMakerList);
-                ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(ArtemisActivity.this,
-                        R.layout.text_list_item, lensMakes);
-                lensMakerList.setAdapter(formatAdapter);
-                lensMakerList.setTextFilterEnabled(true);
+//                ArrayAdapter<String> formatAdapter = new ArrayAdapter<String>(ArtemisActivity.this,
+//                        R.layout.text_list_item, lensMakes);
+                StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(ArtemisActivity.this, lensMakes, lensMakerList);
+                lensMakerList.setAdapter(adapter);
+//                lensMakerList.setTextFilterEnabled(true);
 
                 lensMakerList
                         .setOnItemClickListener(new LensMakerItemClickedListener());
@@ -2263,9 +2357,10 @@ public class ArtemisActivity extends Activity implements
                     addnew.setName(getString(R.string.new_zoom_lens));
                     zoomLenses.add(addnew);
                     ListView zoomLensList = (ListView) findViewById(R.id.customZoomLensList);
-                    ArrayAdapter<ZoomLens> adapter = new ArrayAdapter<ZoomLens>(
-                            ArtemisActivity.this, R.layout.text_list_item,
-                            zoomLenses);
+//                    ArrayAdapter<ZoomLens> adapter = new ArrayAdapter<ZoomLens>(
+//                            ArtemisActivity.this, R.layout.text_list_item,
+//                            zoomLenses);
+                    ZoomLensesAdapter adapter = new ZoomLensesAdapter(ArtemisActivity.this, zoomLenses, zoomLensList);
                     zoomLensList.setAdapter(adapter);
                     zoomLensList
                             .setOnItemClickListener(zoomLensListItemClicked);
@@ -2287,7 +2382,7 @@ public class ArtemisActivity extends Activity implements
         public void onItemClick(AdapterView<?> adapterView, View selectedItem,
                                 int index, long id) {
 
-            TextView selectedTextView = (TextView) selectedItem;
+            TextView selectedTextView = ((RelativeLayout) selectedItem).findViewById(R.id.text);
             tempSelectedLensMake = selectedTextView.getText().toString();
             // Log.i(_logTag, "Lens make selected: " + selectedLensMake);
             setSelectedLensMake(tempSelectedLensMake, false, true);
@@ -2376,6 +2471,8 @@ public class ArtemisActivity extends Activity implements
 
             _cameraDetailsText.setText(_selectedCamera.getSensor() + " "
                     + _selectedCamera.getRatio());
+            String text = _selectedCamera.getSensor() + " " + _selectedCamera.getRatio();
+            setCameraDetailsTextAnimation();
         }
         if (saveToAppPreferences) {
             Editor appPrefsEditor = getApplication().getSharedPreferences(
@@ -2386,6 +2483,33 @@ public class ArtemisActivity extends Activity implements
         }
     }
 
+    private void setCameraDetailsTextAnimation() {
+        if(_cameraDetailsText.getPaint().measureText(_cameraDetailsText.getText().toString()) > findViewById(R.id.cameraDetailsView).getWidth()) {
+            _cameraDetailsText.startAnimation((Animation) AnimationUtils.loadAnimation(this, R.anim.text_animation));
+            _cameraDetailsText.invalidate();
+        } else {
+            _cameraDetailsText.clearAnimation();
+        }
+    }
+
+    private void setLensMakeTextAnimation() {
+        float textWidth = _lensMakeText.getPaint().measureText(_lensMakeText.getText().toString());
+        int viewWidth = findViewById(R.id.lensMakeTextContainer).getWidth();
+        if(textWidth > viewWidth) {
+            _lensMakeText.startAnimation((Animation) AnimationUtils.loadAnimation(this, R.anim.text_animation));
+            _cameraDetailsText.invalidate();
+        } else {
+            _lensMakeText.clearAnimation();
+        }
+    }
+
+    private void setHeliosImageRotation() {
+        Animation rotateAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
+        LinearInterpolator interpolator = new LinearInterpolator();
+        rotateAnimation.setInterpolator(interpolator);
+        heliosImage.startAnimation(rotateAnimation);
+    }
+
     private void setSelectedLensMake(String lensMake,
                                      boolean saveToAppPreferences, boolean saveTemporary) {
         if (!saveTemporary) {
@@ -2394,6 +2518,7 @@ public class ArtemisActivity extends Activity implements
             tempSelectedLensMake = lensMake;
 
             ((TextView) findViewById(R.id.lensMakeText)).setText(lensMake);
+            setLensMakeTextAnimation();
         } else {
             tempLensesForMake = _artemisDBHelper.getLensesForMake(lensMake);
             tempSelectedLensMake = lensMake;
@@ -3051,7 +3176,7 @@ public class ArtemisActivity extends Activity implements
         @Override
         public void onItemClick(AdapterView<?> arg0, View selectedItem,
                                 int selectedIndex, long arg3) {
-            TextView selectedTextView = (TextView) selectedItem;
+            TextView selectedTextView = ((RelativeLayout) selectedItem).findViewById(R.id.text);
             String selectedFormat = selectedTextView.getText().toString();
 
             if (getString(R.string.custom_camera_new_camera).equals(
@@ -3094,6 +3219,8 @@ public class ArtemisActivity extends Activity implements
 
                 _cameraDetailsText.setText(selectedCustomCamera.getName() + " "
                         + _selectedCamera.getRatio());
+                String text = selectedCustomCamera.getName() + " " + _selectedCamera.getRatio();
+                setCameraDetailsTextAnimation();
                 //
                 // // Recalculate the view for new camera and lenses
                 _artemisMath.setFullscreen(false);
@@ -3193,8 +3320,9 @@ public class ArtemisActivity extends Activity implements
         addnew.setName(getString(R.string.custom_camera_new_camera));
         customCameras.add(addnew);
         ListView customCameraList = (ListView) findViewById(R.id.customCameraList);
-        ArrayAdapter<CustomCamera> adapter = new ArrayAdapter<CustomCamera>(
-                ArtemisActivity.this, R.layout.text_list_item, customCameras);
+//        ArrayAdapter<CustomCamera> adapter = new ArrayAdapter<CustomCamera>(
+//                ArtemisActivity.this, R.layout.text_list_item, customCameras);
+        CustomCameraAdapter adapter = new CustomCameraAdapter(ArtemisActivity.this, customCameras, customCameraList);
         customCameraList.setAdapter(adapter);
     }
 
@@ -3204,8 +3332,9 @@ public class ArtemisActivity extends Activity implements
         addnew.setName(getString(R.string.new_zoom_lens));
         zoomLenses.add(addnew);
         ListView zoomLensList = (ListView) findViewById(R.id.customZoomLensList);
-        ArrayAdapter<ZoomLens> adapter = new ArrayAdapter<ZoomLens>(
-                ArtemisActivity.this, R.layout.text_list_item, zoomLenses);
+//        ArrayAdapter<ZoomLens> adapter = new ArrayAdapter<ZoomLens>(
+//                ArtemisActivity.this, R.layout.text_list_item, zoomLenses);
+        ZoomLensesAdapter adapter = new ZoomLensesAdapter(ArtemisActivity.this, zoomLenses, zoomLensList);
         zoomLensList.setAdapter(adapter);
     }
 

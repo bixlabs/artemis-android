@@ -79,7 +79,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dip"
                 android:layout_marginEnd="15dip"
-                android:hint="@string/image_description_hint" />
+                android:hint="@string/image_description_hint"
+                android:backgroundTint="@color/orangeArtemisText"
+                android:theme="@style/MyEditText"
+                />
 
             <EditText
                 android:id="@+id/imageNotes"
@@ -216,6 +219,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:drawableTint="@color/orangeArtemisText"
                                 android:text="@string/sunrise_and_sunset_date_text" />
 
                             <EditText
@@ -247,10 +251,13 @@
                 android:layout_marginTop="-50dip"
                 android:gravity="center" >
 
-                <Button
+                <TextView
                     android:id="@+id/save_edit_details_PictureCancelButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="140dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/add_adapter_button"
+                    android:textColor="@color/orangeArtemisText"
+                    android:gravity="center"
                     android:text="@string/cancel" />
 
                 <View
@@ -259,9 +266,11 @@
 
                 <Button
                     android:id="@+id/savePictureDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_width="140dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/add_adapter_button"
+                    android:textColor="@color/orangeArtemisText"
+                    android:gravity="center"
                     android:text="@string/save" />
             </RelativeLayout>
         </LinearLayout>

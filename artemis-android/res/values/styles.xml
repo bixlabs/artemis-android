@@ -8,5 +8,10 @@
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
     </style>
 
+    <style name="MyEditText">
+        <item name="colorControlActivated">@color/orangeArtemisText</item>
+        <item name="colorControlHighlight">@color/orangeArtemisText</item>
+    </style>
+
 
 </resources>
