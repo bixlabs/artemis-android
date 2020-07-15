@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/look_row_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/look_example" />
+
+    <ImageView
+        android:id="@+id/look_row_trash"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:buttonTint="#ffd500"
+        android:checked="false"
+        android:src="@drawable/trash_icon_checkbox"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/look_row_imageView"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/look_row_name"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="NO LOOK APLIED"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@+id/look_row_imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/photo_row_imageView"
+        app:layout_constraintEnd_toEndOf="@+id/photo_row_imageView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

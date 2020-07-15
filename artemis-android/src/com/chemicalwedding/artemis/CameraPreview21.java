@@ -89,9 +89,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+<<<<<<< HEAD
 import com.chemicalwedding.artemis.model.Frameline;
+=======
+import org.apache.commons.lang3.ArrayUtils;
+>>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_AQUA;
+import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_BLACKBOARD;
+import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_SOLARIZE;
+import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_WHITEBOARD;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CameraPreview21 extends Fragment {
@@ -172,7 +180,11 @@ public class CameraPreview21 extends Fragment {
             surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
             Surface previewSurface = new Surface(surfaceTexture);
             Surface recordSurface = mediaRecorder.getSurface();
-                captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            if (selectedEffectInt > 0) {
+                captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE,
+                        selectedEffectInt);
+            }
             captureRequestBuilder.addTarget(previewSurface);
             captureRequestBuilder.addTarget(recordSurface);
 
@@ -1124,7 +1136,15 @@ public class CameraPreview21 extends Fragment {
                 mSensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
                 availableWhiteBalanceModes = characteristics.get(CameraCharacteristics.CONTROL_AWB_AVAILABLE_MODES);
                 availableAutoFocusModes = characteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES);
-                availableEffects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
+
+                //availableEffects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
+                int[] filteredEffects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
+                filteredEffects = ArrayUtils.removeAllOccurences(filteredEffects, CONTROL_EFFECT_MODE_SOLARIZE);
+                filteredEffects = ArrayUtils.removeAllOccurences(filteredEffects, CONTROL_EFFECT_MODE_WHITEBOARD);
+                filteredEffects = ArrayUtils.removeAllOccurences(filteredEffects, CONTROL_EFFECT_MODE_BLACKBOARD);
+                filteredEffects = ArrayUtils.removeAllOccurences(filteredEffects, CONTROL_EFFECT_MODE_AQUA);
+                availableEffects = filteredEffects;
+
                 int[] sceneModes = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_SCENE_MODES);
                 if (sceneModes != null) {
                     availableSceneModes = new TreeSet<>();

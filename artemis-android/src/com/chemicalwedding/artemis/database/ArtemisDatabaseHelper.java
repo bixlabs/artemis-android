@@ -24,6 +24,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final int DB_VERSION = 15;
 =======
     private static final int DB_VERSION = 14;
@@ -31,6 +32,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 =======
     private static final int DB_VERSION = 15;
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+    private static final int DB_VERSION = 15;
+>>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -39,7 +43,11 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     private final static String DB_NAME = "artemisdb";
     private final static String CAMERA_TABLE = "zcamera";
     private final static String LENS_TABLE = "zlensobject";
+<<<<<<< HEAD
     private final static String LENS_ADAPTERS_TABLE = "zcustomlensadapters";
+=======
+    private final static String LOOKS_TABLE = "zlooks";
+>>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 
 
     public ArtemisDatabaseHelper(Context context) {
@@ -58,9 +66,63 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         super.close();
     }
 
-	/*
+    /*
+     * Looks database functions
+     */
+    public ArrayList<Look> getLooks() {
+        Cursor cursor = null;
+        try {
+            cursor = _artemisDatabase.query(true, LOOKS_TABLE,
+                    new String[]{"z_pk", "zeffectid", "zname",
+                            "zblue", "zred", "zgreen"}, null,
+                    null, null, null, null, null);
+        } catch (SQLiteException sle) {
+
+        }
+
+        ArrayList<Look> looks = new ArrayList<>();
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                Look l = new Look();
+                l.setPk(cursor.getInt(0));
+                l.setEffectId(cursor.getInt(1));
+                l.setName(cursor.getString(2));
+                l.setGreen(cursor.getInt(3));
+                l.setRed(cursor.getInt(4));
+                l.setBlue(cursor.getInt(5));
+                looks.add(l);
+            }
+            cursor.close();
+        }
+        return looks;
+    }
+
+    public void insertLook(Look look) {
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("zeffectid", look.getEffectId());
+        initialValues.put("zname", look.getName());
+        initialValues.put("zblue", look.getBlue());
+        initialValues.put("zred", look.getRed());
+        initialValues.put("zgreen", look.getGreen());
+
+        _artemisDatabase.insert(LOOKS_TABLE, null,
+                initialValues);
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    public void deleteLookByPK(int lookPk) {
+        _artemisDatabase.beginTransaction();
+        _artemisDatabase.delete(LOOKS_TABLE, "z_pk = ?", new String[]{""
+                + lookPk});
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    /*
      * Camera database functions
-	 */
+     */
 
     public ArrayList<String> getCameraFormats() {
         // get distinct camera formats
@@ -182,9 +244,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
-	/*
+    /*
      * Lens database functions
-	 */
+     */
 
     public ArrayList<String> getLensManufacturers() {
         // Get all the lenses for the specified make
@@ -339,6 +401,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists zcamera");
         db.execSQL("drop table if exists zlenses");
         db.execSQL("drop table if exists zlensobject");
+        db.execSQL("drop table if exists zlooks");
 
         if (createCustomTables) {
             db.execSQL("drop table if exists zcustomcamera");
@@ -396,6 +459,15 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE INDEX 'ZCAMERA-ZSENSORNAME' ON ZCAMERA (ZSENSORNAME)");
         db.execSQL("CREATE INDEX 'ZCAMERA-ZFORMATNAME' ON ZCAMERA (ZFORMATNAME)");
         db.execSQL("CREATE INDEX 'ZCAMERA-ZCAMERAMANUFACTURER' ON ZCAMERA (ZCAMERAMANUFACTURER)");
+
+        db.execSQL("CREATE TABLE \"ZLOOKS\" ( " +
+                " \"Z_PK\" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " \"ZEFFECTID\" INTEGER, " +
+                " \"ZNAME\" VARCHAR, " +
+                " \"ZBLUE\" INTEGER, " +
+                " \"ZRED\" INTEGER, " +
+                " \"ZGREEN\" INTEGER " +
+                ");");
 
         if (createCustomTables) {
             db.execSQL("CREATE TABLE ZCUSTOMCAMERA ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZSENSORWIDTH FLOAT, ZSENSORHEIGHT FLOAT, ZSQUEEZERATIO FLOAT, ZCAMERANAME VARCHAR );");
@@ -542,11 +614,11 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<LensAdapter> getLensAdapters() {
-        Cursor cursor = _artemisDatabase.query("zcustomlensadapters", new String[] {
-                "z_pk", "zfactor", "ziscustom" },
-                null, null, null, null, "ziscustom asc, zfactor asc") ;
+        Cursor cursor = _artemisDatabase.query("zcustomlensadapters", new String[]{
+                        "z_pk", "zfactor", "ziscustom"},
+                null, null, null, null, "ziscustom asc, zfactor asc");
         ArrayList<LensAdapter> lensAdapters = new ArrayList<>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             LensAdapter adapter = new LensAdapter();
             adapter.setPk(cursor.getInt(0));
             adapter.setMagnificationFactor(cursor.getDouble(1));
@@ -735,7 +807,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteLensAdapterById(int lensAdapterId) {
         _artemisDatabase.beginTransaction();
-        _artemisDatabase.delete("ZCUSTOMLENSADAPTERS", "z_pk = ?", new String[] { "" + lensAdapterId });
+        _artemisDatabase.delete("ZCUSTOMLENSADAPTERS", "z_pk = ?", new String[]{"" + lensAdapterId});
         _artemisDatabase.setTransactionSuccessful();
         _artemisDatabase.endTransaction();
     }

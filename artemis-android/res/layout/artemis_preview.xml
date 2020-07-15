@@ -604,6 +604,20 @@
         />
 
     </LinearLayout>
+<<<<<<< HEAD
 =======
 >>>>>>> cf3855e (add lens extender and framelines)
+=======
+
+    <ImageView
+        android:id="@+id/look_active"
+        android:visibility="invisible"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/look_active"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/mainMenu"
+        app:layout_constraintStart_toStartOf="parent" />
+
+>>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 </android.support.constraint.ConstraintLayout>

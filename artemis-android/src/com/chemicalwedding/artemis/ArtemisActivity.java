@@ -166,6 +166,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_OFF;
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_CANCEL;
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
 
@@ -269,6 +270,7 @@ public class ArtemisActivity extends Activity implements
     protected File videoFolder;
     protected String videoFileName;
 
+    private ImageView looksButton;
     private ImageView addLensAdapterButton;
     private LinearLayout addLensAdapterView;
     private LinearLayout mainMenu;
@@ -840,9 +842,15 @@ public class ArtemisActivity extends Activity implements
         recordVideoChronometer = findViewById(R.id.videoChronometer);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         addLensAdapterButton = findViewById(R.id.addLensAdapterButton);
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+        looksButton = findViewById(R.id.look_active);
+
+
+>>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
         addCustomlensAdapterButton = findViewById(R.id.addCustomLensAdapterButton);
         addLensAdapterView = findViewById(R.id.addLensAdapterView);
         mainMenu = findViewById(R.id.mainMenu);
@@ -1267,6 +1275,7 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
+<<<<<<< HEAD
         ((LinearLayout) findViewById(R.id.menuFramelines)).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1274,6 +1283,19 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
+=======
+        ((LinearLayout) findViewById(R.id.menuLooks)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+
+                Intent looksIntent = new Intent(getBaseContext(), LooksActivity.class);
+                startActivity(looksIntent);
+            }
+        });
+
+
+>>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
         menuButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1906,6 +1928,14 @@ public class ArtemisActivity extends Activity implements
     protected void initPreferences() {
         SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
+
+        String currentLook = artemisPrefs.getString(getString(R.string.preference_key_selectedCameraEffect), String.valueOf(CONTROL_EFFECT_MODE_OFF));
+        if (currentLook.equals(String.valueOf(CONTROL_EFFECT_MODE_OFF))) {
+            looksButton.setVisibility(View.INVISIBLE);
+        } else {
+            looksButton.setVisibility(View.VISIBLE);
+        }
+
         // check if gps is enabled
         gpsEnabled = artemisPrefs.getBoolean(ArtemisPreferences.GPS_ENABLED,
                 true);
