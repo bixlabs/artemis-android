@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2B2B2B" >
+
+    <ImageButton
+        android:id="@+id/custom_look_gallery"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/gallerybutton"
+        app:layout_constraintBottom_toTopOf="@+id/looks_recycler_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+
+    <ImageButton
+        android:id="@+id/custom_look_import"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/look_icon"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/looks_recycler_view"
+        app:layout_constraintStart_toEndOf="@id/custom_look_gallery"
+        app:layout_constraintTop_toTopOf="parent"  />
+
+    <Button
+        android:id="@+id/custom_look_save"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/save_filter_button"
+        android:text="SAVE FILTER"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/custom_look_reload"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/custom_look_reload"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/reload_icon"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="#696969"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custom_look_save">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:src="@drawable/look_example"
+            app:layout_constraintBottom_toTopOf="@+id/custom_look_bottom_view"
+            app:layout_constraintEnd_toEndOf="@+id/custom_look_vertical_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/custom_look_bottom_view"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="BEFORE"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="AFTER"
+            android:gravity="center"
+            android:layout_marginEnd="10dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/custom_look_vertical_guideline"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/custom_look_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/custom_look_vertical_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="LIFT"/>
+
+                        <TextView
+                            android:id="@+id/lift_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="0"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/lift_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="10"
+                        android:min="-10"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="GAMMA"/>
+
+                        <TextView
+                            android:id="@+id/gamma_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="1.5"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/gamma_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="30"
+                        android:min="0"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="15"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="GAIN"/>
+
+                        <TextView
+                            android:id="@+id/gain_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="0"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/gain_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="40"
+                        android:min="-40"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="CONTRAST"/>
+
+                        <TextView
+                            android:id="@+id/contrast_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/contrast_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="20"
+                        android:min="0"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="10"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="SATURATION"/>
+
+                        <TextView
+                            android:id="@+id/saturation_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/saturation_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="20"
+                        android:min="0"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="10"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="WHITE BALANCE"/>
+
+                        <TextView
+                            android:id="@+id/white_balance_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="5000"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/white_balance_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="7500"
+                        android:min="2500"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="5000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="TINT"/>
+
+                        <TextView
+                            android:id="@+id/tint_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="0"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/tint_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="100"
+                        android:min="-100"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/custom_look_slider_style"
+                        android:progress="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="RED"/>
+
+                        <TextView
+                            android:id="@+id/red_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/red_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="20"
+                        android:min="0"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/red_slider_style"
+                        android:progress="10"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="GREEN"/>
+
+                        <TextView
+                            android:id="@+id/green_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/green_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="20"
+                        android:min="0"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/green_slider_style"
+                        android:progress="10"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginStart="15dp"
+                            android:text="BLUE"/>
+
+                        <TextView
+                            android:id="@+id/blue_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/orangeArtemisText"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/blue_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:max="20"
+                        android:min="0"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/custom_look_slider_thumb"
+                        android:progressDrawable="@drawable/blue_slider_style"
+                        android:progress="10"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

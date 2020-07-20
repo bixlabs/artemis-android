@@ -2,11 +2,13 @@ package com.chemicalwedding.artemis;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
@@ -20,6 +22,7 @@ public class LooksActivity extends Activity {
     private ArrayList<Look> availableEffects;
     private RecyclerView recyclerView;
     private ImageView deleteButton;
+    private Button addNewLookButton;
     private LooksAdapter mAdapter;
 
     @Override
@@ -61,6 +64,12 @@ public class LooksActivity extends Activity {
                 mAdapter.canDeleteLooks = false;
             }
             mAdapter.notifyDataSetChanged();
+        });
+
+        addNewLookButton = findViewById(R.id.add_new_look);
+        addNewLookButton.setOnClickListener(view -> {
+            Intent addLookIntent = new Intent(getBaseContext(), AddLookActivity.class);
+            startActivity(addLookIntent);
         });
 
         mAdapter.setOnLooksTrashClickListener(position -> {
