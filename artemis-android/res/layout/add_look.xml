@@ -124,7 +124,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -155,7 +155,7 @@
                     <SeekBar
                         android:id="@+id/lift_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="10"
                         android:min="-10"
                         android:splitTrack="false"
@@ -166,7 +166,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -197,7 +197,7 @@
                     <SeekBar
                         android:id="@+id/gamma_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="30"
                         android:min="0"
                         android:splitTrack="false"
@@ -208,7 +208,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -239,7 +239,7 @@
                     <SeekBar
                         android:id="@+id/gain_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="40"
                         android:min="-40"
                         android:splitTrack="false"
@@ -250,7 +250,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -281,7 +281,7 @@
                     <SeekBar
                         android:id="@+id/contrast_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="20"
                         android:min="0"
                         android:splitTrack="false"
@@ -292,7 +292,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -323,7 +323,7 @@
                     <SeekBar
                         android:id="@+id/saturation_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="20"
                         android:min="0"
                         android:splitTrack="false"
@@ -334,7 +334,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -365,7 +365,7 @@
                     <SeekBar
                         android:id="@+id/white_balance_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="7500"
                         android:min="2500"
                         android:splitTrack="false"
@@ -376,7 +376,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -407,7 +407,7 @@
                     <SeekBar
                         android:id="@+id/tint_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="100"
                         android:min="-100"
                         android:splitTrack="false"
@@ -418,7 +418,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -449,7 +449,7 @@
                     <SeekBar
                         android:id="@+id/red_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="20"
                         android:min="0"
                         android:splitTrack="false"
@@ -460,7 +460,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -491,7 +491,7 @@
                     <SeekBar
                         android:id="@+id/green_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="20"
                         android:min="0"
                         android:splitTrack="false"
@@ -502,7 +502,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -533,7 +533,7 @@
                     <SeekBar
                         android:id="@+id/blue_seek_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:max="20"
                         android:min="0"
                         android:splitTrack="false"
