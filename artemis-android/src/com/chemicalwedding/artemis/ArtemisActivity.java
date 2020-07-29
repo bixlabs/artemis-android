@@ -6,6 +6,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 =======
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -36,7 +37,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.RectF;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -78,6 +81,7 @@ import android.util.Pair;
 import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.DragEvent;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -105,9 +109,11 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -126,10 +132,23 @@ import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
 import com.chemicalwedding.artemis.database.SaveMetadataToMoviesOptions;
 import com.chemicalwedding.artemis.database.ZoomLens;
+import com.chemicalwedding.artemis.model.Extender;
+import com.chemicalwedding.artemis.model.ExtenderAdapter;
+import com.chemicalwedding.artemis.model.Frameline;
+import com.chemicalwedding.artemis.model.FramelineRate;
+import com.chemicalwedding.artemis.model.FramelineRatesAdapter;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.sbstrm.appirater.Appirater;
+import com.skydoves.colorpickerview.AlphaTileView;
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.ColorPickerView;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+import com.skydoves.colorpickerview.listeners.ColorPickerViewListener;
+import com.skydoves.colorpickerview.sliders.AlphaSlideBar;
+import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
 
 import org.jcodec.containers.mp4.boxes.MetaValue;
 import org.jcodec.movtool.MetadataEditor;
@@ -143,6 +162,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -153,13 +173,18 @@ import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
         LoaderCallbacks<Cursor>,
-        LensAdaptersAdapter.SelectedLensAdapterCallback
+        LensAdaptersAdapter.SelectedLensAdapterCallback,
+        FramelinesAdapter.FramelinesCallback,
+        FramelineRatesAdapter.SelectedFramelineRateCallback,
+        ExtenderAdapter.ExtenderCallback
 {
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
     private static final String DEFAULT_LENS_MAKE = "Generic Spherical Lenses";
     private static final int GALLERY_IMAGE_LOADER = 1;
     private static final int NUM_CAMERA_PAGES = 4;
+
+    public static List<Frameline> appliedFramelines;
 
     private Handler mUiHandler = new Handler();
 
@@ -263,8 +288,16 @@ public class ArtemisActivity extends Activity implements
     private TextView lensFocalLengthMM;
     private ImageView menuButton;
     private ImageView heliosImage;
+<<<<<<< HEAD
 =======
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+    private TextView addExtenderButton;
+    private TextView addFramelineButton;
+    private Frameline currentFrameline = null;
+    private ImageView framelineBackButton;
+    public static Extender selectedExtender;
+>>>>>>> cf3855e (add lens extender and framelines)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -307,6 +340,8 @@ public class ArtemisActivity extends Activity implements
 //        }
 
         startArtemis();
+        appliedFramelines = _artemisDBHelper.getAppliedFramelines();
+        mCameraOverlay.invalidate();
     }
 
     protected void startArtemis() {
@@ -845,8 +880,14 @@ public class ArtemisActivity extends Activity implements
         heliosImage = findViewById(R.id.heliosImageView);
         setHeliosImageRotation();
         setLensMakeTextAnimation();
+<<<<<<< HEAD
 =======
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+
+        addExtenderButton = findViewById(R.id.addExtenderButton);
+        addFramelineButton = findViewById(R.id.addFramelineButton);
+>>>>>>> cf3855e (add lens extender and framelines)
     }
 
     public void runAnimation() {
@@ -946,9 +987,6 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
-        TextView cancelLensesButton = (TextView) findViewById(R.id.cancelLenses);
-        cancelLensesButton
-                .setOnClickListener(new LenseSelectionCancelClickListener());
         final TextView saveLensesButton = (TextView) findViewById(R.id.saveLenses);
         saveLensesButton
                 .setOnClickListener(new LenseSelectionSaveClickListener());
@@ -1063,9 +1101,35 @@ public class ArtemisActivity extends Activity implements
                                     ArtemisActivity.this,
                                     R.anim.slide_out_right);
                             _lensSettingsFlipper.setDisplayedChild(0);
+                        } else if (displayed == 4) {
+                            _lensSettingsFlipper.setInAnimation(
+                                    ArtemisActivity.this, R.anim.slide_in_left);
+                            _lensSettingsFlipper.setOutAnimation(
+                                    ArtemisActivity.this,
+                                    R.anim.slide_out_right);
+                            addCustomLensLayout.setVisibility(View.INVISIBLE);
+
+                            _lensSettingsFlipper.setDisplayedChild(2);
+                        } else if (displayed == 5) {
+                            _lensSettingsFlipper.setInAnimation(
+                                    ArtemisActivity.this, R.anim.slide_in_left);
+                            _lensSettingsFlipper.setOutAnimation(
+                                    ArtemisActivity.this,
+                                    R.anim.slide_out_right);
+                            addCustomLensLayout.setVisibility(View.INVISIBLE);
+
+                            _lensSettingsFlipper.showPrevious();
                         }
                     }
                 });
+
+        ((ImageView) findViewById(R.id.framelines_back)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openArtemisCameraPreviewView();
+                currentViewId = R.id.framelineListView;
+            }
+        });
 
         findViewById(R.id.menuSettings).setOnClickListener(
                 new OnClickListener() {
@@ -1203,12 +1267,20 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
+        ((LinearLayout) findViewById(R.id.menuFramelines)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFramelinesListView();
+            }
+        });
+
         menuButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenu();
             }
         });
+<<<<<<< HEAD
 =======
         addCustomlensAdapterButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -1228,6 +1300,491 @@ public class ArtemisActivity extends Activity implements
                 .load(R.raw.loading)
                 .into(loadingIndicator);
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+
+        addExtenderButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(selectedExtender == null) {
+                    openLensExtenderManufacturerView();
+                } else {
+                    removeLensExtender();
+                }
+            }
+        });
+
+        addFramelineButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Frameline frameline = buildDefaultFrameline();
+                showFramelineMenu(frameline);
+            }
+        });
+
+        findViewById(R.id.framelineBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideFramelineMenu();
+                saveCurrentFramelineToDb(mCameraOverlay.currentFrameline);
+                mCameraOverlay.currentFrameline = null;
+                openFramelinesListView();
+                appliedFramelines = _artemisDBHelper.getAppliedFramelines();
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.framelineSubmenuBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineTopBack).setVisibility(View.GONE);
+                findViewById(R.id.framelineRateMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+            }
+        });
+
+        findViewById(R.id.framelineRateButton).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                showFramelineRateMenu();
+            }
+        });
+
+        findViewById(R.id.framelineScaleButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFramelineScaleMenu();
+            }
+        });
+
+
+        findViewById(R.id.framelineScaleBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineScaleTop).setVisibility(View.GONE);
+                findViewById(R.id.framelineScaleMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+            }
+        });
+
+        ((SeekBar)findViewById(R.id.scaleBar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                mCameraOverlay.currentFrameline.setScale(i);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.scale100Button)).setText(String.valueOf(i) + "%");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        findViewById(R.id.framelineStyle1).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setFramelineType(1);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.framelineStyle2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setFramelineType(3);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.framelineStyle3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setFramelineType(2);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.framelineStyle4).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setFramelineType(4);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.framelineStyle5).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setFramelineType(5);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.framelineStyle6).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setFramelineType(6);
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.shading0percent).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setShading(0);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.shading25percent).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setShading(1);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.shading50percent).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setShading(2);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.shading75percent).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setShading(3);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.shading100percent).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setShading(4);
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.framelineOffsetCenterVerticalButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setVerticalOffset(0);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+        findViewById(R.id.framelineOffsetCenterHorizontalButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setHorizontalOffset(0);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+        findViewById(R.id.framelineOffsetCenterButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setHorizontalOffset(0);
+                mCameraOverlay.currentFrameline.setVerticalOffset(0);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+
+        findViewById(R.id.framelineOffsetTopButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int previousVerticalOffset = mCameraOverlay.currentFrameline.getVerticalOffset();
+                mCameraOverlay.currentFrameline.setVerticalOffset(previousVerticalOffset + 1);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+
+        findViewById(R.id.framelineOffsetBottomButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int previousVerticalOffset = mCameraOverlay.currentFrameline.getVerticalOffset();
+                mCameraOverlay.currentFrameline.setVerticalOffset(previousVerticalOffset - 1);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+
+        findViewById(R.id.framelineOffsetRightButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int previousHorizontalOffset = mCameraOverlay.currentFrameline.getHorizontalOffset();
+                mCameraOverlay.currentFrameline.setHorizontalOffset(previousHorizontalOffset - 1);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+        findViewById(R.id.framelineOffsetLeftButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int previousHorizontalOffset = mCameraOverlay.currentFrameline.getHorizontalOffset();
+                mCameraOverlay.currentFrameline.setHorizontalOffset(previousHorizontalOffset + 1);
+                mCameraOverlay.invalidate();
+                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+            }
+        });
+
+
+        findViewById(R.id.framelineShadingButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFramelineShadingMenu();
+            }
+        });
+
+        findViewById(R.id.framelineShadingBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineShadingTop).setVisibility(View.GONE);
+                findViewById(R.id.framelineShadingMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+            }
+        });
+
+        findViewById(R.id.framelineOffsetButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFramelineOffsetMenu();
+            }
+        });
+
+        findViewById(R.id.framelineOffsetBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineOffsetTop).setVisibility(View.GONE);
+                findViewById(R.id.framelineOffsetMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+
+                findViewById(R.id.framelineOffsetTopButtonContainer).setVisibility(View.GONE);
+                findViewById(R.id.framelineOffsetBottomButtonContainer).setVisibility(View.GONE);
+                findViewById(R.id.framelineOffsetLeftButtonContainer).setVisibility(View.GONE);
+                findViewById(R.id.framelineOffsetRightButtonContainer).setVisibility(View.GONE);
+            }
+        });
+
+        findViewById(R.id.framelineStyleButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFramelineStyleMenu();
+            }
+        });
+
+        findViewById(R.id.framelineStyleBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineStyleTop).setVisibility(View.GONE);
+                findViewById(R.id.framelineStyleMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+            }
+        });
+
+        findViewById(R.id.framelineLineWidthButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFramelineLineWidthMenu();
+            }
+        });
+
+        findViewById(R.id.framelineLineWidthBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineLineWidthTop).setVisibility(View.GONE);
+                findViewById(R.id.framelineLineWidthMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+            }
+        });
+
+        findViewById(R.id.framelineCenterMarkerStyleButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFramelineCenterMarkerStyleMenu();
+            }
+        });
+
+        findViewById(R.id.framelineSetLineStyleButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setDotted(!mCameraOverlay.currentFrameline.isDotted());
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.framelineCenterMarkerStyleBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.framelineCenterMarkerStyleTop).setVisibility(View.GONE);
+                findViewById(R.id.framelineCenterMarkerStyleMenu).setVisibility(View.GONE);
+
+                findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+                findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+            }
+        });
+
+        findViewById(R.id.lineWidth1).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setLineWidth(1);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.lineWidth2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setLineWidth(2);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.lineWidth3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setLineWidth(3);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.lineWidth4).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setLineWidth(4);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.lineWidth5).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setLineWidth(5);
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.framelineLineColorButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openColorPickerDialog();
+            }
+        });
+
+        findViewById(R.id.framelineLineColorDoneButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.colorPickerMenu).setVisibility(View.INVISIBLE);
+                ColorPickerView colorPicker = findViewById(R.id.colorPickerView);
+                mCameraOverlay.currentFrameline.setColor(colorPicker.getColor());
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.colorPickerBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.colorPickerMenu).setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+        findViewById(R.id.addCustomFramelineRateButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAddCustomFramelineRateDialog();
+            }
+        });
+
+        findViewById(R.id.centerMarkerStyle0).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerType(0);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerStyle1).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerType(1);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerStyle2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerType(2);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerStyle3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerType(3);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerStyle4).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerType(4);
+                mCameraOverlay.invalidate();
+            }
+        });
+
+        findViewById(R.id.centerMarkerWidth1).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerLineWidth(1);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerWidth2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerLineWidth(2);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerWidth3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerLineWidth(3);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerWidth4).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerLineWidth(4);
+                mCameraOverlay.invalidate();
+            }
+        });
+        findViewById(R.id.centerMarkerWidth5).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCameraOverlay.currentFrameline.setCenterMarkerLineWidth(5);
+                mCameraOverlay.invalidate();
+            }
+        });
+
+>>>>>>> cf3855e (add lens extender and framelines)
     }
 
     private void showAddCustomLensAdapterDialog() {
@@ -1258,6 +1815,42 @@ public class ArtemisActivity extends Activity implements
         });
 
         builder.show();
+    }
+
+    private void showDeleteFramelineDialog(Frameline frameline) {
+        AlertDialog dialog = new AlertDialog.Builder(
+                ArtemisActivity.this)
+                .setMessage(R.string.sure_you_want_to_delete_frameline)
+                .setTitle(R.string.delete_frameline)
+                .setPositiveButton(R.string.delete,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(
+                                    DialogInterface dialog,
+                                    int which) {
+                                _artemisDBHelper.deleteFrameline(frameline);
+                                appliedFramelines = _artemisDBHelper.getAppliedFramelines();
+                                mCameraOverlay.invalidate();
+                                List<Frameline> framelines = _artemisDBHelper.getFramelines();
+                                ListView framelinesList = (ListView) findViewById(R.id.framelinesList);
+                                if (framelines.size() > 0) {
+                                    FramelinesAdapter adapter = new FramelinesAdapter(ArtemisActivity.this, framelines, ArtemisActivity.this);
+                                    framelinesList.setAdapter(adapter);
+                                } else {
+                                    framelinesList.setAdapter(null);
+                                }
+                            }
+                        })
+                .setNegativeButton(R.string.cancel,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(
+                                    DialogInterface dialog,
+                                    int which) {
+                                dialog.dismiss();
+                            }
+                        }).create();
+        dialog.show();
     }
 
     private void addCustomAdapterToDatabase(double adapterFactor) {
@@ -1701,6 +2294,62 @@ public class ArtemisActivity extends Activity implements
                 .setOnItemClickListener(new LensManufacturerItemClickedListener());
     }
 
+    private void openLensExtenderManufacturerView() {
+        _lensSettingsFlipper.setInAnimation(ArtemisActivity.this,
+                R.anim.slide_in_right);
+        _lensSettingsFlipper.setOutAnimation(ArtemisActivity.this,
+                R.anim.slide_out_left);
+        _lensSettingsFlipper.setDisplayedChild(4); // 4 = R.id.lensExtenderManufacturerList - lens_settings.xml
+
+        ArrayList<String> lensManufacturers = _artemisDBHelper
+                .getLensManufacturers();
+        ListView extenderManufacturersList = (ListView) findViewById(R.id.lensExtenderManufacturerList);
+        StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(this, lensManufacturers, extenderManufacturersList);
+        extenderManufacturersList.setAdapter(adapter);
+
+        extenderManufacturersList.setOnItemClickListener(new ExtenderManufacturerItemClickedListener());
+    }
+
+    private void openFramelinesListView() {
+        Log.i("MYTAG", "openFramelinesListView");
+        viewFlipper.setDisplayedChild(5);
+        List<Frameline> framelines = _artemisDBHelper.getFramelines();
+        ListView framelinesList = (ListView) findViewById(R.id.framelinesList);
+        if(framelines.size() > 0) {
+            FramelinesAdapter adapter = new FramelinesAdapter(this, framelines, this);
+            framelinesList.setAdapter(adapter);
+        } else {
+            framelinesList.setAdapter(null);
+        }
+    }
+
+    private void openLensExtenderView(String selectedManufacturer) {
+        _lensSettingsFlipper.setInAnimation(ArtemisActivity.this,
+                R.anim.slide_in_right);
+        _lensSettingsFlipper.setOutAnimation(ArtemisActivity.this,
+                R.anim.slide_out_left);
+        _lensSettingsFlipper.setDisplayedChild(5); // 5 = R.id.lensExtenderView - lens_settings.xml
+
+        ArrayList<Extender> extenders = new ArrayList<>();
+        extenders.add(new Extender(selectedManufacturer, 1.4f));
+        extenders.add(new Extender(selectedManufacturer, 2f));
+
+        ListView extenderList = (ListView) findViewById(R.id.lensExtenderList);
+        ExtenderAdapter extenderAdapter = new ExtenderAdapter(ArtemisActivity.this, extenders, ArtemisActivity.this);
+
+        addCustomLensLayout.setVisibility(View.VISIBLE);
+        extenderList.setAdapter(extenderAdapter);
+        extenderList.setOnItemClickListener(new ExtenderItemClickedListener());
+    }
+
+    private void removeLensExtender() {
+        Log.i("MYTAG", "removing lens extender");
+        selectedExtender = null;
+        applySelectedLenses();
+        setLensMakeTextAnimation();
+        addExtenderButton.setText(getString(R.string.addExtender));
+    }
+
     private void openArtemisCameraPreviewView() {
         viewFlipper.setInAnimation(null);
         viewFlipper.setDisplayedChild(0);
@@ -1750,6 +2399,84 @@ public class ArtemisActivity extends Activity implements
         options.cameraMetadata = cameraMetadata;
 
         new CropVideoFileTask().execute(options);
+    }
+
+    @Override
+    public void applyFrameline(Frameline frameline) {
+        Log.i("MYTAG", "applyFrameline " + frameline.getTitle());
+        frameline.setApplied(true);
+        _artemisDBHelper.saveFrameline(frameline);
+        appliedFramelines = _artemisDBHelper.getAppliedFramelines();
+        mCameraOverlay.invalidate();
+    }
+
+    @Override
+    public void removeFrameline(Frameline frameline) {
+        Log.i("MYTAG", "removeFrameline " + frameline.getTitle());
+        frameline.setApplied(false);
+        _artemisDBHelper.saveFrameline(frameline);
+        appliedFramelines = _artemisDBHelper.getAppliedFramelines();
+        mCameraOverlay.invalidate();
+    }
+
+    @Override
+    public void deleteFrameline(Frameline frameline) {
+        Log.i("MYTAG", "deleteFrameline " + frameline.getTitle());
+        showDeleteFramelineDialog(frameline);
+    }
+
+    @Override
+    public void editFrameline(Frameline frameline) {
+        Log.i("MYTAG", "editFrameline " + frameline.getTitle());
+        showFramelineMenu(frameline);
+    }
+
+    @Override
+    public void applyExtender(Extender extender) {
+        Log.i("MYTAG", "applyExtender " + extender.toString());
+        selectedExtender = extender;
+        applySelectedLenses();
+        setLensMakeTextAnimation();
+        addExtenderButton.setText(getString(R.string.remove_extender));
+    }
+
+    public void applySelectedLenses() {
+        wasFocalLengthButtonPressed = false;
+        _lensSettingsFlipper.setOutAnimation(null);
+        SparseBooleanArray checkedValuesArray = _lensListView
+                .getCheckedItemPositions();
+        _selectedLenses = new ArrayList<Lens>();
+        String selectedLensString = "";
+        for (int listIndex = 0; listIndex < checkedValuesArray.size(); listIndex++) {
+            if (checkedValuesArray.valueAt(listIndex)) { // if it's checked
+                int lensMakeIndex = checkedValuesArray.keyAt(listIndex);
+                Lens lens = tempLensesForMake.get(lensMakeIndex);
+                if (listIndex > 0) {
+                    selectedLensString += ",";
+                }
+                selectedLensString += lens.getPk();
+                _selectedLenses.add(lens);
+            }
+        }
+        Log.i(TAG, "SELECTED LENSES: " + selectedLensString);
+
+        if (tempSelectedCamera.getRowid() != -1) {
+            setSelectedCamera(tempSelectedCamera.getRowid(), true, false);
+        }
+        setSelectedLensMake(tempSelectedLensMake, true, false);
+        setSelectedLenses(selectedLensString, true, true);
+        updateLensesInDB();
+        _artemisMath.setFullscreen(false);
+        _artemisMath.selectFirstMeaningFullLens();
+        _artemisMath.calculateLargestLens();
+        _artemisMath.calculateRectBoxesAndLabelsForLenses();
+        _artemisMath.resetTouchToCenter(); // now with green box
+        _artemisMath.onFullscreenOffSelectLens();
+        mCameraPreview.calculateZoom(true);
+        mCameraOverlay.refreshLensBoxesAndLabelsForLenses();
+        mCameraAngleDetailView.postInvalidate();
+        reconfigureNextAndPreviousLensButtons();
+        openArtemisCameraPreviewView();
     }
 
     private class CropVideoOptions {
@@ -1825,6 +2552,40 @@ public class ArtemisActivity extends Activity implements
                     "-c:a", "copy", videoFileNameCropped};
             int rc = FFmpeg.execute(cmd);
 
+            Bitmap framelinesBitmap = Bitmap.createBitmap((int) selectedLensBox.width(), (int)selectedLensBox.height(), Bitmap.Config.ARGB_8888);
+
+            List<Frameline> appliedFramelines = ArtemisActivity.appliedFramelines;
+
+            Canvas c = new Canvas();
+            c.setBitmap(framelinesBitmap);
+            if(appliedFramelines != null) {
+                for (Frameline frameline : appliedFramelines) {
+                    RectF rect = new RectF();
+                    rect.top = 0;
+                    rect.bottom = c.getHeight();
+                    rect.left = 0;
+                    rect.right = c.getWidth();
+                    double rate = frameline.getRate().getRate();
+                    int framelineScale = frameline.getScale();
+                    int verticalOffsetPercentage = frameline.getVerticalOffset();
+                    int horizontalOffsetPercentage = frameline.getHorizontalOffset();
+                    int stroke = frameline.getLineWidth();
+                    boolean dottedLine = frameline.isDotted();
+                    int color = frameline.getColor();
+                    int framelineType = frameline.getFramelineType();
+                    int centerMarkerType = frameline.getCenterMarkerType();
+                    int centerMarkerLineWidth = frameline.getCenterMarkerLineWidth();
+                    int shadingColorId = frameline.getShading() == 0 ? R.color.shading_0
+                            : frameline.getShading() == 1 ? R.color.shadin_25
+                            : frameline.getShading() == 2 ? R.color.shadin_50
+                            : frameline.getShading() == 3 ? R.color.shadin_75
+                            : R.color.shadin_100;
+                    int backgroundColor = getResources().getColor(shadingColorId);
+                    CameraOverlay.drawFrameline(c, rect, framelineScale, verticalOffsetPercentage, horizontalOffsetPercentage, stroke, dottedLine, color, framelineType, centerMarkerType, centerMarkerLineWidth, backgroundColor);
+                }
+            }
+            saveBitmapAsJPEG(framelinesBitmap);
+
             if (rc == RETURN_CODE_SUCCESS) {
                 Log.i(Config.TAG, "Command execution completed successfully.");
                 if (file.delete()) {
@@ -1837,6 +2598,32 @@ public class ArtemisActivity extends Activity implements
                 Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
                 Config.printLastCommandOutput(Log.INFO);
             }
+
+
+            String root = Environment.getExternalStorageDirectory().toString();
+            String frameilneFileName = root + "/Artemis/Project-1/frameline.png";
+            String videoFileNameFramelined = videoFileName.substring(0, videoFileName.lastIndexOf("."));
+            String formatStringFramelined = videoFileName.substring(videoFileName.lastIndexOf("."));
+            videoFileNameFramelined = videoFileNameFramelined + "_framelined" + formatString;
+
+//            String[] complexCommand = {"ffmpeg","-y" ,"-i",
+//                    videoFileNameCropped,"-strict","experimental", "-vf", "movie="+ frameilneFileName +" [watermark]; [in][watermark] overlay=main_w-overlay_w-10:10 [out]","-s", "320x240","-r", "30", "-b", "15496k", "-vcodec", "mpeg4","-ab", "48000", "-ac", "2", "-ar", "22050", videoFileNameFramelined};
+            String[] complexCommand = { "-i",  videoFileNameCropped, "-i",  frameilneFileName, "-filter_complex",
+                    "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2", "-c:a", "copy", videoFileNameFramelined};
+            int result = FFmpeg.execute(complexCommand);
+
+            if(result == RETURN_CODE_SUCCESS) {
+                Log.i(Config.TAG, "Command execution completed successfully.");
+                file = new File(videoFileNameCropped);
+                if (file.delete()) {
+                    file = new File(videoFileNameFramelined);
+                    mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+                }
+            } else {
+                Log.i(Config.TAG, "command framelines error");
+            }
+            File tempFramelineImage = new File(frameilneFileName);
+            tempFramelineImage.delete();
 
             SharedPreferences artemisPrefs = getSharedPreferences(
                     ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
@@ -1897,6 +2684,28 @@ public class ArtemisActivity extends Activity implements
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             loadingIndicatorContainer.setVisibility(View.GONE);
+        }
+    }
+
+    public void saveBitmapAsJPEG(Bitmap bm) {
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/Artemis/Project-1");
+        myDir.mkdirs();
+        Random generator = new Random();
+        int n = 10000;
+        n = generator.nextInt(n);
+        String fname = "frameline" + ".png";
+        File file = new File(myDir, fname);
+        Log.i(TAG, "" + file);
+        if (file.exists())
+            file.delete();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -2224,8 +3033,9 @@ public class ArtemisActivity extends Activity implements
         _artemisMath.get_currentLensBoxes().clear();
         _artemisMath.setSelectedLens(null);
 
+        String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.toString());
         ((TextView) findViewById(R.id.lensMakeText))
-                .setText(_artemisMath.selectedZoomLens.toString());
+                .setText(_artemisMath.selectedZoomLens.toString() + extenderString);
         setLensMakeTextAnimation();
         _artemisMath.resetTouchToCenter();
         _artemisMath.calculateZoomLenses();
@@ -2396,6 +3206,27 @@ public class ArtemisActivity extends Activity implements
             return true;
         }
 
+    }
+
+    final class ExtenderManufacturerItemClickedListener implements  OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Log.i("MYTAG", "extender manufacturer item clicked ");
+            if (i < adapterView.getCount() - 1) {
+                TextView selectedTextView = (TextView) ((RelativeLayout) view).findViewById(R.id.text);
+                String selectedManufacturer = selectedTextView.getText().toString();
+                openLensExtenderView(selectedManufacturer);
+            }
+        }
+    }
+
+    final class ExtenderItemClickedListener implements OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Log.i("MYTAG", "extender item selected");
+        }
     }
 
     final class LensManufacturerItemClickedListener implements OnItemClickListener {
@@ -2609,7 +3440,8 @@ public class ArtemisActivity extends Activity implements
             tempLensesForMake = _lensesForMake;
             tempSelectedLensMake = lensMake;
 
-            ((TextView) findViewById(R.id.lensMakeText)).setText(lensMake);
+            String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.toString());
+            ((TextView) findViewById(R.id.lensMakeText)).setText(lensMake + extenderString);
             setLensMakeTextAnimation();
         } else {
             tempLensesForMake = _artemisDBHelper.getLensesForMake(lensMake);
@@ -3864,6 +4696,159 @@ public class ArtemisActivity extends Activity implements
         super.onConfigurationChanged(newConfig);
     }
 
+    private Frameline buildDefaultFrameline(){
+        ArrayList<FramelineRate> framelineRates = _artemisDBHelper.getFramelineRates();
+        Frameline frameline = new Frameline();
+        frameline.setRate(framelineRates.get(0));
+        frameline.setScale(100);
+        frameline.setShading(0);
+        frameline.setVerticalOffset(0);
+        frameline.setHorizontalOffset(0);
+        frameline.setDotted(false);
 
+        frameline.setFramelineType(1);
+        frameline.setColor(Color.WHITE);
+        frameline.setLineWidth(1);
+        frameline.setCenterMarkerType(0);
+        frameline.setCenterMarkerLineWidth(1);
+        frameline.setApplied(false);
 
+        return frameline;
+    }
+
+    private void showFramelineMenu(Frameline frameline) {
+        mCameraOverlay.currentFrameline = frameline;
+        openArtemisCameraPreviewView();
+        findViewById(R.id.cameraMenuTop).setVisibility(View.GONE);
+        findViewById(R.id.mainMenu).setVisibility(View.GONE);
+
+        _artemisMath.setFullscreen(true);
+        if (_artemisMath.selectedZoomLens != null) {
+            _artemisMath.onFullscreenSetupZoomLens();
+        }
+
+        findViewById(R.id.framelineTopMenu).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineMenu).setVisibility(View.VISIBLE);
+    }
+
+    private void hideFramelineMenu() {
+        findViewById(R.id.cameraMenuTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.mainMenu).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+    }
+
+    private void showFramelineRateMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineTopBack).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineRateMenu).setVisibility(View.VISIBLE);
+
+        listFramelineRates();
+    }
+
+    private void showFramelineScaleMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineScaleTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineScaleMenu).setVisibility(View.VISIBLE);
+
+        ((SeekBar)findViewById(R.id.scaleBar)).setProgress(mCameraOverlay.currentFrameline.getScale());
+    }
+
+    private void showFramelineShadingMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineShadingTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineShadingMenu).setVisibility(View.VISIBLE);
+    }
+
+    private void showFramelineStyleMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineStyleTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineStyleMenu).setVisibility(View.VISIBLE);
+    }
+
+    private void showFramelineLineWidthMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineLineWidthTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineLineWidthMenu).setVisibility(View.VISIBLE);
+    }
+
+    private void showFramelineCenterMarkerStyleMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineCenterMarkerStyleTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineCenterMarkerStyleMenu).setVisibility(View.VISIBLE);
+    }
+
+    public void openColorPickerDialog() {
+        findViewById(R.id.colorPickerMenu).setVisibility(View.VISIBLE);
+
+        ColorPickerView colorPickerView = findViewById(R.id.colorPickerView);
+        colorPickerView.fireColorListener(mCameraOverlay.currentFrameline.getColor(), false);
+        final BrightnessSlideBar brightnessSlideBar = findViewById(R.id.brightnessSlide);
+        colorPickerView.attachBrightnessSlider(brightnessSlideBar);
+        colorPickerView.setColorListener(new ColorEnvelopeListener() {
+            @Override
+            public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+                Log.i("MYTAG", "ENVELOP COLOR: " + envelope.getHexCode());
+                AlphaTileView alphaTileView = findViewById(R.id.alphaTileView);
+                alphaTileView.setPaintColor(envelope.getColor());
+            }
+        });
+    }
+
+    private void showFramelineOffsetMenu() {
+        findViewById(R.id.framelineTopMenu).setVisibility(View.GONE);
+        findViewById(R.id.framelineMenu).setVisibility(View.GONE);
+
+        findViewById(R.id.framelineOffsetTop).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineOffsetMenu).setVisibility(View.VISIBLE);
+
+        findViewById(R.id.framelineOffsetTopButtonContainer).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineOffsetBottomButtonContainer).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineOffsetLeftButtonContainer).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelineOffsetRightButtonContainer).setVisibility(View.VISIBLE);
+
+        ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+        ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+    }
+
+    private void listFramelineRates() {
+        List<FramelineRate> rates = _artemisDBHelper.getFramelineRates();
+        RecyclerView recyclerView = findViewById(R.id.framelineRatesRecyclerView);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ArtemisActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.Adapter recyclerViewAdapter = new FramelineRatesAdapter(rates, ArtemisActivity.this, ArtemisActivity.this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    @Override
+    public void selectedFramelineRate(FramelineRate framelineRate) {
+        Log.i("MyTag", "selectedFramelineRate " + framelineRate.toString());
+    }
+
+    @Override
+    public void deleteFramelineRate(FramelineRate framelineRate) {
+        Log.i("MyTag", "deleteFramelineRate " + framelineRate.toString());
+    }
+
+    public void openAddCustomFramelineRateDialog(){
+        Log.i("MyTag", "openAddCustomFramelineRateDialog ");
+        // todo - show dialog to enter a custom rate and then save it and update the list of frameline rates
+    }
+
+    public void saveCurrentFramelineToDb(Frameline frameline) {
+        _artemisDBHelper.saveFrameline(frameline);
+    }
 }

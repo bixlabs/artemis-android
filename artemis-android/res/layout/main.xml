@@ -28,6 +28,10 @@
         <include android:id="@+id/artemisMenu"
             layout="@layout/menu" />
 
+        <include android:id="@+id/framelineListView"
+            layout="@layout/frameline_list_layout"
+            />
+
 
 =======
 >>>>>>> ed0b9bd (Look and feel changes)

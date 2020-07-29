@@ -71,6 +71,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v13.app.FragmentCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -87,6 +88,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.chemicalwedding.artemis.model.Frameline;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -265,15 +268,14 @@ public class CameraPreview21 extends Fragment {
                 this.scaleFactor = _artemisMath.calculateFullscreenZoomRatio();
             }
             if (scaleFactor > 1f) {
-
                 endTransform.preConcat(origin);
 
-                endTransform.postScale(scaleFactor * ArtemisMath.lensAdapterFactor, scaleFactor * ArtemisMath.lensAdapterFactor, _artemisMath
+                endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
                         .getOutsideBox().centerX(), _artemisMath
                         .getOutsideBox().centerY());
             } else {
                 endTransform.preConcat(origin);
-                endTransform.postScale(scaleFactor * ArtemisMath.lensAdapterFactor, scaleFactor * ArtemisMath.lensAdapterFactor, _artemisMath
+                endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
                         .getOutsideBox().centerX(), _artemisMath
                         .getOutsideBox().centerY());
                 endTransform.postTranslate((_artemisMath.getOutsideBox().centerX() - mCenterX) / 2,
@@ -282,7 +284,14 @@ public class CameraPreview21 extends Fragment {
             }
 
         } else {
-            this.scaleFactor = 1f;
+            float extenderFactor = 1f;
+
+            if(ArtemisActivity.selectedExtender != null) {
+                extenderFactor = ArtemisActivity.selectedExtender.getFactor();
+            }
+            float lensAdapterFactor = ArtemisMath.lensAdapterFactor;
+
+            this.scaleFactor = 1f * lensAdapterFactor * extenderFactor;
 
             endTransform = new Matrix(origin);
         }
@@ -482,15 +491,65 @@ public class CameraPreview21 extends Fragment {
             lensMakeMetadataTextView.setText(lensMake);
         }
 
-        View pictureMetadataView = getActivity().findViewById(R.id.pictureWithMetadata);
+        View pictureMetadataView = getActivity().findViewById(R.id.metadataView);
         Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
         Log.i("MetadataView width", String.valueOf(pictureMetadataView.getWidth()));
-        Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
+//        Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
+        ConstraintLayout metadataView = getActivity().findViewById(R.id.metadataView);
+        Bitmap blankBmp = getBitmapWithMetadataAtBottom(bitmapToSave, metadataView);
         savePicture(blankBmp, showGpsCoordinates || showGpsAddress);
     }
 
+    public Bitmap getBitmapWithMetadataAtBottom(Bitmap bitmap, View view){
+        int originalWidth = bitmap.getWidth();
+        int originalHeight = bitmap.getHeight();
+
+
+        Bitmap metadataBitmap = getBitmapFromView(view);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        paint.setDither(true);
+        float metaWidth = metadataBitmap.getWidth();
+        float xScale = originalWidth / metaWidth;
+        float yScale = metadataBitmap.getHeight() * xScale;
+        Bitmap newBitmap = Bitmap.createBitmap(originalWidth, originalHeight + (int) yScale, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawBitmap(bitmap, null, new Rect(0, 0, originalWidth, originalHeight), paint);
+        canvas.drawBitmap(metadataBitmap, null, new RectF(0, originalHeight, originalWidth, originalHeight + yScale), paint);
+        return newBitmap;
+    }
+
+    public Bitmap resizeBitmap(float width, float height, Bitmap bitmap) {
+        Bitmap newBitmap = Bitmap.createBitmap((int) width, (int) height, Bitmap.Config.ARGB_8888);
+        float originalWidth = bitmap.getWidth();
+        float originalHeight = bitmap.getHeight();
+
+        Canvas canvas = new Canvas(newBitmap);
+
+        float scale;
+        float xTranslation = 0.0f;
+        float yTranslation = 0.0f;
+
+        if(originalWidth > originalHeight) {
+            scale = height/originalHeight;
+            xTranslation = (width - originalWidth * scale) / 2.0f;
+        } else {
+            scale = width / originalWidth;
+            yTranslation = (height - originalHeight * scale) / 2.0f;
+        }
+
+        Matrix transformation = new Matrix();
+        transformation.postTranslate(xTranslation, yTranslation);
+        transformation.postScale(scale, scale);
+        Paint paint = new Paint();
+        paint.setFilterBitmap(true);
+        canvas.drawBitmap(bitmap, transformation, paint);
+        return newBitmap;
+    }
+
     public Bitmap getBitmapFromView(View view) {
-        Bitmap returnedBitmap = Bitmap.createBitmap(getView().getWidth(), getView().getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(returnedBitmap);
         Drawable bgDrawable =view.getBackground();
         if (bgDrawable!=null)
@@ -742,8 +801,10 @@ public class CameraPreview21 extends Fragment {
                             mState = STATE_PICTURE_TAKEN;
                             captureStillPicture();
                         } else {
-                            runPrecaptureSequence();
+                            captureStillPicture();
                         }
+                    } else if(afState == 0) {
+                        captureStillPicture();
                     }
                     break;
                 }
@@ -1583,6 +1644,7 @@ public class CameraPreview21 extends Fragment {
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave, widthDiff, heightDiff, newWidth, newHeight, null, false);
                 float screenImageWRatio = bitmapToSave.getWidth() / screenRect.width();
                 System.gc();
+
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave,
                         (int) (greenRect.left * screenImageWRatio),
                         (int) (greenRect.top * screenImageWRatio),
@@ -1592,12 +1654,15 @@ public class CameraPreview21 extends Fragment {
 
                 System.gc();
 
+                // TODO - apply lens adapter factor and extender
+
                 bitmapToSave = Bitmap.createBitmap(bitmapToSave,
                         (int) ((selectedRect.left - greenRect.left) * greenToSelectedRatio),
                         (int) ((selectedRect.top - greenRect.top) * greenToSelectedRatio),
                         (int) (selectedRect.width() * greenToSelectedRatio),
                         (int) (selectedRect.height() * greenToSelectedRatio), null, false);
                 System.gc();
+
                 bitmapToSave = Bitmap.createScaledBitmap(bitmapToSave, orig_width, (int) (orig_width * hratio), smoothImagesEnabled);
                 System.gc();
             } else {
@@ -1621,8 +1686,36 @@ public class CameraPreview21 extends Fragment {
                         new Rect(0, 0, c.getWidth(), c.getHeight()), p);
 
                 c.drawBitmap(bitmapToSave, xpos, ypos, p);
-
                 bitmapToSave = canvasBitmap;
+            }
+
+            Canvas c = new Canvas(bitmapToSave);
+            List<Frameline> appliedFramelines = ArtemisActivity.appliedFramelines;
+            if(appliedFramelines != null) {
+                for (Frameline frameline : appliedFramelines) {
+                    RectF rect = new RectF();
+                    rect.top = 0;
+                    rect.bottom = c.getHeight();
+                    rect.left = 0;
+                    rect.right = c.getWidth();
+                    double rate = frameline.getRate().getRate();
+                    int framelineScale = frameline.getScale();
+                    int verticalOffsetPercentage = frameline.getVerticalOffset();
+                    int horizontalOffsetPercentage = frameline.getHorizontalOffset();
+                    int stroke = frameline.getLineWidth();
+                    boolean dottedLine = frameline.isDotted();
+                    int color = frameline.getColor();
+                    int framelineType = frameline.getFramelineType();
+                    int centerMarkerType = frameline.getCenterMarkerType();
+                    int centerMarkerLineWidth = frameline.getCenterMarkerLineWidth();
+                    int shadingColorId = frameline.getShading() == 0 ? R.color.shading_0
+                            : frameline.getShading() == 1 ? R.color.shadin_25
+                            : frameline.getShading() == 2 ? R.color.shadin_50
+                            : frameline.getShading() == 3 ? R.color.shadin_75
+                            : R.color.shadin_100;
+                    int backgroundColor = getResources().getColor(shadingColorId);
+                    CameraOverlay.drawFrameline(c, rect, framelineScale, verticalOffsetPercentage, horizontalOffsetPercentage, stroke, dottedLine, color, framelineType, centerMarkerType, centerMarkerLineWidth, backgroundColor);
+                }
             }
 
             if (!quickshotEnabled) {

@@ -11,6 +11,14 @@
 	<color name="black">#000000</color>
 	<color name="title_background">#1B1B1B</color>
     <color name="option_background">#212121</color>
+<<<<<<< HEAD
 =======
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+	<color name="shading_0">#00000000</color>
+	<color name="shadin_25">#40000000</color>
+	<color name="shadin_50">#80000000</color>
+	<color name="shadin_75">#BF000000</color>
+	<color name="shadin_100">#FF000000</color>
+>>>>>>> cf3855e (add lens extender and framelines)
 </resources>

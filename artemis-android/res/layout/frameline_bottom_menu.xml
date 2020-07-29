@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/framelineMenu"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_gravity="bottom|center"
+    android:background="@drawable/cameraoverlay_bottom"
+    android:gravity="center_horizontal"
+    android:visibility="gone"
+    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="32dp"
+        >
+
+        <TextView
+            android:id="@+id/framelineRateButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/frameline_scaling"
+            android:text="1.78"
+            android:textSize="11dip"
+            android:gravity="center"
+            android:textColor="@color/orangeArtemisText"
+            android:paddingBottom="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/framelineScaleButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_size"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineStyleButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_design"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineShadingButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_shading"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineOffsetButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_center"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="right|center_vertical"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingRight="32dp"
+        >
+
+        <ImageView
+            android:id="@+id/framelineLineColorButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_color"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineSetLineStyleButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_line_style"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineLineWidthButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/frameline_line_width"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineCenterMarkerStyleButton"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/framline_center_2"
+            />
+    </LinearLayout>
+
+</LinearLayout>

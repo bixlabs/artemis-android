@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addLensAdapterView"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_gravity="bottom|center"
+    android:background="@drawable/cameraoverlay_bottom"
+    android:gravity="center_horizontal"
+    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingStart="15dp"
+    android:paddingLeft="15dp"
+    android:paddingEnd="15dp"
+    android:paddingRight="15dp"
+    android:visibility="gone"
+    >
+
+    <TextView
+        android:id="@+id/removeLensAdapterButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/dashed_round_view"
+        android:text="None"
+        android:textColor="@color/orangeArtemisText"
+        android:textSize="10sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_weight="60"
+        android:id="@+id/adaptersRecyclerView"
+        android:scrollbars="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        ></android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/addCustomLensAdapterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/button_primary"
+        android:text="Add"
+        android:textAllCaps="true"
+        android:textColor="@color/orangeArtemisText"
+        android:textSize="12sp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        />
+</LinearLayout>
+

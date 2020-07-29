@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/framelineCenterMarkerStyleMenu"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_gravity="bottom|center"
+    android:background="@drawable/cameraoverlay_bottom"
+    android:gravity="center_horizontal"
+    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:orientation="horizontal"
+    android:visibility="gone"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:id="@+id/centerMarkerStyle0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:text="@string/none"
+            android:textAllCaps="true"
+            android:textColor="@color/orangeArtemisText"
+            android:gravity="center_vertical"
+            ></TextView>
+
+        <ImageView
+            android:id="@+id/centerMarkerStyle3"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/marker1"
+            android:layout_marginRight="16dp"
+            ></ImageView>
+
+        <ImageView
+            android:id="@+id/centerMarkerStyle4"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/marker2"
+            android:layout_marginRight="16dp"
+            ></ImageView>
+
+        <ImageView
+            android:id="@+id/centerMarkerStyle2"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/marker3"
+            android:layout_marginRight="16dp"
+            ></ImageView>
+
+        <ImageView
+            android:id="@+id/centerMarkerStyle1"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/marker4"
+            android:layout_marginRight="16dp"
+            ></ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:gravity="right|center_vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/centerMarkerWidth1"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/orangeArtemisText"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/centerMarkerWidth2"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/orangeArtemisText"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/centerMarkerWidth3"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/orangeArtemisText"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/centerMarkerWidth4"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/orangeArtemisText"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/centerMarkerWidth5"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/orangeArtemisText"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

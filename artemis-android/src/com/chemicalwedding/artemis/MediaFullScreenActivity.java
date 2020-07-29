@@ -52,12 +52,16 @@ public class MediaFullScreenActivity extends Activity {
         if(mediaFile.exists()){
             if (mediaType == MediaType.PHOTO) {
                 playerView.setVisibility(View.GONE);
-                fullScreenImageView.setVisibility(View.VISIBLE);
+                findViewById(R.id.imageContainer).setVisibility(View.VISIBLE);
+                String filePath = mediaFile.getPath();
+                Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+                fullScreenImageView.setMinimumHeight(bitmap.getHeight());
+                fullScreenImageView.invalidate();
                 Bitmap myBitmap = BitmapFactory.decodeFile(mediaFile.getAbsolutePath());
                 fullScreenImageView.setImageBitmap(myBitmap);
             } else {
                 playerView.setVisibility(View.VISIBLE);
-                fullScreenImageView.setVisibility(View.GONE);
+                findViewById(R.id.imageContainer).setVisibility(View.GONE);
 
                 initializePlayer();
             }

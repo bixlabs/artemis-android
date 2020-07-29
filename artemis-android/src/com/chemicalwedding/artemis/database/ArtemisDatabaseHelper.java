@@ -12,9 +12,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.util.Log;
 import android.util.Pair;
 
+import com.chemicalwedding.artemis.model.Frameline;
+import com.chemicalwedding.artemis.model.FramelineRate;
 import com.parse.ParseObject;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
@@ -300,6 +303,16 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         _artemisDatabase.endTransaction();
     }
 
+    public void deleteFrameline(Frameline frameline) {
+        if(frameline.getId() > 0) {
+            _artemisDatabase.beginTransaction();
+            _artemisDatabase.delete("ZCUSTOMFRAMELINES", "pk = ?", new String[]{""
+                    + frameline.getId() });
+            _artemisDatabase.setTransactionSuccessful();
+            _artemisDatabase.endTransaction();
+        }
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.v(TAG, "Creating a brand new database.");
@@ -388,10 +401,27 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE ZCUSTOMCAMERA ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZSENSORWIDTH FLOAT, ZSENSORHEIGHT FLOAT, ZSQUEEZERATIO FLOAT, ZCAMERANAME VARCHAR );");
             db.execSQL("CREATE TABLE ZCUSTOMZOOMLENS ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZNAME VARCHAR, ZMINFL FLOAT, ZMAXFL FLOAT );");
             db.execSQL("CREATE TABLE ZCUSTOMLENSADAPTERS (z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZFACTOR FLOAT, ZISCUSTOM INTEGER DEFAULT 1);");
+            db.execSQL("CREATE TABLE ZCUSTOMFRAMELINERATES (PK INTEGER PRIMARY KEY AUTOINCREMENT, RATE FLOAT, IS_CUSTOM INTEGER DEFAULT 1);");
+            db.execSQL("CREATE TABLE ZCUSTOMFRAMELINES (PK INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    " RATE INTEGER," +
+                    " SCALE INTEGER, " +
+                    " SHADING_TYPE INTEGER, " +
+                    " VERTICAL_OFFSET INTEGER, " +
+                    " HORIZONTAL_OFFSET INTEGER, " +
+                    " FRAMELINE_TYPE INTEGER, " +
+                    " COLOR INTEGER, " +
+                    " IS_DOTTED INTEGER DEFAULT 0, " +
+                    " LINE_WIDTH INTEGER DEFAULT 1, " +
+                    " CENTER_MARKER_TYPE INTEGER DEFAULT 1, " +
+                    " CENTER_MARKER_LINE_WIDTH INTEGER DEFAULT 1, " +
+                    " IS_APPLIED INTEGER DEFAULT 0" +
+                    ");");
         }
 
         executeDatabaseSQL(db);
         addPredefinedLensAdapters(db);
+        addPredefinedFramelineRates(db);
+//        addPredefinedFramelines(db);
     }
 
 
@@ -427,6 +457,40 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         insertLensAdapters(adapter1);
         insertLensAdapters(adapter2);
         insertLensAdapters(adapter3);
+    }
+
+    private void addPredefinedFramelineRates(SQLiteDatabase db) {
+        _artemisDatabase = db;
+        FramelineRate rate1 = new FramelineRate(1.78, false);
+        FramelineRate rate2 = new FramelineRate(1.64, false);
+        FramelineRate rate3 = new FramelineRate(1.55, false);
+        FramelineRate rate4 = new FramelineRate(1.33, false);
+
+        insertFramelineRate(rate1);
+        insertFramelineRate(rate2);
+        insertFramelineRate(rate3);
+        insertFramelineRate(rate4);
+    }
+
+    private void addPredefinedFramelines(SQLiteDatabase db) {
+        _artemisDatabase = db;
+        ArrayList<FramelineRate> framelineRates = getFramelineRates();
+        Frameline frameline = new Frameline();
+        frameline.setRate(framelineRates.get(0));
+        frameline.setScale(50);
+        frameline.setShading(2);
+        frameline.setVerticalOffset(0);
+        frameline.setHorizontalOffset(0);
+        frameline.setDotted(false);
+
+        frameline.setFramelineType(1);
+        frameline.setColor(Color.WHITE);
+        frameline.setLineWidth(1);
+        frameline.setCenterMarkerType(0);
+        frameline.setCenterMarkerLineWidth(1);
+        frameline.setApplied(false);
+
+        insertFrameline(frameline);
     }
 
     public ArrayList<String> findSensorsForQuery(String query) {
@@ -494,13 +558,177 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         return lensAdapters;
     }
 
+    public ArrayList<FramelineRate> getFramelineRates() {
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINERATES", new String[] {
+                "PK", "RATE", "IS_CUSTOM" },
+                null, null, null, null, "IS_CUSTOM ASC"
+        );
+
+        ArrayList<FramelineRate> framelineRates = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            FramelineRate framelineRate = new FramelineRate();
+            framelineRate.setId(cursor.getInt(0));
+            framelineRate.setRate(cursor.getDouble(1));
+            framelineRate.setCustom(cursor.getInt(2) == 1);
+            framelineRates.add(framelineRate);
+        }
+
+        cursor.close();
+        return  framelineRates;
+    }
+
+    public FramelineRate getFramelineRate(int id) {
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINERATES", new String[] {
+                        "PK", "RATE", "IS_CUSTOM" },
+                "PK = ?", new String[] { String.valueOf(id) }, null, null, "IS_CUSTOM ASC"
+        );
+
+        ArrayList<FramelineRate> framelineRates = new ArrayList<>();
+        cursor.moveToNext();
+        FramelineRate framelineRate = new FramelineRate();
+        framelineRate.setId(cursor.getInt(0));
+        framelineRate.setRate(cursor.getDouble(1));
+        framelineRate.setCustom(cursor.getInt(2) == 1);
+        framelineRates.add(framelineRate);
+
+        cursor.close();
+        return framelineRate;
+    }
+
+     public ArrayList<Frameline> getFramelines() {
+        ArrayList<FramelineRate> rates = getFramelineRates();
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINES", new String[] {
+                "PK", "RATE", "SCALE", "SHADING_TYPE", "VERTICAL_OFFSET", "HORIZONTAL_OFFSET",
+                "FRAMELINE_TYPE", "COLOR", "IS_DOTTED", "LINE_WIDTH",
+                "CENTER_MARKER_TYPE", "CENTER_MARKER_LINE_WIDTH", "IS_APPLIED"
+        }, null, null, null, null, null);
+
+        ArrayList<Frameline> framelines = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            Frameline frameline = new Frameline();
+            frameline.setId(cursor.getInt(0));
+            frameline.setRate(getFramelineRate(cursor.getInt(1)));
+            frameline.setScale(cursor.getInt(2));
+            frameline.setShading(cursor.getInt(3));
+            frameline.setVerticalOffset(cursor.getInt(4));
+            frameline.setHorizontalOffset(cursor.getInt(5));
+
+            frameline.setFramelineType(cursor.getInt(6));
+            frameline.setColor(cursor.getInt(7));
+            frameline.setDotted(cursor.getInt(8) == 1);
+            frameline.setLineWidth(cursor.getInt(9));
+            frameline.setCenterMarkerType(cursor.getInt(10));
+            frameline.setCenterMarkerLineWidth(cursor.getInt(11));
+            frameline.setApplied(cursor.getInt(12) == 1);
+
+            framelines.add(frameline);
+        }
+
+        cursor.close();
+        return framelines;
+     }
+
+    public ArrayList<Frameline> getAppliedFramelines() {
+        ArrayList<FramelineRate> rates = getFramelineRates();
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINES", new String[]{
+                "PK", "RATE", "SCALE", "SHADING_TYPE", "VERTICAL_OFFSET", "HORIZONTAL_OFFSET",
+                "FRAMELINE_TYPE", "COLOR", "IS_DOTTED", "LINE_WIDTH",
+                "CENTER_MARKER_TYPE", "CENTER_MARKER_LINE_WIDTH", "IS_APPLIED"
+        }, "IS_APPLIED = 1", null, null, null, null);
+
+        ArrayList<Frameline> framelines = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Frameline frameline = new Frameline();
+            frameline.setId(cursor.getInt(0));
+            frameline.setRate(getFramelineRate(cursor.getInt(1)));
+            frameline.setScale(cursor.getInt(2));
+            frameline.setShading(cursor.getInt(3));
+            frameline.setVerticalOffset(cursor.getInt(4));
+            frameline.setHorizontalOffset(cursor.getInt(5));
+
+            frameline.setFramelineType(cursor.getInt(6));
+            frameline.setColor(cursor.getInt(7));
+            frameline.setDotted(cursor.getInt(8) == 1);
+            frameline.setLineWidth(cursor.getInt(9));
+            frameline.setCenterMarkerType(cursor.getInt(10));
+            frameline.setCenterMarkerLineWidth(cursor.getInt(11));
+            frameline.setApplied(cursor.getInt(12) == 1);
+
+            framelines.add(frameline);
+        }
+
+        cursor.close();
+        return framelines;
+    }
+
     public void insertLensAdapters(LensAdapter lensAdapter) {
-        _artemisDatabase.beginTransaction();
-        ContentValues initialValues = new ContentValues();
+            _artemisDatabase.beginTransaction();
+            ContentValues initialValues = new ContentValues();
         initialValues.put("ZFACTOR", lensAdapter.getMagnificationFactor());
         initialValues.put("ZISCUSTOM", lensAdapter.isCustomAdapter());
 
         _artemisDatabase.insert("ZCUSTOMLENSADAPTERS", null, initialValues);
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    public void insertFrameline(Frameline frameline) {
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("RATE", frameline.getRate().getId());
+        initialValues.put("SCALE", frameline.getScale());
+        initialValues.put("shading_type", frameline.getShading());
+        initialValues.put("vertical_offset", frameline.getVerticalOffset());
+        initialValues.put("horizontal_offset", frameline.getHorizontalOffset());
+        initialValues.put("frameline_type", frameline.getFramelineType());
+        initialValues.put("color", frameline.getColor());
+        initialValues.put("is_dotted", frameline.isDotted() ? 1 : 0);
+        initialValues.put("line_width", frameline.getLineWidth());
+        initialValues.put("center_marker_type", frameline.getCenterMarkerType());
+        initialValues.put("center_marker_line_width", frameline.getCenterMarkerLineWidth());
+        initialValues.put("is_applied", frameline.isApplied() ? 1 : 0);
+
+        _artemisDatabase.insert("ZCUSTOMFRAMELINES", null, initialValues);
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    public void saveFrameline(Frameline frameline) {
+        if(frameline.getId() == 0) {
+            insertFrameline(frameline);
+        } else {
+            updateFrameline(frameline);
+        }
+    }
+
+    public void updateFrameline(Frameline frameline) {
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("RATE", frameline.getRate().getId());
+        initialValues.put("SCALE", frameline.getScale());
+        initialValues.put("shading_type", frameline.getShading());
+        initialValues.put("vertical_offset", frameline.getVerticalOffset());
+        initialValues.put("horizontal_offset", frameline.getHorizontalOffset());
+        initialValues.put("frameline_type", frameline.getFramelineType());
+        initialValues.put("color", frameline.getColor());
+        initialValues.put("is_dotted", frameline.isDotted() ? 1 : 0);
+        initialValues.put("line_width", frameline.getLineWidth());
+        initialValues.put("center_marker_type", frameline.getCenterMarkerType());
+        initialValues.put("center_marker_line_width", frameline.getCenterMarkerLineWidth());
+        initialValues.put("is_applied", frameline.isApplied() ? 1 : 0);
+
+        _artemisDatabase.update("ZCUSTOMFRAMELINES", initialValues, "PK = ?", new String[] { String.valueOf(frameline.getId()) });
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    public void insertFramelineRate(FramelineRate framelineRate) {
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("RATE", framelineRate.getRate());
+        initialValues.put("IS_CUSTOM", framelineRate.isCustom() ? 1 : 0);
+
+        _artemisDatabase.insert("ZCUSTOMFRAMELINERATES", null, initialValues);
         _artemisDatabase.setTransactionSuccessful();
         _artemisDatabase.endTransaction();
     }

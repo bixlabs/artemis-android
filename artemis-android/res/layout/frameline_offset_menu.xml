@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/framelineOffsetMenu"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_gravity="bottom|center"
+    android:background="@drawable/cameraoverlay_bottom"
+    android:gravity="center_horizontal"
+    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:orientation="horizontal"
+    android:visibility="gone"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/frameline_offset"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            ></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:text="H:"
+            android:layout_marginRight="4dp"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/txtFramelineHorizontalOffset"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:text="50%"
+            android:layout_marginRight="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:text="V:"
+            android:layout_marginRight="4dp"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/txtFramelineVerticalOffset"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:text="50%"
+            android:layout_marginRight="8dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:layout_marginLeft="8dp"
+        >
+        <TextView
+            android:id="@+id/framelineOffsetCenterVerticalButton"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/center_vertical"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:background="@drawable/button_accent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textSize="12dp"
+            android:layout_marginRight="8dp"
+            />
+
+        <TextView
+            android:id="@+id/framelineOffsetCenterHorizontalButton"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/center_horizontal"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:background="@drawable/button_accent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textSize="12dp"
+            android:layout_marginRight="8dp"
+            />
+
+        <TextView
+            android:id="@+id/framelineOffsetCenterButton"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:background="@drawable/button_accent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textSize="12dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

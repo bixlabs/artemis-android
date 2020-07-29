@@ -566,8 +566,13 @@ public class ArtemisMath {
 		if (myprop < 1.4f) {
 			hwidth *= currentGreenBox.width() / scaledPreviewWidth;
 		}
+		float extenderFactor = 1f;
 
-		return (currentGreenBox.width() / hwidth);
+		if(ArtemisActivity.selectedExtender != null) {
+			extenderFactor = ArtemisActivity.selectedExtender.getFactor();
+		}
+
+		return (currentGreenBox.width() * lensAdapterFactor * extenderFactor / hwidth * lensAdapterFactor * extenderFactor);
 	}
 
 	public void setHAngleMode(boolean isHAngleMode) {

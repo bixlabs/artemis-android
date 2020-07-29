@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+
+    <ListView
+        android:id="@+id/lensList"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:gravity="top" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:background="@color/title_background"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/addCustomLens"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:gravity="left" >
+
+            <TextView
+                android:id="@+id/addCustomLensText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:text="@string/add_custom_lens" />
+
+            <ImageView
+                android:id="@+id/addCustomLensImage"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/addCustomLensText"
+                android:clickable="true"
+                android:src="@drawable/nextbutton" />
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="16dp"
+            android:gravity="right|center"
+
+            >
+
+            <TextView
+                android:id="@+id/saveLenses"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/orangeArtemisText"
+                android:background="@drawable/button_primary"
+                android:text="@string/done"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/addExtenderButton"
+                android:layout_width="140dip"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_primary"
+                android:textColor="@color/orangeArtemisText"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="10dp"
+                android:text="@string/addExtender" />
+
+        </LinearLayout>
+
+<!--        <TextView-->
+<!--            android:id="@+id/cancelLenses"-->
+<!--            android:layout_width="140dip"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:layout_weight=".3"-->
+<!--            android:layout_marginRight="15dip"-->
+<!--            android:layout_marginBottom="2dp"-->
+<!--            android:background="@drawable/button_primary"-->
+<!--            android:textColor="@color/orangeArtemisText"-->
+<!--            android:layout_toLeftOf="@id/saveLenses"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:text="@string/cancel" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/saveLenses"-->
+<!--            android:layout_width="140dip"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:layout_marginBottom="2dp"-->
+<!--            android:background="@drawable/button_primary"-->
+<!--            android:textColor="@color/orangeArtemisText"-->
+<!--            android:layout_weight=".3"-->
+<!--            android:text="@string/save_lenses"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:gravity="center"-->
+<!--            />-->
+
+
+    </LinearLayout>
+</LinearLayout>

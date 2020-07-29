@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/appirator_button_end_color"
     android:layout_height="match_parent">
 
     <ImageView
@@ -16,100 +17,110 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/empty_placeholder"/>
 
-    <LinearLayout
-        android:background="@android:color/white"
-        android:id="@+id/leftLayoutMetadata"
-        android:layout_width="0dp"
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/metadataView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/rightLayoutMetadata"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            tools:text="ANSI Super 35mm Film 1.78:1 Full Frame (24.9 x 14.4mm)"
-            android:textColor="@android:color/black"
-            android:id="@+id/cameraInformationMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            tools:text="Taken By Marcos / marcos.morales@outlook.com / Dec 4, 2019 at 16:42"
-            android:id="@+id/takenByMetadata"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:background="@android:color/white"
+            android:id="@+id/leftLayoutMetadata"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/rightLayoutMetadata"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            tools:text="Lat: -34.9096 Long: -56.1526..."
-            android:id="@+id/locationMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            <TextView
+                tools:text="ANSI Super 35mm Film 1.78:1 Full Frame (24.9 x 14.4mm)"
+                android:textColor="@android:color/black"
+                android:id="@+id/cameraInformationMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            tools:text="AUTO EXPOSURE"
-            android:id="@+id/exposureMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            <TextView
+                tools:text="Taken By Marcos / marcos.morales@outlook.com / Dec 4, 2019 at 16:42"
+                android:id="@+id/takenByMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
 
-        <TextView
-            tools:text="Tilt: -39"
-            android:id="@+id/tiltMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            <TextView
+                tools:text="Lat: -34.9096 Long: -56.1526..."
+                android:id="@+id/locationMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
 
-        <TextView
-            tools:text="No date chosen yet"
-            android:id="@+id/sunriseAndSunsetMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            <TextView
+                tools:text="AUTO EXPOSURE"
+                android:id="@+id/exposureMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
 
-        <TextView
-            android:id="@+id/notesMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/orangeArtemisText"
-            tools:text="Notes" />
-    </LinearLayout>
+            <TextView
+                tools:text="Tilt: -39"
+                android:id="@+id/tiltMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
 
-    <LinearLayout
-        android:background="@android:color/white"
-        app:layout_constraintStart_toEndOf="@+id/leftLayoutMetadata"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/leftLayoutMetadata"
-        app:layout_constraintTop_toTopOf="@+id/leftLayoutMetadata"
-        app:layout_constraintWidth_percent="0.2"
-        android:orientation="vertical"
-        android:id="@+id/rightLayoutMetadata"
-        android:layout_width="0dp"
-        android:layout_height="0dp">
+            <TextView
+                tools:text="No date chosen yet"
+                android:id="@+id/sunriseAndSunsetMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
 
-        <TextView
-            android:id="@+id/lensFocalLengthMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            tools:text="32mm" />
+            <TextView
+                android:id="@+id/notesMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/orangeArtemisText"
+                tools:text="Notes" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/lensMakeMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@android:color/black"
-            tools:text="Astro-Berlin" />
-    </LinearLayout>
+        <LinearLayout
+            android:background="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/leftLayoutMetadata"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/leftLayoutMetadata"
+            app:layout_constraintTop_toTopOf="@+id/leftLayoutMetadata"
+            app:layout_constraintWidth_percent="0.2"
+            android:orientation="vertical"
+            android:id="@+id/rightLayoutMetadata"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/lensFocalLengthMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                tools:text="32mm" />
+
+            <TextView
+                android:id="@+id/lensMakeMetadata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                tools:text="Astro-Berlin" />
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 
 

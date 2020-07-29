@@ -329,6 +329,31 @@
 =======
     <string name="delete_custom_adapter_title">Delete custom adapter.</string>
     <string name="delete_custom_adapter_message">Are you sure you want to delete the custom lens adapter?</string>
+<<<<<<< HEAD
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+    <string name="done">Done</string>
+    <string name="addExtender">Add Extender</string>
+
+    <string name="add_new_framelines">Add new framelines</string>
+    <string name="edit">Edit</string>
+    <string name="custom">custom</string>
+    <string name="hundred_percent">100%</string>
+    <string name="scale_framelines">Scale frame lines</string>
+    <string name="zero_percent">0%</string>
+    <string name="percent_25">25%</string>
+    <string name="percent_50">50%</string>
+    <string name="percent_75">75%</string>
+    <string name="frameline_offset">Frameline offset:</string>
+    <string name="center_vertical">Center v</string>
+    <string name="center_horizontal">Center h</string>
+    <string name="center">center</string>
+    <string name="none">None</string>
+    <string name="pick_color">Pick color</string>
+    <string name="sure_you_want_to_delete_frameline">Are you sure you want to delete this frameline?</string>
+    <string name="delete_frameline">Delete frameline</string>
+    <string name="delete">Delete</string>
+    <string name="remove_extender">Remove extender</string>
+>>>>>>> cf3855e (add lens extender and framelines)
 
 </resources>

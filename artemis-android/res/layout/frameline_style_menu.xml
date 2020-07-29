@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/framelineStyleMenu"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_gravity="bottom|center"
+    android:background="@drawable/cameraoverlay_bottom"
+    android:gravity="center_horizontal"
+    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:orientation="horizontal"
+    android:visibility="gone"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        >
+
+        <ImageView
+            android:id="@+id/framelineStyle1"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/style1"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineStyle2"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/style2"
+            android:layout_marginRight="12dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineStyle3"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/style3"
+            android:layout_marginRight="12dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineStyle4"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/style4"
+            android:layout_marginRight="12dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineStyle5"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/style5"
+            android:layout_marginRight="12dp"
+            />
+
+        <ImageView
+            android:id="@+id/framelineStyle6"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/style6"
+            android:layout_marginRight="12dp"
+            />
+    </LinearLayout>
+</LinearLayout>
