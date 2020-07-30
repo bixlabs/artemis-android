@@ -386,7 +386,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         Log.v(TAG, "DB onUpgrade called.");
         if (newVersion > oldVersion) {
             Log.v(TAG, "Database version higher than old one.  Upgrading.");
-            dropTablesAndCreate(db, false);
+            dropTablesAndCreate(db, true);
         }
     }
 
@@ -406,7 +406,13 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         if (createCustomTables) {
             db.execSQL("drop table if exists zcustomcamera");
             db.execSQL("drop table if exists zcustomzoomlens");
+<<<<<<< HEAD
             db.execSQL("drop table if exists zcustomlensapdaters");
+=======
+            db.execSQL("drop table if exists zcustomlensadapters");
+            db.execSQL("drop table if exists zcustomframelinerates");
+            db.execSQL("drop table if exists zcustomframelines");
+>>>>>>> 4d00701 (Fixed crashes after merge)
         }
 
         db.execSQL("drop index if exists 'ZCAMERA-ZOBJECTID'");
