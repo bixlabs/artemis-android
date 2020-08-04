@@ -87,4 +87,12 @@ public class LooksActivity extends Activity {
         });
         recyclerView.setAdapter(mAdapter);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mAdapter.availableEffects = mDBHelper.getLooks();
+        mAdapter.notifyDataSetChanged();
+    }
 }

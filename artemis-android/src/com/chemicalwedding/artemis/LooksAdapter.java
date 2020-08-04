@@ -1,6 +1,9 @@
 package com.chemicalwedding.artemis;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,16 @@ import android.widget.TextView;
 import com.chemicalwedding.artemis.database.Look;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import jp.co.cyberagent.android.gpuimage.GPUImage;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageContrastFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageGammaFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageRGBFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageSaturationFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageWhiteBalanceFilter;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_AQUA;
@@ -38,6 +51,7 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
     public Boolean canDeleteLooks = false;
     public RecyclerItemClickListener mOnRecyclerItemListener;
     public LooksTrashClickListener mLooksTrashClickListener;
+
 
     public void setRecyclerItemListener(RecyclerItemClickListener listener) {
         mOnRecyclerItemListener = listener;
@@ -76,8 +90,9 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
             mOnRecyclerItemListener.onItemClick(position);
         });
 
-        holder.name.setText(getEffectName(availableEffects.get(position).getEffectId()));
-        setEffectImage(availableEffects.get(position).getEffectId(), holder.imageView);
+        holder.name.setText(availableEffects.get(position).getName());
+
+        setEffectImage(availableEffects.get(position), holder.imageView);
     }
 
     public static String getEffectName(int effectId) {
@@ -105,24 +120,34 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
         }
     }
 
-    private void setEffectImage(int effectId, ImageView imageView) {
-        switch (effectId) {
+    private void setEffectImage(Look look, ImageView imageView) {
+        switch (look.getEffectId()) {
             case CONTROL_EFFECT_MODE_OFF:
-                imageView.setImageResource(R.drawable.look_example);
+                Bitmap bitmap = BitmapFactory.decodeResource(imageView.getContext().getResources(),
+                        R.drawable.look_example);
+                imageView.setImageBitmap(getBitmapWithFilterApplied(imageView.getContext(), bitmap, new GPUImageFilter()));
                 break;
             case CONTROL_EFFECT_MODE_MONO:
-                imageView.setImageResource(R.drawable.look_mono);
+                Bitmap bitmapMono = BitmapFactory.decodeResource(imageView.getContext().getResources(),
+                        R.drawable.look_mono);
+                imageView.setImageBitmap(getBitmapWithFilterApplied(imageView.getContext(), bitmapMono, new GPUImageFilter()));
                 break;
             case CONTROL_EFFECT_MODE_NEGATIVE:
-                imageView.setImageResource(R.drawable.look_negative);
+                Bitmap bitmapNegative = BitmapFactory.decodeResource(imageView.getContext().getResources(),
+                        R.drawable.look_negative);
+                imageView.setImageBitmap(getBitmapWithFilterApplied(imageView.getContext(), bitmapNegative, new GPUImageFilter()));
                 break;
             case CONTROL_EFFECT_MODE_SOLARIZE:
                 break;
             case CONTROL_EFFECT_MODE_SEPIA:
-                imageView.setImageResource(R.drawable.look_sepia);
+                Bitmap bitmapSepia = BitmapFactory.decodeResource(imageView.getContext().getResources(),
+                        R.drawable.look_sepia);
+                imageView.setImageBitmap(getBitmapWithFilterApplied(imageView.getContext(), bitmapSepia, new GPUImageFilter()));
                 break;
             case CONTROL_EFFECT_MODE_POSTERIZE:
-                imageView.setImageResource(R.drawable.look_posterize);
+                Bitmap bitmapPosterize = BitmapFactory.decodeResource(imageView.getContext().getResources(),
+                        R.drawable.look_posterize);
+                imageView.setImageBitmap(getBitmapWithFilterApplied(imageView.getContext(), bitmapPosterize, new GPUImageFilter()));
                 break;
             case CONTROL_EFFECT_MODE_WHITEBOARD:
                 break;
@@ -130,9 +155,33 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
                 break;
             case CONTROL_EFFECT_MODE_AQUA:
                 break;
+            case -1:
+                Bitmap bitmapCustom = BitmapFactory.decodeResource(imageView.getContext().getResources(),
+                        R.drawable.look_example);
+
+                List<GPUImageFilter> filterList = new ArrayList<>();
+                filterList.add(new GPUImageGammaFilter(look.getGamma().floatValue()));
+                filterList.add(new GPUImageContrastFilter(look.getContrast().floatValue()));
+                filterList.add(new GPUImageSaturationFilter(look.getSaturation().floatValue()));
+                filterList.add(new GPUImageWhiteBalanceFilter(look.getWhiteBalance().floatValue(), 0.0f));
+                filterList.add(new GPUImageRGBFilter(look.getRed().floatValue(), look.getGreen().floatValue(), look.getBlue().floatValue()));
+
+                imageView.setImageBitmap(getBitmapWithFilterApplied(imageView.getContext(), bitmapCustom, new GPUImageFilterGroup(filterList)));
             default:
                 break;
         }
+    }
+
+    public Bitmap getBitmapWithFilterApplied(Context context, Bitmap bitmap, GPUImageFilter filter) {
+        GPUImage mImage = new GPUImage(context);
+        mImage.setFilter(filter);
+        return mImage.getBitmapWithFilterApplied(bitmap);
+    }
+
+    public Bitmap getBitmapWithFilterApplied(Context context, Bitmap bitmap, GPUImageFilterGroup filterGroup) {
+        GPUImage mImage = new GPUImage(context);
+        mImage.setFilter(filterGroup);
+        return mImage.getBitmapWithFilterApplied(bitmap);
     }
 
     @Override

@@ -1,10 +1,9 @@
 package com.chemicalwedding.artemis.database;
 
 public class Look {
-    private Integer pk;
-    private Integer effectId;
+    private Integer pk, effectId;
     private String name;
-    private Integer green, red, blue;
+    private Double gamma, contrast, saturation, whiteBalance, red, green, blue;
 
     public Integer getPk() {
         return pk;
@@ -30,28 +29,59 @@ public class Look {
         this.name = name;
     }
 
-    public Integer getGreen() {
+    public Double getGamma() {
+        return gamma;
+    }
+
+    public void setGamma(Double gamma) {
+        this.gamma = gamma;
+    }
+
+    public Double getContrast() {
+        return contrast;
+    }
+
+    public void setContrast(Double contrast) {
+        this.contrast = contrast;
+    }
+
+    public Double getSaturation() {
+        return saturation;
+    }
+
+    public void setSaturation(Double saturation) {
+        this.saturation = saturation;
+    }
+
+    public Double getWhiteBalance() {
+        return whiteBalance;
+    }
+
+    public void setWhiteBalance(Double whiteBalance) {
+        this.whiteBalance = whiteBalance;
+    }
+
+    public Double getGreen() {
         return green;
     }
 
-    public void setGreen(Integer green) {
+    public void setGreen(Double green) {
         this.green = green;
     }
 
-    public Integer getRed() {
+    public Double getRed() {
         return red;
     }
 
-    public void setRed(Integer red) {
+    public void setRed(Double red) {
         this.red = red;
     }
 
-    public Integer getBlue() {
+    public Double getBlue() {
         return blue;
     }
 
-    public void setBlue(Integer blue) {
+    public void setBlue(Double blue) {
         this.blue = blue;
     }
-
 }

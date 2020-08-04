@@ -25,6 +25,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final int DB_VERSION = 15;
 =======
     private static final int DB_VERSION = 14;
@@ -35,6 +36,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 =======
     private static final int DB_VERSION = 15;
 >>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
+=======
+    private static final int DB_VERSION = 16;
+>>>>>>> 178ddf9 (Save custom look finished)
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -73,8 +77,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = null;
         try {
             cursor = _artemisDatabase.query(true, LOOKS_TABLE,
-                    new String[]{"z_pk", "zeffectid", "zname",
-                            "zblue", "zred", "zgreen"}, null,
+                    new String[]{"z_pk", "zeffectid", "zname", "zgamma", "zcontrast", "zsaturation", "zwhitebalance",
+                            "zred", "zgreen", "zblue"}, null,
                     null, null, null, null, null);
         } catch (SQLiteException sle) {
 
@@ -87,9 +91,13 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 l.setPk(cursor.getInt(0));
                 l.setEffectId(cursor.getInt(1));
                 l.setName(cursor.getString(2));
-                l.setGreen(cursor.getInt(3));
-                l.setRed(cursor.getInt(4));
-                l.setBlue(cursor.getInt(5));
+                l.setGamma(cursor.getDouble(3));
+                l.setContrast(cursor.getDouble(4));
+                l.setSaturation(cursor.getDouble(5));
+                l.setWhiteBalance(cursor.getDouble(6));
+                l.setRed(cursor.getDouble(7));
+                l.setGreen(cursor.getDouble(8));
+                l.setBlue(cursor.getDouble(9));
                 looks.add(l);
             }
             cursor.close();
@@ -97,14 +105,41 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         return looks;
     }
 
+    public Look getLook(Integer lookPk) {
+        Cursor cursor = _artemisDatabase.query("zcustomlook",
+                new String[]{"z_pk", "zeffectid", "zname", "zgamma", "zcontrast", "zsaturation", "zwhitebalance",
+                        "zred", "zgreen", "zblue"}, "z_pk = ?",
+                new String[]{lookPk.toString()}, null, null, null, null);
+
+        cursor.moveToFirst();
+        Look look = new Look();
+        look.setPk(cursor.getInt(0));
+        look.setEffectId(cursor.getInt(1));
+        look.setName(cursor.getString(2));
+        look.setGamma(cursor.getDouble(3));
+        look.setContrast(cursor.getDouble(4));
+        look.setSaturation(cursor.getDouble(5));
+        look.setWhiteBalance(cursor.getDouble(6));
+        look.setRed(cursor.getDouble(7));
+        look.setGreen(cursor.getDouble(8));
+        look.setBlue(cursor.getDouble(9));
+        cursor.close();
+
+        return look;
+    }
+
     public void insertLook(Look look) {
         _artemisDatabase.beginTransaction();
         ContentValues initialValues = new ContentValues();
         initialValues.put("zeffectid", look.getEffectId());
         initialValues.put("zname", look.getName());
-        initialValues.put("zblue", look.getBlue());
+        initialValues.put("zgamma", look.getGamma());
+        initialValues.put("zcontrast", look.getContrast());
+        initialValues.put("zsaturation", look.getSaturation());
+        initialValues.put("zwhitebalance", look.getWhiteBalance());
         initialValues.put("zred", look.getRed());
         initialValues.put("zgreen", look.getGreen());
+        initialValues.put("zblue", look.getBlue());
 
         _artemisDatabase.insert(LOOKS_TABLE, null,
                 initialValues);
@@ -366,10 +401,10 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deleteFrameline(Frameline frameline) {
-        if(frameline.getId() > 0) {
+        if (frameline.getId() > 0) {
             _artemisDatabase.beginTransaction();
             _artemisDatabase.delete("ZCUSTOMFRAMELINES", "pk = ?", new String[]{""
-                    + frameline.getId() });
+                    + frameline.getId()});
             _artemisDatabase.setTransactionSuccessful();
             _artemisDatabase.endTransaction();
         }
@@ -470,9 +505,13 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 " \"Z_PK\" INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " \"ZEFFECTID\" INTEGER, " +
                 " \"ZNAME\" VARCHAR, " +
-                " \"ZBLUE\" INTEGER, " +
-                " \"ZRED\" INTEGER, " +
-                " \"ZGREEN\" INTEGER " +
+                " \"ZGAMMA\" FLOAT, " +
+                " \"ZCONTRAST\" FLOAT, " +
+                " \"ZSATURATION\" FLOAT, " +
+                " \"ZWHITEBALANCE\" FLOAT, " +
+                " \"ZRED\" FLOAT, " +
+                " \"ZGREEN\" FLOAT, " +
+                " \"ZBLUE\" FLOAT " +
                 ");");
 
         if (createCustomTables) {
@@ -637,13 +676,13 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<FramelineRate> getFramelineRates() {
-        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINERATES", new String[] {
-                "PK", "RATE", "IS_CUSTOM" },
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINERATES", new String[]{
+                        "PK", "RATE", "IS_CUSTOM"},
                 null, null, null, null, "IS_CUSTOM ASC"
         );
 
         ArrayList<FramelineRate> framelineRates = new ArrayList<>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             FramelineRate framelineRate = new FramelineRate();
             framelineRate.setId(cursor.getInt(0));
             framelineRate.setRate(cursor.getDouble(1));
@@ -652,13 +691,13 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         }
 
         cursor.close();
-        return  framelineRates;
+        return framelineRates;
     }
 
     public FramelineRate getFramelineRate(int id) {
-        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINERATES", new String[] {
-                        "PK", "RATE", "IS_CUSTOM" },
-                "PK = ?", new String[] { String.valueOf(id) }, null, null, "IS_CUSTOM ASC"
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINERATES", new String[]{
+                        "PK", "RATE", "IS_CUSTOM"},
+                "PK = ?", new String[]{String.valueOf(id)}, null, null, "IS_CUSTOM ASC"
         );
 
         ArrayList<FramelineRate> framelineRates = new ArrayList<>();
@@ -673,16 +712,16 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         return framelineRate;
     }
 
-     public ArrayList<Frameline> getFramelines() {
+    public ArrayList<Frameline> getFramelines() {
         ArrayList<FramelineRate> rates = getFramelineRates();
-        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINES", new String[] {
+        Cursor cursor = _artemisDatabase.query("ZCUSTOMFRAMELINES", new String[]{
                 "PK", "RATE", "SCALE", "SHADING_TYPE", "VERTICAL_OFFSET", "HORIZONTAL_OFFSET",
                 "FRAMELINE_TYPE", "COLOR", "IS_DOTTED", "LINE_WIDTH",
                 "CENTER_MARKER_TYPE", "CENTER_MARKER_LINE_WIDTH", "IS_APPLIED"
         }, null, null, null, null, null);
 
         ArrayList<Frameline> framelines = new ArrayList<>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             Frameline frameline = new Frameline();
             frameline.setId(cursor.getInt(0));
             frameline.setRate(getFramelineRate(cursor.getInt(1)));
@@ -704,7 +743,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return framelines;
-     }
+    }
 
     public ArrayList<Frameline> getAppliedFramelines() {
         ArrayList<FramelineRate> rates = getFramelineRates();
@@ -740,8 +779,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void insertLensAdapters(LensAdapter lensAdapter) {
-            _artemisDatabase.beginTransaction();
-            ContentValues initialValues = new ContentValues();
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
         initialValues.put("ZFACTOR", lensAdapter.getMagnificationFactor());
         initialValues.put("ZISCUSTOM", lensAdapter.isCustomAdapter());
 
@@ -772,7 +811,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void saveFrameline(Frameline frameline) {
-        if(frameline.getId() == 0) {
+        if (frameline.getId() == 0) {
             insertFrameline(frameline);
         } else {
             updateFrameline(frameline);
@@ -795,7 +834,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         initialValues.put("center_marker_line_width", frameline.getCenterMarkerLineWidth());
         initialValues.put("is_applied", frameline.isApplied() ? 1 : 0);
 
-        _artemisDatabase.update("ZCUSTOMFRAMELINES", initialValues, "PK = ?", new String[] { String.valueOf(frameline.getId()) });
+        _artemisDatabase.update("ZCUSTOMFRAMELINES", initialValues, "PK = ?", new String[]{String.valueOf(frameline.getId())});
         _artemisDatabase.setTransactionSuccessful();
         _artemisDatabase.endTransaction();
     }

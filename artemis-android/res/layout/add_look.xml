@@ -63,11 +63,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/custom_look_save">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <jp.co.cyberagent.android.gpuimage.GPUImageView
+            android:id="@+id/custom_look_imageView"
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:src="@drawable/look_example"
+            app:gpuimage_show_loading="false"
+            app:gpuimage_surface_type="surface_view"
             app:layout_constraintBottom_toTopOf="@+id/custom_look_bottom_view"
             app:layout_constraintEnd_toEndOf="@+id/custom_look_vertical_guideline"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +81,7 @@
             android:layout_height="30dp"
             android:background="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/custom_look_imageView"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -139,48 +141,6 @@
                             android:layout_weight="1"
                             android:textColor="@android:color/darker_gray"
                             android:layout_marginStart="15dp"
-                            android:text="LIFT"/>
-
-                        <TextView
-                            android:id="@+id/lift_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="15dp"
-                            android:textColor="@color/orangeArtemisText"
-                            android:text="0"/>
-                    </LinearLayout>
-
-                    <SeekBar
-                        android:id="@+id/lift_seek_bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="15dp"
-                        android:max="10"
-                        android:min="-10"
-                        android:splitTrack="false"
-                        android:thumb="@drawable/custom_look_slider_thumb"
-                        android:progressDrawable="@drawable/custom_look_slider_style"
-                        android:progress="0"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="1"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginStart="15dp"
                             android:text="GAMMA"/>
 
                         <TextView
@@ -204,48 +164,6 @@
                         android:thumb="@drawable/custom_look_slider_thumb"
                         android:progressDrawable="@drawable/custom_look_slider_style"
                         android:progress="15"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="1"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginStart="15dp"
-                            android:text="GAIN"/>
-
-                        <TextView
-                            android:id="@+id/gain_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="15dp"
-                            android:textColor="@color/orangeArtemisText"
-                            android:text="0"/>
-                    </LinearLayout>
-
-                    <SeekBar
-                        android:id="@+id/gain_seek_bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="15dp"
-                        android:max="40"
-                        android:min="-40"
-                        android:splitTrack="false"
-                        android:thumb="@drawable/custom_look_slider_thumb"
-                        android:progressDrawable="@drawable/custom_look_slider_style"
-                        android:progress="0"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -372,48 +290,6 @@
                         android:thumb="@drawable/custom_look_slider_thumb"
                         android:progressDrawable="@drawable/custom_look_slider_style"
                         android:progress="5000"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="1"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginStart="15dp"
-                            android:text="TINT"/>
-
-                        <TextView
-                            android:id="@+id/tint_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="15dp"
-                            android:textColor="@color/orangeArtemisText"
-                            android:text="0"/>
-                    </LinearLayout>
-
-                    <SeekBar
-                        android:id="@+id/tint_seek_bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="15dp"
-                        android:max="100"
-                        android:min="-100"
-                        android:splitTrack="false"
-                        android:thumb="@drawable/custom_look_slider_thumb"
-                        android:progressDrawable="@drawable/custom_look_slider_style"
-                        android:progress="1"/>
                 </LinearLayout>
 
                 <LinearLayout
