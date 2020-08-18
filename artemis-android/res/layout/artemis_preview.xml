@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainFrame"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.037" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_guideline_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -389,7 +389,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_spacer" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/focalLengthLensButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -438,6 +438,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:clickable="true" />
+<<<<<<< HEAD
         </android.support.constraint.ConstraintLayout>
 <<<<<<< HEAD
 =======
@@ -458,6 +459,9 @@
             android:layout_marginRight="7dp"
             android:src="@drawable/lensadapter" />
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+        </androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
 
         <ImageView
             android:layout_width="2dp"
@@ -619,5 +623,9 @@
         app:layout_constraintBottom_toTopOf="@+id/mainMenu"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< HEAD
 >>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 </android.support.constraint.ConstraintLayout>
+=======
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)

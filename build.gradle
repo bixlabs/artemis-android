@@ -53,11 +53,21 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:3.5.3'
 >>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
+=======
+        classpath 'com.android.tools.build:gradle:4.0.1'
+>>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
     }
 }
 
 repositories {
     google()
+}
+
+allprojects {
+    repositories {
+        google()
+    }
 }

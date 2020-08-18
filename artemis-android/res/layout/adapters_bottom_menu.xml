@@ -37,14 +37,14 @@
         android:layout_marginEnd="8dp"
         />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_weight="60"
         android:id="@+id/adaptersRecyclerView"
         android:scrollbars="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        ></android.support.v7.widget.RecyclerView>
+        ></androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/addCustomLensAdapterButton"
