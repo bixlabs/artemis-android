@@ -4,7 +4,11 @@ package com.chemicalwedding.artemis;
 <<<<<<< HEAD
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> f78dc0f (Configure Kotlin)
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -61,6 +65,7 @@ import android.provider.MediaStore;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import android.support.annotation.Nullable;
 >>>>>>> 28c22f9 (milestone 2 Look and Feel changes to main view and menu)
@@ -77,13 +82,20 @@ import android.support.v4.content.ContextCompat;
 =======
 >>>>>>> ed0b9bd (Look and feel changes)
 =======
+=======
+
+>>>>>>> f78dc0f (Configure Kotlin)
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.core.content.ContextCompat;
+<<<<<<< HEAD
 >>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
+=======
+
+>>>>>>> f78dc0f (Configure Kotlin)
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
@@ -133,6 +145,7 @@ import com.chemicalwedding.artemis.database.Camera;
 import com.chemicalwedding.artemis.database.CustomCamera;
 import com.chemicalwedding.artemis.database.Lens;
 import com.chemicalwedding.artemis.database.LensAdapter;
+import com.chemicalwedding.artemis.database.Look;
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
 import com.chemicalwedding.artemis.database.SaveMetadataToMoviesOptions;
@@ -174,8 +187,7 @@ public class ArtemisActivity extends Activity implements
         LensAdaptersAdapter.SelectedLensAdapterCallback,
         FramelinesAdapter.FramelinesCallback,
         FramelineRatesAdapter.SelectedFramelineRateCallback,
-        ExtenderAdapter.ExtenderCallback
-{
+        ExtenderAdapter.ExtenderCallback {
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
     private static final String DEFAULT_LENS_MAKE = "Generic Spherical Lenses";
@@ -774,7 +786,7 @@ public class ArtemisActivity extends Activity implements
 
             locationProvider = locationManager.getBestProvider(criteria, true);
             if (locationProvider != null
-                    && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                    && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 lastKnownLocation = locationManager
                         .getLastKnownLocation(locationProvider);
                 Log.d(TAG, "Last known location is "
@@ -859,7 +871,7 @@ public class ArtemisActivity extends Activity implements
         selectedLensAdapterMilis = findViewById(R.id.selectedLensAdapterMilis);
 
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
-        selectedLensAdapterMilis.setCameraDistance( 8000 * scale );
+        selectedLensAdapterMilis.setCameraDistance(8000 * scale);
         mCameraAngleDetailView.setCameraDistance(8000 * scale);
 
         frontAnim = (AnimatorSet) AnimatorInflater.loadAnimator(ArtemisActivity.this.getApplicationContext(), R.animator.front_animator);
@@ -896,7 +908,7 @@ public class ArtemisActivity extends Activity implements
     }
 
     public void runAnimation() {
-        if(isFront) {
+        if (isFront) {
             frontAnim.setTarget(selectedLensAdapterMilis);
             backAnim.setTarget(mCameraAngleDetailView);
             frontAnim.start();
@@ -916,9 +928,9 @@ public class ArtemisActivity extends Activity implements
             @Override
             public void onClick(View v) {
                 Log.i("bixlabs", "preview tapped");
-                if(isRecordingVideo){
+                if (isRecordingVideo) {
                     mCameraPreview.stopRecording();
-                } else if(addLensAdapterView.getVisibility() == View.VISIBLE) {
+                } else if (addLensAdapterView.getVisibility() == View.VISIBLE) {
                     hideLensAdapterViewAndShowMainMenu();
                 }
             }
@@ -926,31 +938,31 @@ public class ArtemisActivity extends Activity implements
 
         recordVideoButton = ((ImageView) findViewById(R.id.recordVideo));
 
-                recordVideoButton.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(loadingIndicatorContainer.getVisibility() == View.VISIBLE) {
-                            return;
-                        }
-                        if(isRecordingVideo){
-                            loadingIndicatorContainer.setVisibility(View.VISIBLE);
-                            System.out.println("container is visible");
-                            mCameraPreview.stopRecording();
-                        } else {
-                            if (lastKnownLocation != null)
-                                pictureSaveLocation = lastKnownLocation;
-                            mCameraPreview.startRecording();
-                        }
-                    }
-                });
+        recordVideoButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (loadingIndicatorContainer.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                if (isRecordingVideo) {
+                    loadingIndicatorContainer.setVisibility(View.VISIBLE);
+                    System.out.println("container is visible");
+                    mCameraPreview.stopRecording();
+                } else {
+                    if (lastKnownLocation != null)
+                        pictureSaveLocation = lastKnownLocation;
+                    mCameraPreview.startRecording();
+                }
+            }
+        });
 
         recordVideoChronometer.setOnChronometerTickListener(chronometer -> {
             long time = SystemClock.elapsedRealtime() - chronometer.getBase();
-            int h   = (int)(time /3600000);
-            int m = (int)(time - h*3600000)/60000;
-            int s= (int)(time - h*3600000- m*60000)/1000 ;
+            int h = (int) (time / 3600000);
+            int m = (int) (time - h * 3600000) / 60000;
+            int s = (int) (time - h * 3600000 - m * 60000) / 1000;
             // (h < 10 ? "0"+h: h)+":"
-            String t = (m < 10 ? "0"+m: m)+":"+ (s < 10 ? "0"+s: s);
+            String t = (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
             chronometer.setText(t);
         });
         recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
@@ -1256,18 +1268,18 @@ public class ArtemisActivity extends Activity implements
             @Override
             public void onClick(View view) {
                 onBackPressed();
-                if(recordVideoButton.getVisibility() == View.GONE) {
+                if (recordVideoButton.getVisibility() == View.GONE) {
                     recordVideoButton.setVisibility(View.VISIBLE);
                     ((ImageView) findViewById(R.id.shutterButton)).setVisibility(View.GONE);
                     recordVideoChronometerContainer.setVisibility(View.VISIBLE);
                     ((ImageView) findViewById(R.id.imgVideoMode)).setImageDrawable(getDrawable(R.drawable.stillsmode));
-                    ((TextView) findViewById(R.id.txtVideoMode)) .setText(getString(R.string.stills_mode));
+                    ((TextView) findViewById(R.id.txtVideoMode)).setText(getString(R.string.stills_mode));
                 } else {
                     recordVideoButton.setVisibility(View.GONE);
                     ((ImageView) findViewById(R.id.shutterButton)).setVisibility(View.VISIBLE);
                     recordVideoChronometerContainer.setVisibility(View.GONE);
                     ((ImageView) findViewById(R.id.imgVideoMode)).setImageDrawable(getDrawable(R.drawable.videomode));
-                    ((TextView) findViewById(R.id.txtVideoMode)) .setText(getString(R.string.video_mode));
+                    ((TextView) findViewById(R.id.txtVideoMode)).setText(getString(R.string.video_mode));
                 }
             }
         });
@@ -1324,7 +1336,7 @@ public class ArtemisActivity extends Activity implements
         addExtenderButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(selectedExtender == null) {
+                if (selectedExtender == null) {
                     openLensExtenderManufacturerView();
                 } else {
                     removeLensExtender();
@@ -1363,7 +1375,7 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
-        findViewById(R.id.framelineRateButton).setOnClickListener(new OnClickListener(){
+        findViewById(R.id.framelineRateButton).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFramelineRateMenu();
@@ -1389,12 +1401,12 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
-        ((SeekBar)findViewById(R.id.scaleBar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        ((SeekBar) findViewById(R.id.scaleBar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 mCameraOverlay.currentFrameline.setScale(i);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.scale100Button)).setText(String.valueOf(i) + "%");
+                ((TextView) findViewById(R.id.scale100Button)).setText(String.valueOf(i) + "%");
             }
 
             @Override
@@ -1492,8 +1504,8 @@ public class ArtemisActivity extends Activity implements
             public void onClick(View view) {
                 mCameraOverlay.currentFrameline.setVerticalOffset(0);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
         findViewById(R.id.framelineOffsetCenterHorizontalButton).setOnClickListener(new OnClickListener() {
@@ -1501,8 +1513,8 @@ public class ArtemisActivity extends Activity implements
             public void onClick(View view) {
                 mCameraOverlay.currentFrameline.setHorizontalOffset(0);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
         findViewById(R.id.framelineOffsetCenterButton).setOnClickListener(new OnClickListener() {
@@ -1511,8 +1523,8 @@ public class ArtemisActivity extends Activity implements
                 mCameraOverlay.currentFrameline.setHorizontalOffset(0);
                 mCameraOverlay.currentFrameline.setVerticalOffset(0);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
 
@@ -1522,8 +1534,8 @@ public class ArtemisActivity extends Activity implements
                 int previousVerticalOffset = mCameraOverlay.currentFrameline.getVerticalOffset();
                 mCameraOverlay.currentFrameline.setVerticalOffset(previousVerticalOffset + 1);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
 
@@ -1533,8 +1545,8 @@ public class ArtemisActivity extends Activity implements
                 int previousVerticalOffset = mCameraOverlay.currentFrameline.getVerticalOffset();
                 mCameraOverlay.currentFrameline.setVerticalOffset(previousVerticalOffset - 1);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
 
@@ -1544,8 +1556,8 @@ public class ArtemisActivity extends Activity implements
                 int previousHorizontalOffset = mCameraOverlay.currentFrameline.getHorizontalOffset();
                 mCameraOverlay.currentFrameline.setHorizontalOffset(previousHorizontalOffset - 1);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
         findViewById(R.id.framelineOffsetLeftButton).setOnClickListener(new OnClickListener() {
@@ -1554,8 +1566,8 @@ public class ArtemisActivity extends Activity implements
                 int previousHorizontalOffset = mCameraOverlay.currentFrameline.getHorizontalOffset();
                 mCameraOverlay.currentFrameline.setHorizontalOffset(previousHorizontalOffset + 1);
                 mCameraOverlay.invalidate();
-                ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-                ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+                ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
             }
         });
 
@@ -1926,8 +1938,18 @@ public class ArtemisActivity extends Activity implements
         SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
 
-        String currentLook = artemisPrefs.getString(getString(R.string.preference_key_selectedCameraEffect), String.valueOf(CONTROL_EFFECT_MODE_OFF));
-        if (currentLook.equals(String.valueOf(CONTROL_EFFECT_MODE_OFF))) {
+        String lookId = artemisPrefs.getString(
+                getString(R.string.preference_key_selectedCameraEffect), "0");
+
+        Look selectedLook = _artemisDBHelper.getLook(Integer.valueOf(lookId));
+        Integer effectId;
+        if (selectedLook == null) {
+            // In previous versions lookId was effectId
+            effectId = Integer.parseInt(lookId);
+        } else {
+            effectId = selectedLook.getEffectId();
+        }
+        if (effectId == CONTROL_EFFECT_MODE_OFF) {
             looksButton.setVisibility(View.INVISIBLE);
         } else {
             looksButton.setVisibility(View.VISIBLE);
@@ -2194,10 +2216,10 @@ public class ArtemisActivity extends Activity implements
                 }
                 break;
 
-		/*
-         * Lens settings back is handled both here and in the lens back button
-		 * click listener
-		 */
+            /*
+             * Lens settings back is handled both here and in the lens back button
+             * click listener
+             */
 
             case R.id.savePictureViewFlipper:
                 openArtemisCameraPreviewView();
@@ -2342,7 +2364,7 @@ public class ArtemisActivity extends Activity implements
         viewFlipper.setDisplayedChild(5);
         List<Frameline> framelines = _artemisDBHelper.getFramelines();
         ListView framelinesList = (ListView) findViewById(R.id.framelinesList);
-        if(framelines.size() > 0) {
+        if (framelines.size() > 0) {
             FramelinesAdapter adapter = new FramelinesAdapter(this, framelines, this);
             framelinesList.setAdapter(adapter);
         } else {
@@ -2420,7 +2442,7 @@ public class ArtemisActivity extends Activity implements
     }
 
     @Override
-    public void recordingStopped(String filePath, HashMap<String, String> cameraMetadata){
+    public void recordingStopped(String filePath, HashMap<String, String> cameraMetadata) {
         CropVideoOptions options = new CropVideoOptions();
         options.filePath = filePath;
         options.cameraMetadata = cameraMetadata;
@@ -2558,7 +2580,7 @@ public class ArtemisActivity extends Activity implements
             final int videoWidth = mCameraPreview.videoSize.getWidth();
             final int videoHeight = mCameraPreview.videoSize.getHeight();
 
-            final float screenWRatio = (float)  _artemisMath.screenWidth / _artemisMath.screenHeight;
+            final float screenWRatio = (float) _artemisMath.screenWidth / _artemisMath.screenHeight;
             final float screenHRatio = (float) 1 / screenWRatio;
 
             int newVideoHeight = (int) (videoWidth * screenHRatio);
@@ -2579,13 +2601,13 @@ public class ArtemisActivity extends Activity implements
                     "-c:a", "copy", videoFileNameCropped};
             int rc = FFmpeg.execute(cmd);
 
-            Bitmap framelinesBitmap = Bitmap.createBitmap((int) selectedLensBox.width(), (int)selectedLensBox.height(), Bitmap.Config.ARGB_8888);
+            Bitmap framelinesBitmap = Bitmap.createBitmap((int) selectedLensBox.width(), (int) selectedLensBox.height(), Bitmap.Config.ARGB_8888);
 
             List<Frameline> appliedFramelines = ArtemisActivity.appliedFramelines;
 
             Canvas c = new Canvas();
             c.setBitmap(framelinesBitmap);
-            if(appliedFramelines != null) {
+            if (appliedFramelines != null) {
                 for (Frameline frameline : appliedFramelines) {
                     RectF rect = new RectF();
                     rect.top = 0;
@@ -2635,11 +2657,11 @@ public class ArtemisActivity extends Activity implements
 
 //            String[] complexCommand = {"ffmpeg","-y" ,"-i",
 //                    videoFileNameCropped,"-strict","experimental", "-vf", "movie="+ frameilneFileName +" [watermark]; [in][watermark] overlay=main_w-overlay_w-10:10 [out]","-s", "320x240","-r", "30", "-b", "15496k", "-vcodec", "mpeg4","-ab", "48000", "-ac", "2", "-ar", "22050", videoFileNameFramelined};
-            String[] complexCommand = { "-i",  videoFileNameCropped, "-i",  frameilneFileName, "-filter_complex",
+            String[] complexCommand = {"-i", videoFileNameCropped, "-i", frameilneFileName, "-filter_complex",
                     "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2", "-c:a", "copy", videoFileNameFramelined};
             int result = FFmpeg.execute(complexCommand);
 
-            if(result == RETURN_CODE_SUCCESS) {
+            if (result == RETURN_CODE_SUCCESS) {
                 Log.i(Config.TAG, "Command execution completed successfully.");
                 file = new File(videoFileNameCropped);
                 if (file.delete()) {
@@ -2672,8 +2694,12 @@ public class ArtemisActivity extends Activity implements
                     MetadataEditor editor = MetadataEditor.createFrom(new File(mediaFile.getPath()));
                     Map<String, MetaValue> meta = editor.getKeyedMeta();
 
+<<<<<<< HEAD
 >>>>>>> ed0b9bd (Look and feel changes)
                     for(String key: cameraMetadata.keySet()) {
+=======
+                    for (String key : cameraMetadata.keySet()) {
+>>>>>>> f78dc0f (Configure Kotlin)
                         meta.put(key, MetaValue.createString(cameraMetadata.get(key)));
                     }
 
@@ -2736,13 +2762,13 @@ public class ArtemisActivity extends Activity implements
         }
     }
 
-    public void deconfigureShutterButton(){
+    public void deconfigureShutterButton() {
         takePictureButton.setImageResource(R.drawable.camera_icon);
         takePictureButton.setOnClickListener(null);
         takePictureButton.setOnLongClickListener(null);
     }
 
-    public void reconfigureShutterButton(){
+    public void reconfigureShutterButton() {
         // shutter release (take picture) button
         takePictureButton.setImageResource(R.drawable.camerabutton);
         takePictureButton.setOnClickListener(takePictureClickListener);
@@ -2768,7 +2794,7 @@ public class ArtemisActivity extends Activity implements
 
     @Override
     public void selectedLensAdapter(LensAdapter adapter) {
-        if(adapter == null) {
+        if (adapter == null) {
             selectedLensAdapter.setVisibility(View.GONE);
 <<<<<<< HEAD
             ArtemisMath.lensAdapterFactor = 1;
@@ -2778,7 +2804,7 @@ public class ArtemisActivity extends Activity implements
             lensFocalLengthMM.setTextColor(getColor(R.color.orangeArtemisText));
         } else {
             selectedLensAdapter.setText("x" + adapter.getMagnificationFactor());
-            ArtemisMath.lensAdapterFactor =  adapter.getMagnificationFactor().floatValue();
+            ArtemisMath.lensAdapterFactor = adapter.getMagnificationFactor().floatValue();
             selectedLensAdapter.setVisibility(View.VISIBLE);
             mCameraPreview.calculateZoom(true);
             mCameraAngleDetailView.postInvalidate();
@@ -2794,7 +2820,7 @@ public class ArtemisActivity extends Activity implements
 
     @Override
     public void deleteLensAdapter(LensAdapter adapter) {
-        if(adapter.isCustomAdapter()) {
+        if (adapter.isCustomAdapter()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
 <<<<<<< HEAD
             builder.setTitle("Delete custom adapter");
@@ -3235,7 +3261,7 @@ public class ArtemisActivity extends Activity implements
 
     }
 
-    final class ExtenderManufacturerItemClickedListener implements  OnItemClickListener {
+    final class ExtenderManufacturerItemClickedListener implements OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -3434,7 +3460,7 @@ public class ArtemisActivity extends Activity implements
     }
 
     private void setCameraDetailsTextAnimation() {
-        if(_cameraDetailsText.getPaint().measureText(_cameraDetailsText.getText().toString()) > findViewById(R.id.cameraDetailsView).getWidth()) {
+        if (_cameraDetailsText.getPaint().measureText(_cameraDetailsText.getText().toString()) > findViewById(R.id.cameraDetailsView).getWidth()) {
             _cameraDetailsText.startAnimation((Animation) AnimationUtils.loadAnimation(this, R.anim.text_animation));
             _cameraDetailsText.invalidate();
         } else {
@@ -3445,7 +3471,7 @@ public class ArtemisActivity extends Activity implements
     private void setLensMakeTextAnimation() {
         float textWidth = _lensMakeText.getPaint().measureText(_lensMakeText.getText().toString());
         int viewWidth = findViewById(R.id.lensMakeTextContainer).getWidth();
-        if(textWidth > viewWidth) {
+        if (textWidth > viewWidth) {
             _lensMakeText.startAnimation((Animation) AnimationUtils.loadAnimation(this, R.anim.text_animation));
             _cameraDetailsText.invalidate();
         } else {
@@ -3927,7 +3953,7 @@ public class ArtemisActivity extends Activity implements
                         ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET, true));
         final EditText sunriseAndSunsetEditText = findViewById(R.id.sunrise_and_sunset);
         sunriseAndSunsetEditText.setText(artemisPrefs.getString(
-                        ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, ""));
+                ArtemisPreferences.SAVE_PICTURE_SUNRISE_AND_SUNSET, ""));
         sunriseAndSunsetEditText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -3944,11 +3970,11 @@ public class ArtemisActivity extends Activity implements
                                 dateSelected.set(year, month, dayOfMonth);
 
                                 com.luckycatlabs.sunrisesunset.dto.Location location = new com.luckycatlabs.sunrisesunset.dto.Location(ArtemisActivity.pictureSaveLocation
-                                        .getLatitude(),ArtemisActivity.pictureSaveLocation
+                                        .getLatitude(), ArtemisActivity.pictureSaveLocation
                                         .getLongitude());
                                 SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, Calendar.getInstance().getTimeZone());
 
-                                String sunriseAndSunsetString = "Date " +  year + "-" + formattedMonth + "-" + formattedDay +
+                                String sunriseAndSunsetString = "Date " + year + "-" + formattedMonth + "-" + formattedDay +
                                         ": Sunrise " + calculator.getOfficialSunriseForDate(dateSelected) +
                                         " Sunset " + calculator.getOfficialSunsetForDate(dateSelected);
                                 sunriseAndSunsetEditText.setText(sunriseAndSunsetString);
@@ -4723,7 +4749,7 @@ public class ArtemisActivity extends Activity implements
         super.onConfigurationChanged(newConfig);
     }
 
-    private Frameline buildDefaultFrameline(){
+    private Frameline buildDefaultFrameline() {
         ArrayList<FramelineRate> framelineRates = _artemisDBHelper.getFramelineRates();
         Frameline frameline = new Frameline();
         frameline.setRate(framelineRates.get(0));
@@ -4782,7 +4808,7 @@ public class ArtemisActivity extends Activity implements
         findViewById(R.id.framelineScaleTop).setVisibility(View.VISIBLE);
         findViewById(R.id.framelineScaleMenu).setVisibility(View.VISIBLE);
 
-        ((SeekBar)findViewById(R.id.scaleBar)).setProgress(mCameraOverlay.currentFrameline.getScale());
+        ((SeekBar) findViewById(R.id.scaleBar)).setProgress(mCameraOverlay.currentFrameline.getScale());
     }
 
     private void showFramelineShadingMenu() {
@@ -4846,8 +4872,8 @@ public class ArtemisActivity extends Activity implements
         findViewById(R.id.framelineOffsetLeftButtonContainer).setVisibility(View.VISIBLE);
         findViewById(R.id.framelineOffsetRightButtonContainer).setVisibility(View.VISIBLE);
 
-        ((TextView)findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
-        ((TextView)findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
+        ((TextView) findViewById(R.id.txtFramelineHorizontalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getHorizontalOffset()));
+        ((TextView) findViewById(R.id.txtFramelineVerticalOffset)).setText(String.valueOf(mCameraOverlay.currentFrameline.getVerticalOffset()));
     }
 
     private void listFramelineRates() {
@@ -4870,7 +4896,7 @@ public class ArtemisActivity extends Activity implements
         Log.i("MyTag", "deleteFramelineRate " + framelineRate.toString());
     }
 
-    public void openAddCustomFramelineRateDialog(){
+    public void openAddCustomFramelineRateDialog() {
         Log.i("MyTag", "openAddCustomFramelineRateDialog ");
         // todo - show dialog to enter a custom rate and then save it and update the list of frameline rates
     }

@@ -106,26 +106,30 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Look getLook(Integer lookPk) {
-        Cursor cursor = _artemisDatabase.query("zcustomlook",
+        Cursor cursor = _artemisDatabase.query(LOOKS_TABLE,
                 new String[]{"z_pk", "zeffectid", "zname", "zgamma", "zcontrast", "zsaturation", "zwhitebalance",
                         "zred", "zgreen", "zblue"}, "z_pk = ?",
                 new String[]{lookPk.toString()}, null, null, null, null);
 
-        cursor.moveToFirst();
-        Look look = new Look();
-        look.setPk(cursor.getInt(0));
-        look.setEffectId(cursor.getInt(1));
-        look.setName(cursor.getString(2));
-        look.setGamma(cursor.getDouble(3));
-        look.setContrast(cursor.getDouble(4));
-        look.setSaturation(cursor.getDouble(5));
-        look.setWhiteBalance(cursor.getDouble(6));
-        look.setRed(cursor.getDouble(7));
-        look.setGreen(cursor.getDouble(8));
-        look.setBlue(cursor.getDouble(9));
-        cursor.close();
+        if (cursor.moveToFirst()) {
+            Look look = new Look();
+            look.setPk(cursor.getInt(0));
+            look.setEffectId(cursor.getInt(1));
+            look.setName(cursor.getString(2));
+            look.setGamma(cursor.getDouble(3));
+            look.setContrast(cursor.getDouble(4));
+            look.setSaturation(cursor.getDouble(5));
+            look.setWhiteBalance(cursor.getDouble(6));
+            look.setRed(cursor.getDouble(7));
+            look.setGreen(cursor.getDouble(8));
+            look.setBlue(cursor.getDouble(9));
 
-        return look;
+            cursor.close();
+            return look;
+        } else {
+            cursor.close();
+            return null;
+        }
     }
 
     public void insertLook(Look look) {

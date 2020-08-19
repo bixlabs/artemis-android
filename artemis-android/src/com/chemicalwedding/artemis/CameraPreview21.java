@@ -70,9 +70,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.legacy.app.FragmentCompat;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Rational;
@@ -88,8 +90,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
+=======
+import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
+import com.chemicalwedding.artemis.database.Look;
+>>>>>>> f78dc0f (Configure Kotlin)
 import com.chemicalwedding.artemis.model.Frameline;
 =======
 import org.apache.commons.lang3.ArrayUtils;
@@ -169,8 +176,8 @@ public class CameraPreview21 extends Fragment {
     protected CaptureRequest.Builder captureRequestBuilder;
     protected RecordingCallback recordingCallback;
 
-    public void startRecord(){
-        if(getActivity() == null || !(getActivity() instanceof ArtemisActivity)){
+    public void startRecord() {
+        if (getActivity() == null || !(getActivity() instanceof ArtemisActivity)) {
             return;
         }
 
@@ -298,7 +305,7 @@ public class CameraPreview21 extends Fragment {
         } else {
             float extenderFactor = 1f;
 
-            if(ArtemisActivity.selectedExtender != null) {
+            if (ArtemisActivity.selectedExtender != null) {
                 extenderFactor = ArtemisActivity.selectedExtender.getFactor();
             }
             float lensAdapterFactor = ArtemisMath.lensAdapterFactor;
@@ -364,7 +371,7 @@ public class CameraPreview21 extends Fragment {
 
             Map<String, String> meta = buildMetadataAttributes();
 
-            for(String key: meta.keySet()) {
+            for (String key : meta.keySet()) {
                 ex.setAttribute(key, meta.get(key));
             }
 
@@ -410,11 +417,11 @@ public class CameraPreview21 extends Fragment {
         pictureView.setImageBitmap(bitmapToSave);
 
         String title = artemisPrefs.getString(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, "");
+                ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, "");
         String notes = artemisPrefs.getString(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
+                ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
         String contactName = artemisPrefs.getString(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
+                ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
         String contactEmail = artemisPrefs.getString(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, "");
         String sunriseAndSunsetDate = artemisPrefs.getString(
@@ -427,16 +434,15 @@ public class CameraPreview21 extends Fragment {
 
 
         boolean showCameraDetails = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
+                ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS, true);
         boolean showLensDetails = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
+                ArtemisPreferences.SAVE_PICTURE_SHOW_LENS_DETAILS, true);
         boolean showSunriseAndSunset = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET, true);
+                ArtemisPreferences.SAVE_PICTURE_SHOW_SUNRISE_AND_SUNSET, true);
         boolean showTiltAndDirection = artemisPrefs.getBoolean(
-                    ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true);
+                ArtemisPreferences.SAVE_PICTURE_SHOW_TILT_AND_DIRECTION, true);
         boolean showExposure = artemisPrefs.getBoolean(
                 ArtemisPreferences.SAVE_PICTURE_SHOW_EXPOSURE, true);
-
 
 
         if (showCameraDetails) {
@@ -512,7 +518,7 @@ public class CameraPreview21 extends Fragment {
         savePicture(blankBmp, showGpsCoordinates || showGpsAddress);
     }
 
-    public Bitmap getBitmapWithMetadataAtBottom(Bitmap bitmap, View view){
+    public Bitmap getBitmapWithMetadataAtBottom(Bitmap bitmap, View view) {
         int originalWidth = bitmap.getWidth();
         int originalHeight = bitmap.getHeight();
 
@@ -543,8 +549,8 @@ public class CameraPreview21 extends Fragment {
         float xTranslation = 0.0f;
         float yTranslation = 0.0f;
 
-        if(originalWidth > originalHeight) {
-            scale = height/originalHeight;
+        if (originalWidth > originalHeight) {
+            scale = height / originalHeight;
             xTranslation = (width - originalWidth * scale) / 2.0f;
         } else {
             scale = width / originalWidth;
@@ -561,15 +567,19 @@ public class CameraPreview21 extends Fragment {
     }
 
     public Bitmap getBitmapFromView(View view) {
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(returnedBitmap);
-        Drawable bgDrawable =view.getBackground();
-        if (bgDrawable!=null)
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null)
             bgDrawable.draw(canvas);
         else
             canvas.drawColor(Color.WHITE);
         view.draw(canvas);
         return returnedBitmap;
+    }
+
+    private void applyCustomLook(Look look) {
+        // Add code here
     }
 
     /**
@@ -815,7 +825,7 @@ public class CameraPreview21 extends Fragment {
                         } else {
                             captureStillPicture();
                         }
-                    } else if(afState == 0) {
+                    } else if (afState == 0) {
                         captureStillPicture();
                     }
                     break;
@@ -929,7 +939,7 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    public void setRecordingCallback(RecordingCallback recordingCallback){
+    public void setRecordingCallback(RecordingCallback recordingCallback) {
         this.recordingCallback = recordingCallback;
     }
 
@@ -1070,7 +1080,7 @@ public class CameraPreview21 extends Fragment {
 
                 videoSize = chooseOptimalSize(map.getOutputSizes(MediaRecorder.class),
                         width, height, maxPreviewWidth, maxPreviewHeight, largest
-                        );
+                );
 
                 previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
                         rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
@@ -1093,7 +1103,7 @@ public class CameraPreview21 extends Fragment {
                     mSelectedPictureSize = largest;
                     List<Size> sizeList = Arrays.asList(availablePictureSizes);
                     int index = 0, lastWidth = 0;
-                    for (int i=0; i<sizeList.size(); i++) {
+                    for (int i = 0; i < sizeList.size(); i++) {
                         Size s = sizeList.get(i);
                         if (s.getWidth() < 1300 && s.getWidth() > lastWidth) {
                             index = i;
@@ -1158,9 +1168,20 @@ public class CameraPreview21 extends Fragment {
                 }
                 if (availableEffects != null) {
                     Arrays.sort(availableAutoFocusModes);
-                    String selectedEffect = artemisPrefs.getString(
+                    String lookId = artemisPrefs.getString(
                             getString(R.string.preference_key_selectedCameraEffect), "0");
-                    this.selectedEffectInt = Integer.parseInt(selectedEffect);
+
+                    ArtemisDatabaseHelper mDBHelper = new ArtemisDatabaseHelper(getContext());
+                    Look selectedLook = mDBHelper.getLook(Integer.valueOf(lookId));
+                    if (selectedLook == null) {
+                        // In previous versions lookId was effectId
+                        this.selectedEffectInt = Integer.parseInt(lookId);
+                    } else if (selectedLook.getEffectId() == -1) {
+                        // Custom look
+                        applyCustomLook(selectedLook);
+                    } else {
+                        this.selectedEffectInt = selectedLook.getEffectId();
+                    }
                 }
 
                 if (availableAutoFocusModes != null) {
@@ -1279,12 +1300,12 @@ public class CameraPreview21 extends Fragment {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        if(requestCode == REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 recordingCallback.recordingStarted();
                 try {
                     createVideoFileName();
-                } catch(IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 startRecord();
@@ -1711,7 +1732,7 @@ public class CameraPreview21 extends Fragment {
 
             Canvas c = new Canvas(bitmapToSave);
             List<Frameline> appliedFramelines = ArtemisActivity.appliedFramelines;
-            if(appliedFramelines != null) {
+            if (appliedFramelines != null) {
                 for (Frameline frameline : appliedFramelines) {
                     RectF rect = new RectF();
                     rect.top = 0;
@@ -1862,7 +1883,7 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    private void createVideoFolder(){
+    private void createVideoFolder() {
         SharedPreferences artemisPrefs = getActivity().getApplication()
                 .getSharedPreferences(
                         ArtemisPreferences.class.getSimpleName(),
@@ -1879,7 +1900,7 @@ public class CameraPreview21 extends Fragment {
 
         videoFolder = new File(folder);
 
-        if(!videoFolder.exists()){
+        if (!videoFolder.exists()) {
             videoFolder.mkdirs();
         }
     }
@@ -1909,11 +1930,11 @@ public class CameraPreview21 extends Fragment {
         mediaRecorder.prepare();
     }
 
-    public void startRecording(){
+    public void startRecording() {
         checkWriteStoragePermission();
     }
 
-    public void stopRecording(){
+    public void stopRecording() {
         mediaRecorder.stop();
         mediaRecorder.reset();
         HashMap<String, String> cameraMeta = buildMetadataAttributes();
@@ -1982,28 +2003,28 @@ public class CameraPreview21 extends Fragment {
         return metadata;
     }
 
-    private void checkWriteStoragePermission(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED){
+    private void checkWriteStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
                 recordingCallback.recordingStarted();
                 try {
                     createVideoFileName();
-                } catch(IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 
                 startRecord();
                 mediaRecorder.start();
             } else {
-                if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     Toast.makeText(this.getContext(),
                             "App needs to be able to save videos",
                             Toast.LENGTH_SHORT)
                             .show();
                 }
 
-                requestPermissions(new String [] {Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT
                 );
             }
@@ -2011,7 +2032,7 @@ public class CameraPreview21 extends Fragment {
             recordingCallback.recordingStarted();
             try {
                 createVideoFileName();
-            } catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
@@ -2022,6 +2043,7 @@ public class CameraPreview21 extends Fragment {
 
     public interface RecordingCallback {
         void recordingStarted();
+
         void recordingStopped(String filePath, HashMap<String, String> cameraMetadata);
     }
 }

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +86,7 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
                     ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
 
             SharedPreferences.Editor editor = settings.edit();
-            editor.putString(holder.itemView.getContext().getString(R.string.preference_key_selectedCameraEffect), String.valueOf(availableEffects.get(position).getEffectId()));
+            editor.putString(holder.itemView.getContext().getString(R.string.preference_key_selectedCameraEffect), String.valueOf(availableEffects.get(position).getPk()));
             editor.apply();
 
             mOnRecyclerItemListener.onItemClick(position);
