@@ -57,7 +57,9 @@ import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
+import android.hardware.camera2.params.RggbChannelVector;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.hardware.camera2.params.TonemapCurve;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
@@ -98,13 +100,20 @@ import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Look;
 >>>>>>> f78dc0f (Configure Kotlin)
 import com.chemicalwedding.artemis.model.Frameline;
+<<<<<<< HEAD
 =======
+=======
+import com.chemicalwedding.artemis.utils.ColorUtils;
+import com.chemicalwedding.artemis.utils.RangeUtils;
+
+>>>>>>> 109fd47 (Apply custom looks to camera preview)
 import org.apache.commons.lang3.ArrayUtils;
 >>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_AQUA;
 import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_BLACKBOARD;
+import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_OFF;
 import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_SOLARIZE;
 import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_WHITEBOARD;
 
@@ -167,6 +176,7 @@ public class CameraPreview21 extends Fragment {
     private int selectedWhiteBalanceInt;
     private int mCenterX, mCenterY;
     private boolean mFlashSupported = false;
+    private Look mCustomLook;
 
     protected ImageView recordVideoButton;
     protected boolean isRecordingVideo;
@@ -578,8 +588,141 @@ public class CameraPreview21 extends Fragment {
         return returnedBitmap;
     }
 
+    /**
+     * Custom looks
+     **/
+
+    private float[] zeros = new float[32];
+    private int[] toneChannels = new int[]{TonemapCurve.CHANNEL_RED, TonemapCurve.CHANNEL_GREEN, TonemapCurve.CHANNEL_BLUE};
+    private float[][] defaultChannels;
+    private float[][] updatedChannels;
+    private TonemapCurve toneMap;
+
+    private void prepareContrastChannels() {
+        Arrays.fill(zeros, 0);
+
+        float[][] initialArray = new float[][]{zeros, zeros, zeros};
+
+        for (int channel : toneChannels) {
+            // Standard sRGB gamma mapping, per IEC 61966-2-1:1999, with 16 control points
+            initialArray[channel] = new float[]{
+                    0.0000f, 0.0000f, 0.0667f, 0.2864f,
+                    0.1333f, 0.4007f, 0.2000f, 0.4845f,
+                    0.2667f, 0.5532f, 0.3333f, 0.6125f,
+                    0.4000f, 0.6652f, 0.4667f, 0.7130f,
+                    0.5333f, 0.7569f, 0.6000f, 0.7977f,
+                    0.6667f, 0.8360f, 0.7333f, 0.8721f,
+                    0.8000f, 0.9063f, 0.8667f, 0.9389f,
+                    0.9333f, 0.9701f, 1.0000f, 1.0000f
+            };
+        }
+
+        defaultChannels = new float[][]{zeros, zeros, zeros};
+        updatedChannels = new float[][]{zeros, zeros, zeros};
+
+        System.arraycopy(initialArray, 0, defaultChannels, 0, initialArray.length);
+        System.arraycopy(initialArray, 0, updatedChannels, 0, initialArray.length);
+    }
+
+    private void setContrast(Double contrastValue) {
+        int contrastPercent = (int) ((contrastValue / 2) * 100);
+        if (contrastPercent > 100 || contrastPercent < 0 || defaultChannels == null || updatedChannels == null) {
+            return;
+        }
+
+        float contrast = 1f * (contrastPercent / 100f);
+        for (int channel : toneChannels) {
+            float[] channelArray = new float[defaultChannels[channel].length];
+            System.arraycopy(defaultChannels[channel], 0, channelArray, 0, channelArray.length);
+
+            for (int i = 0; i < channelArray.length; i++) {
+                channelArray[i] *= contrast;
+            }
+
+            updatedChannels[channel] = channelArray;
+        }
+
+        toneMap = new TonemapCurve(
+                updatedChannels[TonemapCurve.CHANNEL_RED],
+                updatedChannels[TonemapCurve.CHANNEL_GREEN],
+                updatedChannels[TonemapCurve.CHANNEL_BLUE]
+        );
+    }
+
+    private Integer calculateWhiteBalanceColor(Integer percent) {
+        return RangeUtils.Companion.transform(0, 100, 2000, 8000, percent);
+    }
+
+    private Float calculateColorPercent(Integer percent) {
+        if (percent == 50) {
+            return 1f;
+        }
+
+        if (percent > 50) { // increments
+            return (1f + (RangeUtils.Companion.transform(50, 100, 0, 100, percent) / 100f));
+        } else { // decrement
+            return (RangeUtils.Companion.transform(0, 50, 0, 100, percent) / 100f);
+        }
+    }
+
+    private RggbChannelVector colorCorrectionGainWBRGB(Double witheBalance, Double red, Double green, Double blue) {
+        Integer wBPercent = RangeUtils.Companion.transform(2500, 7500, 0, 100, (int) witheBalance.doubleValue());
+        Integer redPercent = (int) ((red / 2) * 100);
+        Integer greenPercent = (int) ((green / 2) * 100);
+        Integer bluePercent = (int) ((blue / 2f) * 100);
+
+        ColorUtils.Color temperatureColor =
+                ColorUtils.Companion.colorTemperatureToRGBColor(calculateWhiteBalanceColor(wBPercent));
+        ColorUtils.Color adjustmentColor = new ColorUtils.Color(
+                calculateColorPercent(redPercent),
+                calculateColorPercent(greenPercent),
+                calculateColorPercent(bluePercent)
+        );
+
+        ColorUtils.Color color = temperatureColor.times(adjustmentColor);
+
+        Log.v(TAG, "temperatureColor:  " + temperatureColor.toString());
+        Log.v(TAG, "adjustmentColor: " + adjustmentColor.toString());
+        Log.v(TAG, "color: " + color.toString());
+
+        return new RggbChannelVector(
+                color.getRed() * 2,
+                color.getGreen(),
+                color.getGreen(),
+                color.getBlue() * 2
+        );
+    }
+
     private void applyCustomLook(Look look) {
-        // Add code here
+        // Clean effect mode
+        mPreviewRequestBuilder.set(
+                CaptureRequest.CONTROL_EFFECT_MODE,
+                CONTROL_EFFECT_MODE_OFF
+        );
+
+        // White balance and RGB
+        mPreviewRequestBuilder.set(
+                CaptureRequest.CONTROL_AWB_MODE,
+                CaptureRequest.CONTROL_AWB_MODE_OFF
+        );
+        mPreviewRequestBuilder.set(
+                CaptureRequest.COLOR_CORRECTION_MODE,
+                CaptureRequest.COLOR_CORRECTION_MODE_TRANSFORM_MATRIX
+        );
+        mPreviewRequestBuilder.set(
+                CaptureRequest.COLOR_CORRECTION_GAINS,
+                colorCorrectionGainWBRGB(look.getWhiteBalance(), look.getRed(), look.getGreen(), look.getBlue())
+        );
+
+        // Contrast
+        setContrast(look.getContrast());
+        if (toneMap != null) {
+            mPreviewRequestBuilder.set(
+                    CaptureRequest.TONEMAP_MODE,
+                    CaptureRequest.TONEMAP_MODE_CONTRAST_CURVE
+            );
+            mPreviewRequestBuilder.set(CaptureRequest.TONEMAP_CURVE, toneMap);
+        }
     }
 
     /**
@@ -1166,23 +1309,6 @@ public class CameraPreview21 extends Fragment {
                             getString(R.string.preference_key_selectedscenemode), "0");
                     this.selectedSceneModeInt = Integer.parseInt(selectedSceneMode);
                 }
-                if (availableEffects != null) {
-                    Arrays.sort(availableAutoFocusModes);
-                    String lookId = artemisPrefs.getString(
-                            getString(R.string.preference_key_selectedCameraEffect), "0");
-
-                    ArtemisDatabaseHelper mDBHelper = new ArtemisDatabaseHelper(getContext());
-                    Look selectedLook = mDBHelper.getLook(Integer.valueOf(lookId));
-                    if (selectedLook == null) {
-                        // In previous versions lookId was effectId
-                        this.selectedEffectInt = Integer.parseInt(lookId);
-                    } else if (selectedLook.getEffectId() == -1) {
-                        // Custom look
-                        applyCustomLook(selectedLook);
-                    } else {
-                        this.selectedEffectInt = selectedLook.getEffectId();
-                    }
-                }
 
                 if (availableAutoFocusModes != null) {
 //                    Arrays.sort(availableAutoFocusModes);
@@ -1234,6 +1360,34 @@ public class CameraPreview21 extends Fragment {
                         first = false;
                     }
                 }
+
+                // Custom looks
+                prepareContrastChannels();
+                Integer contrastToneMapMax = characteristics.get(CameraCharacteristics.TONEMAP_MAX_CURVE_POINTS);
+                if (contrastToneMapMax != null) {
+                    Log.i(TAG, "Tone map max curve point: " + contrastToneMapMax);
+                }
+
+                if (availableEffects != null) {
+                    Arrays.sort(availableAutoFocusModes);
+                    String lookId = artemisPrefs.getString(
+                            getString(R.string.preference_key_selectedCameraEffect), "0");
+
+                    ArtemisDatabaseHelper mDBHelper = new ArtemisDatabaseHelper(getContext());
+                    Look selectedLook = mDBHelper.getLook(Integer.valueOf(lookId));
+                    if (selectedLook == null) {
+                        // In previous versions lookId was effectId
+                        mCustomLook = null;
+                        this.selectedEffectInt = Integer.parseInt(lookId);
+                    } else if (selectedLook.getEffectId() == -1) {
+                        // Custom look
+                        mCustomLook = selectedLook;
+                    } else {
+                        mCustomLook = null;
+                        this.selectedEffectInt = selectedLook.getEffectId();
+                    }
+                }
+
                 Log.d(TAG, String.format("Device physical sensor size: %s  ratio: %f", mDevicePhysicalSensorSize.toString(), (float) mDevicePhysicalSensorSize.getWidth() / mDevicePhysicalSensorSize.getHeight()));
                 Log.d(TAG, String.format("Device active sensor size: %s  ratio: %f", mDeviceActiveSensorSize.toString(), mActiveSensorRatio));
                 Log.d(TAG, String.format("Device sensor orientation angle: %d", mSensorOrientation));
@@ -1441,6 +1595,9 @@ public class CameraPreview21 extends Fragment {
                                 if (selectedWhiteBalanceInt > 0) {
                                     mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AWB_MODE,
                                             selectedWhiteBalanceInt);
+                                }
+                                if (mCustomLook != null) {
+                                    applyCustomLook(mCustomLook);
                                 }
 
                                 mTextureView.post(new Runnable() {

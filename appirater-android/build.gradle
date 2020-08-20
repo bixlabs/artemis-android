@@ -11,6 +11,7 @@ dependencies {
 android {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     compileSdkVersion 21
 <<<<<<< HEAD
     buildToolsVersion "21.1.1"
@@ -43,6 +44,9 @@ android {
 android {
     compileSdkVersion 28
 >>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
+=======
+    compileSdkVersion 29
+>>>>>>> 109fd47 (Apply custom looks to camera preview)
 
     sourceSets {
         main {
@@ -81,6 +85,7 @@ android {
         minSdkVersion 3
 >>>>>>> 4c62fd4 (3.0.5.1 uploaded to the app store for fix remembering lens selections)
     }
+    buildToolsVersion '29.0.3'
 }
 repositories {
     mavenCentral()
