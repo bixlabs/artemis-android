@@ -8,6 +8,7 @@
     android:background="#2B2B2B" >
 
     <ImageButton
+        android:visibility="invisible"
         android:id="@+id/custom_look_gallery"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"  />
 
     <ImageButton
+        android:visibility="invisible"
         android:id="@+id/custom_look_import"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -125,6 +127,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="vertical">
@@ -209,6 +212,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="vertical">

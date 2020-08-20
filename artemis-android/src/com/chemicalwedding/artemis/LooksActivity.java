@@ -50,7 +50,7 @@ public class LooksActivity extends Activity {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new GalleryGridSpacingItemDecoration(2, 50, true));
+        recyclerView.addItemDecoration(new GalleryGridItemDecoration(200, 2));
         mAdapter.setRecyclerItemListener(position ->
                 finish()
         );
