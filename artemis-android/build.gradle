@@ -21,6 +21,7 @@ dependencies {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     implementation ('com.android.support:appcompat-v7:28.0.0') {
 =======
     implementation('com.android.support:appcompat-v7:28.0.0') {
@@ -30,6 +31,9 @@ dependencies {
 >>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
         force = true
     }
+=======
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+>>>>>>> fe80c5e (some gradle improvements)
     implementation "com.github.skydoves:colorpickerview:2.0.2"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -110,7 +114,7 @@ android {
 >>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
     implementation 'org.apache.commons:commons-text:1.8'
     implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
-    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.core:core-ktx:1.3.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
