@@ -630,13 +630,14 @@ public class CameraPreview21 extends Fragment {
             return;
         }
 
-        float contrast = 1f * (contrastPercent / 100f);
+        //float contrast = 1f * (contrastPercent / 100f);
+        float contrast = RangeUtils.Companion.transform(0, 100, 0, 2, 1f * contrastPercent);
         for (int channel : toneChannels) {
             float[] channelArray = new float[defaultChannels[channel].length];
             System.arraycopy(defaultChannels[channel], 0, channelArray, 0, channelArray.length);
 
             for (int i = 0; i < channelArray.length; i++) {
-                channelArray[i] *= contrast;
+                channelArray[i] = Math.min(1f, channelArray[i] * contrast);
             }
 
             updatedChannels[channel] = channelArray;
