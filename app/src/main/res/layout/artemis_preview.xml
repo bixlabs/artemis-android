@@ -530,6 +530,7 @@
     <include layout="@layout/frameline_bottom_menu" />
     <include layout="@layout/frameline_rate_menu" />
     <include layout="@layout/adapters_bottom_menu" />
+    <include layout="@layout/virtual_stand_in_edit_menu" />
     <include layout="@layout/frameline_scale_menu" />
     <include layout="@layout/frameline_shading_menu" />
     <include layout="@layout/frameline_offset_menu" />

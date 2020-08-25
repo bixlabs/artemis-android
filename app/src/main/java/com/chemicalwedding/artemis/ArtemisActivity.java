@@ -1303,6 +1303,19 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
+        ((LinearLayout) findViewById(R.id.menuVirtualStandIn)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+
+                findViewById(R.id.editVirtualStandInMenu).setVisibility(View.VISIBLE);
+                mainMenu.setVisibility(View.GONE);
+
+//                Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
+//                startActivity(virtualStandInIntent);
+            }
+        });
+
 
 >>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
         menuButton.setOnClickListener(new OnClickListener() {
