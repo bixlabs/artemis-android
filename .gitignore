@@ -47,6 +47,7 @@ fabric.properties
 
 >>>>>>> be4769f (upgrade gradle and project to android 28)
 # Created by .gitignore support plugin (hsz.mobi)
+<<<<<<< HEAD
 .gradle/*
 <<<<<<< HEAD
 >>>>>>> ea90165 (add gradle to git ignore)
@@ -59,6 +60,8 @@ build/**
 <<<<<<< HEAD
 >>>>>>> 5756f0d (add build to ignore)
 =======
+=======
+>>>>>>> d3599c5 (remove local environment files)
 artemis-android/*.apk
 <<<<<<< HEAD
 artemis-android/manifest-merger-release-report.txt
@@ -71,8 +74,28 @@ build/
 =======
 artemis-android/manifest-merger-release-report.txt
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> be4769f (upgrade gradle and project to android 28)
 =======
 **/.DS_Store
 artemis-android/release
 >>>>>>> 7838694 (Ignore some new stuff)
+=======
+artemis-android/release
+
+# Android Studio defaults
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+>>>>>>> d3599c5 (remove local environment files)
