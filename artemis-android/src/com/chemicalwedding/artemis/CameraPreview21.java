@@ -694,23 +694,22 @@ public class CameraPreview21 extends Fragment {
         );
     }
 
-    private void applyCustomLook(Look look) {
-        // Clean effect mode
-        mPreviewRequestBuilder.set(
+    private void applyCustomLookTo(CaptureRequest.Builder requestBuilder, Look look) {
+        requestBuilder.set(
                 CaptureRequest.CONTROL_EFFECT_MODE,
                 CONTROL_EFFECT_MODE_OFF
         );
 
         // White balance and RGB
-        mPreviewRequestBuilder.set(
+        requestBuilder.set(
                 CaptureRequest.CONTROL_AWB_MODE,
                 CaptureRequest.CONTROL_AWB_MODE_OFF
         );
-        mPreviewRequestBuilder.set(
+        requestBuilder.set(
                 CaptureRequest.COLOR_CORRECTION_MODE,
                 CaptureRequest.COLOR_CORRECTION_MODE_TRANSFORM_MATRIX
         );
-        mPreviewRequestBuilder.set(
+        requestBuilder.set(
                 CaptureRequest.COLOR_CORRECTION_GAINS,
                 colorCorrectionGainWBRGB(look.getWhiteBalance(), look.getRed(), look.getGreen(), look.getBlue())
         );
@@ -718,12 +717,16 @@ public class CameraPreview21 extends Fragment {
         // Contrast
         setContrast(look.getContrast());
         if (toneMap != null) {
-            mPreviewRequestBuilder.set(
+            requestBuilder.set(
                     CaptureRequest.TONEMAP_MODE,
                     CaptureRequest.TONEMAP_MODE_CONTRAST_CURVE
             );
-            mPreviewRequestBuilder.set(CaptureRequest.TONEMAP_CURVE, toneMap);
+            requestBuilder.set(CaptureRequest.TONEMAP_CURVE, toneMap);
         }
+    }
+
+    private void applyCustomLook(Look look) {
+        applyCustomLookTo(mPreviewRequestBuilder, look);
     }
 
     /**
@@ -1737,6 +1740,10 @@ public class CameraPreview21 extends Fragment {
             if (selectedWhiteBalanceInt > 0) {
                 captureBuilder.set(CaptureRequest.CONTROL_AWB_MODE,
                         selectedWhiteBalanceInt);
+            }
+
+            if (mCustomLook != null) {
+                applyCustomLookTo(captureBuilder, mCustomLook);
             }
 
             // Orientation
