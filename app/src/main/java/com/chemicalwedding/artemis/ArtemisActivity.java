@@ -8,7 +8,11 @@ import android.animation.AnimatorSet;
 =======
 =======
 
+<<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 >>>>>>> f78dc0f (Configure Kotlin)
+=======
+import java.io.ByteArrayOutputStream;
+>>>>>>> 99abbaa (vstand-ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,6 +48,8 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -88,6 +94,7 @@ import android.support.v4.content.ContextCompat;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.core.content.ContextCompat;
@@ -110,6 +117,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -124,6 +132,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -155,6 +164,9 @@ import com.chemicalwedding.artemis.model.ExtenderAdapter;
 import com.chemicalwedding.artemis.model.Frameline;
 import com.chemicalwedding.artemis.model.FramelineRate;
 import com.chemicalwedding.artemis.model.FramelineRatesAdapter;
+import com.chemicalwedding.artemis.vstandins.ModelGLSurfaceView;
+import com.chemicalwedding.artemis.vstandins.ModelRenderer;
+import com.chemicalwedding.artemis.vstandins.SceneLoader;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
@@ -187,7 +199,9 @@ public class ArtemisActivity extends Activity implements
         LensAdaptersAdapter.SelectedLensAdapterCallback,
         FramelinesAdapter.FramelinesCallback,
         FramelineRatesAdapter.SelectedFramelineRateCallback,
-        ExtenderAdapter.ExtenderCallback {
+        ExtenderAdapter.ExtenderCallback,
+        ModelRenderer.BitmapGeneratedCallback
+{
     private static final String TAG = ArtemisActivity.class.getSimpleName();
 
     private static final String DEFAULT_LENS_MAKE = "Generic Spherical Lenses";
@@ -310,6 +324,13 @@ public class ArtemisActivity extends Activity implements
     public static Extender selectedExtender;
 >>>>>>> cf3855e (add lens extender and framelines)
 
+    private Uri modelUri;
+
+    private SceneLoader scene;
+    private ModelGLSurfaceView glSurfaceView;
+    private Handler handler;
+    public static boolean takeScreenshot = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "Creating Artemis Activity");
@@ -407,6 +428,10 @@ public class ArtemisActivity extends Activity implements
         if (ArtemisActivity.arrowBackgroundImage != null) {
             ArtemisActivity.arrowBackgroundImage.recycle();
             ArtemisActivity.arrowBackgroundImage = null;
+        }
+
+        if(glSurfaceView != null) {
+//            glSurfaceView.onPause();
         }
     }
 
@@ -550,6 +575,10 @@ public class ArtemisActivity extends Activity implements
             o.inSampleSize = 2;
             ArtemisActivity.arrowBackgroundImage = BitmapFactory
                     .decodeResource(getResources(), R.drawable.arrows, o);
+        }
+
+        if(glSurfaceView != null) {
+//            glSurfaceView.onResume();
         }
     }
 
@@ -1311,8 +1340,36 @@ public class ArtemisActivity extends Activity implements
                 findViewById(R.id.editVirtualStandInMenu).setVisibility(View.VISIBLE);
                 mainMenu.setVisibility(View.GONE);
 
-//                Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
-//                startActivity(virtualStandInIntent);
+                Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
+                startActivity(virtualStandInIntent);
+            }
+        });
+
+        ((ImageButton) findViewById(R.id.acceptStandIn)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.editVirtualStandInMenu).setVisibility(View.GONE);
+                mainMenu.setVisibility(View.VISIBLE);
+                scene.clearSelectedObject();
+                glSurfaceView.getModelRenderer().takeSnapshot = true;
+            }
+        });
+
+        ((ImageView) findViewById(R.id.addStandInButton)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.editVirtualStandInMenu).setVisibility(View.VISIBLE);
+                mainMenu.setVisibility(View.GONE);
+
+                Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
+                startActivity(virtualStandInIntent);
+            }
+        });
+
+        ((ImageView) findViewById(R.id.refreshStandInPosicionAndScaleButton)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scene.resetSelectedObject();
             }
         });
 
@@ -1828,8 +1885,76 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
+<<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 >>>>>>> cf3855e (add lens extender and framelines)
+=======
+        setup3DModels();
+>>>>>>> 99abbaa (vstand-ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
     }
+
+    public void setup3DModels() {
+        try {
+            modelUri = Uri.parse("assets://" + getPackageName() + "/models/" + "Female.obj");
+            handler = new Handler(getMainLooper());
+            scene = new SceneLoader(this);
+            scene.init();
+
+            glSurfaceView = new ModelGLSurfaceView(this);
+            glSurfaceView.setLayoutParams(new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+            ));
+            ((RelativeLayout) findViewById(R.id.openGlContainer)).addView(glSurfaceView);
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    public Uri getParamUri() {
+        return modelUri;
+    }
+
+    public int getParamType() {
+        return 0;
+    }
+
+    public ModelGLSurfaceView getGLView() {
+        return glSurfaceView;
+    }
+
+    public SceneLoader getScene() {
+        return scene;
+    }
+
+    public static Bitmap modelBitmap;
+    public void generated(Bitmap bitmap) {
+        // TODO - add support for save openGlGenerated Bitmap
+        modelBitmap = bitmap;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+                //create a file to write bitmap data
+                String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                File f = new File(absolutePath, "test_objecb.png");
+                try {
+                    f.createNewFile();
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 
     private void showAddCustomLensAdapterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
@@ -2686,6 +2811,31 @@ public class ArtemisActivity extends Activity implements
             }
             File tempFramelineImage = new File(frameilneFileName);
             tempFramelineImage.delete();
+
+            String root2 = Environment.getExternalStorageDirectory().toString();
+            String frameilneFileName2 = root + "/test_objecb.png";
+            String videoFileNameFramelined2 = videoFileName.substring(0, videoFileName.lastIndexOf("."));
+            String formatStringFramelined2 = videoFileName.substring(videoFileName.lastIndexOf("."));
+            videoFileNameFramelined2 = videoFileNameFramelined2 + "_framelined2" + formatString;
+
+//            String[] complexCommand = {"ffmpeg","-y" ,"-i",
+//                    videoFileNameCropped,"-strict","experimental", "-vf", "movie="+ frameilneFileName +" [watermark]; [in][watermark] overlay=main_w-overlay_w-10:10 [out]","-s", "320x240","-r", "30", "-b", "15496k", "-vcodec", "mpeg4","-ab", "48000", "-ac", "2", "-ar", "22050", videoFileNameFramelined};
+            String[] complexCommand2 = {"-i", videoFileNameFramelined, "-i", frameilneFileName2, "-filter_complex",
+                    "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2", "-c:a", "copy", videoFileNameFramelined2};
+            int result2 = FFmpeg.execute(complexCommand2);
+
+            if (result2 == RETURN_CODE_SUCCESS) {
+                Log.i(Config.TAG, "Command execution completed successfully.");
+                file = new File(videoFileNameFramelined);
+                if (file.delete()) {
+                    file = new File(videoFileNameFramelined2);
+                    mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+                }
+            } else {
+                Log.i(Config.TAG, "command framelines error");
+            }
+            File tempFramelineImage2 = new File(frameilneFileName);
+            tempFramelineImage2.delete();
 
             SharedPreferences artemisPrefs = getSharedPreferences(
                     ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);

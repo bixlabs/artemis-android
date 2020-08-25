@@ -529,6 +529,20 @@ public class CameraPreview21 extends Fragment {
         Log.i("MetadataView width", String.valueOf(pictureMetadataView.getWidth()));
 //        Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
         ConstraintLayout metadataView = getActivity().findViewById(R.id.metadataView);
+
+        if(ArtemisActivity.modelBitmap != null) {
+            System.out.println("modelbitmap is not null");
+            Bitmap bmOverlay = Bitmap.createBitmap(bitmapToSave.getWidth(), bitmapToSave.getHeight(), bitmapToSave.getConfig());
+            Canvas canvas = new Canvas(bmOverlay);
+            canvas.drawBitmap(bitmapToSave, new Matrix(), null);
+            Bitmap bitmaptoDraw = ArtemisActivity.modelBitmap;
+            Bitmap bitmap3DModel = Bitmap.createScaledBitmap(bitmaptoDraw, bitmapToSave.getWidth(),bitmapToSave.getHeight(), true);
+            canvas.drawBitmap(bitmap3DModel, new Matrix(), null);
+            bitmapToSave = bmOverlay;
+        } else {
+            System.out.println("modelbitmap IS null");
+        }
+
         Bitmap blankBmp = getBitmapWithMetadataAtBottom(bitmapToSave, metadataView);
         savePicture(blankBmp, showGpsCoordinates || showGpsAddress);
     }
@@ -1935,6 +1949,19 @@ public class CameraPreview21 extends Fragment {
                     int backgroundColor = getResources().getColor(shadingColorId);
                     CameraOverlay.drawFrameline(c, rect, framelineScale, verticalOffsetPercentage, horizontalOffsetPercentage, stroke, dottedLine, color, framelineType, centerMarkerType, centerMarkerLineWidth, backgroundColor);
                 }
+            }
+
+            if(ArtemisActivity.modelBitmap != null) {
+                System.out.println("modelbitmap is not null");
+                Bitmap bmOverlay = Bitmap.createBitmap(bitmapToSave.getWidth(), bitmapToSave.getHeight(), bitmapToSave.getConfig());
+                Canvas canvas = new Canvas(bmOverlay);
+                canvas.drawBitmap(bitmapToSave, new Matrix(), null);
+                Bitmap bitmaptoDraw = ArtemisActivity.modelBitmap;
+                Bitmap bitmap3DModel = Bitmap.createScaledBitmap(bitmaptoDraw, bitmapToSave.getWidth(),bitmapToSave.getHeight(), true);
+                canvas.drawBitmap(bitmap3DModel, new Matrix(), null);
+                bitmapToSave = bmOverlay;
+            } else {
+                System.out.println("modelbitmap IS null");
             }
 
             if (!quickshotEnabled) {
