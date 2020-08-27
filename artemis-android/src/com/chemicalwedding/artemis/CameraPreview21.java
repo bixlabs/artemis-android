@@ -714,9 +714,13 @@ public class CameraPreview21 extends Fragment {
                 CaptureRequest.COLOR_CORRECTION_MODE,
                 CaptureRequest.COLOR_CORRECTION_MODE_TRANSFORM_MATRIX
         );
+
+        // GPU image have inverted this value
+        double invertedValue = reverseNumber(look.getWhiteBalance().intValue(), 2500, 7500);
+
         requestBuilder.set(
                 CaptureRequest.COLOR_CORRECTION_GAINS,
-                colorCorrectionGainWBRGB(look.getWhiteBalance(), look.getRed(), look.getGreen(), look.getBlue())
+                colorCorrectionGainWBRGB(invertedValue, look.getRed(), look.getGreen(), look.getBlue())
         );
 
         // Contrast
@@ -728,6 +732,10 @@ public class CameraPreview21 extends Fragment {
             );
             requestBuilder.set(CaptureRequest.TONEMAP_CURVE, toneMap);
         }
+    }
+
+    public int reverseNumber(int num, int min, int max) {
+        return (max + min) - num;
     }
 
     private void applyCustomLook(Look look) {
