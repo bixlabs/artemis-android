@@ -79,7 +79,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
             cursor = _artemisDatabase.query(true, LOOKS_TABLE,
                     new String[]{"z_pk", "zeffectid", "zname", "zgamma", "zcontrast", "zsaturation", "zwhitebalance",
                             "zred", "zgreen", "zblue"}, null,
-                    null, null, null, null, null);
+                    null, null, null, "zeffectid ASC", null);
         } catch (SQLiteException sle) {
 
         }
