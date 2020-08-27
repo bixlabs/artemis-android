@@ -198,6 +198,11 @@ public class CameraPreview21 extends Fragment {
             Surface previewSurface = new Surface(surfaceTexture);
             Surface recordSurface = mediaRecorder.getSurface();
             captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+
+            if (mCustomLook != null) {
+                applyCustomLookTo(captureRequestBuilder, mCustomLook);
+            }
+
             if (selectedEffectInt > 0) {
                 captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE,
                         selectedEffectInt);
