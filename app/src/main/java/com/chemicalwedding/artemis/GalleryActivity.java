@@ -181,24 +181,24 @@ public class GalleryActivity extends Activity {
     }
 
     private void loadGalleryData() {
-                SharedPreferences artemisPrefs = getApplication()
-                        .getSharedPreferences(
-                            ArtemisPreferences.class.getSimpleName(),
-                            MODE_PRIVATE);
-                String prefix = Environment.getExternalStorageDirectory().getAbsolutePath();
-                String folder = prefix
-                        + "/"
-                        + artemisPrefs.getString(
-                        ArtemisPreferences.SAVE_PICTURE_FOLDER,
-                        getString(R.string.artemis_save_location_default));
+        SharedPreferences artemisPrefs = getApplication()
+                .getSharedPreferences(
+                        ArtemisPreferences.class.getSimpleName(),
+                        MODE_PRIVATE);
+        String prefix = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String folder = prefix
+                + "/"
+                + artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_FOLDER,
+                getString(R.string.artemis_save_location_default));
 
-                mediaList.clear();
-                File directory = new File(folder);
-                File[] files = directory.listFiles();
-                Log.d("bixlabs", "Folder size: "+ files.length);
-                for (int i = 0; i < files.length; i++)
-                {
-                    Log.d("bixlabs", "File name: "  + files[i].getAbsolutePath());
+        mediaList.clear();
+        File directory = new File(folder);
+        File[] files = directory.listFiles();
+//                Log.d("bixlabs", "Folder size: "+ files.length);
+         if (files != null){
+                for (int i = 0; i < files.length; i++) {
+                    Log.d("bixlabs", "File name: " + files[i].getAbsolutePath());
                     MediaType type = MediaType.PHOTO;
                     String mimeType = URLConnection.guessContentTypeFromName(files[i].getAbsolutePath());
                     if (mimeType != null && mimeType.startsWith("video")) {
@@ -207,13 +207,14 @@ public class GalleryActivity extends Activity {
                     MediaFile mediaFile = new MediaFile(files[i].getName(), files[i].getAbsolutePath(), new Date(files[i].lastModified()), type);
                     mediaList.add(mediaFile);
                 }
-                Collections.sort(mediaList, new Comparator<MediaFile>() {
-                    @Override
-                    public int compare(MediaFile mediaFile, MediaFile t1) {
-                        return t1.getDate().compareTo(mediaFile.getDate());
-                    }
-                });
-                mAdapter.notifyDataSetChanged();
+        }
+        Collections.sort(mediaList, new Comparator<MediaFile>() {
+            @Override
+            public int compare(MediaFile mediaFile, MediaFile t1) {
+                return t1.getDate().compareTo(mediaFile.getDate());
+            }
+        });
+        mAdapter.notifyDataSetChanged();
     }
 
 }

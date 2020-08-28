@@ -9,6 +9,7 @@ import com.chemicalwedding.artemis.ArtemisActivity;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.animation.Animator;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.collision.CollisionDetection;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Camera;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3D;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.LoaderTask;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.Object3DBuilder;
@@ -21,6 +22,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class SceneLoader implements LoaderTask.Callback {
 
@@ -141,7 +143,7 @@ public class SceneLoader implements LoaderTask.Callback {
 
         // Camera to show a point of view
         camera = new Camera();
-//        camera.setChanged(true); // force first draw
+        camera.setChanged(true); // force first draw
 
         if (parent.getParamUri() == null){
             return;
@@ -164,6 +166,19 @@ public class SceneLoader implements LoaderTask.Callback {
 //            new GltfLoaderTask(parent, uri, this).execute();
 //
 //        }
+    }
+
+    public void addModel() {
+        if (parent.getParamUri() == null){
+            return;
+        }
+
+        startTime = SystemClock.uptimeMillis();
+        Uri uri = parent.getParamUri();
+        Log.i("Object3DBuilder", "Loading model " + uri + ". async and parallel..");
+        if (uri.toString().toLowerCase().endsWith(".obj") || parent.getParamType() == 0) {
+            new WavefrontLoaderTask(parent, uri, this).execute();
+        }
     }
 
     public boolean isDrawAxis(){
@@ -518,6 +533,27 @@ public class SceneLoader implements LoaderTask.Callback {
                 bounbox.setScale(resetScale);
 //                Object3DData box = parent.getGLView().getModelRenderer().boundingBoxes.get(object);
             }
+        }
+    }
+
+    public int removeSelectedObject() {
+        Object3DData object3DData = getSelectedObject();
+        if(object3DData != null) {
+            objects.remove(object3DData);
+        }
+
+        return objects.size();
+    }
+
+    public void setRandomColorToSelectedObject() {
+        Object3DData selectedObject = getSelectedObject();
+        if(selectedObject != null) {
+            Random random = new Random();
+            float red = random.nextFloat();
+            float green = random.nextFloat();
+            float blue = random.nextFloat();
+            float alpha = 1;
+            selectedObject.setColor(new float[] {red, green, blue, alpha});
         }
     }
 }

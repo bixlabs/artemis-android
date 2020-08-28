@@ -1,6 +1,7 @@
 package com.chemicalwedding.artemis;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class VirtualStandInActivity extends AppCompatActivity {
                                 .build()
                 )
                 .add(image("file:///android_asset/m_01.jpg"))
+                .add(image("file:///android_asset/m_17.jpg"))
                 .add(image("file:///android_asset/m_02.jpg"))
                 .add(image("file:///android_asset/m_03.jpg"))
                 .add(image("file:///android_asset/m_04.jpg"))
@@ -60,7 +62,6 @@ public class VirtualStandInActivity extends AppCompatActivity {
                 .add(image("file:///android_asset/m_14.jpg"))
                 .add(image("file:///android_asset/m_15.jpg"))
                 .add(image("file:///android_asset/m_16.jpg"))
-                .add(image("file:///android_asset/m_17.jpg"))
                 .add(image("file:///android_asset/m_18.jpg"))
                 .add(image("file:///android_asset/m_19.jpg"))
                 .add(image("file:///android_asset/m_20.jpg"))
@@ -78,6 +79,11 @@ public class VirtualStandInActivity extends AppCompatActivity {
                     @Override
                     public void onClick(int position) {
                         Log.w(TAG, "position: " + position);
+                        Intent data = new Intent();
+                        data.putExtra("model", position);
+                        data.putExtra("modelType", "people"); // TODO - Add support for model type vehicle
+                        setResult(RESULT_OK,data);
+                        finish();
                     }
                 })
                 .build();

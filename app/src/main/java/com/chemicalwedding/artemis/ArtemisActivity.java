@@ -164,9 +164,17 @@ import com.chemicalwedding.artemis.model.ExtenderAdapter;
 import com.chemicalwedding.artemis.model.Frameline;
 import com.chemicalwedding.artemis.model.FramelineRate;
 import com.chemicalwedding.artemis.model.FramelineRatesAdapter;
+<<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
+=======
+import com.chemicalwedding.artemis.utils.FileUtils;
+import com.chemicalwedding.artemis.utils.FramelineDrawingUtils;
+import com.chemicalwedding.artemis.utils.ImageUtils;
+import com.chemicalwedding.artemis.utils.VideoUtils;
+>>>>>>> db76629 (add color picker for virtual stand ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
 import com.chemicalwedding.artemis.vstandins.ModelGLSurfaceView;
 import com.chemicalwedding.artemis.vstandins.ModelRenderer;
 import com.chemicalwedding.artemis.vstandins.SceneLoader;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
@@ -207,6 +215,8 @@ public class ArtemisActivity extends Activity implements
     private static final String DEFAULT_LENS_MAKE = "Generic Spherical Lenses";
     private static final int GALLERY_IMAGE_LOADER = 1;
     private static final int NUM_CAMERA_PAGES = 4;
+    private static final int CHOOSE_MODEL_REQUEST = 13335;
+    private static final int CHOOSEN_MODEL_DEFAULT_VALUE = -1;
 
     public static List<Frameline> appliedFramelines;
 
@@ -974,6 +984,7 @@ public class ArtemisActivity extends Activity implements
                     return;
                 }
                 if (isRecordingVideo) {
+                    hideGlView();
                     loadingIndicatorContainer.setVisibility(View.VISIBLE);
                     System.out.println("container is visible");
                     mCameraPreview.stopRecording();
@@ -1341,7 +1352,7 @@ public class ArtemisActivity extends Activity implements
                 mainMenu.setVisibility(View.GONE);
 
                 Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
-                startActivity(virtualStandInIntent);
+                startActivityForResult(virtualStandInIntent, CHOOSE_MODEL_REQUEST);
             }
         });
 
@@ -1355,6 +1366,50 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
+        ((ImageView) findViewById(R.id.standInColorButton)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Object3DData selected = scene.getSelectedObject();
+                if(selected != null) {
+                    findViewById(R.id.colorPickerModel).setVisibility(View.VISIBLE);
+                    ColorPickerView colorPickerView = findViewById(R.id.colorPickerModelView);
+                    colorPickerView.setColorListener(new ColorEnvelopeListener() {
+                        @Override
+                        public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+                            Log.i("MYTAG", "ENVELOP COLOR: " + envelope.getHexCode());
+                            AlphaTileView alphaTileView = findViewById(R.id.alphaTileModelView);
+                            alphaTileView.setPaintColor(envelope.getColor());
+                        }
+                    });
+                    hideGlView();
+                }
+            }
+        });
+
+        findViewById(R.id.colorPickerModelBackButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.colorPickerModel).setVisibility(View.GONE);
+                showGlView();
+            }
+        });
+        findViewById(R.id.colorPickerModelDoneButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorPickerView colorPickerView = findViewById(R.id.colorPickerModelView);
+                int color = colorPickerView.getColor();
+                Object3DData selected = scene.getSelectedObject();
+                if(selected != null) {
+                    float red = Color.red(color);
+                    float green = Color.green(color);
+                    float blue = Color.blue(color);
+                    selected.setColor(new float[] {red / 255, green / 255, blue / 255, 1});
+                }
+                findViewById(R.id.colorPickerModel).setVisibility(View.GONE);
+                showGlView();
+            }
+        });
+
         ((ImageView) findViewById(R.id.addStandInButton)).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1362,7 +1417,7 @@ public class ArtemisActivity extends Activity implements
                 mainMenu.setVisibility(View.GONE);
 
                 Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
-                startActivity(virtualStandInIntent);
+                startActivityForResult(virtualStandInIntent, CHOOSE_MODEL_REQUEST);
             }
         });
 
@@ -1370,6 +1425,24 @@ public class ArtemisActivity extends Activity implements
             @Override
             public void onClick(View v) {
                 scene.resetSelectedObject();
+            }
+        });
+
+        ((ImageView) findViewById(R.id.deleteStandInButton)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int remainingObjects = scene.removeSelectedObject();
+                if(remainingObjects == 0) {
+                    ((RelativeLayout) findViewById(R.id.openGlContainer)).removeAllViews();
+                    glSurfaceView = null;
+                    mainMenu.setVisibility(View.VISIBLE);
+                    findViewById(R.id.editVirtualStandInMenu).setVisibility(View.GONE);
+                    scene = null;
+                    File modelFile = ImageUtils.getModelFile();
+                    if(modelFile.exists()){
+                        modelFile.delete();
+                    }
+                }
             }
         });
 
@@ -1785,6 +1858,7 @@ public class ArtemisActivity extends Activity implements
             @Override
             public void onClick(View view) {
                 openColorPickerDialog();
+                hideGlView();
             }
         });
 
@@ -1795,6 +1869,7 @@ public class ArtemisActivity extends Activity implements
                 ColorPickerView colorPicker = findViewById(R.id.colorPickerView);
                 mCameraOverlay.currentFrameline.setColor(colorPicker.getColor());
                 mCameraOverlay.invalidate();
+                showGlView();
             }
         });
 
@@ -1802,6 +1877,7 @@ public class ArtemisActivity extends Activity implements
             @Override
             public void onClick(View view) {
                 findViewById(R.id.colorPickerMenu).setVisibility(View.INVISIBLE);
+                showGlView();
             }
         });
 
@@ -1884,27 +1960,35 @@ public class ArtemisActivity extends Activity implements
                 mCameraOverlay.invalidate();
             }
         });
+<<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 
 <<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 >>>>>>> cf3855e (add lens extender and framelines)
 =======
         setup3DModels();
 >>>>>>> 99abbaa (vstand-ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
+=======
+>>>>>>> db76629 (add color picker for virtual stand ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
     }
 
-    public void setup3DModels() {
+    public void setup3DModels(String modelFileName) {
         try {
-            modelUri = Uri.parse("assets://" + getPackageName() + "/models/" + "Female.obj");
-            handler = new Handler(getMainLooper());
-            scene = new SceneLoader(this);
-            scene.init();
+            if(glSurfaceView == null) { // First model added
+                modelUri = Uri.parse("assets://" + getPackageName() + "/models/" + modelFileName);
+                handler = new Handler(getMainLooper());
+                scene = new SceneLoader(this);
+                scene.init();
 
-            glSurfaceView = new ModelGLSurfaceView(this);
-            glSurfaceView.setLayoutParams(new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-            ));
-            ((RelativeLayout) findViewById(R.id.openGlContainer)).addView(glSurfaceView);
+                glSurfaceView = new ModelGLSurfaceView(this);
+                glSurfaceView.setLayoutParams(new RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                ));
+                ((RelativeLayout) findViewById(R.id.openGlContainer)).addView(glSurfaceView);
+            } else {
+                modelUri = Uri.parse("assets://" + getPackageName() + "/models/" + modelFileName);
+                scene.addModel();
+            }
         } catch(Exception ex) {
             ex.printStackTrace();
         }
@@ -2773,11 +2857,23 @@ public class ArtemisActivity extends Activity implements
             }
             saveBitmapAsJPEG(framelinesBitmap);
 
+<<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
             if (rc == RETURN_CODE_SUCCESS) {
                 Log.i(Config.TAG, "Command execution completed successfully.");
                 if (file.delete()) {
                     file = new File(videoFileNameCropped);
                     mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
+=======
+            try {
+                File modelFile = ImageUtils.getModelFile();
+                if(modelFile != null && modelFile.exists()) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(modelFile.getPath());
+                    Bitmap bitmap3DModel = Bitmap.createScaledBitmap(bitmap, (int) selectedLensBox.width(), (int) selectedLensBox.height(), true);
+                    modelFile = ImageUtils.saveBitmapAsTemporalPng(bitmap3DModel);
+                    if(modelFile.exists()) {
+                        file = VideoUtils.watermarkVideo(file, modelFile);
+                    }
+>>>>>>> db76629 (add color picker for virtual stand ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
                 }
             } else if (rc == RETURN_CODE_CANCEL) {
                 Log.i(Config.TAG, "Command execution cancelled by user.");
@@ -2900,6 +2996,7 @@ public class ArtemisActivity extends Activity implements
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             loadingIndicatorContainer.setVisibility(View.GONE);
+            showGlView();
         }
     }
 
@@ -4451,6 +4548,21 @@ public class ArtemisActivity extends Activity implements
                 _cameraSettingsFlipper.setDisplayedChild(_cameraSettingsFlipper
                         .getDisplayedChild() - 1);
             }
+        } else if(requestCode == CHOOSE_MODEL_REQUEST) {
+            if(resultCode == Activity.RESULT_OK) {
+                if(data != null && data.getIntExtra("model", CHOOSEN_MODEL_DEFAULT_VALUE) != CHOOSEN_MODEL_DEFAULT_VALUE) {
+                    String modelName = getModelFromCode(data.getIntExtra("model", 0));
+                    setup3DModels(modelName);
+                }
+            }
+        }
+    }
+
+    private String getModelFromCode(int modelCode) {
+        if(modelCode % 2 == 0){
+            return "Female.obj";
+        } else {
+            return "FinalBaseMesh.obj";
         }
     }
 

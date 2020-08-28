@@ -550,6 +550,7 @@
     <include layout="@layout/frameline_center_marker_style_menu" />
 
     <include layout="@layout/color_picker_layout" />
+    <include layout="@layout/color_picker_model" />
 
 <<<<<<< HEAD
     </LinearLayout>

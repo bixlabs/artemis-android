@@ -509,13 +509,13 @@ public class Object3DData {
 		// Note: TRS is the correct order, SRT is not correct
 		// Note2: The api call is translate first, then rotate, then scale, but the actual
 		// order is scale first, then rotate, then translate, which cause TRSI
-		if (getPosition() != null) {
-			Matrix.translateM(modelMatrix, 0, getPositionX(), getPositionY(), getPositionZ());
-		}
 		if (getRotation() != null) {
 			Matrix.rotateM(modelMatrix, 0, getRotation()[0], 1f, 0f, 0f);
 			Matrix.rotateM(modelMatrix, 0, getRotation()[1], 0, 1f, 0f);
 			Matrix.rotateM(modelMatrix, 0, getRotationZ(), 0, 0, 1f);
+		}
+		if (getPosition() != null) {
+			Matrix.translateM(modelMatrix, 0, getPositionX(), getPositionY(), getPositionZ());
 		}
 		if (getQuadRotation() != null) {
 			Matrix.rotateM(modelMatrix, 0, quadRotation[0]

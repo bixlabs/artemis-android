@@ -1,13 +1,17 @@
 package com.chemicalwedding.artemis.vstandins;
 
+import android.gesture.Gesture;
 import android.graphics.PointF;
 import android.opengl.Matrix;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.chemicalwedding.artemis.ArtemisActivity;
+import com.chemicalwedding.artemis.R;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Camera;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3D;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
@@ -63,6 +67,16 @@ public class TouchController {
     private float previousRotationSquare;
 
     private boolean isRotating3DObject = false;
+    final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
+        @Override
+        public void onLongPress(MotionEvent event) {
+            Log.e("", "Longpress detected");
+            if(view.getModelActivity().findViewById(R.id.editVirtualStandInMenu).getVisibility() == View.GONE) {
+                view.getModelActivity().findViewById(R.id.editVirtualStandInMenu).setVisibility(View.VISIBLE);
+                view.getModelActivity().findViewById(R.id.mainMenu).setVisibility(View.GONE);
+            }
+        }
+    });
 
     public TouchController(ModelGLSurfaceView view, ModelRenderer renderer) {
         super();
@@ -233,6 +247,7 @@ public class TouchController {
                     Object3DData object = scene.getSelectedObject();
                     if(object != null) {
                         float[] currentScale = object.getScale();
+
                         currentScale[0] += zoomFactor;
                         currentScale[1] += zoomFactor;
                         currentScale[2] += zoomFactor;
@@ -370,8 +385,8 @@ public class TouchController {
 
         view.requestRender();
 
+        gestureDetector.onTouchEvent(motionEvent);
         return true;
-
     }
 }
 
