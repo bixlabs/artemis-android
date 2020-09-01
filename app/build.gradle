@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+<<<<<<< HEAD:artemis-android/build.gradle
 repositories {
 <<<<<<< HEAD
     google()
@@ -118,6 +119,8 @@ android {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
+=======
+>>>>>>> 55aa04a (upgrade project to latest android project recommended structure):app/build.gradle
 android {
 <<<<<<< HEAD
     compileSdkVersion 28
@@ -127,6 +130,7 @@ android {
 >>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
 
     defaultConfig {
+        applicationId "com.chemicalwedding.artemis"
         minSdkVersion 23
         targetSdkVersion 29
     }
@@ -141,17 +145,8 @@ android {
             proguardFile 'proguard-project.txt'
         }
     }
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['rs']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
-        }
 
+<<<<<<< HEAD:artemis-android/build.gradle
         // Move the tests to tests/java, tests/res, etc...
 <<<<<<< HEAD
         //instrumentTest.setRoot('tests')
@@ -167,14 +162,47 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
+=======
+    compileOptions {
+        sourceCompatibility = rootProject.ext.java_version
+        targetCompatibility = rootProject.ext.java_version
+>>>>>>> 55aa04a (upgrade project to latest android project recommended structure):app/build.gradle
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
+    kotlinOptions {
+        jvmTarget = rootProject.ext.java_version
     }
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation project(':appirater')
+
+    implementation 'com.parse.bolts:bolts-tasks:1.4.0'
+    implementation 'com.parse:parse-android:1.13.1'
+
+    implementation "com.github.skydoves:colorpickerview:2.0.2"
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    implementation 'com.google.android.gms:play-services-analytics:17.0.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.luckycatlabs:SunriseSunsetCalculator:1.2'
+
+    implementation 'org.apache.commons:commons-text:1.8'
+    implementation 'org.jcodec:jcodec:0.2.5'
+
+    implementation 'com.arthenica:mobile-ffmpeg-full:4.3.1.LTS'
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.core:core-ktx:1.3.1"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+
+    implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Android SDK
 *.iml
 .gradle
@@ -84,6 +85,8 @@ artemis-android/release
 artemis-android/release
 
 # Android Studio defaults
+=======
+>>>>>>> 55aa04a (upgrade project to latest android project recommended structure)
 *.iml
 .gradle
 /local.properties
@@ -94,7 +97,7 @@ artemis-android/release
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
-/build
+build/
 /captures
 .externalNativeBuild
 .cxx
