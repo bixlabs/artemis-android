@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.FFmpeg;
+import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
 
 import org.jcodec.containers.mp4.boxes.MetaValue;
 import org.jcodec.movtool.MetadataEditor;
@@ -269,8 +270,7 @@ public class SaveVideoMetadataActivity extends Activity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmmss.S",
                 Locale.getDefault());
         String metadataImageTitle = sdf.format(Calendar.getInstance().getTime());
-        String filePath = ArtemisActivity.savePictureFolder + "/" + metadataImageTitle
-                + ".jpg";
+        String filePath = ArtemisFileUtils.Companion.newFile(this, metadataImageTitle + ".jpg").getAbsolutePath();
         Log.v(logTag, "Saving file: " + filePath);
         FileOutputStream fos = null;
         try {

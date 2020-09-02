@@ -19,4 +19,8 @@ android {
         sourceCompatibility = rootProject.ext.java_version
         targetCompatibility = rootProject.ext.java_version
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }

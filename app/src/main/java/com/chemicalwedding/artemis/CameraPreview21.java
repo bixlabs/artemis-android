@@ -23,6 +23,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -101,8 +102,12 @@ import com.chemicalwedding.artemis.database.Look;
 >>>>>>> f78dc0f (Configure Kotlin)
 import com.chemicalwedding.artemis.model.Frameline;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
+=======
+import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
+>>>>>>> 8bb9eb3 (fixes file permissions management)
 import com.chemicalwedding.artemis.utils.ColorUtils;
 import com.chemicalwedding.artemis.utils.RangeUtils;
 
@@ -180,7 +185,6 @@ public class CameraPreview21 extends Fragment {
 
     protected ImageView recordVideoButton;
     protected boolean isRecordingVideo;
-    protected File videoFolder;
     protected String videoFileName;
     protected MediaRecorder mediaRecorder;
     protected CaptureRequest.Builder captureRequestBuilder;
@@ -340,8 +344,8 @@ public class CameraPreview21 extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmmss.S",
                 Locale.getDefault());
         String title = sdf.format(Calendar.getInstance().getTime());
-        String filePath = ArtemisActivity.savePictureFolder + "/" + title
-                + ".jpg";
+
+        String filePath = ArtemisFileUtils.Companion.newFile(getContext(), title + ".jpg").getAbsolutePath();
         Log.v(logTag, "Saving file: " + filePath);
         FileOutputStream fos = null;
         try {
@@ -1146,8 +1150,7 @@ public class CameraPreview21 extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mFile = new File(getActivity().getExternalFilesDir(null), "pic.jpg");
-        createVideoFolder();
+        mFile = ArtemisFileUtils.Companion.newFile(getContext(), "pic.jpg");
         mediaRecorder = new MediaRecorder();
     }
 
@@ -1439,6 +1442,7 @@ public class CameraPreview21 extends Fragment {
     /**
      * Opens the camera specified by {@link CameraPreview21#mCameraId}.
      */
+    @SuppressLint("MissingPermission")
     private void openCamera(int width, int height) {
         totalScreenWidth = width > height ? width : height;
         totalScreenHeight = width > height ? height : width;
@@ -2088,33 +2092,13 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
-    private void createVideoFolder() {
-        SharedPreferences artemisPrefs = getActivity().getApplication()
-                .getSharedPreferences(
-                        ArtemisPreferences.class.getSimpleName(),
-                        MODE_PRIVATE);
-
-        String prefix = Environment.getExternalStorageDirectory()
-                .getAbsolutePath();
-
-        String folder = prefix
-                + "/"
-                + artemisPrefs.getString(
-                ArtemisPreferences.SAVE_PICTURE_FOLDER,
-                getString(R.string.artemis_save_location_default));
-
-        videoFolder = new File(folder);
-
-        if (!videoFolder.exists()) {
-            videoFolder.mkdirs();
-        }
-    }
-
     private File createVideoFileName() throws IOException {
-        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         String prepend = "VIDEO_" + timestamp + "_";
-        File videoFile = File.createTempFile(prepend, ".mp4", videoFolder);
+
+        File videoFile = ArtemisFileUtils.Companion.newFile(getContext(), prepend + ".mp4");
         videoFileName = videoFile.getAbsolutePath();
+
         return videoFile;
     }
 

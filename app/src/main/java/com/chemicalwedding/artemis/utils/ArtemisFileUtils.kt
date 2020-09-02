@@ -1,0 +1,76 @@
+package com.chemicalwedding.artemis.utils
+
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
+import androidx.core.net.toUri
+import java.io.File
+
+
+class ArtemisFileUtils {
+    companion object {
+        private val TAG = ArtemisFileUtils::class.simpleName
+        private const val ArtemisPathChild = "Artemis"
+        private var externalDir: String = ""
+
+        @Suppress("SameParameterValue")
+        private fun grantPermissions(context: Context, uri: Uri) {
+            val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+
+            context.grantUriPermission(context.packageName, uri, flags)
+        }
+
+        private fun ensureArtemisDir(context: Context): String {
+            val savePath = File(context.filesDir, ArtemisPathChild)
+
+            if (!savePath.exists()) {
+                savePath.mkdirs()
+            }
+
+            grantPermissions(context, savePath.toUri())
+
+            Log.d(TAG, "ensuring save path: ${savePath.absolutePath}")
+
+            return savePath.absolutePath
+        }
+
+        private fun ensureExternalDir(context: Context, name: String): String {
+            val savePath = File(context.getExternalFilesDir(null), name)
+            if (!savePath.exists()) {
+                savePath.mkdirs()
+            }
+
+            grantPermissions(context, savePath.toUri())
+
+            Log.d(TAG, "ensuring save path: ${savePath.absolutePath}")
+
+            return savePath.absolutePath
+        }
+
+        fun newFile(context: Context, name: String): File {
+            val file = File(File(ensureSaveDir(context)), name)
+
+            Log.d(TAG, "newFile ${file.absolutePath}")
+
+            return file
+        }
+
+
+        fun ensureSaveDir(context: Context): String {
+            if (externalDir.isEmpty()) {
+                return ensureArtemisDir(context)
+            }
+
+            return ensureExternalDir(context, externalDir)
+        }
+
+        fun setExternalDir(name: String) {
+            if (name.isEmpty()) {
+                return;
+            }
+            Log.d(TAG, "Setting external dir to : $name")
+            externalDir = name
+        }
+    }
+}

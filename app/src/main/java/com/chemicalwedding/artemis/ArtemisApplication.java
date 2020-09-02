@@ -11,6 +11,7 @@ import android.util.Log;
 import com.google.android.gms.analytics.ExceptionReporter;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.parse.Parse;
 
 public class ArtemisApplication extends Application {
@@ -39,6 +40,9 @@ public class ArtemisApplication extends Application {
 				.clientKey("kK6HYoIwSAySCqxgJQfUIhu0Kc0JyMrK315EZvBi")
 				.build();
         Parse.initialize(config);
+
+        // only report crash on release
+		FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
 	}
 
 	protected void initLanguage() {

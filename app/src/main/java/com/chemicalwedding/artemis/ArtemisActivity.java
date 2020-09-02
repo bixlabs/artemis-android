@@ -72,6 +72,7 @@ import android.provider.MediaStore;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import android.support.annotation.Nullable;
 >>>>>>> 28c22f9 (milestone 2 Look and Feel changes to main view and menu)
@@ -92,6 +93,9 @@ import android.support.v4.content.ContextCompat;
 
 >>>>>>> f78dc0f (Configure Kotlin)
 import androidx.annotation.Nullable;
+=======
+
+>>>>>>> 8bb9eb3 (fixes file permissions management)
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.app.ActivityCompat;
@@ -164,6 +168,7 @@ import com.chemicalwedding.artemis.model.ExtenderAdapter;
 import com.chemicalwedding.artemis.model.Frameline;
 import com.chemicalwedding.artemis.model.FramelineRate;
 import com.chemicalwedding.artemis.model.FramelineRatesAdapter;
+<<<<<<< HEAD
 <<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 =======
 import com.chemicalwedding.artemis.utils.FileUtils;
@@ -175,6 +180,9 @@ import com.chemicalwedding.artemis.vstandins.ModelGLSurfaceView;
 import com.chemicalwedding.artemis.vstandins.ModelRenderer;
 import com.chemicalwedding.artemis.vstandins.SceneLoader;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
+=======
+import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
+>>>>>>> 8bb9eb3 (fixes file permissions management)
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
@@ -203,7 +211,6 @@ import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
 
 public class ArtemisActivity extends Activity implements
         CameraPreview21.RecordingCallback,
-        LoaderCallbacks<Cursor>,
         LensAdaptersAdapter.SelectedLensAdapterCallback,
         FramelinesAdapter.FramelinesCallback,
         FramelineRatesAdapter.SelectedFramelineRateCallback,
@@ -268,7 +275,6 @@ public class ArtemisActivity extends Activity implements
     private static Location lastKnownLocation;
     protected static Location pictureSaveLocation;
     protected static String pictureSaveHeadingTiltString;
-    protected static String savePictureFolder;
 
     protected static boolean gpsEnabled = false, sensorEnabled = false;
     protected static int headingDisplaySelection = 2;
@@ -2181,6 +2187,8 @@ public class ArtemisActivity extends Activity implements
         gpsEnabled = artemisPrefs.getBoolean(ArtemisPreferences.GPS_ENABLED,
                 true);
 
+        ArtemisFileUtils.Companion.setExternalDir(artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_FOLDER, ""));
+
 //		// lock box setting
         CameraOverlay.lockBoxEnabled = artemisPrefs.getBoolean(
                 ArtemisPreferences.LOCK_BOXES_ENABLED, true);
@@ -2200,20 +2208,6 @@ public class ArtemisActivity extends Activity implements
         // black and white camera preview
         CameraPreview21.blackAndWhitePreview = artemisPrefs.getBoolean(
                 getString(R.string.preference_key_previewblackwhite), false);
-
-        // setup the save files directory
-        savePictureFolder = Environment.getExternalStorageDirectory()
-                .getAbsolutePath()
-                + "/";
-        savePictureFolder += artemisPrefs.getString(
-                ArtemisPreferences.SAVE_PICTURE_FOLDER,
-                getString(R.string.artemis_save_location_default));
-        Log.v(TAG, "Save folder: " + savePictureFolder);
-
-        File saveFolder = new File(savePictureFolder);
-        if (!saveFolder.isDirectory()) {
-            saveFolder.mkdirs();
-        }
 
         ArtemisActivity.headingDisplaySelection = artemisPrefs.getInt(
                 ArtemisPreferences.HEADING_DISPLAY, 2);
@@ -4925,64 +4919,6 @@ public class ArtemisActivity extends Activity implements
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        switch (id) {
-            case GALLERY_IMAGE_LOADER:
-                SharedPreferences artemisPrefs = getApplication()
-                        .getSharedPreferences(
-                                ArtemisPreferences.class.getSimpleName(),
-                                MODE_PRIVATE);
-                String prefix = Environment.getExternalStorageDirectory()
-                        .getAbsolutePath().toString();
-                String folder = prefix
-                        + "/"
-                        + artemisPrefs.getString(
-                        ArtemisPreferences.SAVE_PICTURE_FOLDER,
-                        getString(R.string.artemis_save_location_default));
-                String[] projection = {MediaStore.Images.Media._ID};
-                // Create the cursor pointing to the SDCard
-                return new CursorLoader(ArtemisActivity.this,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
-                        MediaStore.Images.Media.DATA + " like ? ",
-                        new String[]{"%" + folder + "%"}, null);
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        try {
-            int columnIndex = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media._ID);
-
-            if (cursor.moveToLast()) {
-                int imageID = cursor.getInt(columnIndex);
-                // obtain the image URI
-                Uri uri = Uri.withAppendedPath(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        Integer.toString(imageID));
-
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(uri);
-
-                Log.i("GalleryActivity", uri.toString());
-                startActivity(intent);
-            } else {
-                toastNoImageFound();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        getLoaderManager().destroyLoader(GALLERY_IMAGE_LOADER);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> arg0) {
-
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.camera_settings:
@@ -5017,11 +4953,6 @@ public class ArtemisActivity extends Activity implements
         Intent settingsIntent = new Intent(ArtemisActivity.this,
                 SettingsActivity.class);
         startActivity(settingsIntent);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
     }
 
     private Frameline buildDefaultFrameline() {

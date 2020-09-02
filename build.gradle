@@ -65,7 +65,13 @@ buildscript {
 >>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
 =======
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+<<<<<<< HEAD
 >>>>>>> f78dc0f (Configure Kotlin)
+=======
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.2.1'
+
+>>>>>>> 8bb9eb3 (fixes file permissions management)
     }
 }
 

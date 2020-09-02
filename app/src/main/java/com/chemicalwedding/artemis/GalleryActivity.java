@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
+import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
 
 import java.io.File;
 import java.net.URLConnection;
@@ -181,6 +182,7 @@ public class GalleryActivity extends Activity {
     }
 
     private void loadGalleryData() {
+<<<<<<< HEAD
         SharedPreferences artemisPrefs = getApplication()
                 .getSharedPreferences(
                         ArtemisPreferences.class.getSimpleName(),
@@ -199,14 +201,31 @@ public class GalleryActivity extends Activity {
          if (files != null){
                 for (int i = 0; i < files.length; i++) {
                     Log.d("bixlabs", "File name: " + files[i].getAbsolutePath());
+=======
+                SharedPreferences artemisPrefs = getApplication()
+                        .getSharedPreferences(
+                            ArtemisPreferences.class.getSimpleName(),
+                            MODE_PRIVATE);
+
+                String folder = ArtemisFileUtils.Companion.ensureSaveDir(this);
+
+                mediaList.clear();
+                File directory = new File(folder);
+                File[] files = directory.listFiles();
+                Log.d("bixlabs", "Folder size: "+ files.length);
+
+                for (File file : files) {
+                    Log.d("bixlabs", "File name: " + file.getAbsolutePath());
+>>>>>>> 8bb9eb3 (fixes file permissions management)
                     MediaType type = MediaType.PHOTO;
-                    String mimeType = URLConnection.guessContentTypeFromName(files[i].getAbsolutePath());
+                    String mimeType = URLConnection.guessContentTypeFromName(file.getAbsolutePath());
                     if (mimeType != null && mimeType.startsWith("video")) {
                         type = MediaType.VIDEO;
                     }
-                    MediaFile mediaFile = new MediaFile(files[i].getName(), files[i].getAbsolutePath(), new Date(files[i].lastModified()), type);
+                    MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), type);
                     mediaList.add(mediaFile);
                 }
+<<<<<<< HEAD
         }
         Collections.sort(mediaList, new Comparator<MediaFile>() {
             @Override
@@ -215,6 +234,10 @@ public class GalleryActivity extends Activity {
             }
         });
         mAdapter.notifyDataSetChanged();
+=======
+
+                mAdapter.notifyDataSetChanged();
+>>>>>>> 8bb9eb3 (fixes file permissions management)
     }
 
 }

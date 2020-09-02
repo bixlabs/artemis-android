@@ -3,6 +3,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8bb9eb3 (fixes file permissions management)
 # Android SDK
 *.iml
 .gradle
@@ -102,4 +105,14 @@ build/
 /captures
 .externalNativeBuild
 .cxx
+<<<<<<< HEAD
 >>>>>>> d3599c5 (remove local environment files)
+=======
+
+# Keystore
+/keystore.properties
+*.jks
+
+# Firebase / Google services
+google-services.json
+>>>>>>> 8bb9eb3 (fixes file permissions management)

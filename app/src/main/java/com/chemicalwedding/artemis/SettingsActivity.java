@@ -22,6 +22,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 
+import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -523,16 +524,8 @@ public class SettingsActivity extends PreferenceActivity {
                                             .putString(preference.getKey(),
                                                     (String) newValue).commit();
 
-                                    ArtemisActivity.savePictureFolder = Environment
-                                            .getExternalStorageDirectory()
-                                            .getAbsolutePath().toString()
-                                            + "/";
-                                    ArtemisActivity.savePictureFolder += (String) newValue;
+                                    ArtemisFileUtils.Companion.setExternalDir((String)newValue);
 
-                                    File file = new File(
-                                            ArtemisActivity.savePictureFolder);
-                                    if (!file.exists())
-                                        file.mkdirs();
                                     return true;
                                 }
                             });
