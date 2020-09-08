@@ -1,22 +1,20 @@
 package com.chemicalwedding.artemis.vstandins;
 
-import android.gesture.Gesture;
 import android.graphics.PointF;
 import android.opengl.Matrix;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.chemicalwedding.artemis.ArtemisActivity;
 import com.chemicalwedding.artemis.R;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Camera;
-import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3D;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.Object3DBuilder;
 
-import java.util.List;
 
 public class TouchController {
     private static final String TAG = TouchController.class.getName();
@@ -78,10 +76,78 @@ public class TouchController {
         }
     });
 
+    private class ZoomDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            float zoomFactor = detector.getScaleFactor() - 1;
+            Log.e(TAG, "onScale: scaleFactor: " + zoomFactor);
+            SceneLoader scene = view.getModelActivity().getScene();
+            Object3DData object = scene.getSelectedObject();
+            if(object != null) {
+                object.setRotationY( object.getRotationY() + zoomFactor * 50);
+                Object3DData box = mRenderer.boundingBoxes.get(object);
+                if(box != null) {
+                    box.setRotationY( box.getRotationY() + zoomFactor * 50);
+                }
+            }
+            return true;
+        }
+    }
+    private ScaleGestureDetector zoomDetector;
+
+    private class ScaleDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector ) {
+            float zoomFactor = detector.getScaleFactor() - 1;
+            Log.i(TAG, "Zooming '" + zoomFactor + "'...");
+            SceneLoader scene = view.getModelActivity().getScene();
+            Object3DData object = scene.getSelectedObject();
+            if(object != null) {
+                float[] currentScale = object.getScale();
+
+                zoomFactor *= 25;
+
+                Log.e(TAG, "x: " + currentScale[0] );
+                Log.e(TAG, "y: " + currentScale[1] );
+                Log.e(TAG, "z: " + currentScale[2] );
+
+                if(!((currentScale[0] + zoomFactor) < 0
+                    && (currentScale[1] + zoomFactor) < 0
+                    && (currentScale[2] + zoomFactor) < 0)
+                ) {
+                    currentScale[0] += zoomFactor;
+                    currentScale[1] += zoomFactor;
+                    currentScale[2] += zoomFactor;
+                    object.setScale(currentScale);
+                    Object3DData box = mRenderer.boundingBoxes.get(object);
+                    if (box != null) {
+                        float[] boxScale = box.getScale();
+
+                        Log.e(TAG, "current box x: " + boxScale[0] );
+                        Log.e(TAG, "current box y: " + boxScale[1] );
+                        Log.e(TAG, "current box z: " + boxScale[2] );
+
+                        boxScale[0] += zoomFactor / 4;
+                        boxScale[1] += zoomFactor / 4;
+                        boxScale[2] += zoomFactor / 4;
+                        box.setScale(boxScale);
+                    }
+                }
+            }
+
+            return true;
+        }
+    }
+
+    private ScaleGestureDetector scaleDetector;
+
+
     public TouchController(ModelGLSurfaceView view, ModelRenderer renderer) {
         super();
         this.view = view;
         this.mRenderer = renderer;
+        zoomDetector = new ScaleGestureDetector(view.getContext(), new ZoomDetector());
+        scaleDetector = new ScaleGestureDetector(view.getContext(), new ScaleDetector());
     }
 
     public synchronized boolean onTouchEvent(MotionEvent motionEvent) {
@@ -208,165 +274,33 @@ public class TouchController {
             if (pointerCount == 1 && currentPress1 > 4.0f) {
             } else if (pointerCount == 1) {
                 touchStatus = TOUCH_STATUS_MOVING_WORLD;
-                // Log.d(TAG, "Translating camera (dx,dy) '" + dx1 + "','" + dy1 + "'...");
                 dx1 = (float)(dx1 / max * Math.PI * 2);
                 dy1 = (float)(dy1 / max * Math.PI * 2);
-//                camera.translateCamera(dx1,dy1);
 
                 Object3DData object = scene.getSelectedObject();
                 if(object != null) {
                     float[] translation = { dx1, -dy1, 0f};
                     object.setTranslation(translation);
-                    Object3DData box = mRenderer.boundingBoxes.get(object);
+                    mRenderer.boundingBoxes.remove(object);
+                    Object3DData box = Object3DBuilder.buildBoundingBox(object);
+                    mRenderer.boundingBoxes.put(object, box);
                     if(box != null) {
                         box.setTranslation(translation);
                     }
                 }
 
             } else if (pointerCount == 2) {
-                float zoomFactor = (length - previousLength) / max * mRenderer.getFar();
-
                 float xLength = (x2 - x1) / (2 * (view.getModelActivity().getGLView().getWidth() / view.getModelActivity().getGLView().getHeight()));
                 float yLength = y2 - y1;
-                Log.w("myTAG", "xLength: " + xLength);
-                Log.w("myTAG", "yLength: " + yLength);
 
                 isRotating3DObject = xLength > yLength;
-                if(isRotating3DObject) {
-                    Object3DData object = scene.getSelectedObject();
-                    if(object != null) {
-                        object.setRotationY( object.getRotationY() + zoomFactor);
-                        Object3DData box = mRenderer.boundingBoxes.get(object);
-                        if(box != null) {
-                            box.setRotationY( box.getRotationY() + zoomFactor);
-                        }
-                    }
+
+                if(!isRotating3DObject) {
+                    scaleDetector.onTouchEvent(motionEvent);
                 } else {
-                    Log.i(TAG, "Zooming '" + zoomFactor + "'...");
-//                    camera.MoveCameraZ(zoomFactor);
-                    Object3DData object = scene.getSelectedObject();
-                    if(object != null) {
-                        float[] currentScale = object.getScale();
-
-                        currentScale[0] += zoomFactor;
-                        currentScale[1] += zoomFactor;
-                        currentScale[2] += zoomFactor;
-                        object.setScale(currentScale);
-                        Object3DData box = mRenderer.boundingBoxes.get(object);
-                        if(box != null) {
-                            float[] boxScale = box.getScale();
-                            boxScale[0] += zoomFactor;
-                            boxScale[1] += zoomFactor;
-                            boxScale[2] += zoomFactor;
-                            box.setScale(boxScale);
-                        }
-                    }
-                }
-                if (fingersAreClosing) {
-//                    touchStatus = TOUCH_STATUS_ZOOMING_CAMERA;
-//                    float zoomFactor = (length - previousLength) / max * mRenderer.getFar();
-//                    Log.i(TAG, "Zooming '" + zoomFactor + "'...");
-////                    camera.MoveCameraZ(zoomFactor);
-//                    Object3DData object = scene.getSelectedObject();
-//                    if(object != null) {
-//                        float[] translation = { 0, 0, zoomFactor};
-//                        object.setTranslation(translation);
-//                    }
-                }
-                if (isRotating) {
-                    touchStatus = TOUCH_STATUS_ROTATING_CAMERA;
-                    Log.i(TAG, "Rotating camera '" + Math.signum(rotationVector[2]) + "'...");
-//                    camera.Rotate((float) (Math.signum(rotationVector[2]) / Math.PI) / 4);
-
-                    List<Object3DData> object3DS = scene.getObjects();
-
-//                    for (Object3DData object : object3DS) {
-//                        float[] translation = { .010f, .010f, 0f};
-//                        object.setTranslation(translation);
-//                    }
-
-//                     boolean sqHit = wzSquare > wzTriangle;
-//                     boolean triHit = wzTriangle > wzSquare;
-//                     Log.w(TAG, "Moving '" + sqHit + "','" + triHit + "'...");
-//
-//                     if (sqHit) {
-//                         mRenderer.getmSquare().translateX((dx * mRenderer.getRatio() * 2 / mRenderer.getWidth()) *
-//                         TOUCH_MOVE_FACTOR);
-//                         mRenderer.getmSquare().translateY((-dy * 1 / mRenderer.getHeight()) * TOUCH_MOVE_FACTOR);
-//                     }
-//                     if (triHit) {
-//                         mRenderer.getmTriangle().translateX((dx * mRenderer.getRatio() * 2 / mRenderer.getWidth()) *
-//                         TOUCH_MOVE_FACTOR);
-//                         mRenderer.getmTriangle().translateY((-dy * 1 / mRenderer.getHeight()) * TOUCH_MOVE_FACTOR);
-//                     }
+                    zoomDetector.onTouchEvent(motionEvent);
                 }
             }
-
-            // INFO: Realizamos la acci�n
-            // switch (touchStatus) {
-            // case TOUCH_STATUS_ROTATING_OBJECT:
-            // // reverse direction of rotation above the mid-line
-            // if (y > getHeight() / 2) {
-            // // Log.d(TAG, "Reversing dx");
-            // dx = dx * -1;
-            // }
-            //
-            // // reverse direction of rotation to left of the mid-line
-            // if (x < getWidth() / 2) {
-            // // Log.d(TAG, "Reversing dy");
-            // dy = dy * -1;
-            // }
-            // Log.w(TAG, "Rotating '" + dx + "','" + dy + "'...");
-            //
-            // if (wzSquare > wzTriangle) {
-            // mRenderer.getmSquare().setRotationZ(mRenderer.getmSquare().getRotationZ() + ((dx + dy) *
-            // TOUCH_SCALE_FACTOR));
-            // } else if (wzTriangle > wzSquare) {
-            // mRenderer.getmTriangle().setRotationZ(mRenderer.getmTriangle().getRotationZ() + ((dx + dy) *
-            // TOUCH_SCALE_FACTOR));
-            // }
-            //
-            // break;
-            //
-            // case TOUCH_STATUS_MOVING_OBJECT:
-            // // TODO: guess front object
-            // boolean sqHit = wzSquare > wzTriangle;
-            // boolean triHit = wzTriangle > wzSquare;
-            // Log.w(TAG, "Moving '" + sqHit + "','" + triHit + "'...");
-            //
-            // if (sqHit) {
-            // mRenderer.getmSquare().translateX((dx * mRenderer.getRatio() * 2 / mRenderer.getWidth()) *
-            // TOUCH_MOVE_FACTOR);
-            // mRenderer.getmSquare().translateY((-dy * 1 / mRenderer.getHeight()) * TOUCH_MOVE_FACTOR);
-            // }
-            // if (triHit) {
-            // mRenderer.getmTriangle().translateX((dx * mRenderer.getRatio() * 2 / mRenderer.getWidth()) *
-            // TOUCH_MOVE_FACTOR);
-            // mRenderer.getmTriangle().translateY((-dy * 1 / mRenderer.getHeight()) * TOUCH_MOVE_FACTOR);
-            // }
-            // break;
-            //
-            // case TOUCH_STATUS_ROTATING_OBJECT2:
-            // Log.w(TAG, "Rotating '" + wzSquare + "','" + wzTriangle + "'...");
-            // // INFO: We are moving 2 fingers in different directions
-            // // Rotate Camera
-            // // TODO: Rotationfactor deber�a ser proporcional a la z?
-            // if (wzSquare > wzTriangle) {
-            // mRenderer.getmSquare().setRotationZ(mRenderer.getmSquare().getRotationZ() + (actualRotation *
-            // TOUCH_ROTATION_FACTOR));
-            // } else if (wzTriangle > wzSquare) {
-            // mRenderer.getmTriangle().setRotationZ(mRenderer.getmTriangle().getRotationZ() + (actualRotation *
-            // TOUCH_ROTATION_FACTOR));
-            // }
-            // // mRenderer.setAngle(mRenderer.getAngle() + actualRotation
-            // // * TOUCH_ROTATION_FACTOR);
-            //
-            // // mRenderer.getCamera().Rotate(rotation *
-            // // CAMERA_ROTATION_FACTOR,
-            // // 0);
-            //
-            // break;
-            //}
         }
 
         previousX1 = x1;

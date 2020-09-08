@@ -96,17 +96,17 @@
             android:layout_marginEnd="15dp"
             />
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/helpStandInButton"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="25dp"-->
-<!--            android:background="@drawable/baseline_help_outline_24"-->
-<!--            android:backgroundTint="@color/gray"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintRight_toLeftOf="@id/refreshStandInPosicionAndScaleButton"-->
-<!--            android:layout_marginEnd="15dp"-->
-<!--            />-->
+        <ImageButton
+            android:id="@+id/helpStandInButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/baseline_help_outline_24"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/refreshStandInPosicionAndScaleButton"
+            android:layout_marginEnd="15dp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

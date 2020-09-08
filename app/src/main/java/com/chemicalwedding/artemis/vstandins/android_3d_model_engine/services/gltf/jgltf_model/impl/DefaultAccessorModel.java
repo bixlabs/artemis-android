@@ -75,7 +75,7 @@ public final class  DefaultAccessorModel extends AbstractNamedModelElement
     private final int count;
     
     /**
-     * The stride between the start of one element and the next
+     * The stride between the start of one element and the arrow_next
      */
     private int byteStride;
     
@@ -133,7 +133,7 @@ public final class  DefaultAccessorModel extends AbstractNamedModelElement
     
     /**
      * Set the byte stride, indicating the number of bytes between the start
-     * of one element and the start of the next element
+     * of one element and the start of the arrow_next element
      * 
      * @param byteStride The byte stride
      */

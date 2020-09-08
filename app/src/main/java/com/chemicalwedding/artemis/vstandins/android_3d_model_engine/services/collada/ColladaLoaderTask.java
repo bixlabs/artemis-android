@@ -24,7 +24,7 @@ public class ColladaLoaderTask extends LoaderTask {
     @Override
     protected List<Object3DData> build() throws IOException {
         // Parse STL
-        Object[] ret = ColladaLoader.buildAnimatedModel(new URL(uri.toString()));
+        Object[] ret = ColladaLoader.buildAnimatedModel(uri);
         List<Object3DData> datas = (List<Object3DData>) ret[1];
         modelData = (AnimatedModelData) ret[0];
         return datas;
@@ -32,7 +32,7 @@ public class ColladaLoaderTask extends LoaderTask {
 
     @Override
     protected void build(List<Object3DData> datas) throws Exception {
-        ColladaLoader.populateAnimatedModel(new URL(uri.toString()), datas, modelData);
+        ColladaLoader.populateAnimatedModel(uri, datas, modelData);
         if (datas.size() == 1) {
             datas.get(0).centerAndScale(5, new float[]{0, 0, 0});
         } else {

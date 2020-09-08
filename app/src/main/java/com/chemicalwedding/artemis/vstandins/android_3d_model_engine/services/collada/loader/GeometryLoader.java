@@ -425,7 +425,7 @@ public class GeometryLoader {
 				furthestPoint = currentVertex.getLength();
 			}
 			float[] position = currentVertex.getPosition();
-			if (textures != null && !textures.isEmpty()) {
+			if (textures != null && !textures.isEmpty() && currentVertex.getTextureIndex() > -1) {
 				float[] textureCoord = textures.get(currentVertex.getTextureIndex());
 				texturesArray[i * 2] = textureCoord[0];
 				texturesArray[i * 2 + 1] = 1 - textureCoord[1];

@@ -1,6 +1,7 @@
 package com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.collada.loader;
 
 
+import android.net.Uri;
 import android.opengl.GLES20;
 import android.util.Log;
 
@@ -19,6 +20,7 @@ import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.co
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.collada.entities.SkeletonData;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.collada.entities.SkinningData;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.wavefront.WavefrontLoader;
+import com.chemicalwedding.artemis.vstandins.util.android.ContentUtils;
 import com.chemicalwedding.artemis.vstandins.util.xml.XmlNode;
 import com.chemicalwedding.artemis.vstandins.util.xml.XmlParser;
 
@@ -45,9 +47,10 @@ public class ColladaLoader {
 		return bb;
 	}
 
-	public static Object[] buildAnimatedModel(URL url) throws IOException {
+	public static Object[] buildAnimatedModel(Uri uri) throws IOException {
 		List<Object3DData> ret = new ArrayList<>();
-		InputStream is = url.openStream();
+		InputStream is = ContentUtils.getInputStream(uri);
+//		uri.openStream();
 		AnimatedModelData modelData = loadColladaModel(is,3);
 		is.close();
 		List<MeshData> meshDataList = modelData.getMeshData();
@@ -104,7 +107,7 @@ public class ColladaLoader {
 		return new Object[]{modelData,ret};
 	}
 
-	public static void populateAnimatedModel(URL url, List<Object3DData> datas, AnimatedModelData modelData){
+	public static void populateAnimatedModel(Uri uri, List<Object3DData> datas, AnimatedModelData modelData){
 
 		for (int i=0; i<datas.size(); i++) {
 			Object3DData data = datas.get(i);
@@ -153,7 +156,7 @@ public class ColladaLoader {
 				data3D.setRootJoint(headJoint, skeletonData.jointCount, skeletonData.boneCount, false);
 
 				// load animation
-				Animation animation = loadAnimation(url.openStream());
+				Animation animation = loadAnimation(ContentUtils.getInputStream(uri));
 				data3D.doAnimation(animation);
 
 			} catch (Exception e) {

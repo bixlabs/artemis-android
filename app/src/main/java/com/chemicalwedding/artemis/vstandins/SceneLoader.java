@@ -13,6 +13,9 @@ import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Objec
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.LoaderTask;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.Object3DBuilder;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.collada.ColladaLoaderTask;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.gltf.GltfLoaderTask;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.stl.STLLoaderTask;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.wavefront.WavefrontLoaderTask;
 import com.chemicalwedding.artemis.vstandins.util.android.ContentUtils;
 import com.chemicalwedding.artemis.vstandins.util.io.IOUtils;
@@ -117,7 +120,7 @@ public class SceneLoader implements LoaderTask.Callback {
     /**
      * Initial light position
      */
-    private final float[] lightPosition = new float[]{0, 0, 6, 1};
+    private final float[] lightPosition = new float[]{0, 0, 10, 1};
     /**
      * Light bulb 3d data
      */
@@ -154,18 +157,17 @@ public class SceneLoader implements LoaderTask.Callback {
         Log.i("Object3DBuilder", "Loading model " + uri + ". async and parallel..");
         if (uri.toString().toLowerCase().endsWith(".obj") || parent.getParamType() == 0) {
             new WavefrontLoaderTask(parent, uri, this).execute();
+        } else if (uri.toString().toLowerCase().endsWith(".stl") || parent.getParamType() == 1) {
+            Log.i("Object3DBuilder", "Loading STL object from: "+uri);
+            new STLLoaderTask(parent, uri, this).execute();
+        } else if (uri.toString().toLowerCase().endsWith(".dae") || parent.getParamType() == 2) {
+            Log.i("Object3DBuilder", "Loading Collada object from: "+uri);
+            new ColladaLoaderTask(parent, uri, this).execute();
+        } else if (uri.toString().toLowerCase().endsWith(".gltf") || parent.getParamType() == 3) {
+            Log.i("Object3DBuilder", "Loading GLtf object from: "+uri);
+            new GltfLoaderTask(parent, uri, this).execute();
+
         }
-//        } else if (uri.toString().toLowerCase().endsWith(".stl") || parent.getParamType() == 1) {
-//            Log.i("Object3DBuilder", "Loading STL object from: "+uri);
-//            new STLLoaderTask(parent, uri, this).execute();
-//        } else if (uri.toString().toLowerCase().endsWith(".dae") || parent.getParamType() == 2) {
-//            Log.i("Object3DBuilder", "Loading Collada object from: "+uri);
-//            new ColladaLoaderTask(parent, uri, this).execute();
-//        } else if (uri.toString().toLowerCase().endsWith(".gltf") || parent.getParamType() == 3) {
-//            Log.i("Object3DBuilder", "Loading GLtf object from: "+uri);
-//            new GltfLoaderTask(parent, uri, this).execute();
-//
-//        }
     }
 
     public void addModel() {
@@ -178,6 +180,16 @@ public class SceneLoader implements LoaderTask.Callback {
         Log.i("Object3DBuilder", "Loading model " + uri + ". async and parallel..");
         if (uri.toString().toLowerCase().endsWith(".obj") || parent.getParamType() == 0) {
             new WavefrontLoaderTask(parent, uri, this).execute();
+        } else if (uri.toString().toLowerCase().endsWith(".stl") || parent.getParamType() == 1) {
+            Log.i("Object3DBuilder", "Loading STL object from: "+uri);
+            new STLLoaderTask(parent, uri, this).execute();
+        } else if (uri.toString().toLowerCase().endsWith(".dae") || parent.getParamType() == 2) {
+            Log.i("Object3DBuilder", "Loading Collada object from: "+uri);
+            new ColladaLoaderTask(parent, uri, this).execute();
+        } else if (uri.toString().toLowerCase().endsWith(".gltf") || parent.getParamType() == 3) {
+            Log.i("Object3DBuilder", "Loading GLtf object from: "+uri);
+            new GltfLoaderTask(parent, uri, this).execute();
+
         }
     }
 
@@ -524,13 +536,13 @@ public class SceneLoader implements LoaderTask.Callback {
         if(object != null) {
             float[] resetRotation = new float[]{0f, 0f, 0f};
             object.setRotation(resetRotation);
-            float[] resetScale = new float[] {2, 2, 2};
+            float[] resetScale = new float[] {5, 5, 5};
             object.setScale(resetScale);
             Object3DData bounbox = Object3DBuilder.buildBoundingBox(object);
             if(bounbox != null) {
-                parent.getGLView().getModelRenderer().boundingBoxes.put(object, bounbox);
-                bounbox.setRotation(resetRotation);
-                bounbox.setScale(resetScale);
+//                bounbox.setRotation(resetRotation);
+//                bounbox.setScale(resetScale);
+//                parent.getGLView().getModelRenderer().boundingBoxes.put(object, bounbox);
 //                Object3DData box = parent.getGLView().getModelRenderer().boundingBoxes.get(object);
             }
         }

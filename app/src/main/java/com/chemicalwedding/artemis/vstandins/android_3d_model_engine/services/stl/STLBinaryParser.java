@@ -189,7 +189,7 @@ class STLBinaryParser extends STLParser
     }
 
     /**
-     * Read the next face from the underlying stream
+     * Read the arrow_next face from the underlying stream
      *
      * @return true if the read completed successfully
      */

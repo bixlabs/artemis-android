@@ -79,7 +79,7 @@ package com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.g
 ////            ImageIO.getImageReaders(imageInputStream);
 ////        if (imageReaders.hasNext())
 ////        {
-////            ImageReader imageReader = imageReaders.next();
+////            ImageReader imageReader = imageReaders.arrow_next();
 ////            imageReader.setInput(imageInputStream);
 ////            return imageReader;
 ////        }

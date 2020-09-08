@@ -89,7 +89,7 @@ public class JointTransform {
 	 * @param frameA
 	 *            - the previous transform
 	 * @param frameB
-	 *            - the next transform
+	 *            - the arrow_next transform
 	 * @param progression
 	 *            - a number between 0 and 1 indicating how far between the two
 	 *            transforms to interpolate. A progression value of 0 would

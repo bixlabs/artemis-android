@@ -1068,7 +1068,7 @@ public class ArtemisActivity extends Activity implements
             }
         });
 
-        // next / prev lens
+        // arrow_next / prev lens
         _nextLensButton.setOnClickListener(nextLensClickListener);
         _nextLensButton.setOnLongClickListener(new OnLongClickListener() {
             @Override
@@ -1424,6 +1424,14 @@ public class ArtemisActivity extends Activity implements
 
                 Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
                 startActivityForResult(virtualStandInIntent, CHOOSE_MODEL_REQUEST);
+            }
+        });
+
+        ((ImageView) findViewById(R.id.helpStandInButton)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), VirtualStandInsOnboardingActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -2007,7 +2015,7 @@ public class ArtemisActivity extends Activity implements
     }
 
     public int getParamType() {
-        return 0;
+        return 2;
     }
 
     public ModelGLSurfaceView getGLView() {

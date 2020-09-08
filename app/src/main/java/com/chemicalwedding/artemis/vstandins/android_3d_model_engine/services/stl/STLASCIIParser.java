@@ -146,7 +146,7 @@ class STLASCIIParser extends STLParser
         // We've encountered a lot of broken files where they use two words
         // "end solid" rather than the spec-required "endsolid".
         if(token.equals("endsolid") || input_line.contains("end solid")) {
-            // Skip line and read next
+            // Skip line and read arrow_next
             try {
                 return getNextFacet(normal, vertices);
             } catch(IOException ioe) {
@@ -450,7 +450,7 @@ class STLASCIIParser extends STLParser
             if(line.indexOf("facet") >= 0)
             {
                 numOfFacets ++;
-                // skip next 6 lines:
+                // skip arrow_next 6 lines:
                 // outer loop, 3 * vertex, endloop, endfacet
                 for(int i = 0; i < 6; i ++)
                 {

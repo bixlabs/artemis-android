@@ -27,7 +27,7 @@ import java.util.Map;
  * chosen.
  * 
  * The Animator calculates the desired current animation pose by interpolating
- * between the previous and next keyframes of the animation (based on the
+ * between the previous and arrow_next keyframes of the animation (based on the
  * current animation time). The Animator then updates the transforms all of the
  * joints each frame to match the current desired animation pose.
  * 
@@ -161,12 +161,12 @@ public class Animator {
 	 * the desired local-space transforms for all the joints in a map, indexed
 	 * by the name of the joint that they correspond to.
 	 * 
-	 * The pose is calculated based on the previous and next keyframes in the
+	 * The pose is calculated based on the previous and arrow_next keyframes in the
 	 * current animation. Each keyframe provides the desired pose at a certain
 	 * time in the animation, so the animated pose for the current time can be
-	 * calculated by interpolating between the previous and next keyframe.
+	 * calculated by interpolating between the previous and arrow_next keyframe.
 	 * 
-	 * This method first finds the preious and next keyframe, calculates how far
+	 * This method first finds the preious and arrow_next keyframe, calculates how far
 	 * between the two the current animation is, and then calculated the pose
 	 * for the current animation time by interpolating between the transforms at
 	 * those keyframes.
@@ -248,14 +248,14 @@ public class Animator {
 	}
 
 	/**
-	 * Finds the previous keyframe in the animation and the next keyframe in the
+	 * Finds the previous keyframe in the animation and the arrow_next keyframe in the
 	 * animation, and returns them in an array of length 2. If there is no
 	 * previous frame (perhaps current animation time is 0.5 and the first
 	 * keyframe is at time 1.5) then the first keyframe is used as both the
-	 * previous and next keyframe. The last keyframe is used for both next and
-	 * previous if there is no next keyframe.
+	 * previous and arrow_next keyframe. The last keyframe is used for both arrow_next and
+	 * previous if there is no arrow_next keyframe.
 	 * 
-	 * @return The previous and next keyframes, in an array which therefore will
+	 * @return The previous and arrow_next keyframes, in an array which therefore will
 	 *         always have a length of 2.
 	 */
 	private KeyFrame[] getPreviousAndNextFrames(AnimatedModel obj) {
@@ -273,13 +273,13 @@ public class Animator {
 	}
 
 	/**
-	 * Calculates how far between the previous and next keyframe the current
+	 * Calculates how far between the previous and arrow_next keyframe the current
 	 * animation time is, and returns it as a value between 0 and 1.
 	 * 
 	 * @param previousFrame
 	 *            - the previous keyframe in the animation.
 	 * @param nextFrame
-	 *            - the next keyframe in the animation.
+	 *            - the arrow_next keyframe in the animation.
 	 * @return A number between 0 and 1 indicating how far between the two
 	 *         keyframes the current animation time is.
 	 */
@@ -293,16 +293,16 @@ public class Animator {
 
 	/**
 	 * Calculates all the local-space joint transforms for the desired current
-	 * pose by interpolating between the transforms at the previous and next
+	 * pose by interpolating between the transforms at the previous and arrow_next
 	 * keyframes.
 	 * 
 	 * @param previousFrame
 	 *            - the previous keyframe in the animation.
 	 * @param nextFrame
-	 *            - the next keyframe in the animation.
+	 *            - the arrow_next keyframe in the animation.
 	 * @param progression
 	 *            - a number between 0 and 1 indicating how far between the
-	 *            previous and next keyframes the current animation time is.
+	 *            previous and arrow_next keyframes the current animation time is.
 	 * @return The local-space transforms for all the joints for the desired
 	 *         current pose. They are returned in a map, indexed by the name of
 	 *         the joint to which they should be applied.
