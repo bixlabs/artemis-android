@@ -292,6 +292,7 @@ public class CameraPreview21 extends Fragment {
             ArtemisActivity.arrowBackgroundImage = BitmapFactory
                     .decodeResource(getResources(), R.drawable.arrows, o);
         }
+        _artemisMath.selectFirstMeaningFullLens();
     }
 
     Matrix origin;
