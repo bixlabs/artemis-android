@@ -265,7 +265,7 @@ public class CameraPreview21 extends Fragment {
                     totalScreenHeight, pixelDensityScale, effectiveHAngle,
                     effectiveVAngle);
             _artemisMath.calculateLargestLens();
-//            _artemisMath.selectFirstMeaningFullLens();
+            _artemisMath.selectFirstMeaningFullLens();
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
             _artemisMath.resetTouchToCenter(); // now with green box
             _artemisMath.calculateRectBoxesAndLabelsForLenses();
@@ -292,7 +292,6 @@ public class CameraPreview21 extends Fragment {
             ArtemisActivity.arrowBackgroundImage = BitmapFactory
                     .decodeResource(getResources(), R.drawable.arrows, o);
         }
-        _artemisMath.selectFirstMeaningFullLens();
     }
 
     Matrix origin;
