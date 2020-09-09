@@ -44,6 +44,7 @@ public class VirtualStandInActivity extends AppCompatActivity {
                                 .thumbnailSize(100)
                                 .enableZoom(true)
                                 .build()
+<<<<<<< HEAD
                 )
                 .add(image("file:///android_asset/m_01.jpg"))
                 .add(image("file:///android_asset/m_17.jpg"))
@@ -87,6 +88,64 @@ public class VirtualStandInActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+=======
+                );
+
+        galleryView = builder.build();
+
+        findViewById(R.id.buttonClose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        findViewById(R.id.peopleButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayPeople();
+            }
+        });
+
+        findViewById(R.id.vehicleButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayVehicles();
+            }
+        });
+
+        displayPeople();
+    }
+
+    private void displayPeople() {
+        displayModelSet("m", 31);
+    }
+
+    private void displayVehicles() {
+        displayModelSet("v", 9);
+    }
+
+    private void displayModelSet(String prefix, int maxPostfix) {
+        galleryView.clearGallery();
+
+        for (int i = 1; i <= maxPostfix; i++) {
+            String number = String.format("%02d", i);
+            galleryView.addMedia(image("file:///android_asset/" + prefix + "_" + number + ".jpg"));
+        }
+
+        galleryView.addOnImageClickListener(new ScrollGalleryView.OnImageClickListener() {
+            @Override
+            public void onClick(int position) {
+                Log.w(TAG, "position: " + position);
+                Intent data = new Intent();
+                String number = String.format("%02d", position + 1);
+                data.putExtra("model", prefix + "_" + number + ".obj");
+                setResult(RESULT_OK,data);
+                finish();
+            }
+        });
+>>>>>>> 77c278d (Fix: 3d models for vehicles)
     }
 
 }
