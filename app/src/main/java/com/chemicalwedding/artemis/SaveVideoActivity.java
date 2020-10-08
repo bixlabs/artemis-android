@@ -54,7 +54,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+<<<<<<< HEAD
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -107,6 +110,7 @@ public class SaveVideoActivity extends Activity {
                 @Override
                 public void onClick(View v) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     try {
                         MetadataEditor editor = MetadataEditor.createFrom(new File(path));
                         Map<String, MetaValue> meta = editor.getKeyedMeta();
@@ -124,6 +128,11 @@ public class SaveVideoActivity extends Activity {
                             ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
                     restoreVideo();
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+                    SharedPreferences artemisPrefs = getSharedPreferences(
+                            ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
+                    restoreVideo();
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
                     finish();
                 }
             });

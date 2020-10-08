@@ -28,6 +28,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final int DB_VERSION = 15;
 =======
     private static final int DB_VERSION = 14;
@@ -44,6 +45,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 =======
     private static final int DB_VERSION = 17;
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+    private static final int DB_VERSION = 17;
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
 
     private SQLiteDatabase _artemisDatabase;
 

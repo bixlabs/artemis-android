@@ -2884,10 +2884,14 @@ public class ArtemisActivity extends Activity implements
                     Bitmap bitmap = BitmapFactory.decodeFile(modelFile.getPath());
                     Bitmap bitmap3DModel = Bitmap.createScaledBitmap(bitmap, (int) selectedLensBox.width(), (int) selectedLensBox.height(), true);
 <<<<<<< HEAD
+<<<<<<< HEAD
                     modelFile = ImageUtils.saveBitmapAsTemporalPng(bitmap3DModel);
 =======
                     modelFile = ImageUtils.saveBitmapAsTemporalPng(getApplicationContext(), bitmap3DModel, "scaled-model.png");
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+                    modelFile = ImageUtils.saveBitmapAsTemporalPng(getApplicationContext(), bitmap3DModel, "scaled-model.png");
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
                     if(modelFile.exists()) {
                         file = VideoUtils.watermarkVideo(file, modelFile);
                     }
@@ -3779,10 +3783,14 @@ public class ArtemisActivity extends Activity implements
             tempSelectedLensMake = lensMake;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.toString());
 =======
             String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.getModel());
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+            String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.getModel());
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
             ((TextView) findViewById(R.id.lensMakeText)).setText(lensMake + extenderString);
             setLensMakeTextAnimation();
         } else {
@@ -4589,7 +4597,10 @@ public class ArtemisActivity extends Activity implements
                 findViewById(R.id.editVirtualStandInMenu).setVisibility(View.GONE);
                 mainMenu.setVisibility(View.VISIBLE);
                 TouchController.isEditing = false;
+<<<<<<< HEAD
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
             }
         }
     }

@@ -224,6 +224,7 @@ public class GalleryActivity extends Activity {
 
                 for (File file : files) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Log.d("bixlabs", "File name: " + file.getAbsolutePath());
 >>>>>>> 8bb9eb3 (fixes file permissions management)
                     MediaType type = MediaType.PHOTO;
@@ -231,6 +232,8 @@ public class GalleryActivity extends Activity {
                     if (mimeType != null && mimeType.startsWith("video")) {
                         type = MediaType.VIDEO;
 =======
+=======
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
                     if(!filterFile(file)){
                         Log.d("bixlabs", "File name: " + file.getAbsolutePath());
                         MediaType type = MediaType.PHOTO;
@@ -240,7 +243,10 @@ public class GalleryActivity extends Activity {
                         }
                         MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), type);
                         mediaList.add(mediaFile);
+<<<<<<< HEAD
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+>>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
                     }
                 }
 <<<<<<< HEAD
@@ -256,6 +262,10 @@ public class GalleryActivity extends Activity {
 
                 mAdapter.notifyDataSetChanged();
 >>>>>>> 8bb9eb3 (fixes file permissions management)
+    }
+
+    public boolean filterFile(File file) {
+        return file.getName().contains("model") || file.getName().contains("frameline");
     }
 
     public boolean filterFile(File file) {
