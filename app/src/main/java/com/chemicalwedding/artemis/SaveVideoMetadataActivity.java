@@ -1,7 +1,9 @@
 package com.chemicalwedding.artemis;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -62,7 +64,6 @@ public class SaveVideoMetadataActivity extends Activity {
         SharedPreferences artemisPrefs = getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
         Button cancelButton = findViewById(R.id.cancelVideoMetadata);
-        Button saveButton = findViewById(R.id.saveVideoMetadata);
         Button saveTitleButton = findViewById(R.id.saveVideoTitleMetadata);
         TextView videoTitleTextView = findViewById(R.id.videoTitle);
         videoTitleTextView.setText(artemisPrefs.getString(
@@ -76,23 +77,10 @@ public class SaveVideoMetadataActivity extends Activity {
             }
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveVideoMetadata(artemisPrefs, false, videoTitleTextView.getText().toString());
-                finish();
-            }
-        });
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File mediaFile = new File(mediaPath);
-                if(mediaFile.exists()) {
-                    mediaFile.delete();
-                }
-
-                finish();
+                deleteVideoAndBack();
             }
         });
 
@@ -340,6 +328,28 @@ public class SaveVideoMetadataActivity extends Activity {
             Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
             Config.printLastCommandOutput(Log.INFO);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        deleteVideoAndBack();
+    }
+
+    public void deleteVideoAndBack() {
+        File mediaFile = new File(mediaPath);
+        new AlertDialog.Builder(SaveVideoMetadataActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Delete file") // TODO - use string resources
+                .setMessage("Are you sure you want to discard the video?") // TODO - use string resources
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(mediaFile.exists()) mediaFile.delete();
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
 }

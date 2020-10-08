@@ -37,7 +37,7 @@ public class ExtenderAdapter extends BaseAdapter  {
         Extender extender = options.get(position);
 
         TextView extenderTitle = listItem.findViewById(R.id.text);
-        extenderTitle.setText(extender.toString());
+        extenderTitle.setText(extender.getModel());
 
         RelativeLayout container = listItem.findViewById(R.id.extenderContainer);
 

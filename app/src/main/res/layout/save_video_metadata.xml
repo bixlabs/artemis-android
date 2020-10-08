@@ -43,18 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dip"
                 android:layout_gravity="center"
-                android:text="@string/save_video_title" />
-
-            <View
-                android:layout_width="30dip"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/saveVideoMetadata"
-                android:layout_width="wrap_content"
-                android:layout_height="50dip"
-                android:layout_gravity="center"
-                android:text="@string/save" />
+                android:text="@string/save_video" />
 
             <View
                 android:layout_width="30dip"
@@ -64,7 +53,7 @@
                 android:id="@+id/cancelVideoMetadata"
                 android:layout_width="wrap_content"
                 android:layout_height="50dip"
-                android:text="@string/cancel" />
+                android:text="@string/discard_video" />
         </LinearLayout>
     </LinearLayout>
 

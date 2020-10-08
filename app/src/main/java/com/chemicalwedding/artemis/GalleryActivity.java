@@ -23,6 +23,7 @@ import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
 import java.io.File;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -211,19 +212,36 @@ public class GalleryActivity extends Activity {
 
                 mediaList.clear();
                 File directory = new File(folder);
+                Comparator<File> comparator = new Comparator<File>() {
+                    @Override
+                    public int compare(File o1, File o2) {
+                        return Long.compare(o2.lastModified(), o1.lastModified());
+                    }
+                };
                 File[] files = directory.listFiles();
+                Arrays.sort(files, comparator);
                 Log.d("bixlabs", "Folder size: "+ files.length);
 
                 for (File file : files) {
+<<<<<<< HEAD
                     Log.d("bixlabs", "File name: " + file.getAbsolutePath());
 >>>>>>> 8bb9eb3 (fixes file permissions management)
                     MediaType type = MediaType.PHOTO;
                     String mimeType = URLConnection.guessContentTypeFromName(file.getAbsolutePath());
                     if (mimeType != null && mimeType.startsWith("video")) {
                         type = MediaType.VIDEO;
+=======
+                    if(!filterFile(file)){
+                        Log.d("bixlabs", "File name: " + file.getAbsolutePath());
+                        MediaType type = MediaType.PHOTO;
+                        String mimeType = URLConnection.guessContentTypeFromName(file.getAbsolutePath());
+                        if (mimeType != null && mimeType.startsWith("video")) {
+                            type = MediaType.VIDEO;
+                        }
+                        MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), type);
+                        mediaList.add(mediaFile);
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
                     }
-                    MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), type);
-                    mediaList.add(mediaFile);
                 }
 <<<<<<< HEAD
         }
@@ -238,6 +256,10 @@ public class GalleryActivity extends Activity {
 
                 mAdapter.notifyDataSetChanged();
 >>>>>>> 8bb9eb3 (fixes file permissions management)
+    }
+
+    public boolean filterFile(File file) {
+        return file.getName().contains("model") || file.getName().contains("frameline");
     }
 
 }

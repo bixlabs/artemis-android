@@ -1,12 +1,19 @@
 package com.chemicalwedding.artemis.model;
 
 public class Extender {
+    private int id;
     private String manufacturer;
-    private float factor;
+    private String model;
+    private float magnification;
+    private float squeeze;
+    private int order;
 
-    public Extender(String manufacturer, float factor) {
-        this.manufacturer = manufacturer;
-        this.factor = factor;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getManufacturer() {
@@ -17,15 +24,35 @@ public class Extender {
         this.manufacturer = manufacturer;
     }
 
-    public float getFactor() {
-        return factor;
+    public String getModel() {
+        return model;
     }
 
-    public void setFactor(float factor) {
-        this.factor = factor;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public String toString() {
-        return manufacturer + " " + String.format("%.1f", this.factor) + " Extender";
+    public float getMagnification() {
+        return magnification;
+    }
+
+    public void setMagnification(float magnification) {
+        this.magnification = magnification;
+    }
+
+    public float getSqueeze() {
+        return squeeze;
+    }
+
+    public void setSqueeze(float squeeze) {
+        this.squeeze = squeeze;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 }

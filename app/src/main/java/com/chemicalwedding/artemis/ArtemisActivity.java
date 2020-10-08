@@ -179,6 +179,7 @@ import com.chemicalwedding.artemis.utils.VideoUtils;
 import com.chemicalwedding.artemis.vstandins.ModelGLSurfaceView;
 import com.chemicalwedding.artemis.vstandins.ModelRenderer;
 import com.chemicalwedding.artemis.vstandins.SceneLoader;
+import com.chemicalwedding.artemis.vstandins.TouchController;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
 =======
 import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
@@ -1356,6 +1357,7 @@ public class ArtemisActivity extends Activity implements
 
                 findViewById(R.id.editVirtualStandInMenu).setVisibility(View.VISIBLE);
                 mainMenu.setVisibility(View.GONE);
+                TouchController.isEditing = true;
 
                 Intent virtualStandInIntent = new Intent(getBaseContext(), VirtualStandInActivity.class);
                 startActivityForResult(virtualStandInIntent, CHOOSE_MODEL_REQUEST);
@@ -1367,6 +1369,7 @@ public class ArtemisActivity extends Activity implements
             public void onClick(View v) {
                 findViewById(R.id.editVirtualStandInMenu).setVisibility(View.GONE);
                 mainMenu.setVisibility(View.VISIBLE);
+                TouchController.isEditing = false;
                 scene.clearSelectedObject();
                 glSurfaceView.getModelRenderer().takeSnapshot = true;
             }
@@ -2140,7 +2143,7 @@ public class ArtemisActivity extends Activity implements
 
     }
 
-    private void hideLensAdapterViewAndShowMainMenu() {
+    public void hideLensAdapterViewAndShowMainMenu() {
         addLensAdapterView.setVisibility(View.GONE);
         mainMenu.setVisibility(View.VISIBLE);
         horizontalGuidelineBottom.setGuidelinePercent(0.899f);
@@ -2575,7 +2578,7 @@ public class ArtemisActivity extends Activity implements
         _lensSettingsFlipper.setDisplayedChild(4); // 4 = R.id.lensExtenderManufacturerList - lens_settings.xml
 
         ArrayList<String> lensManufacturers = _artemisDBHelper
-                .getLensManufacturers();
+                .getExtenderManufacturers();
         ListView extenderManufacturersList = (ListView) findViewById(R.id.lensExtenderManufacturerList);
         StringOptionArrayAdapter adapter = new StringOptionArrayAdapter(this, lensManufacturers, extenderManufacturersList);
         extenderManufacturersList.setAdapter(adapter);
@@ -2603,9 +2606,8 @@ public class ArtemisActivity extends Activity implements
                 R.anim.slide_out_left);
         _lensSettingsFlipper.setDisplayedChild(5); // 5 = R.id.lensExtenderView - lens_settings.xml
 
-        ArrayList<Extender> extenders = new ArrayList<>();
-        extenders.add(new Extender(selectedManufacturer, 1.4f));
-        extenders.add(new Extender(selectedManufacturer, 2f));
+        ArrayList<Extender> extenders = _artemisDBHelper.getExtenderForManufacturer(selectedManufacturer);
+
 
         ListView extenderList = (ListView) findViewById(R.id.lensExtenderList);
         ExtenderAdapter extenderAdapter = new ExtenderAdapter(ArtemisActivity.this, extenders, ArtemisActivity.this);
@@ -2804,6 +2806,7 @@ public class ArtemisActivity extends Activity implements
             final int videoWidth = mCameraPreview.videoSize.getWidth();
             final int videoHeight = mCameraPreview.videoSize.getHeight();
 
+<<<<<<< HEAD
             final float screenWRatio = (float) _artemisMath.screenWidth / _artemisMath.screenHeight;
             final float screenHRatio = (float) 1 / screenWRatio;
 
@@ -2856,6 +2859,15 @@ public class ArtemisActivity extends Activity implements
                     int backgroundColor = getResources().getColor(shadingColorId);
                     CameraOverlay.drawFrameline(c, rect, framelineScale, verticalOffsetPercentage, horizontalOffsetPercentage, stroke, dottedLine, color, framelineType, centerMarkerType, centerMarkerLineWidth, backgroundColor);
                 }
+=======
+            try {
+                Bitmap framelinesBitmap = FramelineDrawingUtils
+                        .createBitmapFromFramelines((int) selectedLensBox.width(), (int)selectedLensBox.height(), ArtemisActivity.this);
+                File framelinesPng = ImageUtils.saveBitmapAsTemporalPng(getApplicationContext(), framelinesBitmap, "frameline.png");
+                file = VideoUtils.watermarkVideo(getApplicationContext(), file, framelinesPng);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
             }
             saveBitmapAsJPEG(framelinesBitmap);
 
@@ -2871,7 +2883,11 @@ public class ArtemisActivity extends Activity implements
                 if(modelFile != null && modelFile.exists()) {
                     Bitmap bitmap = BitmapFactory.decodeFile(modelFile.getPath());
                     Bitmap bitmap3DModel = Bitmap.createScaledBitmap(bitmap, (int) selectedLensBox.width(), (int) selectedLensBox.height(), true);
+<<<<<<< HEAD
                     modelFile = ImageUtils.saveBitmapAsTemporalPng(bitmap3DModel);
+=======
+                    modelFile = ImageUtils.saveBitmapAsTemporalPng(getApplicationContext(), bitmap3DModel, "scaled-model.png");
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
                     if(modelFile.exists()) {
                         file = VideoUtils.watermarkVideo(file, modelFile);
                     }
@@ -2965,8 +2981,13 @@ public class ArtemisActivity extends Activity implements
                     }
 
                     editor.save(false);
-                    Toast.makeText(ArtemisActivity.this, "Video saved!",
-                            Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ArtemisActivity.this, "Video saved!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -3348,7 +3369,7 @@ public class ArtemisActivity extends Activity implements
         _artemisMath.get_currentLensBoxes().clear();
         _artemisMath.setSelectedLens(null);
 
-        String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.toString());
+        String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.getModel());
         ((TextView) findViewById(R.id.lensMakeText))
                 .setText(_artemisMath.selectedZoomLens.toString() + extenderString);
         setLensMakeTextAnimation();
@@ -3731,7 +3752,9 @@ public class ArtemisActivity extends Activity implements
     }
 
     private void setLensMakeTextAnimation() {
-        float textWidth = _lensMakeText.getPaint().measureText(_lensMakeText.getText().toString());
+        String title = tempSelectedLensMake + (selectedExtender != null ? " " + selectedExtender.getModel() : "");
+
+        float textWidth = _lensMakeText.getPaint().measureText(title);
         int viewWidth = findViewById(R.id.lensMakeTextContainer).getWidth();
         if (textWidth > viewWidth) {
             _lensMakeText.startAnimation((Animation) AnimationUtils.loadAnimation(this, R.anim.text_animation));
@@ -3755,7 +3778,11 @@ public class ArtemisActivity extends Activity implements
             tempLensesForMake = _lensesForMake;
             tempSelectedLensMake = lensMake;
 
+<<<<<<< HEAD
             String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.toString());
+=======
+            String extenderString = ArtemisActivity.selectedExtender == null ? "" : (" + " + ArtemisActivity.selectedExtender.getModel());
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
             ((TextView) findViewById(R.id.lensMakeText)).setText(lensMake + extenderString);
             setLensMakeTextAnimation();
         } else {
@@ -4556,6 +4583,13 @@ public class ArtemisActivity extends Activity implements
                     String modelName = getModelFromCode(data.getIntExtra("model", 0));
                     setup3DModels(modelName);
                 }
+<<<<<<< HEAD
+=======
+            } else if(resultCode == RESULT_CANCELED) {
+                findViewById(R.id.editVirtualStandInMenu).setVisibility(View.GONE);
+                mainMenu.setVisibility(View.VISIBLE);
+                TouchController.isEditing = false;
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
             }
         }
     }
@@ -4950,6 +4984,19 @@ public class ArtemisActivity extends Activity implements
         }
 
         return false;
+    }
+
+    @Override
+    public void finish() {
+        deleteModelFile();
+        super.finish();
+    }
+
+    public void deleteModelFile(){
+        File modelFile = ImageUtils.getModelFile(getApplicationContext());
+        if (modelFile.exists()) {
+            modelFile.delete();
+        }
     }
 
     private void openArtemisAboutView() {

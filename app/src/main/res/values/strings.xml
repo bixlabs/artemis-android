@@ -355,6 +355,11 @@
     <string name="delete_frameline">Delete frameline</string>
     <string name="delete">Delete</string>
     <string name="remove_extender">Remove extender</string>
+<<<<<<< HEAD
 >>>>>>> cf3855e (add lens extender and framelines)
+=======
+    <string name="save_witout_details">Save without details</string>
+    <string name="discard_video">Discard</string>
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
 
 </resources>

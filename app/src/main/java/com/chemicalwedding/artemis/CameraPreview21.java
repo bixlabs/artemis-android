@@ -306,6 +306,9 @@ public class CameraPreview21 extends Fragment {
                 this.scaleFactor = _artemisMath.calculateFullscreenZoomRatio();
             }
             if (scaleFactor > 1f) {
+                if(origin == null && mTextureView != null) {
+                    configureTransform(mTextureView.getWidth(), mTextureView.getHeight());
+                }
                 endTransform.preConcat(origin);
 
                 endTransform.postScale(scaleFactor, scaleFactor, _artemisMath
@@ -325,7 +328,7 @@ public class CameraPreview21 extends Fragment {
             float extenderFactor = 1f;
 
             if (ArtemisActivity.selectedExtender != null) {
-                extenderFactor = ArtemisActivity.selectedExtender.getFactor();
+                extenderFactor = ArtemisActivity.selectedExtender.getMagnification();
             }
             float lensAdapterFactor = ArtemisMath.lensAdapterFactor;
 

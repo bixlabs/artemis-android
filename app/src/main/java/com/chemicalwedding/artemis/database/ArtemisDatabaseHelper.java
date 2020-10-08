@@ -16,12 +16,14 @@ import android.graphics.Color;
 import android.util.Log;
 import android.util.Pair;
 
+import com.chemicalwedding.artemis.model.Extender;
 import com.chemicalwedding.artemis.model.Frameline;
 import com.chemicalwedding.artemis.model.FramelineRate;
 import com.parse.ParseObject;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -39,6 +41,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 =======
     private static final int DB_VERSION = 16;
 >>>>>>> 178ddf9 (Save custom look finished)
+=======
+    private static final int DB_VERSION = 17;
+>>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -216,6 +221,62 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         return cameraSensors;
     }
 
+    public ArrayList<String> getExtenderManufacturers() {
+        Cursor cursor = _artemisDatabase.query(true, "ZEXTENDERS",
+                new String[] { "zextmanufacturer" }, null,
+                null, null, null, "zextenderorder", null);
+        ArrayList<String> extenders = new ArrayList<>();
+        while(cursor.moveToNext()){
+            extenders.add(cursor.getString(0));
+        }
+        cursor.close();
+        return extenders;
+    }
+
+    public ArrayList<Extender> getExtenderForManufacturer(String manufacturer) {
+        Cursor cursor = _artemisDatabase.query(true, "ZEXTENDERS",
+                new String[] { "z_pk", "zextmanufacturer", "zmodel", "zmagnification", "zsqueezeextender", "zextenderorder" },
+                "zextmanufacturer = ?", new String [] { manufacturer },
+                null, null, "zextenderorder", null);
+        ArrayList<Extender> models = new ArrayList<>();
+
+        while(cursor.moveToNext()){
+            Extender extender = new Extender();
+            extender.setId(cursor.getInt(0));
+            extender.setManufacturer(cursor.getString(1));
+            extender.setModel(cursor.getString(2));
+            extender.setMagnification(cursor.getFloat(3));
+            extender.setSqueeze(cursor.getFloat(4));
+            extender.setOrder(cursor.getInt(5));
+
+            models.add(extender);
+        }
+        cursor.close();
+        return models;
+    }
+
+    public Extender getExtenderById(int id) {
+        Cursor cursor = _artemisDatabase.query("zextenders",
+                new String[] { "z_pk", "zextmanufacturer", "zmodel", "zmagnification", "zsqueezeextender", "zextenderorder" },
+                "z_pk = ?", new String[] { "" + id  }, null, null, null);
+
+        if(cursor.moveToFirst()) {
+            Extender extender = new Extender();
+            extender.setId(cursor.getInt(0));
+            extender.setManufacturer(cursor.getString(1));
+            extender.setModel(cursor.getString(2));
+            extender.setMagnification(cursor.getFloat(3));
+            extender.setSqueeze(cursor.getFloat(4));
+            extender.setOrder(cursor.getInt(5));
+
+            cursor.close();
+            return extender;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
     public ArrayList<String> getCameraSensorsForManufacturer(String cameraManufacturer) {
         // get distinct camera sensors for format
         Cursor cursor = _artemisDatabase.query(true, CAMERA_TABLE,
@@ -228,6 +289,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return cameraSensors;
     }
+
 
     public ArrayList<Pair<Integer, String>> getCameraRatiosForSensor(
             String cameraFormat, String sensor) {
@@ -517,6 +579,15 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 " \"ZGREEN\" FLOAT, " +
                 " \"ZBLUE\" FLOAT " +
                 ");");
+
+        db.execSQL("CREATE TABLE zextenders(\n" +
+                "   z_pk             INTEGER  NOT NULL PRIMARY KEY \n" +
+                "  ,zextmanufacturer VARCHAR(22) NOT NULL\n" +
+                "  ,zmodel           VARCHAR(48) NOT NULL\n" +
+                "  ,zmagnification   NUMERIC(5,3) NOT NULL\n" +
+                "  ,zsqueezeextender NUMERIC(4,2) NOT NULL\n" +
+                "  ,zextenderorder   INTEGER  NOT NULL\n" +
+                ")");
 
         if (createCustomTables) {
             db.execSQL("CREATE TABLE ZCUSTOMCAMERA ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZSENSORWIDTH FLOAT, ZSENSORHEIGHT FLOAT, ZSQUEEZERATIO FLOAT, ZCAMERANAME VARCHAR );");

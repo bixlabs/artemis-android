@@ -582,7 +582,7 @@ public class ArtemisMath {
 		float extenderFactor = 1f;
 
 		if(ArtemisActivity.selectedExtender != null) {
-			extenderFactor = ArtemisActivity.selectedExtender.getFactor();
+			extenderFactor = ArtemisActivity.selectedExtender.getMagnification();
 		}
 
 		return (currentGreenBox.width() * lensAdapterFactor * extenderFactor / hwidth * lensAdapterFactor * extenderFactor);

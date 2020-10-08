@@ -10,6 +10,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.chemicalwedding.artemis.ArtemisActivity;
 import com.chemicalwedding.artemis.R;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Camera;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
@@ -63,12 +64,15 @@ public class TouchController {
     private float[] vector = new float[4];
     private float[] rotationVector = new float[4];
     private float previousRotationSquare;
+    public static boolean isEditing = false;
 
     private boolean isRotating3DObject = false;
     final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
         @Override
         public void onLongPress(MotionEvent event) {
-            Log.e("", "Longpress detected");
+            if(!isEditing) {
+                isEditing = true;
+            }
             if(view.getModelActivity().findViewById(R.id.editVirtualStandInMenu).getVisibility() == View.GONE) {
                 view.getModelActivity().findViewById(R.id.editVirtualStandInMenu).setVisibility(View.VISIBLE);
                 view.getModelActivity().findViewById(R.id.mainMenu).setVisibility(View.GONE);
@@ -76,18 +80,19 @@ public class TouchController {
         }
     });
 
-    private class ZoomDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    private class RotationDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
             float zoomFactor = detector.getScaleFactor() - 1;
             Log.e(TAG, "onScale: scaleFactor: " + zoomFactor);
             SceneLoader scene = view.getModelActivity().getScene();
             Object3DData object = scene.getSelectedObject();
+            zoomFactor = zoomFactor > 0f ? 1f : -1f;
             if(object != null) {
-                object.setRotationY( object.getRotationY() + zoomFactor * 50);
+                object.setRotationY( object.getRotationY() + (zoomFactor) );
                 Object3DData box = mRenderer.boundingBoxes.get(object);
                 if(box != null) {
-                    box.setRotationY( box.getRotationY() + zoomFactor * 50);
+                    box.setRotationY( box.getRotationY() + (zoomFactor));
                 }
             }
             return true;
@@ -105,7 +110,8 @@ public class TouchController {
             if(object != null) {
                 float[] currentScale = object.getScale();
 
-                zoomFactor *= 25;
+                zoomFactor = zoomFactor > 0f ? 1f : -1f;
+//                zoomFactor *= 25;
 
                 Log.e(TAG, "x: " + currentScale[0] );
                 Log.e(TAG, "y: " + currentScale[1] );
@@ -119,7 +125,9 @@ public class TouchController {
                     currentScale[1] += zoomFactor;
                     currentScale[2] += zoomFactor;
                     object.setScale(currentScale);
-                    Object3DData box = mRenderer.boundingBoxes.get(object);
+                    mRenderer.boundingBoxes.remove(object);
+                    Object3DData box = Object3DBuilder.buildBoundingBox(object);
+                    mRenderer.boundingBoxes.put(object, box);
                     if (box != null) {
                         float[] boxScale = box.getScale();
 
@@ -127,9 +135,9 @@ public class TouchController {
                         Log.e(TAG, "current box y: " + boxScale[1] );
                         Log.e(TAG, "current box z: " + boxScale[2] );
 
-                        boxScale[0] += zoomFactor / 4;
-                        boxScale[1] += zoomFactor / 4;
-                        boxScale[2] += zoomFactor / 4;
+                        boxScale[0] += zoomFactor;
+                        boxScale[1] += zoomFactor;
+                        boxScale[2] += zoomFactor;
                         box.setScale(boxScale);
                     }
                 }
@@ -146,15 +154,22 @@ public class TouchController {
         super();
         this.view = view;
         this.mRenderer = renderer;
-        zoomDetector = new ScaleGestureDetector(view.getContext(), new ZoomDetector());
+        zoomDetector = new ScaleGestureDetector(view.getContext(), new RotationDetector());
         scaleDetector = new ScaleGestureDetector(view.getContext(), new ScaleDetector());
     }
 
     public synchronized boolean onTouchEvent(MotionEvent motionEvent) {
+
+        boolean isOpenGLViewVisible = view.getModelActivity().findViewById(R.id.openGlContainer).getVisibility() == View.VISIBLE;
+        boolean isLensAdaptersMenuVisible = view.getModelActivity().findViewById(R.id.addLensAdapterView).getVisibility() == View.VISIBLE;
+
+        if(isOpenGLViewVisible && isLensAdaptersMenuVisible) {
+            ((ArtemisActivity) view.getModelActivity()).hideLensAdapterViewAndShowMainMenu();
+        }
+
         // MotionEvent reports input details from the touch screen
         // and other input controls. In this case, you are only
         // interested in events where the touch position changed.
-
         switch (motionEvent.getActionMasked()) {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
@@ -272,7 +287,7 @@ public class TouchController {
             scene.processMove(dx1, dy1);
             Camera camera = scene.getCamera();
             if (pointerCount == 1 && currentPress1 > 4.0f) {
-            } else if (pointerCount == 1) {
+            } else if (pointerCount == 1 && isEditing) {
                 touchStatus = TOUCH_STATUS_MOVING_WORLD;
                 dx1 = (float)(dx1 / max * Math.PI * 2);
                 dy1 = (float)(dy1 / max * Math.PI * 2);
@@ -295,9 +310,9 @@ public class TouchController {
 
                 isRotating3DObject = xLength > yLength;
 
-                if(!isRotating3DObject) {
+                if(!isRotating3DObject && isEditing) {
                     scaleDetector.onTouchEvent(motionEvent);
-                } else {
+                } else if(isEditing) {
                     zoomDetector.onTouchEvent(motionEvent);
                 }
             }

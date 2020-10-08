@@ -1,13 +1,17 @@
 package com.chemicalwedding.artemis;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.os.CancellationSignal;
 import android.provider.MediaStore;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
+import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,9 +101,22 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
                 holder.imageView.setImageBitmap(imageBitmap);
                 holder.movieIconContainer.setVisibility(View.INVISIBLE);
             } else {
-                Bitmap videoPreviewBitmap = ThumbnailUtils.createVideoThumbnail(mediaFile.getAbsolutePath(), MediaStore.Video.Thumbnails.MICRO_KIND);
-                holder.imageView.setImageBitmap(videoPreviewBitmap);
-                holder.movieIconContainer.setVisibility(View.VISIBLE);
+                Size mSize = new Size(640, 640);
+                CancellationSignal ca = new CancellationSignal();
+                try {
+                    Bitmap bitmapThumbnail = ThumbnailUtils.createVideoThumbnail(mediaFile.getAbsolutePath(), MediaStore.Video.Thumbnails.MINI_KIND);
+                    holder.imageView.setImageBitmap(bitmapThumbnail);
+                    holder.movieIconContainer.setVisibility(View.VISIBLE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    try {
+                        Bitmap bitmap = retriveVideoFrameFromVideo(mediaFile.getAbsolutePath());
+                        holder.imageView.setImageBitmap(bitmap);
+                        holder.movieIconContainer.setVisibility(View.VISIBLE);
+                    }  catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                }
             }
 
             try {
@@ -140,5 +157,43 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
             movieIcon = view.findViewById(R.id.photo_row_movie_icon);
             movieIconContainer = view.findViewById(R.id.photo_row_movie_icon_container);
         }
+    }
+
+    /**
+     * Retrieve video frame image from given video path
+     *
+     * @param p_videoPath
+     *            the video file path
+     *
+     * @return Bitmap - the bitmap is video frame image
+     *
+     * @throws Throwable
+     */
+    @SuppressLint("NewApi")
+    public static Bitmap retriveVideoFrameFromVideo(String p_videoPath)
+            throws Throwable
+    {
+        Bitmap m_bitmap = null;
+        MediaMetadataRetriever m_mediaMetadataRetriever = null;
+        try
+        {
+            m_mediaMetadataRetriever = new MediaMetadataRetriever();
+            m_mediaMetadataRetriever.setDataSource(p_videoPath);
+            m_bitmap = m_mediaMetadataRetriever.getFrameAtTime();
+        }
+        catch (Exception m_e)
+        {
+            throw new Throwable(
+                    "Exception in retriveVideoFrameFromVideo(String p_videoPath)"
+                            + m_e.getMessage());
+        }
+        finally
+        {
+            if (m_mediaMetadataRetriever != null)
+            {
+                m_mediaMetadataRetriever.release();
+            }
+        }
+        return m_bitmap;
     }
 }

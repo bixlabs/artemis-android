@@ -2,16 +2,25 @@
 
     <style name="ArtemisFullscreen" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:textColor">@color/orangeArtemisText</item>
+        <item name="colorControlActivated">@color/orangeArtemisText</item>
+        <item name="colorControlHighlight">@color/orangeArtemisText</item>
+        <item name="colorControlNormal">@color/orangeArtemisText</item>
+        <item name="android:colorAccent">@color/orangeArtemisText</item>
     </style>
 
     <style name="ArtemisSysBar" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:textColor">@color/orangeArtemisText</item>
+        <item name="android:colorAccent">@color/orangeArtemisText</item>
+        <item name="colorControlActivated">@color/orangeArtemisText</item>
+        <item name="colorControlHighlight">@color/orangeArtemisText</item>
+        <item name="colorControlNormal">@color/orangeArtemisText</item>
     </style>
 
     <style name="MyEditText">
         <item name="colorControlActivated">@color/orangeArtemisText</item>
         <item name="colorControlHighlight">@color/orangeArtemisText</item>
     </style>
-
 
 </resources>

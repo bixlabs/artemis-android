@@ -13,7 +13,15 @@
             android:id="@+id/video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            >
+
+            <include
+                android:id="@+id/videoMetadataIntro"
+                layout="@layout/video_metadata_intro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
+        </com.google.android.exoplayer2.ui.PlayerView>
     </RelativeLayout>
 
     <LinearLayout
@@ -33,7 +41,7 @@
             android:id="@+id/saveVideoCancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" />
+            android:text="@string/discard_video" />
 
         <View
             android:layout_width="30dip"
@@ -42,7 +50,7 @@
             />
 
         <Button
-            android:id="@+id/saveVideoButton"
+            android:id="@+id/saveVideoAndEditButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save_video" />
@@ -54,16 +62,18 @@
             />
 
         <Button
-            android:id="@+id/saveVideoAndEditButton"
+            android:id="@+id/saveVideoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save_and_edit" />
+            android:text="@string/save_witout_details" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:layout_weight="2"
             />
+
     </LinearLayout>
+
 </FrameLayout>
 
