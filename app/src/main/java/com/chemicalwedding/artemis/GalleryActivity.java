@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chemicalwedding.artemis.database.MediaFile;
@@ -87,6 +88,7 @@ public class GalleryActivity extends Activity {
         final Button selectNoneButton = findViewById(R.id.select_none_galleryselector);
         final ImageButton deletePhotosButton = findViewById(R.id.delete_photos_galleryselector);
         final TextView counterTextView = findViewById(R.id.counter_galleryselector);
+        final ImageView backButton = findViewById(R.id.back_button);
         selectAllButton.setAlpha(0.5f);
         selectAllButton.setEnabled(false);
         selectNoneButton.setAlpha(0.5f);
@@ -172,6 +174,13 @@ public class GalleryActivity extends Activity {
                         })
                         .setNegativeButton("No", null)
                         .show();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GalleryActivity.this.finish();
             }
         });
 

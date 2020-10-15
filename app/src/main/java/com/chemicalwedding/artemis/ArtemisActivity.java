@@ -832,7 +832,7 @@ public class ArtemisActivity extends Activity implements
 
             locationProvider = locationManager.getBestProvider(criteria, true);
             if (locationProvider != null
-                    && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 lastKnownLocation = locationManager
                         .getLastKnownLocation(locationProvider);
                 Log.d(TAG, "Last known location is "
@@ -1205,6 +1205,47 @@ public class ArtemisActivity extends Activity implements
                         }
                     }
                 });
+
+        findViewById(R.id.menu_reset_all).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog dialog = new AlertDialog.Builder(ArtemisActivity.this)
+                        .setMessage(R.string.reset_to_default_settings)
+                        .setTitle(R.string.reset_artemis_settings)
+                        .setPositiveButton(R.string.ok,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        SharedPreferences settings = ArtemisActivity.this
+                                                .getSharedPreferences(
+                                                        ArtemisPreferences.class
+                                                                .getSimpleName(),
+                                                        MODE_PRIVATE);
+                                        settings.edit().clear().commit();
+                                    }
+                                })
+                        .setNegativeButton(R.string.cancel,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).create();
+                dialog.show();
+            }
+        });
+
+        findViewById(R.id.menu_report_bug).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
+                        Uri.fromParts("mailto", "android@chemicalwedding.tv", null));
+                startActivity(Intent.createChooser(emailIntent,
+                        getString(R.string.email_support)));
+            }
+        });
 
         ((SearchView) findViewById(R.id.cameraSearch))
                 .setOnQueryTextListener(new CameraSearchQueryTextListener());

@@ -188,8 +188,8 @@ public class ArtemisMath {
 
 	public void calculateRectBoxesAndLabelsForLenses() {
 
-		int lowerMargin = (int) (screenHeight * 0.899f);
-		int topMargin = (int) (screenHeight * 0.037f);
+		int lowerMargin = screenHeight;
+		int topMargin = 0;
 
 		_currentLensBoxes.clear();
 
