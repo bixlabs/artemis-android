@@ -2342,6 +2342,27 @@ public class ArtemisActivity extends Activity implements
         }
     }
 
+    private void setCustomCamera(int selectedCameraRowId, SharedPreferences artemisPrefs) {
+        CustomCamera selectedCustomCamera = _artemisDBHelper
+                .getCustomCameraDetailsForRowId(-selectedCameraRowId);
+
+        if (selectedCustomCamera == null) {
+            int defaultCameraRowId = _artemisDBHelper.findDefaultCameraID();
+            setSelectedCamera(defaultCameraRowId, false, false);
+            artemisPrefs.edit().putInt(ArtemisPreferences.SELECTED_CAMERA_ROW, Integer.MAX_VALUE).apply();
+        } else {
+            Log.v(TAG, String.format("Custom cam loaded on start: %s",
+                    selectedCustomCamera));
+
+            _selectedCamera = new Camera(selectedCustomCamera);
+            tempSelectedCamera = _selectedCamera;
+            _artemisMath.setSelectedCamera(_selectedCamera);
+            _cameraDetailsText.setText(selectedCustomCamera.getName() + " "
+                    + _selectedCamera.getRatio());
+            setCameraDetailsTextAnimation();
+        }
+    }
+
     protected void initCameraAndLensSelection() {
         SharedPreferences artemisPrefs = getApplication().getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), MODE_PRIVATE);
@@ -2363,21 +2384,7 @@ public class ArtemisActivity extends Activity implements
             // Id is above 0, this is a normal Camera from the Camera's table
             setSelectedCamera(selectedCameraRowId, false, false);
         } else {
-            // Set custom camera
-            CustomCamera selectedCustomCamera = _artemisDBHelper
-                    .getCustomCameraDetailsForRowId(-selectedCameraRowId);
-
-            Log.v(TAG, String.format("Custom cam loaded on start: %s",
-                    selectedCustomCamera));
-
-            _selectedCamera = new Camera(selectedCustomCamera);
-            tempSelectedCamera = _selectedCamera;
-            _artemisMath.setSelectedCamera(_selectedCamera);
-//            lensMake = DEFAULT_LENS_MAKE;
-            _cameraDetailsText.setText(selectedCustomCamera.getName() + " "
-                    + _selectedCamera.getRatio());
-            String text = selectedCustomCamera.getName() + " " + _selectedCamera.getRatio();
-            setCameraDetailsTextAnimation();
+            setCustomCamera(selectedCameraRowId, artemisPrefs);
         }
 
         if (selectedZoomLensPK < 0) {
