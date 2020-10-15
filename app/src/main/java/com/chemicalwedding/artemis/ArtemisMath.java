@@ -546,9 +546,10 @@ public class ArtemisMath {
 		}
 		if (firstMeaningfulLens > -1) {
 			_selectedLensIndex = firstMeaningfulLens;
-		} else if (_selectedLenses.size() > 0) {
+		} else if (_selectedLenses != null && _selectedLenses.size() > 0) {
 			_selectedLensIndex = _selectedLenses.size() - 1;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if(_selectedLenses.size() < _selectedLensIndex) {
 			_selectedLensIndex = 0;
@@ -556,6 +557,13 @@ public class ArtemisMath {
 =======
 >>>>>>> f04402c (Fix: select first meaningfull lens)
 		if (_selectedLenses.size() > 0) {
+=======
+
+		if (_selectedLenses != null && _selectedLenses.size() > 0) {
+			if (_selectedLensIndex >= _selectedLenses.size()) {
+				_selectedLensIndex = _selectedLenses.size() - 1;
+			}
+>>>>>>> 0fe34b7 (Fix: Videos disappear when artemis external directory is enabled from settings.)
 			_selectedLens = _selectedLenses.get(_selectedLensIndex);
 		}
 	}

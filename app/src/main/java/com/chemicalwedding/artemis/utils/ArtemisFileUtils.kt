@@ -21,7 +21,7 @@ class ArtemisFileUtils {
             context.grantUriPermission(context.packageName, uri, flags)
         }
 
-        private fun ensureArtemisDir(context: Context): String {
+        fun ensureArtemisDir(context: Context): String {
             val savePath = File(context.filesDir, ArtemisPathChild)
 
             if (!savePath.exists()) {
@@ -56,6 +56,9 @@ class ArtemisFileUtils {
             return file
         }
 
+        fun hasExternalDir(): Boolean {
+            return externalDir.isNotEmpty();
+        }
 
         fun ensureSaveDir(context: Context): String {
             if (externalDir.isEmpty()) {

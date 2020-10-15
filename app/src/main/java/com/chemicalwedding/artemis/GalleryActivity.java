@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
 import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
+import com.chemicalwedding.artemis.utils.FileUtils;
 
 import java.io.File;
 import java.net.URLConnection;
@@ -191,6 +192,24 @@ public class GalleryActivity extends Activity {
         selectedPhotosCounter.setText(String.valueOf(mAdapter.selectedFiles.size()));
     }
 
+    private List<File> loadFilesFromExternalStorageIfConfigured() {
+        if(!ArtemisFileUtils.Companion.hasExternalDir()) {
+            return new ArrayList<>();
+        }
+
+        String path = ArtemisFileUtils.Companion.ensureSaveDir(this);
+        File directory = new File(path);
+        File[] files = directory.listFiles();
+        return Arrays.asList(files);
+    }
+
+    private List<File> loadFilesFromInternalStorage() {
+        String folder = ArtemisFileUtils.Companion.ensureArtemisDir(this);
+        File directory = new File(folder);
+        File[] files = directory.listFiles();
+        return Arrays.asList(files);
+    }
+
     private void loadGalleryData() {
 <<<<<<< HEAD
         SharedPreferences artemisPrefs = getApplication()
@@ -217,19 +236,22 @@ public class GalleryActivity extends Activity {
                             ArtemisPreferences.class.getSimpleName(),
                             MODE_PRIVATE);
 
-                String folder = ArtemisFileUtils.Companion.ensureSaveDir(this);
-
-                mediaList.clear();
-                File directory = new File(folder);
                 Comparator<File> comparator = new Comparator<File>() {
                     @Override
                     public int compare(File o1, File o2) {
                         return Long.compare(o2.lastModified(), o1.lastModified());
                     }
                 };
-                File[] files = directory.listFiles();
-                Arrays.sort(files, comparator);
-                Log.d("bixlabs", "Folder size: "+ files.length);
+
+                mediaList.clear();
+                List<File> filesFromInternalStorage = loadFilesFromInternalStorage();
+                List<File> filesFromExternalStorage = loadFilesFromExternalStorageIfConfigured();
+                List<File> files = new ArrayList<>();
+                files.addAll(filesFromInternalStorage);
+                files.addAll(filesFromExternalStorage);
+
+                Collections.sort(files, comparator);
+                Log.d("bixlabs", "Folder size: "+ files.size());
 
                 for (File file : files) {
 <<<<<<< HEAD
