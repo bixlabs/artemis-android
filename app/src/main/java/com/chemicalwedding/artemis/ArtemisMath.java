@@ -20,7 +20,7 @@ public class ArtemisMath {
 	private Camera _selectedCamera;
 	private ArrayList<Lens> _selectedLenses;
 	private Lens _selectedLens;
-	private ArtemisRectF selectedLensBox, currentGreenBox;
+	public ArtemisRectF selectedLensBox, currentGreenBox;
 	private int _selectedLensIndex = 0;
 	int screenWidth, screenHeight;
 

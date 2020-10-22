@@ -47,6 +47,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -60,6 +61,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -2842,6 +2844,7 @@ public class ArtemisActivity extends Activity implements
 >>>>>>> ed0b9bd (Look and feel changes)
             MediaType mediaType = MediaType.VIDEO;
             File file = new File(filePath);
+<<<<<<< HEAD
             MediaFile mediaFile = new MediaFile(file.getName(), file.getAbsolutePath(), new Date(file.lastModified()), mediaType);
 
             videoFileName = mediaFile.getPath();
@@ -2853,6 +2856,39 @@ public class ArtemisActivity extends Activity implements
 
             final int videoWidth = mCameraPreview.videoSize.getWidth();
             final int videoHeight = mCameraPreview.videoSize.getHeight();
+=======
+            ArtemisRectF greenBox = _artemisMath.currentGreenBox;
+            ArtemisRectF selectedLensBox = _artemisMath.getSelectedLensBox();
+            final int previewWidth = mCameraPreview.videoSize.getWidth();
+            final int previewHeight = mCameraPreview.videoSize.getHeight();
+
+            String videoFileName = file.getPath();
+            String videoFileNameCropped = videoFileName.substring(0, videoFileName.lastIndexOf("."));
+            String formatString = videoFileName.substring(videoFileName.lastIndexOf("."));
+
+
+            int screenWidth = _artemisMath.screenWidth;
+            int screenHeight = _artemisMath.screenHeight;
+            RectF test = mCameraPreview.selectedLensVideoCrop != null ? mCameraPreview.selectedLensVideoCrop : selectedLensBox;
+            int cameraOverlayWidth = mCameraOverlay.getWidth();
+            int cameraOverlayHeight = mCameraOverlay.getHeight();
+
+
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            retriever.setDataSource(file.getPath());
+            int videoWidth = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+            int videoHeight = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+            retriever.release();
+            videoFileNameCropped = videoFileNameCropped + "_preview" + formatString;
+
+            RectF outsideBox = _artemisMath.getOutsideBox();
+
+//            Rect cropRect = VideoUtils.calculateCropRect(outsideBox, selectedLensBox, new RectF(0, 0, videoWidth, videoHeight));
+//            file = VideoUtils.cropVideo(file, new File(videoFileNameCropped), cropRect);
+            file = VideoUtils.cropVideo(file, videoWidth, videoHeight,
+                    _artemisMath.screenWidth, _artemisMath.screenHeight,
+                    test, mCameraOverlay.getWidth(), mCameraOverlay.getHeight());
+>>>>>>> 3f58873 (Fix: video quality)
 
 <<<<<<< HEAD
             final float screenWRatio = (float) _artemisMath.screenWidth / _artemisMath.screenHeight;
