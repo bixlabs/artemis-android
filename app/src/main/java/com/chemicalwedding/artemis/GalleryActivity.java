@@ -207,7 +207,11 @@ public class GalleryActivity extends Activity {
         String folder = ArtemisFileUtils.Companion.ensureArtemisDir(this);
         File directory = new File(folder);
         File[] files = directory.listFiles();
-        return Arrays.asList(files);
+        if(files != null) {
+            return Arrays.asList(files);
+        } else {
+            return new ArrayList<File>();
+        }
     }
 
     private void loadGalleryData() {
@@ -245,10 +249,10 @@ public class GalleryActivity extends Activity {
 
                 mediaList.clear();
                 List<File> filesFromInternalStorage = loadFilesFromInternalStorage();
-                List<File> filesFromExternalStorage = loadFilesFromExternalStorageIfConfigured();
+//                List<File> filesFromExternalStorage = loadFilesFromExternalStorageIfConfigured();
                 List<File> files = new ArrayList<>();
                 files.addAll(filesFromInternalStorage);
-                files.addAll(filesFromExternalStorage);
+//                files.addAll(filesFromExternalStorage);
 
                 Collections.sort(files, comparator);
                 Log.d("bixlabs", "Folder size: "+ files.size());

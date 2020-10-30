@@ -276,27 +276,32 @@ public class SaveVideoMetadataActivity extends Activity {
     }
 
     public String saveMetadataIntroVideo(String metadataImageIntroPath, String videoSize) {
-        String videoIntroPath = metadataImageIntroPath.substring(0, metadataImageIntroPath.lastIndexOf(".")) + ".mp4";
+//        String videoIntroPath = metadataImageIntroPath.substring(0, metadataImageIntroPath.lastIndexOf(".")) + ".mp4";
+        File testVideo = ArtemisFileUtils.Companion.newFile(getApplicationContext(), "metadataVideo.mp4");
+        String videoIntroPath = testVideo.getPath();
 
         String[] cmd = {"-f", "lavfi",
                 "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
                 "-loop", "1", "-i", metadataImageIntroPath,
                 "-pix_fmt", "yuv420p", "-t", "2",
-                "-vf", "scale=" + videoSize + ",setsar=1:1,fps=fps=25", videoIntroPath};
+                "-vf", "scale=" + videoSize + ",setsar=1:1,fps=fps=24",
+                "-b:v", "5000k",
+                videoIntroPath};
         int rc = FFmpeg.execute(cmd);
 
 
         if (rc == RETURN_CODE_SUCCESS) {
             Log.i(Config.TAG, "Command execution completed successfully.");
-            File file = new File(metadataImageIntroPath);
-            if (file.exists()) {
-                file.delete();
-            }
         } else if (rc == RETURN_CODE_CANCEL) {
             Log.i(Config.TAG, "Command execution cancelled by user.");
         } else {
             Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
             Config.printLastCommandOutput(Log.INFO);
+        }
+
+        File file = new File(metadataImageIntroPath);
+        if (file.exists()) {
+            file.delete();
         }
 
         return videoIntroPath;
@@ -309,7 +314,9 @@ public class SaveVideoMetadataActivity extends Activity {
 
         String[] cmd = {"-i", metadataVideoIntroPath, "-i", mediaPath,
                 "-filter_complex", "[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]",
-                "-map", "[v]", "-map", "[a]", videoFileNameMetadata};
+                "-map", "[v]", "-map", "[a]",
+                "-b:v", "5000k",
+                videoFileNameMetadata};
         int rc = FFmpeg.execute(cmd);
 
         if (rc == RETURN_CODE_SUCCESS) {
@@ -318,15 +325,15 @@ public class SaveVideoMetadataActivity extends Activity {
             if (file.exists()) {
                 file.delete();
             }
-            file = new File(metadataVideoIntroPath);
-            if (file.exists()) {
-                file.delete();
-            }
         } else if (rc == RETURN_CODE_CANCEL) {
             Log.i(Config.TAG, "Command execution cancelled by user.");
         } else {
             Log.i(Config.TAG, String.format("Command execution failed with rc=%d and the output below.", rc));
             Config.printLastCommandOutput(Log.INFO);
+        }
+        File file = new File(metadataVideoIntroPath);
+        if (file.exists()) {
+            file.delete();
         }
     }
 

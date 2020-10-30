@@ -204,6 +204,7 @@ public class CameraPreview21 extends Fragment {
             Surface previewSurface = new Surface(surfaceTexture);
             Surface recordSurface = mediaRecorder.getSurface();
             captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            captureRequestBuilder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, CameraMetadata.LENS_OPTICAL_STABILIZATION_MODE_OFF);
             selectedLensVideoCrop = _artemisMath.getSelectedLensBox();
 
             if (mCustomLook != null) {
@@ -1262,18 +1263,18 @@ public class CameraPreview21 extends Fragment {
                 }
 
 
-//                videoSize = chooseOptimalSize(map.getOutputSizes(MediaRecorder.class),
-//                        width, height, maxPreviewWidth, maxPreviewHeight, largest
-//                );
-                Size[] sizes = map.getOutputSizes(MediaRecorder.class);
+                videoSize = chooseOptimalSize(map.getOutputSizes(MediaRecorder.class),
+                        width, height, maxPreviewWidth, maxPreviewHeight, largest
+                );
+//                Size[] sizes = map.getOutputSizes(MediaRecorder.class);
 //                videoSize = new Size(1920, 1080);
 //                videoSize = chooseOptimalSize(map.getOutputSizes(MediaRecorder.class),
 //                        1920, 1080, 1920, 1080, largest
 //                );
 
-                videoSize = Collections.max(
-                        Arrays.asList(map.getOutputSizes(MediaRecorder.class)),
-                        new CompareSizesByArea());
+//                videoSize = Collections.max(
+//                        Arrays.asList(map.getOutputSizes(MediaRecorder.class)),
+//                        new CompareSizesByArea());
 
                 previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
                         rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
@@ -2123,16 +2124,17 @@ public class CameraPreview21 extends Fragment {
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
 
-//        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         mediaRecorder.setOutputFile(videoFileName);
-//        mediaRecorder.setVideoEncodingBitRate(1000000);
-//        mediaRecorder.setVideoFrameRate(60);
-//        mediaRecorder.setVideoSize(videoSize.getWidth(), videoSize.getHeight());
-        CamcorderProfile cpHigh = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
-        mediaRecorder.setProfile(cpHigh);
-//        mediaRecorder.setAudioChannels(2);
-//        mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-//        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        mediaRecorder.setVideoEncodingBitRate(5000000);
+        mediaRecorder.setVideoFrameRate(24);
+        mediaRecorder.setVideoSize(videoSize.getWidth(), videoSize.getHeight());
+
+//        CamcorderProfile cpHigh = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
+//        mediaRecorder.setProfile(cpHigh);
+        mediaRecorder.setAudioChannels(2);
+        mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         mediaRecorder.setOnErrorListener(new MediaRecorder.OnErrorListener() {
             @Override
             public void onError(MediaRecorder mr, int what, int extra) {

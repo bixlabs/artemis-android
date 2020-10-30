@@ -3,6 +3,7 @@ package com.chemicalwedding.artemis.utils
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Environment
 import android.util.Log
 import androidx.core.net.toUri
 import java.io.File
@@ -22,7 +23,10 @@ class ArtemisFileUtils {
         }
 
         fun ensureArtemisDir(context: Context): String {
-            val savePath = File(context.filesDir, ArtemisPathChild)
+            var savePath = File(Environment.getExternalStorageDirectory(), ArtemisPathChild)
+            if(externalDir.isNotEmpty()){
+                savePath = File(Environment.getExternalStorageDirectory(), externalDir)
+            }
 
             if (!savePath.exists()) {
                 savePath.mkdirs()
@@ -61,11 +65,11 @@ class ArtemisFileUtils {
         }
 
         fun ensureSaveDir(context: Context): String {
-            if (externalDir.isEmpty()) {
-                return ensureArtemisDir(context)
-            }
-
-            return ensureExternalDir(context, externalDir)
+            return ensureArtemisDir(context)
+//            if (externalDir.isEmpty()) {
+//            }
+//
+//            return ensureExternalDir(context, externalDir)
         }
 
         fun setExternalDir(name: String) {

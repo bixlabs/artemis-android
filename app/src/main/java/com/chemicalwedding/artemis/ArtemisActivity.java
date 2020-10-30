@@ -2951,7 +2951,13 @@ public class ArtemisActivity extends Activity implements
                 file = VideoUtils.watermarkVideo(getApplicationContext(), file, framelinesPng);
             } catch (IOException ex) {
                 ex.printStackTrace();
+<<<<<<< HEAD
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+            } finally {
+                File tmpFile = ArtemisFileUtils.Companion.newFile(getApplicationContext(), "frameline.png");
+                if(tmpFile.exists()) tmpFile.delete();
+>>>>>>> a5ee1a3 (Fix - filesystem problem on Android 11 devices)
             }
             saveBitmapAsJPEG(framelinesBitmap);
 

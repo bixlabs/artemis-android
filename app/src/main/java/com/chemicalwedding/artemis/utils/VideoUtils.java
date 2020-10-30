@@ -26,7 +26,9 @@ public class VideoUtils {
 
 
         String[] complexCommand = {"-i", videoFileName, "-i", imageSource.getPath(), "-filter_complex",
-                "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2", "-c:a", "copy", newVideoFile.getPath()};
+                "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2", "-c:a", "copy",
+                "-b:v", "5000k",
+                newVideoFile.getPath()};
 
         return executeFFmpegCommand(videoSource, newVideoFile, complexCommand);
     }
@@ -57,6 +59,7 @@ public class VideoUtils {
         String[] cmd = { "-i", source.getPath(), "-filter:v",
                 "crop=" + cropRect.width() + ":" + cropRect.height() +
                         ":" + cropRect.left + ":" + cropRect.top,
+                "-b:v", "5000k",
                 "-c:a", "copy",  // audio stream copied to avoid re-encoding
                 dest.getPath()
         };
@@ -93,7 +96,8 @@ public class VideoUtils {
                 "crop=" + cropVideoInputToScreen +
                         ",scale=" + scaleScreenSize +
                         ",crop=" + cropVideoToSelectedBox +
-                        ",setsar=1:1, fps=fps=60",
+                        ",setsar=1:1, fps=fps=24",
+                "-b:v", "5000k",
                 "-c:a", "copy", videoFileNameCropped};
 
         return executeFFmpegCommand(source, new File(videoFileNameCropped), cmd);
