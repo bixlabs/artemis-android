@@ -1553,6 +1553,20 @@ public class CameraPreview21 extends Fragment {
         }
     }
 
+    private void closeRecordSession() {
+        try {
+            if(mCaptureSession != null) {
+                mCaptureSession.abortCaptures();
+                mCaptureSession.close();
+                mCaptureSession = null;
+            }
+
+//            createCameraPreviewSession();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * Starts a background thread and its {@link android.os.Handler}.
      */
@@ -2153,8 +2167,9 @@ public class CameraPreview21 extends Fragment {
         mediaRecorder.stop();
         mediaRecorder.reset();
         HashMap<String, String> cameraMeta = buildMetadataAttributes();
-        closeCamera();
-        openCamera(mTextureView.getWidth(), mTextureView.getHeight());
+//        closeCamera();
+//        openCamera(mTextureView.getWidth(), mTextureView.getHeight());
+        closeRecordSession();
         recordingCallback.recordingStopped(videoFileName, cameraMeta);
     }
 

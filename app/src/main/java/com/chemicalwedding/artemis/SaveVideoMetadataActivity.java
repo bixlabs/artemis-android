@@ -16,11 +16,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.FFmpeg;
+import com.bumptech.glide.Glide;
 import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
+import com.chemicalwedding.artemis.utils.ImageUtils;
 
 import org.jcodec.containers.mp4.boxes.MetaValue;
 import org.jcodec.movtool.MetadataEditor;
@@ -61,6 +64,10 @@ public class SaveVideoMetadataActivity extends Activity {
         mediaTypeString = bundle.getString("fullScreenMediaType");
         metadata = (HashMap) bundle.getSerializable("metadata");
 
+        Glide.with(this)
+                .load(R.raw.loading)
+                .into((ImageView) findViewById(R.id.loadingIndicator));
+
         SharedPreferences artemisPrefs = getSharedPreferences(
                 ArtemisPreferences.class.getSimpleName(), Context.MODE_PRIVATE);
         Button cancelButton = findViewById(R.id.cancelVideoMetadata);
@@ -73,7 +80,6 @@ public class SaveVideoMetadataActivity extends Activity {
             @Override
             public void onClick(View v) {
                 saveVideoMetadata(artemisPrefs, true, videoTitleTextView.getText().toString());
-                finish();
             }
         });
 
@@ -87,8 +93,9 @@ public class SaveVideoMetadataActivity extends Activity {
     }
 
     private void saveVideoMetadata(SharedPreferences artemisPrefs, Boolean withIntro, String videoTitle){
-        HashMap<String, String> newMeta = new HashMap<>();
+        findViewById(R.id.loadingIndicatorContainer).setVisibility(View.VISIBLE);
 
+        HashMap<String, String> newMeta = new HashMap<>();
         String videoNotes = artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, "");
         String videoContactName = artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, "");
         String videoContactEmail = artemisPrefs.getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, "");
@@ -162,7 +169,7 @@ public class SaveVideoMetadataActivity extends Activity {
             metadata.put(ExifInterface.TAG_GPS_LONGITUDE_REF, metadata.get(ExifInterface.TAG_GPS_LONGITUDE_REF));
 
             // Video intro
-            String[] gpsDetailsAndLocation = ArtemisActivity.getGPSLocationDetailStrings(this);
+            String[] gpsDetailsAndLocation = ArtemisActivity.getGPSLocationDetailStrings(SaveVideoMetadataActivity.this);
             TextView locationTextView = findViewById(R.id.locationVideoMetadata);
             if (showGpsCoordinates) {
                 locationTextView.setText(gpsDetailsAndLocation[0]);
@@ -201,44 +208,60 @@ public class SaveVideoMetadataActivity extends Activity {
             // Video intro
             sunriseAndSunsetTextView.setText(sunriseAndSunsetDate);
         }
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
 
-        if (withIntro) {
-            // Add 2 secs clip with metadata info
-            View pictureMetadataView = findViewById(R.id.videoMetadataIntro);
-            Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
-            Log.i("MetadataView width", String.valueOf(pictureMetadataView.getWidth()));
-            Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
-            String metadataImageIntroPath = saveMetadataIntroPicture(blankBmp);
+                if (withIntro) {
+                    // Add 2 secs clip with metadata info
+                    View pictureMetadataView = findViewById(R.id.videoMetadataIntro);
+                    Log.i("MetadataView height", String.valueOf(pictureMetadataView.getHeight()));
+                    Log.i("MetadataView width", String.valueOf(pictureMetadataView.getWidth()));
 
-            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-            retriever.setDataSource(mediaPath);
-            int videoWidth = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
-            int videoHeight = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
-            retriever.release();
-            String videoSize = videoWidth + ":" + videoHeight;
-            String metadataVideoIntroPath = saveMetadataIntroVideo(metadataImageIntroPath, videoSize);
+                    MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                    retriever.setDataSource(mediaPath);
+                    int videoWidth = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+                    int videoHeight = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+                    Bitmap blankBmp = getBitmapFromView(pictureMetadataView);
+                    String metadataImageIntroPath = saveMetadataIntroPicture(blankBmp);
+                    retriever.release();
+                    String videoSize = videoWidth + ":" + videoHeight;
+                    String metadataVideoIntroPath = saveMetadataIntroVideo(metadataImageIntroPath, videoSize);
 
-            insertIntroToVideo(metadataVideoIntroPath);
-        }
+                    insertIntroToVideo(metadataVideoIntroPath);
+                }
 
-        // Save preferences
-        SharedPreferences.Editor editor = artemisPrefs.edit();
-        editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, videoTitle);
-        editor.commit();
+                // Save preferences
+                SharedPreferences.Editor editor = artemisPrefs.edit();
+                editor.putString(ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, videoTitle);
+                editor.commit();
 
-        // Save metadata
-        try {
-            MetadataEditor metadataEditor = MetadataEditor.createFrom(new File(mediaPath));
-            Map<String, MetaValue> meta = metadataEditor.getKeyedMeta();
+                // Save metadata
+                try {
+                    MetadataEditor metadataEditor = MetadataEditor.createFrom(new File(mediaPath));
+                    Map<String, MetaValue> meta = metadataEditor.getKeyedMeta();
 
-            for(String key: newMeta.keySet()) {
-                meta.put(key, MetaValue.createString(newMeta.get(key)));
+                    for(String key: newMeta.keySet()) {
+                        meta.put(key, MetaValue.createString(newMeta.get(key)));
+                    }
+
+                    metadataEditor.save(false);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.loadingIndicatorContainer).setVisibility(View.GONE);
+                        finish();
+                    }
+                });
             }
+        };
 
-            metadataEditor.save(false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     public Bitmap getBitmapFromView(View view) {

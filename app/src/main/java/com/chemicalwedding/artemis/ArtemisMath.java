@@ -534,17 +534,17 @@ public class ArtemisMath {
 	}
 
 	public void selectFirstMeaningFullLens() {
-		if (this._selectedLenses != null && !this._selectedLenses.isEmpty()) {
-			int index = 0;
-			for (Lens lens: this._selectedLenses) {
-				if (lens.getFL()-0.5 > _largestViewableFocalLength) {
-					firstMeaningfulLens = index;
-					break;
-				}
-				++index;
-			}
-		}
-		if (firstMeaningfulLens > -1) {
+//		if (this._selectedLenses != null && !this._selectedLenses.isEmpty()) {
+//			int index = 0;
+//			for (Lens lens: this._selectedLenses) {
+//				if (lens.getFL()-0.5 > _largestViewableFocalLength) {
+//					firstMeaningfulLens = index;
+//					break;
+//				}
+//				++index;
+//			}
+//		}
+		if (firstMeaningfulLens > -1 && firstMeaningfulLens < _selectedLenses.size()) {
 			_selectedLensIndex = firstMeaningfulLens;
 		} else if (_selectedLenses != null && _selectedLenses.size() > 0) {
 			_selectedLensIndex = _selectedLenses.size() - 1;

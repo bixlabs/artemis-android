@@ -52,25 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <RelativeLayout
-        android:id="@+id/loadingIndicatorContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparent_alpha"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-        <ImageView
-            android:id="@+id/loadingIndicator"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            ></ImageView>
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/cameraMenuTop"
@@ -641,8 +622,32 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
 </android.support.constraint.ConstraintLayout>
 =======
 </androidx.constraintlayout.widget.ConstraintLayout>
 >>>>>>> 9899aa0 (Migrate to AndroidX. Update target SDK version to 29)
+=======
+    <RelativeLayout
+        android:id="@+id/loadingIndicatorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_alpha"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <ImageView
+            android:id="@+id/loadingIndicator"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            ></ImageView>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 558c8dd (Fix - video metadata now displays correct lens info)

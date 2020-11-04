@@ -2407,7 +2407,7 @@ public class ArtemisActivity extends Activity implements
             }
             Log.d(TAG, "Setting selected lens rowids: " + selectedLensesRowIds);
             setSelectedLenses(selectedLensesRowIds, true, false);
-            _artemisMath.selectFirstMeaningFullLens();
+
             if (selectedLensIndex >= 0 && selectedLensIndex < _selectedLenses.size()) {
                 setSelectedLensIndex(selectedLensIndex);
             }
@@ -2819,12 +2819,14 @@ public class ArtemisActivity extends Activity implements
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    isRecordingVideo = false;
                     recordVideoChronometer.setBase(SystemClock.elapsedRealtime());
                     recordVideoChronometer.stop();
                     recordVideoChronometer.setText("00:00");
                     recordVideoButton.setImageResource(R.drawable.video_icon);
                 }
             });
+<<<<<<< HEAD
 
             isRecordingVideo = false;
 =======
@@ -2842,6 +2844,8 @@ public class ArtemisActivity extends Activity implements
             isRecordingVideo = false;
             recordVideoButton.setImageResource(R.drawable.video_icon);
 >>>>>>> ed0b9bd (Look and feel changes)
+=======
+>>>>>>> 558c8dd (Fix - video metadata now displays correct lens info)
             MediaType mediaType = MediaType.VIDEO;
             File file = new File(filePath);
 <<<<<<< HEAD
@@ -3095,7 +3099,6 @@ public class ArtemisActivity extends Activity implements
                     Intent mediaFulllScreenIntent = new Intent(ArtemisActivity.this, SaveVideoActivity.class);
                     mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     mediaFulllScreenIntent.putExtras(bundle);
-                    reconfigureShutterButton();
                     startActivity(mediaFulllScreenIntent);
                 } else if (saveMetadataToMoviesOptions == SaveMetadataToMoviesOptions.ALWAYS) {
                     Intent videoMetadataIntent = new Intent(ArtemisActivity.this, SaveVideoMetadataActivity.class);
@@ -3105,6 +3108,13 @@ public class ArtemisActivity extends Activity implements
                     startActivity(videoMetadataIntent);
                 }
             }
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    reconfigureShutterButton();
+                }
+            });
 
             return null;
         }
