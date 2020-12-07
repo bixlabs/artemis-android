@@ -147,5 +147,4 @@ public class VirtualStandInActivity extends AppCompatActivity {
         });
 >>>>>>> 77c278d (Fix: 3d models for vehicles)
     }
-
 }

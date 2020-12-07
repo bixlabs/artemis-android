@@ -18,9 +18,11 @@
 		    android:layout_height="wrap_content"
 		    android:hint="@string/custom_camera_name"
 		    android:inputType="textCapWords"
-		    android:maxLines="2"
 		    android:nextFocusDown="@+id/custom_camera_distance"
-		    android:textSize="6pt" />
+			android:maxLines="1"
+			android:imeOptions="actionDone|flagNoFullscreen"
+			android:imeActionLabel="Done"
+			android:textSize="6pt" />
 
 	</LinearLayout>
 
@@ -51,10 +53,12 @@
 		    android:maxLines="1"
 		    android:nextFocusDown="@+id/custom_camera_aspectratio"
 		    android:textSize="6pt"
-		    android:width="100dip" />
+			android:imeOptions="actionDone|flagNoFullscreen"
+			android:imeActionLabel="Done"
+			android:width="100dip" />
 
 		<EditText
-		    android:id="@+id/custom_camera_aspectratio"
+			android:id="@+id/custom_camera_aspectratio"
 		    android:layout_width="150dip"
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="15dip"
@@ -63,7 +67,9 @@
 		    android:inputType="numberDecimal"
 		    android:maxLines="1"
 		    android:nextFocusDown="@+id/save_custom_camera"
-		    android:textSize="6pt" />
+			android:imeOptions="actionDone|flagNoFullscreen"
+			android:imeActionLabel="Done"
+			android:textSize="6pt" />
 
 	</LinearLayout>
 

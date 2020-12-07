@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.util.Size;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,19 +73,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
             holder.checkBox.setVisibility(View.INVISIBLE);
         }
 
-        holder.checkBox.setChecked(selectedFiles.contains(position));
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    selectedFiles.add(position);
-                }else {
+            public void onClick(View v) {
+                if (selectedFiles.contains(position)) {
                     selectedFiles.remove(position);
+                }else {
+                    selectedFiles.add(position);
                 }
                 mOnGalleryCheckboxItemListener.onCheckboxClick(position);
                 Log.i("bixlabs", "Selected files: " + selectedFiles.toString());
             }
         });
+        holder.checkBox.setChecked(selectedFiles.contains(position));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

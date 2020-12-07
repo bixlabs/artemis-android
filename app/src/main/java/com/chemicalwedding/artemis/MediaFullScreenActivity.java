@@ -2,12 +2,14 @@ package com.chemicalwedding.artemis;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chemicalwedding.artemis.database.MediaType;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -66,6 +68,21 @@ public class MediaFullScreenActivity extends Activity {
                 initializePlayer();
             }
         }
+
+        ((TextView) findViewById(R.id.openShotPlanButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mediaFulllScreenIntent = new Intent(MediaFullScreenActivity.this, ShotPlanActivity.class);
+                mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                Bundle bundle = new Bundle();
+                bundle.putString("fullScreenMediaPath", mediaPath);
+                bundle.putString("fullScreenMediaType", mediaTypeString);
+
+                mediaFulllScreenIntent.putExtras(bundle);
+                startActivity(mediaFulllScreenIntent);
+                finish();
+            }
+        });
     }
 
     private void initializePlayer() {

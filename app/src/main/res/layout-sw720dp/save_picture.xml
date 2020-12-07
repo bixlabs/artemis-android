@@ -64,51 +64,6 @@
             android:layout_height="fill_parent"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:layout_marginStart="15dip"
-                android:layout_marginEnd="15dip"
-                android:layout_marginTop="10dip"
-                android:text="@string/metadata_description" />
-
-            <EditText
-                android:id="@+id/imageTitle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dip"
-                android:layout_marginEnd="15dip"
-                android:hint="@string/image_description_hint" />
-
-            <EditText
-                android:id="@+id/imageNotes"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_marginStart="12dip"
-                android:layout_marginEnd="15dip"
-                android:hint="@string/image_note_hint" />
-
-            <EditText
-                android:id="@+id/imageContactName"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_marginStart="12dip"
-                android:layout_marginEnd="15dip"
-                android:hint="@string/image_contact_name_hint" />
-
-            <EditText
-                android:id="@+id/imageContactEmail"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_marginStart="12dip"
-                android:layout_marginEnd="15dip"
-                android:layout_marginBottom="10dip"
-                android:hint="@string/image_contact_email_hint" />
-
             <ScrollView
                 android:id="@+id/ScrollView_save_image"
                 android:layout_width="wrap_content"
@@ -121,6 +76,74 @@
                     android:paddingLeft="15dip"
                     android:paddingRight="15dip"
                     android:stretchColumns="0" >
+
+                    <TableRow android:paddingBottom="10dip" >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:layout_span="2"
+                            android:text="@string/metadata_description" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip">
+
+                        <EditText
+                            android:id="@+id/imageTitle"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/image_description_hint"
+                            android:backgroundTint="@color/orangeArtemisText"
+                            android:theme="@style/MyEditText"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:layout_span="2"
+                            android:imeOptions="actionDone|flagNoFullscreen"
+                            android:imeActionLabel="Done"
+                            />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip">
+                        <EditText
+                            android:id="@+id/imageNotes"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:imeOptions="actionDone|flagNoFullscreen"
+                            android:imeActionLabel="Done"
+                            android:layout_span="2"
+                            android:hint="@string/image_note_hint" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip">
+                        <EditText
+                            android:id="@+id/imageContactName"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:imeOptions="actionDone|flagNoFullscreen"
+                            android:imeActionLabel="Done"
+                            android:layout_span="2"
+                            android:hint="@string/image_contact_name_hint" />
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="10dip">
+                        <EditText
+                            android:id="@+id/imageContactEmail"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:imeOptions="actionDone|flagNoFullscreen"
+                            android:imeActionLabel="Done"
+                            android:layout_span="2"
+                            android:hint="@string/image_contact_email_hint" />
+                    </TableRow>
 
                     <TableRow android:paddingBottom="10dip" >
 

@@ -77,6 +77,14 @@
         >
 >>>>>>> a5ee1a3 (Fix - filesystem problem on Android 11 devices)
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCkEGlc5fHyHWKIFDo8AsKtEjp8XvEEWwc" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -131,6 +139,20 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:theme="@style/ArtemisFullscreen" />
+        <activity
+            android:name=".ShotPlanActivity"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat"
+            />
+        <activity
+            android:name=".MapActivity"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat"
+            />
         <activity
             android:name=".MediaFullScreenActivity"
             android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
@@ -195,7 +217,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

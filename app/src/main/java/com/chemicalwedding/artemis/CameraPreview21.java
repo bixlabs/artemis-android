@@ -61,6 +61,9 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.RggbChannelVector;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.hardware.camera2.params.TonemapCurve;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.CamcorderProfile;
 import android.media.ExifInterface;
 import android.media.Image;
@@ -104,9 +107,13 @@ import com.chemicalwedding.artemis.database.Look;
 import com.chemicalwedding.artemis.model.Frameline;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
+=======
+import com.chemicalwedding.artemis.model.Shotplan;
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
 import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
 >>>>>>> 8bb9eb3 (fixes file permissions management)
 import com.chemicalwedding.artemis.utils.ColorUtils;
@@ -192,6 +199,56 @@ public class CameraPreview21 extends Fragment {
     protected RecordingCallback recordingCallback;
 
     public RectF selectedLensVideoCrop;
+
+    public void preparePreviewForVideo(){
+        if(getActivity() == null || !(getActivity() instanceof ArtemisActivity)) {
+            return;
+        }
+
+        try {
+            SurfaceTexture surfaceTexture = mTextureView.getSurfaceTexture();
+            surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
+            Surface previewSurface = new Surface(surfaceTexture);
+            captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            captureRequestBuilder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, CameraMetadata.LENS_OPTICAL_STABILIZATION_MODE_OFF);
+            selectedLensVideoCrop = _artemisMath.getSelectedLensBox();
+
+            if(mCustomLook != null) {
+                applyCustomLookTo(captureRequestBuilder, mCustomLook);
+            }
+
+            if(selectedEffectInt > 0){
+                captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, selectedEffectInt);
+            }
+
+            captureRequestBuilder.addTarget(previewSurface);
+
+
+            mCameraDevice.createCaptureSession(Arrays.asList(previewSurface),
+                    new CameraCaptureSession.StateCallback() {
+                        @Override
+                        public void onConfigured(@NonNull CameraCaptureSession session) {
+                            try {
+                                session.setRepeatingRequest(
+                                        captureRequestBuilder.build(),
+                                        mCaptureCallback,
+                                        mBackgroundHandler);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onConfigureFailed(@NonNull CameraCaptureSession session) {
+
+                        }
+                    }, null);
+
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void startRecord() {
         if (getActivity() == null || !(getActivity() instanceof ArtemisActivity)) {
             return;
@@ -360,6 +417,7 @@ public class CameraPreview21 extends Fragment {
             bitmap.compress(CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
+            saveShotplan(filePath);
         } catch (FileNotFoundException e) {
             Log.e(logTag, "Picture file could not be created");
             View view = getView();
@@ -409,6 +467,46 @@ public class CameraPreview21 extends Fragment {
 
         MediaScannerConnection.scanFile(getActivity(),
                 new String[]{filePath}, new String[]{"image/jpeg"}, null);
+    }
+
+    private void saveShotplan(String path) {
+        TextView notesTextView = getActivity().findViewById(R.id.notesMetadata);
+
+        SharedPreferences artemisPrefs = getActivity().getApplicationContext()
+                .getSharedPreferences(ArtemisPreferences.class.getSimpleName(),
+                        MODE_PRIVATE);
+
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(true);
+        criteria.setBearingRequired(true);
+        criteria.setCostAllowed(true);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+
+        String locationProvider = locationManager.getBestProvider(criteria, true);
+        Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+
+        String camera = ArtemisActivity._cameraDetailsText.getText().toString();
+        String lens = ArtemisActivity._lensMakeText.getText().toString();
+        String title = artemisPrefs.getString(
+                ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, "");
+        String notes = notesTextView.getText().toString();
+        double latitude = lastKnownLocation.getLatitude();
+        double longitude = lastKnownLocation.getLongitude();
+
+        Shotplan shotplan = new Shotplan(
+                0,
+                path,
+                camera,
+                lens,
+                title,
+                notes,
+                latitude,
+                longitude
+        );
+
+        ((ArtemisActivity) getActivity()).saveShotplan(shotplan);
     }
 
     public static String makeLatLongString(double d) {
@@ -1180,6 +1278,17 @@ public class CameraPreview21 extends Fragment {
         super.onPause();
     }
 
+    public void restartCamera(){
+        closeCamera();
+        stopBackgroundThread();
+        startBackgroundThread();
+        if (mTextureView.isAvailable()) {
+            openCamera(mTextureView.getWidth(), mTextureView.getHeight());
+        } else {
+            mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
+        }
+    }
+
     /**
      * Sets up member variables related to camera.
      *
@@ -1476,6 +1585,10 @@ public class CameraPreview21 extends Fragment {
         try {
             if (!mCameraOpenCloseLock.tryAcquire(6000, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
+            }
+
+            if(ArtemisActivity.preferedCamera != null) {
+                mCameraId = ArtemisActivity.preferedCamera.getId();
             }
             manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
         } catch (CameraAccessException e) {

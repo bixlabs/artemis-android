@@ -5,24 +5,43 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.pdf.PdfDocument;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
 import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
 import com.chemicalwedding.artemis.utils.FileUtils;
+import com.chemicalwedding.artemis.utils.PdfUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,12 +86,17 @@ public class GalleryActivity extends Activity {
             @Override
             public void onCheckboxClick(Integer position) {
                 final ImageButton deletePhotosButton = findViewById(R.id.delete_photos_galleryselector);
+                final ImageButton shareFilesButton = findViewById(R.id.share_files);
                 if (mAdapter.selectedFiles.size() > 0) {
                     deletePhotosButton.setAlpha(1.0f);
                     deletePhotosButton.setEnabled(true);
+                    shareFilesButton.setAlpha(1.0f);
+                    shareFilesButton.setEnabled(true);
                 } else {
                     deletePhotosButton.setAlpha(0.5f);
                     deletePhotosButton.setEnabled(false);
+                    shareFilesButton.setAlpha(0.5f);
+                    shareFilesButton.setEnabled(false);
                 }
                 updateSelectedPhotosCounter();
             }
@@ -88,6 +112,7 @@ public class GalleryActivity extends Activity {
         final Button selectAllButton = findViewById(R.id.select_all_galleryselector);
         final Button selectNoneButton = findViewById(R.id.select_none_galleryselector);
         final ImageButton deletePhotosButton = findViewById(R.id.delete_photos_galleryselector);
+        final ImageButton shareFilesButton = findViewById(R.id.share_files);
         final TextView counterTextView = findViewById(R.id.counter_galleryselector);
         final ImageView backButton = findViewById(R.id.back_button);
         selectAllButton.setAlpha(0.5f);
@@ -96,6 +121,8 @@ public class GalleryActivity extends Activity {
         selectNoneButton.setEnabled(false);
         deletePhotosButton.setAlpha(0.5f);
         deletePhotosButton.setEnabled(false);
+        shareFilesButton.setAlpha(0.5f);
+        shareFilesButton.setEnabled(false);
         counterTextView.setAlpha(0.5f);
         counterTextView.setEnabled(false);
 
@@ -114,16 +141,20 @@ public class GalleryActivity extends Activity {
                     if (mAdapter.selectedFiles.size() > 0) {
                         deletePhotosButton.setAlpha(1.0f);
                         deletePhotosButton.setEnabled(true);
+                        shareFilesButton.setAlpha(1.0f);
+                        shareFilesButton.setEnabled(true);
                     }
                     mAdapter.canSelectFiles = true;
                 }else {
                     selectAllButton.setAlpha(0.5f);
                     selectNoneButton.setAlpha(0.5f);
                     deletePhotosButton.setAlpha(0.5f);
+                    shareFilesButton.setAlpha(0.5f);
                     counterTextView.setAlpha(0.5f);
                     selectAllButton.setEnabled(false);
                     selectNoneButton.setEnabled(false);
                     deletePhotosButton.setEnabled(false);
+                    shareFilesButton.setEnabled(false);
                     counterTextView.setEnabled(false);
                     mAdapter.canSelectFiles = false;
                 }
@@ -178,12 +209,53 @@ public class GalleryActivity extends Activity {
             }
         });
 
+        shareFilesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(GalleryActivity.this);
+                builder.setTitle(R.string.export_items)
+                        .setItems(R.array.export_options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case 0:
+                                        shareFiles();
+                                        break;
+                                    case 1:
+                                        PdfUtils.exportImagesAsPdf(mediaList, GalleryActivity.this, mAdapter.selectedFiles);
+                                        break;
+                                }
+                            }
+                        });
+                builder.create().show();
+            }
+        });
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GalleryActivity.this.finish();
             }
         });
+
+    }
+
+    private void shareFiles() {
+        Log.e("GalleryActivity", "share button has been pressed");
+        ArrayList<Uri> imageUris = new ArrayList<Uri>();
+        for(Integer in : mAdapter.selectedFiles) {
+            File fileToShare = new File(mediaList.get(in).getPath());
+            Uri uri = FileProvider.getUriForFile(GalleryActivity.this, BuildConfig.APPLICATION_ID + ".provider",fileToShare);
+
+            imageUris.add(uri);
+        }
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+        shareIntent.setType("image/*");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "Share images"));
 
     }
 
@@ -304,7 +376,10 @@ public class GalleryActivity extends Activity {
     }
 
     public boolean filterFile(File file) {
-        return file.getName().contains("model") || file.getName().contains("frameline");
+        return file.getName().contains("model")
+                || file.getName().contains("frameline")
+                || file.isDirectory()
+                || file.getName().contains(".pdf");
     }
 
 }

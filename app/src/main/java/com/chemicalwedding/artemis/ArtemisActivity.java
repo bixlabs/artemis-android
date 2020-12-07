@@ -16,6 +16,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.ScatteringByteChannel;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CameraMetadata;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -171,9 +176,14 @@ import com.chemicalwedding.artemis.model.Frameline;
 import com.chemicalwedding.artemis.model.FramelineRate;
 import com.chemicalwedding.artemis.model.FramelineRatesAdapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 =======
 import com.chemicalwedding.artemis.utils.FileUtils;
+=======
+import com.chemicalwedding.artemis.model.Shotplan;
+import com.chemicalwedding.artemis.utils.ArtemisFileUtils;
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
 import com.chemicalwedding.artemis.utils.FramelineDrawingUtils;
 import com.chemicalwedding.artemis.utils.ImageUtils;
 import com.chemicalwedding.artemis.utils.VideoUtils;
@@ -349,6 +359,7 @@ public class ArtemisActivity extends Activity implements
     private ModelGLSurfaceView glSurfaceView;
     private Handler handler;
     public static boolean takeScreenshot = false;
+    public static CameraItem preferedCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1138,6 +1149,18 @@ public class ArtemisActivity extends Activity implements
                     }
                 });
 
+        ((TextView) findViewById(R.id.select_camera_button)).setVisibility(
+                hasMultipleCameras() ? View.VISIBLE : View.GONE
+        );
+        ((TextView) findViewById(R.id.select_camera_button)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(hasCameraPermission()) {
+                    showSelectCameraDialog();
+                }
+            }
+        });
+
         ((ImageView) findViewById(R.id.lens_settings_back))
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1364,12 +1387,14 @@ public class ArtemisActivity extends Activity implements
                     recordVideoChronometerContainer.setVisibility(View.VISIBLE);
                     ((ImageView) findViewById(R.id.imgVideoMode)).setImageDrawable(getDrawable(R.drawable.stillsmode));
                     ((TextView) findViewById(R.id.txtVideoMode)).setText(getString(R.string.stills_mode));
+                    mCameraPreview.preparePreviewForVideo();
                 } else {
                     recordVideoButton.setVisibility(View.GONE);
                     ((ImageView) findViewById(R.id.shutterButton)).setVisibility(View.VISIBLE);
                     recordVideoChronometerContainer.setVisibility(View.GONE);
                     ((ImageView) findViewById(R.id.imgVideoMode)).setImageDrawable(getDrawable(R.drawable.videomode));
                     ((TextView) findViewById(R.id.txtVideoMode)).setText(getString(R.string.video_mode));
+                    mCameraPreview.restartCamera();
                 }
             }
         });
@@ -2020,6 +2045,7 @@ public class ArtemisActivity extends Activity implements
                 mCameraOverlay.invalidate();
             }
         });
+<<<<<<< HEAD
 <<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
 
 <<<<<<< HEAD:app/src/main/java/com/chemicalwedding/artemis/ArtemisActivity.java
@@ -2029,6 +2055,114 @@ public class ArtemisActivity extends Activity implements
 >>>>>>> 99abbaa (vstand-ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
 =======
 >>>>>>> db76629 (add color picker for virtual stand ins):artemis-android/src/com/chemicalwedding/artemis/ArtemisActivity.java
+=======
+
+        ((EditText) findViewById(R.id.custom_camera_name)).setImeOptions(EditorInfo.IME_ACTION_DONE);
+        ((EditText) findViewById(R.id.custom_camera_focallength)).setImeOptions(EditorInfo.IME_ACTION_DONE);
+        ((EditText) findViewById(R.id.custom_camera_aspectratio)).setImeOptions(EditorInfo.IME_ACTION_DONE);
+    }
+
+    private void showSelectCameraDialog() {
+        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        try {
+            String [] cameraIdList = manager.getCameraIdList();
+            List<String> backCameraIds = new ArrayList<>();
+            List<String> frontCameraIds = new ArrayList<>();
+            List<String> externalCameraIds = new ArrayList<>();
+            for(String cameraId: cameraIdList) {
+                CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
+                int lensFacing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if(lensFacing == CameraMetadata.LENS_FACING_BACK) {
+                    backCameraIds.add(cameraId);
+                } else if(lensFacing == CameraMetadata.LENS_FACING_FRONT) {
+                     frontCameraIds.add(cameraId);
+                } else {
+                    externalCameraIds.add(cameraId);
+                }
+            }
+
+            List<CameraItem> backCameras = generateNames("Back Camera", backCameraIds);
+            List<CameraItem> frontCameras = generateNames("Front Camera", frontCameraIds);
+            List<CameraItem> externalCameras = generateNames("External Camera", externalCameraIds);
+
+            List<CameraItem> cameras = new ArrayList<>();
+            cameras.addAll(backCameras);
+            cameras.addAll(frontCameras);
+            cameras.addAll(externalCameras);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ArtemisActivity.this);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ArtemisActivity.this, android.R.layout.select_dialog_singlechoice);
+            for(CameraItem item : cameras) {
+                 adapter.add(item.getLabel());
+            }
+            builder.setTitle(R.string.select_camera)
+                    .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String label = adapter.getItem(which);
+                            Toast.makeText(ArtemisActivity.this, label + " was selected", Toast.LENGTH_SHORT).show();
+                            preferedCamera = findItem(label, cameras);
+                            mCameraPreview.restartCamera();
+                            onBackPressed();
+                        }
+                    });
+            builder.create().show();
+        } catch (CameraAccessException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private CameraItem findItem(String label, List<CameraItem> items) {
+        for(CameraItem item : items){
+            if(item.getLabel().equals(label)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    private List<CameraItem> generateNames(String baseName, List<String> cameraIds) {
+        List<CameraItem> list = new ArrayList<>();
+
+        if(cameraIds.size() == 1) {
+            CameraItem item = new CameraItem(cameraIds.get(0), baseName);
+            list.add(item);
+            return list;
+        }
+
+        for(int i = 0; i < cameraIds.size(); i++ ) {
+            CameraItem item = new CameraItem(cameraIds.get(i), baseName + " " + (i+1));
+            list.add(item);
+        }
+
+        return list;
+    }
+
+    class CameraItem {
+        private String id;
+        private String label;
+
+        public CameraItem(String id, String label) {
+            this.id = id;
+            this.label = label;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public void setLabel(String label) {
+            this.label = label;
+        }
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
     }
 
     public void setup3DModels(String modelFileName) {
@@ -2053,6 +2187,25 @@ public class ArtemisActivity extends Activity implements
             ex.printStackTrace();
         }
 
+    }
+
+    public boolean hasCameraPermission() {
+        return ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public boolean hasMultipleCameras()  {
+        if(hasCameraPermission()) {
+            CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            try {
+                String[] cameraIdList = manager.getCameraIdList();
+                return cameraIdList.length > 1;
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
     }
 
 
@@ -2105,6 +2258,10 @@ public class ArtemisActivity extends Activity implements
         builder.setTitle("Add custom lens adapter");
         final EditText input = new EditText(this);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        input.setImeOptions(EditorInfo.IME_ACTION_DONE);
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
         input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         input.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 =======
@@ -4322,12 +4479,16 @@ public class ArtemisActivity extends Activity implements
         ((EditText) findViewById(R.id.imageTitle))
                 .setText(artemisPrefs.getString(
                         ArtemisPreferences.SAVE_PICTURE_SHOW_TITLE, ""));
+        ((EditText) findViewById(R.id.imageTitle)).setImeOptions(EditorInfo.IME_ACTION_DONE);
         ((EditText) findViewById(R.id.imageNotes)).setText(artemisPrefs
                 .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_NOTES, ""));
+        ((EditText) findViewById(R.id.imageNotes)).setImeOptions(EditorInfo.IME_ACTION_DONE);
         ((EditText) findViewById(R.id.imageContactName)).setText(artemisPrefs
                 .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_NAME, ""));
+        ((EditText) findViewById(R.id.imageContactName)).setImeOptions(EditorInfo.IME_ACTION_DONE);
         ((EditText) findViewById(R.id.imageContactEmail)).setText(artemisPrefs
                 .getString(ArtemisPreferences.SAVE_PICTURE_SHOW_CONTACT_EMAIL, ""));
+        ((EditText) findViewById(R.id.imageContactEmail)).setImeOptions(EditorInfo.IME_ACTION_DONE);
         ((ToggleButton) findViewById(R.id.cameraDetailsToggle))
                 .setChecked(artemisPrefs.getBoolean(
                         ArtemisPreferences.SAVE_PICTURE_SHOW_CAMERA_DETAILS,
@@ -5276,4 +5437,32 @@ public class ArtemisActivity extends Activity implements
     public void saveCurrentFramelineToDb(Frameline frameline) {
         _artemisDBHelper.saveFrameline(frameline);
     }
+<<<<<<< HEAD
+=======
+
+    public static void hideGlView() {
+        if(glSurfaceView != null) {
+            glSurfaceView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void showGlView() {
+        if(glSurfaceView != null) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    glSurfaceView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    }
+
+    public void saveShotplan(Shotplan shotplan) {
+        try {
+            _artemisDBHelper.insertShotplan(shotplan);
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
 }

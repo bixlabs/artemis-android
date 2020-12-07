@@ -52,7 +52,7 @@ public class SaveVideoMetadataActivity extends Activity {
 
     String mediaTypeString;
     String mediaPath;
-    HashMap<String, String> metadata;
+    HashMap<String, String> metadata;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

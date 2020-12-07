@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.text.InputType;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -238,6 +239,7 @@ public class AddLookActivity extends Activity {
             // Set up the input
             final EditText input = new EditText(getBaseContext());
             input.setTextColor(ContextCompat.getColor(getBaseContext(), R.color.white));
+            input.setImeOptions(EditorInfo.IME_ACTION_DONE);
             input.setInputType(InputType.TYPE_CLASS_TEXT);
 
             FrameLayout container = new FrameLayout(this);

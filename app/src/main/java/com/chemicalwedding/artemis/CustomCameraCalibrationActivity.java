@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.InputType;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -104,7 +103,8 @@ public class CustomCameraCalibrationActivity extends Activity {
                     "Initial chip width: %f Height: %f", chipWidth,
                     chipHeight));
 
-        } else {
+        }
+        else {
             mHorizAngle = CameraPreview21.effectiveHAngle;
             mVertAngle = CameraPreview21.effectiveVAngle;
 
@@ -508,8 +508,8 @@ public class CustomCameraCalibrationActivity extends Activity {
         int screenWidth = artemisMath_.screenWidth;
         int screenHeight = artemisMath_.screenHeight;
 
-        int lowerMargin = (int) (screenHeight * 0.899f);
-        int topMargin = (int) (screenHeight * 0.037f);
+        int lowerMargin = (int) (screenHeight * 1);
+        int topMargin = (int) (screenHeight * 0);
 
         float myprop = aspectRatio;
         int maximumWidth = (int) ((lowerMargin - topMargin) * myprop);

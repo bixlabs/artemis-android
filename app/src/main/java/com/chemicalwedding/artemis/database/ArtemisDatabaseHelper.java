@@ -19,10 +19,12 @@ import android.util.Pair;
 import com.chemicalwedding.artemis.model.Extender;
 import com.chemicalwedding.artemis.model.Frameline;
 import com.chemicalwedding.artemis.model.FramelineRate;
+import com.chemicalwedding.artemis.model.Shotplan;
 import com.parse.ParseObject;
 
 public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -48,6 +50,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 =======
     private static final int DB_VERSION = 17;
 >>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+    private static final int DB_VERSION = 18;
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -60,7 +65,11 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     private final static String LENS_ADAPTERS_TABLE = "zcustomlensadapters";
 =======
     private final static String LOOKS_TABLE = "zlooks";
+<<<<<<< HEAD
 >>>>>>> 449fcf5 (Add looks interface. Apply look to stills and video mode. Delete looks)
+=======
+    private final static String SHOTPLAN_TABLE = "shotplan";
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
 
 
     public ArtemisDatabaseHelper(Context context) {
@@ -507,6 +516,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists zlenses");
         db.execSQL("drop table if exists zlensobject");
         db.execSQL("drop table if exists zlooks");
+        db.execSQL("drop table if exists zextenders");
+        db.execSQL("drop table if exists shotplan");
 
         if (createCustomTables) {
             db.execSQL("drop table if exists zcustomcamera");
@@ -517,7 +528,11 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists zcustomlensadapters");
             db.execSQL("drop table if exists zcustomframelinerates");
             db.execSQL("drop table if exists zcustomframelines");
+<<<<<<< HEAD
 >>>>>>> 4d00701 (Fixed crashes after merge)
+=======
+            db.execSQL("drop table if exists shotplan");
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
         }
 
         db.execSQL("drop index if exists 'ZCAMERA-ZOBJECTID'");
@@ -591,7 +606,18 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 "  ,zmagnification   NUMERIC(5,3) NOT NULL\n" +
                 "  ,zsqueezeextender NUMERIC(4,2) NOT NULL\n" +
                 "  ,zextenderorder   INTEGER  NOT NULL\n" +
-                ")");
+                ");");
+
+        db.execSQL("create table shotplan(\n" +
+                "  id integer primary key autoincrement,\n" +
+                "  file_path varchar,\n" +
+                "  camera varchar,\n" +
+                "  lens varchar,\n" +
+                "  title varchar,\n" +
+                "  notes varchar,\n" +
+                "  latitude real,\n" +
+                "  longitude real\n" +
+                ");");
 
         if (createCustomTables) {
             db.execSQL("CREATE TABLE ZCUSTOMCAMERA ( Z_PK INTEGER PRIMARY KEY AUTOINCREMENT, ZSENSORWIDTH FLOAT, ZSENSORHEIGHT FLOAT, ZSQUEEZERATIO FLOAT, ZCAMERANAME VARCHAR );");
@@ -868,6 +894,22 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         _artemisDatabase.endTransaction();
     }
 
+    public void insertShotplan(Shotplan shotplan) {
+        _artemisDatabase.beginTransaction();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("file_path", shotplan.getPath());
+        initialValues.put("camera", shotplan.getCameraName());
+        initialValues.put("lens", shotplan.getLens());
+        initialValues.put("title", shotplan.getTitle());
+        initialValues.put("notes", shotplan.getNotes());
+        initialValues.put("latitude", shotplan.getLatitude());
+        initialValues.put("longitude", shotplan.getLongitude());
+
+        _artemisDatabase.insert("shotplan", null, initialValues);
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
     public void insertFrameline(Frameline frameline) {
         _artemisDatabase.beginTransaction();
         ContentValues initialValues = new ContentValues();
@@ -918,6 +960,23 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         _artemisDatabase.endTransaction();
     }
 
+    public void updateShotplan(Shotplan shotplan) {
+        _artemisDatabase.beginTransaction();
+        ContentValues values = new ContentValues();
+        values.put("id", shotplan.getId());
+        values.put("file_path", shotplan.getPath());
+        values.put("camera", shotplan.getCameraName());
+        values.put("lens", shotplan.getLens());
+        values.put("title", shotplan.getTitle());
+        values.put("notes", shotplan.getNotes());
+        values.put("latitude", shotplan.getLatitude());
+        values.put("longitude", shotplan.getLongitude());
+
+        _artemisDatabase.update("shotplan", values, "id = ?", new String[] { String.valueOf(shotplan.getId()) });
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
     public void insertFramelineRate(FramelineRate framelineRate) {
         _artemisDatabase.beginTransaction();
         ContentValues initialValues = new ContentValues();
@@ -932,6 +991,13 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     public void deleteLensAdapterById(int lensAdapterId) {
         _artemisDatabase.beginTransaction();
         _artemisDatabase.delete("ZCUSTOMLENSADAPTERS", "z_pk = ?", new String[]{"" + lensAdapterId});
+        _artemisDatabase.setTransactionSuccessful();
+        _artemisDatabase.endTransaction();
+    }
+
+    public void deleteShotplan(int shotplanId) {
+        _artemisDatabase.beginTransaction();
+        _artemisDatabase.delete("shotplan", "id = ?", new String[] { String.valueOf(shotplanId) });
         _artemisDatabase.setTransactionSuccessful();
         _artemisDatabase.endTransaction();
     }
@@ -976,6 +1042,31 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         lens.setMaxFL(cursor.getFloat(3));
         cursor.close();
         return lens;
+    }
+
+    public Shotplan getShotplanByPath(String path) {
+        Cursor cursor = _artemisDatabase.query("shotplan",
+                new String[] { "id", "file_path", "camera", "lens", "title", "notes", "latitude", "longitude" },
+                "file_path = ?", new String[] { path },
+                null, null, null, "1"
+                );
+
+        cursor.moveToNext();
+
+        Shotplan shotplan = new Shotplan(
+            cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4),
+                cursor.getString(5),
+                cursor.getDouble(6),
+                cursor.getDouble(7)
+        );
+
+        cursor.close();
+
+        return shotplan;
     }
 
     public void deleteZoomLensByPK(int zoomLensPk) {

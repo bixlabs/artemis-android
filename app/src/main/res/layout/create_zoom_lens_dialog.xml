@@ -13,6 +13,9 @@
         android:hint="@string/zoom_lens_name"
         android:inputType="textCapWords"
         android:nextFocusDown="@+id/zoomLensMinFL"
+        android:maxLines="1"
+        android:imeOptions="actionDone|flagNoFullscreen"
+        android:imeActionLabel="Done"
         android:selectAllOnFocus="true" />
 
     <LinearLayout
@@ -29,6 +32,9 @@
             android:hint="@string/min_focal_length"
             android:inputType="numberDecimal"
             android:nextFocusDown="@+id/zoomLensMaxFL"
+            android:maxLines="1"
+            android:imeOptions="actionDone|flagNoFullscreen"
+            android:imeActionLabel="Done"
             android:selectAllOnFocus="true" />
 
         <TextView
@@ -43,6 +49,9 @@
             android:layout_weight="0.47"
             android:hint="@string/max_focal_length"
             android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:imeOptions="actionDone|flagNoFullscreen"
+            android:imeActionLabel="Done"
             android:selectAllOnFocus="true" />
     </LinearLayout>
 

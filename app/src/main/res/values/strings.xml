@@ -361,10 +361,24 @@
 =======
     <string name="save_witout_details">Save without details</string>
     <string name="discard_video">Discard</string>
+<<<<<<< HEAD
 >>>>>>> 5e1520f (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
 =======
     <string name="save_witout_details">Save without details</string>
     <string name="discard_video">Discard</string>
 >>>>>>> d36402c (fix - temporal images no longer shown in gallery, database updates, stand ins menu adjustments...)
+=======
+    <string name="export_items">Export items</string>
+    <string name="select_camera">Select camera</string>
+    <string name="view_shot_plan">Shot plan</string>
+    <string name="add_shot_date">Add shot date</string>
+    <string name="title">Title</string>
+    <string name="notes">Notes</string>
+    <string name="longitude">Long:</string>
+    <string name="latitude">Lat:</string>
+    <string name="change_location">Change location</string>
+    <string name="use_current_location">Use current location</string>
+    <string name="save_location">Save location</string>
+>>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
 
 </resources>

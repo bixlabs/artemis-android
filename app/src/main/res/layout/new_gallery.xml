@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/galleryActivityLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -76,6 +77,17 @@
             android:paddingEnd="5sp"
             android:text="0"
             android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/share_files"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/share"
+            android:tint="@color/orangeArtemisText"
+            ></ImageButton>
 
         <ImageButton
             android:id="@+id/delete_photos_galleryselector"
