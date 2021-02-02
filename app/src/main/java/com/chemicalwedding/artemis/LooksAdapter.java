@@ -50,7 +50,7 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
         this.availableEffects = availableEffects;
     }
 
-    public Boolean canDeleteLooks = false;
+    private Boolean canDeleteLooks = false;
     public RecyclerItemClickListener mOnRecyclerItemListener;
     public LooksTrashClickListener mLooksTrashClickListener;
 
@@ -73,7 +73,8 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
 
     @Override
     public void onBindViewHolder(final LooksViewHolder holder, final int position) {
-        if (canDeleteLooks && position != 0) {
+        Look look = availableEffects.get(position);
+        if (canDeleteLooks && look != null && look.isCustomLook()) {
             holder.trash.setVisibility(View.VISIBLE);
         } else {
             holder.trash.setVisibility(View.INVISIBLE);
@@ -184,6 +185,11 @@ public class LooksAdapter extends RecyclerView.Adapter<LooksAdapter.LooksViewHol
         GPUImage mImage = new GPUImage(context);
         mImage.setFilter(filterGroup);
         return mImage.getBitmapWithFilterApplied(bitmap);
+    }
+
+    public void switchDeleteMode() {
+        canDeleteLooks = !canDeleteLooks;
+        notifyDataSetChanged();
     }
 
     @Override

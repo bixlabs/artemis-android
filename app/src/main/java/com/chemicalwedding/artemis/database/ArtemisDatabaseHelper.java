@@ -31,6 +31,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final int DB_VERSION = 15;
 =======
     private static final int DB_VERSION = 14;
@@ -53,6 +54,9 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
 =======
     private static final int DB_VERSION = 18;
 >>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
+=======
+    private static final int DB_VERSION = 19;
+>>>>>>> c6ed9ac ( * Gallery scrolling is smoother now.)
 
     private SQLiteDatabase _artemisDatabase;
 
@@ -96,7 +100,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         try {
             cursor = _artemisDatabase.query(true, LOOKS_TABLE,
                     new String[]{"z_pk", "zeffectid", "zname", "zgamma", "zcontrast", "zsaturation", "zwhitebalance",
-                            "zred", "zgreen", "zblue"}, null,
+                            "zred", "zgreen", "zblue", "zcustom"}, null,
                     null, null, null, "zeffectid ASC", null);
         } catch (SQLiteException sle) {
 
@@ -116,6 +120,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 l.setRed(cursor.getDouble(7));
                 l.setGreen(cursor.getDouble(8));
                 l.setBlue(cursor.getDouble(9));
+                l.setCustomLook(cursor.getInt(10) != 0);
                 looks.add(l);
             }
             cursor.close();
@@ -126,7 +131,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
     public Look getLook(Integer lookPk) {
         Cursor cursor = _artemisDatabase.query(LOOKS_TABLE,
                 new String[]{"z_pk", "zeffectid", "zname", "zgamma", "zcontrast", "zsaturation", "zwhitebalance",
-                        "zred", "zgreen", "zblue"}, "z_pk = ?",
+                        "zred", "zgreen", "zblue", "zcustom"}, "z_pk = ?",
                 new String[]{lookPk.toString()}, null, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -141,6 +146,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
             look.setRed(cursor.getDouble(7));
             look.setGreen(cursor.getDouble(8));
             look.setBlue(cursor.getDouble(9));
+            look.setCustomLook(cursor.getInt(10) != 0);
 
             cursor.close();
             return look;
@@ -162,6 +168,7 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
         initialValues.put("zred", look.getRed());
         initialValues.put("zgreen", look.getGreen());
         initialValues.put("zblue", look.getBlue());
+        initialValues.put("zcustom", look.isCustomLook() ? 1 : 0);
 
         _artemisDatabase.insert(LOOKS_TABLE, null,
                 initialValues);
@@ -596,7 +603,8 @@ public class ArtemisDatabaseHelper extends SQLiteOpenHelper {
                 " \"ZWHITEBALANCE\" FLOAT, " +
                 " \"ZRED\" FLOAT, " +
                 " \"ZGREEN\" FLOAT, " +
-                " \"ZBLUE\" FLOAT " +
+                " \"ZBLUE\" FLOAT, " +
+                " \"ZCUSTOM\" INTEGER DEFAULT 0" +
                 ");");
 
         db.execSQL("CREATE TABLE zextenders(\n" +

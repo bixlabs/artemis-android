@@ -4,6 +4,7 @@ public class Look {
     private Integer pk, effectId;
     private String name;
     private Double gamma, contrast, saturation, whiteBalance, red, green, blue;
+    private boolean isCustomLook;
 
     public Integer getPk() {
         return pk;
@@ -83,5 +84,13 @@ public class Look {
 
     public void setBlue(Double blue) {
         this.blue = blue;
+    }
+
+    public boolean isCustomLook() {
+        return isCustomLook;
+    }
+
+    public void setCustomLook(boolean customLook) {
+        isCustomLook = customLook;
     }
 }

@@ -34,6 +34,7 @@
             android:textAllCaps="true"
             android:textColor="@color/gray"
             android:gravity="center"
+            android:textColorHint="@color/gray"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -97,12 +98,16 @@
                     android:id="@+id/txt_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
                     android:hint="@string/title"/>
 
                 <EditText
                     android:id="@+id/txt_notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
                     android:hint="@string/notes"
                     />
             </LinearLayout>

@@ -618,6 +618,7 @@
         android:layout_height="40dp"
         android:src="@drawable/look_active"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="16px"
         app:layout_constraintBottom_toTopOf="@+id/mainMenu"
         app:layout_constraintStart_toStartOf="parent" />
 

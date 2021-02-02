@@ -44,8 +44,6 @@ public class ShotPlanActivity extends AppCompatActivity implements OnMapReadyCal
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shot_plan_activity_layout);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
         _artemisDbHelper = new ArtemisDatabaseHelper(this);
 

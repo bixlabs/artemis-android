@@ -7,6 +7,11 @@
         <stroke
             android:width="2dip"
             android:color="@color/orangeArtemisText" />
+        <padding
+            android:bottom="10dp"
+            android:left="10dp"
+            android:right="10dp"
+            android:top="10dp" />
     </shape>
 </item>
 </selector>

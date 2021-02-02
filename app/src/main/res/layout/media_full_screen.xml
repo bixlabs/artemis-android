@@ -13,27 +13,31 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:gravity="center_horizontal|center"
         android:padding="2dp"
         >
 
         <TextView
             android:id="@+id/openShotPlanButton"
-            android:layout_width="140dip"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_primary"
-            android:textColor="@color/orangeArtemisText"
             android:gravity="center"
-            android:layout_marginEnd="8dp"
-            android:padding="10dp"
-            android:text="@string/view_shot_plan" />
+            android:text="@string/view_shot_plan"
+            android:textAllCaps="true"
+            android:textColor="@color/orangeArtemisText"
+            android:textSize="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/video_view"

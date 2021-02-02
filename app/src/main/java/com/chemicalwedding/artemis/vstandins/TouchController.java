@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.chemicalwedding.artemis.ArtemisActivity;
 import com.chemicalwedding.artemis.R;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Camera;
+import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3D;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.model.Object3DData;
 import com.chemicalwedding.artemis.vstandins.android_3d_model_engine.services.Object3DBuilder;
 
@@ -83,18 +84,19 @@ public class TouchController {
     private class RotationDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            float zoomFactor = detector.getScaleFactor() - 1;
-            Log.e(TAG, "onScale: scaleFactor: " + zoomFactor);
-            SceneLoader scene = view.getModelActivity().getScene();
-            Object3DData object = scene.getSelectedObject();
-            zoomFactor = zoomFactor > 0f ? 1f : -1f;
-            if(object != null) {
-                object.setRotationY( object.getRotationY() + (zoomFactor) );
-                Object3DData box = mRenderer.boundingBoxes.get(object);
-                if(box != null) {
-                    box.setRotationY( box.getRotationY() + (zoomFactor));
-                }
-            }
+//            float zoomFactor = detector.getScaleFactor() - 1;
+//            Log.e(TAG, "onScale: scaleFactor: " + zoomFactor);
+//            SceneLoader scene = view.getModelActivity().getScene();
+//            Object3DData object = scene.getSelectedObject();
+//            zoomFactor = zoomFactor > 0f ? 1f : -1f;
+//            if(object != null) {
+//                object.setRotationY( object.getRotationY() + (zoomFactor) );
+//                Object3DData box = mRenderer.boundingBoxes.get(object);
+//                if(box != null) {
+//                    box.setRotationY( box.getRotationY() + (zoomFactor));
+//                }
+//            }
+//            return true;
             return true;
         }
     }
@@ -121,25 +123,16 @@ public class TouchController {
                     && (currentScale[1] + zoomFactor) < 0
                     && (currentScale[2] + zoomFactor) < 0)
                 ) {
-                    currentScale[0] += zoomFactor;
-                    currentScale[1] += zoomFactor;
-                    currentScale[2] += zoomFactor;
+                    currentScale[0] += zoomFactor / 5;
+                    currentScale[1] += zoomFactor / 5;
+                    currentScale[2] += zoomFactor / 5;
                     object.setScale(currentScale);
-                    mRenderer.boundingBoxes.remove(object);
-                    Object3DData box = Object3DBuilder.buildBoundingBox(object);
-                    mRenderer.boundingBoxes.put(object, box);
-                    if (box != null) {
-                        float[] boxScale = box.getScale();
-
-                        Log.e(TAG, "current box x: " + boxScale[0] );
-                        Log.e(TAG, "current box y: " + boxScale[1] );
-                        Log.e(TAG, "current box z: " + boxScale[2] );
-
-                        boxScale[0] += zoomFactor;
-                        boxScale[1] += zoomFactor;
-                        boxScale[2] += zoomFactor;
-                        box.setScale(boxScale);
+                    Object3DData box = mRenderer.boundingBoxes.get(object);
+                    if(box != null) {
+                        mRenderer.boundingBoxes.put(object, box);
+                        box.setScale( new float[] {currentScale[0] / 5, currentScale[1] /5, currentScale[2] / 5} );
                     }
+
                 }
             }
 
@@ -294,7 +287,7 @@ public class TouchController {
 
                 Object3DData object = scene.getSelectedObject();
                 if(object != null) {
-                    float[] translation = { dx1, -dy1, 0f};
+                    float[] translation = { dx1 / 2, -dy1 / 2, 0f};
                     object.setTranslation(translation);
                     mRenderer.boundingBoxes.remove(object);
                     Object3DData box = Object3DBuilder.buildBoundingBox(object);
@@ -310,8 +303,20 @@ public class TouchController {
 
                 isRotating3DObject = xLength > yLength;
 
+
                 if(!isRotating3DObject && isEditing) {
                     scaleDetector.onTouchEvent(motionEvent);
+                    Object3DData object = scene.getSelectedObject();
+                    if(object != null) {
+                        float[] translation = new float[] {0f, 0f, 0f};
+                        object.setTranslation(translation);
+                        mRenderer.boundingBoxes.remove(object);
+                        Object3DData box = Object3DBuilder.buildBoundingBox(object);
+                        mRenderer.boundingBoxes.put(object, box);
+                        if (box != null) {
+                            box.setTranslation(translation);
+                        }
+                    }
                 } else if(isEditing) {
                     zoomDetector.onTouchEvent(motionEvent);
                 }

@@ -42,21 +42,11 @@ public class PdfUtils {
         activity.startActivity(intent);
     }
 
-    public static  void exportImagesAsPdf(List<MediaFile> files, Activity activity, Set<Integer> selectedIndexes) {
+    public static  void exportImagesAsPdf(Activity activity, List<MediaFile> selectedFiles) {
         PdfDocument document = new PdfDocument();
-        int totalPages = (selectedIndexes.size() / 4);
-        int lastPageImages = (selectedIndexes.size() % 4);
+        int totalPages = (selectedFiles.size() / 4);
+        int lastPageImages = (selectedFiles.size() % 4);
         totalPages += lastPageImages > 0 ? 1 : 0;
-
-        List<Integer> indexesList = new ArrayList<>();
-        for (Integer x : selectedIndexes)
-            indexesList.add(x);
-        Collections.sort(indexesList);
-
-        List<MediaFile> selectedFiles = new ArrayList<>();
-        for(int selectedIndex : indexesList) {
-            selectedFiles.add(files.get(selectedIndex));
-        }
 
         for(int i = 1; i <= totalPages; i++) {
             PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(widthA4, heigthA4, i)

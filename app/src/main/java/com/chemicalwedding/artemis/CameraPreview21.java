@@ -1,5 +1,6 @@
 package com.chemicalwedding.artemis;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -64,7 +65,6 @@ import android.hardware.camera2.params.TonemapCurve;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.CamcorderProfile;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
@@ -172,7 +172,6 @@ public class CameraPreview21 extends Fragment {
     private float mActiveSensorRatio;
     private Float mMaxDigitalZoom;
     private Integer mCroppingType;
-    private Rect mOriginalCropRegion;
     private float previewRatio;
     private float mScale;
     private Matrix noRotation;
@@ -206,9 +205,14 @@ public class CameraPreview21 extends Fragment {
         }
 
         try {
+            dropRecorder();
+            setupMediaRecorder();
             SurfaceTexture surfaceTexture = mTextureView.getSurfaceTexture();
             surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
             Surface previewSurface = new Surface(surfaceTexture);
+            Surface recordSurface = mediaRecorder.getSurface();
+            captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+            selectedLensVideoCrop = _artemisMath.getSelectedLensBox();
             captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
             captureRequestBuilder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, CameraMetadata.LENS_OPTICAL_STABILIZATION_MODE_OFF);
             selectedLensVideoCrop = _artemisMath.getSelectedLensBox();
@@ -222,13 +226,15 @@ public class CameraPreview21 extends Fragment {
             }
 
             captureRequestBuilder.addTarget(previewSurface);
+            captureRequestBuilder.addTarget(recordSurface);
 
-
+            closeCaptureSession();
             mCameraDevice.createCaptureSession(Arrays.asList(previewSurface),
                     new CameraCaptureSession.StateCallback() {
                         @Override
                         public void onConfigured(@NonNull CameraCaptureSession session) {
                             try {
+                                mCaptureSession = session;
                                 session.setRepeatingRequest(
                                         captureRequestBuilder.build(),
                                         mCaptureCallback,
@@ -246,7 +252,34 @@ public class CameraPreview21 extends Fragment {
 
         } catch (CameraAccessException e) {
             e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void closeCaptureSession() {
+        if(mCaptureSession != null) {
+            mCaptureSession.close();
+            mCaptureSession = null;
+        }
+    }
+
+    enum MediaRecorderState {
+        CREATED,
+        STARTED,
+    }
+
+    private MediaRecorderState mediaRecorderState = MediaRecorderState.CREATED;
+
+    public void dropRecorder() {
+        if(mediaRecorder != null) {
+            if(mediaRecorderState == MediaRecorderState.STARTED) {
+                mediaRecorder.reset();
+                mediaRecorder.release();
+            }
+        }
+        mediaRecorder = new MediaRecorder();
+        mediaRecorderState = MediaRecorderState.CREATED;
     }
 
     public void startRecord() {
@@ -255,13 +288,13 @@ public class CameraPreview21 extends Fragment {
         }
 
         try {
+            dropRecorder();
             setupMediaRecorder();
             SurfaceTexture surfaceTexture = mTextureView.getSurfaceTexture();
             surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
             Surface previewSurface = new Surface(surfaceTexture);
             Surface recordSurface = mediaRecorder.getSurface();
             captureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
-            captureRequestBuilder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, CameraMetadata.LENS_OPTICAL_STABILIZATION_MODE_OFF);
             selectedLensVideoCrop = _artemisMath.getSelectedLensBox();
 
             if (mCustomLook != null) {
@@ -272,9 +305,11 @@ public class CameraPreview21 extends Fragment {
                 captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE,
                         selectedEffectInt);
             }
+
             captureRequestBuilder.addTarget(previewSurface);
             captureRequestBuilder.addTarget(recordSurface);
 
+            closeCaptureSession();
             mCameraDevice.createCaptureSession(Arrays.asList(previewSurface, recordSurface),
                     new CameraCaptureSession.StateCallback() {
                         @Override
@@ -418,6 +453,25 @@ public class CameraPreview21 extends Fragment {
             fos.flush();
             fos.close();
             saveShotplan(filePath);
+            bitmap.recycle();
+
+            try {
+                ExifInterface ex = new ExifInterface(filePath);
+
+                Map<String, String> meta = buildMetadataAttributes();
+
+                for (String key : meta.keySet()) {
+                    ex.setAttribute(key, meta.get(key));
+                }
+
+                ex.saveAttributes();
+
+            } catch (IOException ioe) {
+                Log.e(logTag, "Could not open image for writing EXIF data");
+            }
+
+            MediaScannerConnection.scanFile(getActivity(),
+                    new String[]{filePath}, new String[]{"image/jpeg"}, null);
         } catch (FileNotFoundException e) {
             Log.e(logTag, "Picture file could not be created");
             View view = getView();
@@ -448,25 +502,6 @@ public class CameraPreview21 extends Fragment {
             }
             e.printStackTrace();
         }
-        bitmap.recycle();
-
-        try {
-            ExifInterface ex = new ExifInterface(filePath);
-
-            Map<String, String> meta = buildMetadataAttributes();
-
-            for (String key : meta.keySet()) {
-                ex.setAttribute(key, meta.get(key));
-            }
-
-            ex.saveAttributes();
-
-        } catch (IOException ioe) {
-            Log.e(logTag, "Could not open image for writing EXIF data");
-        }
-
-        MediaScannerConnection.scanFile(getActivity(),
-                new String[]{filePath}, new String[]{"image/jpeg"}, null);
     }
 
     private void saveShotplan(String path) {
@@ -653,7 +688,14 @@ public class CameraPreview21 extends Fragment {
         }
 
         Bitmap blankBmp = getBitmapWithMetadataAtBottom(bitmapToSave, metadataView);
-        savePicture(blankBmp, showGpsCoordinates || showGpsAddress);
+        Runnable save = new Runnable() {
+            @Override
+            public void run() {
+                savePicture(blankBmp, showGpsCoordinates || showGpsAddress);
+            }
+        };
+
+        new Thread(save).start();
     }
 
     public Bitmap getBitmapWithMetadataAtBottom(Bitmap bitmap, View view) {
@@ -994,6 +1036,7 @@ public class CameraPreview21 extends Fragment {
                 }
                 startRecord();
                 mediaRecorder.start();
+                mediaRecorderState = MediaRecorderState.STARTED;
             } else {
                 createCameraPreviewSession();
             }
@@ -1048,7 +1091,13 @@ public class CameraPreview21 extends Fragment {
 
         @Override
         public void onImageAvailable(ImageReader reader) {
-            mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile));
+            Image image = reader.acquireNextImage();
+            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+            buffer.rewind();
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+            image.close();
+            mBackgroundHandler.post(new ImageSaver(bytes, mFile));
         }
 
     };
@@ -1170,7 +1219,6 @@ public class CameraPreview21 extends Fragment {
      */
     private static Size chooseOptimalSize(Size[] choices, int textureViewWidth,
                                           int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
-
         // Collect the supported resolutions that are at least as big as the preview Surface
         List<Size> bigEnough = new ArrayList<>();
         // Collect the supported resolutions that are smaller than the preview Surface
@@ -1257,6 +1305,7 @@ public class CameraPreview21 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mFile = ArtemisFileUtils.Companion.newFile(getContext(), "pic.jpg");
         mediaRecorder = new MediaRecorder();
+        mediaRecorderState = MediaRecorderState.CREATED;
     }
 
     @Override
@@ -1629,6 +1678,7 @@ public class CameraPreview21 extends Fragment {
                 }
                 startRecord();
                 mediaRecorder.start();
+                mediaRecorderState = MediaRecorderState.STARTED;
                 Toast.makeText(this.getContext(),
                         "Permission successfuly granted!",
                         Toast.LENGTH_SHORT).show();
@@ -1735,6 +1785,7 @@ public class CameraPreview21 extends Fragment {
             }
 
             // Here, we create a CameraCaptureSession for camera preview.
+            closeCaptureSession();
             mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface()),
                     new CameraCaptureSession.StateCallback() {
 
@@ -1788,7 +1839,6 @@ public class CameraPreview21 extends Fragment {
 
                                 // Finally, we start displaying the camera preview.
                                 mPreviewRequest = mPreviewRequestBuilder.build();
-                                mOriginalCropRegion = mPreviewRequest.get(CaptureRequest.SCALER_CROP_REGION);
                                 mCaptureSession.setRepeatingRequest(mPreviewRequest,
                                         null, mBackgroundHandler);
                             } catch (CameraAccessException e) {
@@ -1924,26 +1974,24 @@ public class CameraPreview21 extends Fragment {
             // Orientation
             int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation) + (mSensorOrientation - 90));
-
             CameraCaptureSession.CaptureCallback CaptureCallback
                     = new CameraCaptureSession.CaptureCallback() {
 
                 @Override
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request,
                                                @NonNull TotalCaptureResult result) {
-                    unlockFocus();
+//                    unlockFocus();
                 }
             };
             mCaptureSession.stopRepeating();
-            mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
+            mCaptureSession.capture(captureBuilder.build(), null, null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Unlock the focus. This method should be called when still image capture sequence is finished.
-     */
+     * Unlock the focus. This method should be called when still image capture sequence is finished. */
     private void unlockFocus() {
         try {
             // Reset the autofucos trigger
@@ -1976,27 +2024,40 @@ public class CameraPreview21 extends Fragment {
         /**
          * The JPEG image
          */
-        private final Image mImage;
+        private final byte[] mBytes;
         /**
          * The file we save the image into.
          */
         private final File mFile;
 
-        public ImageSaver(Image image, File file) {
-            mImage = image;
+        public ImageSaver(byte[] bytes, File file) {
+            mBytes = bytes;
             mFile = file;
         }
 
+        public Bitmap createFlippedBitmap(Bitmap source, boolean xFlip, boolean yFlip) {
+            Matrix matrix = new Matrix();
+            matrix.postScale(xFlip ? -1 : 1, yFlip ? -1 : 1, source.getWidth() / 2f, source.getHeight() / 2f);
+            return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+        }
 
         @Override
         public void run() {
-            ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
-            buffer.rewind();
-            byte[] bytes = new byte[buffer.remaining()];
-            buffer.get(bytes);
 
-            bitmapToSave = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            mImage.close();
+            bitmapToSave = BitmapFactory.decodeByteArray(mBytes, 0, mBytes.length);
+            try {
+                if(ArtemisActivity.preferedCamera != null) {
+                    CameraCharacteristics characteristics = getActivity().getSystemService(CameraManager.class).getCameraCharacteristics(ArtemisActivity.preferedCamera.getId());
+                    int lensFacing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                    if(lensFacing == CameraMetadata.LENS_FACING_FRONT) {
+                        bitmapToSave = createFlippedBitmap(bitmapToSave, true, false);
+                    }
+                }
+            } catch(CameraAccessException ex) {
+                ex.printStackTrace();
+            }
+            unlockFocus();
+
 
             final RectF selectedRect = _artemisMath.getSelectedLensBox();
             final RectF greenRect = _artemisMath.getOutsideBox();
@@ -2111,7 +2172,6 @@ public class CameraPreview21 extends Fragment {
             } else {
                 System.out.println("modelbitmap IS null");
             }
-
             if (!quickshotEnabled) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -2301,14 +2361,14 @@ public class CameraPreview21 extends Fragment {
 
         HashMap<String, String> metadata = new HashMap<>();
 
-        if (showGps && ArtemisActivity.pictureSaveLocation != null) {
-            String latString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+        if (showGps && ArtemisActivity.getPictureSaveLocation() != null) {
+            String latString = makeLatLongString(ArtemisActivity.getPictureSaveLocation()
                     .getLatitude());
-            String latRefString = makeLatStringRef(ArtemisActivity.pictureSaveLocation
+            String latRefString = makeLatStringRef(ArtemisActivity.getPictureSaveLocation()
                     .getLatitude());
-            String longString = makeLatLongString(ArtemisActivity.pictureSaveLocation
+            String longString = makeLatLongString(ArtemisActivity.getPictureSaveLocation()
                     .getLongitude());
-            String longRefString = makeLonStringRef(ArtemisActivity.pictureSaveLocation
+            String longRefString = makeLonStringRef(ArtemisActivity.getPictureSaveLocation()
                     .getLongitude());
 
             metadata.put(ExifInterface.TAG_GPS_LATITUDE, latString);
@@ -2359,6 +2419,7 @@ public class CameraPreview21 extends Fragment {
 
                 startRecord();
                 mediaRecorder.start();
+                mediaRecorderState = MediaRecorderState.STARTED;
             } else {
                 if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     Toast.makeText(this.getContext(),
@@ -2381,6 +2442,7 @@ public class CameraPreview21 extends Fragment {
 
             startRecord();
             mediaRecorder.start();
+            mediaRecorderState = MediaRecorderState.STARTED;
         }
     }
 

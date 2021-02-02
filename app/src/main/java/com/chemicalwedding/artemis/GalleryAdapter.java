@@ -1,11 +1,13 @@
 package com.chemicalwedding.artemis;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.CancellationSignal;
 import android.provider.MediaStore;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,6 +23,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chemicalwedding.artemis.database.MediaFile;
 import com.chemicalwedding.artemis.database.MediaType;
 
@@ -40,14 +43,16 @@ interface GalleryPhotoCheckboxClickListener {
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoViewHolder>{
 
     private List<MediaFile> fileList;
+    private Context context;
 
-    public GalleryAdapter(List<MediaFile> fileList) {
+    public GalleryAdapter(List<MediaFile> fileList, Context context) {
         this.fileList = fileList;
+        this.context = context;
     }
     public Boolean canSelectFiles = false;
     public RecyclerItemClickListener mOnRecyclerItemListener;
     public GalleryPhotoCheckboxClickListener mOnGalleryCheckboxItemListener;
-    public Set<Integer> selectedFiles = new HashSet<>();
+    public Set<MediaFile> selectedFiles = new HashSet<>();
 
     public void setRecyclerItemListener(RecyclerItemClickListener listener) {
         mOnRecyclerItemListener = listener;
@@ -73,19 +78,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
             holder.checkBox.setVisibility(View.INVISIBLE);
         }
 
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedFiles.contains(position)) {
-                    selectedFiles.remove(position);
-                }else {
-                    selectedFiles.add(position);
-                }
-                mOnGalleryCheckboxItemListener.onCheckboxClick(position);
-                Log.i("bixlabs", "Selected files: " + selectedFiles.toString());
-            }
-        });
-        holder.checkBox.setChecked(selectedFiles.contains(position));
+        View.OnClickListener selectionListener = v -> {
+            checkItem(position);
+            Log.i("bixlabs", "Selected files: " + selectedFiles.toString());
+        };
+        holder.checkBox.setOnClickListener(selectionListener);
+        holder.checkBox.setChecked(selectedFiles.contains(fileList.get(position)));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,27 +95,16 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
         MediaFile media = fileList.get(position);
         File mediaFile = new File(media.getPath());
         if(mediaFile.exists()){
+            Uri uri = Uri.fromFile(new File(media.getPath()));
+            Glide.with(context)
+                .load(uri)
+                .thumbnail(0.1f)
+                .into(holder.imageView);
+
             if (media.getMediaType() == MediaType.PHOTO) {
-                Bitmap imageBitmap = BitmapFactory.decodeFile(mediaFile.getAbsolutePath());
-                holder.imageView.setImageBitmap(imageBitmap);
                 holder.movieIconContainer.setVisibility(View.INVISIBLE);
             } else {
-                Size mSize = new Size(640, 640);
-                CancellationSignal ca = new CancellationSignal();
-                try {
-                    Bitmap bitmapThumbnail = ThumbnailUtils.createVideoThumbnail(mediaFile.getAbsolutePath(), MediaStore.Video.Thumbnails.MINI_KIND);
-                    holder.imageView.setImageBitmap(bitmapThumbnail);
-                    holder.movieIconContainer.setVisibility(View.VISIBLE);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    try {
-                        Bitmap bitmap = retriveVideoFrameFromVideo(mediaFile.getAbsolutePath());
-                        holder.imageView.setImageBitmap(bitmap);
-                        holder.movieIconContainer.setVisibility(View.VISIBLE);
-                    }  catch (Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                }
+                holder.movieIconContainer.setVisibility(View.VISIBLE);
             }
 
             try {
@@ -136,6 +123,16 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoVie
                 Log.e("GalleryAdapter", "Could not open image for reading EXIF data");
             }
         }
+    }
+
+    public void checkItem(int position) {
+        if (selectedFiles.contains(fileList.get(position))) {
+            selectedFiles.remove(fileList.get(position));
+        } else {
+            selectedFiles.add(fileList.get(position));
+        }
+        mOnGalleryCheckboxItemListener.onCheckboxClick(position);
+        notifyDataSetChanged();
     }
 
     @Override

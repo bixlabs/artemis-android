@@ -278,18 +278,18 @@ public class SceneLoader implements LoaderTask.Callback {
     public void toggleWireframe() {
         if (!this.drawWireframe && !this.drawingPoints && !this.drawSkeleton){
             this.drawWireframe = true;
-            makeToastText("Wireframe", Toast.LENGTH_SHORT);
+//            makeToastText("Wireframe", Toast.LENGTH_SHORT);
         } else if (!this.drawingPoints && !this.drawSkeleton){
             this.drawWireframe = false;
             this.drawingPoints = true;
-            makeToastText("Points", Toast.LENGTH_SHORT);
+//            makeToastText("Points", Toast.LENGTH_SHORT);
         } else if (!this.drawSkeleton){
             this.drawingPoints = false;
             this.drawSkeleton = true;
-            makeToastText("Skeleton", Toast.LENGTH_SHORT);
+//            makeToastText("Skeleton", Toast.LENGTH_SHORT);
         } else {
             this.drawSkeleton = false;
-            makeToastText("Faces", Toast.LENGTH_SHORT);
+//            makeToastText("Faces", Toast.LENGTH_SHORT);
         }
         requestRender();
     }
@@ -319,29 +319,29 @@ public class SceneLoader implements LoaderTask.Callback {
         if (drawTextures && drawColors){
             this.drawTextures = false;
             this.drawColors = true;
-            makeToastText("Texture off", Toast.LENGTH_SHORT);
+//            makeToastText("Texture off", Toast.LENGTH_SHORT);
         } else if (drawColors){
             this.drawTextures = false;
             this.drawColors = false;
-            makeToastText("Colors off", Toast.LENGTH_SHORT);
+//            makeToastText("Colors off", Toast.LENGTH_SHORT);
         } else {
             this.drawTextures = true;
             this.drawColors = true;
-            makeToastText("Textures on", Toast.LENGTH_SHORT);
+//            makeToastText("Textures on", Toast.LENGTH_SHORT);
         }
     }
 
     public void toggleLighting() {
         if (this.drawLighting && this.rotatingLight) {
             this.rotatingLight = false;
-            makeToastText("Light stopped", Toast.LENGTH_SHORT);
+//            makeToastText("Light stopped", Toast.LENGTH_SHORT);
         } else if (this.drawLighting && !this.rotatingLight) {
             this.drawLighting = false;
-            makeToastText("Lights off", Toast.LENGTH_SHORT);
+//            makeToastText("Lights off", Toast.LENGTH_SHORT);
         } else {
             this.drawLighting = true;
             this.rotatingLight = true;
-            makeToastText("Light on", Toast.LENGTH_SHORT);
+//            makeToastText("Light on", Toast.LENGTH_SHORT);
         }
         requestRender();
     }
@@ -349,16 +349,16 @@ public class SceneLoader implements LoaderTask.Callback {
     public void toggleAnimation() {
         if (!this.doAnimation && !this.showBindPose){
             this.doAnimation = true;
-            makeToastText("Animation on", Toast.LENGTH_SHORT);
+//            makeToastText("Animation on", Toast.LENGTH_SHORT);
         }
         else if (!this.showBindPose) {
             this.doAnimation = true;
             this.showBindPose = true;
-            makeToastText("Bind pose", Toast.LENGTH_SHORT);
+//            makeToastText("Bind pose", Toast.LENGTH_SHORT);
         } else {
             this.doAnimation = false;
             this.showBindPose = false;
-            makeToastText("Animation off", Toast.LENGTH_SHORT);
+//            makeToastText("Animation off", Toast.LENGTH_SHORT);
         }
     }
 
@@ -372,7 +372,7 @@ public class SceneLoader implements LoaderTask.Callback {
 
     public void toggleCollision() {
         this.isCollision = !isCollision;
-        makeToastText("Collisions: "+isCollision, Toast.LENGTH_SHORT);
+//        makeToastText("Collisions: "+isCollision, Toast.LENGTH_SHORT);
     }
 
     public void toggleStereoscopic() {
@@ -380,18 +380,18 @@ public class SceneLoader implements LoaderTask.Callback {
             this.isStereoscopic = true;
             this.isAnaglyph = true;
             this.isVRGlasses = false;
-            makeToastText("Stereoscopic Anaplygh", Toast.LENGTH_SHORT);
+//            makeToastText("Stereoscopic Anaplygh", Toast.LENGTH_SHORT);
         } else if (this.isAnaglyph){
             this.isAnaglyph = false;
             this.isVRGlasses = true;
             // move object automatically cause with VR glasses we still have no way of moving object
             this.userHasInteracted = false;
-            makeToastText("Stereoscopic VR Glasses", Toast.LENGTH_SHORT);
+//            makeToastText("Stereoscopic VR Glasses", Toast.LENGTH_SHORT);
         } else {
             this.isStereoscopic = false;
             this.isAnaglyph = false;
             this.isVRGlasses = false;
-            makeToastText("Stereoscopic disabled", Toast.LENGTH_SHORT);
+//            makeToastText("Stereoscopic disabled", Toast.LENGTH_SHORT);
         }
         // recalculate camera
         this.camera.setChanged(true);
@@ -431,7 +431,7 @@ public class SceneLoader implements LoaderTask.Callback {
 
     public void toggleBlending() {
         this.isBlendingEnabled = !isBlendingEnabled;
-        makeToastText("Blending "+isBlendingEnabled, Toast.LENGTH_SHORT);
+//        makeToastText("Blending "+isBlendingEnabled, Toast.LENGTH_SHORT);
     }
 
     public boolean isBlendingEnabled() {
@@ -466,17 +466,17 @@ public class SceneLoader implements LoaderTask.Callback {
             allErrors.addAll(data.getErrors());
         }
         if (!allErrors.isEmpty()){
-            makeToastText(allErrors.toString(), Toast.LENGTH_LONG);
+//            makeToastText(allErrors.toString(), Toast.LENGTH_LONG);
         }
         final String elapsed = (SystemClock.uptimeMillis() - startTime) / 1000 + " secs";
-        makeToastText("Build complete (" + elapsed + ")", Toast.LENGTH_LONG);
+//        makeToastText("Build complete (" + elapsed + ")", Toast.LENGTH_LONG);
         ContentUtils.setThreadActivity(null);
     }
 
     @Override
     public void onLoadError(Exception ex) {
         Log.e("SceneLoader", ex.getMessage(), ex);
-        makeToastText("There was a problem building the model: " + ex.getMessage(), Toast.LENGTH_LONG);
+//        makeToastText("There was a problem building the model: " + ex.getMessage(), Toast.LENGTH_LONG);
         ContentUtils.setThreadActivity(null);
     }
 
@@ -490,7 +490,7 @@ public class SceneLoader implements LoaderTask.Callback {
 
     public void loadTexture(Object3DData obj, Uri uri) throws IOException {
         if (obj == null && objects.size() != 1) {
-            makeToastText("Unavailable", Toast.LENGTH_SHORT);
+//            makeToastText("Unavailable", Toast.LENGTH_SHORT);
             return;
         }
         obj = obj != null ? obj : objects.get(0);
@@ -538,13 +538,10 @@ public class SceneLoader implements LoaderTask.Callback {
             object.setRotation(resetRotation);
             float[] resetScale = new float[] {5, 5, 5};
             object.setScale(resetScale);
-            Object3DData bounbox = Object3DBuilder.buildBoundingBox(object);
-            if(bounbox != null) {
-//                bounbox.setRotation(resetRotation);
-//                bounbox.setScale(resetScale);
-//                parent.getGLView().getModelRenderer().boundingBoxes.put(object, bounbox);
-//                Object3DData box = parent.getGLView().getModelRenderer().boundingBoxes.get(object);
-            }
+            float [] position = object.getPosition();
+            float[] translation = new float[] { -position[0], -position[1], -position[2]};
+            object.setTranslation(translation);
+            clearSelectedObject();
         }
     }
 

@@ -16,7 +16,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.ScatteringByteChannel;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,26 +31,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -70,9 +60,9 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
+<<<<<<< HEAD
 import android.provider.MediaStore;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -103,9 +93,11 @@ import androidx.annotation.Nullable;
 =======
 
 >>>>>>> 8bb9eb3 (fixes file permissions management)
+=======
+
+>>>>>>> c6ed9ac ( * Gallery scrolling is smoother now.)
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.core.content.ContextCompat;
@@ -156,8 +148,6 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
-import com.arthenica.mobileffmpeg.Config;
-import com.arthenica.mobileffmpeg.FFmpeg;
 import com.bumptech.glide.Glide;
 import com.chemicalwedding.artemis.LongPressButton.ClickBoolean;
 import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
@@ -213,13 +203,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.hardware.camera2.CameraMetadata.CONTROL_EFFECT_MODE_OFF;
-import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_CANCEL;
-import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
 
 
 public class ArtemisActivity extends Activity implements
@@ -286,7 +273,7 @@ public class ArtemisActivity extends Activity implements
     private SensorManager sensorManager;
     private String locationProvider;
     private static Location lastKnownLocation;
-    protected static Location pictureSaveLocation;
+    private static Location pictureSaveLocation;
     protected static String pictureSaveHeadingTiltString;
 
     protected static boolean gpsEnabled = false, sensorEnabled = false;
@@ -360,6 +347,17 @@ public class ArtemisActivity extends Activity implements
     private Handler handler;
     public static boolean takeScreenshot = false;
     public static CameraItem preferedCamera;
+
+    public static Location getPictureSaveLocation() {
+        if (pictureSaveLocation == null) {
+            pictureSaveLocation = lastKnownLocation;
+        }
+        return pictureSaveLocation;
+    }
+
+    public static void setPictureSaveLocation(Location pictureSaveLocation) {
+        ArtemisActivity.pictureSaveLocation = pictureSaveLocation;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1010,7 +1008,7 @@ public class ArtemisActivity extends Activity implements
                     mCameraPreview.stopRecording();
                 } else {
                     if (lastKnownLocation != null)
-                        pictureSaveLocation = lastKnownLocation;
+                        setPictureSaveLocation(lastKnownLocation);
                     mCameraPreview.startRecording();
                 }
             }
@@ -3046,6 +3044,19 @@ public class ArtemisActivity extends Activity implements
 
 //            Rect cropRect = VideoUtils.calculateCropRect(outsideBox, selectedLensBox, new RectF(0, 0, videoWidth, videoHeight));
 //            file = VideoUtils.cropVideo(file, new File(videoFileNameCropped), cropRect);
+
+            try {
+                if (ArtemisActivity.preferedCamera != null) {
+                    CameraCharacteristics characteristics = ArtemisActivity.this.getSystemService(CameraManager.class).getCameraCharacteristics(ArtemisActivity.preferedCamera.getId());
+                    int lensFacing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                    if (lensFacing == CameraMetadata.LENS_FACING_FRONT) {
+                        file = VideoUtils.mirrorVideoHorizontally(getApplicationContext(), file);
+                    }
+                }
+            } catch(CameraAccessException ex) {
+                ex.printStackTrace();
+            }
+
             file = VideoUtils.cropVideo(file, videoWidth, videoHeight,
                     _artemisMath.screenWidth, _artemisMath.screenHeight,
                     test, mCameraOverlay.getWidth(), mCameraOverlay.getHeight());
@@ -4382,7 +4393,7 @@ public class ArtemisActivity extends Activity implements
 
     private void shutterButtonPressed(View sender) {
         if (lastKnownLocation != null)
-            pictureSaveLocation = lastKnownLocation;
+            setPictureSaveLocation(lastKnownLocation);
 
         pictureSaveHeadingTiltString = headingTiltText.getText().toString();
 
@@ -4425,7 +4436,8 @@ public class ArtemisActivity extends Activity implements
             final Toast toast = Toast.makeText(ArtemisActivity.this,
                     getString(R.string.image_saved_success), Toast.LENGTH_LONG);
             toast.show();
-
+            mCameraPreview.startArtemisPreview();
+            openArtemisCameraPreviewView();
             new AsyncTask<String, Void, String>() {
                 @Override
                 protected String doInBackground(String... params) {
@@ -4449,7 +4461,6 @@ public class ArtemisActivity extends Activity implements
                 // }
             }.execute();
 
-            openArtemisCameraPreviewView();
         }
     }
 
@@ -4527,8 +4538,8 @@ public class ArtemisActivity extends Activity implements
                                 Calendar dateSelected = Calendar.getInstance();
                                 dateSelected.set(year, month, dayOfMonth);
 
-                                com.luckycatlabs.sunrisesunset.dto.Location location = new com.luckycatlabs.sunrisesunset.dto.Location(ArtemisActivity.pictureSaveLocation
-                                        .getLatitude(), ArtemisActivity.pictureSaveLocation
+                                com.luckycatlabs.sunrisesunset.dto.Location location = new com.luckycatlabs.sunrisesunset.dto.Location(ArtemisActivity.getPictureSaveLocation()
+                                        .getLatitude(), ArtemisActivity.getPictureSaveLocation()
                                         .getLongitude());
                                 SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, Calendar.getInstance().getTimeZone());
 
@@ -4654,15 +4665,15 @@ public class ArtemisActivity extends Activity implements
         String latitude = "";
         String longitude = "";
 
-        if (pictureSaveLocation != null && gpsEnabled) {
-            latitude = Location.convert(pictureSaveLocation.getLatitude(), Location.FORMAT_DEGREES);
-            longitude = Location.convert(pictureSaveLocation.getLongitude(), Location.FORMAT_DEGREES);
+        if (getPictureSaveLocation() != null && gpsEnabled) {
+            latitude = Location.convert(getPictureSaveLocation().getLatitude(), Location.FORMAT_DEGREES);
+            longitude = Location.convert(getPictureSaveLocation().getLongitude(), Location.FORMAT_DEGREES);
             gpsDetails = "Lat: " + latitude + ", Long: " + longitude;
             Geocoder geocoder = new Geocoder(context);
             try {
                 List<Address> addressList = geocoder.getFromLocation(
-                        pictureSaveLocation.getLatitude(),
-                        pictureSaveLocation.getLongitude(), 1);
+                        getPictureSaveLocation().getLatitude(),
+                        getPictureSaveLocation().getLongitude(), 1);
                 if (addressList.iterator().hasNext()) {
                     Address addr = addressList.iterator().next();
                     int nItems = 0;

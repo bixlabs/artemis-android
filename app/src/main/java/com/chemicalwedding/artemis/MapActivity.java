@@ -34,8 +34,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
         Bundle bundle = this.getIntent().getExtras();
         latitude = bundle.getDouble("latitude");

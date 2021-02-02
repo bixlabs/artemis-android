@@ -48,6 +48,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class GalleryActivity extends Activity {
@@ -63,7 +64,7 @@ public class GalleryActivity extends Activity {
 
         recyclerView = findViewById(R.id.gallery_recycler_view);
 
-        mAdapter = new GalleryAdapter(mediaList);
+        mAdapter = new GalleryAdapter(mediaList, this.getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 4);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -71,15 +72,20 @@ public class GalleryActivity extends Activity {
         mAdapter.setRecyclerItemListener(new RecyclerItemClickListener() {
             @Override
             public void onItemClick(Integer position) {
-                Intent mediaFulllScreenIntent = new Intent(GalleryActivity.this, MediaFullScreenActivity.class);
-                mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                Bundle bundle = new Bundle();
-                bundle.putString("fullScreenMediaPath", mediaList.get(position).getPath());
-                bundle.putString("fullScreenMediaType", mediaList.get(position).getMediaType().toString());
+                if(!mAdapter.canSelectFiles) {
+                    Intent mediaFulllScreenIntent = new Intent(GalleryActivity.this, MediaFullScreenActivity.class);
+                    mediaFulllScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fullScreenMediaPath", mediaList.get(position).getPath());
+                    bundle.putString("fullScreenMediaType", mediaList.get(position).getMediaType().toString());
 
-                mediaFulllScreenIntent.putExtras(bundle);
-                startActivity(mediaFulllScreenIntent);
-                recyclerView.setAdapter(mAdapter);
+                    mediaFulllScreenIntent.putExtras(bundle);
+                    startActivity(mediaFulllScreenIntent);
+                    recyclerView.setAdapter(mAdapter);
+                } else {
+                    mAdapter.checkItem(position);
+                    mAdapter.mOnGalleryCheckboxItemListener.onCheckboxClick(position);
+                }
             }
         });
         mAdapter.setOnGalleryCheckboxItemListener(new GalleryPhotoCheckboxClickListener() {
@@ -167,7 +173,7 @@ public class GalleryActivity extends Activity {
             public void onClick(View v) {
                 mAdapter.selectedFiles.clear();
                 for(int i = 0; i<= mediaList.size() - 1; i++){
-                    mAdapter.selectedFiles.add(i);
+                    mAdapter.checkItem(i);
                 }
                 Log.i("bixlabs", "All pressed: " + mAdapter.selectedFiles.toString());
                 mAdapter.notifyDataSetChanged();
@@ -195,8 +201,8 @@ public class GalleryActivity extends Activity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                for(int i = 0; i<=mAdapter.selectedFiles.size() - 1; i++){
-                                    File fileToDetele = new File(mediaList.get(i).getPath());
+                                for(MediaFile file : mAdapter.selectedFiles){
+                                    File fileToDetele = new File(file.getPath());
                                     fileToDetele.delete();
                                 }
                                 mAdapter.selectedFiles.clear();
@@ -222,7 +228,7 @@ public class GalleryActivity extends Activity {
                                         shareFiles();
                                         break;
                                     case 1:
-                                        PdfUtils.exportImagesAsPdf(mediaList, GalleryActivity.this, mAdapter.selectedFiles);
+                                        PdfUtils.exportImagesAsPdf(GalleryActivity.this, new ArrayList<>(mAdapter.selectedFiles));
                                         break;
                                 }
                             }
@@ -243,8 +249,8 @@ public class GalleryActivity extends Activity {
     private void shareFiles() {
         Log.e("GalleryActivity", "share button has been pressed");
         ArrayList<Uri> imageUris = new ArrayList<Uri>();
-        for(Integer in : mAdapter.selectedFiles) {
-            File fileToShare = new File(mediaList.get(in).getPath());
+        for(MediaFile mediaFile : mAdapter.selectedFiles) {
+            File fileToShare = new File(mediaFile.getPath());
             Uri uri = FileProvider.getUriForFile(GalleryActivity.this, BuildConfig.APPLICATION_ID + ".provider",fileToShare);
 
             imageUris.add(uri);

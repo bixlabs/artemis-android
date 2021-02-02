@@ -9,6 +9,19 @@
         <item name="android:colorAccent">@color/orangeArtemisText</item>
     </style>
 
+    <style name="ArtemisCompatFullscreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textColor">@color/orangeArtemisText</item>
+        <item name="colorControlActivated">@color/orangeArtemisText</item>
+        <item name="colorControlHighlight">@color/orangeArtemisText</item>
+        <item name="colorControlNormal">@color/orangeArtemisText</item>
+        <item name="android:colorAccent">@color/orangeArtemisText</item>
+    </style>
+
     <style name="ArtemisSysBar" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="android:textColor">@color/orangeArtemisText</item>

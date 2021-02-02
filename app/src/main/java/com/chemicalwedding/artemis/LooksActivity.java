@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -17,11 +18,11 @@ import com.chemicalwedding.artemis.database.ArtemisDatabaseHelper;
 import com.chemicalwedding.artemis.database.Look;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LooksActivity extends Activity {
 
     private ArtemisDatabaseHelper mDBHelper;
-    private ArrayList<Look> availableEffects;
     private RecyclerView recyclerView;
     private ImageView deleteButton;
     private Button addNewLookButton;
@@ -42,7 +43,7 @@ public class LooksActivity extends Activity {
             }
         }
 
-        availableEffects = mDBHelper.getLooks();
+        ArrayList<Look> availableEffects = mDBHelper.getLooks();
 
         recyclerView = findViewById(R.id.looks_recycler_view);
 
@@ -55,17 +56,17 @@ public class LooksActivity extends Activity {
                 finish()
         );
 
+
         deleteButton = findViewById(R.id.delete_looks);
+        setDeleteModeVisibility();
         deleteButton.setAlpha(0.5f);
         deleteButton.setOnClickListener(view -> {
             if (deleteButton.getAlpha() == 0.5f) {
                 deleteButton.setAlpha(1.0f);
-                mAdapter.canDeleteLooks = true;
             } else {
                 deleteButton.setAlpha(0.5f);
-                mAdapter.canDeleteLooks = false;
             }
-            mAdapter.notifyDataSetChanged();
+            mAdapter.switchDeleteMode();
         });
 
         addNewLookButton = findViewById(R.id.add_new_look);
@@ -83,6 +84,7 @@ public class LooksActivity extends Activity {
                     .setPositiveButton("DELETE", (dialogInterface, i) -> {
                         mDBHelper.deleteLookByPK(mAdapter.availableEffects.get(position).getPk());
                         mAdapter.availableEffects = mDBHelper.getLooks();
+                        setDeleteModeVisibility();
                         mAdapter.notifyDataSetChanged();
                     })
                     .setNegativeButton(android.R.string.no, null).show();
@@ -90,11 +92,21 @@ public class LooksActivity extends Activity {
         recyclerView.setAdapter(mAdapter);
     }
 
+    private void setDeleteModeVisibility() {
+        deleteButton.setVisibility(View.GONE);
+        for (Look look : mAdapter.availableEffects) {
+            if(look.isCustomLook()) {
+                deleteButton.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
 
         mAdapter.availableEffects = mDBHelper.getLooks();
+        setDeleteModeVisibility();
         mAdapter.notifyDataSetChanged();
     }
 }

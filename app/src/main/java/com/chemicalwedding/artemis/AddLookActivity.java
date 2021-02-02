@@ -284,6 +284,7 @@ public class AddLookActivity extends Activity {
                     look.setRed(red);
                     look.setGreen(green);
                     look.setBlue(blue);
+                    look.setCustomLook(true);
 
                     mDBHelper.insertLook(look);
 

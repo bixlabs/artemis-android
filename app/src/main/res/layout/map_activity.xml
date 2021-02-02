@@ -122,10 +122,10 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="2dp"
-            android:background="@drawable/galleryselector_button"
+            android:background="@drawable/button_primary"
             android:text="@string/save_location"
             android:textAllCaps="true"
-            android:textColor="@color/galleryselector_button_text"
+            android:textColor="@color/orangeArtemisText"
             android:layout_centerHorizontal="true"
             android:textSize="12sp" />
 
@@ -138,10 +138,10 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="2dp"
-                android:background="@drawable/galleryselector_button"
+                android:background="@drawable/button_primary"
                 android:text="@string/use_current_location"
                 android:textAllCaps="true"
-                android:textColor="@color/galleryselector_button_text"
+                android:textColor="@color/orangeArtemisText"
                 android:layout_alignParentEnd="true"
                 android:textSize="12sp" />
 

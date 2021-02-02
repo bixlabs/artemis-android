@@ -33,38 +33,17 @@ public class VideoUtils {
         return executeFFmpegCommand(videoSource, newVideoFile, complexCommand);
     }
 
-    public static Rect calculateCropRect(RectF greenBox, RectF lens, RectF video) {
-        float heightToWidthPercentage = greenBox.height() / greenBox.width();
-        float newHeight = video.width() * heightToWidthPercentage;
-        float croppedHeight = video.height() - newHeight;
-        float halfCroppedheigth = croppedHeight / 2;
+    public static File mirrorVideoHorizontally(Context context, File videoSource) {
+        String videoFileName = videoSource.getPath();
+        String formatString = videoFileName.substring(videoFileName.lastIndexOf("."));
+        String fileName = FileUtils.getRandomFileName(formatString);
+        File newVideoFile = ArtemisFileUtils.Companion.newFile(context, fileName);
 
-        RectF newVideo = new RectF(video.left, video.top + halfCroppedheigth, video.right, video.bottom - halfCroppedheigth);
-
-        float topPercentage = lens.top  / greenBox.height();
-        float bottomPercentage = lens.bottom / greenBox.height();
-        float leftPercentage = lens.left / greenBox.width();
-        float rightPercentage = lens.right / greenBox.width();
-
-        Rect result =  new Rect((int) (newVideo.width() * leftPercentage),
-                (int) (newVideo.height() * topPercentage),
-                (int) (newVideo.width() * rightPercentage),
-                (int) (newVideo.height() * bottomPercentage)
-        );
-
-        return result;
-    }
-
-    public static File cropVideo(File source, File dest, Rect cropRect) {
-        String[] cmd = { "-i", source.getPath(), "-filter:v",
-                "crop=" + cropRect.width() + ":" + cropRect.height() +
-                        ":" + cropRect.left + ":" + cropRect.top,
-                "-b:v", "5000k",
-                "-c:a", "copy",  // audio stream copied to avoid re-encoding
-                dest.getPath()
+        String[] complexCommand = {
+                "-i", videoFileName, "-vf", "hflip", "-c:a", "copy", "-b:v", "5000k", newVideoFile.getPath()
         };
 
-        return executeFFmpegCommand(source, dest, cmd);
+        return executeFFmpegCommand(videoSource, newVideoFile, complexCommand);
     }
 
     public static File cropVideo(File source, int videoWidth, int videoHeight,

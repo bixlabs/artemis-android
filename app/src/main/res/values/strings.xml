@@ -379,6 +379,11 @@
     <string name="change_location">Change location</string>
     <string name="use_current_location">Use current location</string>
     <string name="save_location">Save location</string>
+<<<<<<< HEAD
 >>>>>>> f7ec138 (version 3.1.5 - Shotplan, camera selection, bug fixes)
+=======
+    <string name="select_files">Select files</string>
+    <string name="all">All</string>
+>>>>>>> c6ed9ac ( * Gallery scrolling is smoother now.)
 
 </resources>
